@@ -1,0 +1,1296 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <help_text>// Uncomment the following line to change the fontsize:
+// fontsize=14
+
+
+// Welcome to UMLet!
+//
+// Double-click on UML elements to add them to the diagram.
+// Edit element properties by modifying the text in this panel.
+// Edit the files in the 'palettes' directory to create your own element palettes.
+// Hold down Ctrl to select multiple elements.
+// Press Del to delete elements.
+// Press Ctrl-c to copy an element, and to store the whole UML diagram to the system clipboard.
+// Select "Custom elements &gt; New..." to create new element types.
+//
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>9</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>459</x>
+      <y>216</y>
+      <w>153</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>participants
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;registration_id:1-1:int
+&gt;&gt;user_id:int
+&gt;&gt;role_id:int
+&gt;&gt;school_id:int
+--
+-accepted:boolean
+--
+--
+/preference settings/
+--
+-editor:boolean
+-theme:int
+&gt;&gt;lanuguage_id:int
+
+fg=black
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>18</y>
+      <w>116</w>
+      <h>278</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>27;261;54;261;54;27;99;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>279</x>
+      <y>117</y>
+      <w>135</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>roles
+--
+&lt;&lt;id(PK):int
+--
+-rolename:text
+--
+/--RolesAvailable/
+/----1=administrator/
+/----2=leader/
+/----3=assistant/
+/----4=staff/
+/----5=student/
+/----6=visitor/
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>387</x>
+      <y>117</y>
+      <w>89</w>
+      <h>197</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>72;180;36;180;36;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>72</x>
+      <y>333</y>
+      <w>180</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>schools
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;version_id:int
+&gt;&gt;language_id:int
+--
+-name:text
+-location:text
+-prereqs:text
+-start_date:datetime
+-end_date:datetime
+-mailing_address:text
+-tagline:longtext
+-description:longtext
+-enrolement_type:boolean
+-active:boolean
+-timezone:string
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>225</x>
+      <y>279</y>
+      <w>251</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>234;27;45;27;45;81;27;81</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>684</x>
+      <y>18</y>
+      <w>252</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>users
+--
+&lt;&lt;id(PK):int
+--
+-login:string
+-email:string
+-crypted_password:string
+-salt:string
+-remember_token:string
+-remember_token_expires_at:datetime
+-activation_code:string
+-activated_at:datetime
+-password_reset_code:string
+-enabled:boolean
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>648</y>
+      <w>144</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>assignments
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+&gt;&gt;book_id:int
+&gt;&gt;scoresheet_id:int
+--
+-order:int
+-name:text
+-weight:int
+-quarter:int
+-due:datetime
+-resources:longtext
+-instructions:longtext
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>891</y>
+      <w>126</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>books
+--
+&lt;&lt;id(PK):int
+--
+-short_name:text
+-name:text
+-verse_count:int
+
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>27</x>
+      <y>333</y>
+      <w>71</w>
+      <h>377</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;360;27;360;27;27;45;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>27</x>
+      <y>684</y>
+      <w>71</w>
+      <h>251</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;27;27;27;27;234;54;234</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>693</x>
+      <y>252</y>
+      <w>171</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>grades
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;participant_id:int
+&gt;&gt;assignment_id:int
+&gt;&gt;staff_id:int 
+&gt;&gt;school_id:int
+--
+-grade:int
+-staff_comments:text
+-student_comments:text
+-scratchpad:text
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>125</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>108;81;81;81;81;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>198</x>
+      <y>288</y>
+      <w>512</w>
+      <h>404</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+fg=red</panel_attributes>
+    <additional_attributes>495;27;441;27;441;387;27;387</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>270</x>
+      <y>747</y>
+      <w>153</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>templats
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+--
+-name:string
+-content:text
+--
+/For any QA  type work/
+/or Special Assignment/
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>693</x>
+      <y>783</y>
+      <w>153</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>titles
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;parent_id:int
+&gt;&gt;participant_id:int
+&gt;&gt;assignment_id:int
+&gt;&gt;task_id:int
+&gt;&gt;paragraph_id:int
+--
+-title:string
+-title_type:int
+-title_order:int
+-verse_count:int
+-staffnote:text
+--
+/ Main Title Editing/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>693</x>
+      <y>612</y>
+      <w>153</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>answers
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;participant_id:int
+&gt;&gt;assignment_id:int
+&gt;&gt;task_id:int
+--
+-body:textlong
+-staffnote:text
+--
+/Freeform writing work/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>693</x>
+      <y>1206</y>
+      <w>153</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>charttexts
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;title_id:int
+&gt;&gt;task_id:int
+&gt;&gt;participant_id:int
+--
+-content:textlong
+-staffnote:text
+-editor:int
+--
+/Outsides of Verticals/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>468</x>
+      <y>711</y>
+      <w>153</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>tasks
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;assignment_id:int
+&gt;&gt;templat_id:int
+--
+-name:text
+-percent:float
+-help:textlong
+-task_type:integer
+-task_order:integer
+--
+/***task_types/
+/---1=Titles/
+/---2=Answers/
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>198</x>
+      <y>648</y>
+      <w>287</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>270;108;234;108;234;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>594</x>
+      <y>666</y>
+      <w>116</w>
+      <h>89</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>99;27;45;27;45;72;27;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>594</x>
+      <y>711</y>
+      <w>116</w>
+      <h>575</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>99;558;45;558;45;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>270</x>
+      <y>909</y>
+      <w>153</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>paragraphs
+--
+-&lt;&lt;d(PK):int
+--
+&gt;&gt;book_id:int
+&gt;&gt;version_id:int
+--
+-content:longtext
+-p_order:int
+-verse_count:int
+-startref:text
+-endref:text
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>332</w>
+      <h>1088</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>261;1071;315;1071;315;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>891</y>
+      <w>107</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>90;63;63;63;63;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>396</x>
+      <y>864</y>
+      <w>314</w>
+      <h>89</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>297;27;270;27;270;72;27;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>1017</y>
+      <w>126</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>versions
+--
+&lt;&lt;id(PK):int
+--
+-name:text
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>945</y>
+      <w>107</w>
+      <h>116</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>90;27;63;27;63;99;27;99</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>819</x>
+      <y>783</y>
+      <w>71</w>
+      <h>485</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>27;468;54;468;54;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>332</w>
+      <h>458</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>261;441;315;441;315;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>332</w>
+      <h>647</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>261;630;315;630;315;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>459</x>
+      <y>18</y>
+      <w>153</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>registrations
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+&gt;&gt;user_id:int
+--
+-prereq:integer
+-comment:longtext
+-fname:string
+-lname:string
+-mailing_address:text
+-phone:string
+-skype:string
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>27</x>
+      <y>36</y>
+      <w>449</w>
+      <h>341</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>432;27;27;27;27;324;45;324</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>18</y>
+      <w>116</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>27;63;54;63;54;27;99;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>125</w>
+      <h>134</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>108;117;72;117;72;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>27</x>
+      <y>315</y>
+      <w>683</w>
+      <h>341</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>666;27;594;27;594;324;27;324;27;45;45;45</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>108</y>
+      <w>126</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>leaders and up
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>135</y>
+      <w>126</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>staff and up
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>81</y>
+      <w>126</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>administrators only
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>162</y>
+      <w>126</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>students and up
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>189</y>
+      <w>126</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>visitors
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>396</x>
+      <y>747</y>
+      <w>89</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>72;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>27</x>
+      <y>612</y>
+      <w>260</w>
+      <h>197</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>243;180;216;180;216;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>945</x>
+      <y>540</y>
+      <w>144</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>_messages_
+--
+&lt;&lt;id: integer(PK)
+--
+&gt;&gt;parent_id:integer
+&lt;&lt;sender_id:integer
+&gt;&gt;recipient_id:integer
+&gt;&gt;school_id:integer
+--
+--
+-has_read:boolean
+-archived:boolean
+-subject:string
+-body:text
+-time_sent:datetime
+--
+--
+/FK's self referencing/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>72</x>
+      <y>225</y>
+      <w>180</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>/{:&gt; Updated: 5/14/2010/
+**************
+--
+--
+/All models include/
+--
+-created_at:datetime
+-updated_at:datetime
+bg=blue
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>891</x>
+      <y>540</y>
+      <w>71</w>
+      <h>62</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;45;27;45;27;27;54;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>891</x>
+      <y>576</y>
+      <w>71</w>
+      <h>62</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;45;27;45;27;27;54;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>198</x>
+      <y>648</y>
+      <w>512</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+</panel_attributes>
+    <additional_attributes>495;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>198</x>
+      <y>648</y>
+      <w>512</w>
+      <h>233</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>495;216;441;216;441;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>81</x>
+      <y>1107</y>
+      <w>171</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>_states_
+--
+&lt;&lt;id(PK):integer
+--
+&gt;&gt;participant_id:integer
+&gt;&gt;task_id:integer
+--
+-current:boolean
+-msg:text
+--
+/This is a state table/
+/Tracks the state of tasks/
+/Can be used for any /
+/activity that requires that /
+/ a state be tracked /
+/ it is not associated/
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>594</x>
+      <y>711</y>
+      <w>116</w>
+      <h>377</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>99;360;45;360;45;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>693</x>
+      <y>1008</y>
+      <w>153</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>ppoints
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;title_id:int
+&gt;&gt;task_id:int
+&gt;&gt;participant_id:int
+&gt;&gt;observation_id
+--
+-position:int
+-content:textlong
+-color:string
+-staffnote:text
+--
+/chart Insides/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>594</x>
+      <y>711</y>
+      <w>116</w>
+      <h>179</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>99;162;45;162;45;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>819</x>
+      <y>783</y>
+      <w>71</w>
+      <h>287</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>27;270;54;270;54;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>332</w>
+      <h>890</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>261;873;315;873;315;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>297</x>
+      <y>369</y>
+      <w>126</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>helps
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;parent_id:int
+&gt;&gt;index_id
+&gt;&gt;school_id
+&gt;&gt;helptopic_id
+&gt;&gt;language_id
+--
+-order:integer
+-topic:string
+-content:text
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>225</x>
+      <y>333</y>
+      <w>89</w>
+      <h>134</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>72;117;45;117;45;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>693</x>
+      <y>450</y>
+      <w>153</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>turnins
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;participant_id:int
+&gt;&gt;staff_id:int
+&gt;&gt;assignment_id:int
+--
+-comment:text
+-done:boolean
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>945</x>
+      <y>387</y>
+      <w>144</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>announcements
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;participant_id:int
+&gt;&gt;school_id:int
+--
+-category:string
+-leadstory:boolean
+-topic:string
+-msg:text
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>252</x>
+      <y>369</y>
+      <w>62</w>
+      <h>62</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>45;45;27;45;27;27;45;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>639</x>
+      <y>783</y>
+      <w>71</w>
+      <h>62</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;45;27;45;27;27;54;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>297</x>
+      <y>558</y>
+      <w>126</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>helptopics
+--
+&lt;&lt;id(PK):int
+--
+-name:string
+-location:string
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>486</x>
+      <y>549</y>
+      <w>126</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>languages
+--
+&lt;&lt;id(PK):int
+--
+-code:string
+-name:string
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>405</x>
+      <y>369</y>
+      <w>98</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;27;27;27;27;207;81;207</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>243</x>
+      <y>432</y>
+      <w>71</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;27;27;27;27;153;54;153</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>234</x>
+      <y>450</y>
+      <w>269</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>63;27;27;27;27;99;198;99;198;126;252;126</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>378</x>
+      <y>18</y>
+      <w>118</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.&gt;
+&lt;&lt;1to1&gt;&gt;
+fg=red
+bg=red
+</panel_attributes>
+    <additional_attributes>81;243;63;243;63;27;81;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>945</x>
+      <y>252</y>
+      <w>144</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Scoresheets
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+&gt;&gt;participant_id:int
+--
+-name:string
+-content:text
+-coversheet:text
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>18</x>
+      <y>369</y>
+      <w>485</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;27;27;27;27;243;243;243;243;180;414;180;414;207;468;207</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>486</x>
+      <y>423</y>
+      <w>126</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>_teams_
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;parent_id:int
+&gt;&gt;user_id:int
+&gt;&gt;school_id:int
+-name:string
+-teams_count:int
+
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>9</x>
+      <y>351</y>
+      <w>89</w>
+      <h>710</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>63;27;27;27;27;693;72;693</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>198</x>
+      <y>504</y>
+      <w>512</w>
+      <h>188</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+fg=red</panel_attributes>
+    <additional_attributes>495;27;441;27;441;171;27;171</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>125</w>
+      <h>314</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>108;297;72;297;72;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>585</x>
+      <y>216</y>
+      <w>125</w>
+      <h>296</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>108;279;72;279;72;27;27;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>936</x>
+      <y>1071</y>
+      <w>135</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>observations
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+--
+-link:text
+-color:text
+-code:text
+-name:text
+-order:int
+--
+/ This table holds/
+/links to icons for/
+/Observation types/
+
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>819</x>
+      <y>1071</y>
+      <w>134</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>27;27;117;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>477</x>
+      <y>945</y>
+      <w>144</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>topics
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;task_id:int
+&gt;&gt;assignment_id:int
+--
+-title:string
+-description:text
+-order:int
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>477</x>
+      <y>1089</y>
+      <w>144</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>comments
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;topic_id:int
+&gt;&gt;parent_id:int
+&gt;&gt;participant_id:int
+--
+-content:text
+-comments_count:int
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>414</x>
+      <y>711</y>
+      <w>80</w>
+      <h>296</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>63;279;27;279;27;27;54;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>423</x>
+      <y>945</y>
+      <w>71</w>
+      <h>206</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>54;189;27;189;27;27;54;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>657</x>
+      <y>765</y>
+      <w>432</w>
+      <h>603</h>
+    </coordinates>
+    <panel_attributes>These tables contain the charting data
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
