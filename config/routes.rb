@@ -1,9 +1,12 @@
 Studyworx3::Application.routes.draw do
+<<<<<<< HEAD
 
   resources :homes
 
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification' }
   root :to => "homes#index"
+=======
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

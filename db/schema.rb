@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # encoding: UTF-8
+=======
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +14,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20111224005212) do
+=======
+ActiveRecord::Schema.define(:version => 0) do
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
 
   create_table "announcements", :force => true do |t|
     t.integer  "participant_id"
@@ -19,7 +26,11 @@ ActiveRecord::Schema.define(:version => 20111224005212) do
     t.string   "category"
     t.boolean  "leadstory"
     t.string   "topic"
+<<<<<<< HEAD
     t.text     "msg",            :limit => 2147483647
+=======
+    t.text     "msg",            :limit => 16777215
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
     t.datetime "updated_at"
     t.datetime "created_at"
   end
@@ -28,7 +39,11 @@ ActiveRecord::Schema.define(:version => 20111224005212) do
     t.integer  "participant_id"
     t.integer  "assignment_id"
     t.integer  "task_id"
+<<<<<<< HEAD
     t.text     "body",           :limit => 2147483647
+=======
+    t.text     "body",           :limit => 16777215
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
     t.text     "staffnote"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -70,7 +85,11 @@ ActiveRecord::Schema.define(:version => 20111224005212) do
     t.integer  "task_id"
     t.integer  "participant_id"
     t.integer  "editor"
+<<<<<<< HEAD
     t.text     "content",        :limit => 2147483647
+=======
+    t.text     "content",        :limit => 16777215
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
     t.text     "staffnote"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -136,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20111224005212) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "models", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -165,6 +185,8 @@ ActiveRecord::Schema.define(:version => 20111224005212) do
   add_index "models", ["reset_password_token"], :name => "index_models_on_reset_password_token", :unique => true
   add_index "models", ["unlock_token"], :name => "index_models_on_unlock_token", :unique => true
 
+=======
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
   create_table "msgs", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "sender_id"
@@ -390,6 +412,7 @@ ActiveRecord::Schema.define(:version => 20111224005212) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "users", :primary_key => "users_id", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -417,6 +440,23 @@ ActiveRecord::Schema.define(:version => 20111224005212) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
+=======
+  create_table "users", :force => true do |t|
+    t.string   "login"
+    t.string   "email"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.string   "activation_code",           :limit => 40
+    t.datetime "activated_at"
+    t.string   "password_reset_code",       :limit => 40
+    t.boolean  "enabled",                                 :default => true
+  end
+
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
   create_table "versions", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"

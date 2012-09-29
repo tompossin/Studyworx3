@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 ==Welcome to Studyworx 3
+=======
+This is a re-write of the StudyWorx online study program
+written to take advantage of the new features available
+in Rails 3.1
+>>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
 
