@@ -1,12 +1,9 @@
 Studyworx3::Application.routes.draw do
-<<<<<<< HEAD
+  
+  devise_for :users
 
-  resources :homes
-
-  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification' }
-  root :to => "homes#index"
-=======
->>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
+  root :to => 'home#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -62,5 +59,5 @@ Studyworx3::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id))(.:format)'
 end

@@ -5,9 +5,25 @@
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
-
+  
+  <div><%= f.label :firstname %><br />
+  	<%=f.text_field :firstname %>
+  </div>
+  
+  <div><%= f.label :lastname %><br />
+  	<%= f.text_field :lastname %>
+  </div>
+  
+  <div><%= f.label :phone %><br />
+  	<%= f.text_field :phone %>
+  </div> 
+  
+  <div><%= f.label :address %><br />
+  	<%= f.text_area :address %>
+  </div> 
+  
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></div>
+  <%= f.password_field :password, :autocomplete => "off" %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
@@ -18,8 +34,5 @@
   <div><%= f.submit "Update" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
 <%= link_to "Back", :back %>

@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Studyworx3</title>
-  <%= stylesheet_link_tag    "application" %>
+  <title>Studyworx</title>
+  <%= stylesheet_link_tag    "base", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<<<<<<< HEAD
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-=======
->>>>>>> d1fc8d9eb51d89019256b3b4b96cf89891d30149
+	<div id='header'>
+		<div id='logo' onclick="ShowHide('logomenu')">
+			{:> StudyWorx
+			<p id="logomenu" style="display:none">
+				home page
+			</p>
+		</div>
+	</div>
+	<div id='profile' onclick="ShowHide('profilemenu')">
+		<%= full_name if current_user %>
+		<p id="profilemenu" style= "display:none">
+			<%= link_to "Edit Profile", edit_user_registration_path if current_user %><br />
+			<%= link_to "Log Out", destroy_user_session_path, :method=>:delete %><br />
+		</p>
+	</div>
 
-<%= yield %>
-
+	<p id="notice" onclick="ShowHide('notice')" ><%= notice + %{ (click to hide)} if notice %></p>
+	<p id="alert" onclick="ShowHide('alert')" ><%= alert + %{ (click to hide)} if alert %></p>
+	<div id='content'>
+		<%= yield %>
+	</div>
 </body>
 </html>
