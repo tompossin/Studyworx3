@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @user_admin.user_id %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @user_admin.level %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_admin_path(@user_admin) %> |
+<%= link_to 'Back', user_admins_path %>

@@ -1,0 +1,33 @@
+<h1>Site Administrators</h1>
+<p>Search by Last name below:</p>
+<%= form_tag user_admins_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<% if @users %>
+<table style="text-align:center">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Admin Level</th>
+    <th>User ID</th>
+    <th></th>
+  </tr>
+<% @users.each do |u| %>
+  <tr>
+    <td><%= u.firstname if u %></td>
+    <td><%= u.lastname if u %></td>
+    <td><%= u.user_admin.level if u.user_admin %></td>
+    <td><%= u.id %></td>
+    <% if u.user_admin %>
+    	<td><%= link_to "Edit Admin Level", edit_user_admin_path(u) %></td>
+    <% else %>
+    	<td><%= link_to "Make an Admin", edit_user_admin_path(u)%></td>
+    <% end %>
+  </tr>
+<% end %>
+<% end %>
+</table>
+

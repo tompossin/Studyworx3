@@ -1,5 +1,9 @@
 Studyworx3::Application.routes.draw do
   
+  resources :user_admins do
+    post :findadmin, on: :collection
+  end
+
   devise_for :users
 
   root :to => 'home#index'
