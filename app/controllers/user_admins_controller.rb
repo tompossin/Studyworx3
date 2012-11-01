@@ -25,9 +25,7 @@ class UserAdminsController < ApplicationController
     end
   end
 
-  # GET /user_admins/new
-  # GET /user_admins/new.json
-  # Not using this for now - running everything through edit
+  ##### Not using this for now - running everything through edit
   def new
     @user_admin = UserAdmin.new
 
@@ -36,14 +34,15 @@ class UserAdminsController < ApplicationController
       format.json { render json: @user_admin }
     end
   end
-
+  ############################################################
+  
   # GET /user_admins/1/edit
   def edit
     @user_admin = UserAdmin.find_by_user_id(params[:id])
+    @user = User.find(params[:id])
     unless @user_admin
       @user_admin = UserAdmin.create(user_id: params[:id],level: 0)
     end
-    @user = User.find(params[:id])
   end
 
   # POST /user_admins

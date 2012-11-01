@@ -11,7 +11,68 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121025191113) do
+ActiveRecord::Schema.define(:version => 20121029170415) do
+
+  create_table "blogs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "category"
+    t.string   "topic"
+    t.text     "excerpt"
+    t.text     "article"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "featured"
+  end
+
+  create_table "mercury_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "participants", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "school_id"
+    t.integer  "language_id"
+    t.boolean  "prereq"
+    t.integer  "accepted"
+    t.integer  "theme"
+    t.binary   "avatar"
+    t.binary   "wallpaper"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "participants", ["school_id"], :name => "index_participants_on_school_id"
+  add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "rolename"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "schools", :force => true do |t|
+    t.integer  "version_id"
+    t.integer  "language_id"
+    t.string   "name"
+    t.string   "location"
+    t.text     "prereqs"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text     "mailing_address"
+    t.text     "tagline"
+    t.text     "description"
+    t.boolean  "enrolement_type"
+    t.boolean  "active"
+    t.string   "timezone"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "user_admins", :force => true do |t|
     t.integer  "user_id"

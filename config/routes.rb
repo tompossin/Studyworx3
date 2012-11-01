@@ -1,8 +1,18 @@
 Studyworx3::Application.routes.draw do
   
-  resources :user_admins do
-    post :findadmin, on: :collection
-  end
+  resources :schools
+
+  resources :participants
+
+    namespace :mercury do
+      resources :images
+    end
+
+  mount Mercury::Engine => '/'
+
+  resources :blogs
+
+  resources :user_admins
 
   devise_for :users
 

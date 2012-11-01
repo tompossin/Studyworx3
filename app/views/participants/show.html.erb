@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @participant.user_id %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @participant.role_id %>
+</p>
+
+<p>
+  <b>School:</b>
+  <%= @participant.school_id %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%= @participant.language_id %>
+</p>
+
+<p>
+  <b>Prereq:</b>
+  <%= @participant.prereq %>
+</p>
+
+<p>
+  <b>Accepted:</b>
+  <%= @participant.accepted %>
+</p>
+
+<p>
+  <b>Theme:</b>
+  <%= @participant.theme %>
+</p>
+
+<p>
+  <b>Avatar:</b>
+  <%= @participant.avatar %>
+</p>
+
+<p>
+  <b>Wallpaper:</b>
+  <%= @participant.wallpaper %>
+</p>
+
+
+<%= link_to 'Edit', edit_participant_path(@participant) %> |
+<%= link_to 'Back', participants_path %>

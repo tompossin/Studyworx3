@@ -1,0 +1,47 @@
+<h1>Listing schools</h1>
+
+<table>
+  <tr>
+    <th>Version</th>
+    <th>Language</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Prereqs</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Mailing address</th>
+    <th>Tagline</th>
+    <th>Description</th>
+    <th>Enrolement type</th>
+    <th>Active</th>
+    <th>Temezone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @schools.each do |school| %>
+  <tr>
+    <td><%= school.version_id %></td>
+    <td><%= school.language_id %></td>
+    <td><%= school.name %></td>
+    <td><%= school.location %></td>
+    <td><%= school.prereqs %></td>
+    <td><%= school.start_date %></td>
+    <td><%= school.end_date %></td>
+    <td><%= school.mailing_address %></td>
+    <td><%= school.tagline %></td>
+    <td><%= school.description %></td>
+    <td><%= school.enrolement_type %></td>
+    <td><%= school.active %></td>
+    <td><%= school.temezone %></td>
+    <td><%= link_to 'Show', school %></td>
+    <td><%= link_to 'Edit', edit_school_path(school) %></td>
+    <td><%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New School', new_school_path %>

@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Version:</b>
+  <%= @school.version_id %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%= @school.language_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @school.name %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @school.location %>
+</p>
+
+<p>
+  <b>Prereqs:</b>
+  <%= @school.prereqs %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @school.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @school.end_date %>
+</p>
+
+<p>
+  <b>Mailing address:</b>
+  <%= @school.mailing_address %>
+</p>
+
+<p>
+  <b>Tagline:</b>
+  <%= @school.tagline %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @school.description %>
+</p>
+
+<p>
+  <b>Enrolement type:</b>
+  <%= @school.enrolement_type %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @school.active %>
+</p>
+
+<p>
+  <b>Temezone:</b>
+  <%= @school.temezone %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  version_id: 1
+  language_id: 1
+  name: MyString
+  location: MyString
+  prereqs: MyText
+  start_date: 2012-10-29 11:04:15
+  end_date: 2012-10-29 11:04:15
+  mailing_address: MyText
+  tagline: 
+  description: 
+  enrolement_type: false
+  active: false
+  temezone: MyString
+
+two:
+  version_id: 1
+  language_id: 1
+  name: MyString
+  location: MyString
+  prereqs: MyText
+  start_date: 2012-10-29 11:04:15
+  end_date: 2012-10-29 11:04:15
+  mailing_address: MyText
+  tagline: 
+  description: 
+  enrolement_type: false
+  active: false
+  temezone: MyString

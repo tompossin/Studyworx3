@@ -1,0 +1,39 @@
+<h1>Listing participants</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Role</th>
+    <th>School</th>
+    <th>Language</th>
+    <th>Prereq</th>
+    <th>Accepted</th>
+    <th>Theme</th>
+    <th>Avatar</th>
+    <th>Wallpaper</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @participants.each do |participant| %>
+  <tr>
+    <td><%= participant.user_id %></td>
+    <td><%= participant.role_id %></td>
+    <td><%= participant.school_id %></td>
+    <td><%= participant.language_id %></td>
+    <td><%= participant.prereq %></td>
+    <td><%= participant.accepted %></td>
+    <td><%= participant.theme %></td>
+    <td><%= participant.avatar %></td>
+    <td><%= participant.wallpaper %></td>
+    <td><%= link_to 'Show', participant %></td>
+    <td><%= link_to 'Edit', edit_participant_path(participant) %></td>
+    <td><%= link_to 'Destroy', participant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Participant', new_participant_path %>

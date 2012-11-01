@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_one :user_admin
+  has_many :participants
+  has_many :blogs
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

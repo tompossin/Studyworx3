@@ -1,0 +1,16 @@
+
+<div id="category" style="font-weight:bold;" data-mercury="simple">
+  <%= sanitize @blog.category %>
+</div>
+
+<div id="topic" style="font-weight:bold;" data-mercury="simple">
+  <%= sanitize @blog.topic %>
+</div>
+
+<div id="article" data-mercury="full">
+  <%= sanitize @blog.article %>
+</div>
+
+
+<%= link_to 'Edit', '/editor' + blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
