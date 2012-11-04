@@ -18,7 +18,7 @@ class SchoolsControllerTest < ActionController::TestCase
 
   test "should create school" do
     assert_difference('School.count') do
-      post :create, school: { active: @school.active, description: @school.description, end_date: @school.end_date, enrolement_type: @school.enrolement_type, language_id: @school.language_id, location: @school.location, mailing_address: @school.mailing_address, name: @school.name, prereqs: @school.prereqs, start_date: @school.start_date, tagline: @school.tagline, temezone: @school.temezone, version_id: @school.version_id }
+      post :create, school: { active: @school.active, description: @school.description, end_date: @school.end_date, enrolement_type: @school.enrolement_type, language_id: @school.language_id, location: @school.location, mailing_address: @school.mailing_address, name: @school.name, prereqs: @school.prereqs, start_date: @school.start_date, tagline: @school.tagline, timezone: @school.timezone, version_id: @school.version_id }
     end
 
     assert_redirected_to school_path(assigns(:school))
@@ -35,7 +35,7 @@ class SchoolsControllerTest < ActionController::TestCase
   end
 
   test "should update school" do
-    put :update, id: @school, school: { active: @school.active, description: @school.description, end_date: @school.end_date, enrolement_type: @school.enrolement_type, language_id: @school.language_id, location: @school.location, mailing_address: @school.mailing_address, name: @school.name, prereqs: @school.prereqs, start_date: @school.start_date, tagline: @school.tagline, temezone: @school.temezone, version_id: @school.version_id }
+    put :update, id: @school, school: { active: @school.active, description: @school.description, end_date: @school.end_date, enrolement_type: @school.enrolement_type, language_id: @school.language_id, location: @school.location, mailing_address: @school.mailing_address, name: @school.name, prereqs: @school.prereqs, start_date: @school.start_date, tagline: @school.tagline, timezone: @school.timezone, version_id: @school.version_id }
     assert_redirected_to school_path(assigns(:school))
   end
 

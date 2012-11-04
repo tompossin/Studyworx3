@@ -13,7 +13,7 @@ one:
   description: 
   enrolement_type: false
   active: false
-  temezone: MyString
+  timezone: MyString
 
 two:
   version_id: 1
@@ -28,4 +28,4 @@ two:
   description: 
   enrolement_type: false
   active: false
-  temezone: MyString
+  timezone: MyString

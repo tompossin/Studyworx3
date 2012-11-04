@@ -1,21 +1,56 @@
-             user_admins GET    /user_admins(.:format)          user_admins#index
-                         POST   /user_admins(.:format)          user_admins#create
-          new_user_admin GET    /user_admins/new(.:format)      user_admins#new
-         edit_user_admin GET    /user_admins/:id/edit(.:format) user_admins#edit
-              user_admin GET    /user_admins/:id(.:format)      user_admins#show
-                         PUT    /user_admins/:id(.:format)      user_admins#update
-                         DELETE /user_admins/:id(.:format)      user_admins#destroy
-        new_user_session GET    /users/sign_in(.:format)        devise/sessions#new
-            user_session POST   /users/sign_in(.:format)        devise/sessions#create
-    destroy_user_session DELETE /users/sign_out(.:format)       devise/sessions#destroy
-           user_password POST   /users/password(.:format)       devise/passwords#create
-       new_user_password GET    /users/password/new(.:format)   devise/passwords#new
-      edit_user_password GET    /users/password/edit(.:format)  devise/passwords#edit
-                         PUT    /users/password(.:format)       devise/passwords#update
-cancel_user_registration GET    /users/cancel(.:format)         devise/registrations#cancel
-       user_registration POST   /users(.:format)                devise/registrations#create
-   new_user_registration GET    /users/sign_up(.:format)        devise/registrations#new
-  edit_user_registration GET    /users/edit(.:format)           devise/registrations#edit
-                         PUT    /users(.:format)                devise/registrations#update
-                         DELETE /users(.:format)                devise/registrations#destroy
-                    root        /                               home#index
+                 schools GET    /schools(.:format)                 schools#index
+                         POST   /schools(.:format)                 schools#create
+              new_school GET    /schools/new(.:format)             schools#new
+             edit_school GET    /schools/:id/edit(.:format)        schools#edit
+                  school GET    /schools/:id(.:format)             schools#show
+                         PUT    /schools/:id(.:format)             schools#update
+                         DELETE /schools/:id(.:format)             schools#destroy
+            participants GET    /participants(.:format)            participants#index
+                         POST   /participants(.:format)            participants#create
+         new_participant GET    /participants/new(.:format)        participants#new
+        edit_participant GET    /participants/:id/edit(.:format)   participants#edit
+             participant GET    /participants/:id(.:format)        participants#show
+                         PUT    /participants/:id(.:format)        participants#update
+                         DELETE /participants/:id(.:format)        participants#destroy
+          mercury_images GET    /mercury/images(.:format)          mercury/images#index
+                         POST   /mercury/images(.:format)          mercury/images#create
+       new_mercury_image GET    /mercury/images/new(.:format)      mercury/images#new
+      edit_mercury_image GET    /mercury/images/:id/edit(.:format) mercury/images#edit
+           mercury_image GET    /mercury/images/:id(.:format)      mercury/images#show
+                         PUT    /mercury/images/:id(.:format)      mercury/images#update
+                         DELETE /mercury/images/:id(.:format)      mercury/images#destroy
+          mercury_engine        /                                  Mercury::Engine
+                   blogs GET    /blogs(.:format)                   blogs#index
+                         POST   /blogs(.:format)                   blogs#create
+                new_blog GET    /blogs/new(.:format)               blogs#new
+               edit_blog GET    /blogs/:id/edit(.:format)          blogs#edit
+                    blog GET    /blogs/:id(.:format)               blogs#show
+                         PUT    /blogs/:id(.:format)               blogs#update
+                         DELETE /blogs/:id(.:format)               blogs#destroy
+             user_admins GET    /user_admins(.:format)             user_admins#index
+                         POST   /user_admins(.:format)             user_admins#create
+          new_user_admin GET    /user_admins/new(.:format)         user_admins#new
+         edit_user_admin GET    /user_admins/:id/edit(.:format)    user_admins#edit
+              user_admin GET    /user_admins/:id(.:format)         user_admins#show
+                         PUT    /user_admins/:id(.:format)         user_admins#update
+                         DELETE /user_admins/:id(.:format)         user_admins#destroy
+        new_user_session GET    /users/sign_in(.:format)           devise/sessions#new
+            user_session POST   /users/sign_in(.:format)           devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)          devise/sessions#destroy
+           user_password POST   /users/password(.:format)          devise/passwords#create
+       new_user_password GET    /users/password/new(.:format)      devise/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)     devise/passwords#edit
+                         PUT    /users/password(.:format)          devise/passwords#update
+cancel_user_registration GET    /users/cancel(.:format)            devise/registrations#cancel
+       user_registration POST   /users(.:format)                   devise/registrations#create
+   new_user_registration GET    /users/sign_up(.:format)           devise/registrations#new
+  edit_user_registration GET    /users/edit(.:format)              devise/registrations#edit
+                         PUT    /users(.:format)                   devise/registrations#update
+                         DELETE /users(.:format)                   devise/registrations#destroy
+                    root        /                                  home#index
+
+Routes for Mercury::Engine:
+mercury_editor  /editor(/*requested_uri)(.:format)        mercury#edit
+                /mercury/:type/:resource(.:format)        mercury#resource
+                /mercury/snippets/:name/options(.:format) mercury#snippet_options
+                /mercury/snippets/:name/preview(.:format) mercury#snippet_preview

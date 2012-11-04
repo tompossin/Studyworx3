@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029170415) do
+ActiveRecord::Schema.define(:version => 20121104003100) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20121029170415) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "featured"
+    t.boolean  "leadstory"
+    t.boolean  "navbar"
   end
 
   create_table "mercury_images", :force => true do |t|

@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :prereqs %><br />
-    <%= f.text_area :prereqs %>
+    <%= f.text_area :prereqs, :cols => '40', :rows=>'6' %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br />
@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :mailing_address %><br />
-    <%= f.text_area :mailing_address %>
+    <%= f.text_area :mailing_address, :cols => '40', :rows=>'6' %>
   </div>
   <div class="field">
     <%= f.label :tagline %><br />
@@ -49,7 +49,7 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description, :cols =>'40', :rows => '12' %>
   </div>
   <div class="field">
     <%= f.label :enrolement_type %><br />
@@ -60,8 +60,8 @@
     <%= f.check_box :active %>
   </div>
   <div class="field">
-    <%= f.label :temezone %><br />
-    <%= f.text_field :temezone %>
+    <%= f.label :timezone %><br />
+    <%= f.text_field :timezone %>
   </div>
   <div class="actions">
     <%= f.submit %>

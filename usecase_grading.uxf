@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>9</x>
+      <y>0</y>
+      <w>207</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>*Feature List:*
+&gt;&gt;Quick View of past comments
+&gt;&gt;Quick change of task
+&gt;&gt;Quick Messaging
+&gt;&gt;Easy access to past work.
+&gt;&gt;Easy printing of student work.
+&gt;&gt;More reports for staff.
+&gt;&gt;Better reporting for students.
+
+
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Taxonomy_of_Workprocesses</type>
+    <coordinates>
+      <x>234</x>
+      <y>0</y>
+      <w>666</w>
+      <h>819</h>
+    </coordinates>
+    <panel_attributes>*Grading*
+	Student
+		View Grades
+			Overall report
+			Single Assignment
+		Staff Messaging
+			Turn in
+			Questions
+	Staff
+		Grade view
+			Student Notes
+			Personal Notes
+			Staff Notes
+		Print View
+			Task Level
+			Assignment level
+		Student Messaging
+			Comments
+			Return
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

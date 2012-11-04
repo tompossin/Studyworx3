@@ -7,6 +7,13 @@ p {
 	margin-bottom: 1px;
 	font-family: sans-serif;
 }
+a {
+  color: #777777;
+  text-decoration: none;
+}
+a:hover {
+  color:black;
+}
 p:empty {
 	display:none;
 }
@@ -19,17 +26,24 @@ p:empty {
 #logo {
 	font-size: 12pt;
 	font-weight:bolder;
-	color:#333333;
-	background-color: #DADADA;
+	color:#999999;
+	background-color: white;
 	margin-left: 4px;
 	padding-left: 4px;
 	padding-right: 4px;
 	position: absolute;
 	top: 0px;
-	left: 0px;
+	left: 12px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	cursor: hand;
+}
+#logo a {
+  color: #999999;
+  text-decoration: none;
+}
+#logo a:hover {
+  color:black;
 }
 #logo p {
 	font-weight: normal;
@@ -37,15 +51,50 @@ p:empty {
 #logo:hover {
 	cursor: crosshair;
 }
+#profile {
+  position:absolute;
+  right: 12px;
+  top: 0px;
+  width: 200px;
+  padding-left: 4px;
+  color: #999999;
+  background-color: white;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#profile a {
+  color: #999999;
+  text-decoration: none;
+}
+#profile a:hover {
+  color:black;
+}
+#profile:hover {
+  cursor:crosshair;
+}
 
 #content {
 	position:relative;
 	top: 20px;
-	width: 800px;
-	border:2px #333333 solid;
+	width: 98%;
+	border:2px #eeeeee solid;
 	border-radius: 10px;
 	margin: 5px;
 	padding: 5px;
+}
+
+#right-nav {
+  position:absolute;top:6px;right:4px;width:20%;
+  border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
+  padding:10px;
+  background-color: #ededed;
+}
+
+#blog-article {
+  position:relative;left:0px;width:70%;
+  border-right:2px solid #cdcdcd;border-radius:10px;
+  padding:10px;
+  background-color: #ededed;
 }
 
 #alert {
@@ -53,9 +102,9 @@ p:empty {
 	font-size: 10pt;
 	text-align:center;
 	top: 0px;
-	left: 150px;
+	left: 170px;
 	width: 250px;
-	background-color:#FFFFDD;
+	background-color:green;
 	border-radius: 5px;
 }
 
@@ -64,23 +113,9 @@ p:empty {
 	font-size: 10pt;
 	text-align:center;
 	top: 0px;
-	left: 150px;
+	left: 170px;
 	width: 250px;
-	background-color:#FFFFDD;
+	background-color:green;
 	border-radius: 5px;
-}
-
-#profile {
-	position:absolute;
-	right: 4px;
-	top: 0px;
-	width: 200px;
-	padding-left: 4px;
-	background-color: #DADADA;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-#profile:hover {
-	cursor:crosshair;
 }
 

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=14
+fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>30</x>
+      <y>30</y>
+      <w>340</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>*Admin Home*
+--
+User Admin
+Team Admin
+Version Admin
+Paragraph Admin
+Assignment Admin
+School Admin
+Announcement Admin
+Blog Admin
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>480</x>
+      <y>10</y>
+      <w>200</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>*User Admin*
+--
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>490</x>
+      <y>110</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>user_admin
+Must be a user_admin</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>520</x>
+      <y>180</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>User prefs
+All users</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>490</x>
+      <y>230</y>
+      <w>180</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>participant_admin
+&gt;= Assistant Role</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>180</y>
+      <w>280</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>260;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>730</x>
+      <y>10</y>
+      <w>200</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>*Team Admin*
+--
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>740</x>
+      <y>110</y>
+      <w>180</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Each school = Team</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>740</x>
+      <y>160</y>
+      <w>180</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>*Additional Teams:*
+Ea. Team has an owner
+&gt;&gt;Can be any participant.
+&gt;&gt;Only owners Admin
+the team</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>170</y>
+      <w>530</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>510;30;480;30;480;210;180;210;180;60;30;60</additional_attributes>
+  </element>
+</diagram>

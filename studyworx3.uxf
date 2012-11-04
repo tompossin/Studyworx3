@@ -19,12 +19,12 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>594</x>
+      <x>432</x>
       <y>27</y>
-      <w>153</w>
+      <w>135</w>
       <h>207</h>
     </coordinates>
-    <panel_attributes>participants
+    <panel_attributes>*participants*
 --
 &lt;&lt;id(PK):int
 --
@@ -51,12 +51,12 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>423</x>
+      <x>306</x>
       <y>27</y>
-      <w>135</w>
+      <w>117</w>
       <h>207</h>
     </coordinates>
-    <panel_attributes>participant_roles
+    <panel_attributes>*participant_roles*
 --
 &lt;&lt;id(PK):int
 --
@@ -68,7 +68,6 @@ bg=green</panel_attributes>
 /----2=assistant/
 /----3=staff/
 /----4=student/
-/----5=visitor/
 --
 --
 Hand edit only
@@ -79,17 +78,18 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>63</x>
+      <x>45</x>
       <y>270</y>
       <w>180</w>
       <h>252</h>
     </coordinates>
-    <panel_attributes>schools
+    <panel_attributes>*schools*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;version_id:int
 &gt;&gt;language_id:int
+--
 --
 -name:text
 -location:text
@@ -109,12 +109,12 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>63</x>
+      <x>45</x>
       <y>27</y>
-      <w>180</w>
+      <w>135</w>
       <h>207</h>
     </coordinates>
-    <panel_attributes>users
+    <panel_attributes>*users*
 --
 &lt;&lt;id(PK):int
 --
@@ -131,8 +131,8 @@ bg=white</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>261</x>
-      <y>270</y>
+      <x>243</x>
+      <y>378</y>
       <w>144</w>
       <h>207</h>
     </coordinates>
@@ -158,14 +158,15 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>63</x>
-      <y>918</y>
+      <x>45</x>
+      <y>846</y>
       <w>126</w>
       <h>108</h>
     </coordinates>
-    <panel_attributes>books
+    <panel_attributes>*books*
 --
 &lt;&lt;id(PK):int
+--
 --
 -short_name:text
 -name:text
@@ -177,34 +178,36 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>261</x>
-      <y>711</y>
+      <x>54</x>
+      <y>630</y>
       <w>144</w>
-      <h>144</h>
+      <h>153</h>
     </coordinates>
-    <panel_attributes>templats
+    <panel_attributes>*templats*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;school_id:int
+--
 --
 -name:string
 -content:text
 -public:boolean
 --
 /loads with task/
+/*purposely mispelled/
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>459</x>
-      <y>783</y>
+      <x>441</x>
+      <y>819</y>
       <w>153</w>
       <h>216</h>
     </coordinates>
-    <panel_attributes>titles
+    <panel_attributes>*titles*
 --
 &lt;&lt;id(PK):int
 --
@@ -213,6 +216,7 @@ bg=green</panel_attributes>
 &gt;&gt;assignment_id:int
 &gt;&gt;task_id:int
 &gt;&gt;paragraph_id:int
+--
 --
 -title:string
 -title_type:int
@@ -227,18 +231,19 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>450</x>
-      <y>504</y>
+      <x>441</x>
+      <y>540</y>
       <w>153</w>
       <h>144</h>
     </coordinates>
-    <panel_attributes>answers
+    <panel_attributes>*answers*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;participant_id:int
 &gt;&gt;assignment_id:int
 &gt;&gt;task_id:int
+--
 --
 -body:textlong
 -staffnote:text
@@ -250,18 +255,18 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>459</x>
-      <y>1206</y>
+      <x>675</x>
+      <y>819</y>
       <w>153</w>
       <h>153</h>
     </coordinates>
-    <panel_attributes>charttexts
+    <panel_attributes>*charttexts*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;title_id:int
-&gt;&gt;task_id:int
 &gt;&gt;participant_id:int
+--
 --
 -content:textlong
 -staffnote:text
@@ -274,17 +279,18 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>261</x>
-      <y>486</y>
+      <x>243</x>
+      <y>594</y>
       <w>144</w>
       <h>216</h>
     </coordinates>
-    <panel_attributes>tasks
+    <panel_attributes>*tasks*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;assignment_id:int
 &gt;&gt;templat_id:int
+--
 --
 -name:text
 -percent:float
@@ -293,7 +299,7 @@ bg=yellow</panel_attributes>
 -task_order:integer
 --
 /***task_types/
-/---1=Titles(charts)/
+/---1=Titles(charting)/
 /---2=Answers/
 /---3=discussion/
 
@@ -303,17 +309,18 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>63</x>
-      <y>1116</y>
+      <x>45</x>
+      <y>1035</y>
       <w>126</w>
       <h>171</h>
     </coordinates>
-    <panel_attributes>paragraphs
+    <panel_attributes>*paragraphs*
 --
 -&lt;&lt;d(PK):int
 --
 &gt;&gt;book_id:int
 &gt;&gt;version_id:int
+--
 --
 -content:longtext
 -p_order:int
@@ -326,14 +333,15 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>63</x>
-      <y>1044</y>
+      <x>45</x>
+      <y>963</y>
       <w>126</w>
       <h>63</h>
     </coordinates>
-    <panel_attributes>versions
+    <panel_attributes>*versions*
 --
 &lt;&lt;id(PK):int
+--
 --
 -name:text
 bg=gray</panel_attributes>
@@ -342,12 +350,12 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>954</x>
+      <x>927</x>
       <y>441</y>
-      <w>144</w>
+      <w>171</w>
       <h>207</h>
     </coordinates>
-    <panel_attributes>_messages_
+    <panel_attributes>*messages*
 --
 &lt;&lt;id: integer(PK)
 --
@@ -371,17 +379,18 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>945</x>
+      <x>927</x>
       <y>666</y>
       <w>171</w>
       <h>207</h>
     </coordinates>
-    <panel_attributes>_states_
+    <panel_attributes>*states*
 --
 &lt;&lt;id(PK):integer
 --
 &gt;&gt;participant_id:integer
 &gt;&gt;task_id:integer
+--
 --
 -current:boolean
 -msg:text
@@ -398,19 +407,19 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>459</x>
-      <y>1008</y>
+      <x>441</x>
+      <y>1044</y>
       <w>153</w>
       <h>189</h>
     </coordinates>
-    <panel_attributes>ppoints
+    <panel_attributes>*ppoints*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;title_id:int
-&gt;&gt;task_id:int
 &gt;&gt;participant_id:int
 &gt;&gt;observation_id
+--
 --
 -position:int
 -content:textlong
@@ -424,14 +433,15 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>450</x>
+      <x>423</x>
       <y>297</y>
       <w>135</w>
       <h>126</h>
     </coordinates>
-    <panel_attributes>turnins
+    <panel_attributes>*turnins*
 --
 &lt;&lt;id(PK):int
+--
 --
 &gt;&gt;participant_id:int
 &gt;&gt;staff_id:int
@@ -446,17 +456,18 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>954</x>
+      <x>927</x>
       <y>270</y>
-      <w>144</w>
+      <w>171</w>
       <h>144</h>
     </coordinates>
-    <panel_attributes>announcements
+    <panel_attributes>*announcements*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;participant_id:int
 &gt;&gt;school_id:int
+--
 --
 -category:string
 -leadstory:boolean
@@ -469,9 +480,9 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>270</x>
+      <x>189</x>
       <y>153</y>
-      <w>126</w>
+      <w>108</w>
       <h>81</h>
     </coordinates>
     <panel_attributes>languages
@@ -487,20 +498,22 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>783</x>
+      <x>585</x>
       <y>27</y>
       <w>126</w>
-      <h>117</h>
+      <h>144</h>
     </coordinates>
-    <panel_attributes>_teams_
+    <panel_attributes>*teams*
 --
 &lt;&lt;id(PK):int
 --
-&gt;&gt;participant_id:int
 &gt;&gt;school_id:int
+&gt;&gt;participant_id:int
+--
+--
 -name:string
--type:string
 -description:text
+-icon:string
 
 
 bg=green</panel_attributes>
@@ -509,16 +522,17 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>630</x>
-      <y>1008</y>
-      <w>135</w>
+      <x>675</x>
+      <y>1044</y>
+      <w>153</w>
       <h>189</h>
     </coordinates>
-    <panel_attributes>observations
+    <panel_attributes>*observations*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;school_id:int
+--
 --
 -link:text
 -color:text
@@ -536,17 +550,18 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>702</x>
-      <y>477</y>
+      <x>684</x>
+      <y>495</y>
       <w>144</w>
       <h>126</h>
     </coordinates>
-    <panel_attributes>topics
+    <panel_attributes>*topics*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;task_id:int
 &gt;&gt;assignment_id:int
+--
 --
 -title:string
 -description:text
@@ -558,18 +573,20 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>702</x>
-      <y>612</y>
+      <x>684</x>
+      <y>630</y>
       <w>144</w>
-      <h>126</h>
+      <h>135</h>
     </coordinates>
-    <panel_attributes>comments
+    <panel_attributes>*comments*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;topic_id:int
 &gt;&gt;parent_id:int
+&gt;&gt;team_id:int
 &gt;&gt;participant_id:int
+--
 --
 -content:text
 -comments_count:int
@@ -580,12 +597,12 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>432</x>
-      <y>756</y>
-      <w>351</w>
-      <h>612</h>
+      <x>423</x>
+      <y>783</y>
+      <w>432</w>
+      <h>459</h>
     </coordinates>
-    <panel_attributes>Charting assignment data
+    <panel_attributes>*Charting task data*
 
 </panel_attributes>
     <additional_attributes/>
@@ -593,12 +610,12 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>954</x>
+      <x>945</x>
       <y>27</y>
       <w>135</w>
-      <h>126</h>
+      <h>162</h>
     </coordinates>
-    <panel_attributes>blogs
+    <panel_attributes>*blogs*
 --
 id:int(PK)
 --
@@ -608,6 +625,8 @@ id:int(PK)
 -topic:string
 -excerpt:text
 -article:text
+-leadstory:boolean
+-navbar:boolean
 
 bg=gray</panel_attributes>
     <additional_attributes/>
@@ -615,12 +634,12 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>270</x>
+      <x>189</x>
       <y>27</y>
-      <w>126</w>
+      <w>108</w>
       <h>117</h>
     </coordinates>
-    <panel_attributes>user_admins
+    <panel_attributes>*user_admins*
 --
 &lt;&lt;id(PK):int
 --
@@ -629,7 +648,8 @@ bg=gray</panel_attributes>
 -level:int
 --
 --
-SuperAdmin Only
+SuperAdmin 
+Only
 
 bg=gray</panel_attributes>
     <additional_attributes/>
@@ -637,41 +657,43 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>45</x>
+      <x>27</x>
       <y>0</y>
       <w>882</w>
       <h>252</h>
     </coordinates>
-    <panel_attributes>Personnel
+    <panel_attributes>*Personnel*
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>936</x>
+      <x>927</x>
       <y>0</y>
       <w>171</w>
       <h>252</h>
     </coordinates>
-    <panel_attributes>Public Data</panel_attributes>
+    <panel_attributes>*Public Data*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>603</x>
+      <x>585</x>
       <y>270</y>
-      <w>144</w>
-      <h>153</h>
+      <w>162</w>
+      <h>171</h>
     </coordinates>
-    <panel_attributes>grades
+    <panel_attributes>*grades*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;school_id:int
+&gt;&gt;assignment_id:int
 &gt;&gt;participant:int
 &gt;&gt;staff_id:int
+--
 --
 -grade:int
 -staff_comments:text
@@ -684,12 +706,25 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>684</x>
-      <y>450</y>
+      <x>666</x>
+      <y>468</y>
       <w>189</w>
-      <h>297</h>
+      <h>306</h>
     </coordinates>
-    <panel_attributes>Discussion assignment data
+    <panel_attributes>*Discussion task data*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>405</x>
+      <y>459</y>
+      <w>477</w>
+      <h>792</h>
+    </coordinates>
+    <panel_attributes>*Tables for assignment task data*
 
 </panel_attributes>
     <additional_attributes/>
@@ -698,24 +733,11 @@ bg=green</panel_attributes>
     <type>com.umlet.element.Note</type>
     <coordinates>
       <x>423</x>
-      <y>441</y>
-      <w>477</w>
-      <h>936</h>
-    </coordinates>
-    <panel_attributes>Tables for assignment data
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>432</x>
-      <y>468</y>
+      <y>513</y>
       <w>198</w>
       <h>189</h>
     </coordinates>
-    <panel_attributes>Writing assignment data
+    <panel_attributes>*Writing task data*
 
 </panel_attributes>
     <additional_attributes/>
@@ -723,12 +745,12 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>423</x>
+      <x>405</x>
       <y>261</y>
-      <w>351</w>
-      <h>171</h>
+      <w>360</w>
+      <h>189</h>
     </coordinates>
-    <panel_attributes>Grading data
+    <panel_attributes>*Assignment Grading data*
 
 </panel_attributes>
     <additional_attributes/>
@@ -736,14 +758,93 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>45</x>
-      <y>882</y>
+      <x>27</x>
+      <y>819</y>
       <w>162</w>
       <h>414</h>
     </coordinates>
-    <panel_attributes>Book data
+    <panel_attributes>*Book data*
 
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>729</x>
+      <y>27</y>
+      <w>126</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>*members*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;team_id:int
+--
+--
+participant_id:int
+
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>576</x>
+      <y>9</y>
+      <w>297</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>*Team Data*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>243</x>
+      <y>270</y>
+      <w>144</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*scoresheets*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+--
+--
+-name:string
+-content:text
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>774</x>
+      <y>261</y>
+      <w>135</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>All tables Include:
+/*Rails fields*/
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>774</x>
+      <y>333</y>
+      <w>135</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>/*Last Updated:*/
+11/2/2012
+bg=red</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

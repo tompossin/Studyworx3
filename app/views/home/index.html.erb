@@ -1,10 +1,25 @@
-<h1>Welcome to StudyWorx!</h1>
-<p>You are signed in as <%= current_user.email if current_user %></p>
-<p>Your first name is: <%= current_user.firstname if current_user %></p>
-<p>Your last name is: <%= current_user.lastname if current_user %></p>
-<p>Your full name is: <%= full_name %></p>
-<p>Your Phone number is: <%= current_user.phone if current_user %></p>
-<p>Your address is:</p> 
-<p><%= simple_format(current_user.address) if current_user %></p>
+<div id="blog-article">
+  <% for story in @stories %>
+    <% if current_user %>
+      <% if session[:admin_level] and session[:admin_level] > 0 %>
+        <%= link_to "edit article", "/editor"+ blog_path(story.id)%>
+      <%end%>
+    <%end%>
+    <h2><%= story.topic%></h2>
+    <em><%= story.updated_at %></em>
+    <div><%= sanitize story.article %></div>
+    <hr style="width:95%;" />
+  <%end%>
+</div>
+<div id="right-nav">
+  Words<br />
+  More Words<br />
+  Another<br />
+  Yet another<br />
+  <P>
+    And again
+  </P>
+</div>
+
 
 

@@ -5,12 +5,15 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 #gem 'tinymce-rails'
 gem 'mercury-rails'
 gem 'paperclip'
 gem 'will_paginate'
 gem 'thin'
+gem 'seed_dump'
+gem 'ruby-mysql'
+gem 'mysql'
 
 # Gems used only for assets and not required
 # in production environments by default.

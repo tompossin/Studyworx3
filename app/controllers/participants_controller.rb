@@ -14,6 +14,7 @@ class ParticipantsController < ApplicationController
   # GET /participants/1.json
   def show
     @participant = Participant.find(params[:id])
+    @user = User.find(@participant.id )
 
     respond_to do |format|
       format.html # show.html.erb

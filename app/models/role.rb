@@ -1,4 +1,4 @@
 class Role < ActiveRecord::Base
-  belongs_to :participants
+  has_many :participants
   attr_accessible :rolename
 end
