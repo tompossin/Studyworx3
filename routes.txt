@@ -1,3 +1,10 @@
+                   teams GET    /teams(.:format)                   teams#index
+                         POST   /teams(.:format)                   teams#create
+                new_team GET    /teams/new(.:format)               teams#new
+               edit_team GET    /teams/:id/edit(.:format)          teams#edit
+                    team GET    /teams/:id(.:format)               teams#show
+                         PUT    /teams/:id(.:format)               teams#update
+                         DELETE /teams/:id(.:format)               teams#destroy
                  schools GET    /schools(.:format)                 schools#index
                          POST   /schools(.:format)                 schools#create
               new_school GET    /schools/new(.:format)             schools#new
@@ -47,6 +54,16 @@ cancel_user_registration GET    /users/cancel(.:format)            devise/regist
   edit_user_registration GET    /users/edit(.:format)              devise/registrations#edit
                          PUT    /users(.:format)                   devise/registrations#update
                          DELETE /users(.:format)                   devise/registrations#destroy
+       user_confirmation POST   /users/confirmation(.:format)      devise/confirmations#create
+   new_user_confirmation GET    /users/confirmation/new(.:format)  devise/confirmations#new
+                         GET    /users/confirmation(.:format)      devise/confirmations#show
+              home_index GET    /home(.:format)                    home#index
+                         POST   /home(.:format)                    home#create
+                new_home GET    /home/new(.:format)                home#new
+               edit_home GET    /home/:id/edit(.:format)           home#edit
+                    home GET    /home/:id(.:format)                home#show
+                         PUT    /home/:id(.:format)                home#update
+                         DELETE /home/:id(.:format)                home#destroy
                     root        /                                  home#index
 
 Routes for Mercury::Engine:

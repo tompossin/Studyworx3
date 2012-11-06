@@ -1,6 +1,6 @@
 body {
 	margin:0px;
-	font-family: Verdana,helvetica,arial,sans-serif;
+	font-family: verdana,helvetica,arial,sans-serif;
 }
 p {
 	margin-top: 4px;
@@ -10,6 +10,7 @@ p {
 a {
   color: #777777;
   text-decoration: none;
+  font-size: 10pt;
 }
 a:hover {
   color:black;
@@ -83,18 +84,19 @@ p:empty {
 	padding: 5px;
 }
 
-#right-nav {
-  position:absolute;top:6px;right:4px;width:20%;
-  border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
+#content-large {
+  position:relative;left:0px;width:75%;
+  border-right:2px solid #cdcdcd;border-radius:10px;
   padding:10px;
   background-color: #ededed;
 }
 
-#blog-article {
-  position:relative;left:0px;width:70%;
-  border-right:2px solid #cdcdcd;border-radius:10px;
+#nav-right {
+  position:absolute;top:6px;right:4px;width:20%;
+  border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
   padding:10px;
   background-color: #ededed;
+  font-size: 10pt;
 }
 
 #alert {

@@ -1,5 +1,7 @@
 Studyworx3::Application.routes.draw do
   
+  resources :teams
+
   resources :schools
 
   resources :participants
@@ -15,6 +17,8 @@ Studyworx3::Application.routes.draw do
   resources :user_admins
 
   devise_for :users
+  
+  resources :home
 
   root :to => 'home#index'
   

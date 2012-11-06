@@ -1,24 +1,18 @@
-<div id="blog-article">
-  <% for story in @stories %>
-    <% if current_user %>
-      <% if session[:admin_level] and session[:admin_level] > 0 %>
-        <%= link_to "edit article", "/editor"+ blog_path(story.id)%>
-      <%end%>
+<div id="content-large">
+  <% if current_user %>
+    <% if session[:admin_level] and session[:admin_level] > 0 %>
+      <%= link_to "edit article", "/editor"+ blog_path(@current_article.id)%>
     <%end%>
-    <h2><%= story.topic%></h2>
-    <em><%= story.updated_at %></em>
-    <div><%= sanitize story.article %></div>
-    <hr style="width:95%;" />
   <%end%>
+  <h1><%= @current_article.topic %></h1>
+  <div><%=sanitize @current_article.article%></div>
 </div>
-<div id="right-nav">
-  Words<br />
-  More Words<br />
-  Another<br />
-  Yet another<br />
-  <P>
-    And again
-  </P>
+<div id="nav-right">
+  <ul>
+  <% for story in @stories %>
+    <li><%= link_to story.topic, home_path(story.id) %></li>
+  <%end%>
+  </ul>
 </div>
 
 

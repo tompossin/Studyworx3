@@ -1,17 +1,15 @@
 class HomeController < ApplicationController
-  before_filter :set_session
+
   def index
-    @stories = Blog.find(:all,:order =>'leadstory and updated_at DESC')
+    @current_article = Blog.find_by_leadstory(1)
+    @stories = Blog.find(:all,:order =>'navbar and featured and updated_at DESC')
+  end
+  
+  def show
+    @current_article = Blog.find(params[:id])
+    @stories = Blog.find(:all,:order =>'navbar and featured and updated_at DESC')
+    render :index
   end
   private
-  def set_session
-    if current_user
-      admin = UserAdmin.find_by_user_id(current_user.id,:limit => '1')
-      if admin
-        session[:admin_level] = admin.level if admin.level > 0
-      else
-        session[:admin_level] = false
-      end
-    end
-  end
+  
 end

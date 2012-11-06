@@ -34,29 +34,13 @@ class BlogsController < ApplicationController
     redirect_to blogs_path
   end
 
-  # POST /blogs
-  # POST /blogs.json
-  def create
-    @blog = Blog.new(params[:blog])
-
-    respond_to do |format|
-      if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
-        format.json { render json: @blog, status: :created, location: @blog }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PUT /blogs/1
   # PUT /blogs/1.json
   def update
     @blog = Blog.find(params[:id])
+    @blog.topic = params[:content][:topic][:value].strip.delete "\n" 
+    @blog.category = params[:content][:category][:value].strip.delete "\n"
     @blog.article = params[:content][:article][:value]
-    @blog.topic = params[:content][:topic][:value]
-    @blog.category = params[:content][:category][:value]
     @blog.save!
     render text: ""
   end
