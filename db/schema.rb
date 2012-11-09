@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106231722) do
+ActiveRecord::Schema.define(:version => 20121108214120) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20121106231722) do
     t.datetime "image_updated_at"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "papers", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "synopsis"
+    t.text     "body",       :limit => 16777215
+    t.boolean  "published"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "participants", :force => true do |t|
@@ -59,6 +69,15 @@ ActiveRecord::Schema.define(:version => 20121106231722) do
 
   add_index "participants_teams", ["participant_id"], :name => "participants_teams_participant_id"
   add_index "participants_teams", ["team_id"], :name => "participants_teams_team_id"
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "paper_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "rolename"
@@ -136,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20121106231722) do
     t.text     "lastname"
     t.string   "phone"
     t.text     "address"
+    t.text     "bio"
+    t.boolean  "reviewboard"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

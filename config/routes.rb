@@ -1,9 +1,9 @@
 Studyworx3::Application.routes.draw do
   
+  resources :reviews
+  resources :papers
   resources :teams
-
   resources :schools
-
   resources :participants
 
     namespace :mercury do
@@ -13,11 +13,12 @@ Studyworx3::Application.routes.draw do
   mount Mercury::Engine => '/'
 
   resources :blogs
-
   resources :user_admins
-
+  resources :profiles do
+    get 'reviewboard'
+    post 'update_reviewboard'
+  end
   devise_for :users
-  
   resources :home
 
   root :to => 'home#index'

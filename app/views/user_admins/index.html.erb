@@ -7,24 +7,30 @@
   </p>
 <% end %>
 <% if @users %>
-<table style="text-align:center">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Admin Level</th>
-    <th>User ID</th>
-    <th></th>
+<table style="text-align:center;border:2px solid #cccccc;">
+  <tr style="text-align:center">
+    <th>First<br />Name</th>
+    <th>Last<br />Name</th>
+    <th>User<br />ID</th>
+    <th>Admin<br />Level</th>
+    <th>Manage<br />Admins</th>
+    <th>Review Board<br />Status</th>
   </tr>
 <% @users.each do |u| %>
-  <tr>
+  <tr class="<%= cycle('even','odd')%>">
     <td><%= u.firstname if u %></td>
     <td><%= u.lastname if u %></td>
-    <td><%= u.user_admin.level if u.user_admin %></td>
     <td><%= u.id %></td>
+    <td><%= u.user_admin.level if u.user_admin %></td>
     <% if u.user_admin %>
     	<td><%= link_to "Edit Admin Level", edit_user_admin_path(u) %></td>
     <% else %>
     	<td><%= link_to "Make an Admin", edit_user_admin_path(u)%></td>
+    <% end %>
+    <% if u.reviewboard == true %>
+      <td><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", profile_reviewboard_path(u.id)%></td>
+    <% else %>
+      <td><span style="font-style:italic;">False </span><%= link_to "Edit status", profile_reviewboard_path(u.id)%></td>
     <% end %>
   </tr>
 <% end %>

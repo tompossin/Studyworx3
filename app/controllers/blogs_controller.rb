@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_superadmin, :only=>[:new, :edit, :create, :update, :destroy]
+  before_filter :is_admin
   
   def index
     @blogs = Blog.all

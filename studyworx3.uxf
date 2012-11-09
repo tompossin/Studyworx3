@@ -19,7 +19,7 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>432</x>
+      <x>450</x>
       <y>27</y>
       <w>135</w>
       <h>207</h>
@@ -51,9 +51,9 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>306</x>
+      <x>315</x>
       <y>27</y>
-      <w>117</w>
+      <w>126</w>
       <h>207</h>
     </coordinates>
     <panel_attributes>*participant_roles*
@@ -112,7 +112,7 @@ bg=green</panel_attributes>
     <coordinates>
       <x>45</x>
       <y>27</y>
-      <w>135</w>
+      <w>144</w>
       <h>207</h>
     </coordinates>
     <panel_attributes>*users*
@@ -124,6 +124,8 @@ bg=green</panel_attributes>
 -lastname:string
 -phone:string
 -address:text
+-bio:text
+-reviewboard:boolean
 --
 - +all_devise_fields
 bg=white</panel_attributes>
@@ -351,8 +353,8 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>927</x>
-      <y>441</y>
+      <x>945</x>
+      <y>720</y>
       <w>171</w>
       <h>207</h>
     </coordinates>
@@ -374,14 +376,15 @@ bg=gray</panel_attributes>
 --
 --
 /FK's self referencing/
-bg=yellow</panel_attributes>
+bg=yellow
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>927</x>
-      <y>666</y>
+      <x>216</x>
+      <y>846</y>
       <w>171</w>
       <h>207</h>
     </coordinates>
@@ -457,8 +460,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>927</x>
-      <y>270</y>
+      <x>945</x>
+      <y>558</y>
       <w>171</w>
       <h>144</h>
     </coordinates>
@@ -481,7 +484,7 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>189</x>
+      <x>198</x>
       <y>153</y>
       <w>108</w>
       <h>81</h>
@@ -499,7 +502,7 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>738</x>
+      <x>756</x>
       <y>36</y>
       <w>126</w>
       <h>171</h>
@@ -615,7 +618,7 @@ bg=yellow</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>945</x>
-      <y>27</y>
+      <y>18</y>
       <w>135</w>
       <h>171</h>
     </coordinates>
@@ -639,7 +642,7 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>189</x>
+      <x>198</x>
       <y>27</y>
       <w>108</w>
       <h>117</h>
@@ -676,8 +679,8 @@ bg=gray</panel_attributes>
     <coordinates>
       <x>927</x>
       <y>0</y>
-      <w>171</w>
-      <h>252</h>
+      <w>198</w>
+      <h>531</h>
     </coordinates>
     <panel_attributes>*Public Data*</panel_attributes>
     <additional_attributes/>
@@ -776,7 +779,7 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>585</x>
+      <x>603</x>
       <y>63</y>
       <w>144</w>
       <h>126</h>
@@ -800,7 +803,7 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>576</x>
+      <x>594</x>
       <y>9</y>
       <w>297</w>
       <h>225</h>
@@ -851,8 +854,95 @@ bg=red</panel_attributes>
       <h>63</h>
     </coordinates>
     <panel_attributes>/*Last Updated:*/
-11/6/2012
+11/8/2012
 bg=red</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>945</x>
+      <y>234</y>
+      <w>135</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>*papers*
+--
+id:int(PK)
+--
+&gt;&gt;user_id:int
+--
+--
+-category:string
+-title:string
+-synopsis:text
+-body:text
+-published:boolean
+
+
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>945</x>
+      <y>396</y>
+      <w>135</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>*reviews*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;paper_id:int
+&gt;&gt;user_id:int
+--
+--
+-content:text
+-approved:boolean
+
+
+
+
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>936</x>
+      <y>207</y>
+      <w>180</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>*Peer Reviewed papers*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>693</x>
+      <y>18</y>
+      <w>80</w>
+      <h>62</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=red</panel_attributes>
+    <additional_attributes>27;45;27;27;63;27</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>558</x>
+      <y>9</y>
+      <w>107</w>
+      <h>71</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=red</panel_attributes>
+    <additional_attributes>90;54;90;27;27;27</additional_attributes>
   </element>
 </diagram>

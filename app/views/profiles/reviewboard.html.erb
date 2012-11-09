@@ -1,0 +1,9 @@
+<h1>Edit Review Board Status</h1>
+<h4>For: <%= @user.firstname + " " + @user.lastname %></h4>
+<%= form_tag("update_reviewboard") do %>
+  <%= hidden_field_tag 'id', @user.id %>
+  Change Review Board Status: 
+  <%= check_box_tag 'reviewboard', @user.reviewboard, @user.reviewboard %>
+  <%= submit_tag 'submit'%>
+
+<% end %>

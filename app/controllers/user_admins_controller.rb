@@ -68,7 +68,7 @@ class UserAdminsController < ApplicationController
 
     respond_to do |format|
       if @user_admin.update_attributes(params[:user_admin])
-        format.html { redirect_to @user_admin, notice: 'User admin was successfully updated.' }
+        format.html { redirect_to user_admins_path, notice: 'User admin was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
