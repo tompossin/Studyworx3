@@ -3,6 +3,7 @@
 <table cellpadding='10px'style='text-align:center'>
   <tr>
     <th>User</th>
+    <th>Lead Story?</th>
     <th>Category</th>
     <th>Topic</th>
     <th></th>
@@ -15,6 +16,7 @@
 <% @blogs.each do |blog| %>
   <tr>
     <td><%= blog.user_id %></td>
+    <td><%= blog.leadstory %></td>
     <td><%= sanitize blog.category %></td>
     <td><%= sanitize blog.topic %></td>
     <td><%= link_to 'Show', blog %></td>

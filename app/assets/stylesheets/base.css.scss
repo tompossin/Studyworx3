@@ -75,7 +75,8 @@ p:empty {
 }
 
 #content {
-	position:relative;
+  position: relative;
+  float:left;
 	top: 20px;
 	width: 98%;
 	border:2px #eeeeee solid;
@@ -86,6 +87,7 @@ p:empty {
 
 #content-large {
   position:relative;left:0px;width:75%;
+  float:left;
   border-right:2px solid #cdcdcd;border-radius:10px;
   padding:10px;
   background-color: #ededed;
@@ -126,4 +128,19 @@ p:empty {
 }
 .odd {
   background-color: #afafaf;
+}
+
+.avatar {
+  position: relative;
+  float:left;
+  border: 2px solid #bbbbbb;
+  border-radius: 8px;
+  padding:2px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+.title {
+  font-size: 14pt;
+  font-weight: bold;
+  font-style: italic;
 }

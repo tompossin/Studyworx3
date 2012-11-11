@@ -8,6 +8,10 @@
   <div><%=sanitize @current_article.article%></div>
 </div>
 <div id="nav-right">
+  <%= hidden_div_unless(current_user, id: 'profile_link') do %>
+    <%= link_to "View Profile for #{full_name if current_user}", profiles_path %>
+    <hr />
+  <% end %>
   <ul>
   <% for story in @stories %>
     <li><%= link_to story.topic, home_path(story.id) %></li>

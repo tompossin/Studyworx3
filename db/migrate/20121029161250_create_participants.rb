@@ -7,9 +7,6 @@ class CreateParticipants < ActiveRecord::Migration
       t.integer :language_id
       t.boolean :prereq
       t.integer :accepted
-      t.integer :theme
-      t.binary :avatar
-      t.binary :wallpaper
 
       t.timestamps
     end

@@ -16,7 +16,7 @@ Studyworx3::Application.routes.draw do
   resources :user_admins
   resources :profiles do
     get 'reviewboard'
-    post 'update_reviewboard'
+    post 'update_reviewboard', 'setavatar', 'setwallpaper', 'settheme'
   end
   devise_for :users
   resources :home

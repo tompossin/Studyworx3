@@ -9,7 +9,10 @@ class ProfilesController < ApplicationController
   # devise.
   
   def index
-    
+    @participants = Participant.find_all_by_user_id(current_user.id)
+    @images = Mercury::Image.find_all_by_user_id(current_user.id)
+    @avatar = Mercury::Image.find(current_user.avatar) if current_user.avatar
+
   end
   
   # This will only edit the profile portion of the
@@ -28,6 +31,25 @@ class ProfilesController < ApplicationController
     user.save
     flash[:alert] = "The review board status has been updated"
     redirect_to user_admins_path
+  end
+  
+  # This sets the avatar file for the user
+  def setavatar
+    user = User.find(current_user.id)
+    user.avatar = params[:profile_id]
+    user.save
+    redirect_to profiles_path
+  end
+  
+  def setwallpaper
+    user = User.find(current_user.id)
+    user.wallpaper = params[:profile_id]
+    user.save
+    redirect_to profiles_path
+  end
+  
+  def settheme
+    
   end
   
   # There is no need for a create method since

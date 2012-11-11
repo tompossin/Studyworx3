@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108214120) do
+ActiveRecord::Schema.define(:version => 20121111035123) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -33,7 +33,10 @@ ActiveRecord::Schema.define(:version => 20121108214120) do
     t.datetime "image_updated_at"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "user_id"
   end
+
+  add_index "mercury_images", ["user_id"], :name => "index_mercury_images_on_user_id"
 
   create_table "papers", :force => true do |t|
     t.integer  "user_id"
@@ -52,9 +55,6 @@ ActiveRecord::Schema.define(:version => 20121108214120) do
     t.integer  "language_id"
     t.boolean  "prereq"
     t.integer  "accepted"
-    t.integer  "theme"
-    t.binary   "avatar"
-    t.binary   "wallpaper"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -157,6 +157,9 @@ ActiveRecord::Schema.define(:version => 20121108214120) do
     t.text     "address"
     t.text     "bio"
     t.boolean  "reviewboard"
+    t.integer  "avatar"
+    t.integer  "wallpaper"
+    t.integer  "theme"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
