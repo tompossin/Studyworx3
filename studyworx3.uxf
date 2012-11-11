@@ -33,15 +33,10 @@
 &gt;&gt;school_id:int
 &gt;&gt;lanuguage_id:int
 --
+--
 -prereq:boolean
 -accepted:int
 --
---
-/preference settings/
---
--theme:int
--avatar:binary
--wallpaper:binary
 
 
 fg=black
@@ -126,6 +121,9 @@ bg=green</panel_attributes>
 -address:text
 -bio:text
 -reviewboard:boolean
+-avatar:int
+-wallpaper:int
+-theme:int
 --
 - +all_devise_fields
 bg=white</panel_attributes>
@@ -652,6 +650,7 @@ bg=gray</panel_attributes>
 &lt;&lt;id(PK):int
 --
 &gt;&gt;user_id:int
+--
 --
 -level:int
 --
