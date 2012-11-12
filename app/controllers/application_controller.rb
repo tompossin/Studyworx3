@@ -4,10 +4,31 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  # Check if logged in, check for session[:values], or set session[:values]
   def assign_session_variables
     if current_user
-      admin = UserAdmin.find_by_user_id(current_user.id)
-      session[:admin_level] = admin.level if admin
+      unless session[:admin_level]
+        admin = UserAdmin.find_by_user_id(current_user.id)
+        if admin
+          session[:admin_level] = admin.level
+        else
+          session[:admin_level] = 0
+        end
+      end
+      unless session[:avatar_image]
+        if current_user.avatar
+          avatar = Mercury::Image.find(current_user.avatar)
+          session[:avatar] = avatar.id 
+          session[:avatar_image] = avatar.image_file_name
+        end
+      end
+      unless session[:wallpaper_image]
+        if current_user.wallpaper
+          wallpaper = Mercury::Image.find(current_user.wallpaper)
+          session[:wallpaper] = wallpaper.id 
+          session[:wallpaper_image] = wallpaper.image_file_name
+        end
+      end
     end
   end
   

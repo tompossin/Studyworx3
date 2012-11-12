@@ -60,6 +60,7 @@ profile_update_reviewboard POST   /profiles/:profile_id/update_reviewboard(.:for
          profile_setavatar POST   /profiles/:profile_id/setavatar(.:format)          profiles#setavatar
       profile_setwallpaper POST   /profiles/:profile_id/setwallpaper(.:format)       profiles#setwallpaper
           profile_settheme POST   /profiles/:profile_id/settheme(.:format)           profiles#settheme
+              profile_done PUT    /profiles/:profile_id/done(.:format)               profiles#done
                   profiles GET    /profiles(.:format)                                profiles#index
                            POST   /profiles(.:format)                                profiles#create
                new_profile GET    /profiles/new(.:format)                            profiles#new

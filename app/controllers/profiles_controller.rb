@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_admin, :only=>[:reviewboard, :update_reviewboard]
+  before_filter :is_admin, :only=>[:reviewboard, :update_reviewboard, :setstock]
   
   # This is just a controller it will be calling
   # pages that edit the users table. 
@@ -11,14 +11,17 @@ class ProfilesController < ApplicationController
   def index
     @participants = Participant.find_all_by_user_id(current_user.id)
     @images = Mercury::Image.find_all_by_user_id(current_user.id)
-    @avatar = Mercury::Image.find(current_user.avatar) if current_user.avatar
-
+    @stockimages = Mercury::Image.find_all_by_user_id(0)
   end
   
   # This will only edit the profile portion of the
   # user record.
   def edit
     
+  end
+  
+  def update
+    redirect_to profiles_path(:layout=>"application")
   end
   # This can only be edited by an admin or better.
   def reviewboard
@@ -38,6 +41,9 @@ class ProfilesController < ApplicationController
     user = User.find(current_user.id)
     user.avatar = params[:profile_id]
     user.save
+    a = Mercury::Image.find(user.avatar)
+    session[:avatar] = user.avatar
+    session[:avatar_image] = a.image_file_name
     redirect_to profiles_path
   end
   
@@ -45,11 +51,21 @@ class ProfilesController < ApplicationController
     user = User.find(current_user.id)
     user.wallpaper = params[:profile_id]
     user.save
+    w = Mercury::Image.find(user.wallpaper)
+    session[:wallpaper] = user.wallpaper
+    session[:wallpaper_image] = w.image_file_name
     redirect_to profiles_path
   end
   
   def settheme
     
+  end
+  
+  def setstock
+    stock = Mercury::Image.find(params[:profile_id])
+    stock.user_id = 0
+    stock.save
+    redirect_to profiles_path
   end
   
   # There is no need for a create method since

@@ -1,3 +1,4 @@
+<div class="floatbox_trans">
 <h1>Listing schools</h1>
 
 <table>
@@ -7,7 +8,7 @@
   </tr>
 
 <% @schools.each do |school| %>
-  <tr>
+  <tr class="<%= cycle('even','odd')%>">
     <td><%= school.id %></td>
     <td><%= school.name %></td>
     <td><%= link_to 'Show', school %></td>
@@ -20,3 +21,4 @@
 <br />
 
 <%= link_to 'New School', new_school_path %>
+</div>

@@ -12,6 +12,12 @@ module ApplicationHelper
       return true || false
     end
   end
+  def is_admin
+    user = UserAdmin.find_by_user_id(current_user.id)
+    if user and user.level > 0
+      return true || false
+    end
+  end
   
   # Hides a page element unless a condition is met.
   def hidden_div_unless(condition, attributes = {}, &block)
@@ -24,9 +30,8 @@ module ApplicationHelper
   # Sets the wallpaper
   def set_wallpaper
     if current_user
-      unless current_user.wallpaper.nil?   
-        i = Mercury::Image.find(current_user.wallpaper)
-        return "background-image:url(/system/images/#{current_user.wallpaper}/original/#{i.image_file_name});"
+      if current_user.wallpaper  
+        return "background-image:url('/system/images/#{session[:wallpaper]}/original/#{session[:wallpaper_image]}');"
       else
         return "background-color:#dddddd;"
       end

@@ -1,16 +1,19 @@
 <div id="content-large">
-  <% if current_user %>
-    <% if session[:admin_level] and session[:admin_level] > 0 %>
-      <%= link_to "edit article", "/editor"+ blog_path(@current_article.id)%>
+  <div class="article">
+    <% if current_user %>
+      <% if session[:admin_level] and session[:admin_level] > 0 %>
+        <%= link_to "edit article", "/editor"+ blog_path(@current_article.id)%>
+      <%end%>
     <%end%>
-  <%end%>
-  <h1><%= @current_article.topic %></h1>
-  <div><%=sanitize @current_article.article%></div>
+    <h1><%= @current_article.topic %></h1>
+    <div><%=sanitize @current_article.article%></div>
+  </div>
 </div>
 <div id="nav-right">
   <%= hidden_div_unless(current_user, id: 'profile_link') do %>
-    <%= link_to "View Profile for #{full_name if current_user}", profiles_path %>
-    <hr />
+    <span class="avatar" style="background-image:url(/system/images/<%=session[:avatar]%>/thumb/<%=session[:avatar_image]%>);"></span>
+    <div style="min-height:100px;">View Profile for <br /><%= link_to "#{full_name if current_user}", profiles_path %></div>
+
   <% end %>
   <ul>
   <% for story in @stories %>
