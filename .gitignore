@@ -16,3 +16,4 @@
 
 # Ignore all image files
 /public/system/images
+/vendor/cache
