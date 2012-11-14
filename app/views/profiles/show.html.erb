@@ -1,0 +1,71 @@
+<div id='content-large' >
+  <div style="float:left;">
+    <div class="floatbox_trans">
+      <div class='avatar' style="background-image:url(<%= "/system/images/#{session[:avatar]}/thumb/#{session[:avatar_image]}" %>);">
+        
+      </div>
+      <p class='title' >
+        The Home of <%= full_name %><br />
+        <%= link_to "Edit Profile", "/editor"+profile_path(current_user.id) %><br />
+        <%= link_to "Click when Finished", profile_path(current_user.id), :class=>'donot',:target=>'_parent' %>
+      </p>
+    </div>
+    <div class="floatbox_trans">
+      <p class="title">About <%= full_name %></p>
+      <hr />
+      <div id="bio" data-mercury="full">
+        <%=relaxed_sanitize current_user.bio if current_user.bio %>
+      </div>
+      <hr />
+      <p class="title smaller">Phone: <span id="phone" data-mercury="simple"><%= current_user.phone if current_user.phone %></span></p>
+      <p class="title smaller">
+        Home Address:
+      </p>
+      <div id="address" data-mercury="full">
+        <%= sanitize current_user.address if current_user.address%>
+      </div>
+    </div>
+    <div id="update" class="floatbox_trans" style="width:100px;height:100px;display:none;text-align:center;" data-mercury="image">
+      Drag and Drop<br /> your<br /> Images Here <br /> 
+    </div>
+  </div>
+  <div class="floatbox_trans">
+    <div class='title'>My Images  </div>
+    <% for i in @images %>
+      <div class="thumbnail_container">
+        <%= image_tag("/system/images/#{i.id}/thumb/#{i.image_file_name}",:alt=>'oops')%>
+        <br /><%= link_to "delete", mercury_image_path(i.id), method: :delete, data: { confirm: 'Are you sure?' }%>
+        <br /><%= link_to "set profile", profile_setavatar_path(i.id), :method=>:post  %>
+        <br /><%= link_to "set wallpaper", profile_setwallpaper_path(i.id),:method=>:post %>
+        <br /><%= link_to "set as stock", profile_setstock_path(i.id), :method=>:post if is_superadmin %>
+      </div>
+    <% end %>
+  </div>
+  <div class="floatbox_trans">
+    <div class='title'>Shared Images </div>
+    <% for s in @stockimages %>
+      <div class="thumbnail_container">
+        <%= image_tag("/system/images/#{s.id}/thumb/#{s.image_file_name}",:alt=>'oops')%>
+        <br /><%= link_to "delete", mercury_image_path(s.id), method: :delete, data: { confirm: 'Are you sure?' } if is_superadmin %>
+        <br /><%= link_to "set profile", profile_setavatar_path(s.id), :method=>:post  %>
+        <br /><%= link_to "set wallpaper", profile_setwallpaper_path(s.id),:method=>:post %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+<div id='nav-right'>
+  <p class="title">Current Schools</p>
+  <hr width="90%"/>
+  <% unless @participants.empty? %>
+    <% for p in @participants %>
+      <p><%= p.school.name %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  function onMercuryReady() { Mercury.saveUrl = '/profiles/<%= current_user.id %>/saveprofile'; }
+</script>
+
+

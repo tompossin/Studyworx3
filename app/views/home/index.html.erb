@@ -12,7 +12,7 @@
 <div id="nav-right">
   <%= hidden_div_unless(current_user, id: 'profile_link') do %>
     <span class="avatar" style="background-image:url(/system/images/<%=session[:avatar]%>/thumb/<%=session[:avatar_image]%>);"></span>
-    <div style="min-height:100px;">View Profile for <br /><%= link_to "#{full_name if current_user}", profiles_path %></div>
+    <div style="min-height:100px;">View Profile for <br /><%= link_to "#{full_name}", profile_path(current_user.id) if current_user %></div>
 
   <% end %>
   <ul>

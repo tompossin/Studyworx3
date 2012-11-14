@@ -9,6 +9,10 @@ class ProfilesController < ApplicationController
   # devise.
   
   def index
+    
+  end
+  
+  def show
     @participants = Participant.find_all_by_user_id(current_user.id)
     @images = Mercury::Image.find_all_by_user_id(current_user.id)
     @stockimages = Mercury::Image.find_all_by_user_id(0)
@@ -20,8 +24,13 @@ class ProfilesController < ApplicationController
     
   end
   
-  def update
-    redirect_to profiles_path(:layout=>"application")
+  def saveprofile
+    user = User.find(current_user.id)
+    user.bio = params[:content][:bio][:value]
+    user.phone = params[:content][:phone][:value]
+    user.address = params[:content][:address][:value]
+    user.save!
+    render text: ""
   end
   # This can only be edited by an admin or better.
   def reviewboard
@@ -44,7 +53,7 @@ class ProfilesController < ApplicationController
     a = Mercury::Image.find(user.avatar)
     session[:avatar] = user.avatar
     session[:avatar_image] = a.image_file_name
-    redirect_to profiles_path
+    redirect_to profile_path(current_user.id)
   end
   
   def setwallpaper
@@ -54,7 +63,7 @@ class ProfilesController < ApplicationController
     w = Mercury::Image.find(user.wallpaper)
     session[:wallpaper] = user.wallpaper
     session[:wallpaper_image] = w.image_file_name
-    redirect_to profiles_path
+    redirect_to profile_path(current_user.id)
   end
   
   def settheme
@@ -65,17 +74,13 @@ class ProfilesController < ApplicationController
     stock = Mercury::Image.find(params[:profile_id])
     stock.user_id = 0
     stock.save
-    redirect_to profiles_path
+    redirect_to profile_path(current_user.id)
   end
   
   # There is no need for a create method since
   # devise creates the user records.
   
-  # This will display the profile portion of the
-  # user record.
-  def show
-    
-  end
+  
   
   def update
     if is_owner(params[:user_id])

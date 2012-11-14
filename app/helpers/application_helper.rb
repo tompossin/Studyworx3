@@ -19,6 +19,11 @@ module ApplicationHelper
     end
   end
   
+  # Provides a more relaxed version of sanitize
+  def relaxed_sanitize(rawhtml)
+    sanitize rawhtml,:tags=> %w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table th tr td span ol li ul br), :attributes=> %w(id class style src border align colspan rowspan)
+  end
+  
   # Hides a page element unless a condition is met.
   def hidden_div_unless(condition, attributes = {}, &block)
     unless condition

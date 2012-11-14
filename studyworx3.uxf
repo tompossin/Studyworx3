@@ -390,12 +390,13 @@ bg=yellow
 --
 &lt;&lt;id(PK):integer
 --
+&gt;&gt;user_id:integer
 &gt;&gt;participant_id:integer
 &gt;&gt;task_id:integer
 --
 --
--current:boolean
--msg:text
+-current:integer
+--
 --
 /This is a state table/
 /Tracks the state of tasks/

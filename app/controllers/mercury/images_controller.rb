@@ -15,7 +15,7 @@ class Mercury::ImagesController < MercuryController
     @image = Mercury::Image.find(params[:id])
     @image.destroy
     #respond_with @image
-    redirect_to profiles_path
+    redirect_to profile_path(current_user.id)
   end
 
 end

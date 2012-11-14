@@ -14,6 +14,7 @@ gem 'thin'
 gem 'seed_dump'
 gem 'ruby-mysql'
 gem 'mysql'
+# gem 'aloha-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -2,6 +2,7 @@ body {
 	margin:0px;
 	background-size: 100%;
 	font-family: verdana,helvetica,arial,sans-serif;
+	font-size: 10pt;
 }
 p {
 	margin-top: 4px;
@@ -14,7 +15,7 @@ a {
   font-size: 10pt;
 }
 a:hover {
-  color:black;
+  color:yellow;
 }
 p:empty {
 	display:none;
@@ -41,11 +42,15 @@ h3 {
 	color:#999999;
 	background-color: white;
 	margin-left: 4px;
-	padding-left: 4px;
-	padding-right: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
 	position: absolute;
 	top: 0px;
 	left: 12px;
+	border-left:1px solid #dedede;
+  border-bottom:2px solid #dedede;
+  border-right: 3px solid #ededed;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	cursor: hand;
@@ -53,6 +58,7 @@ h3 {
 #logo a {
   color: #999999;
   text-decoration: none;
+  font-size: 14px;
 }
 #logo a:hover {
   color:black;
@@ -68,8 +74,13 @@ h3 {
   right: 12px;
   top: 0px;
   width: 200px;
-  padding-left: 4px;
+  padding-left: 12px;
+  padding-right: 4px;
+  padding-bottom: 4px;
   color: #999999;
+  border-left:3px solid #ededed;
+  border-bottom:2px solid #dedede;
+  border-right: 1px solid #dedede;
   background-color: white;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -82,7 +93,7 @@ h3 {
   color:black;
 }
 #profile:hover {
-  cursor:crosshair;
+  cursor:pointer;
 }
 
 #content {
@@ -90,8 +101,6 @@ h3 {
   float:left;
 	top: 20px;
 	width: 98%;
-	border:2px #eeeeee solid;
-	border-radius: 10px;
 	margin: 5px;
 	padding: 5px;
 }
@@ -185,6 +194,10 @@ h3 {
   font-size: 14pt;
   font-weight: bold;
   font-style: italic;
+}
+
+.smaller {
+  font-size: 90%;
 }
 
 .thumbnail_container {
