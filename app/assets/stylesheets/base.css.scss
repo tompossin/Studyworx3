@@ -1,7 +1,7 @@
 body {
 	margin:0px;
 	background-size: 100%;
-	font-family: verdana,helvetica,arial,sans-serif;
+	font-family: Verdana,Helvetica,Arial,Sans-serif;
 	font-size: 10pt;
 }
 p {
@@ -48,12 +48,12 @@ h3 {
 	position: absolute;
 	top: 0px;
 	left: 12px;
-	border-left:1px solid #dedede;
-  border-bottom:2px solid #dedede;
+	border-left:1px solid #999999;
+  border-bottom:2px solid #bbbbbb;
   border-right: 3px solid #ededed;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-	cursor: hand;
+	cursor: pointer;
 }
 #logo a {
   color: #999999;
@@ -67,7 +67,51 @@ h3 {
 	font-weight: normal;
 }
 #logo:hover {
-	cursor: crosshair;
+	cursor: pointer;
+}
+
+#alert {
+  position: absolute;
+  font-size: 10pt;
+  text-align:center;
+  top: 0px;
+  left: 170px;
+  width: 250px;
+  background-color:green;
+  border-radius: 5px;
+}
+
+#notice {
+  position: absolute;
+  font-size: 10pt;
+  text-align:center;
+  top: 0px;
+  left: 170px;
+  width: 250px;
+  background-color:green;
+  border-radius: 5px;
+}
+
+#nav-right {
+  float:right;width:30%;
+  border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
+  padding:10px;
+  margin-top: 10px;
+  background-color: rgba(255,255,255,.75);
+  font-size: 10pt;
+}
+
+#nav_heading {
+  float:right;
+  width:100%;
+}
+#nav_heading_content {
+  float:left;
+  width:65%
+}
+#scratchpad_heading {
+  float:left;
+  width:65%;
 }
 #profile {
   position:absolute;
@@ -79,8 +123,8 @@ h3 {
   padding-bottom: 4px;
   color: #999999;
   border-left:3px solid #ededed;
-  border-bottom:2px solid #dedede;
-  border-right: 1px solid #dedede;
+  border-bottom:2px solid #bbbbbb;
+  border-right: 1px solid #999999;
   background-color: white;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -96,51 +140,37 @@ h3 {
   cursor:pointer;
 }
 
-#content {
-  position: relative;
+#reminder {
+  width:95%;
   float:left;
-	top: 20px;
-	width: 98%;
-	margin: 5px;
-	padding: 5px;
+  font-style: italic;
+  font-family: Garamond, Georgia;
+  border: 1px solid gray;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  padding:3%;
 }
-
-#content-large {
-  position:relative;left:0px;width:72%;
-  float:left;
-  padding:10px;
-}
-
-#nav-right {
-  float:right;width:20%;
-  border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
-  padding:10px;
-  margin-top: 10px;
-  background-color: rgba(255,255,255,.75);
+#reminder textarea{
+  width: 92%;
+  font-family: Garamond, Georgia;
   font-size: 10pt;
 }
 
-#alert {
-	position: absolute;
-	font-size: 10pt;
-	text-align:center;
-	top: 0px;
-	left: 170px;
-	width: 250px;
-	background-color:green;
-	border-radius: 5px;
+#content {
+  position: relative;
+  float:left;
+  top: 20px;
+  width: 98%;
+  margin: 5px;
+  padding: 5px;
 }
 
-#notice {
-	position: absolute;
-	font-size: 10pt;
-	text-align:center;
-	top: 0px;
-	left: 170px;
-	width: 250px;
-	background-color:green;
-	border-radius: 5px;
+#content-large {
+  position:relative;left:0px;width:62%;
+  float:left;
+  padding:10px;
 }
+
 
 .even {
   background-color: #aaaaaa;
@@ -152,7 +182,6 @@ h3 {
 .article {
   background-color: rgba(255,255,255,.8);
   text-align: justify;
-  font-size: 10pt;
   border-radius: 8px;
   padding: 8px;
   columns: auto 2;
@@ -187,13 +216,14 @@ h3 {
   border: 2px solid #bbbbbb;
   border-radius: 8px;
   padding:2px;
-  margin-right: 30px;
-  margin-bottom: 30px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor:pointer;
 }
 .title {
-  font-size: 14pt;
-  font-weight: bold;
+  font-size: 16pt;
   font-style: italic;
+  font-family: Garamond, Georgia;
 }
 
 .smaller {

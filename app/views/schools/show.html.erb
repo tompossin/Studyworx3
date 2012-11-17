@@ -1,70 +1,68 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Version:</b>
-  <%= @school.version_id %>
-</p>
-
-<p>
-  <b>Language:</b>
-  <%= @school.language_id %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @school.name %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @school.location %>
-</p>
-
-<p>
-  <b>Prereqs:</b>
-  <%= @school.prereqs %>
-</p>
-
-<p>
-  <b>Start date:</b>
-  <%= @school.start_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%= @school.end_date %>
-</p>
-
-<p>
-  <b>Mailing address:</b>
-  <%= @school.mailing_address %>
-</p>
-
-<p>
-  <b>Tagline:</b>
-  <%= @school.tagline %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @school.description %>
-</p>
-
-<p>
-  <b>Enrolement type:</b>
-  <%= @school.enrolement_type %>
-</p>
-
-<p>
-  <b>Active:</b>
-  <%= @school.active %>
-</p>
-
-<p>
-  <b>Timezone:</b>
-  <%= @school.timezone %>
-</p>
-
-
-<%= link_to 'Edit', edit_school_path(@school) %> |
-<%= link_to 'Back', schools_path %>
+<div id="content-large">
+  <div>
+    <div class="floatbox_trans">
+      <p class="title">
+        Home Page for <%= @school.name %>
+      </p>
+      <p>Location:</p>
+      <div id="location" data-mercury="full">
+        <%=raw @school.location %>
+      </div>
+    </div>  
+    <div class="floatbox_trans" style="float:right;">
+      <p>
+        <b>Prereqs:</b>
+        <%= @school.prereqs %>
+      </p>
+      
+      <p>
+        <b>Start date:</b>
+        <%= @school.start_date %>
+      </p>
+      
+      <p>
+        <b>End date:</b>
+        <%= @school.end_date %>
+      </p>
+      <p>
+        <b>Timezone:</b>
+          <%= @school.timezone %>
+      </p>
+    </div>
+  </div>
+  <div style="float:left;width:100%;">
+    <div class="floatbox_trans">
+      <p>
+        <b>Mailing address:</b>
+        <%= @school.mailing_address %>
+      </p>
+      
+      <p>
+        <b>Tagline:</b>
+        <%= @school.tagline %>
+      </p>
+      
+      <p>
+        <b>Description:</b>
+        <%= @school.description %>
+      </p>
+    </div>
+  </div>
+  <div class="floatbox_trans">
+    <p>
+      <b>Enrolement type:</b>
+      <%= @school.enrolement_type %>
+    </p>
+    
+    <p>
+      <b>Active:</b>
+      <%= @school.active %>
+    </p>
+    <%= link_to 'Edit', edit_school_path(@school) %> |
+    <%= link_to 'Back', schools_path %>
+  </div>
+</div>
+<div id='nav-right'>
+  <%= nav_heading(full_name)%>
+  
+</div>

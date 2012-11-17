@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   
   # Check if logged in, check for session[:values], or set session[:values]
+  # TODO I need a default setting for some of these variables
   def assign_session_variables
     if current_user
       unless session[:admin_level]
@@ -50,7 +51,7 @@ class ApplicationController < ActionController::Base
   
   def is_contributor
     user = UserAdmin.find_by_user_id(current_user.id)
-    unless user and user.leve > 0
+    unless user and user.level > 0
       redirect_to root_path, alert: "You must be a contributor to access this page (click to hide)"
     end
   end

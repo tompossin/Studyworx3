@@ -77,11 +77,34 @@ class ProfilesController < ApplicationController
     redirect_to profile_path(current_user.id)
   end
   
+  def load_reminder
+    @note = Note.find_by_user_id(current_user.id)
+    respond_to do |format|
+      if @note
+        format.js
+      else
+        @note = Note.new
+        @note.user_id = current_user.id
+        @note.reminder = "Click the icon above to add a reminder..."
+        @note.save
+        format.js
+      end
+    end
+    
+  end
+  
+  def save_reminder
+    @note = Note.find_by_user_id(current_user.id)
+    respond_to do |format|
+      @note.reminder = params[:reminder]
+      @note.save
+      format.js
+    end
+  end
+  
   # There is no need for a create method since
   # devise creates the user records.
-  
-  
-  
+
   def update
     if is_owner(params[:user_id])
       # need some action here.

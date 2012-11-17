@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111035123) do
+ActiveRecord::Schema.define(:version => 20121117005007) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20121111035123) do
   end
 
   add_index "mercury_images", ["user_id"], :name => "index_mercury_images_on_user_id"
+
+  create_table "notes", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "reminder"
+    t.text     "public"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "papers", :force => true do |t|
     t.integer  "user_id"

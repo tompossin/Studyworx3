@@ -4,8 +4,10 @@
       <div class='avatar' style="background-image:url(<%= "/system/images/#{session[:avatar]}/thumb/#{session[:avatar_image]}" %>);">
         
       </div>
-      <p class='title' >
+      <p class='title' style="margin-bottom:25px;">
         The Home of <%= full_name %><br />
+      </p>
+      <p>
         <%= link_to "Edit Profile", "/editor"+profile_path(current_user.id) %><br />
         <%= link_to "Click when Finished", profile_path(current_user.id), :class=>'donot',:target=>'_parent' %>
       </p>
@@ -55,11 +57,10 @@
 
 </div>
 <div id='nav-right'>
-  <p class="title">Current Schools</p>
-  <hr width="90%"/>
+  <%= nav_heading("Current Schools")%>
   <% unless @participants.empty? %>
     <% for p in @participants %>
-      <p><%= p.school.name %></p>
+      <p><%= link_to p.school.name,school_path(p.school.id) %></p>
     <% end %>
   <% end %>
 </div>

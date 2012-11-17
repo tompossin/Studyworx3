@@ -1,4 +1,6 @@
 class SchoolsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :is_contributor, :only=>[:index, :new, :update, :create, :destroy]
   # GET /schools
   # GET /schools.json
   def index
@@ -58,15 +60,9 @@ class SchoolsController < ApplicationController
   def update
     @school = School.find(params[:id])
 
-    respond_to do |format|
-      if @school.update_attributes(params[:school])
-        format.html { redirect_to @school, notice: 'School was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
-      end
-    end
+    @school.location = params[:content][:location][:value]
+    @school.save
+    render text: ""
   end
 
   # DELETE /schools/1

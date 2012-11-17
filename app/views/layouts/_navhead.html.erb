@@ -1,0 +1,17 @@
+<div id='nav_heading'>
+  <div style="float:left; width:100%;">
+    <div class='avatar' style="background-image:url(<%= "/system/images/#{session[:avatar]}/thumb/#{session[:avatar_image]}" %>);" onclick="OpenProfile(<%=current_user.id%>)">
+    </div>
+    <div id="nav_heading_content" class="title">
+      <%= content if content %>
+    </div>
+    <div id="scratchpad_heading" class="title smaller">
+      My Scratchpad &nbsp;<%=link_to(image_tag("gray/comment.png"), profile_load_reminder_path(current_user.id), remote: true) if current_user %>
+    </div>
+    <div id="reminder">
+      <%=sanitize(format_plaintext(current_user.note.reminder)) if current_user.note %>
+    </div>
+  </div>
+ <hr />   
+
+</div>

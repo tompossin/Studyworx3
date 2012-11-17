@@ -14,3 +14,8 @@
 			}
 	}
 	
+	function OpenProfile(user_id)
+	{
+	  window.open("/profiles/"+user_id,"_self")
+	}
+	
