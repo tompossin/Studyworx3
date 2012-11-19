@@ -54,15 +54,11 @@
       </div>
     <% end %>
   </div>
-
 </div>
 <div id='nav-right'>
-  <%= nav_heading("Current Schools")%>
-  <% unless @participants.empty? %>
-    <% for p in @participants %>
-      <p><%= link_to p.school.name,school_path(p.school.id) %></p>
-    <% end %>
-  <% end %>
+  <%= nav_heading(full_name) %>
+  <%= render "schools" %>
+  <%= render "messenger" %>
 </div>
 
 <script type="text/javascript">

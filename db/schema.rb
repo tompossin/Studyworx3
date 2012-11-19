@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117005007) do
+ActiveRecord::Schema.define(:version => 20121117161336) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +37,30 @@ ActiveRecord::Schema.define(:version => 20121117005007) do
   end
 
   add_index "mercury_images", ["user_id"], :name => "index_mercury_images_on_user_id"
+
+  create_table "message_hierarchies", :id => false, :force => true do |t|
+    t.integer "ancestor_id",   :null => false
+    t.integer "descendant_id", :null => false
+    t.integer "generations",   :null => false
+  end
+
+  add_index "message_hierarchies", ["ancestor_id", "descendant_id"], :name => "index_message_hierarchies_on_ancestor_id_and_descendant_id", :unique => true
+  add_index "message_hierarchies", ["descendant_id"], :name => "index_message_hierarchies_on_descendant_id"
+
+  create_table "messages", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.integer  "school_id"
+    t.boolean  "has_read"
+    t.boolean  "archived"
+    t.boolean  "sender_trashed"
+    t.boolean  "recipient_trashed"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "notes", :force => true do |t|
     t.integer  "user_id"

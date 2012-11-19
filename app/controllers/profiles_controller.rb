@@ -3,7 +3,9 @@ class ProfilesController < ApplicationController
   before_filter :is_admin, :only=>[:reviewboard, :update_reviewboard, :setstock]
   
   # This is just a controller it will be calling
-  # pages that edit the users table. 
+  # pages that edit the users table. This will be
+  # the main controller for user info updates,etc.
+  #
   # This will give an understandable url and will
   # make it easier to avoid route conflicts with
   # devise.
@@ -16,10 +18,9 @@ class ProfilesController < ApplicationController
     @participants = Participant.find_all_by_user_id(current_user.id)
     @images = Mercury::Image.find_all_by_user_id(current_user.id)
     @stockimages = Mercury::Image.find_all_by_user_id(0)
+    @messages = Message.where(recipient_id: current_user.id).order("created_at DESC")
   end
   
-  # This will only edit the profile portion of the
-  # user record.
   def edit
     
   end
@@ -32,6 +33,7 @@ class ProfilesController < ApplicationController
     user.save!
     render text: ""
   end
+  
   # This can only be edited by an admin or better.
   def reviewboard
     @user = User.find(params[:profile_id])   

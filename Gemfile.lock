@@ -28,8 +28,6 @@ GEM
     activesupport (3.2.9)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    acts_as_tree (1.2.0)
-      activerecord (>= 3.0.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
@@ -39,6 +37,8 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    closure_tree (3.6.4)
+      activerecord (>= 3.0.0)
     cocaine (0.4.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -49,13 +49,13 @@ GEM
     coffee-script-source (1.4.0)
     columnize (0.3.6)
     daemons (1.1.9)
-    debugger (1.2.1)
+    debugger (1.2.2)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.4)
+      debugger-ruby_core_source (~> 1.1.5)
     debugger-linecache (1.1.2)
       debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.4)
+    debugger-ruby_core_source (1.1.5)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -122,7 +122,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
-    rake (10.0.0)
+    rake (10.0.1)
     rdoc (3.12)
       json (~> 1.4)
     ruby-mysql (2.9.10)
@@ -162,9 +162,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_tree
   bcrypt-ruby
   capistrano
+  closure_tree
   coffee-rails
   debugger
   devise

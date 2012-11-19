@@ -1,0 +1,9 @@
+<div class="msg_container">
+  <%= form_tag(@message, remote: true) do |f| %>
+    <%= select(f, "recipient_id", User.all.collect {|u| [ u.firstname+" "+u.lastname, u.id ] }, { :include_blank => true }) %>
+    <%= link_to( "cancel",cancel_message_path(current_user.id) ,{:class=>"smaller",:remote=>true}) %><br />
+    <%= text_field_tag 'subject', nil, {:class=>"textarea_reduced"} %><br />
+    <%= text_area_tag 'body', nil, {:class=>"textarea_reduced", :size=>"34x6"}%><br />
+    <%= submit_tag "send"%>
+  <% end %>
+</div>

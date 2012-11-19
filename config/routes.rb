@@ -1,5 +1,15 @@
 Studyworx3::Application.routes.draw do
   
+  resources :messages do
+    member do
+      get 'reply', 'cancel'
+      put 'archive'
+      post 'save_reply'       
+    end
+    collection do
+      
+    end
+  end
   resources :reviews
   resources :papers
   resources :teams

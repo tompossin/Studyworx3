@@ -1,1 +1,7 @@
-<%=sanitize format_plaintext(@note.reminder) %>
+<% if current_user.note %>
+  <% unless current_user.note.reminder.empty? %>
+    <div class="reminder">
+      <%=sanitize(format_plaintext(current_user.note.reminder)) %>
+    </div>
+  <% end %>
+<% end %>

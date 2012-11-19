@@ -14,6 +14,7 @@ gem 'thin'
 gem 'seed_dump'
 gem 'ruby-mysql'
 gem 'mysql'
+gem 'closure_tree'
 # gem 'aloha-rails'
 
 # Gems used only for assets and not required
@@ -22,7 +23,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'devise'
-  gem 'acts_as_tree'
+  # gem 'acts_as_tree'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 

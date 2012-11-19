@@ -5,8 +5,20 @@ module ApplicationHelper
     return current_user.firstname + " " + current_user.lastname
   end
   
+  def get_full_name(user_id)
+    u = User.find(user_id)
+    return u.firstname + " " + u.lastname
+  end
+  
   def nav_heading(content)
     render :partial=>"layouts/navhead", :locals=>{:content => content}
+  end
+  # this fetches and creates the image url's for a list of avatar's
+  # TODO look for a more efficient way to do this.
+  def get_avatar_url(user_id)
+    u = User.find(user_id)
+    i = Mercury::Image.find(u.avatar)
+    return "/system/images/#{i.id}/thumb/#{i.image_file_name}"
   end
   
   def format_plaintext(content)

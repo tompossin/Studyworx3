@@ -1,5 +1,6 @@
 class Mercury::Image < ActiveRecord::Base
-
+  has_many :messages
+  
   self.table_name = :mercury_images
   attr_accessible :image
 

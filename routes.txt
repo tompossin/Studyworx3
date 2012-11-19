@@ -1,3 +1,14 @@
+             reply_message GET    /messages/:id/reply(.:format)                      messages#reply
+            cancel_message GET    /messages/:id/cancel(.:format)                     messages#cancel
+           archive_message PUT    /messages/:id/archive(.:format)                    messages#archive
+        save_reply_message POST   /messages/:id/save_reply(.:format)                 messages#save_reply
+                  messages GET    /messages(.:format)                                messages#index
+                           POST   /messages(.:format)                                messages#create
+               new_message GET    /messages/new(.:format)                            messages#new
+              edit_message GET    /messages/:id/edit(.:format)                       messages#edit
+                   message GET    /messages/:id(.:format)                            messages#show
+                           PUT    /messages/:id(.:format)                            messages#update
+                           DELETE /messages/:id(.:format)                            messages#destroy
                    reviews GET    /reviews(.:format)                                 reviews#index
                            POST   /reviews(.:format)                                 reviews#create
                 new_review GET    /reviews/new(.:format)                             reviews#new
@@ -56,11 +67,14 @@
                            PUT    /user_admins/:id(.:format)                         user_admins#update
                            DELETE /user_admins/:id(.:format)                         user_admins#destroy
        profile_reviewboard GET    /profiles/:profile_id/reviewboard(.:format)        profiles#reviewboard
+     profile_load_reminder GET    /profiles/:profile_id/load_reminder(.:format)      profiles#load_reminder
 profile_update_reviewboard POST   /profiles/:profile_id/update_reviewboard(.:format) profiles#update_reviewboard
          profile_setavatar POST   /profiles/:profile_id/setavatar(.:format)          profiles#setavatar
       profile_setwallpaper POST   /profiles/:profile_id/setwallpaper(.:format)       profiles#setwallpaper
           profile_settheme POST   /profiles/:profile_id/settheme(.:format)           profiles#settheme
-              profile_done PUT    /profiles/:profile_id/done(.:format)               profiles#done
+          profile_setstock POST   /profiles/:profile_id/setstock(.:format)           profiles#setstock
+     profile_save_reminder POST   /profiles/:profile_id/save_reminder(.:format)      profiles#save_reminder
+       profile_saveprofile PUT    /profiles/:profile_id/saveprofile(.:format)        profiles#saveprofile
                   profiles GET    /profiles(.:format)                                profiles#index
                            POST   /profiles(.:format)                                profiles#create
                new_profile GET    /profiles/new(.:format)                            profiles#new

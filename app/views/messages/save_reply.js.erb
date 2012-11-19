@@ -1,0 +1,4 @@
+$('#reply_editor').after(function(){
+  return '<div id= reply_'+ <%=j @reply.id%> +' class=msg_container ></div>'
+});
+$('#reply_<%=@reply.id%>').html("<%=j render :partial=>"reply" %>")

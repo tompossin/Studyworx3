@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  parent_id: 1
+  sender_id: 1
+  recipient_id: 1
+  school_id: 1
+  has_read: false
+  archived: false
+  sender_trashed: false
+  recipient_trashed: false
+  subject: MyString
+  body: MyText
+
+two:
+  parent_id: 1
+  sender_id: 1
+  recipient_id: 1
+  school_id: 1
+  has_read: false
+  archived: false
+  sender_trashed: false
+  recipient_trashed: false
+  subject: MyString
+  body: MyText

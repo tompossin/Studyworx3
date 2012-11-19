@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Parent:</b>
+  <%= @message.parent_id %>
+</p>
+
+<p>
+  <b>Sender:</b>
+  <%= @message.sender_id %>
+</p>
+
+<p>
+  <b>Recipient:</b>
+  <%= @message.recipient_id %>
+</p>
+
+<p>
+  <b>School:</b>
+  <%= @message.school_id %>
+</p>
+
+<p>
+  <b>Has read:</b>
+  <%= @message.has_read %>
+</p>
+
+<p>
+  <b>Archived:</b>
+  <%= @message.archived %>
+</p>
+
+<p>
+  <b>Sender trashed:</b>
+  <%= @message.sender_trashed %>
+</p>
+
+<p>
+  <b>Recipient trashed:</b>
+  <%= @message.recipient_trashed %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @message.subject %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @message.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>
