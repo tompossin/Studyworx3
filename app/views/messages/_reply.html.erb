@@ -1,3 +1,7 @@
-
+<!--I need to finish this. I think I should build this out in such a way that
+  it can be inserted anywhere a reply is needed. It might help make it easier
+  to write the jquery calls as well. -->
+<div>
    <p class="title smaller"><%= get_full_name(@reply.recipient_id) if @reply.recipient_id %> has replied</p>
    <p><%= @reply.body%></p>       
+</div>

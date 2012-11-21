@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module ApplicationHelper - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/application_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-format_plaintext">#format_plaintext</a>
+    
+    <li><a href="#method-i-full_name">#full_name</a>
+    
+    <li><a href="#method-i-get_avatar_url">#get_avatar_url</a>
+    
+    <li><a href="#method-i-get_full_name">#get_full_name</a>
+    
+    <li><a href="#method-i-hidden_div_unless">#hidden_div_unless</a>
+    
+    <li><a href="#method-i-is_admin">#is_admin</a>
+    
+    <li><a href="#method-i-is_superadmin">#is_superadmin</a>
+    
+    <li><a href="#method-i-nav_heading">#nav_heading</a>
+    
+    <li><a href="#method-i-relaxed_sanitize">#relaxed_sanitize</a>
+    
+    <li><a href="#method-i-set_wallpaper">#set_wallpaper</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mercury.html">Mercury</a>
+  
+    <li><a href="./Mercury/Authentication.html">Mercury::Authentication</a>
+  
+    <li><a href="./Mercury/Image.html">Mercury::Image</a>
+  
+    <li><a href="./Mercury/ImagesController.html">Mercury::ImagesController</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Blog.html">Blog</a>
+  
+    <li><a href="./BlogsController.html">BlogsController</a>
+  
+    <li><a href="./BlogsHelper.html">BlogsHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./Message.html">Message</a>
+  
+    <li><a href="./MessagesController.html">MessagesController</a>
+  
+    <li><a href="./MessagesHelper.html">MessagesHelper</a>
+  
+    <li><a href="./Note.html">Note</a>
+  
+    <li><a href="./Paper.html">Paper</a>
+  
+    <li><a href="./PapersController.html">PapersController</a>
+  
+    <li><a href="./PapersHelper.html">PapersHelper</a>
+  
+    <li><a href="./Participant.html">Participant</a>
+  
+    <li><a href="./ParticipantsController.html">ParticipantsController</a>
+  
+    <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./ProfilesController.html">ProfilesController</a>
+  
+    <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
+  
+    <li><a href="./Review.html">Review</a>
+  
+    <li><a href="./ReviewsController.html">ReviewsController</a>
+  
+    <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./SchoolsController.html">SchoolsController</a>
+  
+    <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserAdmin.html">UserAdmin</a>
+  
+    <li><a href="./UserAdminsController.html">UserAdminsController</a>
+  
+    <li><a href="./UserAdminsHelper.html">UserAdminsHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ApplicationHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-format_plaintext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">format_plaintext</span><span
+            class="method-args">(content)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="format_plaintext-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">format_plaintext</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\n/</span>,<span class="ruby-string">'&lt;br /&gt;'</span>)
+  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\s\s/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'</span>)
+  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\*\*/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;diams;&amp;nbsp;'</span>)
+  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\*/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;bull;&amp;nbsp;'</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- format_plaintext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- format_plaintext-method -->
+
+    
+      <div id="method-i-full_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full_name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the full name of the current_user</p>
+          
+
+          
+          <div class="method-source-code" id="full_name-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full_name</span> 
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">firstname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">lastname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- full_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- full_name-method -->
+
+    
+      <div id="method-i-get_avatar_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_avatar_url</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>this fetches and creates the image url’s for a list of avatar’s TODO look
+for a more efficient way to do this.</p>
+          
+
+          
+          <div class="method-source-code" id="get_avatar_url-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_avatar_url</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">u</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">i</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">u</span>.<span class="ruby-identifier">avatar</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;/system/images/#{i.id}/thumb/#{i.image_file_name}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_avatar_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_avatar_url-method -->
+
+    
+      <div id="method-i-get_full_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_full_name</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_full_name-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_full_name</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">u</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">firstname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">lastname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_full_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_full_name-method -->
+
+    
+      <div id="method-i-hidden_div_unless" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hidden_div_unless</span><span
+            class="method-args">(condition, attributes = {}, &block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Hides a page element unless a condition is met.</p>
+          
+
+          
+          <div class="method-source-code" id="hidden_div_unless-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
+    <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;div&quot;</span>, <span class="ruby-identifier">attributes</span>, &amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hidden_div_unless-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hidden_div_unless-method -->
+
+    
+      <div id="method-i-is_admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_admin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_admin-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_admin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_admin-method -->
+
+    
+      <div id="method-i-is_superadmin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_superadmin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks for superadmin in the view</p>
+          
+
+          
+          <div class="method-source-code" id="is_superadmin-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_superadmin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_superadmin-method -->
+
+    
+      <div id="method-i-nav_heading" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nav_heading</span><span
+            class="method-args">(content)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="nav_heading-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_heading</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:partial=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;layouts/navhead&quot;</span>, <span class="ruby-value">:locals=</span><span class="ruby-operator">&gt;</span>{<span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">content</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- nav_heading-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- nav_heading-method -->
+
+    
+      <div id="method-i-relaxed_sanitize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">relaxed_sanitize</span><span
+            class="method-args">(rawhtml)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Provides a more relaxed version of sanitize these rules match the ones
+provided by the mercury editor. So I don’t get unexpected results from an
+edit.</p>
+
+<p>WARNING! I have included iframe in here which is crazy but necessary to
+include youtube and vimeo videos.</p>
+          
+
+          
+          <div class="method-source-code" id="relaxed_sanitize-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">relaxed_sanitize</span>(<span class="ruby-identifier">rawhtml</span>)
+  <span class="ruby-identifier">sanitize</span> <span class="ruby-identifier">rawhtml</span>,<span class="ruby-value">:tags=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u )</span>, 
+                    <span class="ruby-value">:attributes=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(id class style src border align colspan rowspan)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- relaxed_sanitize-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- relaxed_sanitize-method -->
+
+    
+      <div id="method-i-set_wallpaper" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_wallpaper</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the wallpaper TODO this may need to moved or eliminated it is an ugly
+hack.</p>
+          
+
+          
+          <div class="method-source-code" id="set_wallpaper-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>  
+      <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-image:url('/system/images/#{session[:wallpaper]}/original/#{session[:wallpaper_image]}');&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-color:#dddddd;&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-color:#dddddd;&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_wallpaper-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_wallpaper-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

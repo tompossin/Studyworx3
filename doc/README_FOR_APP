@@ -1,2 +1,15 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+=Studyworx 3!
+This is the latest version of StudyWorx designed to incorporate the new features of Rails 3.2.x.
+
+My hope is to make this version more interactive and more friendly to a wider variety of devices.
+
+
+==Goals:
+* Implimentation of Rails 3.2.+ and HTML 5
+* More friendly to small form factor devices
+* Better communication features
+  * This includes the addition of a User Profile page.
+  * Personal, Team, and Public communication modes
+* A flexible user team system.
+
+

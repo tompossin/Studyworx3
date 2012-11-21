@@ -13,6 +13,7 @@ module ApplicationHelper
   def nav_heading(content)
     render :partial=>"layouts/navhead", :locals=>{:content => content}
   end
+  
   # this fetches and creates the image url's for a list of avatar's
   # TODO look for a more efficient way to do this.
   def get_avatar_url(user_id)

@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
-  # GET /messages
-  # GET /messages.json
+  
+  
+  # Not used yet
   def index
     @messages = Message.all
 
@@ -10,8 +11,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1
-  # GET /messages/1.json
+  # Not used yet
   def show
     @message = Message.find(params[:id])
 
@@ -21,8 +21,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/new
-  # GET /messages/new.json
+  # Sets the editor via AJAX
   def new
     @message = Message.new
 
@@ -31,22 +30,26 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1/edit
+  # Not used yet
   def edit
     @message = Message.find(params[:id])
   end
   
+  # creates a blank reply(no save) and loads the editor
   def reply
+    r = Message.find(params[:id])
     @message = Message.new
     @message.parent_id = params[:id]
     @message.sender_id = current_user.id
-    @message.recipient_id = params[:id]
+    @message.recipient_id = r.recipient_id
+    @id = params[:id]
     
     respond_to do |format|
       format.js
     end
   end
   
+  # Takes user reply and creates a child message and pushes it to the view
   def save_reply
     msg = Message.find(params[:id])
     @reply = msg.children.create(:sender_id=>params[:sender_id].to_i)
@@ -57,14 +60,13 @@ class MessagesController < ApplicationController
     @reply.sender_trashed = false
     @reply.recipient_trashed = false
     @reply.save
-    
+    @id = params[:id] # parent message id
     respond_to do |format|
       format.js
     end
   end
 
-  # POST /messages
-  # POST /messages.json
+  # This creates a new parent message
   def create
     @message = Message.new
     @message.recipient_id = params[:recipient_id].to_i
@@ -87,8 +89,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PUT /messages/1
-  # PUT /messages/1.json
+  # Not used yet
   def update
     @message = Message.find(params[:id])
 
@@ -103,6 +104,7 @@ class MessagesController < ApplicationController
     end
   end
   
+  # This removes the editor
   def cancel
     respond_to do |format|
       format.js {render "create"}

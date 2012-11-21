@@ -1,6 +1,5 @@
 class Message < ActiveRecord::Base
   acts_as_tree :order => 'created_at', :dependant => :destroy
-  belongs_to :mercury_images
   
   #############################
   # Methods to suck up user info for sender and recipient
@@ -15,6 +14,6 @@ class Message < ActiveRecord::Base
   
   ##############################
   
-  validates_presence_of :subject, :body
+  validates_presence_of :body
   attr_accessible :archived, :body, :has_read, :parent_id, :recipient_id, :recipient_trashed, :school_id, :sender_id, :sender_trashed, :subject
 end

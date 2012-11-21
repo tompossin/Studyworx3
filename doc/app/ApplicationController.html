@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class ApplicationController - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/application_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActionController::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-assign_session_variables">#assign_session_variables</a>
+    
+    <li><a href="#method-i-is_admin">#is_admin</a>
+    
+    <li><a href="#method-i-is_contributor">#is_contributor</a>
+    
+    <li><a href="#method-i-is_owner">#is_owner</a>
+    
+    <li><a href="#method-i-is_superadmin">#is_superadmin</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mercury.html">Mercury</a>
+  
+    <li><a href="./Mercury/Authentication.html">Mercury::Authentication</a>
+  
+    <li><a href="./Mercury/Image.html">Mercury::Image</a>
+  
+    <li><a href="./Mercury/ImagesController.html">Mercury::ImagesController</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Blog.html">Blog</a>
+  
+    <li><a href="./BlogsController.html">BlogsController</a>
+  
+    <li><a href="./BlogsHelper.html">BlogsHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./Message.html">Message</a>
+  
+    <li><a href="./MessagesController.html">MessagesController</a>
+  
+    <li><a href="./MessagesHelper.html">MessagesHelper</a>
+  
+    <li><a href="./Note.html">Note</a>
+  
+    <li><a href="./Paper.html">Paper</a>
+  
+    <li><a href="./PapersController.html">PapersController</a>
+  
+    <li><a href="./PapersHelper.html">PapersHelper</a>
+  
+    <li><a href="./Participant.html">Participant</a>
+  
+    <li><a href="./ParticipantsController.html">ParticipantsController</a>
+  
+    <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./ProfilesController.html">ProfilesController</a>
+  
+    <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
+  
+    <li><a href="./Review.html">Review</a>
+  
+    <li><a href="./ReviewsController.html">ReviewsController</a>
+  
+    <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./SchoolsController.html">SchoolsController</a>
+  
+    <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserAdmin.html">UserAdmin</a>
+  
+    <li><a href="./UserAdminsController.html">UserAdminsController</a>
+  
+    <li><a href="./UserAdminsHelper.html">UserAdminsHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class ApplicationController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-assign_session_variables" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assign_session_variables</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Check if logged in, check for <a href="http://:values">session</a>, or set
+<a href="http://:values">session</a> TODO I need a default setting for some
+of these variables</p>
+          
+
+          
+          <div class="method-source-code" id="assign_session_variables-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assign_session_variables</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin_level</span>]
+      <span class="ruby-identifier">admin</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">admin</span>
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin_level</span>] = <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">level</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin_level</span>] = <span class="ruby-value">0</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:avatar_image</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">avatar</span>
+        <span class="ruby-identifier">avatar</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">avatar</span>)
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:avatar</span>] = <span class="ruby-identifier">avatar</span>.<span class="ruby-identifier">id</span> 
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:avatar_image</span>] = <span class="ruby-identifier">avatar</span>.<span class="ruby-identifier">image_file_name</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper_image</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>
+        <span class="ruby-identifier">wallpaper</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>)
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper</span>] = <span class="ruby-identifier">wallpaper</span>.<span class="ruby-identifier">id</span> 
+        <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper_image</span>] = <span class="ruby-identifier">wallpaper</span>.<span class="ruby-identifier">image_file_name</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- assign_session_variables-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- assign_session_variables-method -->
+
+    
+      <div id="method-i-is_admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_admin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_admin-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be an adminstrator to access this page (click to hide)&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_admin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_admin-method -->
+
+    
+      <div id="method-i-is_contributor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_contributor</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_contributor-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a contributor to access this page (click to hide)&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_contributor-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_contributor-method -->
+
+    
+      <div id="method-i-is_owner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_owner</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Methods available to all controllers</p>
+          
+
+          
+          <div class="method-source-code" id="is_owner-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_owner</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You are not the owner of this record!&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_owner-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_owner-method -->
+
+    
+      <div id="method-i-is_superadmin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_superadmin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>These methods are used as before_filters in controllers</p>
+          
+
+          
+          <div class="method-source-code" id="is_superadmin-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a Super Administrator to access this page (click to hide)&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_superadmin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_superadmin-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
