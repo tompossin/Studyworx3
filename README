@@ -1,7 +1,15 @@
 
-== Welcome to Studyworx 3
+==Welcome to Studyworx 3
 
 This is a re-write of the StudyWorx online study program
 written to take advantage of the new features available
-in Rails 3.1
+in Rails 3.2 and HTML 5.
+
+===New Features
+
+* User Profiles with personal images
+* Better control over themes and backgrounds
+* Better Messaging system.
+* User Teams to allow group messaging and team assignments
+* An HTML 5 text editor (Mercury at this point)
 

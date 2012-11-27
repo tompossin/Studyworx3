@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121190658) do
+ActiveRecord::Schema.define(:version => 20121125191447) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -25,16 +25,6 @@ ActiveRecord::Schema.define(:version => 20121121190658) do
     t.boolean  "leadstory"
     t.boolean  "navbar"
   end
-
-  create_table "members", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "member_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "members", ["member_id"], :name => "index_members_on_member_id"
-  add_index "members", ["user_id"], :name => "index_members_on_user_id"
 
   create_table "mercury_images", :force => true do |t|
     t.string   "image_file_name"
@@ -156,6 +146,22 @@ ActiveRecord::Schema.define(:version => 20121121190658) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "teams", :force => true do |t|
+    t.integer  "owner_id"
+    t.integer  "school_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "teams_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "team_id"
+  end
+
+  add_index "teams_users", ["user_id", "team_id"], :name => "index_teams_users_on_user_id_and_team_id"
+
   create_table "user_admins", :force => true do |t|
     t.integer  "user_id"
     t.integer  "level"
@@ -164,8 +170,8 @@ ActiveRecord::Schema.define(:version => 20121121190658) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -182,8 +188,8 @@ ActiveRecord::Schema.define(:version => 20121121190658) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.text     "firstname"
     t.text     "lastname"
     t.string   "phone"
@@ -193,16 +199,12 @@ ActiveRecord::Schema.define(:version => 20121121190658) do
     t.integer  "avatar"
     t.integer  "wallpaper"
     t.integer  "theme"
-    t.boolean  "team",                   :default => false
-    t.integer  "owner_id"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["owner_id"], :name => "index_users_on_owner_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["team"], :name => "index_users_on_team"
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
 end

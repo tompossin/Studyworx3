@@ -12,7 +12,6 @@ Studyworx3::Application.routes.draw do
   end
   resources :reviews
   resources :papers
-  resources :teams
   resources :schools
   resources :participants
 
@@ -25,8 +24,9 @@ Studyworx3::Application.routes.draw do
   resources :blogs
   resources :user_admins
   resources :profiles do
-    get 'reviewboard', 'load_reminder'
+    get 'reviewboard', 'load_reminder','teams','new_team','add_members','setschool'
     post 'update_reviewboard', 'setavatar', 'setwallpaper', 'settheme', 'setstock', 'save_reminder'
+    post 'save_team','save_members'
     put 'saveprofile'
   end
   devise_for :users

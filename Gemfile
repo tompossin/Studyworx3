@@ -13,9 +13,12 @@ gem 'will_paginate'
 gem 'thin'
 gem 'seed_dump'
 gem 'ruby-mysql'
-gem 'mysql'
+gem 'mysql','2.8.1'
+#gem 'activerecord-mysql-adapter'
 gem 'closure_tree'
 # gem 'aloha-rails'
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,6 +26,10 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'devise'
+  
+  # handles local copy of rails docs - start server with {:> yard server --gems
+  gem 'yard'
+  
   # gem 'acts_as_tree'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

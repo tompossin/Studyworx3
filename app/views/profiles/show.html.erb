@@ -19,7 +19,8 @@
         <%=relaxed_sanitize current_user.bio if current_user.bio %>
       </div>
       <hr />
-      <p class="title smaller">Phone: <span id="phone" data-mercury="simple"><%= current_user.phone if current_user.phone %></span></p>
+      <p class="title smaller">
+        Phone: <span id="phone" data-mercury="simple" style="min-width:150px;"><%= current_user.phone if current_user.phone %></span></p>
       <p class="title smaller">
         Home Address:
       </p>
@@ -57,8 +58,6 @@
 </div>
 <div id='nav-right'>
   <%= nav_heading(full_name) %>
-  <%= render "schools/schools" %>
-  <%= render "messages/messenger" %>
 </div>
 
 <script type="text/javascript">

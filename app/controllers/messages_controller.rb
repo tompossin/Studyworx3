@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   
   
   # Not used yet
+  # Will use this for loading user messages via AJAX
   def index
     @messages = Message.all
 

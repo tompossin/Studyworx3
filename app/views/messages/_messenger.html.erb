@@ -1,8 +1,9 @@
-<p class="title small">Message Center</p>
-<div id="message_editor">
-  <%= render "messages/create" %>
-</div>
 <% if @messages %> 
+  <p class="title small">Message Center</p>
+  <div id="message_editor">
+    <%= render "messages/create" %>
+  </div>
+
   <% for m in @messages %>
     <div id="message_<%= m.id %>" class="msg_container" >
       <div class='avatar' style="background-image:url(<%= get_avatar_url(m.sender_id) %>);" onclick="OpenProfile(<%=current_user.id%>)"></div>

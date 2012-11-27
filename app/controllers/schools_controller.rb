@@ -60,9 +60,11 @@ class SchoolsController < ApplicationController
   def update
     @school = School.find(params[:id])
 
-    @school.location = params[:content][:location][:value]
-    @school.save
-    render text: ""
+    if @school.update_attributes(params[:school])
+      render "shared/save_success"
+    else
+      render "shared/save_failed"
+    end
   end
 
   # DELETE /schools/1

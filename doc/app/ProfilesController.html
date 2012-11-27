@@ -70,15 +70,19 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-edit">#edit</a>
-    
-    <li><a href="#method-i-index">#index</a>
+    <li><a href="#method-i-add_members">#add_members</a>
     
     <li><a href="#method-i-load_reminder">#load_reminder</a>
     
+    <li><a href="#method-i-new_team">#new_team</a>
+    
     <li><a href="#method-i-reviewboard">#reviewboard</a>
     
+    <li><a href="#method-i-save_member">#save_member</a>
+    
     <li><a href="#method-i-save_reminder">#save_reminder</a>
+    
+    <li><a href="#method-i-save_team">#save_team</a>
     
     <li><a href="#method-i-saveprofile">#saveprofile</a>
     
@@ -91,6 +95,8 @@
     <li><a href="#method-i-setwallpaper">#setwallpaper</a>
     
     <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-teams">#teams</a>
     
     <li><a href="#method-i-update">#update</a>
     
@@ -136,6 +142,8 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./Member.html">Member</a>
   
     <li><a href="./Message.html">Message</a>
   
@@ -194,6 +202,14 @@
 
   <div id="description" class="description">
     
+<p>This is just a controller - it will be calling pages that edit the users
+table.</p>
+
+<p>This will be the main controller for user info updates,etc.</p>
+
+<p>This will give an understandable url and will make it easier to avoid route
+conflicts with devise.</p>
+
   </div><!-- description -->
 
   
@@ -214,10 +230,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-edit" class="method-detail ">
+      <div id="method-i-add_members" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">edit</span><span
+          <span class="method-name">add_members</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -225,57 +241,23 @@
 
         <div class="method-description">
           
-          
+          <p>This page creates a group of user.id’s to associate with a team user.id</p>
           
 
           
-          <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+          <div class="method-source-code" id="add_members-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_members</span>
   
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- edit-source -->
+          </div><!-- add_members-source -->
           
         </div>
 
         
 
         
-      </div><!-- edit-method -->
-
-    
-      <div id="method-i-index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">index</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>This is just a controller it will be calling pages that edit the users
-table. This will be the main controller for user info updates,etc.</p>
-
-<p>This will give an understandable url and will make it easier to avoid route
-conflicts with devise.</p>
-          
-
-          
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- index-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- index-method -->
+      </div><!-- add_members-method -->
 
     
       <div id="method-i-load_reminder" class="method-detail ">
@@ -289,12 +271,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          
+          <p>Loads or creates a reminder for editing via AJAX</p>
           
 
           
           <div class="method-source-code" id="load_reminder-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 82</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_reminder</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -320,6 +302,37 @@ conflicts with devise.</p>
       </div><!-- load_reminder-method -->
 
     
+      <div id="method-i-new_team" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_team</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Loads a form for team creation</p>
+          
+
+          
+          <div class="method-source-code" id="new_team-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_team</span>
+  <span class="ruby-ivar">@team</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@schools</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">'name ASC'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new_team-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new_team-method -->
+
+    
       <div id="method-i-reviewboard" class="method-detail ">
         
         <div class="method-heading">
@@ -331,12 +344,13 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          <p>This can only be edited by an admin or better.</p>
+          <p>This can only be edited by an admin or better. This retrieves a users
+review board status</p>
           
 
           
           <div class="method-source-code" id="reviewboard-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reviewboard</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>])   
 <span class="ruby-keyword">end</span></pre>
@@ -350,6 +364,36 @@ conflicts with devise.</p>
       </div><!-- reviewboard-method -->
 
     
+      <div id="method-i-save_member" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_member</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This saves a group of members to the members table via AJAX</p>
+          
+
+          
+          <div class="method-source-code" id="save_member-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_member</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_member-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_member-method -->
+
+    
       <div id="method-i-save_reminder" class="method-detail ">
         
         <div class="method-heading">
@@ -361,12 +405,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          
+          <p>Saves updated reminder and loads via AJAX</p>
           
 
           
           <div class="method-source-code" id="save_reminder-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 98</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 142</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_reminder</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -385,6 +429,44 @@ conflicts with devise.</p>
       </div><!-- save_reminder-method -->
 
     
+      <div id="method-i-save_team" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_team</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Saves a new Team which is actually a user object with the user.team = true
+set</p>
+          
+
+          
+          <div class="method-source-code" id="save_team-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_team</span>
+  <span class="ruby-identifier">t</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">owner_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">lastname</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:lastname</span>]
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">firstname</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:firstname</span>]
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">team</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">firstname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;@&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">t</span>.<span class="ruby-identifier">lastname</span><span class="ruby-operator">||</span><span class="ruby-value">:studyworx</span>
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">encrypted_password</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">1024</span>) <span class="ruby-comment"># this is neccessary because the db will refuse null here.</span>
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">bio</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:bio</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_team-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_team-method -->
+
+    
       <div id="method-i-saveprofile" class="method-detail ">
         
         <div class="method-heading">
@@ -396,12 +478,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          
+          <p>This edits the users personal data</p>
           
 
           
           <div class="method-source-code" id="saveprofile-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">saveprofile</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">bio</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:content</span>][<span class="ruby-value">:bio</span>][<span class="ruby-value">:value</span>]
@@ -436,7 +518,7 @@ conflicts with devise.</p>
 
           
           <div class="method-source-code" id="setavatar-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setavatar</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">avatar</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>]
@@ -467,12 +549,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          
+          <p>This sets an image as a stock image - must be an admin</p>
           
 
           
           <div class="method-source-code" id="setstock-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setstock</span>
   <span class="ruby-identifier">stock</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>])
   <span class="ruby-identifier">stock</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-value">0</span>
@@ -500,12 +582,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          
+          <p>This sets the theme of a user.</p>
           
 
           
           <div class="method-source-code" id="settheme-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">settheme</span>
   
 <span class="ruby-keyword">end</span></pre>
@@ -530,12 +612,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          
+          <p>This sets the wallpaper of a user.</p>
           
 
           
           <div class="method-source-code" id="setwallpaper-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setwallpaper</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">wallpaper</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>]
@@ -566,12 +648,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          
+          <p>This is the main “profile page” or “Users Home page”</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@participants</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@images</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
@@ -586,6 +668,55 @@ conflicts with devise.</p>
 
         
       </div><!-- show-method -->
+
+    
+      <div id="method-i-teams" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">teams</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Team creation and management methods.</p>
+
+<p>I did not put these methods in their own controller since I see this as an
+extention of the profiles methods. If this becomes too cumbersome by the 
+time I add messaging and email I may have to break it out of this
+controller.</p>
+
+<p>This call loads current teams the user owns or is part of</p>
+
+<p>TODO I need to make this into a HABTM relationship I need to create a
+users_teams table and revert the users table to the way it was. This is
+going to get really clumsy. I thought it would be easier. But the HABTM
+relationship will make it easier to see this from both the team and the
+user perspective.</p>
+          
+
+          
+          <div class="method-source-code" id="teams-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">teams</span>
+  <span class="ruby-identifier">myteams</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">member_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">myteams</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">t</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">teams</span>
+      <span class="ruby-identifier">team_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@teams</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">team_ids</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- teams-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- teams-method -->
 
     
       <div id="method-i-update" class="method-detail ">
@@ -604,7 +735,7 @@ conflicts with devise.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 110</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 154</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_owner</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
     <span class="ruby-comment"># need some action here.</span>
@@ -635,12 +766,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          <p>must be admin or better</p>
+          <p>must be admin or better This edits a users reviewboard status</p>
           
 
           
           <div class="method-source-code" id="update_reviewboard-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_reviewboard</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">reviewboard</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:reviewboard</span>]

@@ -6,11 +6,18 @@
       <%= content if content %>
     </div>
     <div id="scratchpad_heading" class="title smaller">
-      My Scratchpad &nbsp;<%=link_to(image_tag("gray/comment.png"), profile_load_reminder_path(current_user.id), remote: true) if current_user %>
+      &nbsp;<%=link_to(image_tag("gray/home.png"), profile_path(current_user.id),{title: "Load School List"}) if current_user %>
+      &nbsp;<%=link_to(image_tag("gray/edit.png"), profile_load_reminder_path(current_user.id),{title: "Open Scratchpad", remote: true}) if current_user %>     
+      &nbsp;<%=link_to(image_tag("gray/chat.png"), messages_path,{title: "Open Messaging", remote: true}) if current_user %>
+      &nbsp;<%=link_to(image_tag("gray/womanman.png"), messages_path,{title: "Open Teams", remote: true}) if current_user %>
+      &nbsp;<%=link_to(image_tag("gray/addressbook.png"), messages_path,{title: "Open Assignments", remote: true}) if session[:school_id] %>
     </div>
     
     <div id="reminder">
       <%= render :partial=>"profiles/reminder"%>
+    </div>
+    <div id="nav_body_content">
+      <%=render partial: "schools/schools"%>
     </div>
   </div> 
 </div>

@@ -31,6 +31,10 @@ h3 {
   text-align: left;
 }
 
+#current_school {
+  
+}
+
 #header {
 	background-color:#FFFFDD;
 	margin-bottom: 0px;
@@ -77,7 +81,7 @@ h3 {
   top: 0px;
   left: 220px;
   width: 250px;
-  background-color:green;
+  background-color:red;
   border-radius: 5px;
 }
 
@@ -192,6 +196,11 @@ h3 {
   padding:10px;
   margin: 10px;
   color: white;
+}
+
+.float_left {
+  float: left;
+  width: 100%;
 }
 
 .avatar {

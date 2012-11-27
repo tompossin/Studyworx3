@@ -30,7 +30,16 @@ class ApplicationController < ActionController::Base
           session[:wallpaper_image] = wallpaper.image_file_name
         end
       end
+      unless session[:school_name]
+        session[:school_name] = "Select School Below"
+      end
     end
+  end
+
+  def set_school(school_id)
+    school = School.find(school_id)
+    session[:school_name] = school.name
+    session[:school_id] = school.id
   end
   
   # These methods are used as before_filters in controllers

@@ -487,24 +487,6 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>396</x>
-      <y>135</y>
-      <w>153</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>*languages*
---
-&lt;&lt;id(PK):int
---
--code:string
--name:string
-
-bg=gray</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
       <x>675</x>
       <y>1161</y>
       <w>153</w>
@@ -619,7 +601,7 @@ bg=gray</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>396</x>
-      <y>234</y>
+      <y>144</y>
       <w>153</w>
       <h>81</h>
     </coordinates>
@@ -793,7 +775,7 @@ bg=red</panel_attributes>
       <h>63</h>
     </coordinates>
     <panel_attributes>/*Last Updated:*/
-11/21/2012
+11/26/2012
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
@@ -902,23 +884,43 @@ bg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>216</x>
+      <x>396</x>
       <y>234</y>
-      <w>171</w>
+      <w>153</w>
       <h>126</h>
     </coordinates>
-    <panel_attributes>*members*
+    <panel_attributes>*teams*
 --
-&lt;&lt;id(PK):int
+&lt;&lt;id:integer(PK)
 --
-&gt;&gt;user_id:int
-/(team_user_id)/
+-user_id:int
+-name:string
+-description:text
 --
 --
--member_id:int
---
-/(team members)/
+/Teams HABTM Users/
+
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>225</x>
+      <y>234</y>
+      <w>153</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*teams_users*
+--
+&lt;&lt;user_id:int
+&lt;&lt;team_id:int
+--
+--
+/  Join Table/
+
+
+bg=black</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
