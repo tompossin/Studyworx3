@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121125191447) do
+ActiveRecord::Schema.define(:version => 20121128024530) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(:version => 20121125191447) do
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.integer  "school_id"
-    t.boolean  "has_read"
-    t.boolean  "archived"
+    t.boolean  "sender_read"
+    t.boolean  "recipient_read"
     t.boolean  "sender_trashed"
     t.boolean  "recipient_trashed"
     t.string   "subject"
@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(:version => 20121125191447) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "messages", ["recipient_id", "recipient_read"], :name => "index_messages_on_recipient_id_and_recipient_read"
+  add_index "messages", ["sender_id", "sender_read"], :name => "index_messages_on_sender_id_and_sender_read"
 
   create_table "notes", :force => true do |t|
     t.integer  "user_id"

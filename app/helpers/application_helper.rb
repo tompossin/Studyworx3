@@ -2,16 +2,22 @@ module ApplicationHelper
   
   # Return the full name of the current_user
   def full_name 
-    return current_user.firstname + " " + current_user.lastname
+    if current_user
+      current_user.firstname + " " + current_user.lastname
+    else
+      "Please Log in"
+    end
   end
   
   def get_full_name(user_id)
     u = User.find(user_id)
     return u.firstname + " " + u.lastname
   end
-  
-  def nav_heading(content)
-    render :partial=>"layouts/navhead", :locals=>{:content => content}
+  # Sets the nav_bar(nav_body_content = optional url of partial for nav_body_content element)
+  def nav_bar(nav_body_content = false)
+    default = "layouts/nav_blank"
+    nbc = nav_body_content || default
+    render :partial=>"layouts/nav_bar", :locals=>{content: full_name,nav_body_content: nbc}
   end
   
   # this fetches and creates the image url's for a list of avatar's

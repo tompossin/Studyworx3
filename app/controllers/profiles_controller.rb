@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     @participants = Participant.includes(:school).where(user_id: current_user.id).all
     @images = Mercury::Image.find_all_by_user_id(current_user.id)
     @stockimages = Mercury::Image.find_all_by_user_id(0)
-    @messages = Message.where(recipient_id: current_user.id).order("created_at DESC")
+    @nav_body_content = "schools/schools"
   end
   
   # This edits the users personal data
@@ -80,12 +80,6 @@ class ProfilesController < ApplicationController
     user.save
     flash[:alert] = "The review board status has been updated"
     redirect_to user_admins_path
-  end
-  
-  # This sets the currently active school
-  def setschool
-    set_school(params[:school_id])
-    redirect_to profile_path(current_user.id)
   end
   
   # This sets the avatar file for the user

@@ -52,9 +52,9 @@ h3 {
 	position: absolute;
 	top: 0px;
 	left: 12px;
-	border-left:1px solid #999999;
-  border-bottom:2px solid #bbbbbb;
-  border-right: 3px solid #ededed;
+	border-left:2px solid #999999;
+  border-bottom:3px solid #bbbbbb;
+  border-right: 4px solid #ededed;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	cursor: pointer;
@@ -96,7 +96,7 @@ h3 {
   border-radius: 5px;
 }
 
-#nav-right {
+#nav_right {
   float:right;width:30%;
   border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
   padding:10px;
@@ -113,6 +113,10 @@ h3 {
   float:left;
   width:65%
 }
+#nav_body_content {
+  float:left;
+  width:100%;
+}
 #scratchpad_heading {
   float:left;
   width:65%;
@@ -126,9 +130,9 @@ h3 {
   padding-right: 4px;
   padding-bottom: 4px;
   color: #999999;
-  border-left:3px solid #ededed;
-  border-bottom:2px solid #bbbbbb;
-  border-right: 1px solid #999999;
+  border-left:4px solid #ededed;
+  border-bottom:3px solid #bbbbbb;
+  border-right: 2px solid #999999;
   background-color: white;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -225,9 +229,10 @@ h3 {
   float:left;
   font-style: italic;
   font-family: Garamond, Georgia;
-  background-color: rgba(200,170,107,.3);
-  border: 1px solid gray;
-  border-top-right-radius: 20px;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   margin-bottom: 10px;
   padding:3%;
@@ -235,19 +240,32 @@ h3 {
 
 .msg_container {
   float:left;
-  width: 97%;
-  padding: 2%;
-  border: 1px solid gray;
-  border-top-right-radius: 20px;
+  width: 100%;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
   border-bottom-left-radius: 20px;
-  margin-bottom: 6px;
+  padding-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .reply_link {
-  border-top: 1px solid gray;
+  float:left;
+  width:93%;
+  margin-left: 5%;
+  padding-left: 2%;
+  border-bottom: 1px solid gray;
   border-left: 1px solid gray;
-  border-top-left-radius: 10px;
-  margin-left: 60px;
+  border-bottom-left-radius: 10px;
+}
+.reply_container {
+  float:left;
+  width: 81%;
+  margin-left: 15%;
+  padding: 2%;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-bottom-left-radius: 20px;
+  margin-bottom: -10px;
 }
 .textarea_reduced {
   width: 97%;

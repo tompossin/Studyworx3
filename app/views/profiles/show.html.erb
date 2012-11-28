@@ -56,9 +56,9 @@
     <% end %>
   </div>
 </div>
-<div id='nav-right'>
-  <%= nav_heading(full_name) %>
-</div>
+
+<%= nav_bar(@nav_body_content) %>
+
 
 <script type="text/javascript">
   function onMercuryReady() { Mercury.saveUrl = '/profiles/<%= current_user.id %>/saveprofile'; }

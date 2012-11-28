@@ -9,16 +9,5 @@
     <div><%=relaxed_sanitize @current_article.article%></div>
   </div>
 </div>
-<div id="nav-right">
-  <%= hidden_div_unless(current_user, id: 'profile_link') do %>
-      <%= nav_heading(full_name ) if current_user %>
-  <% end %>
-  <ul>
-  <% for story in @stories %>
-    <li><%= link_to story.topic, home_path(story.id) %></li>
-  <%end%>
-</ul>
-</div>
 
-
-
+<%= nav_bar("blogs/stories") %>

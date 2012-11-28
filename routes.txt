@@ -64,7 +64,6 @@
              profile_teams GET    /profiles/:profile_id/teams(.:format)              profiles#teams
           profile_new_team GET    /profiles/:profile_id/new_team(.:format)           profiles#new_team
        profile_add_members GET    /profiles/:profile_id/add_members(.:format)        profiles#add_members
-         profile_setschool GET    /profiles/:profile_id/setschool(.:format)          profiles#setschool
 profile_update_reviewboard POST   /profiles/:profile_id/update_reviewboard(.:format) profiles#update_reviewboard
          profile_setavatar POST   /profiles/:profile_id/setavatar(.:format)          profiles#setavatar
       profile_setwallpaper POST   /profiles/:profile_id/setwallpaper(.:format)       profiles#setwallpaper

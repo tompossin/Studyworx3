@@ -350,8 +350,8 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>216</x>
-      <y>18</y>
+      <x>378</x>
+      <y>153</y>
       <w>171</w>
       <h>207</h>
     </coordinates>
@@ -364,8 +364,8 @@ bg=gray</panel_attributes>
 &gt;&gt;recipient_id:integer
 --
 --
--has_read:boolean
--archived:boolean
+-sender_read:boolean
+-recipient_read:boolean
 -sender_trashed:boolean
 -recipient_trashed:boolean
 -subject:string
@@ -600,10 +600,10 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>396</x>
-      <y>144</y>
+      <x>216</x>
+      <y>270</y>
       <w>153</w>
-      <h>81</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>*user_admins*
 --
@@ -775,7 +775,7 @@ bg=red</panel_attributes>
       <h>63</h>
     </coordinates>
     <panel_attributes>/*Last Updated:*/
-11/26/2012
+11/27/2012
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
@@ -865,10 +865,10 @@ bg=gray</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>396</x>
-      <y>18</y>
-      <w>153</w>
-      <h>90</h>
+      <x>216</x>
+      <y>153</y>
+      <w>162</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>*message_hierarchies*
 --
@@ -877,15 +877,18 @@ bg=gray</panel_attributes>
 &gt;&gt;ancestor_id:int
 &gt;&gt;descendant_id:int
 &gt;&gt;generations:int
+--
+/  Self Join Table/
 
-bg=black</panel_attributes>
+bg=black
+fg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>396</x>
-      <y>234</y>
+      <y>18</y>
       <w>153</w>
       <h>126</h>
     </coordinates>
@@ -906,10 +909,10 @@ bg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>225</x>
-      <y>234</y>
-      <w>153</w>
-      <h>99</h>
+      <x>207</x>
+      <y>18</y>
+      <w>189</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>*teams_users*
 --
@@ -919,7 +922,7 @@ bg=black</panel_attributes>
 --
 /  Join Table/
 
-
+fg=white
 bg=black</panel_attributes>
     <additional_attributes/>
   </element>

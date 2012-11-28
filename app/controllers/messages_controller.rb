@@ -2,13 +2,12 @@ class MessagesController < ApplicationController
   
   
   # Not used yet
-  # Will use this for loading user messages via AJAX
+  # Will use this for loading user recieved conversations via AJAX
   def index
-    @messages = Message.all
+    @messages = Message.where("(recipient_id = ? or sender_id = ?) and parent_id IS NULL",current_user.id,current_user.id).all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @messages }
+      format.js
     end
   end
 

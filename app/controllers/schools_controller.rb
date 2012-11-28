@@ -16,6 +16,8 @@ class SchoolsController < ApplicationController
   # GET /schools/1.json
   def show
     @school = School.find(params[:id])
+    @participants = Participant.includes(:school).where(user_id: current_user.id).all
+    set_school(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

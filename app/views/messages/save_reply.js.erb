@@ -1,2 +1,2 @@
-$('<%=j '#reply_editor_'+@id %>').after("<%=j "<div id= 'reply_"+@reply.id.to_s+"' class='msg_container' ></div>" %>")
-$('<%=j '#reply_'+@reply.id.to_s %>').html("<%=j render :partial=>"reply" %>")
+$('<%=j '#reply_editor_'+@id %>').after('<%=j render(@reply) %>')
+$('<%=j '#reply_editor_'+@id %>').html("")

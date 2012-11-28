@@ -7,7 +7,7 @@
   </div>
   <% for p in @participants %>
     <div class="float_left title smaller">
-      <%= link_to( p.school.name, profile_setschool_path(current_user.id, school_id: p.school.id)) %>
+      <%= link_to( p.school.name, school_path(p.school.id)) %>
       &nbsp;--&nbsp;
       <span class="smaller"><%=link_to( "edit", edit_school_path(p.school.id), remote: true) %></span>
     </div>

@@ -11,15 +11,9 @@
       <p><%=sanitize(format_plaintext(m.body))%></p>
       <div id="reply_link_<%= m.id %>" class="reply_link">
         <%=link_to "reply",reply_message_path(m.id),{:remote=>true, :class=>"smaller"} %>
-        <div id="reply_editor_<%= m.id %>"></div> 
-        <div>
-          <% for c in m.children %>
-            <div id="reply_#{c.id}" class="msg_container">
-              <%=sanitize(format_plaintext(c.body)) %>
-            </div>
-          <% end %>
-        </div>      
       </div>
+      <div id="reply_editor_<%= m.id %>"></div> 
+      <%= render(m.children) %> 
     </div>
   <% end %>
 <% end %>
