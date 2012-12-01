@@ -8,11 +8,11 @@
           <%= content if content %>
         </div>
         <div id="scratchpad_heading" class="title smaller">
-          &nbsp;<%=link_to(image_tag("gray/home.png"), profile_path(current_user.id),{title: "Schools"}) if current_user %>
-          &nbsp;<%=link_to(image_tag("gray/edit.png"), profile_load_reminder_path(current_user.id),{title: "Note to Self", remote: true}) if current_user %>     
-          &nbsp;<%=link_to(image_tag("gray/chat.png"), messages_path,{title: "Messaging", remote: true}) if current_user %>
-          &nbsp;<%=link_to(image_tag("gray/womanman.png"), schools_path,{title: "Teams", remote: true}) if current_user %>
-          &nbsp;<%=link_to(image_tag("gray/addressbook.png"), schools_path,{title: "Assignments", remote: true}) if session[:school_id] %>
+          <div class="tab"><%=link_to(image_tag("iconic/layers_16x14.png"), profile_path(current_user.id),{title: "Schools"}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/paperclip_14x16.png"), profile_load_reminder_path(current_user.id),{title: "Note to Self", remote: true}) if current_user %></div>     
+          <div class="tab"><%=link_to(image_tag("iconic/comment_stroke_16x14.png"), messages_path,{title: "Messaging", remote: true}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/sun_stroke_16x16.png"), schools_path,{title: "Teams", remote: true}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/book_14x16.png"), schools_path,{title: "Assignments", remote: true}) if session[:school_id] %></div>
         </div> 
         <div id="reminder">
           <%= render :partial=>"profiles/reminder"%>

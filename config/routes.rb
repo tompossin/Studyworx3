@@ -2,12 +2,12 @@ Studyworx3::Application.routes.draw do
   
   resources :messages do
     member do
-      get 'reply', 'cancel'
-      put 'archive'
+      get 'reply', 'cancel_message', 'cancel_reply'
+      put 'read'
       post 'save_reply'       
     end
     collection do
-      
+      get 'get_read'
     end
   end
   resources :reviews

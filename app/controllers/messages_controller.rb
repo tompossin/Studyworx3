@@ -1,23 +1,21 @@
 class MessagesController < ApplicationController
   
   
-  # Not used yet
-  # Will use this for loading user recieved conversations via AJAX
+  # Loading user unread personal conversations via AJAX
   def index
-    @messages = Message.where("(recipient_id = ? or sender_id = ?) and parent_id IS NULL",current_user.id,current_user.id).all
+    @messages = Message.get_personal_messages(current_user.id)
 
     respond_to do |format|
       format.js
     end
   end
-
-  # Not used yet
-  def show
-    @message = Message.find(params[:id])
-
+  
+  # Show read personal messages
+  def get_read
+    @messages = Message.get_read_personal_messages(current_user.id)
+    
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @message }
+      format.js { render :index }
     end
   end
 
@@ -30,9 +28,13 @@ class MessagesController < ApplicationController
     end
   end
 
-  # Not used yet
-  def edit
-    @message = Message.find(params[:id])
+  # Marks the parent message as read
+  def read
+    m = Message.mark_as_read(params[:id],current_user.id)
+    @id = m.id.to_s
+    respond_to do |format|
+      format.js {render "destroy"}
+    end
   end
   
   # creates a blank reply(no save) and loads the editor
@@ -49,20 +51,24 @@ class MessagesController < ApplicationController
     end
   end
   
-  # Takes user reply and creates a child message and pushes it to the view
+  # Takes user reply and creates a child message and pushes it to the view. 
+  # This message is designed to function with only parents and children no grandchildren.
   def save_reply
-    msg = Message.find(params[:id])
-    @reply = msg.children.create(:sender_id=>params[:sender_id].to_i)
-    @reply.recipient_id = params[:recipient_id].to_i
-    @reply.body = params[:body]
-    @reply.has_read = false
-    @reply.archived = false
-    @reply.sender_trashed = false
-    @reply.recipient_trashed = false
-    @reply.save
+    parent = Message.mark_parent_as_unread(params[:id])
     @id = params[:id] # parent message id
+    @reply = parent.children.create(:sender_id=>params[:sender_id].to_i)
+    @reply.recipient_id = params[:recipient_id].to_i
+    @reply.team_id = nil
+    @reply.body = params[:body]
+    @reply.recipient_read = false
+    @reply.sender_read = false
+   
     respond_to do |format|
-      format.js
+      if @reply.save
+        format.js
+      else
+        format.js {render "shared/save_failed"}
+      end
     end
   end
 
@@ -72,19 +78,17 @@ class MessagesController < ApplicationController
     @message.recipient_id = params[:recipient_id].to_i
     @message.sender_id = current_user.id
     @message.school_id = session[:school_id] if session[:school_id]
+    @message.team_id = nil
     @message.subject = params[:subject]
     @message.body = params[:body]
-    @message.has_read = false
-    @message.archived = false
-    @message.sender_trashed = false
-    @message.recipient_trashed = false
-    @message.save
-
+    @message.recipient_read = false
+    @message.sender_read = false
+    
     respond_to do |format|
-      if @message
-        format.js
+      if @message.save
+        format.js 
       else
-        format.js
+        format.js {render "shared/save_failed"}
       end
     end
   end
@@ -104,10 +108,18 @@ class MessagesController < ApplicationController
     end
   end
   
-  # This removes the editor
-  def cancel
+  # This removes the message editor
+  def cancel_message
     respond_to do |format|
-      format.js {render "create"}
+      format.js 
+    end
+  end
+  
+  # This removes the reply editor
+  def cancel_reply
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -115,11 +127,11 @@ class MessagesController < ApplicationController
   # DELETE /messages/1.json
   def destroy
     @message = Message.find(params[:id])
+    @id = @message.id.to_s
     @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to messages_url }
-      format.json { head :no_content }
+      format.js
     end
   end
 end

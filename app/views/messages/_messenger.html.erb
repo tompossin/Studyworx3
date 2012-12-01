@@ -1,19 +1,10 @@
 <% if @messages %> 
-  <p class="title small">Message Center</p>
+  <p class="title">Message Center</p>
   <div id="message_editor">
-    <%= render "messages/create" %>
+    <%= render "create" %>
   </div>
 
   <% for m in @messages %>
-    <div id="message_<%= m.id %>" class="msg_container" >
-      <div class='avatar' style="background-image:url(<%= get_avatar_url(m.sender_id) %>);" onclick="OpenProfile(<%=current_user.id%>)"></div>
-      <p class="title small"><%= m.subject%></p>
-      <p><%=sanitize(format_plaintext(m.body))%></p>
-      <div id="reply_link_<%= m.id %>" class="reply_link">
-        <%=link_to "reply",reply_message_path(m.id),{:remote=>true, :class=>"smaller"} %>
-      </div>
-      <div id="reply_editor_<%= m.id %>"></div> 
-      <%= render(m.children) %> 
-    </div>
+    <%=render "new_message", {message: m } %>
   <% end %>
 <% end %>

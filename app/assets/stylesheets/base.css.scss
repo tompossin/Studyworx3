@@ -31,6 +31,32 @@ h3 {
   text-align: left;
 }
 
+#alert {
+  position: absolute;
+  font-size: 10pt;
+  text-align:center;
+  top: 0px;
+  left: 220px;
+  width: 250px;
+  background-color:red;
+  border-radius: 5px;
+}
+
+#content {
+  position: relative;
+  float:left;
+  top: 20px;
+  width: 98%;
+  margin: 5px;
+  padding: 5px;
+}
+
+#content-large {
+  position:relative;left:0px;width:62%;
+  float:left;
+  padding:10px;
+}
+
 #current_school {
   
 }
@@ -55,8 +81,8 @@ h3 {
 	border-left:2px solid #999999;
   border-bottom:3px solid #bbbbbb;
   border-right: 4px solid #ededed;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 	cursor: pointer;
 }
 #logo a {
@@ -74,28 +100,6 @@ h3 {
 	cursor: pointer;
 }
 
-#alert {
-  position: absolute;
-  font-size: 10pt;
-  text-align:center;
-  top: 0px;
-  left: 220px;
-  width: 250px;
-  background-color:red;
-  border-radius: 5px;
-}
-
-#notice {
-  position: absolute;
-  font-size: 10pt;
-  text-align:center;
-  top: 0px;
-  left: 220px;
-  width: 250px;
-  background-color:green;
-  border-radius: 5px;
-}
-
 #nav_right {
   float:right;width:30%;
   border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
@@ -109,18 +113,28 @@ h3 {
   float:right;
   width:100%;
 }
+
 #nav_heading_content {
   float:left;
   width:65%
 }
+
 #nav_body_content {
   float:left;
   width:100%;
 }
-#scratchpad_heading {
-  float:left;
-  width:65%;
+
+#notice {
+  position: absolute;
+  font-size: 10pt;
+  text-align:center;
+  top: 0px;
+  left: 220px;
+  width: 250px;
+  background-color:green;
+  border-radius: 5px;
 }
+
 #profile {
   position:absolute;
   right: 12px;
@@ -134,16 +148,19 @@ h3 {
   border-bottom:3px solid #bbbbbb;
   border-right: 2px solid #999999;
   background-color: white;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
+
 #profile a {
   color: #999999;
   text-decoration: none;
 }
+
 #profile a:hover {
   color:black;
 }
+
 #profile:hover {
   cursor:pointer;
 }
@@ -154,21 +171,10 @@ h3 {
   font-size: 10pt;
 }
 
-#content {
-  position: relative;
+#scratchpad_heading {
   float:left;
-  top: 20px;
-  width: 98%;
-  margin: 5px;
-  padding: 5px;
+  width:65%;
 }
-
-#content-large {
-  position:relative;left:0px;width:62%;
-  float:left;
-  padding:10px;
-}
-
 
 .even {
   background-color: #aaaaaa;
@@ -185,6 +191,22 @@ h3 {
   columns: auto 2;
   -moz-columns: auto 2;
   -webkit-columns: auto 2;
+}
+.avatar {
+  position: relative;
+  float:left;
+  background-color: black;
+  background-clip: border-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  width:50px;
+  height:50px;
+  border: 2px solid #bbbbbb;
+  border-radius: 8px;
+  padding:2px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  cursor:pointer;
 }
 .box_trans {
   background-color: rgba(0,0,0,.8);
@@ -207,21 +229,24 @@ h3 {
   width: 100%;
 }
 
-.avatar {
-  position: relative;
+.hr_short{
+  width: 20%;
+}
+
+.msg_container {
   float:left;
-  background-color: black;
-  background-clip: border-box;
-  background-position: center;
-  background-repeat: no-repeat;
-  width:50px;
-  height:50px;
-  border: 2px solid #bbbbbb;
-  border-radius: 8px;
-  padding:2px;
-  margin-right: 10px;
-  margin-bottom: 6px;
-  cursor:pointer;
+  width: 100%;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 20px;
+  padding-bottom: 14px;
+  margin-bottom: 10px;
+}
+
+.msg_container a {
+  font-size: 9pt;
 }
 
 .reminder {
@@ -236,16 +261,6 @@ h3 {
   border-bottom-left-radius: 20px;
   margin-bottom: 10px;
   padding:3%;
-}
-
-.msg_container {
-  float:left;
-  width: 100%;
-  border-left: 1px solid gray;
-  border-bottom: 1px solid gray;
-  border-bottom-left-radius: 20px;
-  padding-bottom: 14px;
-  margin-bottom: 10px;
 }
 
 .reply_link {
@@ -267,13 +282,27 @@ h3 {
   border-bottom-left-radius: 20px;
   margin-bottom: -10px;
 }
+
+
+.tab {
+  float:left;
+  padding-left: 2px;
+  padding-right: 10px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
 .textarea_reduced {
   width: 97%;
   font-size: 10pt;
 }
-.hr_short{
-  width: 20%;
+
+.thumbnail_container {
+  float:left;
+  margin: 10px;
+  width:105px;
+  height:140px;
 }
+
 .title {
   font-size: 16pt;
   font-style: italic;
@@ -286,13 +315,6 @@ h3 {
 
 .smaller {
   font-size: 90%;
-}
-
-.thumbnail_container {
-  float:left;
-  margin: 10px;
-  width:105px;
-  height:140px;
 }
 
 .white {

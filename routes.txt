@@ -1,7 +1,9 @@
              reply_message GET    /messages/:id/reply(.:format)                      messages#reply
-            cancel_message GET    /messages/:id/cancel(.:format)                     messages#cancel
-           archive_message PUT    /messages/:id/archive(.:format)                    messages#archive
+    cancel_message_message GET    /messages/:id/cancel_message(.:format)             messages#cancel_message
+      cancel_reply_message GET    /messages/:id/cancel_reply(.:format)               messages#cancel_reply
+              read_message PUT    /messages/:id/read(.:format)                       messages#read
         save_reply_message POST   /messages/:id/save_reply(.:format)                 messages#save_reply
+         get_read_messages GET    /messages/get_read(.:format)                       messages#get_read
                   messages GET    /messages(.:format)                                messages#index
                            POST   /messages(.:format)                                messages#create
                new_message GET    /messages/new(.:format)                            messages#new

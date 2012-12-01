@@ -1,1 +1,2 @@
-$('#message_editor').html("<%=j render :partial=>"create" %>");
+$('#message_editor').html("<%=j render :partial=>"messages/create" %>");
+$('#message_editor').after("<%=j render "messages/new_message",{message: @message} %>");

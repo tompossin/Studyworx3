@@ -1,4 +1,4 @@
 <div class="reply_container">
-   <p class="title smaller"><%= get_full_name(message.recipient_id) if message.recipient_id %> has replied</p>
-   <p><%= message.body%></p>       
+   <p class="title smaller"><%= get_full_name(message.sender_id) if message.sender_id %> has replied</p>
+   <p><%=sanitize(format_plaintext(message.body))%></p>       
 </div>

@@ -54,15 +54,15 @@ ActiveRecord::Schema.define(:version => 20121128024530) do
     t.integer  "school_id"
     t.boolean  "sender_read"
     t.boolean  "recipient_read"
-    t.boolean  "sender_trashed"
-    t.boolean  "recipient_trashed"
     t.string   "subject"
     t.text     "body"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "team_id"
   end
 
   add_index "messages", ["recipient_id", "recipient_read"], :name => "index_messages_on_recipient_id_and_recipient_read"
+  add_index "messages", ["recipient_id", "team_id"], :name => "index_messages_on_recipient_id_and_team_id"
   add_index "messages", ["sender_id", "sender_read"], :name => "index_messages_on_sender_id_and_sender_read"
 
   create_table "notes", :force => true do |t|
