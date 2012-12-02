@@ -3,19 +3,39 @@ class MessagesController < ApplicationController
   
   # Loading user unread personal conversations via AJAX
   def index
-    @messages = Message.get_personal_messages(current_user.id)
-
+    @messages = Message.get_unread_messages(current_user.id)
+    @message_partial = "message"
     respond_to do |format|
       format.js
     end
   end
   
-  # Show read personal messages
+  # Show read personal messages by page
   def get_read
-    @messages = Message.get_read_personal_messages(current_user.id)
+    pagesize = 5 # set number of messages to display at once. Could be user defined someday.
+    @page = params[:page].to_i||0  
+    @messages = Message.get_read_messages(current_user.id,pagesize,@page)
+    count = Message.count_all_messages(current_user.id)
+    @page += 1
+    @current_count = count - pagesize*@page
+    unless count <= pagesize*@page
+      @linklabel = "more messages..."
+    else
+      @page = 0
+      @linklabel = "End of messages"
+    end
+    @message_partial = "message_list"
     
     respond_to do |format|
       format.js { render :index }
+    end
+  end
+  
+  # Shows and individual message and it's children via AJAX.
+  def show
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -54,8 +74,8 @@ class MessagesController < ApplicationController
   # Takes user reply and creates a child message and pushes it to the view. 
   # This message is designed to function with only parents and children no grandchildren.
   def save_reply
-    parent = Message.mark_parent_as_unread(params[:id])
     @id = params[:id] # parent message id
+    parent = Message.mark_parent_as_unread(@id)
     @reply = parent.children.create(:sender_id=>params[:sender_id].to_i)
     @reply.recipient_id = params[:recipient_id].to_i
     @reply.team_id = nil

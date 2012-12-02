@@ -1,9 +1,5 @@
   <div id='profile' onclick="ShowHide('profilemenu')">
-    <% if current_user %>
       <%= full_name %>
-    <% else %>
-      <%= link_to "Sign_in", new_user_session_path %> or <%=link_to "Sign_up", new_user_registration_path%>
-    <% end %>
     <p id="profilemenu" style= "display:none">
       <br />
       <% if current_user %>

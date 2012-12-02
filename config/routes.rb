@@ -24,10 +24,15 @@ Studyworx3::Application.routes.draw do
   resources :blogs
   resources :user_admins
   resources :profiles do
-    get 'reviewboard', 'load_reminder','teams','new_team','add_members'
-    post 'update_reviewboard', 'setavatar', 'setwallpaper', 'settheme', 'setstock', 'save_reminder'
-    post 'save_team','save_members'
-    put 'saveprofile'
+    member do
+      get 'reviewboard', 'load_reminder', 'new_team', 'add_members'
+      post 'update_reviewboard', 'setavatar', 'setwallpaper', 'settheme', 'setstock', 'save_reminder'
+      post 'save_team','save_members'
+      put 'saveprofile'
+    end
+    collection do
+      get 'teams'
+    end
   end
   devise_for :users
   resources :home

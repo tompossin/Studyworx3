@@ -9,6 +9,7 @@ module ApplicationHelper
     end
   end
   
+  # Gets the full name of the supplied user_id
   def get_full_name(user_id)
     u = User.find(user_id)
     return u.firstname + " " + u.lastname

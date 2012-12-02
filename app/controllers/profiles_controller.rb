@@ -12,11 +12,18 @@ class ProfilesController < ApplicationController
 
   
   # This is the main "profile page" or "Users Home page"
+  # FIXME this loads the curent_users profile no matter what
+  # I need to create a public profile page "show_public" that has
+  # a user's shared info on it. Kind of a fun page for the user.
   def show
     @participants = Participant.includes(:school).where(user_id: current_user.id).all
     @images = Mercury::Image.find_all_by_user_id(current_user.id)
     @stockimages = Mercury::Image.find_all_by_user_id(0)
     @nav_body_content = "schools/schools"
+  end
+  
+  def show_public
+    
   end
   
   # This edits the users personal data

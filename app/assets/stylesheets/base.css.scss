@@ -32,7 +32,7 @@ h3 {
 }
 
 #alert {
-  position: absolute;
+  position: fixed;
   font-size: 10pt;
   text-align:center;
   top: 0px;
@@ -62,6 +62,7 @@ h3 {
 }
 
 #header {
+  width: 100%;
 	background-color:#FFFFDD;
 	margin-bottom: 0px;
 }
@@ -125,7 +126,7 @@ h3 {
 }
 
 #notice {
-  position: absolute;
+  position: fixed;
   font-size: 10pt;
   text-align:center;
   top: 0px;
@@ -229,8 +230,18 @@ h3 {
   width: 100%;
 }
 
-.hr_short{
+.hr_short {
   width: 20%;
+}
+
+.more {
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding:4px;
+  text-align: center;
+  width:100%;
+  float:left;
 }
 
 .msg_container {
@@ -247,6 +258,16 @@ h3 {
 
 .msg_container a {
   font-size: 9pt;
+}
+
+.message_view_link {
+  float:left;
+  padding:8px;
+}
+
+.message_single {
+  float:left;
+  margin-left:20px;
 }
 
 .reminder {

@@ -8,18 +8,32 @@ class Message < ActiveRecord::Base
   attr_accessible :parent_id, :recipient_id, :sender_id, :school_id, :team_id, 
   :subject, :body
   ##############################
-  def self.get_personal_messages(user_id)
+  def self.get_unread_messages(user_id)
     return Message.where("((recipient_id = ? and recipient_read = ?) 
                                   or (sender_id = ? and sender_read = ?)) 
                                   and parent_id IS NULL",
                                   user_id,false,user_id,false).all
   end
-  
-  def self.get_read_personal_messages(user_id)
-    m = Message.where("(sender_id = ? or recipient_id = ?) 
+  # WARNING This is safe ONLY as long as you NEVER use any user supplied data for user_id.
+  def self.count_all_messages(user_id)
+    return Message.count(
+            :conditions=> "((sender_id = #{user_id} and sender_read = true) or (recipient_id = #{user_id} and recipient_read = true)) and parent_id IS NULL",
+            :distinct=>true)
+  end
+  # WARNING This is safe ONLY as long as you NEVER use any user supplied data for user_id.
+  def self.count_all_unread_messages(user_id)
+    return Message.count(
+            :conditions => "((recipient_id = user_id and recipient_read = false) 
+                            or (sender_id = user_id and sender_read = false)) 
+                            and parent_id IS NULL",
+            :distinct => true)
+  end
+    
+  def self.get_read_messages(user_id,pagesize=0,page=0)
+    return Message.where("((sender_id = ? and sender_read = true) 
+                          or (recipient_id = ? and recipient_read = true)) 
                           and parent_id IS NULL",
-                          user_id,user_id).all
-    return m
+                          user_id,user_id).offset(page*pagesize).limit(pagesize)
   end
   
   def self.mark_as_read(msg_id,user_id)
