@@ -70,9 +70,17 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-recipient">#recipient</a>
+    <li><a href="#method-c-count_all_read_messages">::count_all_read_messages</a>
     
-    <li><a href="#method-i-sender">#sender</a>
+    <li><a href="#method-c-count_all_unread_messages">::count_all_unread_messages</a>
+    
+    <li><a href="#method-c-get_read_messages">::get_read_messages</a>
+    
+    <li><a href="#method-c-get_unread_messages">::get_unread_messages</a>
+    
+    <li><a href="#method-c-mark_as_read">::mark_as_read</a>
+    
+    <li><a href="#method-c-mark_parent_as_unread">::mark_parent_as_unread</a>
     
   </ul>
 </nav>
@@ -95,14 +103,6 @@
 
   <ul class="link-list">
   
-    <li><a href="./Mercury.html">Mercury</a>
-  
-    <li><a href="./Mercury/Authentication.html">Mercury::Authentication</a>
-  
-    <li><a href="./Mercury/Image.html">Mercury::Image</a>
-  
-    <li><a href="./Mercury/ImagesController.html">Mercury::ImagesController</a>
-  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -114,8 +114,6 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./HomeController.html">HomeController</a>
-  
-    <li><a href="./Member.html">Member</a>
   
     <li><a href="./Message.html">Message</a>
   
@@ -155,6 +153,16 @@
   
     <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
   
+    <li><a href="./Settings.html">Settings</a>
+  
+    <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./TeamsController.html">TeamsController</a>
+  
+    <li><a href="./TeamsHelper.html">TeamsHelper</a>
+  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -190,15 +198,83 @@
 
     <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
 
     
-      <div id="method-i-recipient" class="method-detail ">
+      <div id="method-c-count_all_read_messages" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">recipient</span><span
-            class="method-args">()</span>
+          <span class="method-name">count_all_read_messages</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>WARNING This is safe ONLY as long as you NEVER use any user supplied data
+for user_id.</p>
+          
+
+          
+          <div class="method-source-code" id="count_all_read_messages-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count_all_read_messages</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">count</span>(
+          <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;((sender_id = #{user_id} and sender_read = true) or (recipient_id = #{user_id} and recipient_read = true)) and parent_id IS NULL&quot;</span>,
+          <span class="ruby-value">:distinct=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- count_all_read_messages-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- count_all_read_messages-method -->
+
+    
+      <div id="method-c-count_all_unread_messages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">count_all_unread_messages</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>WARNING This is safe ONLY as long as you NEVER use any user supplied data
+for user_id.</p>
+          
+
+          
+          <div class="method-source-code" id="count_all_unread_messages-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count_all_unread_messages</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">count</span>(
+          <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;((recipient_id = user_id and recipient_read = false) 
+                          or (sender_id = user_id and sender_read = false)) 
+                          and parent_id IS NULL&quot;</span>,
+          <span class="ruby-value">:distinct</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- count_all_unread_messages-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- count_all_unread_messages-method -->
+
+    
+      <div id="method-c-get_read_messages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_read_messages</span><span
+            class="method-args">(user_id,pagesize=0,page=0)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -209,54 +285,129 @@
           
 
           
-          <div class="method-source-code" id="recipient-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">recipient</span>
-  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">recipient_id</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">user</span>
+          <div class="method-source-code" id="get_read_messages-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_read_messages</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">pagesize</span>=<span class="ruby-value">0</span>,<span class="ruby-identifier">page</span>=<span class="ruby-value">0</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;((sender_id = ? and sender_read = true) 
+                        or (recipient_id = ? and recipient_read = true)) 
+                        and parent_id IS NULL&quot;</span>,
+                        <span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">page</span>*<span class="ruby-identifier">pagesize</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">pagesize</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- recipient-source -->
+          </div><!-- get_read_messages-source -->
           
         </div>
 
         
 
         
-      </div><!-- recipient-method -->
+      </div><!-- get_read_messages-method -->
 
     
-      <div id="method-i-sender" class="method-detail ">
+      <div id="method-c-get_unread_messages" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">sender</span><span
-            class="method-args">()</span>
+          <span class="method-name">get_unread_messages</span><span
+            class="method-args">(user_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          <p>Methods to suck up user info for sender and recipient</p>
+          
           
 
           
-          <div class="method-source-code" id="sender-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">sender</span>
-  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">sender_id</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">user</span>
+          <div class="method-source-code" id="get_unread_messages-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_unread_messages</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;((recipient_id = ? and recipient_read = ?) 
+                                or (sender_id = ? and sender_read = ?)) 
+                                and parent_id IS NULL&quot;</span>,
+                                <span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">false</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">false</span>).<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- sender-source -->
+          </div><!-- get_unread_messages-source -->
           
         </div>
 
         
 
         
-      </div><!-- sender-method -->
+      </div><!-- get_unread_messages-method -->
 
     
-    </section><!-- public-instance-method-details -->
+      <div id="method-c-mark_as_read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mark_as_read</span><span
+            class="method-args">(msg_id,user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mark_as_read-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mark_as_read</span>(<span class="ruby-identifier">msg_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">m</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">msg_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
+    <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
+    <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">m</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- mark_as_read-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- mark_as_read-method -->
+
+    
+      <div id="method-c-mark_parent_as_unread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mark_parent_as_unread</span><span
+            class="method-args">(id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mark_parent_as_unread-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">parent</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- mark_parent_as_unread-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- mark_parent_as_unread-method -->
+
+    
+    </section><!-- public-class-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

@@ -15,7 +15,7 @@ class Message < ActiveRecord::Base
                                   user_id,false,user_id,false).all
   end
   # WARNING This is safe ONLY as long as you NEVER use any user supplied data for user_id.
-  def self.count_all_messages(user_id)
+  def self.count_all_read_messages(user_id)
     return Message.count(
             :conditions=> "((sender_id = #{user_id} and sender_read = true) or (recipient_id = #{user_id} and recipient_read = true)) and parent_id IS NULL",
             :distinct=>true)

@@ -14,22 +14,25 @@ module ApplicationHelper
     u = User.find(user_id)
     return u.firstname + " " + u.lastname
   end
+  
+  def get_avatar_url(user_id)
+    user = User.find(user_id)
+    avatar = user.avatar.url(:thumb)
+    unless user.avatar_file_size?
+      avatar = false
+    end
+    return avatar || Settings.avatar_image  
+  end
+  
   # Sets the nav_bar(nav_body_content = optional url of partial for nav_body_content element)
   def nav_bar(nav_body_content = false)
-    default = "layouts/nav_blank"
-    nbc = nav_body_content || default
-    render :partial=>"layouts/nav_bar", :locals=>{content: full_name,nav_body_content: nbc}
+    nbc = nav_body_content || Settings.default_nav_body
+    render :partial=>"layouts/nav_bar", :locals=>{content: full_name, nav_body_content: nbc}
   end
-  
-  # this fetches and creates the image url's for a list of avatar's
-  # TODO look for a more efficient way to do this.
-  def get_avatar_url(user_id)
-    u = User.find(user_id)
-    i = Mercury::Image.find(u.avatar)
-    return "/system/images/#{i.id}/thumb/#{i.image_file_name}"
-  end
-  
+  # TODO look at rewriting this with a split method on \n so that I can add headings.
+  # At this point it is pretty foolproof but super basic
   def format_plaintext(content)
+    content = sanitize(content)
     content.gsub!(/\n/,'<br />')
     content.gsub!(/\s\s/,'&nbsp;&nbsp;&nbsp;&nbsp;')
     content.gsub!(/\*\*/,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&diams;&nbsp;')
@@ -75,7 +78,7 @@ module ApplicationHelper
   def set_wallpaper
     if current_user
       if current_user.wallpaper  
-        return "background-image:url('/system/images/#{session[:wallpaper]}/original/#{session[:wallpaper_image]}');"
+        return "background-image:url('#{current_user.wallpaper.url}');"
       else
         return "background-color:#dddddd;"
       end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128024530) do
+ActiveRecord::Schema.define(:version => 20121205023559) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -25,18 +25,6 @@ ActiveRecord::Schema.define(:version => 20121128024530) do
     t.boolean  "leadstory"
     t.boolean  "navbar"
   end
-
-  create_table "mercury_images", :force => true do |t|
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "user_id"
-  end
-
-  add_index "mercury_images", ["user_id"], :name => "index_mercury_images_on_user_id"
 
   create_table "message_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -199,9 +187,19 @@ ActiveRecord::Schema.define(:version => 20121128024530) do
     t.text     "address"
     t.text     "bio"
     t.boolean  "reviewboard"
-    t.integer  "avatar"
-    t.integer  "wallpaper"
     t.integer  "theme"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "wallpaper_file_name"
+    t.string   "wallpaper_content_type"
+    t.integer  "wallpaper_file_size"
+    t.datetime "wallpaper_updated_at"
+    t.string   "iotd_file_name"
+    t.string   "iotd_content_type"
+    t.integer  "iotd_file_size"
+    t.datetime "iotd_updated_at"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

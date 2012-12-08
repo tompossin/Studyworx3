@@ -1,0 +1,26 @@
+<div class="float_left title">
+  My Teams
+</div>
+<div class="float_left">
+  <%=link_to(image_tag("iconic/sun_stroke_32x32.png",size: "22x22"),teams_path,{remote: true, title: "My Teams"}) %>
+  <%=link_to(image_tag("iconic/share_32x32.png",size: "22x22"),teams_path,{remote: true, title: "Team Builder"}) %>
+</div>
+<div id="team_content" class="float_left">
+  <div class="title small">
+    Teams I own 
+  </div>
+  <div id="my_teams" class="team">        
+    <% for tio in @teams_i_own %>
+      <p><%=link_to(tio.name, edit_team_path(tio.id),{remote: true}) %></p>
+    <% end %>
+  </div>
+  <div class="title small">
+    Teams I belong to
+  </div>
+  <div id="my_memberships" class="team">
+    <% for mt in @my_teams %>
+      <p><%=link_to mt.name %></p>
+    <% end %>
+  </div>
+</div>
+

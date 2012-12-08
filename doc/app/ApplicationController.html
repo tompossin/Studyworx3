@@ -80,6 +80,8 @@
     
     <li><a href="#method-i-is_superadmin">#is_superadmin</a>
     
+    <li><a href="#method-i-set_school">#set_school</a>
+    
   </ul>
 </nav>
 
@@ -101,14 +103,6 @@
 
   <ul class="link-list">
   
-    <li><a href="./Mercury.html">Mercury</a>
-  
-    <li><a href="./Mercury/Authentication.html">Mercury::Authentication</a>
-  
-    <li><a href="./Mercury/Image.html">Mercury::Image</a>
-  
-    <li><a href="./Mercury/ImagesController.html">Mercury::ImagesController</a>
-  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -120,8 +114,6 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./HomeController.html">HomeController</a>
-  
-    <li><a href="./Member.html">Member</a>
   
     <li><a href="./Message.html">Message</a>
   
@@ -160,6 +152,16 @@
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
     <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
+  
+    <li><a href="./Settings.html">Settings</a>
+  
+    <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./TeamsController.html">TeamsController</a>
+  
+    <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
     <li><a href="./User.html">User</a>
   
@@ -212,13 +214,12 @@
         <div class="method-description">
           
           <p>Check if logged in, check for <a href="http://:values">session</a>, or set
-<a href="http://:values">session</a> TODO I need a default setting for some
-of these variables</p>
+<a href="http://:values">session</a></p>
           
 
           
           <div class="method-source-code" id="assign_session_variables-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">assign_session_variables</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin_level</span>]
@@ -229,19 +230,8 @@ of these variables</p>
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin_level</span>] = <span class="ruby-value">0</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:avatar_image</span>]
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">avatar</span>
-        <span class="ruby-identifier">avatar</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">avatar</span>)
-        <span class="ruby-identifier">session</span>[<span class="ruby-value">:avatar</span>] = <span class="ruby-identifier">avatar</span>.<span class="ruby-identifier">id</span> 
-        <span class="ruby-identifier">session</span>[<span class="ruby-value">:avatar_image</span>] = <span class="ruby-identifier">avatar</span>.<span class="ruby-identifier">image_file_name</span>
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper_image</span>]
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>
-        <span class="ruby-identifier">wallpaper</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>)
-        <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper</span>] = <span class="ruby-identifier">wallpaper</span>.<span class="ruby-identifier">id</span> 
-        <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper_image</span>] = <span class="ruby-identifier">wallpaper</span>.<span class="ruby-identifier">image_file_name</span>
-      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_name</span>]
+      <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_name</span>] = <span class="ruby-string">&quot;Select School Below&quot;</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -271,11 +261,11 @@ of these variables</p>
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be an adminstrator to access this page (click to hide)&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be an adminstrator to access this page&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- is_admin-source -->
@@ -304,11 +294,11 @@ of these variables</p>
 
           
           <div class="method-source-code" id="is_contributor-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a contributor to access this page (click to hide)&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a contributor to access this page&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- is_contributor-source -->
@@ -337,7 +327,7 @@ of these variables</p>
 
           
           <div class="method-source-code" id="is_owner-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_owner</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You are not the owner of this record!&quot;</span>
@@ -369,11 +359,11 @@ of these variables</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a Super Administrator to access this page (click to hide)&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a Super Administrator to access this page&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- is_superadmin-source -->
@@ -384,6 +374,38 @@ of these variables</p>
 
         
       </div><!-- is_superadmin-method -->
+
+    
+      <div id="method-i-set_school" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_school</span><span
+            class="method-args">(school_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_school-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">school_id</span>)
+  <span class="ruby-identifier">school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">school_id</span>)
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_name</span>] = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_id</span>] = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_school-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_school-method -->
 
     
     </section><!-- protected-instance-method-details -->

@@ -14,8 +14,8 @@
 			}
 	}
 	
-	function OpenProfile(user_id)
-	{
-	  window.open("/profiles/"+user_id,"_self")
-	}
+	function OpenFullProfile(user_id)
+  {
+    window.open("/profiles/"+user_id+"/edit","_self")
+  }
 	

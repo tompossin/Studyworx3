@@ -1,0 +1,30 @@
+# config/settings.yml
+# This sets up global defaults and config settings.
+# Gem Source: https://github.com/binarylogic/settingslogic
+# example:
+# defaults: &defaults
+#   cool:
+#     saweet: nested settings
+#   neat_setting: 24
+#   awesome_setting: <%= "Did you know 5 + 5 = #{5 + 5}?" %>
+#
+# This settings are called by System.setting_name
+#
+#################################
+# Default settings ##############
+defaults: &defaults
+  avatar_id: "88" # must be a string
+  avatar_image: "/assets/iconic/user_24x32.png"
+  pagesize: 5
+  default_nav_body: "layouts/nav_blank"
+#################################
+# Environmnet specific settings # 
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  

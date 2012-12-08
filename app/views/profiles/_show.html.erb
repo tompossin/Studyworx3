@@ -1,0 +1,22 @@
+
+<div style="float:left;">
+  <div class="floatbox_trans">
+    <div class='avatar' style="background-image:url('<%= @user.avatar.url(:thumb) %>');">
+    </div>
+    <p class="title">Home of <%= @user.firstname+" "+@user.lastname %> </p>
+  </div>
+  <div class="floatbox_trans">
+    <p class="title">A bit about <%= @user.firstname %></p>
+    <hr />
+    <div id="bio">
+      <%=raw format_plaintext(@user.bio) if @user.bio %>
+    </div>
+    <hr />
+  </div>
+  <div class="floatbox_trans">
+    <p class="title">Picture of the Day!</p>
+    <%= link_to(image_tag(@user.iotd.url(:medium)),@user.iotd.url, target: "_blank" ) %>
+  </div>
+</div>
+
+

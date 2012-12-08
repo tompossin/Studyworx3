@@ -1,0 +1,9 @@
+app/controllers/profiles_controller.rb:
+  * [ 21] [TODO] get paperclip working on the User model
+
+app/helpers/application_helper.rb:
+  * [ 76] [TODO] this may need to moved or eliminated it is an ugly hack.
+
+app/models/user.rb:
+  * [ 20] [FIXME] I need a Jquery checker on the image uploading page that will prevent
+

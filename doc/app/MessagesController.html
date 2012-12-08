@@ -70,17 +70,21 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-cancel">#cancel</a>
+    <li><a href="#method-i-cancel_message">#cancel_message</a>
+    
+    <li><a href="#method-i-cancel_reply">#cancel_reply</a>
     
     <li><a href="#method-i-create">#create</a>
     
     <li><a href="#method-i-destroy">#destroy</a>
     
-    <li><a href="#method-i-edit">#edit</a>
+    <li><a href="#method-i-get_read">#get_read</a>
     
     <li><a href="#method-i-index">#index</a>
     
     <li><a href="#method-i-new">#new</a>
+    
+    <li><a href="#method-i-read">#read</a>
     
     <li><a href="#method-i-reply">#reply</a>
     
@@ -111,14 +115,6 @@
 
   <ul class="link-list">
   
-    <li><a href="./Mercury.html">Mercury</a>
-  
-    <li><a href="./Mercury/Authentication.html">Mercury::Authentication</a>
-  
-    <li><a href="./Mercury/Image.html">Mercury::Image</a>
-  
-    <li><a href="./Mercury/ImagesController.html">Mercury::ImagesController</a>
-  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -130,8 +126,6 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./HomeController.html">HomeController</a>
-  
-    <li><a href="./Member.html">Member</a>
   
     <li><a href="./Message.html">Message</a>
   
@@ -170,6 +164,16 @@
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
     <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
+  
+    <li><a href="./Settings.html">Settings</a>
+  
+    <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./TeamsController.html">TeamsController</a>
+  
+    <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
     <li><a href="./User.html">User</a>
   
@@ -210,10 +214,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-cancel" class="method-detail ">
+      <div id="method-i-cancel_message" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">cancel</span><span
+          <span class="method-name">cancel_message</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -221,25 +225,58 @@
 
         <div class="method-description">
           
-          <p>This removes the editor</p>
+          <p>This removes the message editor</p>
           
 
           
-          <div class="method-source-code" id="cancel-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 108</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel</span>
+          <div class="method-source-code" id="cancel_message-source">
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_message</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;create&quot;</span>}
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- cancel-source -->
+          </div><!-- cancel_message-source -->
           
         </div>
 
         
 
         
-      </div><!-- cancel-method -->
+      </div><!-- cancel_message-method -->
+
+    
+      <div id="method-i-cancel_reply" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cancel_reply</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This removes the reply editor</p>
+          
+
+          
+          <div class="method-source-code" id="cancel_reply-source">
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_reply</span>
+  <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- cancel_reply-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cancel_reply-method -->
 
     
       <div id="method-i-create" class="method-detail ">
@@ -253,30 +290,28 @@
 
         <div class="method-description">
           
-          <p>This creates a new parent message</p>
+          <p>This creates a new parent(root) message</p>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:recipient_id</span>].<span class="ruby-identifier">to_i</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sender_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">school_id</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_id</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_id</span>]
+  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">team_id</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">subject</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:subject</span>]
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:body</span>]
-  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">has_read</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">archived</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sender_trashed</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_trashed</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">save</span>
-
+  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
+  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@message</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -301,19 +336,20 @@
 
         <div class="method-description">
           
-          <p>DELETE /messages/1 DELETE /messages/1.json</p>
+          <p>DELETE /messages/1 DELETE /messages/1.json Destroys the message and all
+children.</p>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 116</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 149</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@id</span> = <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">destroy</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">messages_url</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- destroy-source -->
@@ -326,10 +362,10 @@
       </div><!-- destroy-method -->
 
     
-      <div id="method-i-edit" class="method-detail ">
+      <div id="method-i-get_read" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">edit</span><span
+          <span class="method-name">get_read</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -337,23 +373,39 @@
 
         <div class="method-description">
           
-          <p>Not used yet</p>
+          <p>Show read personal messages by page</p>
           
 
           
-          <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+          <div class="method-source-code" id="get_read-source">
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_read</span>
+  <span class="ruby-identifier">pagesize</span> = <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">pagesize</span> <span class="ruby-comment"># set number of messages to display at once. Could be user defined someday.</span>
+  <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>  
+  <span class="ruby-ivar">@messages</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">get_read_messages</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">pagesize</span>,<span class="ruby-ivar">@page</span>)
+  <span class="ruby-identifier">count</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">count_all_read_messages</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@page</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@current_count</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">pagesize</span>*<span class="ruby-ivar">@page</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">pagesize</span>*<span class="ruby-ivar">@page</span>
+    <span class="ruby-ivar">@linklabel</span> = <span class="ruby-string">&quot;more messages...&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@page</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@linklabel</span> = <span class="ruby-string">&quot;End of messages&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@message_partial</span> = <span class="ruby-string">&quot;message_list&quot;</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:index</span> }
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- edit-source -->
+          </div><!-- get_read-source -->
           
         </div>
 
         
 
         
-      </div><!-- edit-method -->
+      </div><!-- get_read-method -->
 
     
       <div id="method-i-index" class="method-detail ">
@@ -367,18 +419,17 @@
 
         <div class="method-description">
           
-          <p>Not used yet</p>
+          <p>Loading user unread personal conversations via AJAX</p>
           
 
           
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@messages</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">all</span>
-
+  <span class="ruby-ivar">@messages</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">get_unread_messages</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@message_partial</span> = <span class="ruby-string">&quot;message&quot;</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@messages</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
@@ -402,12 +453,12 @@
 
         <div class="method-description">
           
-          <p>Sets the editor via AJAX</p>
+          <p>Sets the message editor via AJAX</p>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
 
@@ -425,6 +476,40 @@
       </div><!-- new-method -->
 
     
+      <div id="method-i-read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Marks the parent message as read</p>
+          
+
+          
+          <div class="method-source-code" id="read-source">
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">read</span>
+  <span class="ruby-identifier">m</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">mark_as_read</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>],<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">m</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;destroy&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- read-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- read-method -->
+
+    
       <div id="method-i-reply" class="method-detail ">
         
         <div class="method-heading">
@@ -436,12 +521,12 @@
 
         <div class="method-description">
           
-          <p>creates a blank reply(no save) and loads the editor</p>
+          <p>creates a blank reply(no save) and loads the reply editor</p>
           
 
           
           <div class="method-source-code" id="reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply</span>
   <span class="ruby-identifier">r</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
@@ -475,25 +560,30 @@
 
         <div class="method-description">
           
-          <p>Takes user reply and creates a child message and pushes it to the view</p>
+          <p>Takes user reply and creates a child message and pushes it to the view. 
+This message system is designed to function with only parents and children
+no grandchildren.</p>
           
 
           
           <div class="method-source-code" id="save_reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_reply</span>
-  <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@reply</span> = <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:sender_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:sender_id</span>].<span class="ruby-identifier">to_i</span>)
-  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">recipient_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:recipient_id</span>].<span class="ruby-identifier">to_i</span>
-  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:body</span>]
-  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">has_read</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">archived</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">sender_trashed</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">recipient_trashed</span> = <span class="ruby-keyword">false</span>
-  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>] <span class="ruby-comment"># parent message id</span>
+  <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-ivar">@id</span>)
+  <span class="ruby-ivar">@reply</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:sender_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:sender_id</span>].<span class="ruby-identifier">to_i</span>)
+  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">recipient_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:recipient_id</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">team_id</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:body</span>]
+  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
+ 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@reply</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- save_reply-source -->
@@ -517,18 +607,16 @@
 
         <div class="method-description">
           
-          <p>Not used yet</p>
+          <p>Shows and individual message and it’s children via AJAX.</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@message</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
@@ -557,7 +645,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

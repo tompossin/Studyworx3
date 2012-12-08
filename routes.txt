@@ -1,114 +1,101 @@
-             reply_message GET    /messages/:id/reply(.:format)                      messages#reply
-    cancel_message_message GET    /messages/:id/cancel_message(.:format)             messages#cancel_message
-      cancel_reply_message GET    /messages/:id/cancel_reply(.:format)               messages#cancel_reply
-              read_message PUT    /messages/:id/read(.:format)                       messages#read
-        save_reply_message POST   /messages/:id/save_reply(.:format)                 messages#save_reply
-         get_read_messages GET    /messages/get_read(.:format)                       messages#get_read
-                  messages GET    /messages(.:format)                                messages#index
-                           POST   /messages(.:format)                                messages#create
-               new_message GET    /messages/new(.:format)                            messages#new
-              edit_message GET    /messages/:id/edit(.:format)                       messages#edit
-                   message GET    /messages/:id(.:format)                            messages#show
-                           PUT    /messages/:id(.:format)                            messages#update
-                           DELETE /messages/:id(.:format)                            messages#destroy
-                   reviews GET    /reviews(.:format)                                 reviews#index
-                           POST   /reviews(.:format)                                 reviews#create
-                new_review GET    /reviews/new(.:format)                             reviews#new
-               edit_review GET    /reviews/:id/edit(.:format)                        reviews#edit
-                    review GET    /reviews/:id(.:format)                             reviews#show
-                           PUT    /reviews/:id(.:format)                             reviews#update
-                           DELETE /reviews/:id(.:format)                             reviews#destroy
-                    papers GET    /papers(.:format)                                  papers#index
-                           POST   /papers(.:format)                                  papers#create
-                 new_paper GET    /papers/new(.:format)                              papers#new
-                edit_paper GET    /papers/:id/edit(.:format)                         papers#edit
-                     paper GET    /papers/:id(.:format)                              papers#show
-                           PUT    /papers/:id(.:format)                              papers#update
-                           DELETE /papers/:id(.:format)                              papers#destroy
-                   schools GET    /schools(.:format)                                 schools#index
-                           POST   /schools(.:format)                                 schools#create
-                new_school GET    /schools/new(.:format)                             schools#new
-               edit_school GET    /schools/:id/edit(.:format)                        schools#edit
-                    school GET    /schools/:id(.:format)                             schools#show
-                           PUT    /schools/:id(.:format)                             schools#update
-                           DELETE /schools/:id(.:format)                             schools#destroy
-              participants GET    /participants(.:format)                            participants#index
-                           POST   /participants(.:format)                            participants#create
-           new_participant GET    /participants/new(.:format)                        participants#new
-          edit_participant GET    /participants/:id/edit(.:format)                   participants#edit
-               participant GET    /participants/:id(.:format)                        participants#show
-                           PUT    /participants/:id(.:format)                        participants#update
-                           DELETE /participants/:id(.:format)                        participants#destroy
-            mercury_images GET    /mercury/images(.:format)                          mercury/images#index
-                           POST   /mercury/images(.:format)                          mercury/images#create
-         new_mercury_image GET    /mercury/images/new(.:format)                      mercury/images#new
-        edit_mercury_image GET    /mercury/images/:id/edit(.:format)                 mercury/images#edit
-             mercury_image GET    /mercury/images/:id(.:format)                      mercury/images#show
-                           PUT    /mercury/images/:id(.:format)                      mercury/images#update
-                           DELETE /mercury/images/:id(.:format)                      mercury/images#destroy
-            mercury_engine        /                                                  Mercury::Engine
-                     blogs GET    /blogs(.:format)                                   blogs#index
-                           POST   /blogs(.:format)                                   blogs#create
-                  new_blog GET    /blogs/new(.:format)                               blogs#new
-                 edit_blog GET    /blogs/:id/edit(.:format)                          blogs#edit
-                      blog GET    /blogs/:id(.:format)                               blogs#show
-                           PUT    /blogs/:id(.:format)                               blogs#update
-                           DELETE /blogs/:id(.:format)                               blogs#destroy
-               user_admins GET    /user_admins(.:format)                             user_admins#index
-                           POST   /user_admins(.:format)                             user_admins#create
-            new_user_admin GET    /user_admins/new(.:format)                         user_admins#new
-           edit_user_admin GET    /user_admins/:id/edit(.:format)                    user_admins#edit
-                user_admin GET    /user_admins/:id(.:format)                         user_admins#show
-                           PUT    /user_admins/:id(.:format)                         user_admins#update
-                           DELETE /user_admins/:id(.:format)                         user_admins#destroy
-       profile_reviewboard GET    /profiles/:profile_id/reviewboard(.:format)        profiles#reviewboard
-     profile_load_reminder GET    /profiles/:profile_id/load_reminder(.:format)      profiles#load_reminder
-             profile_teams GET    /profiles/:profile_id/teams(.:format)              profiles#teams
-          profile_new_team GET    /profiles/:profile_id/new_team(.:format)           profiles#new_team
-       profile_add_members GET    /profiles/:profile_id/add_members(.:format)        profiles#add_members
-profile_update_reviewboard POST   /profiles/:profile_id/update_reviewboard(.:format) profiles#update_reviewboard
-         profile_setavatar POST   /profiles/:profile_id/setavatar(.:format)          profiles#setavatar
-      profile_setwallpaper POST   /profiles/:profile_id/setwallpaper(.:format)       profiles#setwallpaper
-          profile_settheme POST   /profiles/:profile_id/settheme(.:format)           profiles#settheme
-          profile_setstock POST   /profiles/:profile_id/setstock(.:format)           profiles#setstock
-     profile_save_reminder POST   /profiles/:profile_id/save_reminder(.:format)      profiles#save_reminder
-         profile_save_team POST   /profiles/:profile_id/save_team(.:format)          profiles#save_team
-      profile_save_members POST   /profiles/:profile_id/save_members(.:format)       profiles#save_members
-       profile_saveprofile PUT    /profiles/:profile_id/saveprofile(.:format)        profiles#saveprofile
-                  profiles GET    /profiles(.:format)                                profiles#index
-                           POST   /profiles(.:format)                                profiles#create
-               new_profile GET    /profiles/new(.:format)                            profiles#new
-              edit_profile GET    /profiles/:id/edit(.:format)                       profiles#edit
-                   profile GET    /profiles/:id(.:format)                            profiles#show
-                           PUT    /profiles/:id(.:format)                            profiles#update
-                           DELETE /profiles/:id(.:format)                            profiles#destroy
-          new_user_session GET    /users/sign_in(.:format)                           devise/sessions#new
-              user_session POST   /users/sign_in(.:format)                           devise/sessions#create
-      destroy_user_session DELETE /users/sign_out(.:format)                          devise/sessions#destroy
-             user_password POST   /users/password(.:format)                          devise/passwords#create
-         new_user_password GET    /users/password/new(.:format)                      devise/passwords#new
-        edit_user_password GET    /users/password/edit(.:format)                     devise/passwords#edit
-                           PUT    /users/password(.:format)                          devise/passwords#update
-  cancel_user_registration GET    /users/cancel(.:format)                            devise/registrations#cancel
-         user_registration POST   /users(.:format)                                   devise/registrations#create
-     new_user_registration GET    /users/sign_up(.:format)                           devise/registrations#new
-    edit_user_registration GET    /users/edit(.:format)                              devise/registrations#edit
-                           PUT    /users(.:format)                                   devise/registrations#update
-                           DELETE /users(.:format)                                   devise/registrations#destroy
-         user_confirmation POST   /users/confirmation(.:format)                      devise/confirmations#create
-     new_user_confirmation GET    /users/confirmation/new(.:format)                  devise/confirmations#new
-                           GET    /users/confirmation(.:format)                      devise/confirmations#show
-                home_index GET    /home(.:format)                                    home#index
-                           POST   /home(.:format)                                    home#create
-                  new_home GET    /home/new(.:format)                                home#new
-                 edit_home GET    /home/:id/edit(.:format)                           home#edit
-                      home GET    /home/:id(.:format)                                home#show
-                           PUT    /home/:id(.:format)                                home#update
-                           DELETE /home/:id(.:format)                                home#destroy
-                      root        /                                                  home#index
-
-Routes for Mercury::Engine:
-mercury_editor  /editor(/*requested_uri)(.:format)        mercury#edit
-                /mercury/:type/:resource(.:format)        mercury#resource
-                /mercury/snippets/:name/options(.:format) mercury#snippet_options
-                /mercury/snippets/:name/preview(.:format) mercury#snippet_preview
+             reply_message GET    /messages/:id/reply(.:format)              messages#reply
+    cancel_message_message GET    /messages/:id/cancel_message(.:format)     messages#cancel_message
+      cancel_reply_message GET    /messages/:id/cancel_reply(.:format)       messages#cancel_reply
+              read_message PUT    /messages/:id/read(.:format)               messages#read
+        save_reply_message POST   /messages/:id/save_reply(.:format)         messages#save_reply
+         get_read_messages GET    /messages/get_read(.:format)               messages#get_read
+                  messages GET    /messages(.:format)                        messages#index
+                           POST   /messages(.:format)                        messages#create
+               new_message GET    /messages/new(.:format)                    messages#new
+              edit_message GET    /messages/:id/edit(.:format)               messages#edit
+                   message GET    /messages/:id(.:format)                    messages#show
+                           PUT    /messages/:id(.:format)                    messages#update
+                           DELETE /messages/:id(.:format)                    messages#destroy
+           add_member_team POST   /teams/:id/add_member(.:format)            teams#add_member
+        remove_member_team POST   /teams/:id/remove_member(.:format)         teams#remove_member
+                     teams GET    /teams(.:format)                           teams#index
+                           POST   /teams(.:format)                           teams#create
+                  new_team GET    /teams/new(.:format)                       teams#new
+                 edit_team GET    /teams/:id/edit(.:format)                  teams#edit
+                      team GET    /teams/:id(.:format)                       teams#show
+                           PUT    /teams/:id(.:format)                       teams#update
+                           DELETE /teams/:id(.:format)                       teams#destroy
+                   reviews GET    /reviews(.:format)                         reviews#index
+                           POST   /reviews(.:format)                         reviews#create
+                new_review GET    /reviews/new(.:format)                     reviews#new
+               edit_review GET    /reviews/:id/edit(.:format)                reviews#edit
+                    review GET    /reviews/:id(.:format)                     reviews#show
+                           PUT    /reviews/:id(.:format)                     reviews#update
+                           DELETE /reviews/:id(.:format)                     reviews#destroy
+                    papers GET    /papers(.:format)                          papers#index
+                           POST   /papers(.:format)                          papers#create
+                 new_paper GET    /papers/new(.:format)                      papers#new
+                edit_paper GET    /papers/:id/edit(.:format)                 papers#edit
+                     paper GET    /papers/:id(.:format)                      papers#show
+                           PUT    /papers/:id(.:format)                      papers#update
+                           DELETE /papers/:id(.:format)                      papers#destroy
+                   schools GET    /schools(.:format)                         schools#index
+                           POST   /schools(.:format)                         schools#create
+                new_school GET    /schools/new(.:format)                     schools#new
+               edit_school GET    /schools/:id/edit(.:format)                schools#edit
+                    school GET    /schools/:id(.:format)                     schools#show
+                           PUT    /schools/:id(.:format)                     schools#update
+                           DELETE /schools/:id(.:format)                     schools#destroy
+              participants GET    /participants(.:format)                    participants#index
+                           POST   /participants(.:format)                    participants#create
+           new_participant GET    /participants/new(.:format)                participants#new
+          edit_participant GET    /participants/:id/edit(.:format)           participants#edit
+               participant GET    /participants/:id(.:format)                participants#show
+                           PUT    /participants/:id(.:format)                participants#update
+                           DELETE /participants/:id(.:format)                participants#destroy
+                     blogs GET    /blogs(.:format)                           blogs#index
+                           POST   /blogs(.:format)                           blogs#create
+                  new_blog GET    /blogs/new(.:format)                       blogs#new
+                 edit_blog GET    /blogs/:id/edit(.:format)                  blogs#edit
+                      blog GET    /blogs/:id(.:format)                       blogs#show
+                           PUT    /blogs/:id(.:format)                       blogs#update
+                           DELETE /blogs/:id(.:format)                       blogs#destroy
+               user_admins GET    /user_admins(.:format)                     user_admins#index
+                           POST   /user_admins(.:format)                     user_admins#create
+            new_user_admin GET    /user_admins/new(.:format)                 user_admins#new
+           edit_user_admin GET    /user_admins/:id/edit(.:format)            user_admins#edit
+                user_admin GET    /user_admins/:id(.:format)                 user_admins#show
+                           PUT    /user_admins/:id(.:format)                 user_admins#update
+                           DELETE /user_admins/:id(.:format)                 user_admins#destroy
+       reviewboard_profile GET    /profiles/:id/reviewboard(.:format)        profiles#reviewboard
+     reminder_load_profile GET    /profiles/:id/reminder_load(.:format)      profiles#reminder_load
+reviewboard_update_profile POST   /profiles/:id/reviewboard_update(.:format) profiles#reviewboard_update
+          settheme_profile POST   /profiles/:id/settheme(.:format)           profiles#settheme
+     reminder_save_profile POST   /profiles/:id/reminder_save(.:format)      profiles#reminder_save
+                  profiles GET    /profiles(.:format)                        profiles#index
+                           POST   /profiles(.:format)                        profiles#create
+               new_profile GET    /profiles/new(.:format)                    profiles#new
+              edit_profile GET    /profiles/:id/edit(.:format)               profiles#edit
+                   profile GET    /profiles/:id(.:format)                    profiles#show
+                           PUT    /profiles/:id(.:format)                    profiles#update
+                           DELETE /profiles/:id(.:format)                    profiles#destroy
+          new_user_session GET    /users/sign_in(.:format)                   devise/sessions#new
+              user_session POST   /users/sign_in(.:format)                   devise/sessions#create
+      destroy_user_session DELETE /users/sign_out(.:format)                  devise/sessions#destroy
+             user_password POST   /users/password(.:format)                  devise/passwords#create
+         new_user_password GET    /users/password/new(.:format)              devise/passwords#new
+        edit_user_password GET    /users/password/edit(.:format)             devise/passwords#edit
+                           PUT    /users/password(.:format)                  devise/passwords#update
+  cancel_user_registration GET    /users/cancel(.:format)                    devise/registrations#cancel
+         user_registration POST   /users(.:format)                           devise/registrations#create
+     new_user_registration GET    /users/sign_up(.:format)                   devise/registrations#new
+    edit_user_registration GET    /users/edit(.:format)                      devise/registrations#edit
+                           PUT    /users(.:format)                           devise/registrations#update
+                           DELETE /users(.:format)                           devise/registrations#destroy
+         user_confirmation POST   /users/confirmation(.:format)              devise/confirmations#create
+     new_user_confirmation GET    /users/confirmation/new(.:format)          devise/confirmations#new
+                           GET    /users/confirmation(.:format)              devise/confirmations#show
+                home_index GET    /home(.:format)                            home#index
+                           POST   /home(.:format)                            home#create
+                  new_home GET    /home/new(.:format)                        home#new
+                 edit_home GET    /home/:id/edit(.:format)                   home#edit
+                      home GET    /home/:id(.:format)                        home#show
+                           PUT    /home/:id(.:format)                        home#update
+                           DELETE /home/:id(.:format)                        home#destroy
+                    cancel        /shared/cancel(.:format)                   shared#cancel
+                      root        /                                          home#index

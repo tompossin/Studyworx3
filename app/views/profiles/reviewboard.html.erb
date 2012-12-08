@@ -1,7 +1,7 @@
 <div class="floatbox_trans">
 <h1>Edit Review Board Status</h1>
 <h4>For: <%= @user.firstname + " " + @user.lastname %></h4>
-<%= form_tag("update_reviewboard") do %>
+<%= form_tag("reviewboard_update") do %>
   <%= hidden_field_tag 'id', @user.id %>
   Change Review Board Status: 
   <%= check_box_tag 'reviewboard', @user.reviewboard, @user.reviewboard %>

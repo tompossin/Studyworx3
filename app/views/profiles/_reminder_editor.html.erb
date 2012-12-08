@@ -1,5 +1,5 @@
 
-  <%= form_tag({:controller=>:profiles,:action=>:save_reminder}, {:remote=> true, :id=>current_user.id}) do |r| %>
+  <%= form_tag({:controller=>:profiles,:action=>:reminder_save}, {:remote=> true, :id=>current_user.id}) do |r| %>
     <%= text_area_tag :reminder, @note.reminder, {:size=>"34x5"} %><br />
     <%= submit_tag "save" %>
   <% end %>

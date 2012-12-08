@@ -7,7 +7,7 @@ gem 'rails'
 
 #gem 'sqlite3'
 #gem 'tinymce-rails'
-gem 'mercury-rails'
+#gem 'mercury-rails'
 gem 'paperclip'
 gem 'will_paginate'
 gem 'thin'
@@ -16,7 +16,8 @@ gem 'ruby-mysql'
 gem 'mysql','2.8.1'
 #gem 'activerecord-mysql-adapter'
 gem 'closure_tree'
-# gem 'aloha-rails'
+gem 'aloha-rails'
+gem 'settingslogic'
 
 
 

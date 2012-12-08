@@ -64,7 +64,17 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-all_active">::all_active</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -83,14 +93,6 @@
 
   <ul class="link-list">
   
-    <li><a href="./Mercury.html">Mercury</a>
-  
-    <li><a href="./Mercury/Authentication.html">Mercury::Authentication</a>
-  
-    <li><a href="./Mercury/Image.html">Mercury::Image</a>
-  
-    <li><a href="./Mercury/ImagesController.html">Mercury::ImagesController</a>
-  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -102,8 +104,6 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./HomeController.html">HomeController</a>
-  
-    <li><a href="./Member.html">Member</a>
   
     <li><a href="./Message.html">Message</a>
   
@@ -143,6 +143,16 @@
   
     <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
   
+    <li><a href="./Settings.html">Settings</a>
+  
+    <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./TeamsController.html">TeamsController</a>
+  
+    <li><a href="./TeamsHelper.html">TeamsHelper</a>
+  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -178,6 +188,42 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-all_active" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_active</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_active-source">
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_active</span>
+  <span class="ruby-identifier">schools</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">active</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_active-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_active-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

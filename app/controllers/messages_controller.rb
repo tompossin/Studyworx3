@@ -12,10 +12,10 @@ class MessagesController < ApplicationController
   
   # Show read personal messages by page
   def get_read
-    pagesize = 5 # set number of messages to display at once. Could be user defined someday.
+    pagesize = Settings.pagesize # set number of messages to display at once. Could be user defined someday.
     @page = params[:page].to_i||0  
     @messages = Message.get_read_messages(current_user.id,pagesize,@page)
-    count = Message.count_all_messages(current_user.id)
+    count = Message.count_all_read_messages(current_user.id)
     @page += 1
     @current_count = count - pagesize*@page
     unless count <= pagesize*@page
@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # Sets the editor via AJAX
+  # Sets the message editor via AJAX
   def new
     @message = Message.new
 
@@ -57,7 +57,7 @@ class MessagesController < ApplicationController
     end
   end
   
-  # creates a blank reply(no save) and loads the editor
+  # creates a blank reply(no save) and loads the reply editor
   def reply
     r = Message.find(params[:id])
     @message = Message.new
@@ -72,7 +72,7 @@ class MessagesController < ApplicationController
   end
   
   # Takes user reply and creates a child message and pushes it to the view. 
-  # This message is designed to function with only parents and children no grandchildren.
+  # This message system is designed to function with only parents and children no grandchildren.
   def save_reply
     @id = params[:id] # parent message id
     parent = Message.mark_parent_as_unread(@id)
@@ -92,7 +92,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # This creates a new parent message
+  # This creates a new parent(root) message
   def create
     @message = Message.new
     @message.recipient_id = params[:recipient_id].to_i
@@ -145,6 +145,7 @@ class MessagesController < ApplicationController
 
   # DELETE /messages/1
   # DELETE /messages/1.json
+  # Destroys the message and all children.
   def destroy
     @message = Message.find(params[:id])
     @id = @message.id.to_s

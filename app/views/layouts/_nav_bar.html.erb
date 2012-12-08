@@ -2,16 +2,16 @@
   <div id='nav_heading'>
     <% if current_user %>
       <div style="float:left;width:100%;">
-        <div class='avatar' style="background-image:url(<%= "/system/images/#{session[:avatar]}/thumb/#{session[:avatar_image]}" %>);" onclick="OpenProfile(<%=current_user.id%>)">
+        <div class='avatar' style="background-image:url('<%= current_user.avatar.url(:thumb) %>');" onclick="OpenFullProfile(<%=current_user.id%>)">
         </div>
         <div id="nav_heading_content" class="title">
           <%= content if content %>
         </div>
         <div id="scratchpad_heading" class="title smaller">
-          <div class="tab"><%=link_to(image_tag("iconic/layers_16x14.png"), profile_path(current_user.id),{title: "Schools"}) if current_user %></div>
-          <div class="tab"><%=link_to(image_tag("iconic/paperclip_14x16.png"), profile_load_reminder_path(current_user.id),{title: "Note to Self", remote: true}) if current_user %></div>     
+          <div class="tab"><%=link_to(image_tag("iconic/layers_16x14.png"), edit_profile_path(current_user.id),{title: "Schools"}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/paperclip_14x16.png"), reminder_load_profile_path(current_user.id),{title: "Note to Self", remote: true}) if current_user %></div>     
           <div class="tab"><%=link_to(image_tag("iconic/comment_stroke_16x14.png"), messages_path,{title: "Messaging", remote: true}) if current_user %></div>
-          <div class="tab"><%=link_to(image_tag("iconic/sun_stroke_16x16.png"), schools_path,{title: "Teams", remote: true}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/sun_stroke_16x16.png"), teams_path,{title: "Teams", remote: true}) if current_user %></div>
           <div class="tab"><%=link_to(image_tag("iconic/book_14x16.png"), schools_path,{title: "Assignments", remote: true}) if session[:school_id] %></div>
         </div> 
         <div id="reminder">

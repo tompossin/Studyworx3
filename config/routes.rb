@@ -10,32 +10,26 @@ Studyworx3::Application.routes.draw do
       get 'get_read'
     end
   end
+  resources :teams do
+    member do
+      post 'add_member', 'remove_member'
+    end
+  end
   resources :reviews
   resources :papers
   resources :schools
   resources :participants
-
-    namespace :mercury do
-      resources :images
-    end
-
-  mount Mercury::Engine => '/'
-
   resources :blogs
   resources :user_admins
   resources :profiles do
     member do
-      get 'reviewboard', 'load_reminder', 'new_team', 'add_members'
-      post 'update_reviewboard', 'setavatar', 'setwallpaper', 'settheme', 'setstock', 'save_reminder'
-      post 'save_team','save_members'
-      put 'saveprofile'
-    end
-    collection do
-      get 'teams'
+      get 'reviewboard', 'reminder_load'
+      post 'reviewboard_update', 'settheme', 'reminder_save'
     end
   end
   devise_for :users
   resources :home
+  match 'shared/cancel' => 'shared#cancel', :as => :cancel
 
   root :to => 'home#index'
   

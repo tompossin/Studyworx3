@@ -1,4 +1,5 @@
-<div style="float:left;">&nbsp;&nbsp;</div>
+<div style="float:left;">
 <div class="tab"><%= link_to image_tag("iconic/plus_16x16.png",alt: "New Message"), new_message_path, {remote: true, title: "Start a New Message", class: "smaller"} %></div>
 <div class="tab"><%= link_to image_tag("iconic/comment_stroke_16x14.png",alt: "current Messages"), messages_path, {remote: true,id:"index",title: "Read current Messages", class: "smaller"} %></div>
 <div class="tab"><%= link_to image_tag("iconic/chat_16x16.png",alt: "Read past Messages"), get_read_messages_path,{remote: true,id:"get_read",title: "Read past Messages", class: "smaller"} %></div>
+</div>

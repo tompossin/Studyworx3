@@ -78,7 +78,7 @@
     
     <li><a href="#method-i-is_superadmin">#is_superadmin</a>
     
-    <li><a href="#method-i-nav_heading">#nav_heading</a>
+    <li><a href="#method-i-nav_bar">#nav_bar</a>
     
     <li><a href="#method-i-relaxed_sanitize">#relaxed_sanitize</a>
     
@@ -105,14 +105,6 @@
 
   <ul class="link-list">
   
-    <li><a href="./Mercury.html">Mercury</a>
-  
-    <li><a href="./Mercury/Authentication.html">Mercury::Authentication</a>
-  
-    <li><a href="./Mercury/Image.html">Mercury::Image</a>
-  
-    <li><a href="./Mercury/ImagesController.html">Mercury::ImagesController</a>
-  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -124,8 +116,6 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./HomeController.html">HomeController</a>
-  
-    <li><a href="./Member.html">Member</a>
   
     <li><a href="./Message.html">Message</a>
   
@@ -164,6 +154,16 @@
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
     <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
+  
+    <li><a href="./Settings.html">Settings</a>
+  
+    <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./TeamsController.html">TeamsController</a>
+  
+    <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
     <li><a href="./User.html">User</a>
   
@@ -215,13 +215,15 @@
 
         <div class="method-description">
           
-          
+          <p>TODO look at rewriting this with a split method on n so that I can add
+headings. At this point it is pretty foolproof but super basic</p>
           
 
           
           <div class="method-source-code" id="format_plaintext-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">format_plaintext</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-identifier">content</span> = <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\n/</span>,<span class="ruby-string">'&lt;br /&gt;'</span>)
   <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\s\s/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'</span>)
   <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\*\*/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;diams;&amp;nbsp;'</span>)
@@ -256,7 +258,11 @@
           <div class="method-source-code" id="full_name-source">
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">full_name</span> 
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">firstname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">lastname</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">firstname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">lastname</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;Please Log in&quot;</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- full_name-source -->
           
@@ -279,17 +285,19 @@
 
         <div class="method-description">
           
-          <p>this fetches and creates the image url’s for a list of avatar’s TODO look
-for a more efficient way to do this.</p>
+          
           
 
           
           <div class="method-source-code" id="get_avatar_url-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_avatar_url</span>(<span class="ruby-identifier">user_id</span>)
-  <span class="ruby-identifier">u</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
-  <span class="ruby-identifier">i</span> = <span class="ruby-constant">Mercury</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">u</span>.<span class="ruby-identifier">avatar</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;/system/images/#{i.id}/thumb/#{i.image_file_name}&quot;</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">avatar</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">avatar</span>.<span class="ruby-identifier">url</span>(<span class="ruby-value">:thumb</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">avatar_file_size?</span>
+    <span class="ruby-identifier">avatar</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">avatar</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">avatar_image</span>  
 <span class="ruby-keyword">end</span></pre>
           </div><!-- get_avatar_url-source -->
           
@@ -312,12 +320,12 @@ for a more efficient way to do this.</p>
 
         <div class="method-description">
           
-          
+          <p>Gets the full name of the supplied user_id</p>
           
 
           
           <div class="method-source-code" id="get_full_name-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_full_name</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">u</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">firstname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">lastname</span>
@@ -348,7 +356,7 @@ for a more efficient way to do this.</p>
 
           
           <div class="method-source-code" id="hidden_div_unless-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
     <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none&quot;</span>
@@ -381,7 +389,7 @@ for a more efficient way to do this.</p>
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
@@ -414,7 +422,7 @@ for a more efficient way to do this.</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
@@ -431,34 +439,37 @@ for a more efficient way to do this.</p>
       </div><!-- is_superadmin-method -->
 
     
-      <div id="method-i-nav_heading" class="method-detail ">
+      <div id="method-i-nav_bar" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">nav_heading</span><span
-            class="method-args">(content)</span>
+          <span class="method-name">nav_bar</span><span
+            class="method-args">(nav_body_content = false)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <p>Sets the <a
+href="ApplicationHelper.html#method-i-nav_bar">#nav_bar</a>(nav_body_content
+= optional url of partial for nav_body_content element)</p>
           
 
           
-          <div class="method-source-code" id="nav_heading-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_heading</span>(<span class="ruby-identifier">content</span>)
-  <span class="ruby-identifier">render</span> <span class="ruby-value">:partial=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;layouts/navhead&quot;</span>, <span class="ruby-value">:locals=</span><span class="ruby-operator">&gt;</span>{<span class="ruby-value">:content</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">content</span>}
+          <div class="method-source-code" id="nav_bar-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_bar</span>(<span class="ruby-identifier">nav_body_content</span> = <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">nbc</span> = <span class="ruby-identifier">nav_body_content</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">default_nav_body</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:partial=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;layouts/nav_bar&quot;</span>, <span class="ruby-value">:locals=</span><span class="ruby-operator">&gt;</span>{<span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-identifier">full_name</span>, <span class="ruby-identifier">nav_body_content</span><span class="ruby-operator">:</span> <span class="ruby-identifier">nbc</span>}
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- nav_heading-source -->
+          </div><!-- nav_bar-source -->
           
         </div>
 
         
 
         
-      </div><!-- nav_heading-method -->
+      </div><!-- nav_bar-method -->
 
     
       <div id="method-i-relaxed_sanitize" class="method-detail ">
@@ -482,7 +493,7 @@ include youtube and vimeo videos.</p>
 
           
           <div class="method-source-code" id="relaxed_sanitize-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">relaxed_sanitize</span>(<span class="ruby-identifier">rawhtml</span>)
   <span class="ruby-identifier">sanitize</span> <span class="ruby-identifier">rawhtml</span>,<span class="ruby-value">:tags=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u )</span>, 
                     <span class="ruby-value">:attributes=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(id class style src border align colspan rowspan)</span>
@@ -514,11 +525,11 @@ hack.</p>
 
           
           <div class="method-source-code" id="set_wallpaper-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>  
-      <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-image:url('/system/images/#{session[:wallpaper]}/original/#{session[:wallpaper_image]}');&quot;</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-image:url('#{current_user.wallpaper.url}');&quot;</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-color:#dddddd;&quot;</span>
     <span class="ruby-keyword">end</span>

@@ -1,6 +1,6 @@
 <div id="message_<%= message.id %>" class="msg_container" >
-  <div class='avatar' style="background-image:url(<%= get_avatar_url(message.sender_id) %>);" onclick="OpenProfile(<%=message.sender_id%>)">
-    
+  <div class='avatar' style="background-image:url('<%= get_avatar_url(message.sender_id) %>');">
+    <%=link_to(image_tag("blank.png"),profile_path(message.sender_id),{remote: true})%>   
   </div>
   &nbsp;&nbsp;<%=link_to "Mark as Read", read_message_path(message.id),{method: :put, remote: true} %>
   <% if message.recipient_id == current_user.id %>

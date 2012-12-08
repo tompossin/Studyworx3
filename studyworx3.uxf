@@ -720,7 +720,7 @@ bg=red</panel_attributes>
       <h>63</h>
     </coordinates>
     <panel_attributes>/*Last Updated:*/
-11/28/2012
+12/2/2012
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
@@ -861,8 +861,8 @@ fg=white</panel_attributes>
     </coordinates>
     <panel_attributes>*teams_users*
 --
-&lt;&lt;user_id:int
-&lt;&lt;team_id:int
+&gt;&gt;user_id:int
+team_id:int&lt;&lt;
 --
 --
 /  Join Table/

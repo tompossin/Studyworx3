@@ -39,19 +39,7 @@
 
 <h2 id="classes">Classes/Modules</h2>
 <ul>
-  <li class="module">
-    <a href="Mercury.html">Mercury</a>
-  </li>
-    <li class="module">
-    <a href="Mercury/Authentication.html">Mercury::Authentication</a>
-  </li>
-    <li class="class">
-    <a href="Mercury/Image.html">Mercury::Image</a>
-  </li>
-    <li class="class">
-    <a href="Mercury/ImagesController.html">Mercury::ImagesController</a>
-  </li>
-    <li class="class">
+  <li class="class">
     <a href="ApplicationController.html">ApplicationController</a>
   </li>
     <li class="module">
@@ -68,9 +56,6 @@
   </li>
     <li class="class">
     <a href="HomeController.html">HomeController</a>
-  </li>
-    <li class="class">
-    <a href="Member.html">Member</a>
   </li>
     <li class="class">
     <a href="Message.html">Message</a>
@@ -130,6 +115,21 @@
     <a href="SchoolsHelper.html">SchoolsHelper</a>
   </li>
     <li class="class">
+    <a href="Settings.html">Settings</a>
+  </li>
+    <li class="class">
+    <a href="SharedController.html">SharedController</a>
+  </li>
+    <li class="class">
+    <a href="Team.html">Team</a>
+  </li>
+    <li class="class">
+    <a href="TeamsController.html">TeamsController</a>
+  </li>
+    <li class="module">
+    <a href="TeamsHelper.html">TeamsHelper</a>
+  </li>
+    <li class="class">
     <a href="User.html">User</a>
   </li>
     <li class="class">
@@ -147,57 +147,75 @@
 <h2 id="methods">Methods</h2>
 <ul>
   
+    <li class="method"><a href="School.html#method-c-all_active">::all_active &mdash; School</a>
+  
+    <li class="method"><a href="Message.html#method-c-count_all_read_messages">::count_all_read_messages &mdash; Message</a>
+  
+    <li class="method"><a href="Message.html#method-c-count_all_unread_messages">::count_all_unread_messages &mdash; Message</a>
+  
+    <li class="method"><a href="Message.html#method-c-get_read_messages">::get_read_messages &mdash; Message</a>
+  
+    <li class="method"><a href="Message.html#method-c-get_unread_messages">::get_unread_messages &mdash; Message</a>
+  
+    <li class="method"><a href="Message.html#method-c-mark_as_read">::mark_as_read &mdash; Message</a>
+  
+    <li class="method"><a href="Message.html#method-c-mark_parent_as_unread">::mark_parent_as_unread &mdash; Message</a>
+  
     <li class="method"><a href="UserAdmin.html#method-c-search">::search &mdash; UserAdmin</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-add_members">#add_members &mdash; ProfilesController</a>
+    <li class="method"><a href="TeamsController.html#method-i-add_member">#add_member &mdash; TeamsController</a>
   
     <li class="method"><a href="ApplicationController.html#method-i-assign_session_variables">#assign_session_variables &mdash; ApplicationController</a>
   
-    <li class="method"><a href="Mercury/Authentication.html#method-i-can_edit-3F">#can_edit? &mdash; Mercury::Authentication</a>
+    <li class="method"><a href="SharedController.html#method-i-cancel">#cancel &mdash; SharedController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-cancel">#cancel &mdash; MessagesController</a>
+    <li class="method"><a href="MessagesController.html#method-i-cancel_message">#cancel_message &mdash; MessagesController</a>
   
-    <li class="method"><a href="ParticipantsController.html#method-i-create">#create &mdash; ParticipantsController</a>
-  
-    <li class="method"><a href="MessagesController.html#method-i-create">#create &mdash; MessagesController</a>
-  
-    <li class="method"><a href="SchoolsController.html#method-i-create">#create &mdash; SchoolsController</a>
-  
-    <li class="method"><a href="ReviewsController.html#method-i-create">#create &mdash; ReviewsController</a>
+    <li class="method"><a href="MessagesController.html#method-i-cancel_reply">#cancel_reply &mdash; MessagesController</a>
   
     <li class="method"><a href="UserAdminsController.html#method-i-create">#create &mdash; UserAdminsController</a>
   
     <li class="method"><a href="PapersController.html#method-i-create">#create &mdash; PapersController</a>
   
-    <li class="method"><a href="Mercury/ImagesController.html#method-i-create">#create &mdash; Mercury::ImagesController</a>
+    <li class="method"><a href="TeamsController.html#method-i-create">#create &mdash; TeamsController</a>
   
-    <li class="method"><a href="SchoolsController.html#method-i-destroy">#destroy &mdash; SchoolsController</a>
+    <li class="method"><a href="ParticipantsController.html#method-i-create">#create &mdash; ParticipantsController</a>
   
-    <li class="method"><a href="Mercury/ImagesController.html#method-i-destroy">#destroy &mdash; Mercury::ImagesController</a>
+    <li class="method"><a href="SchoolsController.html#method-i-create">#create &mdash; SchoolsController</a>
   
-    <li class="method"><a href="PapersController.html#method-i-destroy">#destroy &mdash; PapersController</a>
+    <li class="method"><a href="MessagesController.html#method-i-create">#create &mdash; MessagesController</a>
   
-    <li class="method"><a href="BlogsController.html#method-i-destroy">#destroy &mdash; BlogsController</a>
-  
-    <li class="method"><a href="ReviewsController.html#method-i-destroy">#destroy &mdash; ReviewsController</a>
-  
-    <li class="method"><a href="ParticipantsController.html#method-i-destroy">#destroy &mdash; ParticipantsController</a>
+    <li class="method"><a href="ReviewsController.html#method-i-create">#create &mdash; ReviewsController</a>
   
     <li class="method"><a href="UserAdminsController.html#method-i-destroy">#destroy &mdash; UserAdminsController</a>
   
+    <li class="method"><a href="ReviewsController.html#method-i-destroy">#destroy &mdash; ReviewsController</a>
+  
+    <li class="method"><a href="SchoolsController.html#method-i-destroy">#destroy &mdash; SchoolsController</a>
+  
+    <li class="method"><a href="ParticipantsController.html#method-i-destroy">#destroy &mdash; ParticipantsController</a>
+  
+    <li class="method"><a href="BlogsController.html#method-i-destroy">#destroy &mdash; BlogsController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-destroy">#destroy &mdash; PapersController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-destroy">#destroy &mdash; TeamsController</a>
+  
     <li class="method"><a href="MessagesController.html#method-i-destroy">#destroy &mdash; MessagesController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-edit">#edit &mdash; MessagesController</a>
-  
-    <li class="method"><a href="UserAdminsController.html#method-i-edit">#edit &mdash; UserAdminsController</a>
+    <li class="method"><a href="PapersController.html#method-i-edit">#edit &mdash; PapersController</a>
   
     <li class="method"><a href="SchoolsController.html#method-i-edit">#edit &mdash; SchoolsController</a>
+  
+    <li class="method"><a href="ProfilesController.html#method-i-edit">#edit &mdash; ProfilesController</a>
   
     <li class="method"><a href="ReviewsController.html#method-i-edit">#edit &mdash; ReviewsController</a>
   
     <li class="method"><a href="ParticipantsController.html#method-i-edit">#edit &mdash; ParticipantsController</a>
   
-    <li class="method"><a href="PapersController.html#method-i-edit">#edit &mdash; PapersController</a>
+    <li class="method"><a href="UserAdminsController.html#method-i-edit">#edit &mdash; UserAdminsController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-edit">#edit &mdash; TeamsController</a>
   
     <li class="method"><a href="ApplicationHelper.html#method-i-format_plaintext">#format_plaintext &mdash; ApplicationHelper</a>
   
@@ -207,23 +225,27 @@
   
     <li class="method"><a href="ApplicationHelper.html#method-i-get_full_name">#get_full_name &mdash; ApplicationHelper</a>
   
+    <li class="method"><a href="MessagesController.html#method-i-get_read">#get_read &mdash; MessagesController</a>
+  
     <li class="method"><a href="ApplicationHelper.html#method-i-hidden_div_unless">#hidden_div_unless &mdash; ApplicationHelper</a>
-  
-    <li class="method"><a href="SchoolsController.html#method-i-index">#index &mdash; SchoolsController</a>
-  
-    <li class="method"><a href="ReviewsController.html#method-i-index">#index &mdash; ReviewsController</a>
-  
-    <li class="method"><a href="BlogsController.html#method-i-index">#index &mdash; BlogsController</a>
-  
-    <li class="method"><a href="UserAdminsController.html#method-i-index">#index &mdash; UserAdminsController</a>
-  
-    <li class="method"><a href="PapersController.html#method-i-index">#index &mdash; PapersController</a>
-  
-    <li class="method"><a href="HomeController.html#method-i-index">#index &mdash; HomeController</a>
   
     <li class="method"><a href="MessagesController.html#method-i-index">#index &mdash; MessagesController</a>
   
+    <li class="method"><a href="TeamsController.html#method-i-index">#index &mdash; TeamsController</a>
+  
     <li class="method"><a href="ParticipantsController.html#method-i-index">#index &mdash; ParticipantsController</a>
+  
+    <li class="method"><a href="BlogsController.html#method-i-index">#index &mdash; BlogsController</a>
+  
+    <li class="method"><a href="SchoolsController.html#method-i-index">#index &mdash; SchoolsController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-index">#index &mdash; PapersController</a>
+  
+    <li class="method"><a href="ReviewsController.html#method-i-index">#index &mdash; ReviewsController</a>
+  
+    <li class="method"><a href="HomeController.html#method-i-index">#index &mdash; HomeController</a>
+  
+    <li class="method"><a href="UserAdminsController.html#method-i-index">#index &mdash; UserAdminsController</a>
   
     <li class="method"><a href="ApplicationHelper.html#method-i-is_admin">#is_admin &mdash; ApplicationHelper</a>
   
@@ -237,17 +259,17 @@
   
     <li class="method"><a href="ApplicationHelper.html#method-i-is_superadmin">#is_superadmin &mdash; ApplicationHelper</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-load_reminder">#load_reminder &mdash; ProfilesController</a>
-  
-    <li class="method"><a href="ApplicationHelper.html#method-i-nav_heading">#nav_heading &mdash; ApplicationHelper</a>
+    <li class="method"><a href="ApplicationHelper.html#method-i-nav_bar">#nav_bar &mdash; ApplicationHelper</a>
   
     <li class="method"><a href="ReviewsController.html#method-i-new">#new &mdash; ReviewsController</a>
   
-    <li class="method"><a href="ParticipantsController.html#method-i-new">#new &mdash; ParticipantsController</a>
+    <li class="method"><a href="SchoolsController.html#method-i-new">#new &mdash; SchoolsController</a>
   
     <li class="method"><a href="BlogsController.html#method-i-new">#new &mdash; BlogsController</a>
   
-    <li class="method"><a href="SchoolsController.html#method-i-new">#new &mdash; SchoolsController</a>
+    <li class="method"><a href="ParticipantsController.html#method-i-new">#new &mdash; ParticipantsController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-new">#new &mdash; TeamsController</a>
   
     <li class="method"><a href="UserAdminsController.html#method-i-new">#new &mdash; UserAdminsController</a>
   
@@ -255,77 +277,71 @@
   
     <li class="method"><a href="PapersController.html#method-i-new">#new &mdash; PapersController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-new_team">#new_team &mdash; ProfilesController</a>
-  
-    <li class="method"><a href="Message.html#method-i-recipient">#recipient &mdash; Message</a>
+    <li class="method"><a href="MessagesController.html#method-i-read">#read &mdash; MessagesController</a>
   
     <li class="method"><a href="ApplicationHelper.html#method-i-relaxed_sanitize">#relaxed_sanitize &mdash; ApplicationHelper</a>
+  
+    <li class="method"><a href="ProfilesController.html#method-i-reminder_load">#reminder_load &mdash; ProfilesController</a>
+  
+    <li class="method"><a href="ProfilesController.html#method-i-reminder_save">#reminder_save &mdash; ProfilesController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-remove_member">#remove_member &mdash; TeamsController</a>
   
     <li class="method"><a href="MessagesController.html#method-i-reply">#reply &mdash; MessagesController</a>
   
     <li class="method"><a href="ProfilesController.html#method-i-reviewboard">#reviewboard &mdash; ProfilesController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-save_member">#save_member &mdash; ProfilesController</a>
+    <li class="method"><a href="ProfilesController.html#method-i-reviewboard_update">#reviewboard_update &mdash; ProfilesController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-save_reminder">#save_reminder &mdash; ProfilesController</a>
+    <li class="method"><a href="SharedController.html#method-i-save_failed">#save_failed &mdash; SharedController</a>
   
     <li class="method"><a href="MessagesController.html#method-i-save_reply">#save_reply &mdash; MessagesController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-save_team">#save_team &mdash; ProfilesController</a>
+    <li class="method"><a href="SharedController.html#method-i-save_success">#save_success &mdash; SharedController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-saveprofile">#saveprofile &mdash; ProfilesController</a>
-  
-    <li class="method"><a href="Message.html#method-i-sender">#sender &mdash; Message</a>
-  
-    <li class="method"><a href="Mercury/Image.html#method-i-serializable_hash">#serializable_hash &mdash; Mercury::Image</a>
+    <li class="method"><a href="ApplicationController.html#method-i-set_school">#set_school &mdash; ApplicationController</a>
   
     <li class="method"><a href="ApplicationHelper.html#method-i-set_wallpaper">#set_wallpaper &mdash; ApplicationHelper</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-setavatar">#setavatar &mdash; ProfilesController</a>
-  
-    <li class="method"><a href="ProfilesController.html#method-i-setstock">#setstock &mdash; ProfilesController</a>
-  
     <li class="method"><a href="ProfilesController.html#method-i-settheme">#settheme &mdash; ProfilesController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-setwallpaper">#setwallpaper &mdash; ProfilesController</a>
+    <li class="method"><a href="MessagesController.html#method-i-show">#show &mdash; MessagesController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-show">#show &mdash; PapersController</a>
   
     <li class="method"><a href="SchoolsController.html#method-i-show">#show &mdash; SchoolsController</a>
   
     <li class="method"><a href="ParticipantsController.html#method-i-show">#show &mdash; ParticipantsController</a>
   
-    <li class="method"><a href="BlogsController.html#method-i-show">#show &mdash; BlogsController</a>
-  
-    <li class="method"><a href="PapersController.html#method-i-show">#show &mdash; PapersController</a>
-  
-    <li class="method"><a href="UserAdminsController.html#method-i-show">#show &mdash; UserAdminsController</a>
+    <li class="method"><a href="ReviewsController.html#method-i-show">#show &mdash; ReviewsController</a>
   
     <li class="method"><a href="HomeController.html#method-i-show">#show &mdash; HomeController</a>
   
+    <li class="method"><a href="UserAdminsController.html#method-i-show">#show &mdash; UserAdminsController</a>
+  
     <li class="method"><a href="ProfilesController.html#method-i-show">#show &mdash; ProfilesController</a>
   
-    <li class="method"><a href="ReviewsController.html#method-i-show">#show &mdash; ReviewsController</a>
+    <li class="method"><a href="BlogsController.html#method-i-show">#show &mdash; BlogsController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-show">#show &mdash; MessagesController</a>
+    <li class="method"><a href="TeamsController.html#method-i-show">#show &mdash; TeamsController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-teams">#teams &mdash; ProfilesController</a>
+    <li class="method"><a href="ParticipantsController.html#method-i-update">#update &mdash; ParticipantsController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-update">#update &mdash; TeamsController</a>
+  
+    <li class="method"><a href="SchoolsController.html#method-i-update">#update &mdash; SchoolsController</a>
+  
+    <li class="method"><a href="BlogsController.html#method-i-update">#update &mdash; BlogsController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-update">#update &mdash; PapersController</a>
   
     <li class="method"><a href="ProfilesController.html#method-i-update">#update &mdash; ProfilesController</a>
   
     <li class="method"><a href="ReviewsController.html#method-i-update">#update &mdash; ReviewsController</a>
   
-    <li class="method"><a href="BlogsController.html#method-i-update">#update &mdash; BlogsController</a>
-  
-    <li class="method"><a href="ParticipantsController.html#method-i-update">#update &mdash; ParticipantsController</a>
-  
-    <li class="method"><a href="SchoolsController.html#method-i-update">#update &mdash; SchoolsController</a>
-  
     <li class="method"><a href="MessagesController.html#method-i-update">#update &mdash; MessagesController</a>
   
-    <li class="method"><a href="PapersController.html#method-i-update">#update &mdash; PapersController</a>
-  
     <li class="method"><a href="UserAdminsController.html#method-i-update">#update &mdash; UserAdminsController</a>
-  
-    <li class="method"><a href="ProfilesController.html#method-i-update_reviewboard">#update_reviewboard &mdash; ProfilesController</a>
   
 </ul>
 
