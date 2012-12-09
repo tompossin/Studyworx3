@@ -4,7 +4,7 @@ class Team < ActiveRecord::Base
   
   attr_accessible :description, :name, :owner_id, :school_id
   ##########################################################
-  
+  validates_presence_of :name, :owner_id
   
   
 end

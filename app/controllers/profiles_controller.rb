@@ -21,7 +21,6 @@ class ProfilesController < ApplicationController
   end
   
   # This is the users private profile page
-  # TODO get paperclip working on the User model
   def edit
     @user = current_user
     @my_schools = @user.schools.where(active: true)

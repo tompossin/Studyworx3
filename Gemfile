@@ -18,6 +18,8 @@ gem 'mysql','2.8.1'
 gem 'closure_tree'
 gem 'aloha-rails'
 gem 'settingslogic'
+gem 'jquery-qtip2-rails'
+gem 'rails3-jquery-autocomplete'
 
 
 

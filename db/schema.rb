@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205023559) do
+ActiveRecord::Schema.define(:version => 20121209001508) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -84,14 +84,6 @@ ActiveRecord::Schema.define(:version => 20121205023559) do
 
   add_index "participants", ["school_id"], :name => "index_participants_on_school_id"
   add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
-
-  create_table "participants_teams", :id => false, :force => true do |t|
-    t.integer "team_id"
-    t.integer "participant_id"
-  end
-
-  add_index "participants_teams", ["participant_id"], :name => "participants_teams_participant_id"
-  add_index "participants_teams", ["team_id"], :name => "participants_teams_team_id"
 
   create_table "reviews", :force => true do |t|
     t.integer  "paper_id"

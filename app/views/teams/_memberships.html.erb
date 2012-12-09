@@ -1,0 +1,18 @@
+<div class="float_left"> 
+  <div class="title small float_left">
+    Current Members
+  </div>
+  <div class="team">
+    <% for m in @members %>
+      <%= render("member",{m: m})%>
+    <% end %>
+  </div>
+  <div class="title small float_left">
+    User list
+  </div>
+  <div class="team">
+    <% for u in @users %>
+      <%=render("user",{u: u})%>
+    <% end %>
+  </div>
+</div>

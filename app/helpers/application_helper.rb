@@ -14,7 +14,7 @@ module ApplicationHelper
     u = User.find(user_id)
     return u.firstname + " " + u.lastname
   end
-  
+  # FIXME I need to come back to this I think the User.find is redundant
   def get_avatar_url(user_id)
     user = User.find(user_id)
     avatar = user.avatar.url(:thumb)
@@ -71,6 +71,11 @@ module ApplicationHelper
       attributes["style"] = "display: none"
     end
     content_tag("div", attributes, &block)
+  end
+  
+  # This inserts the standard validation errors block into a form
+  def validation_errors_block(formobject)
+    render("/shared/validation_errors_block", {object: formobject})
   end
   
   # Sets the wallpaper

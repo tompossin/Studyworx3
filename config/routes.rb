@@ -12,7 +12,9 @@ Studyworx3::Application.routes.draw do
   end
   resources :teams do
     member do
-      post 'add_member', 'remove_member'
+      get 'memberships'
+      post 'add_member'
+      delete 'remove_member'
     end
   end
   resources :reviews
