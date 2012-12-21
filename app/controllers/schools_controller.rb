@@ -4,11 +4,12 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    @schools = School.all_active
+    @my_schools = current_user.schools.where(:active => true)
+    @nav_body_content = "schools/schools"
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @schools }
     end
   end
 
@@ -18,6 +19,9 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     @participants = Participant.includes(:school).where(user_id: current_user.id).all
     set_school(params[:id])
+    @schools = School.all_active
+    @my_schools = current_user.schools.where(:active => true)
+    @nav_body_content = "schools/schools"
 
     respond_to do |format|
       format.html # show.html.erb

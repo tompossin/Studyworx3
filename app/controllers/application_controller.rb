@@ -1,10 +1,16 @@
+# === Application Controller
+# ==== Shared Methods for all controllers
+# These methods are available to all controllers and some of them are called before each call to a controller.
+# 
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :assign_session_variables
   
   protected
   
-  # Check if logged in, check for session[:values], or set session[:values]
+  # Check if logged in, check for <tt>session[:values]</tt>, or set <tt>session[:values]</tt>
+  #
+  # # This creates session values if they do not exist it does not alter them in any way.
   def assign_session_variables
     if current_user
       unless session[:admin_level]
@@ -49,9 +55,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: "You must be a contributor to access this page"
     end
   end
-  ########## End before filters #################
   
-  ##### Methods available to all controllers
   def is_owner(user_id)
     unless current_user.id == user_id
       redirect_to root_path, alert: "You are not the owner of this record!"

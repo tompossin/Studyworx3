@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  
+  before_filter :authenticate_user!
   
   # Loading user unread personal conversations via AJAX
   def index

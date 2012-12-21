@@ -72,9 +72,17 @@
     
     <li><a href="#method-i-edit">#edit</a>
     
+    <li><a href="#method-i-public_load">#public_load</a>
+    
+    <li><a href="#method-i-public_save">#public_save</a>
+    
+    <li><a href="#method-i-public_show">#public_show</a>
+    
     <li><a href="#method-i-reminder_load">#reminder_load</a>
     
     <li><a href="#method-i-reminder_save">#reminder_save</a>
+    
+    <li><a href="#method-i-reminder_show">#reminder_show</a>
     
     <li><a href="#method-i-reviewboard">#reviewboard</a>
     
@@ -226,13 +234,12 @@ conflicts with devise.</p>
 
         <div class="method-description">
           
-          <p>This is the users private profile page TODO get paperclip working on the <a
-href="User.html">User</a> model</p>
+          <p>This is the users private profile page</p>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@my_schools</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">schools</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">active</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
@@ -249,6 +256,114 @@ href="User.html">User</a> model</p>
       </div><!-- edit-method -->
 
     
+      <div id="method-i-public_load" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">public_load</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This finds or creates a new public user note</p>
+          
+
+          
+          <div class="method-source-code" id="public_load-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">public_load</span>
+  <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@note</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">public</span> = <span class="ruby-string">&quot;Click the edit link above to add your thought to share...&quot;</span>
+      <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- public_load-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- public_load-method -->
+
+    
+      <div id="method-i-public_save" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">public_save</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This saves an updated public user note</p>
+          
+
+          
+          <div class="method-source-code" id="public_save-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">public_save</span>
+  <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">public</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:public</span>]
+    <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- public_save-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- public_save-method -->
+
+    
+      <div id="method-i-public_show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">public_show</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This renders the current public user message</p>
+          
+
+          
+          <div class="method-source-code" id="public_show-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">public_show</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;profiles/public_save&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- public_show-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- public_show-method -->
+
+    
       <div id="method-i-reminder_load" class="method-detail ">
         
         <div class="method-heading">
@@ -260,12 +375,12 @@ href="User.html">User</a> model</p>
 
         <div class="method-description">
           
-          <p>NOTE TO SELF METHODS Loads or creates a reminder for editing via AJAX</p>
+          
           
 
           
           <div class="method-source-code" id="reminder_load-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reminder_load</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -274,7 +389,7 @@ href="User.html">User</a> model</p>
     <span class="ruby-keyword">else</span>
       <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">new</span>
       <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
-      <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">reminder</span> = <span class="ruby-string">&quot;Click the icon above to add a reminder...&quot;</span>
+      <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">reminder</span> = <span class="ruby-string">&quot;Click the edit link above to add a reminder...&quot;</span>
       <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
     <span class="ruby-keyword">end</span>
@@ -306,7 +421,7 @@ href="User.html">User</a> model</p>
 
           
           <div class="method-source-code" id="reminder_save-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reminder_save</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -323,6 +438,38 @@ href="User.html">User</a> model</p>
 
         
       </div><!-- reminder_save-method -->
+
+    
+      <div id="method-i-reminder_show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reminder_show</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>NOTE TO SELF METHODS Loads or creates a reminder for editing via AJAX</p>
+          
+
+          
+          <div class="method-source-code" id="reminder_show-source">
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reminder_show</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;profiles/reminder_save&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reminder_show-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reminder_show-method -->
 
     
       <div id="method-i-reviewboard" class="method-detail ">
@@ -344,9 +491,9 @@ review board status</p>
 
           
           <div class="method-source-code" id="reviewboard-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reviewboard</span>
-  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:profile_id</span>])   
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])   
 <span class="ruby-keyword">end</span></pre>
           </div><!-- reviewboard-source -->
           
@@ -374,7 +521,7 @@ review board status</p>
 
           
           <div class="method-source-code" id="reviewboard_update-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reviewboard_update</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">reviewboard</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:reviewboard</span>]
@@ -410,7 +557,7 @@ review board status</p>
 
           
           <div class="method-source-code" id="settheme-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">settheme</span>
   
 <span class="ruby-keyword">end</span></pre>
@@ -475,7 +622,7 @@ review board status</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 87</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])

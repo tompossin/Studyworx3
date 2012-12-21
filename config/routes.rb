@@ -25,8 +25,9 @@ Studyworx3::Application.routes.draw do
   resources :user_admins
   resources :profiles do
     member do
-      get 'reviewboard', 'reminder_load'
-      post 'reviewboard_update', 'settheme', 'reminder_save'
+      get 'reviewboard', 'reminder_load', 'public_load', 'public_show', 'reminder_show'
+      post 'reviewboard_update', 'settheme', 'reminder_save', 'public_save'
+      put 'bio_save'
     end
   end
   devise_for :users

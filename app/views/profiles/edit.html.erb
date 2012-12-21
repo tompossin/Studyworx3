@@ -1,68 +1,47 @@
 <div id='content-large' >
-  <div style="float:left;">
+    <%= render "profiles/show"%>
     <div class="floatbox_trans">
-      <div class='avatar' style="background-image:url('<%= get_avatar_url(current_user.id) %>');">
-        
-      </div>
-      <p class='title' style="margin-bottom:25px;">
-        The Home of <%= full_name %><br />
-      </p>
-      <p class="title smaller">
-        Phone: <span id="phone"><%= current_user.phone if current_user.phone %></span></p>
-      <p class="title smaller">
-        Home Address:
-      </p>
-      <div id="address" >
-        <%=raw format_plaintext(current_user.address) if current_user.address%>
-      </div>
-      <p>
-        <%= link_to "Show Public Profile", profile_path(current_user.id),{remote: true} %><br />
-      </p>
-    </div>
-    <div class="floatbox_trans">
-      <p class="title">A bit about <%= current_user.firstname %></p>
-      <hr />
-      <div id="bio">
-        <%=raw format_plaintext(current_user.bio) if current_user.bio %>
-      </div>
-      <hr />
-    </div>
-    <div class="floatbox_trans">
-      <p class="title">Edit my Profile</p>
-      <%= form_for @user, :url => profile_path(current_user.id), :html => { :multipart => true } do |f| %>
-        <table>
+      <p class="title">Edit my bio</p>
+      <%= form_for @user.note, :url => bio_save_profile_path(@user.id), :html => { :multipart => true, :remote => true } do |f| %>
+        <table style="width:100%;">
           <tr>
-            <td>
-              <label>Something about <%= current_user.firstname %></label><br />
-              <%= f.text_area :bio, {style: "height: 190px;width: 250px;"} %><br />
-              <label>Phone: </label><br />
-              <%= f.text_field :phone, {style: "width: 250px;"} %><br />
-              <label>Address: </label><br />
-              <%= f.text_area :address,{style: "height: 90px;width: 250px;"} %><br />
+            <td style="width:275px;">
+              <%= f.text_area :bio, {style: "height: 225px;width: 95%;"} %>
             </td>
             <td>
+              <%= render "shared/format_help" %>
               <p>
-                <%= image_tag(current_user.avatar.url(:thumb)) %>
-                <label>Avatar Image </label><br />
-                <%= f.file_field :avatar %>
+                <%= f.submit "Update Bio" %>
               </p>
-              <p>
-                <%= image_tag(current_user.wallpaper.url(:thumb))%>
-                <label>Wallpaper Image </label><br />
-                <%= f.file_field :wallpaper %>
-              </p>
-              <p>
-                <%= image_tag(current_user.iotd(:thumb))%>
-                <label>Image of the Day! </label><br />
-                <%= f.file_field :iotd %>
-              </p>
-              <p><%= f.submit %></p>
             </td>
           </tr>
         </table>
       <% end %>
+      <p class="title">Edit my Profile</p>
+      <%= form_for @user, :url => profile_path(current_user.id), :html => { :multipart => true } do |f| %>
+        <p><%= f.submit %></p>
+        <p>
+          <%= image_tag(current_user.avatar.url(:thumb)) %>
+          <label>Avatar Image </label><br />
+          <%= f.file_field :avatar %>
+        </p>
+        <label>Phone: </label><br />
+        <%= f.text_field :phone, {style: "width: 250px;"} %><br />
+        <label>Address: </label><br />
+        <%= f.text_area :address,{style: "height: 90px;width: 250px;"} %><br />
+        <p>
+          <%= image_tag(current_user.wallpaper.url(:thumb))%>
+          <label>Wallpaper Image </label><br />
+          <%= f.file_field :wallpaper %>
+        </p>
+        <p>
+          <%= image_tag(current_user.iotd(:thumb))%>
+          <label>Image of the Day! </label><br />
+          <%= f.file_field :iotd %>
+        </p>
+        <p><%= f.submit %></p>
+      <% end %>
     </div>
-  </div>
 </div>
 
 <%= nav_bar(@nav_body_content) %>

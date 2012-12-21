@@ -1,6 +1,9 @@
-<h1>Editing user_admin</h1>
+<div class="floatbox_trans">
+  <h1>Editing user_admin</h1>
+  
+  <%= render 'form' %>
+  
+  <%= link_to 'Destroy', @user_admin, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', user_admins_path %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Destroy', @user_admin, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', user_admins_path %>

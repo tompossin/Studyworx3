@@ -50,7 +50,7 @@ class TeamsController < ApplicationController
   
   def create
     @team = current_user.teams.create(params[:team])
-    @members = @team.users
+    @members = @team.users.all
 
     respond_to do |format|
       if @team.save
@@ -63,11 +63,13 @@ class TeamsController < ApplicationController
   
   def update
     @team = Team.find(params[:id])
-    @members = @team.users.all
+    
     respond_to do |format|
       if @team.update_attributes(params[:team])
-        format.js
+        @members = @team.users.all
+        format.js 
       else
+        format.html
         format.js {render("shared/save_failure")}
       end
     end
@@ -78,29 +80,23 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.users.clear
     @team.destroy
+    @teams_i_own = Team.find_all_by_owner_id(current_user.id)
+    @my_teams = current_user.teams
 
     respond_to do |format|
       if @team.destroy
-        format.js 
+        format.js { render :index }
       else
         format.js { render "shared/delete_failed" }
       end
     end  
   end
   
-  # Membership editing page
-  # TODO need a search field on this page when people try to add users
-  # that are not in their school.
+  # Adds or Removes members from a team
   def memberships
     @team = Team.find(params[:id])
     @members = @team.users.all
-    
-    if session[:school_id]
-      @school = School.find(session[:school_id])
-      @users = @school.users.order("lastname ASC")
-    else
-      @users = User.limit(20).all
-    end
+    @users = UserAdmin.search(params[:search])
 
     respond_to do |format|
       format.js
@@ -108,15 +104,21 @@ class TeamsController < ApplicationController
   end
   
   # Add and member to a team
+  # Unless this person is already a member
   def add_member
     @team = Team.find(params[:id])
     @user = User.find(params[:user_id])
-    @team.users<< @user
+    member = @team.users.exists?(params[:user_id])
+    @team.users<< @user unless member
     @members = @team.users
-    @users = User.all
+    @users = User.limit(20).all
     
     respond_to do |format|
-      format.js {render :memberships }
+      unless member
+        format.js {render :memberships }
+      else
+        format.js {render :duplicate_member }
+      end
     end
   end
   
@@ -126,7 +128,7 @@ class TeamsController < ApplicationController
     @user = User.find(params[:user_id])
     @team.users.delete(@user)
     @members = @team.users
-    @users = User.all
+    @users = User.limit(20).all
     
     respond_to do |format|
       format.js {render :memberships }

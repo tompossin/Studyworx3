@@ -3,10 +3,10 @@
   # 
   # This will be the main controller for user info updates,etc.
   # Most of these actions will render to the nav_bar via AJAX
-  #
-  # This will give an understandable url and will
-  # make it easier to avoid route conflicts with
-  # devise.
+  # === Profiles Controller
+  # This controller will give an understandable url and will
+  # make it easier to avoid route conflicts with devise.
+  
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_admin, :only=>[:reviewboard, :update_reviewboard]
@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
   
   # This is the users "Public Profile page"
   def show
-      @user = User.find(params[:id])
+      @user = User.find_by_id(params[:id])
       respond_to do |format|
         format.js
       end
@@ -23,8 +23,8 @@ class ProfilesController < ApplicationController
   # This is the users private profile page
   def edit
     @user = current_user
-    @my_schools = @user.schools.where(active: true)
     @schools = School.all_active
+    @my_schools = current_user.schools.where(active: true)
     @nav_body_content = "schools/schools"
   end
   
@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
   # This can only be edited by an admin or better.
   # This retrieves a users review board status
   def reviewboard
-    @user = User.find(params[:profile_id])   
+    @user = User.find(params[:id])   
   end
   # must be admin or better
   # This edits a users reviewboard status
@@ -54,6 +54,12 @@ class ProfilesController < ApplicationController
   
   # NOTE TO SELF METHODS
   # Loads or creates a reminder for editing via AJAX
+  def reminder_show
+    respond_to do |format|
+      format.js {render template: "profiles/reminder_save"}
+    end
+  end
+  
   def reminder_load
     @note = Note.find_by_user_id(current_user.id)
     respond_to do |format|
@@ -62,7 +68,7 @@ class ProfilesController < ApplicationController
       else
         @note = Note.new
         @note.user_id = current_user.id
-        @note.reminder = "Click the icon above to add a reminder..."
+        @note.reminder = "Click the edit link above to add a reminder..."
         @note.save
         format.js
       end
@@ -76,6 +82,54 @@ class ProfilesController < ApplicationController
       @note.reminder = params[:reminder]
       @note.save
       format.js
+    end
+  end
+  
+  # This renders the current public user message
+  def public_show
+    respond_to do |format|
+      format.js {render template: "profiles/public_save"}
+    end
+  end
+  
+  # This finds or creates a new public user note
+  def public_load
+    @note = Note.find_by_user_id(current_user.id)
+    respond_to do |format|
+      if @note
+        format.js
+      else
+        @note = Note.new
+        @note.user_id = current_user.id
+        @note.public = "Click the edit link above to add your thought to share..."
+        @note.save
+        format.js
+      end
+    end 
+  end
+  
+  # This saves an updated public user note
+  def public_save
+    @note = Note.find_by_user_id(current_user.id)
+    respond_to do |format|
+      @note.public = params[:public]
+      @note.save
+      format.js
+    end
+  end
+  
+  # This saves a users bio attribute
+  def bio_save
+    @note = current_user.note
+    @note.bio = params[:note][:bio]
+    @note.save
+    @user = current_user
+    respond_to do |format|
+      if @note.save
+        format.js
+      else
+        format.js {render "shared/save_failed"}
+      end
     end
   end
   

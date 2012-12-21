@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209001508) do
+ActiveRecord::Schema.define(:version => 20121220192551) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20121209001508) do
     t.text     "public"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "bio"
   end
 
   create_table "papers", :force => true do |t|
@@ -177,7 +178,6 @@ ActiveRecord::Schema.define(:version => 20121209001508) do
     t.text     "lastname"
     t.string   "phone"
     t.text     "address"
-    t.text     "bio"
     t.boolean  "reviewboard"
     t.integer  "theme"
     t.string   "avatar_file_name"

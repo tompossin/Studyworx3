@@ -1,17 +1,19 @@
-<div class="title">
-  <%= @team.name %> 
+<div class="title float_left">
+  <p class="title"><%= @team.name %> </p>
 </div>
 <div class="title small float_left">
   Description 
   <div class="smaller indent">
-    <%=raw format_plaintext(@team.description) %>
+    <%= formatter(@team.description) %>
   </div>  
 </div>
-<div class="team">
-  <%=link_to "Membership", memberships_team_path(@team),{remote: true, class: "smallest"} %> 
-  <%=link_to "Edit this team", edit_team_path(@team),{remote: true, class: "smallest"} %> 
-  <%=link_to "Delete entire Team", @team, {method: "delete", remote: true, class: "smallest"} %>
-</div>
+<% if @team.owner_id == current_user.id %>
+  <div class="team">
+    <%=link_to "Membership", memberships_team_path(@team),{remote: true, class: "smallest"} %> 
+    <%=link_to "Edit this team", edit_team_path(@team),{remote: true, class: "smallest"} %> 
+    <%=link_to "Delete entire Team", @team, {method: "delete", remote: true, class: "smallest"} %>
+  </div>
+<% end %>
 <div class="float_left"> 
   <div class="title small float_left">
     Current Members: <span class="smallest red"><%= @members.count %></span>

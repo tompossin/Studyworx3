@@ -8,7 +8,7 @@
   <% end %>
   <p class="title smaller">To: <%= get_full_name(message.recipient_id)%></p>
   <p class="title small"><%= message.subject%></p>
-  <p><%=sanitize(format_plaintext(message.body))%></p>
+  <p><%= formatter(message.body)%></p>
   <div id="reply_link_<%= message.id %>" class="reply_link">
     <!-- Need to move this to a partial so I can reload it easily -->
     <%= render "create_reply", {message: message} %>

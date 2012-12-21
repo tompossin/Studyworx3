@@ -1,0 +1,4 @@
+<%= form_tag({:controller=>:profiles,:action=>:public_save}, {:remote=> true, :id=>current_user.id}) do %>
+  <%= text_area_tag :public, @note.public, {:size=>"34x5"} %><br />
+  <%= submit_tag "save" %>
+<% end %>

@@ -16,10 +16,7 @@
   </div>
   <br />
   <div class="field">
-    <%= f.label 'Admin Level' %><br />
-    <%= f.number_field :level %>
-  </div>
-  <div class="actions">
+    <%= f.select :level,[["No Admin Priviledges", 0], ["Contributor", 1],["Managing Admin", 2], ["Super Admin", 3]] %>
     <%= f.submit %>
   </div>
 <% end %>

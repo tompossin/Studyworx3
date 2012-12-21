@@ -1,3 +1,6 @@
+<div class="float_left title">
+  <%= @team.name %> <%=link_to "edit", edit_team_path(@team),{remote: true, class: "smallest"} %>
+</div>
 <div class="float_left"> 
   <div class="title small float_left">
     Current Members
@@ -10,6 +13,12 @@
   <div class="title small float_left">
     User list
   </div>
+  <%= form_tag memberships_team_path, {method: :get, remote: true } do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
   <div class="team">
     <% for u in @users %>
       <%=render("user",{u: u})%>

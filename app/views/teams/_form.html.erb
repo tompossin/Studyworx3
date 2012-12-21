@@ -1,9 +1,10 @@
-<%= form_for(@team, remote: true) do |f| %>
+<%= form_for(@team, {remote: true}) do |f| %>
   <%= f.hidden_field :owner_id %>
   <p class="title small">
     Give Your Team a name <span class="smallest red">(required)</span>
   </p>
   <%= f.text_field :name %>
+
   <p class="title small">
     State Your School name
   </p>

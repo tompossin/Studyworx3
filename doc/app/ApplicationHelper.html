@@ -64,7 +64,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-format_plaintext">#format_plaintext</a>
+    <li><a href="#method-i-formatter">#formatter</a>
     
     <li><a href="#method-i-full_name">#full_name</a>
     
@@ -83,6 +83,8 @@
     <li><a href="#method-i-relaxed_sanitize">#relaxed_sanitize</a>
     
     <li><a href="#method-i-set_wallpaper">#set_wallpaper</a>
+    
+    <li><a href="#method-i-validation_errors_block">#validation_errors_block</a>
     
   </ul>
 </nav>
@@ -204,10 +206,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-format_plaintext" class="method-detail ">
+      <div id="method-i-formatter" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">format_plaintext</span><span
+          <span class="method-name">formatter</span><span
             class="method-args">(content)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -215,29 +217,56 @@
 
         <div class="method-description">
           
-          <p>TODO look at rewriting this with a split method on n so that I can add
-headings. At this point it is pretty foolproof but super basic</p>
+          <p>This formats plain text into VERY basic html. This should only be used for
+small text objects. Clearly not the fastest car on the strip. I am going
+for safe and dead simple here.</p>
           
 
           
-          <div class="method-source-code" id="format_plaintext-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">format_plaintext</span>(<span class="ruby-identifier">content</span>)
-  <span class="ruby-identifier">content</span> = <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">content</span>)
-  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\n/</span>,<span class="ruby-string">'&lt;br /&gt;'</span>)
-  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\s\s/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'</span>)
-  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\*\*/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;diams;&amp;nbsp;'</span>)
-  <span class="ruby-identifier">content</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\*/</span>,<span class="ruby-string">'&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;bull;&amp;nbsp;'</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content</span>
+          <div class="method-source-code" id="formatter-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">formatter</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-identifier">content</span> = <span class="ruby-identifier">strip_links</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-identifier">newstr</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">content</span>.<span class="ruby-identifier">each_line</span>() <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">l</span>.<span class="ruby-identifier">rstrip!</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\^\^/</span>)
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\^\^/</span>, <span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;p&quot;</span>,<span class="ruby-identifier">l</span>,<span class="ruby-keyword">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;title larger&quot;</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\&gt;\&gt;/</span>)
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\&gt;\&gt;/</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;p&quot;</span>,<span class="ruby-identifier">l</span>,<span class="ruby-keyword">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;title large right&quot;</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\&quot;\&quot;/</span>)
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\&quot;\&quot;/</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;blockquote&quot;</span>,<span class="ruby-identifier">l</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\*\s/</span>)
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\*/</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;ul&quot;</span>,<span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;li&quot;</span>,<span class="ruby-identifier">l</span>))
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\s\s\s\s/</span>)
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\s\s\s\s/</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;p&quot;</span>,<span class="ruby-identifier">l</span>,<span class="ruby-keyword">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;indent_double&quot;</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\s\s/</span>)   
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\s\s/</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;p&quot;</span>,<span class="ruby-identifier">l</span>,<span class="ruby-keyword">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;indent&quot;</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r::/</span>)
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r::/</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;a&quot;</span>,<span class="ruby-identifier">l</span>,{ <span class="ruby-identifier">href</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{l}&quot;</span>,<span class="ruby-identifier">target</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;_blank&quot;</span>})
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;p&quot;</span>,<span class="ruby-identifier">l</span>) 
+      <span class="ruby-keyword">end</span>    
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">newstr</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- format_plaintext-source -->
+          </div><!-- formatter-source -->
           
         </div>
 
         
 
         
-      </div><!-- format_plaintext-method -->
+      </div><!-- formatter-method -->
 
     
       <div id="method-i-full_name" class="method-detail ">
@@ -285,7 +314,7 @@ headings. At this point it is pretty foolproof but super basic</p>
 
         <div class="method-description">
           
-          
+          <p>FIXME I need to come back to this I think the User.find is redundant</p>
           
 
           
@@ -356,7 +385,7 @@ headings. At this point it is pretty foolproof but super basic</p>
 
           
           <div class="method-source-code" id="hidden_div_unless-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
     <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none&quot;</span>
@@ -389,7 +418,7 @@ headings. At this point it is pretty foolproof but super basic</p>
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
@@ -422,7 +451,7 @@ headings. At this point it is pretty foolproof but super basic</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
@@ -493,7 +522,7 @@ include youtube and vimeo videos.</p>
 
           
           <div class="method-source-code" id="relaxed_sanitize-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">relaxed_sanitize</span>(<span class="ruby-identifier">rawhtml</span>)
   <span class="ruby-identifier">sanitize</span> <span class="ruby-identifier">rawhtml</span>,<span class="ruby-value">:tags=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u )</span>, 
                     <span class="ruby-value">:attributes=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(id class style src border align colspan rowspan)</span>
@@ -525,7 +554,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="set_wallpaper-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 78</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>  
@@ -545,6 +574,36 @@ hack.</p>
 
         
       </div><!-- set_wallpaper-method -->
+
+    
+      <div id="method-i-validation_errors_block" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validation_errors_block</span><span
+            class="method-args">(formobject)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This inserts the standard validation errors block into a form</p>
+          
+
+          
+          <div class="method-source-code" id="validation_errors_block-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validation_errors_block</span>(<span class="ruby-identifier">formobject</span>)
+  <span class="ruby-identifier">render</span>(<span class="ruby-string">&quot;/shared/validation_errors_block&quot;</span>, {<span class="ruby-identifier">object</span><span class="ruby-operator">:</span> <span class="ruby-identifier">formobject</span>})
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validation_errors_block-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validation_errors_block-method -->
 
     
     </section><!-- public-instance-method-details -->

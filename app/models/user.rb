@@ -38,6 +38,6 @@ class User < ActiveRecord::Base
      
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname 
-  attr_accessible :phone, :address, :bio, :team, :owner_id, :avatar, :wallpaper, :iotd
+  attr_accessible :phone, :address, :bio, :avatar, :wallpaper, :iotd
 
 end

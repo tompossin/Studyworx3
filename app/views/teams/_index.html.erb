@@ -20,7 +20,7 @@
   </div>
   <div id="my_memberships" class="team">
     <% for mt in @my_teams %>
-      <p><%=link_to mt.name %></p>
+      <p><%=link_to mt.name, team_path(mt.id), {remote: true} %></p>
     <% end %>
   </div>
 </div>

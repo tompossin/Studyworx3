@@ -14,11 +14,12 @@ module ApplicationHelper
     u = User.find(user_id)
     return u.firstname + " " + u.lastname
   end
-  # FIXME I need to come back to this I think the User.find is redundant
+  
+  # Locates a given users avatar url
   def get_avatar_url(user_id)
-    user = User.find(user_id)
-    avatar = user.avatar.url(:thumb)
-    unless user.avatar_file_size?
+    u = User.find_by_id( user_id)
+    avatar = u.avatar.url(:thumb)
+    unless u.avatar_file_size?
       avatar = false
     end
     return avatar || Settings.avatar_image  
@@ -29,15 +30,47 @@ module ApplicationHelper
     nbc = nav_body_content || Settings.default_nav_body
     render :partial=>"layouts/nav_bar", :locals=>{content: full_name, nav_body_content: nbc}
   end
-  # TODO look at rewriting this with a split method on \n so that I can add headings.
-  # At this point it is pretty foolproof but super basic
-  def format_plaintext(content)
-    content = sanitize(content)
-    content.gsub!(/\n/,'<br />')
-    content.gsub!(/\s\s/,'&nbsp;&nbsp;&nbsp;&nbsp;')
-    content.gsub!(/\*\*/,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&diams;&nbsp;')
-    content.gsub!(/\*/,'&nbsp;&nbsp;&nbsp;&bull;&nbsp;')
-    return content
+
+  # This formats plain text into VERY basic html.
+  # This should only be used for small text objects.
+  # Clearly not the fastest car on the strip.
+  # I am going for safe and dead simple here.
+  def formatter(content)
+    content = strip_links(content)
+    newstr = ""
+    unless content.nil?
+      content.each_line() do |l|
+        l.rstrip!
+        if l.match(/\^\^/)
+          l.gsub!(/\^\^/, "")
+          newstr<<content_tag("p",l,class: "title larger")
+        elsif l.match(/\>\>/)
+          l.gsub!(/\>\>/,"")
+          newstr<<content_tag("p",l,class: "title large right")
+        elsif l.match(/\"\"/)
+          l.gsub!(/\"\"/,"")
+          newstr<<content_tag("blockquote",l)
+        elsif l.match(/\/\//)
+          l.gsub!(/\/\//,"")
+          newstr<<content_tag("p",l,class: "italic")
+        elsif l.match(/\*\s/)
+          l.gsub!(/\*/,"")
+          newstr<<content_tag("ul",content_tag("li",l))
+        elsif l.match(/\s\s\s\s/)
+          l.gsub!(/\s\s\s\s/,"")
+          newstr<<content_tag("p",l,class: "indent_double")
+        elsif l.match(/\s\s/)   
+          l.gsub!(/\s\s/,"")
+          newstr<<content_tag("p",l,class: "indent")
+        elsif l.match(/::/)
+          l.gsub!(/::/,"")
+          newstr<<content_tag("a",l,{ href: "#{l}",target: "_blank"})
+        else
+          newstr<<content_tag("p",l) 
+        end    
+      end
+    end
+    return sanitize(newstr)
   end
   
   # Checks for superadmin in the view

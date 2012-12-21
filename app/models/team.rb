@@ -6,5 +6,4 @@ class Team < ActiveRecord::Base
   ##########################################################
   validates_presence_of :name, :owner_id
   
-  
 end

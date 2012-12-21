@@ -1,16 +1,13 @@
-
-<div id="category" class="box_trans" style="font-weight:bold;">
-  <%= sanitize @blog.category %>
-</div>
-
-<div id="topic" class="box_trans" style="font-weight:bold;" >
-  <%= sanitize @blog.topic %>
-</div>
-
-<div id="article" class="article">
-  <%= sanitize @blog.article %>
-</div>
-
-
-<%= link_to 'Edit', '/editor' + blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+<article>
+  <div id="category" class="box_trans" style="font-weight:bold;">
+    <%= sanitize @blog.category %>
+  </div>
+  
+  <div id="topic" class="box_trans" style="font-weight:bold;" >
+    <%= sanitize @blog.topic %>
+  </div>
+  
+  <div id="article" class="article">
+    <%= sanitize @blog.article %>
+  </div>
+</article>

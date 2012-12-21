@@ -1,17 +1,19 @@
-<% if @my_schools %>
+
   <div id="current_school" class="float_left title">
     <span id="schoolname"><%= session[:school_name] if session[:school_name] %></span>
   </div>
   <div class="float_left">
     <p class="title small">My Schools</p>
-    <div class="float_left title smaller">
-      <%= "click to enroll below..." if @my_schools.empty? %>
-    </div>
-    <% for ms in @my_schools %>
-      <div class="float_left title smaller" style="margin: 0px;">
-        <%= link_to( ms.name, school_path(ms.id)) if ms.id %>
-        <%=link_to( "edit", edit_school_path(ms.id), {remote: true, class: "smaller"}) if ms.id %>
+    <% if @my_schools %>
+      <div class="float_left title smaller">
+        <%= "click to enroll below..." if @my_schools.empty? %>
       </div>
+      <% for ms in @my_schools %>
+        <div class="float_left title smaller" style="margin: 0px;">
+          <%= link_to( ms.name, school_path(ms.id)) if ms.id %>
+          <%=link_to( "edit", edit_school_path(ms.id), {remote: true, class: "smaller"}) if ms.id %>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="float_left">
@@ -22,4 +24,3 @@
       </div>
     <% end %>
   </div>
-<% end %>

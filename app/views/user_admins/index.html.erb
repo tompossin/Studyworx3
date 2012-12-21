@@ -29,9 +29,9 @@
     	<td><%= link_to "Make an Admin", edit_user_admin_path(u)%></td>
     <% end %>
     <% if u.reviewboard == true %>
-      <td><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", profile_reviewboard_path(u.id)%></td>
+      <td><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
     <% else %>
-      <td><span style="font-style:italic;">False </span><%= link_to "Edit status", profile_reviewboard_path(u.id)%></td>
+      <td><span style="font-style:italic;">False </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
     <% end %>
   </tr>
 <% end %>

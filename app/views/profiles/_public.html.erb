@@ -1,0 +1,7 @@
+<div class="reminder">
+  <div class="title smaller" style="background-color:white;">
+    Public - Thought of the Day... 
+    <%=link_to( "edit", public_load_profile_path(current_user.id),{title: "Public-Thought of the Day", remote: true, class: "smallest"}) if current_user%>
+  </div>
+  <%= formatter(current_user.note.public) if current_user.note %>
+</div>

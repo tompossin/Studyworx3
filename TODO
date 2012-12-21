@@ -3,8 +3,10 @@ app/controllers/teams_controller.rb:
 
 app/helpers/application_helper.rb:
   * [ 17] [FIXME] I need to come back to this I think the User.find is redundant
-  * [ 32] [TODO] look at rewriting this with a split method on \n so that I can add headings.
-  * [ 82] [TODO] this may need to moved or eliminated it is an ugly hack.
+  * [109] [TODO] this may need to moved or eliminated it is an ugly hack.
+
+app/models/team.rb:
+  * [  8] [FIXME] I either need to make a global custom validator of somekind or use a js validator or both here.
 
 app/models/user.rb:
   * [ 26] [FIXME] I need a Jquery checker on the image uploading page that will prevent
