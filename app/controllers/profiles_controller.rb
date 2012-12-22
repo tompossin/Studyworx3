@@ -13,6 +13,10 @@ class ProfilesController < ApplicationController
 
   
   # This is the users "Public Profile page"
+  # This can be called by anyone anytime so there is no
+  # find_or_create_by_* here. I have put a lot of safeguards
+  # in the _show partial to keeps from kicking errors for non-existent
+  # notes in the associated record.
   def show
       @user = User.find_by_id(params[:id])
       respond_to do |format|
@@ -21,8 +25,11 @@ class ProfilesController < ApplicationController
   end
   
   # This is the users private profile page
+  # If they have not created an associated notes record
+  # This will create one for them.
   def edit
     @user = current_user
+    @user.note = Note.find_or_create_by_user_id(@user.id)
     @schools = School.all_active
     @my_schools = current_user.schools.where(active: true)
     @nav_body_content = "schools/schools"

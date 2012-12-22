@@ -1,15 +1,19 @@
 class SchoolsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_contributor, :only=>[:index, :new, :update, :create, :destroy]
+  
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all_active
-    @my_schools = current_user.schools.where(:active => true)
-    @nav_body_content = "schools/schools"
+    @school = School.find_by_id(current_user.school)
+    load_school_vars
 
     respond_to do |format|
-      format.html # index.html.erb
+      if current_user.school < 1
+        format.html # index.html.erb
+      else
+        format.html { render :homeroom }
+      end
     end
   end
 
@@ -17,16 +21,38 @@ class SchoolsController < ApplicationController
   # GET /schools/1.json
   def show
     @school = School.find(params[:id])
-    @participants = Participant.includes(:school).where(user_id: current_user.id).all
-    set_school(params[:id])
-    @schools = School.all_active
-    @my_schools = current_user.schools.where(:active => true)
-    @nav_body_content = "schools/schools"
+    load_school_vars
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @school }
     end
+  end
+  
+  # This is the default page for a participant.
+  def homeroom
+    @school = School.find(current_user.school)
+    load_school_vars
+    
+    respond_to do |format|
+      format.html 
+    end
+  end
+  
+  # Sets the users current school
+  def set_current
+    school_changed = User.set_school(params[:id],current_user.id)
+    @current_user = User.find(current_user.id) 
+    @school = School.find(current_user.school)
+    respond_to do |format|
+      if school_changed
+        flash[:notice] = "Changed default school to #{@school.name}"
+        format.html {redirect_to homeroom_school_path }
+      else
+        flash[:alert] = "Failed to change default school"
+        format.html {redirect_to :index }
+      end
+    end  
   end
 
   # GET /schools/new
@@ -83,5 +109,13 @@ class SchoolsController < ApplicationController
       format.html { redirect_to schools_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  # This loads standard school variables to keep things DRY
+  def load_school_vars
+    @schools = School.all_active
+    @my_schools = current_user.schools.where(:active => true)
+    @nav_body_content = "schools/schools"
   end
 end

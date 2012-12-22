@@ -1,4 +1,3 @@
-
 <div style="float:left;">
   <div class="floatbox_trans" style="max-width:300px;">
     <div class='avatar' style="background-image:url('<%= @user.avatar.url(:thumb) %>');">
@@ -8,17 +7,19 @@
     <div class="floatbox_trans">
     <p class="title">A bit about <%= @user.firstname %></p>
     <hr />
-    <div id="bio">
-      <%=raw formatter(@user.note.bio) if @user.note.bio %>
-    </div>
+    <% if @user.note %>
+      <div id="bio">
+        <%= formatter(@user.note.bio) || nil %>
+      </div>
+    <% end %>
     <hr />
   </div>
   </div>
   
   <div class="floatbox_trans" style="max-width:300px;">
-    <% if @user.note.public %>
+    <% if @user.note %>
       <p class="title">Thought for the Day!</p>
-      <%=raw formatter(@user.note.public) %>
+      <%= formatter(@user.note.public) || nil  %>
     <% end %>
     <p class="title">Picture of the Day!</p>
     <%= link_to(image_tag(@user.iotd.url(:medium)),@user.iotd.url, target: "_blank" ) %>

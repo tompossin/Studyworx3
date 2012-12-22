@@ -21,16 +21,7 @@ class ApplicationController < ActionController::Base
           session[:admin_level] = 0
         end
       end
-      unless session[:school_name]
-        session[:school_name] = "Select School Below"
-      end
     end
-  end
-
-  def set_school(school_id)
-    school = School.find(school_id)
-    session[:school_name] = school.name
-    session[:school_id] = school.id
   end
   
   # These methods are used as before_filters in controllers

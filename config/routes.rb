@@ -19,7 +19,11 @@ Studyworx3::Application.routes.draw do
   end
   resources :reviews
   resources :papers
-  resources :schools
+  resources :schools do
+    member do
+      get 'set_current','homeroom'
+    end
+  end
   resources :participants
   resources :blogs
   resources :user_admins

@@ -1,0 +1,10 @@
+<div id="content-large">
+  <article>
+    <div class="title">
+      <p>Home Room for <%= @school.name %></p>
+      <p class="smallest">Welcome <%=current_user.fullname %></p>
+      <p>Default school Id: <%= current_user.school %></p>
+    </div>
+  </article>
+</div>
+<%= nav_bar(@nav_body_content) %>

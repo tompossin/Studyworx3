@@ -39,5 +39,17 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname 
   attr_accessible :phone, :address, :bio, :avatar, :wallpaper, :iotd
+  
+  # Sets the current school in User
+  def self.set_school(school_id,user_id)
+    user = User.find_by_id(user_id)
+    user.school = school_id
+    user.save  
+  end
+  
+  # Returns full name of user
+  def fullname
+    return self.firstname+" "+self.lastname
+  end
 
 end
