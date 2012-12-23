@@ -4,15 +4,15 @@
       <br />
       <% if current_user %>
         <% if session[:admin_level] == 3 %>
-          <%= link_to "User Admin", user_admins_path %> <br />
-          <%= link_to "Schools Admin", schools_path %> <br />
+          <%= link_to "User Admin", admin_user_admins_path %> <br />
+          <%= link_to "Schools Admin", admin_schools_path %> <br />
           <%= link_to "Blog Admin", blogs_path %> <br />
           Book Admin <br />
           Paragraph Admin <br />
           Version Admin <br />
           <br />
         <% elsif session[:admin_level] == 2 %>
-          <%= link_to "Schools Admin", schools_path %> <br />
+          <%= link_to "Schools Admin", admin_schools_path %> <br />
           <%= link_to "Blog Admin", blogs_path %> <br />
           Paragraph Admin <br />
           Version Admin <br />

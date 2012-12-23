@@ -1,4 +1,6 @@
-class UserAdminsController < ApplicationController
+# === Admin Interface for User Admins
+# Accessed /admin/user_admins/action
+class Admin::UserAdminsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_superadmin
   

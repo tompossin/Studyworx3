@@ -41,15 +41,39 @@ class User < ActiveRecord::Base
   attr_accessible :phone, :address, :bio, :avatar, :wallpaper, :iotd
   
   # Sets the current school in User
-  def self.set_school(school_id,user_id)
-    user = User.find_by_id(user_id)
-    user.school = school_id
-    user.save  
+  def set_school(school_id)
+    self.school = school_id
+    self.save  
   end
   
   # Returns full name of user
   def fullname
     return self.firstname+" "+self.lastname
+  end
+  
+  # Checks users authority to administrate schools
+  def is_school_admin(school_id=false)
+    participant = self.participants.find_by_school_id(school_id) if school_id
+    if self.user_admin
+      if self.user_admin.level > 2
+        return true
+      end
+    elsif self.school == school_id and participant.role_id < 3
+      return true
+    else
+      return false 
+    end
+  end
+  
+  def is_school_leader(school_id)
+    participant = self.participants.find_by_school_id(school_id)
+    if participant
+      if self.school == school_id and participant.role_id < 3
+        return true
+      end
+    else
+      return false
+    end
   end
 
 end

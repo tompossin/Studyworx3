@@ -1,0 +1,52 @@
+<div id="content-large">
+  <article>
+    <h1>School Administration</h1>
+    <table>
+      <thead>
+        <th>
+          School Name
+        </th>
+        <th>
+          Active?
+        </th>
+        <th>
+          Start Date
+        </th>
+        <th>
+          End Date
+        </th>
+        <th>
+          Owned By
+        </th>
+        <th>
+          Admin
+        </th>
+      </thead>
+      <tbody>
+        <% for s in @schools %>
+          <tr style="background-color:<%= set_color(s.active,:yellow,:gray)%>">
+            <td>
+              <%= s.name %>
+            </td>
+            <td>
+              <%= s.active %>
+            </td>
+            <td>
+              <%= s.start_date.strftime("%m/%d/%Y") %>
+            </td>
+            <td>
+              <%= s.end_date.strftime("%m/%d/%Y") %>
+            </td>
+            <td>
+              <%= get_full_name(s.owner_id) if s.owner_id %>
+            </td>
+            <td>
+              <%=link_to "edit", edit_admin_school_path(s.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>   
+  </article>
+</div>
+<%= nav_bar(@nav_body_content) %>

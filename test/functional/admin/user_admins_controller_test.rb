@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserAdminsControllerTest < ActionController::TestCase
+class Admin::UserAdminsControllerTest < ActionController::TestCase
   setup do
     @user_admin = user_admins(:one)
   end

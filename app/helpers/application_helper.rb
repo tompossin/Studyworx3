@@ -73,6 +73,20 @@ module ApplicationHelper
     return sanitize(newstr)
   end
   
+  # changes color by t=true/false
+  # Returns whatever color is given in the 2nd and 3rd attribute
+  # Defaults to tcolor="green" and fcolor="gray"
+  # Useful for changing background/foreground colors on object lists with boolean attributes.
+  # Conceivably this could return any reasonable string in response to True/False.
+  # But really should be renamed for that sort of thing.
+  def set_color(t,tcolor="green",fcolor="gray")
+    if t
+      tcolor
+    else
+      fcolor
+    end
+  end
+  
   # Checks for superadmin in the view
   def is_superadmin
     user = UserAdmin.find_by_user_id(current_user.id)

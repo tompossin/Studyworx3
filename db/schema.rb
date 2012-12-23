@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221235545) do
+ActiveRecord::Schema.define(:version => 20121222184902) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -115,9 +115,23 @@ ActiveRecord::Schema.define(:version => 20121221235545) do
     t.boolean  "enrolement_type"
     t.boolean  "active"
     t.string   "timezone"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.integer  "owner_id"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "header_file_name"
+    t.string   "header_content_type"
+    t.integer  "header_file_size"
+    t.datetime "header_updated_at"
+    t.string   "featured_file_name"
+    t.string   "featured_content_type"
+    t.integer  "featured_file_size"
+    t.datetime "featured_updated_at"
+    t.string   "caption"
+    t.string   "color"
   end
 
   create_table "sessions", :force => true do |t|

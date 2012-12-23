@@ -1,3 +1,24 @@
+             admin_schools GET    /admin/schools(.:format)                   admin/schools#index
+                           POST   /admin/schools(.:format)                   admin/schools#create
+          new_admin_school GET    /admin/schools/new(.:format)               admin/schools#new
+         edit_admin_school GET    /admin/schools/:id/edit(.:format)          admin/schools#edit
+              admin_school GET    /admin/schools/:id(.:format)               admin/schools#show
+                           PUT    /admin/schools/:id(.:format)               admin/schools#update
+                           DELETE /admin/schools/:id(.:format)               admin/schools#destroy
+            admin_profiles GET    /admin/profiles(.:format)                  admin/profiles#index
+                           POST   /admin/profiles(.:format)                  admin/profiles#create
+         new_admin_profile GET    /admin/profiles/new(.:format)              admin/profiles#new
+        edit_admin_profile GET    /admin/profiles/:id/edit(.:format)         admin/profiles#edit
+             admin_profile GET    /admin/profiles/:id(.:format)              admin/profiles#show
+                           PUT    /admin/profiles/:id(.:format)              admin/profiles#update
+                           DELETE /admin/profiles/:id(.:format)              admin/profiles#destroy
+         admin_user_admins GET    /admin/user_admins(.:format)               admin/user_admins#index
+                           POST   /admin/user_admins(.:format)               admin/user_admins#create
+      new_admin_user_admin GET    /admin/user_admins/new(.:format)           admin/user_admins#new
+     edit_admin_user_admin GET    /admin/user_admins/:id/edit(.:format)      admin/user_admins#edit
+          admin_user_admin GET    /admin/user_admins/:id(.:format)           admin/user_admins#show
+                           PUT    /admin/user_admins/:id(.:format)           admin/user_admins#update
+                           DELETE /admin/user_admins/:id(.:format)           admin/user_admins#destroy
              reply_message GET    /messages/:id/reply(.:format)              messages#reply
     cancel_message_message GET    /messages/:id/cancel_message(.:format)     messages#cancel_message
       cancel_reply_message GET    /messages/:id/cancel_reply(.:format)       messages#cancel_reply
@@ -11,8 +32,9 @@
                    message GET    /messages/:id(.:format)                    messages#show
                            PUT    /messages/:id(.:format)                    messages#update
                            DELETE /messages/:id(.:format)                    messages#destroy
+          memberships_team GET    /teams/:id/memberships(.:format)           teams#memberships
            add_member_team POST   /teams/:id/add_member(.:format)            teams#add_member
-        remove_member_team POST   /teams/:id/remove_member(.:format)         teams#remove_member
+        remove_member_team DELETE /teams/:id/remove_member(.:format)         teams#remove_member
                      teams GET    /teams(.:format)                           teams#index
                            POST   /teams(.:format)                           teams#create
                   new_team GET    /teams/new(.:format)                       teams#new
@@ -34,6 +56,8 @@
                      paper GET    /papers/:id(.:format)                      papers#show
                            PUT    /papers/:id(.:format)                      papers#update
                            DELETE /papers/:id(.:format)                      papers#destroy
+        set_current_school GET    /schools/:id/set_current(.:format)         schools#set_current
+           homeroom_school GET    /schools/:id/homeroom(.:format)            schools#homeroom
                    schools GET    /schools(.:format)                         schools#index
                            POST   /schools(.:format)                         schools#create
                 new_school GET    /schools/new(.:format)                     schools#new
@@ -55,18 +79,16 @@
                       blog GET    /blogs/:id(.:format)                       blogs#show
                            PUT    /blogs/:id(.:format)                       blogs#update
                            DELETE /blogs/:id(.:format)                       blogs#destroy
-               user_admins GET    /user_admins(.:format)                     user_admins#index
-                           POST   /user_admins(.:format)                     user_admins#create
-            new_user_admin GET    /user_admins/new(.:format)                 user_admins#new
-           edit_user_admin GET    /user_admins/:id/edit(.:format)            user_admins#edit
-                user_admin GET    /user_admins/:id(.:format)                 user_admins#show
-                           PUT    /user_admins/:id(.:format)                 user_admins#update
-                           DELETE /user_admins/:id(.:format)                 user_admins#destroy
        reviewboard_profile GET    /profiles/:id/reviewboard(.:format)        profiles#reviewboard
      reminder_load_profile GET    /profiles/:id/reminder_load(.:format)      profiles#reminder_load
+       public_load_profile GET    /profiles/:id/public_load(.:format)        profiles#public_load
+       public_show_profile GET    /profiles/:id/public_show(.:format)        profiles#public_show
+     reminder_show_profile GET    /profiles/:id/reminder_show(.:format)      profiles#reminder_show
 reviewboard_update_profile POST   /profiles/:id/reviewboard_update(.:format) profiles#reviewboard_update
           settheme_profile POST   /profiles/:id/settheme(.:format)           profiles#settheme
      reminder_save_profile POST   /profiles/:id/reminder_save(.:format)      profiles#reminder_save
+       public_save_profile POST   /profiles/:id/public_save(.:format)        profiles#public_save
+          bio_save_profile PUT    /profiles/:id/bio_save(.:format)           profiles#bio_save
                   profiles GET    /profiles(.:format)                        profiles#index
                            POST   /profiles(.:format)                        profiles#create
                new_profile GET    /profiles/new(.:format)                    profiles#new

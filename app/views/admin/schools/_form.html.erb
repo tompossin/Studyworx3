@@ -1,0 +1,69 @@
+<%= form_for @school, :url=>"/admin/schools/#{@school.id}"  do |f| %>
+  <div class="clear_float">
+    <!-- Header Details Below -->
+    <p>
+      <label>School Name: </label><br />
+      <%= f.text_field :name, {:style=>"width:300px;"} %>    
+    </p>
+    <p>
+      <label>Tag Line: </label><br />
+      <%= f.text_field :tagline, {:style=>"width:300px;"} %>
+    </p>
+    <p>
+      <label>Location (short): </label><br />
+      <%= f.text_field :location, {:style=>"width:300px;"} %>
+    </p>
+    <p>
+      <label>Description: </label><br />
+      <%= f.text_area :description, {:style=>"width:300px;height:150px;"} %>
+    </p>
+    <p>
+      <%= image_tag(@school.logo.url(:thumb)) %>
+      <label>Logo Image </label><br />
+      <%= f.file_field :logo %>
+    </p>
+    <p>
+      <%= image_tag(@school.header.url(:thumb)) %>
+      <label>Header Image (200px high by 900px wide) </label><br />
+      <%= f.file_field :header %>
+    </p>
+    <p>
+      <%= image_tag(@school.featured.url(:thumb)) %>
+      <label>Featured Image</label><br />
+      <%= f.file_field :featured %>
+    </p>
+    <p>
+      <label>Feature Image Caption</label><br />
+      <%= f.text_field :caption,{:style=>"width:300px;"} %>
+    </p>
+  </div>
+  
+  <div class="clear_float">
+    <!-- School Details below -->
+    <p>
+      <label>Mailing Address: </label><br />
+      <%= f.text_area :mailing_address, {:style=>"width:300px;height:75px;"} %>
+    </p>
+    <p>
+      <label>Pre-Requisites: </label><br />
+      <%= f.text_area :prereqs, {:style=>"width:300px;height:75px;"} %>
+    </p>
+    <p>
+      <label>Starting Date: </label><br />
+      <%= f.date_select :start_date %>   
+    </p>
+    <p>
+      <label>Ending Date: </label><br />
+      <%= f.date_select :end_date %>   
+    </p>
+    <p>
+      <label>Check box if school is active: </label>
+      <%= f.check_box :active, {:size=>"24px"} %>
+    </p>
+    <p>
+      <%= f.submit "Done" %>
+    </p>
+  </div>
+
+
+<% end %>

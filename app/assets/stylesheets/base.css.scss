@@ -23,13 +23,24 @@ body {
   }
 }
 
+td {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
 h1{
+  font-family: Garamond, Georgia;
+  font-style: italic;
   text-align: left;
 }
 h2 {
+  font-family: Garamond, Georgia;
+  font-style: italic;
   text-align: left;
 }
 h3 {
+  font-family: Garamond, Georgia;
+  font-style: italic;
   text-align: left;
 }
 
@@ -38,6 +49,13 @@ ul {
   margin-bottom:0px;
   padding-top:0px;
   padding-bottom:0px;
+}
+
+header {
+  height:200px;
+  background-color:white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 article {
@@ -377,6 +395,12 @@ blockquote {
 .medium_container {
   float:left;
   margin: 10px;
+}
+
+.clear_float {
+  width:310px;
+  float:left;
+  padding: 2%;
 }
 
 .title {

@@ -1,6 +1,5 @@
 class SchoolsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_contributor, :only=>[:index, :new, :update, :create, :destroy]
   
   # GET /schools
   # GET /schools.json
@@ -41,17 +40,11 @@ class SchoolsController < ApplicationController
   
   # Sets the users current school
   def set_current
-    school_changed = User.set_school(params[:id],current_user.id)
-    @current_user = User.find(current_user.id) 
+    @current_user.set_school(params[:id])
     @school = School.find(current_user.school)
     respond_to do |format|
-      if school_changed
         flash[:notice] = "Changed default school to #{@school.name}"
         format.html {redirect_to homeroom_school_path }
-      else
-        flash[:alert] = "Failed to change default school"
-        format.html {redirect_to :index }
-      end
     end  
   end
 
