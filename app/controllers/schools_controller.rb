@@ -1,10 +1,18 @@
+# === Schools Controller (Public Interface)
+# This controller handles non-administrative school methods.
+# * For admin functions use Admin::SchoolsController
 class SchoolsController < ApplicationController
   before_filter :authenticate_user!
   
   # GET /schools
-  # GET /schools.json
   def index
     @school = School.find_by_id(current_user.school)
+    unless @school
+      @school = School.new
+    end
+    if current_user.is_school_leader(current_user.school)
+      @registrations = @school.participants.pending
+    end
     load_school_vars
 
     respond_to do |format|
@@ -17,7 +25,6 @@ class SchoolsController < ApplicationController
   end
 
   # GET /schools/1
-  # GET /schools/1.json
   def show
     @school = School.find(params[:id])
     load_school_vars
@@ -49,23 +56,23 @@ class SchoolsController < ApplicationController
   end
 
   # GET /schools/new
-  # GET /schools/new.json
   def new
     @school = School.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @school }
     end
   end
 
   # GET /schools/1/edit
   def edit
     @school = School.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /schools
-  # POST /schools.json
   def create
     @school = School.new(params[:school])
 
@@ -81,7 +88,6 @@ class SchoolsController < ApplicationController
   end
 
   # PUT /schools/1
-  # PUT /schools/1.json
   def update
     @school = School.find(params[:id])
 
@@ -93,7 +99,6 @@ class SchoolsController < ApplicationController
   end
 
   # DELETE /schools/1
-  # DELETE /schools/1.json
   def destroy
     @school = School.find(params[:id])
     @school.destroy
@@ -108,7 +113,8 @@ class SchoolsController < ApplicationController
   # This loads standard school variables to keep things DRY
   def load_school_vars
     @schools = School.all_active
-    @my_schools = current_user.schools.where(:active => true)
+    @enrollments = current_user.participants.all
+    #@my_schools = current_user.schools.where(:active => true)
     @nav_body_content = "schools/schools"
   end
 end

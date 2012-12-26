@@ -1,0 +1,16 @@
+<h1>Editing participant</h1>
+
+<%= form_for( [@school,@participant],{remote: true} ) do |f| %>
+  <div class="smaller">
+    Pre-requisites? 
+    <%= f.check_box :prereq %>
+  </div>
+  <div class="smaller">
+    Edit Status: <%= f.select( :accepted,{"Pending"=>"0","Dropped"=>"1","Accept"=>"2"} , { :include_blank => true })%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Register now" %>
+  </div>
+<% end %>
+
+

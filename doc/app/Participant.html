@@ -55,7 +55,17 @@
   </div>
 
   <div id="class-metadata">
+    <nav id="sections-section" class="section">
+  <h3 class="section-header">Sections</h3>
+  <ul class="link-list">
     
+      <li><a href="#5Buntitled-5D"></a></li>
+    
+      <li><a href="#Participant+States">Participant States</a></li>
+    
+  </ul>
+</nav>
+
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
@@ -64,7 +74,21 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-dropped">::dropped</a>
+    
+    <li><a href="#method-c-enroled">::enroled</a>
+    
+    <li><a href="#method-c-pending">::pending</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -82,6 +106,20 @@
   <h3 class="section-header">Class and Module Index</h3>
 
   <ul class="link-list">
+  
+    <li><a href="./Admin.html">Admin</a>
+  
+    <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
+  
+    <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
+  
+    <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
+  
+    <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
+  
+    <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
@@ -147,10 +185,6 @@
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
   
-    <li><a href="./UserAdminsController.html">UserAdminsController</a>
-  
-    <li><a href="./UserAdminsHelper.html">UserAdminsHelper</a>
-  
   </ul>
 </nav>
 
@@ -162,6 +196,13 @@
 
   <div id="description" class="description">
     
+<h3 id="label-Participant+Model"><a href="Participant.html">Participant</a> Model</h3>
+
+<p>This model is a join table between users and schools.</p>
+<ul><li>
+<p>The relationship is a symetrical belongs_to :through relationship</p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -179,6 +220,141 @@
     <!-- Methods -->
     
   </section><!-- 5Buntitled-5D -->
+
+  
+  
+  <section id="Participant+States" class="documentation-section">
+    
+    <div class="documentation-section-title">
+      <h2 class="section-header">
+        Participant States
+      </h2>
+      <span class="section-click-top">
+        <a href="#top">&uarr; top</a>
+      </span>
+    </div>
+    
+
+    
+    <div class="description">
+      
+<p>The methods below should build collections of participants in the following
+states.</p>
+
+<p>These methods are typically used in the scope of a school object</p>
+
+    </div>
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-Participant+States-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-dropped" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dropped</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Typical Usage:</p>
+
+<pre>@dropped_participants = @school.participants.dropped</pre>
+          
+
+          
+          <div class="method-source-code" id="dropped-source">
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dropped</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dropped-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dropped-method -->
+
+    
+      <div id="method-c-enroled" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enroled</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Typical Usage:</p>
+
+<pre>@enroled_participants = @school.participants.enroled</pre>
+          
+
+          
+          <div class="method-source-code" id="enroled-source">
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enroled</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enroled-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enroled-method -->
+
+    
+      <div id="method-c-pending" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pending</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Typical Usage:</p>
+
+<pre>@pending_participants = @school.participants.pending</pre>
+          
+
+          
+          <div class="method-source-code" id="pending-source">
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pending</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pending-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pending-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- Participant+States -->
 
 </div><!-- documentation -->
 

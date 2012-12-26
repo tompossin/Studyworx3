@@ -37,7 +37,6 @@
 --
 -prereq:boolean
 -accepted:int
--current:boolean
 
 
 fg=black
@@ -364,7 +363,7 @@ bg=gray</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>328</x>
-      <y>128</y>
+      <y>152</y>
       <w>152</w>
       <h>200</h>
     </coordinates>
@@ -827,7 +826,7 @@ bg=#3c7a00</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>184</x>
-      <y>232</y>
+      <y>256</y>
       <w>144</w>
       <h>96</h>
     </coordinates>
@@ -851,16 +850,19 @@ fg=white</panel_attributes>
       <x>328</x>
       <y>24</y>
       <w>152</w>
-      <h>96</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>*teams*
 --
 &lt;&lt;id:integer(PK)
 --
+&gt;&gt;school_id:int
+--
 --
 -user_id:int
 -name:string
 -description:text
+-level:int ???????
 --
 --
 /Teams HABTM Users/
@@ -994,5 +996,19 @@ fg=white</panel_attributes>
     <panel_attributes>*&gt;= Contributor(UA1)*
 bg=#3c7a00</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>472</x>
+      <y>0</y>
+      <w>178</w>
+      <h>344</h>
+    </coordinates>
+    <panel_attributes>lt==
+*Replaced by Teams??*
+fg=red
+bg=yellow</panel_attributes>
+    <additional_attributes>24;24;160;328</additional_attributes>
   </element>
 </diagram>

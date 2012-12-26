@@ -1,0 +1,3 @@
+$('#notice').css("display","block");
+$('#notice').html('<%=j "You have successfully registered for #{@school.name}"%>').fadeOut(7000);
+$('#registration').html('<p class="smallest">You have successfully registered for:</p><p>'+'<%=j @school.name %>'+'</p>');

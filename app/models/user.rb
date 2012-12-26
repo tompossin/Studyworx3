@@ -41,36 +41,47 @@ class User < ActiveRecord::Base
   attr_accessible :phone, :address, :bio, :avatar, :wallpaper, :iotd
   
   # Sets the current school in User
+  #  Usage: @user.set_school(school_id)
   def set_school(school_id)
+    p = self.participants.where(:school_id => school_id).first
+    self.role = p.role_id if p
     self.school = school_id
     self.save  
   end
   
   # Returns full name of user
+  #  Useage: @user.fullname
   def fullname
     return self.firstname+" "+self.lastname
   end
   
   # Checks users authority to administrate schools
-  def is_school_admin(school_id=false)
-    participant = self.participants.find_by_school_id(school_id) if school_id
-    if self.user_admin
-      if self.user_admin.level > 2
+  # * A school admin has a participant.role < 3
+  #  Usage: @user.is_school_admin(school_id)
+  def is_school_admin(school_id)
+    if self.participants.exists?(:school_id => school_id)
+      participant = self.participants.find_by_school_id(school_id)
+      if participant.role_id < 3
         return true
+      else
+        return false 
       end
-    elsif self.school == school_id and participant.role_id < 3
-      return true
     else
-      return false 
+      return false
     end
   end
   
+  # Check if the user is the school leader
+  # * A school leader has a participant.role < 2
+  #  Usage: @user.is_school_leader(school_id)
   def is_school_leader(school_id)
-    participant = self.participants.find_by_school_id(school_id)
-    if participant
-      if self.school == school_id and participant.role_id < 3
-        return true
-      end
+    if self.participants.exists?(:school_id => school_id)
+      participant = self.participants.find_by_school_id(school_id)
+        if participant.role_id < 2
+          return true
+        else
+          return false
+        end
     else
       return false
     end

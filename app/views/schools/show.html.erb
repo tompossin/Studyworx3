@@ -1,10 +1,12 @@
 <div id="content-large">
   <article>
     <header style="background-image:url('<%= @school.header.url%>');">
-      <div class="avatar" style="background-image:url('<%= @school.logo.url(:thumb) %>')">  
+      <div class="avatar" style="background-image:url('<%= @school.logo.url(:thumb) %>')"></div>
+      <div id="registration">
+        <%= render "participants/reglink" %>
       </div>
       <p class="title">
-        Home Page for <%= @school.name %>
+        <%= @school.name %>
       </p>
       <p>
         <%= formatter( @school.location) %>
@@ -14,24 +16,23 @@
       </p>
     </header>    
     <div class="floatbox_trans limited" 
-        <%= formatter(@school.description) %>
-      </p>
+      <%= formatter(@school.description) %>
       <hr />
       <p>
-        <b>Pre-Requisites:</b>
+        <b>Pre-Requisites:</b><br />
         <%= formatter(@school.prereqs) %>
       </p>    
       <p>
         <b>Start date:</b>
-        <%= @school.start_date %>
+        <%= @school.start_date.strftime("%m/%d/%Y") %>
       </p>      
       <p>
         <b>End date:</b>
-        <%= @school.end_date %>
+        <%= @school.end_date.strftime("%m/%d/%Y") %>
       </p>
       <p>
-        <b>Mailing address:</b>
-        <%= @school.mailing_address %>
+        <b>Mailing address:</b><br />
+        <%= formatter(@school.mailing_address) %>
       </p>
     </div>
     <div class="floatbox_trans" style="width:245px;">

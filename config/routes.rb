@@ -32,8 +32,8 @@ Studyworx3::Application.routes.draw do
     member do
       get 'set_current','homeroom'
     end
+    resources :participants
   end
-  resources :participants
   resources :blogs
   resources :profiles do
     member do

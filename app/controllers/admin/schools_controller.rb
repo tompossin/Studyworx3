@@ -1,17 +1,13 @@
 # === Admin Interface for Schools
-# path = /admin/schools/action
+# * for non-administrative functions see SchoolsController
 class Admin::SchoolsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :is_superadmin, :only => [:index]
   
   # Return all schools newest first
-  # /admin/schools
+  # * /admin/schools
   def index
-    if current_user.is_school_admin
       @schools = School.order("start_date DESC").all
-    else
-      render :template => "shared/not_authorized"
-    end
-    
   end
 
   def show

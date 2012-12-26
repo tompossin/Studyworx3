@@ -1,0 +1,3 @@
+$('#alert').css("display","block");
+$('#alert').html('<%=j "You have failed to register for #{@school.name}"%>').fadeOut(7000);
+$('#registration').html('<%=j render "reglink" %>');

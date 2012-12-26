@@ -1,40 +1,43 @@
-<div class="floatbox_trans">
-<h1>Site Administrators</h1>
-<p>Search by Last name below:</p>
-<%= form_tag user_admins_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-<% if @users %>
-<table style="text-align:center;border:2px solid #cccccc;">
-  <tr style="text-align:center">
-    <th>First<br />Name</th>
-    <th>Last<br />Name</th>
-    <th>User<br />ID</th>
-    <th>Admin<br />Level</th>
-    <th>Manage<br />Admins</th>
-    <th>Review Board<br />Status</th>
-  </tr>
-<% @users.each do |u| %>
-  <tr class="<%= cycle('even','odd')%>">
-    <td><%= u.firstname if u %></td>
-    <td><%= u.lastname if u %></td>
-    <td><%= u.id %></td>
-    <td><%= u.user_admin.level if u.user_admin %></td>
-    <% if u.user_admin %>
-    	<td><%= link_to "Edit Admin Level", edit_user_admin_path(u) %></td>
-    <% else %>
-    	<td><%= link_to "Make an Admin", edit_user_admin_path(u)%></td>
-    <% end %>
-    <% if u.reviewboard == true %>
-      <td><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
-    <% else %>
-      <td><span style="font-style:italic;">False </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
-    <% end %>
-  </tr>
-<% end %>
-<% end %>
-</table>
+<div id="content-large">
+  <article>
+    <div class="floatbox_trans">
+      <h1>Site Administrators</h1>
+      <p>Search by Last name below:</p>
+      <%= form_tag admin_user_admins_path, :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search", :name => nil %>
+        </p>
+      <% end %>
+      <% if @users %>
+        <table style="text-align:center;border:2px solid #cccccc;">
+          <tr style="text-align:center">
+            <th>First<br />Name</th>
+            <th>Last<br />Name</th>
+            <th>Admin<br />Level</th>
+            <th>Manage<br />Admins</th>
+            <th>Review Board<br />Status</th>
+          </tr>
+          <% @users.each do |u| %>
+            <tr class="<%= cycle('even','odd')%>">
+              <td><%= u.firstname if u %></td>
+              <td><%= u.lastname if u %></td>
+              <td><%= u.user_admin.level if u.user_admin %></td>
+              <% if u.user_admin %>
+              	<td><%= link_to "Edit Admin Level", edit_admin_user_admin_path(u) %></td>
+              <% else %>
+              	<td><%= link_to "Make an Admin", edit_admin_user_admin_path(u)%></td>
+              <% end %>
+              <% if u.reviewboard == true %>
+                <td><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
+              <% else %>
+                <td><span style="font-style:italic;">False </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
+    </div>
+  </article>
 </div>
+<%= nav_bar(@nav_body_content)%>

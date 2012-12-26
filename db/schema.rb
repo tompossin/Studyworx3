@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121222184902) do
+ActiveRecord::Schema.define(:version => 20121225160249) do
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -74,13 +74,13 @@ ActiveRecord::Schema.define(:version => 20121222184902) do
 
   create_table "participants", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "role_id"
+    t.integer  "role_id",     :default => 10
     t.integer  "school_id"
     t.integer  "language_id"
-    t.boolean  "prereq"
-    t.integer  "accepted"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "prereq",      :default => false
+    t.integer  "accepted",    :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "participants", ["school_id"], :name => "index_participants_on_school_id"
@@ -162,9 +162,9 @@ ActiveRecord::Schema.define(:version => 20121222184902) do
 
   create_table "user_admins", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "level"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "level",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -207,6 +207,7 @@ ActiveRecord::Schema.define(:version => 20121222184902) do
     t.integer  "iotd_file_size"
     t.datetime "iotd_updated_at"
     t.integer  "school",                 :default => 0
+    t.integer  "role"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

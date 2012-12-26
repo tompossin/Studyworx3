@@ -55,7 +55,19 @@
   </div>
 
   <div id="class-metadata">
+    <nav id="sections-section" class="section">
+  <h3 class="section-header">Sections</h3>
+  <ul class="link-list">
     
+      <li><a href="#5Buntitled-5D"></a></li>
+    
+      <li><a href="#Shared+Methods">Shared Methods</a></li>
+    
+      <li><a href="#before_filters">before_filters</a></li>
+    
+  </ul>
+</nav>
+
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
@@ -80,8 +92,6 @@
     
     <li><a href="#method-i-is_superadmin">#is_superadmin</a>
     
-    <li><a href="#method-i-set_school">#set_school</a>
-    
   </ul>
 </nav>
 
@@ -102,6 +112,20 @@
   <h3 class="section-header">Class and Module Index</h3>
 
   <ul class="link-list">
+  
+    <li><a href="./Admin.html">Admin</a>
+  
+    <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
+  
+    <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
+  
+    <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
+  
+    <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
+  
+    <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
@@ -167,10 +191,6 @@
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
   
-    <li><a href="./UserAdminsController.html">UserAdminsController</a>
-  
-    <li><a href="./UserAdminsHelper.html">UserAdminsHelper</a>
-  
   </ul>
 </nav>
 
@@ -220,11 +240,14 @@ before each call to a controller.</p>
 
         <div class="method-description">
           
-          <p>Check if logged in, check for <code>session[:values]</code>, or set
-<code>session[:values]</code></p>
+          <h4 id="method-i-assign_session_variables-label-This+runs+before+each+controller+method+call">This runs before each controller method call</h4>
 
-<p># This creates session values if they do not exist it does not alter them
-in any way.</p>
+<p>Check if logged in, check for <code>session[:values]</code>, or set
+<code>session[:values]</code></p>
+<ul><li>
+<p>This creates session values if they do not exist it does not alter them in
+any way.</p>
+</li></ul>
           
 
           
@@ -240,9 +263,6 @@ in any way.</p>
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin_level</span>] = <span class="ruby-value">0</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_name</span>]
-      <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_name</span>] = <span class="ruby-string">&quot;Select School Below&quot;</span>
-    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- assign_session_variables-source -->
@@ -253,6 +273,124 @@ in any way.</p>
 
         
       </div><!-- assign_session_variables-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+  
+  
+  <section id="Shared+Methods" class="documentation-section">
+    
+    <div class="documentation-section-title">
+      <h2 class="section-header">
+        Shared Methods
+      </h2>
+      <span class="section-click-top">
+        <a href="#top">&uarr; top</a>
+      </span>
+    </div>
+    
+
+    
+    <div class="description">
+      
+<p>The methods below can be called from any controller</p>
+
+    </div>
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="protected-instance-Shared+Methods-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-is_owner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_owner</span><span
+            class="method-args">(record_user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h4 id="method-i-is_owner-label-Can+be+used+anywhere+in+a+controller+method">Can be used anywhere in a controller method</h4>
+
+<p>Checks if current_user is the record owner and returns true/false</p>
+
+<p>This is a convenience to make the controller code more readable.</p>
+
+<p>Useful for confirming ownership of records that are not looked up by
+<code>current_user.id</code></p>
+
+<h4 id="method-i-is_owner-label-Usage%3A">Usage:</h4>
+
+<pre>dostuff if current_user.is_owner(record_user_id)</pre>
+          
+
+          
+          <div class="method-source-code" id="is_owner-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_owner</span>(<span class="ruby-identifier">record_user_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">record_user_id</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_owner-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_owner-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
+  </section><!-- Shared+Methods -->
+
+  
+  
+  <section id="before_filters" class="documentation-section">
+    
+    <div class="documentation-section-title">
+      <h2 class="section-header">
+        before_filters
+      </h2>
+      <span class="section-click-top">
+        <a href="#top">&uarr; top</a>
+      </span>
+    </div>
+    
+
+    
+    <div class="description">
+      
+<p>The methods below are used as before filters in controllers</p>
+<hr style="height: 4px">
+
+    </div>
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="protected-instance-before_filters-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
 
     
       <div id="method-i-is_admin" class="method-detail ">
@@ -266,12 +404,21 @@ in any way.</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-is_admin-label-before_filter">before_filter</h3>
+
+<p>Unless the current_user <a
+href="ApplicationController.html#method-i-is_admin">#is_admin</a> this
+redirects to root path with a warning</p>
+<ul><li>
+<p>User.user_admin.level &gt; 1</p>
+</li><li>
+<p>Users of this sort can create contributors and edit more low level data.</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
@@ -299,12 +446,22 @@ in any way.</p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-is_contributor-label-Before_filter">Before_filter</h3>
+
+<p>Unless the current_user <a
+href="ApplicationController.html#method-i-is_contributor">#is_contributor</a>
+this redirects to root path with a warning</p>
+<ul><li>
+<p>User.user_admin.level &gt; 0</p>
+</li><li>
+<p>Users of this sort can contribute to the public blog or submit peer
+reviewed papers</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="is_contributor-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
@@ -321,38 +478,6 @@ in any way.</p>
       </div><!-- is_contributor-method -->
 
     
-      <div id="method-i-is_owner" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">is_owner</span><span
-            class="method-args">(user_id)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="is_owner-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 59</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_owner</span>(<span class="ruby-identifier">user_id</span>)
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You are not the owner of this record!&quot;</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- is_owner-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- is_owner-method -->
-
-    
       <div id="method-i-is_superadmin" class="method-detail ">
         
         <div class="method-heading">
@@ -364,12 +489,19 @@ in any way.</p>
 
         <div class="method-description">
           
-          <p>These methods are used as before_filters in controllers</p>
+          <h4 id="method-i-is_superadmin-label-before_filter">before_filter</h4>
+
+<p>Unless the current_user <a
+href="ApplicationController.html#method-i-is_superadmin">#is_superadmin</a>
+this redirects to root path with a warning</p>
+<ul><li>
+<p>User.user_admin.level == 3 (me basically)</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
@@ -386,41 +518,9 @@ in any way.</p>
       </div><!-- is_superadmin-method -->
 
     
-      <div id="method-i-set_school" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">set_school</span><span
-            class="method-args">(school_id)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="set_school-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">school_id</span>)
-  <span class="ruby-identifier">school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">school_id</span>)
-  <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_name</span>] = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">name</span>
-  <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_id</span>] = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">id</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- set_school-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- set_school-method -->
-
-    
     </section><!-- protected-instance-method-details -->
   
-  </section><!-- 5Buntitled-5D -->
+  </section><!-- before_filters -->
 
 </div><!-- documentation -->
 

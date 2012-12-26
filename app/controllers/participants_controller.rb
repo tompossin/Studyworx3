@@ -1,8 +1,19 @@
+# === School Participants Controller
+# This is a nested resource under schools.
+# It is only manipulated in the context of a school
+#
+# There are four states for a participant: 
+# * no record, (never registered or was deleted(no access to school))
+# * accepted == 0(pending registration, no access to school)
+# * accepted == 1(dropped but can still access school records) 
+# * accepted == 2(accepted, active partcipant)
+
 class ParticipantsController < ApplicationController
-  # GET /participants
-  # GET /participants.json
+  before_filter :get_school
+
+  # GET school:id/participants
   def index
-    @participants = Participant.all
+    @participants = @school.participant.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,75 +21,100 @@ class ParticipantsController < ApplicationController
     end
   end
 
-  # GET /participants/1
-  # GET /participants/1.json
+  # GET school/:id/participants/1
   def show
-    @participant = Participant.find(params[:id])
+    @participant = @school.participant.find(params[:participant_id])
     @user = User.find(@participant.id )
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @participant }
     end
   end
 
-  # GET /participants/new
-  # GET /participants/new.json
+  # GET school/:id/participants/new
+  # ==== Loads form for registering a new participant.
+  # Should check if the user already has a participant for this school
   def new
-    @participant = Participant.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @participant }
+    unless current_user.participants.exists?(:school_id => params[:school_id])
+      @participant = @school.participants.new
     end
-  end
-
-  # GET /participants/1/edit
-  def edit
-    @participant = Participant.find(params[:id])
-  end
-
-  # POST /participants
-  # POST /participants.json
-  def create
-    @participant = Participant.new(params[:participant])
 
     respond_to do |format|
-      if @participant.save
-        format.html { redirect_to @participant, notice: 'Participant was successfully created.' }
-        format.json { render json: @participant, status: :created, location: @participant }
+      if @participant
+        format.js 
       else
-        format.html { render action: "new" }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
+        format.js {render "exists"}
       end
     end
   end
 
-  # PUT /participants/1
-  # PUT /participants/1.json
+  # GET school/:id/participants/:id/edit
+  # ==== SCHOOL ADMINS ONLY - participant.role < 3
+  # This will be called for acceptance/Rejection by leader/assistant
+  def edit
+    if current_user.is_school_admin(params[:school_id])
+      @participant = @school.participants.find(params[:id])
+    end
+    
+    respond_to do |format|
+      if @participant
+        format.js
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
+  end
+
+  # POST school/:id/participants
+  # ==== Creates a new registration unless one already exists.
+  def create
+    if params[:participant][:accepted] == "1" and params[:participant][:prereq] == "1"
+      unless current_user.participants.exists?(:school_id => params[:school_id])
+        @participant = @school.participants.new(params[:participant])
+        @participant.user_id = current_user.id
+        @participant.accepted = 0
+        @participant.save
+      end
+    end
+    
+    respond_to do |format|
+      if @participant
+        format.js { render "register_success" }
+      else
+        format.js { render "register_failure" }
+      end
+    end
+  end
+
+  # PUT school/:id/participants/:id
+  # ==== School Admins Only - participant.role < 3
+  # Updates accept/reject
   def update
-    @participant = Participant.find(params[:id])
+    @participant = @school.participants.find(params[:id])
 
     respond_to do |format|
       if @participant.update_attributes(params[:participant])
-        format.html { redirect_to @participant, notice: 'Participant was successfully updated.' }
-        format.json { head :no_content }
+        format.js 
       else
-        format.html { render action: "edit" }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
+        format.js { render "register_failure" }
       end
     end
   end
 
-  # DELETE /participants/1
-  # DELETE /participants/1.json
+  # DELETE school/:id/participants/:id
+  # ==== School Admins Only - participant.role < 3
   def destroy
-    @participant = Participant.find(params[:id])
+    @participant = @school.participant.find(params[:participant_id])
     @participant.destroy
 
     respond_to do |format|
       format.html { redirect_to participants_url }
-      format.json { head :no_content }
     end
+  end
+  
+  private
+  # ==== Loads the current school url params
+  def get_school
+    @school = School.find_by_id(params[:school_id])
   end
 end

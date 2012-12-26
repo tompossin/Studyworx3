@@ -105,6 +105,20 @@
 
   <ul class="link-list">
   
+    <li><a href="./Admin.html">Admin</a>
+  
+    <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
+  
+    <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
+  
+    <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
+  
+    <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
+  
+    <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -169,10 +183,6 @@
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
   
-    <li><a href="./UserAdminsController.html">UserAdminsController</a>
-  
-    <li><a href="./UserAdminsHelper.html">UserAdminsHelper</a>
-  
   </ul>
 </nav>
 
@@ -220,7 +230,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@review</span> = <span class="ruby-constant">Review</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:review</span>])
 
@@ -260,7 +270,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@review</span> = <span class="ruby-constant">Review</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@review</span>.<span class="ruby-identifier">destroy</span>
@@ -296,7 +306,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@review</span> = <span class="ruby-constant">Review</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -326,7 +336,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@reviews</span> = <span class="ruby-constant">Review</span>.<span class="ruby-identifier">all</span>
 
@@ -361,7 +371,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@review</span> = <span class="ruby-constant">Review</span>.<span class="ruby-identifier">new</span>
 
@@ -396,7 +406,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@review</span> = <span class="ruby-constant">Review</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -431,7 +441,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/reviews_controller.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@review</span> = <span class="ruby-constant">Review</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
