@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  book_id: 1
+  version_id: 1
+  p_order: 1
+  verse_count: 1
+  startref: MyString
+  endref: MyString
+
+two:
+  book_id: 1
+  version_id: 1
+  p_order: 1
+  verse_count: 1
+  startref: MyString
+  endref: MyString

@@ -1003,7 +1003,7 @@ bg=#3c7a00</panel_attributes>
       <w>160</w>
       <h>112</h>
     </coordinates>
-    <panel_attributes>*duetimes*
+    <panel_attributes>*duedates*
 --
 &lt;&lt;id(PK):int
 --

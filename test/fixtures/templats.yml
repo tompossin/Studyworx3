@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school_id: 1
+  name: MyString
+  content: MyText
+  public: false
+
+two:
+  school_id: 1
+  name: MyString
+  content: MyText
+  public: false

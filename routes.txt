@@ -19,6 +19,48 @@
           admin_user_admin GET    /admin/user_admins/:id(.:format)                    admin/user_admins#show
                            PUT    /admin/user_admins/:id(.:format)                    admin/user_admins#update
                            DELETE /admin/user_admins/:id(.:format)                    admin/user_admins#destroy
+          admin_paragraphs GET    /admin/paragraphs(.:format)                         admin/paragraphs#index
+                           POST   /admin/paragraphs(.:format)                         admin/paragraphs#create
+       new_admin_paragraph GET    /admin/paragraphs/new(.:format)                     admin/paragraphs#new
+      edit_admin_paragraph GET    /admin/paragraphs/:id/edit(.:format)                admin/paragraphs#edit
+           admin_paragraph GET    /admin/paragraphs/:id(.:format)                     admin/paragraphs#show
+                           PUT    /admin/paragraphs/:id(.:format)                     admin/paragraphs#update
+                           DELETE /admin/paragraphs/:id(.:format)                     admin/paragraphs#destroy
+               admin_books GET    /admin/books(.:format)                              admin/books#index
+                           POST   /admin/books(.:format)                              admin/books#create
+            new_admin_book GET    /admin/books/new(.:format)                          admin/books#new
+           edit_admin_book GET    /admin/books/:id/edit(.:format)                     admin/books#edit
+                admin_book GET    /admin/books/:id(.:format)                          admin/books#show
+                           PUT    /admin/books/:id(.:format)                          admin/books#update
+                           DELETE /admin/books/:id(.:format)                          admin/books#destroy
+         admin_assignments GET    /admin/assignments(.:format)                        admin/assignments#index
+                           POST   /admin/assignments(.:format)                        admin/assignments#create
+      new_admin_assignment GET    /admin/assignments/new(.:format)                    admin/assignments#new
+     edit_admin_assignment GET    /admin/assignments/:id/edit(.:format)               admin/assignments#edit
+          admin_assignment GET    /admin/assignments/:id(.:format)                    admin/assignments#show
+                           PUT    /admin/assignments/:id(.:format)                    admin/assignments#update
+                           DELETE /admin/assignments/:id(.:format)                    admin/assignments#destroy
+               admin_tasks GET    /admin/tasks(.:format)                              admin/tasks#index
+                           POST   /admin/tasks(.:format)                              admin/tasks#create
+            new_admin_task GET    /admin/tasks/new(.:format)                          admin/tasks#new
+           edit_admin_task GET    /admin/tasks/:id/edit(.:format)                     admin/tasks#edit
+                admin_task GET    /admin/tasks/:id(.:format)                          admin/tasks#show
+                           PUT    /admin/tasks/:id(.:format)                          admin/tasks#update
+                           DELETE /admin/tasks/:id(.:format)                          admin/tasks#destroy
+            admin_templats GET    /admin/templats(.:format)                           admin/templats#index
+                           POST   /admin/templats(.:format)                           admin/templats#create
+         new_admin_templat GET    /admin/templats/new(.:format)                       admin/templats#new
+        edit_admin_templat GET    /admin/templats/:id/edit(.:format)                  admin/templats#edit
+             admin_templat GET    /admin/templats/:id(.:format)                       admin/templats#show
+                           PUT    /admin/templats/:id(.:format)                       admin/templats#update
+                           DELETE /admin/templats/:id(.:format)                       admin/templats#destroy
+         admin_scoresheets GET    /admin/scoresheets(.:format)                        admin/scoresheets#index
+                           POST   /admin/scoresheets(.:format)                        admin/scoresheets#create
+      new_admin_scoresheet GET    /admin/scoresheets/new(.:format)                    admin/scoresheets#new
+     edit_admin_scoresheet GET    /admin/scoresheets/:id/edit(.:format)               admin/scoresheets#edit
+          admin_scoresheet GET    /admin/scoresheets/:id(.:format)                    admin/scoresheets#show
+                           PUT    /admin/scoresheets/:id(.:format)                    admin/scoresheets#update
+                           DELETE /admin/scoresheets/:id(.:format)                    admin/scoresheets#destroy
              reply_message GET    /messages/:id/reply(.:format)                       messages#reply
     cancel_message_message GET    /messages/:id/cancel_message(.:format)              messages#cancel_message
       cancel_reply_message GET    /messages/:id/cancel_reply(.:format)                messages#cancel_reply

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  assignment_id: 1
+  templat_id: 1
+  name: MyString
+  percent: 1.5
+  help: MyString
+  task_type: 1
+  task_order: 1
+
+two:
+  assignment_id: 1
+  templat_id: 1
+  name: MyString
+  percent: 1.5
+  help: MyString
+  task_type: 1
+  task_order: 1

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102084848) do
+ActiveRecord::Schema.define(:version => 20130106094709) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(:version => 20130102084848) do
     t.boolean  "featured"
     t.boolean  "leadstory"
     t.boolean  "navbar"
+  end
+
+  create_table "books", :force => true do |t|
+    t.string   "short_name"
+    t.string   "name"
+    t.integer  "verse_count"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "duedates", :force => true do |t|
@@ -94,6 +102,20 @@ ActiveRecord::Schema.define(:version => 20130102084848) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
+
+  create_table "paragraphs", :force => true do |t|
+    t.integer  "book_id"
+    t.string   "content"
+    t.integer  "p_order"
+    t.string   "startref"
+    t.string   "endref"
+    t.integer  "verse_count"
+    t.integer  "version_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paragraphs", ["version_id", "book_id", "p_order"], :name => "index_paragraphs_on_version_id_and_book_id_and_p_order"
 
   create_table "participants", :force => true do |t|
     t.integer  "user_id"
@@ -157,6 +179,14 @@ ActiveRecord::Schema.define(:version => 20130102084848) do
     t.string   "color"
   end
 
+  create_table "scoresheets", :force => true do |t|
+    t.integer  "school_id"
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -166,6 +196,18 @@ ActiveRecord::Schema.define(:version => 20130102084848) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "tasks", :force => true do |t|
+    t.integer  "assignment_id"
+    t.integer  "templat_id"
+    t.string   "name"
+    t.float    "percent"
+    t.text     "help"
+    t.integer  "task_type"
+    t.integer  "task_order"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "teams", :force => true do |t|
     t.integer  "owner_id"
@@ -187,6 +229,15 @@ ActiveRecord::Schema.define(:version => 20130102084848) do
   end
 
   add_index "teams_users", ["user_id", "team_id"], :name => "index_teams_users_on_user_id_and_team_id"
+
+  create_table "templats", :force => true do |t|
+    t.integer  "school_id"
+    t.string   "name"
+    t.text     "content"
+    t.boolean  "public"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "user_admins", :force => true do |t|
     t.integer  "user_id"
@@ -243,5 +294,11 @@ ActiveRecord::Schema.define(:version => 20130102084848) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+
+  create_table "versions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
