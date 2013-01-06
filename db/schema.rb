@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121225160249) do
+ActiveRecord::Schema.define(:version => 20130102084848) do
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "school_id"
+    t.integer  "book_id"
+    t.integer  "scoresheet_id"
+    t.integer  "order"
+    t.string   "name"
+    t.integer  "weight"
+    t.integer  "module"
+    t.text     "resources"
+    t.text     "instructions"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -24,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20121225160249) do
     t.boolean  "featured"
     t.boolean  "leadstory"
     t.boolean  "navbar"
+  end
+
+  create_table "duedates", :force => true do |t|
+    t.integer  "school_id"
+    t.integer  "assignment_id"
+    t.integer  "team_id"
+    t.datetime "due_date"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "message_hierarchies", :id => false, :force => true do |t|
@@ -151,7 +174,12 @@ ActiveRecord::Schema.define(:version => 20121225160249) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "coreteam"
   end
+
+  add_index "teams", ["coreteam"], :name => "index_teams_on_coreteam"
+  add_index "teams", ["owner_id"], :name => "index_teams_on_owner_id"
+  add_index "teams", ["school_id"], :name => "index_teams_on_school_id"
 
   create_table "teams_users", :id => false, :force => true do |t|
     t.integer "user_id"

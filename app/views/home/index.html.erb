@@ -1,8 +1,10 @@
 <div id="content-large">
-  <div class="article_content">
-    <h1><%= @current_article.topic %></h1>
-    <div><%=relaxed_sanitize @current_article.article%></div>
-  </div>
+  <article>
+    <div class="article_content">
+      <h1><%= @current_article.topic if @current_article %></h1>
+      <div><%= formatter(@current_article.article) if @current_article %></div>
+    </div>
+  </article>
 </div>
 
 <%= nav_bar("blogs/stories") %>

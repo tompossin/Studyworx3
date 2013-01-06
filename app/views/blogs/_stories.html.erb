@@ -1,3 +1,6 @@
+<div class="title float_left">
+  More Stories...
+</div>
 <ul>
   <% for story in @stories %>
     <li><%= link_to story.topic, home_path(story.id) %></li>

@@ -127,11 +127,19 @@
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
   
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentsController.html">AssignmentsController</a>
+  
+    <li><a href="./AssignmentsHelper.html">AssignmentsHelper</a>
+  
     <li><a href="./Blog.html">Blog</a>
   
     <li><a href="./BlogsController.html">BlogsController</a>
   
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
+  
+    <li><a href="./Duedate.html">Duedate</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -249,6 +257,9 @@ for safe and dead simple here.</p>
       <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\&gt;\&gt;/</span>)
         <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\&gt;\&gt;/</span>,<span class="ruby-string">&quot;&quot;</span>)
         <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;p&quot;</span>,<span class="ruby-identifier">l</span>,<span class="ruby-keyword">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;title large right&quot;</span>)
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\+\+/</span>)
+        <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\+\+/</span>,<span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;p&quot;</span>,<span class="ruby-identifier">l</span>,<span class="ruby-keyword">class</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;title small bolder&quot;</span>)
       <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%r\&quot;\&quot;/</span>)
         <span class="ruby-identifier">l</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">%r\&quot;\&quot;/</span>,<span class="ruby-string">&quot;&quot;</span>)
         <span class="ruby-identifier">newstr</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;blockquote&quot;</span>,<span class="ruby-identifier">l</span>)
@@ -400,7 +411,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="hidden_div_unless-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 116</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
     <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none&quot;</span>
@@ -433,7 +444,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 97</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
@@ -466,7 +477,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 91</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
@@ -537,7 +548,7 @@ include youtube and vimeo videos.</p>
 
           
           <div class="method-source-code" id="relaxed_sanitize-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 110</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">relaxed_sanitize</span>(<span class="ruby-identifier">rawhtml</span>)
   <span class="ruby-identifier">sanitize</span> <span class="ruby-identifier">rawhtml</span>,<span class="ruby-value">:tags=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u )</span>, 
                     <span class="ruby-value">:attributes=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(id class style src border align colspan rowspan)</span>
@@ -572,7 +583,7 @@ to True/False. But really should be renamed for that sort of thing.</p>
 
           
           <div class="method-source-code" id="set_color-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 82</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_color</span>(<span class="ruby-identifier">t</span>,<span class="ruby-identifier">tcolor</span>=<span class="ruby-string">&quot;green&quot;</span>,<span class="ruby-identifier">fcolor</span>=<span class="ruby-string">&quot;gray&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>
     <span class="ruby-identifier">tcolor</span>
@@ -607,7 +618,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="set_wallpaper-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 130</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>  
@@ -645,7 +656,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="validation_errors_block-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 124</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validation_errors_block</span>(<span class="ruby-identifier">formobject</span>)
   <span class="ruby-identifier">render</span>(<span class="ruby-string">&quot;/shared/validation_errors_block&quot;</span>, {<span class="ruby-identifier">object</span><span class="ruby-operator">:</span> <span class="ruby-identifier">formobject</span>})
 <span class="ruby-keyword">end</span></pre>

@@ -125,11 +125,19 @@
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
   
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentsController.html">AssignmentsController</a>
+  
+    <li><a href="./AssignmentsHelper.html">AssignmentsHelper</a>
+  
     <li><a href="./Blog.html">Blog</a>
   
     <li><a href="./BlogsController.html">BlogsController</a>
   
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
+  
+    <li><a href="./Duedate.html">Duedate</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -274,7 +282,7 @@ states.</p>
 
           
           <div class="method-source-code" id="dropped-source">
-            <pre><span class="ruby-comment"># File app/models/participant.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dropped</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -306,7 +314,7 @@ states.</p>
 
           
           <div class="method-source-code" id="enroled-source">
-            <pre><span class="ruby-comment"># File app/models/participant.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enroled</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -338,7 +346,7 @@ states.</p>
 
           
           <div class="method-source-code" id="pending-source">
-            <pre><span class="ruby-comment"># File app/models/participant.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pending</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:accepted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
 <span class="ruby-keyword">end</span></pre>
