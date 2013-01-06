@@ -1,0 +1,8 @@
+<div class="float_left">
+  <p class="title small">Currently available Schools</p>
+  <% for s in @schools %>
+    <div class="float_left title smaller" style="margin: 0px;">
+      <%= link_to(s.name, school_path(s.id)) %>
+    </div>
+  <% end %>
+</div>
