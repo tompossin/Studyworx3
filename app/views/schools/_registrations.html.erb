@@ -1,0 +1,10 @@
+<div id="pending" class="float_left">
+  <p class="title">
+    Pending Registrations
+  </p>
+  <% for p in @registrations %>
+    <p id="reg_<%= p.id %>">
+      <%=link_to get_full_name(p.user_id), edit_school_participant_path(@school.id,p.id),{remote: true, class: :smallest} %>
+    </p>
+  <% end %>
+</div>

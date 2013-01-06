@@ -6,13 +6,8 @@ class SchoolsController < ApplicationController
   
   # GET /schools
   def index
-    @school = School.find_by_id(current_user.school)
-    unless @school
-      @school = School.new
-    end
-    if current_user.is_school_leader(current_user.school)
-      @registrations = @school.participants.pending
-    end
+    @school = School.find_or_initialize_by_id(current_user.school)
+    check_for_pending_registrations
     load_school_vars
 
     respond_to do |format|
@@ -38,6 +33,7 @@ class SchoolsController < ApplicationController
   # This is the default page for a participant.
   def homeroom
     @school = School.find(current_user.school)
+    check_for_pending_registrations
     load_school_vars
     
     respond_to do |format|
@@ -114,7 +110,18 @@ class SchoolsController < ApplicationController
   def load_school_vars
     @schools = School.all_active
     @enrollments = current_user.participants.all
-    #@my_schools = current_user.schools.where(:active => true)
     @nav_body_content = "schools/schools"
+  end
+  
+  # This checks for pending registrations
+  def check_for_pending_registrations
+    if current_user.is_school_leader(current_user.school)
+      @registrations = @school.participants.pending
+      if @registrations.empty?
+        @registrations = false
+      end
+    else
+      @registrations = false
+    end
   end
 end

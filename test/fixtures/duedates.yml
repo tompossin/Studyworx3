@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school_id: 1
+  assignment_id: 1
+  team_id: 1
+  due_date: 2013-01-02 15:40:11
+
+two:
+  school_id: 1
+  assignment_id: 1
+  team_id: 1
+  due_date: 2013-01-02 15:40:11
