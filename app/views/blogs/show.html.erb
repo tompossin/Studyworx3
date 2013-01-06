@@ -1,13 +1,18 @@
-<article>
-  <div id="category" class="box_trans" style="font-weight:bold;">
-    <%= sanitize @blog.category %>
-  </div>
-  
-  <div id="topic" class="box_trans" style="font-weight:bold;" >
-    <%= sanitize @blog.topic %>
-  </div>
-  
-  <div id="article" class="article">
-    <%= sanitize @blog.article %>
-  </div>
-</article>
+<div id="content-large">
+  <article>
+    <% if current_user.user_admin.level > 1 %>
+      <%=link_to "edit", edit_blog_path(@blog.id) %> | 
+      <%=link_to "Blog Admin", blogs_path %>
+    <% end %>
+    <p class="title smaller">
+      Category: <%= @blog.category %>
+    </p>
+    <p class="title">
+      <%= @blog.topic %>
+    </p>
+    <div class="article_content">
+      <%= formatter(@blog.article)%>
+    </div>
+  </article>
+</div>  
+<%= nav_bar(@nav_body_content) %>

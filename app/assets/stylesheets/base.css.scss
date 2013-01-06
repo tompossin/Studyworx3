@@ -251,9 +251,6 @@ blockquote {
   text-align: justify;
   border-radius: 8px;
   padding: 8px;
-  columns: auto 2;
-  -moz-columns: auto 2;
-  -webkit-columns: auto 2;
 }
 .avatar {
   position: relative;
@@ -454,6 +451,10 @@ blockquote {
 
 .italic {
   font-style: italic;
+}
+
+.bolder {
+  font-weight: 600;
 }
 
 .white {

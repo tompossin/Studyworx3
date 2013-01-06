@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school_id: 1
+  book_id: 1
+  scoresheet_id: 1
+  order: 1
+  name: MyString
+  weight: 1
+  module: 1
+  resources: MyText
+  instructions: MyText
+
+two:
+  school_id: 1
+  book_id: 1
+  scoresheet_id: 1
+  order: 1
+  name: MyString
+  weight: 1
+  module: 1
+  resources: MyText
+  instructions: MyText

@@ -12,13 +12,20 @@ class BlogsController < ApplicationController
   end
 
   # GET /blogs/1
-  # GET /editor/blogs/1 to edit with Mercury
   def show
     @blog = Blog.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @blog }
+    end
+  end
+  
+  def edit
+    @blog = Blog.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
     end
   end
 
@@ -36,13 +43,15 @@ class BlogsController < ApplicationController
 
   # PUT /blogs/1
   # PUT /blogs/1.json
+  # TODO I will need to put some limits or paging on this yet.
   def update
     @blog = Blog.find(params[:id])
-    @blog.topic = params[:content][:topic][:value].strip.delete "\n" 
-    @blog.category = params[:content][:category][:value].strip.delete "\n"
-    @blog.article = params[:content][:article][:value]
-    @blog.save!
-    render text: ""
+    @blog.remove_previous_lead_story(params[:blog][:leadstory])
+
+    @blog.update_attributes(params[:blog])
+    respond_to do |format|
+      format.html {render :show }
+    end
   end
 
   # DELETE /blogs/1

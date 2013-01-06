@@ -1,14 +1,24 @@
 Studyworx3::Application.routes.draw do
 
+  # ----------
+  # :section: Admin Routes
   # This is a namespace for Admin functions
   # As I create other controllers in this namespace I can add resources and routes here.
   # rails g controller Admin::Controllername action action action etc.
+  # ----------
+  
   namespace :admin do
     resources :schools
     resources :profiles
     resources :user_admins
   end
-  # Normal routes below ############################
+  
+  
+  # ----------
+  # :section: Normal Routes
+  # Non Administrative routes below: 
+  # ----------
+  
   resources :messages do
     member do
       get 'reply', 'cancel_message', 'cancel_reply'
@@ -33,6 +43,7 @@ Studyworx3::Application.routes.draw do
       get 'set_current','homeroom'
     end
     resources :participants
+    resources :assignments
   end
   resources :blogs
   resources :profiles do
