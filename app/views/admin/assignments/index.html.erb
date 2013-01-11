@@ -1,2 +1,39 @@
-<h1>Admin::Assignments#index</h1>
-<p>Find me in app/views/admin/assignments/index.html.erb</p>
+<div id="content-large">
+  <article>
+    <h1><%= @school.name %></h1>
+    <p class="title large">Assignment Administration</p>
+    <div>
+      <%=link_to "Add New Assignment", new_admin_assignment_path %>
+    </div>
+    <% unless @assignments.empty? %>
+      <p class="title large">Current Assignments</p>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Module</th>
+          <th>Weight</th>
+          <th>Tasks</th>
+          <th>Edit</th>
+          <th>Add Tasks</th>
+        </thead>
+        <tbody>
+          <% for a in @assignments %>
+            <% bc = cycle("odd","even") %>
+            <tr>
+              <td class="left_end <%=bc%>"><%= a.name %></td>
+              <td class="<%=bc%>"><%= a.module %></td>
+              <td class="<%=bc%>"><%= a.weight %></td>
+              <td class="<%=bc%>" style="background-color:<%= "red" unless a.tasks.count > 0 %>"><%= a.tasks.count %></td>
+              <td class="<%=bc%>"><%=link_to "Edit Assignment", edit_admin_assignment_path(a.id) %></td>
+              <td class="right_end <%=bc%>"><%=link_to "Add Tasks", admin_assignment_tasks_path(a.id)  %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+    <% else %>
+      <p class="title small">You must first create an assignment.</p>
+    <% end %>
+  </article>
+</div>
+<%= nav_bar(@nav_body_content) %>

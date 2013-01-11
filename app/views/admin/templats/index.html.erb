@@ -1,2 +1,32 @@
-<h1>Admin::Templats#index</h1>
-<p>Find me in app/views/admin/templats/index.html.erb</p>
+<div id="content-large">
+  <article>
+    <h1><%= @school.name%> - Templates</h1>
+    <p><%=link_to "Create a new Template", new_admin_school_templat_path(@school), remote: true %></p>
+    
+    <div id="templat_area">
+      <% unless @templats.empty? %>
+        <table>
+          <thead>
+            <th>Template Name</th>
+            <th>Template Admin</th>
+          </thead>
+          <tbody>
+            <% for t in @templats %>
+              <% bc = cycle("odd","even") %>
+              <tr>
+                <td class="left_end <%=bc%>"><%= t.name %></td>
+                <td class="right_end <%=bc%>">
+                  <%=link_to "edit", edit_admin_school_templat_path(@school,t), remote: true %> 
+                  <%=link_to "delete", admin_school_templat_path(@school,t), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %> 
+    </div> 
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>
+

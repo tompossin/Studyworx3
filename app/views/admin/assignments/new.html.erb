@@ -1,2 +1,13 @@
-<h1>Admin::Assignments#new</h1>
-<p>Find me in app/views/admin/assignments/new.html.erb</p>
+<div id="content-large">
+  <article>
+    <h2>
+      New Assignment
+      <span class="smallest">
+        &nbsp;&nbsp;
+        <%=link_to "back", admin_assignments_path %>
+      </span>
+    </h2>
+    <%= render "admin/assignments/form"%>
+  </article>
+</div>
+<%= nav_bar(@nav_body_content)%>

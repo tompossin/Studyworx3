@@ -131,6 +131,7 @@ bg=blue</panel_attributes>
 -iotd:paperclip
 -theme:int
 -school:int
+-role:int
 --
 - +all_devise_fields
 - +all_paperclip fields
@@ -175,9 +176,7 @@ bg=green</panel_attributes>
     <panel_attributes>*books*
 --
 &lt;&lt;id(PK):int
---
-&gt;&gt;language_id:int
---
+
 --
 -short_name:text
 -name:text

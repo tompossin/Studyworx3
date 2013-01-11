@@ -72,6 +72,10 @@
     
     <li><a href="#method-i-get_full_name">#get_full_name</a>
     
+    <li><a href="#method-i-get_task_type_name">#get_task_type_name</a>
+    
+    <li><a href="#method-i-get_templat_name">#get_templat_name</a>
+    
     <li><a href="#method-i-hidden_div_unless">#hidden_div_unless</a>
     
     <li><a href="#method-i-is_admin">#is_admin</a>
@@ -111,6 +115,18 @@
   
     <li><a href="./Admin.html">Admin</a>
   
+    <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
+  
+    <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
+  
+    <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
+  
+    <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
+  
+    <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
+  
+    <li><a href="./Admin/ParagraphsHelper.html">Admin::ParagraphsHelper</a>
+  
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
@@ -118,6 +134,18 @@
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
+  
+    <li><a href="./Admin/ScoresheetsController.html">Admin::ScoresheetsController</a>
+  
+    <li><a href="./Admin/ScoresheetsHelper.html">Admin::ScoresheetsHelper</a>
+  
+    <li><a href="./Admin/TasksController.html">Admin::TasksController</a>
+  
+    <li><a href="./Admin/TasksHelper.html">Admin::TasksHelper</a>
+  
+    <li><a href="./Admin/TemplatsController.html">Admin::TemplatsController</a>
+  
+    <li><a href="./Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
   
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -139,6 +167,8 @@
   
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
+    <li><a href="./Book.html">Book</a>
+  
     <li><a href="./Duedate.html">Duedate</a>
   
     <li><a href="./HomeController.html">HomeController</a>
@@ -156,6 +186,8 @@
     <li><a href="./PapersController.html">PapersController</a>
   
     <li><a href="./PapersHelper.html">PapersHelper</a>
+  
+    <li><a href="./Paragraph.html">Paragraph</a>
   
     <li><a href="./Participant.html">Participant</a>
   
@@ -181,9 +213,13 @@
   
     <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
   
+    <li><a href="./Scoresheet.html">Scoresheet</a>
+  
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Task.html">Task</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -191,9 +227,13 @@
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
+    <li><a href="./Templat.html">Templat</a>
+  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
+  
+    <li><a href="./Version.html">Version</a>
   
   </ul>
 </nav>
@@ -244,7 +284,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="formatter-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">formatter</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">content</span> = <span class="ruby-identifier">strip_links</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">newstr</span> = <span class="ruby-string">&quot;&quot;</span>
@@ -395,6 +435,81 @@ for safe and dead simple here.</p>
       </div><!-- get_full_name-method -->
 
     
+      <div id="method-i-get_task_type_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_task_type_name</span><span
+            class="method-args">(id=false)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This assigns friendly names to task_types</p>
+          
+
+          
+          <div class="method-source-code" id="get_task_type_name-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_task_type_name</span>(<span class="ruby-identifier">id</span>=<span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-string">&quot;Text Editor&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+    <span class="ruby-string">&quot;Discussion&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-string">&quot;Charting&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span>
+    <span class="ruby-string">&quot;Off-line&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;None&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_task_type_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_task_type_name-method -->
+
+    
+      <div id="method-i-get_templat_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_templat_name</span><span
+            class="method-args">(templat_id=false)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the name of the template when given the templat_id</p>
+          
+
+          
+          <div class="method-source-code" id="get_templat_name-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_templat_name</span>(<span class="ruby-identifier">templat_id</span>=<span class="ruby-keyword">false</span>)    
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">templat_id</span>
+    <span class="ruby-identifier">t</span> = <span class="ruby-constant">Templat</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">templat_id</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;None&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_templat_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_templat_name-method -->
+
+    
       <div id="method-i-hidden_div_unless" class="method-detail ">
         
         <div class="method-heading">
@@ -411,7 +526,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="hidden_div_unless-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 119</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
     <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none&quot;</span>
@@ -444,7 +559,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 100</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
@@ -477,7 +592,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 94</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
@@ -548,7 +663,7 @@ include youtube and vimeo videos.</p>
 
           
           <div class="method-source-code" id="relaxed_sanitize-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 113</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">relaxed_sanitize</span>(<span class="ruby-identifier">rawhtml</span>)
   <span class="ruby-identifier">sanitize</span> <span class="ruby-identifier">rawhtml</span>,<span class="ruby-value">:tags=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u )</span>, 
                     <span class="ruby-value">:attributes=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(id class style src border align colspan rowspan)</span>
@@ -583,7 +698,7 @@ to True/False. But really should be renamed for that sort of thing.</p>
 
           
           <div class="method-source-code" id="set_color-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 85</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_color</span>(<span class="ruby-identifier">t</span>,<span class="ruby-identifier">tcolor</span>=<span class="ruby-string">&quot;green&quot;</span>,<span class="ruby-identifier">fcolor</span>=<span class="ruby-string">&quot;gray&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>
     <span class="ruby-identifier">tcolor</span>
@@ -618,7 +733,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="set_wallpaper-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 133</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>  
@@ -656,7 +771,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="validation_errors_block-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 127</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validation_errors_block</span>(<span class="ruby-identifier">formobject</span>)
   <span class="ruby-identifier">render</span>(<span class="ruby-string">&quot;/shared/validation_errors_block&quot;</span>, {<span class="ruby-identifier">object</span><span class="ruby-operator">:</span> <span class="ruby-identifier">formobject</span>})
 <span class="ruby-keyword">end</span></pre>

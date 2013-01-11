@@ -1,2 +1,45 @@
-<h1>Admin::Tasks#index</h1>
-<p>Find me in app/views/admin/tasks/index.html.erb</p>
+<div id="content-large">
+  <article>
+    <h1>
+      <%= @assignment.name %> 
+      <span class="smallest">
+        &nbsp;&nbsp;
+        <%=link_to "back", edit_admin_assignment_path(@assignment) %> &nbsp;&nbsp;
+        <%=link_to "normal view", school_assignment_path(@school,@assignment) %>
+      </span>
+    </h1>
+    <p class="title larger">Task Administration</p>
+    <p>Add or Edit tasks for this assignment below.</p>
+    <p><%=link_to "Add a Task", new_admin_assignment_task_path(@assignment),{ remote: :true }%></p>
+    <div id="task_area">
+      <% unless @tasks.empty? %>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Percent</th>
+            <th>Type</th>
+            <th>Template</th>
+            <th>Admin</th>
+          </thead>
+          <tbody>
+            <% for t in @tasks %>
+              <% bc = cycle("odd","even") %>
+              <tr>
+                <td class="left_end <%=bc%>"><%= t.name %></td>
+                <td class="<%=bc%>"><%= number_to_percentage(t.percent, precision:0) %></td>
+                <td class="<%=bc%>"><%= get_task_type_name(t.task_type) %></td>
+                <td class="<%=bc%>"><%= get_templat_name(t.templat_id) %></td>
+                <td class="right_end <%=bc%>">
+                  <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t),remote: true %> 
+                  <%=link_to "destroy",admin_assignment_task_path(@assignment,t), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

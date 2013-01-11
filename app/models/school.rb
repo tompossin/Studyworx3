@@ -3,6 +3,7 @@ class School < ActiveRecord::Base
   has_many :users, :through => :participants
   has_many :assignments
   has_many :duetimes
+  has_many :templats
   
   ### Attributes ############################
     attr_accessible :active, :description, :end_date, :enrolement_type, :language_id, :location

@@ -22,10 +22,14 @@ body {
     font-size: 10pt;
   }
 }
-
+table {
+  border-spacing:0px 2px;
+}
 td {
   padding-left: 6px;
   padding-right: 6px;
+  border-bottom: solid gray 1px;
+  border-top: solid gray 1px;
 }
 
 h1{
@@ -240,10 +244,10 @@ blockquote {
 }
 
 .even {
-  background-color: #aaaaaa;
+  background-color: #dfdfdf;
 }
 .odd {
-  background-color: #555555;
+  background-color: #bfbfbf;
 }
 
 .article_content {
@@ -296,6 +300,18 @@ blockquote {
 
 .hr_short {
   width: 20%;
+}
+
+.left_end {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;  
+  border-left: solid gray 1px;
+}
+
+.right_end {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-right: solid gray 1px;
 }
 
 .more {

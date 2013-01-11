@@ -1,0 +1,17 @@
+<%= form_for @assignment, :url=>"/admin/assignments/#{@assignment.id}" do |f| %>
+  <div class=" float_left limited">
+    <p>Name</p>
+    <%= f.text_field :name, {:style=>"width:96%;"} %>
+    <p>Weight</p>
+    <%= f.number_field :weight %>
+    <p>Module</p>
+    <%= f.number_field :module %>
+    <p>Resources</p>
+    <%= f.text_area :resources, {:style=>"width:96%;height: 80px;"} %>
+  </div>
+  <div class="float_left limited">
+    <p>Instructions</p>
+    <%= f.text_area :instructions, {:style=>"width:96%;height: 222px;"} %>
+    <br /><%= f.submit :update %>
+  </div>
+<% end %>

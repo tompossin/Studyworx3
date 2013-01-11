@@ -12,13 +12,14 @@
       </thead>
       <tbody>
         <% for s in @schools %>
-          <tr style="background-color:<%= set_color(s.active,:yellow,:gray)%>">
-            <td><%= s.name %></td>
-            <td><%= s.active %></td>
-            <td><%= s.start_date.strftime("%m/%d/%Y") %></td>
-            <td><%= s.end_date.strftime("%m/%d/%Y") %></td>
-            <td><%= get_full_name(s.owner_id) if s.owner_id %></td>
-            <td>
+          <% bc = cycle("odd","even") %>
+          <tr>
+            <td class="left_end <%=bc%>"><%= s.name %></td>
+            <td style="background-color:<%= set_color(s.active,:green,:gray)%>"><%= s.active %></td>
+            <td class="<%=bc%>"><%= s.start_date.strftime("%m/%d/%Y") %></td>
+            <td class="<%=bc%>"><%= s.end_date.strftime("%m/%d/%Y") %></td>
+            <td class="<%=bc%>"><%= get_full_name(s.owner_id) if s.owner_id %></td>
+            <td class="right_end <%=bc%>">
               <%=link_to "edit", edit_admin_school_path(s.id), {class: "smallest"} %>  
               <%= link_to "View", school_path(s.id),{class: "smallest",:title=>"Visit This Schools Home Page"} %>
             </td>

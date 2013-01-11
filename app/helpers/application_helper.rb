@@ -30,6 +30,31 @@ module ApplicationHelper
     nbc = nav_body_content || Settings.default_nav_body
     render :partial=>"layouts/nav_bar", :locals=>{content: full_name, nav_body_content: nbc}
   end
+  
+  # return the name of the template when given the templat_id
+  def get_templat_name(templat_id=false)    
+    if templat_id
+      t = Templat.find(templat_id)
+      return t.name
+    else
+      return "None"
+    end
+  end
+  
+  # This assigns friendly names to task_types
+  def get_task_type_name(id=false)
+    if id == 1
+      "Text Editor"
+    elsif id == 2
+      "Discussion"
+    elsif id == 3
+      "Charting"
+    elsif id == 4
+      "Off-line"
+    else
+      "None"
+    end
+  end
 
   # This formats plain text into VERY basic html.
   # This should only be used for small text objects.

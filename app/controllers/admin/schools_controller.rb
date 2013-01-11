@@ -16,6 +16,7 @@ class Admin::SchoolsController < ApplicationController
 
   def edit
     @school = School.find(params[:id])   
+    @nav_body_content = "admin/assignments/toolbar"
   end
 
   def new

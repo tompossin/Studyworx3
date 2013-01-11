@@ -1,2 +1,4 @@
 module Admin::TemplatsHelper
+  
+  
 end

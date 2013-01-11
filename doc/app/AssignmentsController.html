@@ -70,10 +70,6 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-create">#create</a>
-    
-    <li><a href="#method-i-destroy">#destroy</a>
-    
     <li><a href="#method-i-edit">#edit</a>
     
     <li><a href="#method-i-index">#index</a>
@@ -81,8 +77,6 @@
     <li><a href="#method-i-new">#new</a>
     
     <li><a href="#method-i-show">#show</a>
-    
-    <li><a href="#method-i-update">#update</a>
     
   </ul>
 </nav>
@@ -107,6 +101,18 @@
   
     <li><a href="./Admin.html">Admin</a>
   
+    <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
+  
+    <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
+  
+    <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
+  
+    <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
+  
+    <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
+  
+    <li><a href="./Admin/ParagraphsHelper.html">Admin::ParagraphsHelper</a>
+  
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
@@ -114,6 +120,18 @@
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
+  
+    <li><a href="./Admin/ScoresheetsController.html">Admin::ScoresheetsController</a>
+  
+    <li><a href="./Admin/ScoresheetsHelper.html">Admin::ScoresheetsHelper</a>
+  
+    <li><a href="./Admin/TasksController.html">Admin::TasksController</a>
+  
+    <li><a href="./Admin/TasksHelper.html">Admin::TasksHelper</a>
+  
+    <li><a href="./Admin/TemplatsController.html">Admin::TemplatsController</a>
+  
+    <li><a href="./Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
   
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -135,6 +153,8 @@
   
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
+    <li><a href="./Book.html">Book</a>
+  
     <li><a href="./Duedate.html">Duedate</a>
   
     <li><a href="./HomeController.html">HomeController</a>
@@ -152,6 +172,8 @@
     <li><a href="./PapersController.html">PapersController</a>
   
     <li><a href="./PapersHelper.html">PapersHelper</a>
+  
+    <li><a href="./Paragraph.html">Paragraph</a>
   
     <li><a href="./Participant.html">Participant</a>
   
@@ -177,9 +199,13 @@
   
     <li><a href="./SchoolsHelper.html">SchoolsHelper</a>
   
+    <li><a href="./Scoresheet.html">Scoresheet</a>
+  
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Task.html">Task</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -187,9 +213,13 @@
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
+    <li><a href="./Templat.html">Templat</a>
+  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
+  
+    <li><a href="./Version.html">Version</a>
   
   </ul>
 </nav>
@@ -222,82 +252,6 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-create" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>POST /assignments POST /assignments.json</p>
-          
-
-          
-          <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 42</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment</span>])
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@assignment</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Assignment was successfully created.'</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assignment</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assignment</span> }
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;new&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- create-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- create-method -->
-
-    
-      <div id="method-i-destroy" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">destroy</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>DELETE /assignments/1 DELETE /assignments/1.json</p>
-          
-
-          
-          <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 74</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">destroy</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">assignments_url</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- destroy-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- destroy-method -->
-
-    
       <div id="method-i-edit" class="method-detail ">
         
         <div class="method-heading">
@@ -309,14 +263,13 @@
 
         <div class="method-description">
           
-          <p>GET /assignments/1/edit</p>
+          
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
           
@@ -339,19 +292,13 @@
 
         <div class="method-description">
           
-          <p>GET /assignments GET /assignments.json</p>
+          
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@assignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">all</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assignments</span> }
-  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -374,19 +321,13 @@
 
         <div class="method-description">
           
-          <p>GET /assignments/new GET /assignments/new.json</p>
+          
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">new</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assignment</span> }
-  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -409,19 +350,13 @@
 
         <div class="method-description">
           
-          <p>GET /assignments/1 GET /assignments/1.json</p>
+          
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assignment</span> }
-  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -431,46 +366,6 @@
 
         
       </div><!-- show-method -->
-
-    
-      <div id="method-i-update" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">update</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>PUT /assignments/1 PUT /assignments/1.json</p>
-          
-
-          
-          <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 58</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment</span>])
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@assignment</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Assignment was successfully updated.'</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;edit&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- update-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- update-method -->
 
     
     </section><!-- public-instance-method-details -->

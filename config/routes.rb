@@ -9,15 +9,17 @@ Studyworx3::Application.routes.draw do
   # ----------
   
   namespace :admin do
-    resources :schools
+    resources :schools do
+      resources :templats
+      resources :scoresheets
+    end
     resources :profiles
     resources :user_admins
     resources :paragraphs
     resources :books
-    resources :assignments
-    resources :tasks
-    resources :templats
-    resources :scoresheets
+    resources :assignments  do
+      resources :tasks
+    end
   end
   
   
@@ -50,7 +52,9 @@ Studyworx3::Application.routes.draw do
       get 'set_current','homeroom'
     end
     resources :participants
-    resources :assignments
+    resources :assignments do
+      resources :tasks
+    end
   end
   resources :blogs
   resources :profiles do

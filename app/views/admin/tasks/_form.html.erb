@@ -1,0 +1,18 @@
+<%= form_for @task, :url=>"tasks/#{@task.id}" do |f| %>
+  <div class="float_left limited">
+    <p class="title smaller">Task Name</p>
+    <%= f.text_field :name, {:style=>"width:96%"} %>
+    <p class="title smaller">Template</p>
+    <%= f.select :templat_id, @school.templats.all.collect {|t| [ t.name, t.id ] }, { :include_blank => true } %>
+    <p class="title smaller"> Percent</p>
+    <%= f.number_field :percent, {:style=>"width:50px;"} %>
+    <p class="title smaller">Task Type</p>
+    <%= f.select :task_type, [["Text Editor",1],["Discussion",2],["Charting",3],["Off-line",4]], {:include_blank => true}%>
+  </div>
+  <div class="float_left limited">
+    <p class="title smaller">Task Instructions</p>
+    <%= f.text_area :help, {:style=>"width:96%;height:250px;"} %>
+    <br />
+    <%= f.submit :save %>
+  </div>
+<% end %>
