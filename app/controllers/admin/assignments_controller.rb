@@ -36,7 +36,15 @@ class Admin::AssignmentsController < ApplicationController
   end
   
   def update
-    
+    @assignment = Assignment.find(params[:id])
+    @assignment.update_attributes(params[:assignment])
+    respond_to do |format|
+      if @assignment.save
+        format.html {redirect_to edit_admin_assignment_path(@assignment), notice: 'Assignment was successfully saved.'}
+      else
+        format.html {redirect_to edit_admin_assignment_path(@assignment), alert: 'Assignment was not saved'}
+      end
+    end
   end
   
   def destroy

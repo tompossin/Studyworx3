@@ -1,4 +1,4 @@
-<%=form_for @templat, :url=>"templats/#{@templat.id}"  do |f| %>
+<%=form_for [:admin,@school,@templat] do |f| %>
   <div class="float_left limited">
     <p class="title smaller">Name</p>
     <%= f.text_field :name, {:style=>"width:92%;"} %>

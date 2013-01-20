@@ -1,4 +1,4 @@
-<%= form_for @school, :url=>"/admin/schools/#{@school.id}"  do |f| %>
+<%= form_for [:admin, @school]  do |f| %>
   <div class="clear_float">
     <!-- Header Details Below -->
     <p>
@@ -58,7 +58,7 @@
     </p>
     <p>
       <label>Check box if school is active: </label>
-      <%= f.check_box :active, {:size=>"24px"} %>
+      <%= f.check_box :active %>
     </p>
     <p>
       <%= f.submit "Done" %>

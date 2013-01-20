@@ -1,2 +1,30 @@
-<h1>Admin::Paragraphs#index</h1>
-<p>Find me in app/views/admin/paragraphs/index.html.erb</p>
+<div id="content-large">
+  <article>
+    <%=link_to "Choose another book", admin_tools_index_path %><br />
+    <%=link_to "Add new paragraphs", new_admin_book_paragraph_path(@book) %>
+    <h1><%= @book.name %> - Paragraphs - <%= @version.name %></h1>
+    
+      <% unless @paragraphs.empty? %>
+        <div id="table_header" class="trow">
+          <div class="hcell" style="width:60px;">Order</div>
+          <div class="hcell" style="width:75px;">Start Ref</div>
+          <div class="hcell" style="width:75px;">End Ref</div>
+          <div class="hcell" style="width:75px;">Verse Count</div>
+          <div class="hcell" style="width:100px;">Admin</div>
+        </div>
+        <% for p in @paragraphs %>
+          <% bc = cycle("odd","even") %>
+          <div id="p_<%= p.id %>" class="trow">
+            <div class="rcell left_end <%=bc%>" style="width:60px;"><%= p.p_order %></div>
+            <div class="rcell <%=bc%>" style="width:75px;"><%= p.startref %></div>
+            <div class="rcell <%=bc%>" style="width:75px;"><%= p.endref %></div>
+            <div class="rcell <%=bc%>" style="width:75px;"><%= p.verse_count %></div>
+            <div class="rcell right_end <%=bc%>" style="width:150px;"><%=link_to "edit", edit_admin_book_paragraph_path(@book,p), remote: true %></div>
+          </div>
+        <% end %>
+      <% end %>
+    
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

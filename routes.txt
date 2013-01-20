@@ -33,13 +33,13 @@ edit_admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id/ed
             admin_user_admin GET    /admin/user_admins/:id(.:format)                                        admin/user_admins#show
                              PUT    /admin/user_admins/:id(.:format)                                        admin/user_admins#update
                              DELETE /admin/user_admins/:id(.:format)                                        admin/user_admins#destroy
-            admin_paragraphs GET    /admin/paragraphs(.:format)                                             admin/paragraphs#index
-                             POST   /admin/paragraphs(.:format)                                             admin/paragraphs#create
-         new_admin_paragraph GET    /admin/paragraphs/new(.:format)                                         admin/paragraphs#new
-        edit_admin_paragraph GET    /admin/paragraphs/:id/edit(.:format)                                    admin/paragraphs#edit
-             admin_paragraph GET    /admin/paragraphs/:id(.:format)                                         admin/paragraphs#show
-                             PUT    /admin/paragraphs/:id(.:format)                                         admin/paragraphs#update
-                             DELETE /admin/paragraphs/:id(.:format)                                         admin/paragraphs#destroy
+       admin_book_paragraphs GET    /admin/books/:book_id/paragraphs(.:format)                              admin/paragraphs#index
+                             POST   /admin/books/:book_id/paragraphs(.:format)                              admin/paragraphs#create
+    new_admin_book_paragraph GET    /admin/books/:book_id/paragraphs/new(.:format)                          admin/paragraphs#new
+   edit_admin_book_paragraph GET    /admin/books/:book_id/paragraphs/:id/edit(.:format)                     admin/paragraphs#edit
+        admin_book_paragraph GET    /admin/books/:book_id/paragraphs/:id(.:format)                          admin/paragraphs#show
+                             PUT    /admin/books/:book_id/paragraphs/:id(.:format)                          admin/paragraphs#update
+                             DELETE /admin/books/:book_id/paragraphs/:id(.:format)                          admin/paragraphs#destroy
                  admin_books GET    /admin/books(.:format)                                                  admin/books#index
                              POST   /admin/books(.:format)                                                  admin/books#create
               new_admin_book GET    /admin/books/new(.:format)                                              admin/books#new
@@ -47,6 +47,13 @@ edit_admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id/ed
                   admin_book GET    /admin/books/:id(.:format)                                              admin/books#show
                              PUT    /admin/books/:id(.:format)                                              admin/books#update
                              DELETE /admin/books/:id(.:format)                                              admin/books#destroy
+              admin_versions GET    /admin/versions(.:format)                                               admin/versions#index
+                             POST   /admin/versions(.:format)                                               admin/versions#create
+           new_admin_version GET    /admin/versions/new(.:format)                                           admin/versions#new
+          edit_admin_version GET    /admin/versions/:id/edit(.:format)                                      admin/versions#edit
+               admin_version GET    /admin/versions/:id(.:format)                                           admin/versions#show
+                             PUT    /admin/versions/:id(.:format)                                           admin/versions#update
+                             DELETE /admin/versions/:id(.:format)                                           admin/versions#destroy
       admin_assignment_tasks GET    /admin/assignments/:assignment_id/tasks(.:format)                       admin/tasks#index
                              POST   /admin/assignments/:assignment_id/tasks(.:format)                       admin/tasks#create
    new_admin_assignment_task GET    /admin/assignments/:assignment_id/tasks/new(.:format)                   admin/tasks#new
@@ -61,6 +68,8 @@ edit_admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id/ed
             admin_assignment GET    /admin/assignments/:id(.:format)                                        admin/assignments#show
                              PUT    /admin/assignments/:id(.:format)                                        admin/assignments#update
                              DELETE /admin/assignments/:id(.:format)                                        admin/assignments#destroy
+           admin_tools_index GET    /admin/tools/index(.:format)                                            admin/tools#index
+            admin_tools_book POST   /admin/tools/book(.:format)                                             admin/tools#book
                reply_message GET    /messages/:id/reply(.:format)                                           messages#reply
       cancel_message_message GET    /messages/:id/cancel_message(.:format)                                  messages#cancel_message
         cancel_reply_message GET    /messages/:id/cancel_reply(.:format)                                    messages#cancel_reply

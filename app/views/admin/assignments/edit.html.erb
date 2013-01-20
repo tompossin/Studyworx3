@@ -8,29 +8,25 @@
       </span>
     </h2>
     <%= render "admin/assignments/form"%>
-    <!--Task editor below this line -->
+    <!--Task editor below divis line -->
     <h2>Assignment Tasks</h2>
     <%=link_to "Add or Edit Tasks", admin_assignment_tasks_path(@assignment.id) if @assignment %>
     <% unless @tasks.empty? %>
-      <table>
-        <thead>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Template</th>
-          <th> % </th>
-        </thead>
-        <tbody>
-          <% for t in @tasks %>
-            <% bc = cycle("odd","even") %>
-            <tr>
-              <td class="left_end <%=bc%>"><%= t.name %></td>
-              <td class="<%=bc%>"><%= t.task_type %></td>
-              <td class="<%=bc%>"><%= get_templat_name(t.templat_id) %></td>
-              <td class="right_end <%=bc%>"><%= number_to_percentage(t.percent, precision:0) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="trow">
+        <div class="hcell" style="width:225px;">Name</div>
+        <div class="hcell" style="width:100px;">Type</div>
+        <div class="hcell" style="width:150px;">Template</div>
+        <div class="hcell" style="width:50px;"> % </div>
+      </div>
+      <% for t in @tasks %>
+        <% bc = cycle("odd","even") %>
+        <div class="trow">
+          <div class="rcell left_end <%=bc%>" style="width:225px;"><%= t.name %></div>
+          <div class="rcell <%=bc%>" style="width:100px;"><%= get_task_type_name(t.task_type) %></div>
+          <div class="rcell <%=bc%>" style="width:150px;"><%= get_templat_name(t.templat_id) %></div>
+          <div class="rcell right_end <%=bc%>" style="width:50px;"><%= number_to_percentage(t.percent, precision:0) %></div>
+        </div>
+      <% end %>
     <% else %>
       <p class="title small">You have no Tasks! Please create some below.</p>  
     <% end %>

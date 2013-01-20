@@ -1,0 +1,17 @@
+<%=form_for [:admin, @book, @paragraph] do |f| %>
+  <div class="rcell left_end" style="width:60px;">
+    <%= f.number_field :p_order, {:disabled=>true,:style=>"width:26px;"} %>
+  </div>
+  <div class="rcell" style="width:75px;">
+    <%= f.text_field :startref, {:style=>"width:50px;"}  %>
+  </div>
+  <div class="rcell" style="width:75px;">
+    <%= f.text_field :endref, {:style=>"width:50px;"}  %>
+  </div>
+  <div class="rcell" style="width:75px;">
+    <%= f.number_field :verse_count, {:style=>"width:50px;"}  %>
+  </div>
+  <div class="rcell right_end" style="width:150px;">
+    <%= f.submit :save %>
+  </div>
+<% end %>

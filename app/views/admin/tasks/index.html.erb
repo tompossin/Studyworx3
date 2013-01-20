@@ -13,30 +13,28 @@
     <p><%=link_to "Add a Task", new_admin_assignment_task_path(@assignment),{ remote: :true }%></p>
     <div id="task_area">
       <% unless @tasks.empty? %>
-        <table>
-          <thead>
-            <th>Name</th>
-            <th>Percent</th>
-            <th>Type</th>
-            <th>Template</th>
-            <th>Admin</th>
-          </thead>
-          <tbody>
-            <% for t in @tasks %>
-              <% bc = cycle("odd","even") %>
-              <tr>
-                <td class="left_end <%=bc%>"><%= t.name %></td>
-                <td class="<%=bc%>"><%= number_to_percentage(t.percent, precision:0) %></td>
-                <td class="<%=bc%>"><%= get_task_type_name(t.task_type) %></td>
-                <td class="<%=bc%>"><%= get_templat_name(t.templat_id) %></td>
-                <td class="right_end <%=bc%>">
-                  <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t),remote: true %> 
-                  <%=link_to "destroy",admin_assignment_task_path(@assignment,t), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+          <div class="trow">
+            <div class="hcell" style="width:175px;">Name</div>
+            <div class="hcell" style="width:50px;">Percent</div>
+            <div class="hcell" style="width:100px;">Type</div>
+            <div class="hcell" style="width:100px;">Template</div>
+            <div class="hcell" style="width:100px;">Admin</div>
+          </div>
+          <div>
+          <% for t in @tasks %>
+            <% bc = cycle("odd","even") %>
+            <div class="trow">
+              <div class="rcell left_end <%=bc%>" style="width:175px;"><%= t.name %></div>
+              <div class="rcell <%=bc%>" style="width:50px;"><%= number_to_percentage(t.percent, precision:0) %></div>
+              <div class="rcell <%=bc%>" style="width:100px;"><%= get_task_type_name(t.task_type) %></div>
+              <div class="rcell <%=bc%>" style="width:100px;"><%= get_templat_name(t.templat_id) %></div>
+              <div class="rcell right_end <%=bc%>" style="width:100px;">
+                <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t),remote: true %> 
+                <%=link_to "destroy",admin_assignment_task_path(@assignment,t), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          <% end %>
+          </div>
       <% end %>
     </div>
   </article>

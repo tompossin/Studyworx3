@@ -1,0 +1,14 @@
+<div id="content-large">    
+  <article>  
+    <h1>Admin::Tools</h1>
+    <p class="title small">Select a book below to edit paragraph info</p>
+    <%= form_tag admin_tools_book_path do %>
+      <%= select_tag "book_id", options_from_collection_for_select(@books, "id", "name") %>
+      <%= submit_tag "Select" %>
+    <% end %>
+    <p></p>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>
+ 

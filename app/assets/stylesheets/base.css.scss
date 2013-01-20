@@ -25,6 +25,10 @@ body {
 table {
   border-spacing:0px 2px;
 }
+th {
+  padding-left: 6px;
+  padding-right: 6px;
+}
 td {
   padding-left: 6px;
   padding-right: 6px;
@@ -271,6 +275,26 @@ blockquote {
   margin-right: 10px;
   margin-bottom: 6px;
   cursor:pointer;
+}
+.trow {
+  float:left;
+  width: 100%;
+  margin-bottom: 2px;
+}
+.hcell {
+  float: left;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.rcell {
+  float: left;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 .box_trans {
   background-color: rgba(0,0,0,.8);

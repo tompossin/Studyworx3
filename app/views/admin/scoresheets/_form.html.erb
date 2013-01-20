@@ -1,0 +1,8 @@
+<%= form_for [:admin, @school, @scoresheet] do |f|  %>
+  <p>Name</p>
+  <%= f.text_field :name, {:style=>"width:300px;"} %>
+  <p>Content</p>
+  <%= f.text_area :content, {:style=>"width:300px;height:350px;"} %>
+  <br /><%= f.submit :save %>
+<% end %>
+

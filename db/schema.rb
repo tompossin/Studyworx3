@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106094709) do
+ActiveRecord::Schema.define(:version => 20130119175847) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20130106094709) do
     t.integer  "verse_count"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "order"
   end
 
   create_table "duedates", :force => true do |t|

@@ -1,4 +1,4 @@
-<%= form_for @task, :url=>"tasks/#{@task.id}" do |f| %>
+<%= form_for [:admin, @assignment, @task] do |f| %>
   <div class="float_left limited">
     <p class="title smaller">Task Name</p>
     <%= f.text_field :name, {:style=>"width:96%"} %>

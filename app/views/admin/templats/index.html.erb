@@ -5,24 +5,22 @@
     
     <div id="templat_area">
       <% unless @templats.empty? %>
-        <table>
-          <thead>
-            <th>Template Name</th>
-            <th>Template Admin</th>
-          </thead>
-          <tbody>
+          <div class="trow">
+            <div class="hcell" style="width:300px;">Template Name</div>
+            <div class="hcell" style="width:100px;">Template Admin</div>
+          </div>
+          <div>
             <% for t in @templats %>
               <% bc = cycle("odd","even") %>
-              <tr>
-                <td class="left_end <%=bc%>"><%= t.name %></td>
-                <td class="right_end <%=bc%>">
+              <div class="trow">
+                <div class="rcell left_end <%=bc%>" style="width:300px;"><%= t.name %></div>
+                <div class="rcell right_end <%=bc%>" style="width:100px;">
                   <%=link_to "edit", edit_admin_school_templat_path(@school,t), remote: true %> 
                   <%=link_to "delete", admin_school_templat_path(@school,t), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-              </tr>
+                </div>
+              </div>
             <% end %>
-          </tbody>
-        </table>
+          </div>
       <% end %> 
     </div> 
   </article>

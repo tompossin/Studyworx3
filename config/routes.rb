@@ -1,6 +1,5 @@
 Studyworx3::Application.routes.draw do
 
-
   # ----------
   # :section: Admin Routes
   # This is a namespace for Admin functions
@@ -15,11 +14,15 @@ Studyworx3::Application.routes.draw do
     end
     resources :profiles
     resources :user_admins
-    resources :paragraphs
-    resources :books
+    resources :books do
+      resources :paragraphs
+    end
+    resources :versions
     resources :assignments  do
       resources :tasks
     end
+    get "tools/index"
+    post "tools/book"
   end
   
   

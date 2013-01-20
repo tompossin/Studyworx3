@@ -1,7 +1,30 @@
 <div id="content-large">
   <article>
-    <h1>This is a collection of School Scoresheets</h1>
-    <p>This will be a list of them and a toolbar for adding and editing.</p>
+    <h1><%= @school.name %> - Scoresheets</h1>
+    <p>Choose a scoresheet from the list below to edit or create a new one.</p>
+    <%=link_to "Create a new scoresheet", new_admin_school_scoresheet_path(@school),remote: true %>
+    <div id="scoresheet_element">
+      <% unless @scoresheets.empty? %>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Admin</th>
+          </thead>
+          <tbody>
+            <% for s in @scoresheets %>
+              <tr>
+                <td class="left_end"><%= s.name %></td>
+                <td Class="right_end">
+                  <%=link_to "edit", edit_admin_school_scoresheet_path(@school,s), remote: true %> 
+                  <%=link_to "delete", admin_school_scoresheet_path(@school,s), method: :delete, data: { confirm: 'Are you sure?'} %>
+                </td>
+              </tr>   
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
   </article>
 </div>
+
 <%= nav_bar(@nav_body_content) %>

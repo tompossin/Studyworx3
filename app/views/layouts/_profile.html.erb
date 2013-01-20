@@ -7,19 +7,15 @@
           <%= link_to "User Admin", admin_user_admins_path %> <br />
           <%= link_to "Schools Admin", admin_schools_path %> <br />
           <%= link_to "Blog Admin", blogs_path %> <br />
-          Book Admin <br />
-          Paragraph Admin <br />
-          Version Admin <br />
+          <%= link_to "Admin Tools", admin_tools_index_path %><br />
           <br />
         <% elsif session[:admin_level] == 2 %>
           <%= link_to "Schools Admin", admin_schools_path %> <br />
           <%= link_to "Blog Admin", blogs_path %> <br />
-          Paragraph Admin <br />
-          Version Admin <br />
+          <%= link_to "Admin Tools", admin_tools_index_path %><br />
           <br />
         <% elsif session[:admin_level] == 1 %>
           <%= link_to "Blog Admin", blogs_path %> <br />
-          Paragraph Admin <br />
           <br />
         <% end %>
       <%end%>

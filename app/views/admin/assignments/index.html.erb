@@ -7,30 +7,26 @@
     </div>
     <% unless @assignments.empty? %>
       <p class="title large">Current Assignments</p>
-      <table>
-        <thead>
-          <th>Name</th>
-          <th>Module</th>
-          <th>Weight</th>
-          <th>Tasks</th>
-          <th>Edit</th>
-          <th>Add Tasks</th>
-        </thead>
-        <tbody>
-          <% for a in @assignments %>
-            <% bc = cycle("odd","even") %>
-            <tr>
-              <td class="left_end <%=bc%>"><%= a.name %></td>
-              <td class="<%=bc%>"><%= a.module %></td>
-              <td class="<%=bc%>"><%= a.weight %></td>
-              <td class="<%=bc%>" style="background-color:<%= "red" unless a.tasks.count > 0 %>"><%= a.tasks.count %></td>
-              <td class="<%=bc%>"><%=link_to "Edit Assignment", edit_admin_assignment_path(a.id) %></td>
-              <td class="right_end <%=bc%>"><%=link_to "Add Tasks", admin_assignment_tasks_path(a.id)  %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      
+      <div class="trow">
+        <div class="hcell" style="width:220px;">Name</div>
+        <div class="hcell" style="width:50px;">Module</div>
+        <div class="hcell" style="width:50px;">Weight</div>
+        <div class="hcell" style="width:50px;">Tasks</div>
+        <div class="hcell" style="width:150px;">Admin</div>
+      </div>
+      <div>
+        <% for a in @assignments %>
+          <% bc = cycle("odd","even") %>
+          <div class="trow">
+            <div class="rcell left_end <%=bc%>" style="width:220px;"><%= a.name %></div>
+            <div class="rcell <%=bc%>" style="width:50px;"><%= a.module %></div>
+            <div class="rcell <%=bc%>" style="width:50px;"><%= a.weight %></div>
+            <div class="rcell <%=bc%>" style="<%= "background-color:red;" unless a.tasks.count > 0 %> width:50px;"><%= a.tasks.count %></div>
+            <div class="rcell <%=bc%>" style="width:40px;"><%=link_to "Edit", edit_admin_assignment_path(a.id) %></div>
+            <div class="rcell right_end <%=bc%>" style="width:110px;"><%=link_to "Add/Edit Tasks", admin_assignment_tasks_path(a.id)  %></div>
+          </div>
+        <% end %>
+      </div>
     <% else %>
       <p class="title small">You must first create an assignment.</p>
     <% end %>

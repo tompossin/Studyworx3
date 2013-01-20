@@ -181,6 +181,7 @@ bg=green</panel_attributes>
 -short_name:text
 -name:text
 -verse_count:int
+-order:int
 
 bg=gray</panel_attributes>
     <additional_attributes/>
@@ -309,9 +310,9 @@ bg=yellow</panel_attributes>
 -task_order:integer
 --
 /***task_types/
-/---1=Titles(charting)/
-/---2=Answers/
-/---3=discussion/
+/---1=Charting/
+/---2=Writing/
+/---3=Discussion/
 
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -732,7 +733,7 @@ bg=red</panel_attributes>
       <h>56</h>
     </coordinates>
     <panel_attributes>/*Last Updated:*/
-01/06/2013
+01/19/2013
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
