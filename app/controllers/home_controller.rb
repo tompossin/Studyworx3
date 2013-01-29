@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :load_school
 
   # TODO This is really just a framework now
   # * Fix the navbar so that only featured stories show
@@ -17,6 +18,16 @@ class HomeController < ApplicationController
   end
   private
   
-  
-  
+  def load_school
+    if current_user
+      if current_user.school > 0
+        @school = School.find(current_user.school)
+      else
+        @school = false
+      end
+    else
+      @school = false
+    end
+  end
+
 end

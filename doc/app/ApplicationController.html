@@ -90,6 +90,8 @@
     
     <li><a href="#method-i-is_owner">#is_owner</a>
     
+    <li><a href="#method-i-is_student">#is_student</a>
+    
     <li><a href="#method-i-is_superadmin">#is_superadmin</a>
     
   </ul>
@@ -146,6 +148,10 @@
     <li><a href="./Admin/TemplatsController.html">Admin::TemplatsController</a>
   
     <li><a href="./Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
+  
+    <li><a href="./Admin/ToolsController.html">Admin::ToolsController</a>
+  
+    <li><a href="./Admin/ToolsHelper.html">Admin::ToolsHelper</a>
   
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -448,7 +454,7 @@ any way.</p>
 
         <div class="method-description">
           
-          <h3 id="method-i-is_admin-label-before_filter">before_filter</h3>
+          <h3 id="method-i-is_admin-label-before_filter+%28redirect+on+failure%29">before_filter (redirect on failure)</h3>
 
 <p>Unless the current_user <a
 href="ApplicationController.html#method-i-is_admin">#is_admin</a> this
@@ -490,7 +496,7 @@ redirects to root path with a warning</p>
 
         <div class="method-description">
           
-          <h3 id="method-i-is_contributor-label-Before_filter">Before_filter</h3>
+          <h3 id="method-i-is_contributor-label-Before_filter+%28redirect+on+failure%29">Before_filter (redirect on failure)</h3>
 
 <p>Unless the current_user <a
 href="ApplicationController.html#method-i-is_contributor">#is_contributor</a>
@@ -522,6 +528,50 @@ reviewed papers</p>
       </div><!-- is_contributor-method -->
 
     
+      <div id="method-i-is_student" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_student</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-is_student-label-Before_filter+%28redirect+on+failure%29">Before_filter (redirect on failure)</h3>
+
+<p>Unless the current user is enroled and accepted in the current school they
+are not a student</p>
+<ul><li>
+<p>Participant.accepted == 0 is a pending application to a school</p>
+</li><li>
+<p>Participant.accepted == 1 is a dropped/rejected application</p>
+</li><li>
+<p>Participant.accepted == 2 is an accepted student</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="is_student-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_student</span>
+  <span class="ruby-identifier">student</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and user_id = ? and accepted = ?&quot;</span>, 
+                                    <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-value">2</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">student</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a student to use this page&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_student-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_student-method -->
+
+    
       <div id="method-i-is_superadmin" class="method-detail ">
         
         <div class="method-heading">
@@ -533,7 +583,7 @@ reviewed papers</p>
 
         <div class="method-description">
           
-          <h4 id="method-i-is_superadmin-label-before_filter">before_filter</h4>
+          <h4 id="method-i-is_superadmin-label-before_filter+%28redirect+on+failure%29">before_filter (redirect on failure)</h4>
 
 <p>Unless the current_user <a
 href="ApplicationController.html#method-i-is_superadmin">#is_superadmin</a>

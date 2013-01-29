@@ -78,7 +78,13 @@
     
     <li><a href="#method-i-hidden_div_unless">#hidden_div_unless</a>
     
+    <li><a href="#method-i-include_form_validation_errors">#include_form_validation_errors</a>
+    
     <li><a href="#method-i-is_admin">#is_admin</a>
+    
+    <li><a href="#method-i-is_contributor">#is_contributor</a>
+    
+    <li><a href="#method-i-is_staff">#is_staff</a>
     
     <li><a href="#method-i-is_superadmin">#is_superadmin</a>
     
@@ -146,6 +152,10 @@
     <li><a href="./Admin/TemplatsController.html">Admin::TemplatsController</a>
   
     <li><a href="./Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
+  
+    <li><a href="./Admin/ToolsController.html">Admin::ToolsController</a>
+  
+    <li><a href="./Admin/ToolsHelper.html">Admin::ToolsHelper</a>
   
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -284,7 +294,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="formatter-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">formatter</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">content</span> = <span class="ruby-identifier">strip_links</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">newstr</span> = <span class="ruby-string">&quot;&quot;</span>
@@ -451,7 +461,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="get_task_type_name-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_task_type_name</span>(<span class="ruby-identifier">id</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
     <span class="ruby-string">&quot;Text Editor&quot;</span>
@@ -491,7 +501,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="get_templat_name-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_templat_name</span>(<span class="ruby-identifier">templat_id</span>=<span class="ruby-keyword">false</span>)    
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">templat_id</span>
     <span class="ruby-identifier">t</span> = <span class="ruby-constant">Templat</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">templat_id</span>)
@@ -526,7 +536,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="hidden_div_unless-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 144</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 167</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
     <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none&quot;</span>
@@ -543,6 +553,38 @@ for safe and dead simple here.</p>
       </div><!-- hidden_div_unless-method -->
 
     
+      <div id="method-i-include_form_validation_errors" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">include_form_validation_errors</span><span
+            class="method-args">(record_object)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Include standard error code for form validation</p>
+
+<pre>Usage: include_form_validation_errors(@object)</pre>
+          
+
+          
+          <div class="method-source-code" id="include_form_validation_errors-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">include_form_validation_errors</span>(<span class="ruby-identifier">record_object</span>)
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;shared/errors&quot;</span>, <span class="ruby-value">:locals</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:record</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">record_object</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- include_form_validation_errors-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- include_form_validation_errors-method -->
+
+    
       <div id="method-i-is_admin" class="method-detail ">
         
         <div class="method-heading">
@@ -554,15 +596,15 @@ for safe and dead simple here.</p>
 
         <div class="method-description">
           
-          
+          <p>Check if this user has the status of <a href="Admin.html">Admin</a></p>
           
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 125</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -574,6 +616,71 @@ for safe and dead simple here.</p>
 
         
       </div><!-- is_admin-method -->
+
+    
+      <div id="method-i-is_contributor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_contributor</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Check if this user has the status of Contributor</p>
+          
+
+          
+          <div class="method-source-code" id="is_contributor-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_contributor-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_contributor-method -->
+
+    
+      <div id="method-i-is_staff" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_staff</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Check if a user has the role or staff or greater</p>
+          
+
+          
+          <div class="method-source-code" id="is_staff-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_staff</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_staff-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_staff-method -->
 
     
       <div id="method-i-is_superadmin" class="method-detail ">
@@ -592,7 +699,7 @@ for safe and dead simple here.</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 119</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
@@ -663,7 +770,7 @@ include youtube and vimeo videos.</p>
 
           
           <div class="method-source-code" id="relaxed_sanitize-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 138</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">relaxed_sanitize</span>(<span class="ruby-identifier">rawhtml</span>)
   <span class="ruby-identifier">sanitize</span> <span class="ruby-identifier">rawhtml</span>,<span class="ruby-value">:tags=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u )</span>, 
                     <span class="ruby-value">:attributes=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(id class style src border align colspan rowspan)</span>
@@ -698,7 +805,7 @@ to True/False. But really should be renamed for that sort of thing.</p>
 
           
           <div class="method-source-code" id="set_color-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 110</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_color</span>(<span class="ruby-identifier">t</span>,<span class="ruby-identifier">tcolor</span>=<span class="ruby-string">&quot;green&quot;</span>,<span class="ruby-identifier">fcolor</span>=<span class="ruby-string">&quot;gray&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>
     <span class="ruby-identifier">tcolor</span>
@@ -733,7 +840,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="set_wallpaper-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 158</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>  
@@ -771,7 +878,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="validation_errors_block-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 152</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 175</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validation_errors_block</span>(<span class="ruby-identifier">formobject</span>)
   <span class="ruby-identifier">render</span>(<span class="ruby-string">&quot;/shared/validation_errors_block&quot;</span>, {<span class="ruby-identifier">object</span><span class="ruby-operator">:</span> <span class="ruby-identifier">formobject</span>})
 <span class="ruby-keyword">end</span></pre>

@@ -1,32 +1,27 @@
 <div id="content-large">
   <article>
     <h1>School Administration</h1>
-    <table>
-      <thead>
-        <th>School Name</th>
-        <th>Active?</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Owned By</th>
-        <th>Admin</th>
-      </thead>
-      <tbody>
+      <div class="theader" style="width:100%;">
+        <div class="cell" style="width:25%;">School Name</div>
+        <div class="cell" style="width:8%;">Active?</div>
+        <div class="cell" style="width:15%;">Start Date</div>
+        <div class="cell" style="width:15%;">End Date</div>
+        <div class="cell" style="width:15%;">Owned By</div>
+        <div class="cell" style="width:15%">Admin</div>
+      </div>
         <% for s in @schools %>
-          <% bc = cycle("odd","even") %>
-          <tr>
-            <td class="left_end <%=bc%>"><%= s.name %></td>
-            <td style="background-color:<%= set_color(s.active,:green,:gray)%>"><%= s.active %></td>
-            <td class="<%=bc%>"><%= s.start_date.strftime("%m/%d/%Y") %></td>
-            <td class="<%=bc%>"><%= s.end_date.strftime("%m/%d/%Y") %></td>
-            <td class="<%=bc%>"><%= get_full_name(s.owner_id) if s.owner_id %></td>
-            <td class="right_end <%=bc%>">
+          <div class="trow <%= cycle("odd","even") %>" style="width:100%;">
+            <div class="cell" style="width:25%;"><%= s.name %></div>
+            <div class="cell" style="width:8%; background-color:<%= set_color(s.active,:green,:gray)%>;"><%= s.active %></div>
+            <div class="cell" style="width:12%;"><%= s.start_date.strftime("%m/%d/%Y") %></div>
+            <div class="cell" style="width:12%;"><%= s.end_date.strftime("%m/%d/%Y") %></div>
+            <div class="cell" style="width:15%;"><%= get_full_name(s.owner_id) if s.owner_id %></div>
+            <div class="cell" style="width:15%;">
               <%=link_to "edit", edit_admin_school_path(s.id), {class: "smallest"} %>  
               <%= link_to "View", school_path(s.id),{class: "smallest",:title=>"Visit This Schools Home Page"} %>
-            </td>
-          </tr>
+            </div>
+          </div>
         <% end %>
-      </tbody>
-    </table>   
   </article>
 </div>
 <%= nav_bar(@nav_body_content) %>

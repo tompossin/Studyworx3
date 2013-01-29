@@ -61,6 +61,7 @@ edit_admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id/ed
        admin_assignment_task GET    /admin/assignments/:assignment_id/tasks/:id(.:format)                   admin/tasks#show
                              PUT    /admin/assignments/:assignment_id/tasks/:id(.:format)                   admin/tasks#update
                              DELETE /admin/assignments/:assignment_id/tasks/:id(.:format)                   admin/tasks#destroy
+    admin_assignment_showmod GET    /admin/assignments/:assignment_id/showmod(.:format)                     admin/assignments#showmod
            admin_assignments GET    /admin/assignments(.:format)                                            admin/assignments#index
                              POST   /admin/assignments(.:format)                                            admin/assignments#create
         new_admin_assignment GET    /admin/assignments/new(.:format)                                        admin/assignments#new

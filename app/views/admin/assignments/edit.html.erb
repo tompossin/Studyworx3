@@ -10,21 +10,22 @@
     <%= render "admin/assignments/form"%>
     <!--Task editor below divis line -->
     <h2>Assignment Tasks</h2>
-    <%=link_to "Add or Edit Tasks", admin_assignment_tasks_path(@assignment.id) if @assignment %>
+    <p>
+      <%=link_to "Add or Edit Tasks", admin_assignment_tasks_path(@assignment.id) if @assignment %>
+    </p>
     <% unless @tasks.empty? %>
-      <div class="trow">
-        <div class="hcell" style="width:225px;">Name</div>
-        <div class="hcell" style="width:100px;">Type</div>
-        <div class="hcell" style="width:150px;">Template</div>
-        <div class="hcell" style="width:50px;"> % </div>
+      <div class="theader" style="width:100%">
+        <div class="cell" style="width:33%;">Name</div>
+        <div class="cell" style="width:20%;">Type</div>
+        <div class="cell" style="width:25%;">Template</div>
+        <div class="cell" style="width:10%;"> % </div>
       </div>
-      <% for t in @tasks %>
-        <% bc = cycle("odd","even") %>
-        <div class="trow">
-          <div class="rcell left_end <%=bc%>" style="width:225px;"><%= t.name %></div>
-          <div class="rcell <%=bc%>" style="width:100px;"><%= get_task_type_name(t.task_type) %></div>
-          <div class="rcell <%=bc%>" style="width:150px;"><%= get_templat_name(t.templat_id) %></div>
-          <div class="rcell right_end <%=bc%>" style="width:50px;"><%= number_to_percentage(t.percent, precision:0) %></div>
+      <% for t in @tasks %> 
+        <div class="trow <%= cycle("odd","even") %>" style="width:100%;">
+          <div class="cell" style="width:33%;"><%= t.name %></div>
+          <div class="cell" style="width:20%;"><%= get_task_type_name(t.task_type) %></div>
+          <div class="cell" style="width:25%;"><%= get_templat_name(t.templat_id) %></div>
+          <div class="cell" style="width:10%;"><%= number_to_percentage(t.percent, precision:0) %></div>
         </div>
       <% end %>
     <% else %>

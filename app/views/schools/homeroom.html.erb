@@ -1,21 +1,31 @@
 <div id="content-large">
   <article>
+    
     <header style="background-image:url('<%= @school.header.url%>');">
       <div class="avatar" style="background-image:url('<%= @school.logo.url(:thumb) %>')"></div>
       <h1>
         <%= @school.name %>
       </h1>
       <p class="title small">Welcome <%=current_user.fullname %></p>
-    </header> 
-    <% if current_user.role < 3 %>
+    </header>
+    <div class="float_left limited">
+      <% if current_user.role < 3 %>
+        <section>
+          <%= render "schools/admin_tools" %>
+        </section>
+      <% end %>
+      <% if current_user.role < 4 %>
+        <section>
+          <%= render "schools/staff_tools" %>
+        </section>
+      <% end %>
+    </div>
+    <div class="float_left limited">
       <section>
-        <div class="float_left">
-          <h2>School Admin</h2>
-          <p><%=link_to "Edit School", edit_admin_school_path(@school) %></p>
-          <p><%=link_to "Edit Assignments", admin_assignments_path %></p>
-        </div>
+        <%= render "schools/assignment_tools" %>
       </section>
-    <% end %>
+    </div> 
+    
   </article>
 </div>
 <%= nav_bar(@nav_body_content) %>

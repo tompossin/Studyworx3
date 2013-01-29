@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 # The methods below are used as before filters in controllers
 # ------  
 
-  # ==== before_filter
+  # ==== before_filter (redirect on failure)
   # Unless the current_user is_superadmin this redirects to root path with a warning
   # * User.user_admin.level == 3 (me basically)
   def is_superadmin
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # === before_filter
+  # === before_filter (redirect on failure)
   # Unless the current_user is_admin this redirects to root path with a warning
   # * User.user_admin.level > 1
   # * Users of this sort can create contributors and edit more low level data.
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # === Before_filter
+  # === Before_filter (redirect on failure)
   # Unless the current_user is_contributor this redirects to root path with a warning
   # * User.user_admin.level > 0
   # * Users of this sort can contribute to the public blog or submit peer reviewed papers
@@ -80,6 +80,19 @@ class ApplicationController < ActionController::Base
     user = UserAdmin.find_by_user_id(current_user.id)
     unless user and user.level > 0
       redirect_to root_path, alert: "You must be a contributor to access this page"
+    end
+  end
+  
+  # === Before_filter (redirect on failure)
+  # Unless the current user is enroled and accepted in the current school they are not a student
+  # * Participant.accepted == 0 is a pending application to a school
+  # * Participant.accepted == 1 is a dropped/rejected application
+  # * Participant.accepted == 2 is an accepted student
+  def is_student
+    student = Participant.where("school_id = ? and user_id = ? and accepted = ?", 
+                                      current_user.school,current_user.id,2).first
+    unless student
+      redirect_to root_path, alert: "You must be a student to use this page"
     end
   end
   

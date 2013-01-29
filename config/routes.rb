@@ -20,6 +20,9 @@ Studyworx3::Application.routes.draw do
     resources :versions
     resources :assignments  do
       resources :tasks
+      collection do
+        get 'showmod'
+      end 
     end
     get "tools/index"
     post "tools/book"

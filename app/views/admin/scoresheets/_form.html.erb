@@ -1,4 +1,7 @@
 <%= form_for [:admin, @school, @scoresheet] do |f|  %>
+
+  <%= include_form_validation_errors(@scoresheet) %>
+
   <p>Name</p>
   <%= f.text_field :name, {:style=>"width:300px;"} %>
   <p>Content</p>

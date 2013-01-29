@@ -70,6 +70,10 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-destroy">#destroy</a>
+    
     <li><a href="#method-i-edit">#edit</a>
     
     <li><a href="#method-i-index">#index</a>
@@ -77,6 +81,8 @@
     <li><a href="#method-i-new">#new</a>
     
     <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-update">#update</a>
     
   </ul>
 </nav>
@@ -132,6 +138,10 @@
     <li><a href="../Admin/TemplatsController.html">Admin::TemplatsController</a>
   
     <li><a href="../Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
+  
+    <li><a href="../Admin/ToolsController.html">Admin::ToolsController</a>
+  
+    <li><a href="../Admin/ToolsHelper.html">Admin::ToolsHelper</a>
   
     <li><a href="../Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -252,6 +262,75 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:scoresheet</span>])
+  <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">school_id</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_school_scoresheets_path</span>(<span class="ruby-ivar">@school</span>)}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_school_scoresheets_path</span>(<span class="ruby-ivar">@school</span>)}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy-method -->
+
+    
       <div id="method-i-edit" class="method-detail ">
         
         <div class="method-heading">
@@ -268,8 +347,12 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
           
@@ -297,9 +380,9 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@nav_body_content</span> = <span class="ruby-string">&quot;admin/assignments/toolbar&quot;</span>
+  <span class="ruby-ivar">@scoresheets</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -327,8 +410,12 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -356,8 +443,9 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -367,6 +455,41 @@
 
         
       </div><!-- show-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:scoresheet</span>])
+  <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_school_scoresheets_path</span>(<span class="ruby-ivar">@school</span>)}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update-method -->
 
     
     </section><!-- public-instance-method-details -->

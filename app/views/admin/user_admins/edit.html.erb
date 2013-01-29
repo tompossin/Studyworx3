@@ -3,7 +3,7 @@
   
   <%= render 'form' %>
   
-  <%= link_to 'Destroy', @user_admin, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Back', user_admins_path %>
+  <%= link_to 'Destroy',[:admin, @user_admin], method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', admin_user_admins_path %>
 </div>
 

@@ -2,27 +2,28 @@
   <article>
     <h1><%= @school.name %> - Scoresheets</h1>
     <p>Choose a scoresheet from the list below to edit or create a new one.</p>
-    <%=link_to "Create a new scoresheet", new_admin_school_scoresheet_path(@school),remote: true %>
-    <div id="scoresheet_element">
-      <% unless @scoresheets.empty? %>
-        <table>
-          <thead>
-            <th>Name</th>
-            <th>Admin</th>
-          </thead>
-          <tbody>
+    <p>
+      <%=link_to "Create a new scoresheet", new_admin_school_scoresheet_path(@school),remote: true %>
+    </p>
+    <div class="float_left limited">
+      <div id="scoresheet_element">
+        <% unless @scoresheets.empty? %>
+            <div class="theader" style="width:100%;">
+              <div class="cell" style="width:200px;">Name</div>
+              <div class="cell" style="width:100px;">Admin</div>
+            </div>
             <% for s in @scoresheets %>
-              <tr>
-                <td class="left_end"><%= s.name %></td>
-                <td Class="right_end">
+              
+              <div class="trow <%= cycle("odd","even")%>" style="width:100%;">
+                <div class="cell" style="width:200px;"><%= s.name %></div>
+                <div class="cell" style="width:100px;">
                   <%=link_to "edit", edit_admin_school_scoresheet_path(@school,s), remote: true %> 
                   <%=link_to "delete", admin_school_scoresheet_path(@school,s), method: :delete, data: { confirm: 'Are you sure?'} %>
-                </td>
-              </tr>   
+                </div>
+              </div>   
             <% end %>
-          </tbody>
-        </table>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </article>
 </div>

@@ -31,6 +31,12 @@ module ApplicationHelper
     render :partial=>"layouts/nav_bar", :locals=>{content: full_name, nav_body_content: nbc}
   end
   
+  # Include standard error code for form validation
+  #  Usage: include_form_validation_errors(@object)
+  def include_form_validation_errors(record_object)
+    render :partial => "shared/errors", :locals => {:record => record_object }
+  end
+  
   # return the name of the template when given the templat_id
   def get_templat_name(templat_id=false)    
     if templat_id
@@ -122,9 +128,26 @@ module ApplicationHelper
       return true || false
     end
   end
+  
+  # Check if this user has the status of Admin
   def is_admin
     user = UserAdmin.find_by_user_id(current_user.id)
-    if user and user.level > 0
+    if user and user.level > 1
+      return true || false
+    end
+  end
+  
+  # Check if this user has the status of Contributor
+  def is_contributor
+    user = UserAdmin.find_by_user_id(current_user.id)
+    if user and user.level >0
+      return true || false
+    end
+  end
+  
+  # Check if a user has the role or staff or greater
+  def is_staff
+    if current_user.role < 4
       return true || false
     end
   end

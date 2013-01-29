@@ -44,9 +44,13 @@ class User < ActiveRecord::Base
   #  Usage: @user.set_school(school_id)
   def set_school(school_id)
     p = self.participants.where(:school_id => school_id).first
-    self.role = p.role_id if p
-    self.school = school_id
-    self.save  
+    if p
+      self.role = p.role_id 
+      self.school = school_id
+      self.save
+    else
+      return false
+    end   
   end
   
   # Returns full name of user
@@ -56,9 +60,9 @@ class User < ActiveRecord::Base
   end
   
   # Checks users authority to administrate schools
-  # * A school admin has a participant.role < 3
+  # * A school admin has a participant.role_id < 3
   #  Usage: @user.is_school_admin(school_id)
-  def is_school_admin(school_id)
+  def is_school_admin?(school_id)
     if self.participants.exists?(:school_id => school_id)
       participant = self.participants.find_by_school_id(school_id)
       if participant.role_id < 3
@@ -72,9 +76,9 @@ class User < ActiveRecord::Base
   end
   
   # Check if the user is the school leader
-  # * A school leader has a participant.role < 2
+  # * A school leader has a participant.role_id < 2
   #  Usage: @user.is_school_leader(school_id)
-  def is_school_leader(school_id)
+  def is_school_leader?(school_id)
     if self.participants.exists?(:school_id => school_id)
       participant = self.participants.find_by_school_id(school_id)
         if participant.role_id < 2
@@ -84,6 +88,33 @@ class User < ActiveRecord::Base
         end
     else
       return false
+    end
+  end
+  
+  def status
+    participant = Participant.where("user_id = ? and school_id = ?",self.id,self.school).first
+    if participant
+      return participant.accepted
+    else
+      return false
+    end
+  end
+  
+  def staff?
+    if self.role < 4
+      return true || false
+    end
+  end
+  
+  def admin_assistant?
+    if self.role < 3
+      return true || false
+    end
+  end
+  
+  def leader?
+    if self.role < 2
+      return true || false
     end
   end
 

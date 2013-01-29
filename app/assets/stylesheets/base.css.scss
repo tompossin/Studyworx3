@@ -276,26 +276,31 @@ blockquote {
   margin-bottom: 6px;
   cursor:pointer;
 }
+/* css table elements */
 .trow {
   float:left;
-  width: 100%;
   margin-bottom: 2px;
+  border: solid gray 1px;
+  border-radius: 10px;
+  .cell {
+    float: left;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
 }
-.hcell {
-  float: left;
-  font-weight: bold;
-  text-align: center;
-  padding-left: 6px;
-  padding-right: 6px;
+.theader {
+  float:left;
+  margin-bottom: 2px;
+  .cell {
+    float: left;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
 }
+/* end css table elements */
 
-.rcell {
-  float: left;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-  padding-left: 6px;
-  padding-right: 6px;
-}
 .box_trans {
   background-color: rgba(0,0,0,.8);
   border-radius: 8px;
@@ -324,18 +329,6 @@ blockquote {
 
 .hr_short {
   width: 20%;
-}
-
-.left_end {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;  
-  border-left: solid gray 1px;
-}
-
-.right_end {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-right: solid gray 1px;
 }
 
 .more {

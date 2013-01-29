@@ -1,4 +1,7 @@
 <%=form_for [:admin,@school,@templat] do |f| %>
+
+  <%= include_form_validation_errors(@templat) %>
+
   <div class="float_left limited">
     <p class="title smaller">Name</p>
     <%= f.text_field :name, {:style=>"width:92%;"} %>

@@ -10,32 +10,30 @@
         </p>
       <% end %>
       <% if @users %>
-        <table style="text-align:center;border:2px solid #cccccc;">
-          <tr style="text-align:center">
-            <th>First<br />Name</th>
-            <th>Last<br />Name</th>
-            <th>Admin<br />Level</th>
-            <th>Manage<br />Admins</th>
-            <th>Review Board<br />Status</th>
-          </tr>
+            <div class="theader" style="width:100%">
+              <div class="cell" style="width:75px;">First<br />Name</div>
+              <div class="cell" style="width:75px;">Last<br />Name</div>
+              <div class="cell" style="width:50px;">Admin<br />Level</div>
+              <div class="cell" style="width:125px;">Manage<br />Admins</div>
+              <div class="cell" style="width:125px;">Review Board<br />Status</div>
+            </div>
           <% @users.each do |u| %>
-            <tr class="<%= cycle('even','odd')%>">
-              <td><%= u.firstname if u %></td>
-              <td><%= u.lastname if u %></td>
-              <td><%= u.user_admin.level if u.user_admin %></td>
+            <div class="trow <%= cycle('even','odd')%>" style="width:100%">
+              <div class="cell" style="width:75px;color:black;"><%= u.firstname if u %></div>
+              <div class="cell" style="width:75px;color:black;"><%= u.lastname if u %></div>
+              <div class="cell" style="min-width:50px;color:black;"><%= u.user_admin.level if u.user_admin %></div>
               <% if u.user_admin %>
-              	<td><%= link_to "Edit Admin Level", edit_admin_user_admin_path(u) %></td>
+              	<div class="cell" style="width:125px;"><%= link_to "Edit Admin Level", edit_admin_user_admin_path(u.id) %></div>
               <% else %>
-              	<td><%= link_to "Make an Admin", edit_admin_user_admin_path(u)%></td>
+              	<div class="cell" style="width:125px;"><%= link_to "Make an Admin", edit_admin_user_admin_path(u.id)%></div>
               <% end %>
               <% if u.reviewboard == true %>
-                <td><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
+                <div class="cell" style="width:125px;"><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></div>
               <% else %>
-                <td><span style="font-style:italic;">False </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></td>
+                <div class="cell" style="width:125px;"><span style="font-style:italic;">False </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></div>
               <% end %>
-            </tr>
+            </div>
           <% end %>
-        </table>
       <% end %>
     </div>
   </article>

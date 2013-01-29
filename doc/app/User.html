@@ -70,13 +70,19 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-admin_assistant-3F">#admin_assistant?</a>
+    
     <li><a href="#method-i-fullname">#fullname</a>
     
-    <li><a href="#method-i-is_school_admin">#is_school_admin</a>
+    <li><a href="#method-i-is_school_admin-3F">#is_school_admin?</a>
     
-    <li><a href="#method-i-is_school_leader">#is_school_leader</a>
+    <li><a href="#method-i-is_school_leader-3F">#is_school_leader?</a>
+    
+    <li><a href="#method-i-leader-3F">#leader?</a>
     
     <li><a href="#method-i-set_school">#set_school</a>
+    
+    <li><a href="#method-i-staff-3F">#staff?</a>
     
   </ul>
 </nav>
@@ -132,6 +138,10 @@
     <li><a href="./Admin/TemplatsController.html">Admin::TemplatsController</a>
   
     <li><a href="./Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
+  
+    <li><a href="./Admin/ToolsController.html">Admin::ToolsController</a>
+  
+    <li><a href="./Admin/ToolsHelper.html">Admin::ToolsHelper</a>
   
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -252,6 +262,38 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-admin_assistant-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin_assistant?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="admin_assistant-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_assistant?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- admin_assistant-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin_assistant-3F-method -->
+
+    
       <div id="method-i-fullname" class="method-detail ">
         
         <div class="method-heading">
@@ -270,7 +312,7 @@
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">lastname</span>
 <span class="ruby-keyword">end</span></pre>
@@ -284,10 +326,10 @@
       </div><!-- fullname-method -->
 
     
-      <div id="method-i-is_school_admin" class="method-detail ">
+      <div id="method-i-is_school_admin-3F" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">is_school_admin</span><span
+          <span class="method-name">is_school_admin?</span><span
             class="method-args">(school_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -297,16 +339,16 @@
           
           <p>Checks users authority to administrate schools</p>
 <ul><li>
-<p>A school admin has a participant.role &lt; 3</p>
+<p>A school admin has a participant.role_id &lt; 3</p>
 </li></ul>
 
 <pre>Usage: @user.is_school_admin(school_id)</pre>
           
 
           
-          <div class="method-source-code" id="is_school_admin-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 61</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_admin</span>(<span class="ruby-identifier">school_id</span>)
+          <div class="method-source-code" id="is_school_admin-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_admin?</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>)
     <span class="ruby-identifier">participant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find_by_school_id</span>(<span class="ruby-identifier">school_id</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">role_id</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span>
@@ -318,20 +360,20 @@
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- is_school_admin-source -->
+          </div><!-- is_school_admin-3F-source -->
           
         </div>
 
         
 
         
-      </div><!-- is_school_admin-method -->
+      </div><!-- is_school_admin-3F-method -->
 
     
-      <div id="method-i-is_school_leader" class="method-detail ">
+      <div id="method-i-is_school_leader-3F" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">is_school_leader</span><span
+          <span class="method-name">is_school_leader?</span><span
             class="method-args">(school_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -341,16 +383,16 @@
           
           <p>Check if the user is the school leader</p>
 <ul><li>
-<p>A school leader has a participant.role &lt; 2</p>
+<p>A school leader has a participant.role_id &lt; 2</p>
 </li></ul>
 
 <pre>Usage: @user.is_school_leader(school_id)</pre>
           
 
           
-          <div class="method-source-code" id="is_school_leader-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 77</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_leader</span>(<span class="ruby-identifier">school_id</span>)
+          <div class="method-source-code" id="is_school_leader-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_leader?</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>)
     <span class="ruby-identifier">participant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find_by_school_id</span>(<span class="ruby-identifier">school_id</span>)
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">role_id</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
@@ -362,14 +404,46 @@
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- is_school_leader-source -->
+          </div><!-- is_school_leader-3F-source -->
           
         </div>
 
         
 
         
-      </div><!-- is_school_leader-method -->
+      </div><!-- is_school_leader-3F-method -->
+
+    
+      <div id="method-i-leader-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">leader?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="leader-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">leader?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- leader-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- leader-3F-method -->
 
     
       <div id="method-i-set_school" class="method-detail ">
@@ -393,9 +467,13 @@
             <pre><span class="ruby-comment"># File app/models/user.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-identifier">p</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">role_id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">p</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span> = <span class="ruby-identifier">school_id</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">p</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">role_id</span> 
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span> = <span class="ruby-identifier">school_id</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>   
 <span class="ruby-keyword">end</span></pre>
           </div><!-- set_school-source -->
           
@@ -405,6 +483,38 @@
 
         
       </div><!-- set_school-method -->
+
+    
+      <div id="method-i-staff-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">staff?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="staff-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">staff?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- staff-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- staff-3F-method -->
 
     
     </section><!-- public-instance-method-details -->

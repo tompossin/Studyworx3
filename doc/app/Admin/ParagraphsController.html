@@ -70,6 +70,10 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-destroy">#destroy</a>
+    
     <li><a href="#method-i-edit">#edit</a>
     
     <li><a href="#method-i-index">#index</a>
@@ -77,6 +81,8 @@
     <li><a href="#method-i-new">#new</a>
     
     <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-update">#update</a>
     
   </ul>
 </nav>
@@ -132,6 +138,10 @@
     <li><a href="../Admin/TemplatsController.html">Admin::TemplatsController</a>
   
     <li><a href="../Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
+  
+    <li><a href="../Admin/ToolsController.html">Admin::ToolsController</a>
+  
+    <li><a href="../Admin/ToolsHelper.html">Admin::ToolsHelper</a>
   
     <li><a href="../Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -252,6 +262,66 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy-method -->
+
+    
       <div id="method-i-edit" class="method-detail ">
         
         <div class="method-heading">
@@ -268,8 +338,13 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-ivar">@paragraph</span> = <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
           
@@ -297,8 +372,10 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-ivar">@paragraphs</span> = <span class="ruby-ivar">@book</span>.<span class="ruby-identifier">paragraphs</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:version_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">version_id</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@version</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">version_id</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -326,8 +403,12 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@paragraph</span> = <span class="ruby-ivar">@book</span>.<span class="ruby-identifier">paragraphs</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@paragraphs</span> = <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:version_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">version_id</span>,<span class="ruby-value">:book_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@book</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;p_order DESC&quot;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">10</span>)
+  <span class="ruby-ivar">@version</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">version_id</span>)
+  
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -355,8 +436,9 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -366,6 +448,36 @@
 
         
       </div><!-- show-method -->
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update-method -->
 
     
     </section><!-- public-instance-method-details -->

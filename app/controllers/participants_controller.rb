@@ -52,7 +52,7 @@ class ParticipantsController < ApplicationController
   # ==== SCHOOL ADMINS ONLY - participant.role < 3
   # This will be called for acceptance/Rejection by leader/assistant
   def edit
-    if current_user.is_school_admin(params[:school_id])
+    if current_user.is_school_admin?(params[:school_id])
       @participant = @school.participants.find(params[:id])
     end
     

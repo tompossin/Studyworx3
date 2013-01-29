@@ -3,13 +3,14 @@
 # * For admin functions use Admin::SchoolsController
 class SchoolsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :is_student, only: [:homeroom]
   
   # GET /schools
   def index
     @school = School.find_or_initialize_by_id(current_user.school)
-    check_for_pending_registrations
     load_school_vars
-
+    check_for_pending_registrations?
+    
     respond_to do |format|
       if current_user.school < 1
         format.html # index.html.erb
@@ -33,7 +34,7 @@ class SchoolsController < ApplicationController
   # This is the default page for a participant.
   def homeroom
     @school = School.find(current_user.school)
-    check_for_pending_registrations
+    check_for_pending_registrations?
     load_school_vars
     
     respond_to do |format|
@@ -43,66 +44,16 @@ class SchoolsController < ApplicationController
   
   # Sets the users current school
   def set_current
-    @current_user.set_school(params[:id])
-    @school = School.find(current_user.school)
-    respond_to do |format|
-        flash[:notice] = "Changed default school to #{@school.name}"
-        format.html {redirect_to homeroom_school_path }
-    end  
-  end
-
-  # GET /schools/new
-  def new
-    @school = School.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
-
-  # GET /schools/1/edit
-  def edit
-    @school = School.find(params[:id])
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  # POST /schools
-  def create
-    @school = School.new(params[:school])
-
-    respond_to do |format|
-      if @school.save
-        format.html { redirect_to @school, notice: 'School was successfully created.' }
-        format.json { render json: @school, status: :created, location: @school }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /schools/1
-  def update
-    @school = School.find(params[:id])
-
-    if @school.update_attributes(params[:school])
-      render "shared/save_success"
-    else
-      render "shared/save_failed"
-    end
-  end
-
-  # DELETE /schools/1
-  def destroy
-    @school = School.find(params[:id])
-    @school.destroy
-
-    respond_to do |format|
-      format.html { redirect_to schools_url }
-      format.json { head :no_content }
-    end
+      if current_user.set_school(params[:id])
+        @school = School.find(current_user.school)
+        respond_to do |format|
+            flash[:notice] = "Changed default school to #{@school.name}"
+            format.html {redirect_to homeroom_school_path }
+        end
+      else 
+        flash[:alert] = "You are not a student in this school"
+        redirect_to root_path  
+      end   
   end
   
   private
@@ -114,8 +65,8 @@ class SchoolsController < ApplicationController
   end
   
   # This checks for pending registrations
-  def check_for_pending_registrations
-    if current_user.is_school_leader(current_user.school)
+  def check_for_pending_registrations?
+    if current_user.leader?
       @registrations = @school.participants.pending
       if @registrations.empty?
         @registrations = false

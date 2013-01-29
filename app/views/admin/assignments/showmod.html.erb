@@ -1,0 +1,35 @@
+<div id="content-large">
+  <article>
+    <h1><%= @school.name %></h1>
+    <p class="title large">Assignment Administration</p>
+    <div>
+      <%=link_to "Add New Assignment", new_admin_assignment_path %>
+    </div>
+    <% unless @assignments.empty? %>
+      <p class="title large">Current Assignments</p>
+      <div class="theader" style="width:100%">
+        <div class="cell" style="width:30%;">Name</div>
+        <div class="cell" style="width:10%;">Module</div>
+        <div class="cell" style="width:10%;">Weight</div>
+        <div class="cell" style="width:10%;">Tasks</div>
+        <div class="cell" style="width:25%;">Admin</div>
+      </div>
+      <div>
+        <% for a in @assignments %>
+          
+          <div class="trow <%= cycle("odd","even") %>" style="width:100%">
+            <div class="cell" style="width:30%;"><%= a.name %></div>
+            <div class="cell" style="width:10%;"><%= a.module %></div>
+            <div class="cell" style="width:10%;"><%= a.weight %></div>
+            <div class="cell" style="width:10%;<%= "background-color:red;" unless a.tasks.count > 0 %>;"><%= a.tasks.count %></div>
+            <div class="cell" style="width:5%;"><%=link_to "Edit", edit_admin_assignment_path(a.id) %></div>
+            <div class="cell" style="width:20%;"><%=link_to "Add/Edit Tasks", admin_assignment_tasks_path(a.id)  %></div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="title small">You must first create an assignment.</p>
+    <% end %>
+  </article>
+</div>
+<%= nav_bar(@nav_body_content) %>

@@ -3,19 +3,19 @@
     <div class="floatbox_trans">
       <p class="title">Edit my bio</p>
       <%= form_for @user.note, :url => bio_save_profile_path(@user.id), :html => { :multipart => true, :remote => true } do |f| %>
-        <table style="width:100%;">
-          <tr>
-            <td style="width:275px;">
+
+          <div class="trow">
+            <div class="cell" style="width:275px;">
               <%= f.text_area :bio, {style: "height: 225px;width: 95%;"} %>
-            </td>
-            <td>
+            </div>
+            <div class="cell">
               <%= render "shared/format_help" %>
               <p>
                 <%= f.submit "Update Bio" %>
               </p>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+
       <% end %>
       <p class="title">Edit my Profile</p>
       <%= form_for @user, :url => profile_path(current_user.id), :html => { :multipart => true } do |f| %>

@@ -70,23 +70,13 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-create">#create</a>
-    
-    <li><a href="#method-i-destroy">#destroy</a>
-    
-    <li><a href="#method-i-edit">#edit</a>
-    
     <li><a href="#method-i-homeroom">#homeroom</a>
     
     <li><a href="#method-i-index">#index</a>
     
-    <li><a href="#method-i-new">#new</a>
-    
     <li><a href="#method-i-set_current">#set_current</a>
     
     <li><a href="#method-i-show">#show</a>
-    
-    <li><a href="#method-i-update">#update</a>
     
   </ul>
 </nav>
@@ -142,6 +132,10 @@
     <li><a href="./Admin/TemplatsController.html">Admin::TemplatsController</a>
   
     <li><a href="./Admin/TemplatsHelper.html">Admin::TemplatsHelper</a>
+  
+    <li><a href="./Admin/ToolsController.html">Admin::ToolsController</a>
+  
+    <li><a href="./Admin/ToolsHelper.html">Admin::ToolsHelper</a>
   
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
@@ -270,115 +264,6 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-create" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>POST /schools</p>
-          
-
-          
-          <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 72</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:school</span>])
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@school</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'School was successfully created.'</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@school</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@school</span> }
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;new&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- create-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- create-method -->
-
-    
-      <div id="method-i-destroy" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">destroy</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>DELETE /schools/1</p>
-          
-
-          
-          <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 98</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">destroy</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_url</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- destroy-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- destroy-method -->
-
-    
-      <div id="method-i-edit" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">edit</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /schools/1/edit</p>
-          
-
-          
-          <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 64</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- edit-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- edit-method -->
-
-    
       <div id="method-i-homeroom" class="method-detail ">
         
         <div class="method-heading">
@@ -395,10 +280,10 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
 
           
           <div class="method-source-code" id="homeroom-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">homeroom</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
-  <span class="ruby-identifier">check_for_pending_registrations</span>
+  <span class="ruby-identifier">check_for_pending_registrations?</span>
   <span class="ruby-identifier">load_school_vars</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -431,10 +316,10 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find_or_initialize_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
-  <span class="ruby-identifier">check_for_pending_registrations</span>
+  <span class="ruby-identifier">check_for_pending_registrations?</span>
   <span class="ruby-identifier">load_school_vars</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -455,40 +340,6 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
       </div><!-- index-method -->
 
     
-      <div id="method-i-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /schools/new</p>
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 55</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">new</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
-
-    
       <div id="method-i-set_current" class="method-detail ">
         
         <div class="method-heading">
@@ -505,14 +356,18 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
 
           
           <div class="method-source-code" id="set_current-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_current</span>
-  <span class="ruby-ivar">@current_user</span>.<span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;Changed default school to #{@school.name}&quot;</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">homeroom_school_path</span> }
-  <span class="ruby-keyword">end</span>  
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+      <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
+      <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-node">&quot;Changed default school to #{@school.name}&quot;</span>
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">homeroom_school_path</span> }
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span> 
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:alert</span>] = <span class="ruby-string">&quot;You are not a student in this school&quot;</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>  
+    <span class="ruby-keyword">end</span>   
 <span class="ruby-keyword">end</span></pre>
           </div><!-- set_current-source -->
           
@@ -540,7 +395,7 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">load_school_vars</span>
@@ -558,42 +413,6 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
 
         
       </div><!-- show-method -->
-
-    
-      <div id="method-i-update" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">update</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>PUT /schools/1</p>
-          
-
-          
-          <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 87</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:school</span>])
-    <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- update-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- update-method -->
 
     
     </section><!-- public-instance-method-details -->

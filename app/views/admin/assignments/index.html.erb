@@ -5,30 +5,18 @@
     <div>
       <%=link_to "Add New Assignment", new_admin_assignment_path %>
     </div>
-    <% unless @assignments.empty? %>
-      <p class="title large">Current Assignments</p>
-      <div class="trow">
-        <div class="hcell" style="width:220px;">Name</div>
-        <div class="hcell" style="width:50px;">Module</div>
-        <div class="hcell" style="width:50px;">Weight</div>
-        <div class="hcell" style="width:50px;">Tasks</div>
-        <div class="hcell" style="width:150px;">Admin</div>
-      </div>
-      <div>
-        <% for a in @assignments %>
-          <% bc = cycle("odd","even") %>
-          <div class="trow">
-            <div class="rcell left_end <%=bc%>" style="width:220px;"><%= a.name %></div>
-            <div class="rcell <%=bc%>" style="width:50px;"><%= a.module %></div>
-            <div class="rcell <%=bc%>" style="width:50px;"><%= a.weight %></div>
-            <div class="rcell <%=bc%>" style="<%= "background-color:red;" unless a.tasks.count > 0 %> width:50px;"><%= a.tasks.count %></div>
-            <div class="rcell <%=bc%>" style="width:40px;"><%=link_to "Edit", edit_admin_assignment_path(a.id) %></div>
-            <div class="rcell right_end <%=bc%>" style="width:110px;"><%=link_to "Add/Edit Tasks", admin_assignment_tasks_path(a.id)  %></div>
-          </div>
+    <% unless @mods.empty? %>
+      <p>There are <%= @mods.count %> Modules with assignments.</p>
+      <ul>
+        <% for m in @mods %>
+          <li><%=link_to "Assignments in Module #{m[0]}", showmod_admin_assignments_path(:mod_id => m[0]) %></li>
         <% end %>
-      </div>
+      </ul>
     <% else %>
       <p class="title small">You must first create an assignment.</p>
+      <div>
+        <%=link_to "Add New Assignment", new_admin_assignment_path %>
+      </div>
     <% end %>
   </article>
 </div>

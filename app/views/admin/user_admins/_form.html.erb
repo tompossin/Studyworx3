@@ -1,15 +1,6 @@
-<%= form_for(@user_admin) do |f| %>
-  <% if @user_admin.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_admin.errors.count, "error") %> prohibited this user_admin from being saved:</h2>
+<%= form_for([:admin, @user_admin]) do |f| %>
 
-      <ul>
-      <% @user_admin.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= include_form_validation_errors(@user_admin) %>
 
   <div>
   	<%= @user.firstname + " " + @user.lastname %>
