@@ -1,13 +1,13 @@
 <div class="float_left title smaller">
-  <%= "click to enroll below..." if @enrollments.empty? %>
+  <%= "Sign up for a school from the list below" if @enrollments.empty? %>
 </div>
-  <% for ms in @enrollments %>
-    <div class="float_left title smaller" style="margin: 0px;">
-      <%=  ms.school.name %> 
-      <% if ms.accepted > 0 %>
-        <%=link_to( "Set as default school", set_current_school_path(ms.school.id), { class: "smaller"}) if ms.school.id %>
-      <% else %>
-        <span class="red"> Registration Pending</span>
-      <% end %>
-    </div>
-  <% end %>
+    <% for ms in @enrollments %>
+      <div class="float_left title smaller" style="margin: 0px;">
+        <%=  ms.school.name %> 
+        <% if ms.accepted > 0 %>
+          <%=link_to( "Set as default school", set_current_school_path(ms.school.id), { class: "smaller"}) if ms.school.id %>
+        <% else %>
+          <span class="red"> Registration Pending</span>
+        <% end %>
+      </div>
+    <% end %>

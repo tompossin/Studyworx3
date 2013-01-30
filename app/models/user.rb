@@ -101,20 +101,26 @@ class User < ActiveRecord::Base
   end
   
   def staff?
-    if self.role < 4
-      return true || false
+    if self.role
+      if self.role < 4
+        return true || false
+      end
     end
   end
   
   def admin_assistant?
-    if self.role < 3
-      return true || false
+    if self.role
+      if self.role < 3
+        return true || false
+      end
     end
   end
   
   def leader?
-    if self.role < 2
-      return true || false
+    if self.role
+      if self.role < 2
+        return true || false
+      end
     end
   end
 
