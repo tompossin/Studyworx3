@@ -1,15 +1,32 @@
-<div id="content-large"> 
-  <% if is_admin %>   
-    <article>  
-      <h1>Admin::Tools</h1>
-      <p class="title small">Select a book below to edit paragraph info</p>
-      <%= form_tag admin_tools_book_path do %>
-        <%= select_tag "book_id", options_from_collection_for_select(@books, "id", "name") %>
-        <%= submit_tag "Select" %>
+<div id="content-large">    
+    <article>
+      <header style="background-image:url('<%= @school.header.url%>');">
+        <div class="avatar" style="background-image:url('<%= @school.logo.url(:thumb) %>')"></div>
+        <h1>
+          <%= @school.name %>
+        </h1>
+        <p class="title small">Welcome <%=current_user.fullname %></p>
+      </header>
+      <% if current_user.admin_assistant? %>
+        <section class="float_left limited">
+          <h2>School Admin Tools</h2>
+          <%=link_to "Edit School", edit_admin_school_path(@school) %><br />
+          <%=link_to "Edit Assignments", admin_assignments_path %><br />
+          <%=link_to "Edit Templates", admin_school_templats_path(current_user.school) %><br />
+          <%=link_to "Edit Scoresheets", admin_school_scoresheets_path(current_user.school) %>
+        </section>
       <% end %>
-      <p></p>
+      <% if is_admin %>
+        <section class="float_left limited">
+          <h2>Global Admin Tools</h2>
+          <p class="title small">Select a book below to edit paragraph info</p>
+          <%= form_tag admin_tools_book_path do %>
+            <%= select_tag "book_id", options_from_collection_for_select(@books, "id", "name") %>
+            <%= submit_tag "Select" %>
+          <% end %>
+        </section>      
+      <% end %>
     </article>
-  <% end %>
 </div>
 
 <%= nav_bar(@nav_body_content) %>

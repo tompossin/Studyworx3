@@ -47,7 +47,9 @@ class User < ActiveRecord::Base
     if p
       self.role = p.role_id 
       self.school = school_id
-      self.save
+      if self.save
+        return true
+      end
     else
       return false
     end   

@@ -21,6 +21,9 @@ class BlogsController < ApplicationController
     end
   end
   
+  # FIXME this needs to be fixed because if you do not
+  # change the value of the boolean fields they seem to
+  # to change back to false. Weird and annoying.
   def edit
     @blog = Blog.find(params[:id])
 

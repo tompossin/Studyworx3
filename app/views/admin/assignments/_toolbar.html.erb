@@ -1,7 +1,7 @@
 <div class="float_left">
   <p class="title"><%= @school.name %></p>
-  <p class="title large">Assignment Admin</p>
-  <br />
+  <p class="title small">Admin Toolbar</p>
+  <%=link_to "Admin Tools", admin_tools_index_path %><br />
   <%=link_to "Edit School", edit_admin_school_path(@school) %><br />
   <%=link_to "Edit Assignments", admin_assignments_path %><br />
   <%=link_to "Edit Templates", admin_school_templats_path(current_user.school) %><br />
