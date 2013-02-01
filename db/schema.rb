@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119175847) do
+ActiveRecord::Schema.define(:version => 20130131225904) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
     t.integer  "book_id"
     t.integer  "scoresheet_id"
-    t.integer  "order"
+    t.integer  "a_order"
     t.string   "name"
     t.integer  "weight"
     t.integer  "module"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20130119175847) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "assignments", ["school_id", "module", "a_order"], :name => "index_assignments_on_school_id_and_module_and_a_order"
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -106,17 +108,19 @@ ActiveRecord::Schema.define(:version => 20130119175847) do
 
   create_table "paragraphs", :force => true do |t|
     t.integer  "book_id"
-    t.string   "content"
-    t.integer  "p_order"
-    t.string   "startref"
-    t.string   "endref"
-    t.integer  "verse_count"
-    t.integer  "version_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "content",     :limit => 50, :null => false
+    t.integer  "p_order",                   :null => false
+    t.string   "startref",    :limit => 20, :null => false
+    t.string   "endref",      :limit => 20, :null => false
+    t.integer  "verse_count",               :null => false
+    t.integer  "version_id",                :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
-  add_index "paragraphs", ["version_id", "book_id", "p_order"], :name => "index_paragraphs_on_version_id_and_book_id_and_p_order"
+  add_index "paragraphs", ["book_id", "p_order", "version_id"], :name => "book_id"
+  add_index "paragraphs", ["book_id"], :name => "bookId"
+  add_index "paragraphs", ["version_id"], :name => "version_id"
 
   create_table "participants", :force => true do |t|
     t.integer  "user_id"

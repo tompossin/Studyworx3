@@ -9,7 +9,7 @@
       <p>There are <%= @mods.count %> Modules with assignments.</p>
       <ul>
         <% for m in @mods %>
-          <li><%=link_to "Assignments in Module #{m[0]}", showmod_admin_assignments_path(:mod_id => m[0]) %></li>
+          <li><%=link_to "View the #{pluralize(count_assignments(m[0]),"Assignment")} in Module #{m[0]}", showmod_admin_assignments_path(:mod_id => m[0]) %></li>
         <% end %>
       </ul>
     <% else %>

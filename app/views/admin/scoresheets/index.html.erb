@@ -9,14 +9,14 @@
       <div id="scoresheet_element">
         <% unless @scoresheets.empty? %>
             <div class="theader" style="width:100%;">
-              <div class="cell" style="width:200px;">Name</div>
-              <div class="cell" style="width:100px;">Admin</div>
+              <div class="cell" style="width:50%;">Name</div>
+              <div class="cell" style="width:40%">Admin</div>
             </div>
             <% for s in @scoresheets %>
               
               <div class="trow <%= cycle("odd","even")%>" style="width:100%;">
-                <div class="cell" style="width:200px;"><%= s.name %></div>
-                <div class="cell" style="width:100px;">
+                <div class="cell" style="width:50%;"><%= s.name %></div>
+                <div class="cell" style="width:40%;">
                   <%=link_to "edit", edit_admin_school_scoresheet_path(@school,s), remote: true %> 
                   <%=link_to "delete", admin_school_scoresheet_path(@school,s), method: :delete, data: { confirm: 'Are you sure?'} %>
                 </div>

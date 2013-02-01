@@ -1,7 +1,9 @@
 class Assignment < ActiveRecord::Base
-  has_many :duedates
-  has_many :tasks
+  has_many :duedates, :dependent => :destroy
+  has_many :tasks, :dependent => :destroy
   belongs_to :school
+  
+  default_scope order: 'module ASC'
   
   attr_accessible :book_id, :instructions, :module, :name, :order, :resources, :school_id, :scoresheet_id, :weight
   

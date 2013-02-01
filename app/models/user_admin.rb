@@ -7,7 +7,7 @@ class UserAdmin < ActiveRecord::Base
     if search
       User.find(:all, :conditions => ['lastname LIKE ?', "%#{search}%"])
     else
-      User.find(:all)
+      User.find(:all, limit: 10)
     end
   end
 end

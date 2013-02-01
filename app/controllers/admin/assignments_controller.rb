@@ -12,8 +12,8 @@ class Admin::AssignmentsController < ApplicationController
   end
   
   def showmod
-    @assignments = @school.assignments.where(:module => params[:mod_id])
-    @module = params[:id]
+    @assignments = @school.assignments.where(:module => params[:mod_id]).order('a_order ASC')
+    @module = params[:mod_id]
     
   end
 
@@ -35,7 +35,7 @@ class Admin::AssignmentsController < ApplicationController
     @assignment.school_id = @school.id
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to admin_assignments_path, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to showmod_admin_assignments_path(:mod_id => @assignment.module), notice: 'Assignment was successfully created.' }
       else
         format.html { render action: "new" }
       end
@@ -55,7 +55,16 @@ class Admin::AssignmentsController < ApplicationController
   end
   
   def destroy
+    @assignment = Assignment.find(params[:id])
+    @mod = @assignment.module
     
+    respond_to do |format|
+      if @assignment.destroy
+        format.html {redirect_to showmod_admin_assignments_path(mod_id: @mod), notice: 'Assignment was Deleted.'}
+      else
+        format.html {redirect_to showmod_admin_assingments_path(mod_id: @mod), alert: "Failed to delete assignment."}
+      end
+    end
   end
   
   private

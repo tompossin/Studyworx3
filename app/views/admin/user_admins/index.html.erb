@@ -13,7 +13,7 @@
             <div class="theader" style="width:100%">
               <div class="cell" style="width:75px;">First<br />Name</div>
               <div class="cell" style="width:75px;">Last<br />Name</div>
-              <div class="cell" style="width:50px;">Admin<br />Level</div>
+              <div class="cell" style="width:75px;">Admin<br />Level</div>
               <div class="cell" style="width:125px;">Manage<br />Admins</div>
               <div class="cell" style="width:125px;">Review Board<br />Status</div>
             </div>
@@ -21,7 +21,7 @@
             <div class="trow <%= cycle('even','odd')%>" style="width:100%">
               <div class="cell" style="width:75px;color:black;"><%= u.firstname if u %></div>
               <div class="cell" style="width:75px;color:black;"><%= u.lastname if u %></div>
-              <div class="cell" style="min-width:50px;color:black;"><%= u.user_admin.level if u.user_admin %></div>
+              <div class="cell" style="min-width:75px;color:black;"><%= u.admin_status %></div>
               <% if u.user_admin %>
               	<div class="cell" style="width:125px;"><%= link_to "Edit Admin Level", edit_admin_user_admin_path(u.id) %></div>
               <% else %>

@@ -125,5 +125,21 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  def admin_status
+    if self.user_admin
+      if self.user_admin.level == 1
+        return "Contributor"
+      elsif self.user_admin.level == 2
+        return "Administrator"
+      elsif self.user_admin.level == 3
+        return "Super-Admin"
+      else
+        return "Undefined"
+      end  
+    else
+      return "Undefined" 
+    end
+  end
 
 end
