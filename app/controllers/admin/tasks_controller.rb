@@ -12,6 +12,17 @@ class Admin::TasksController < ApplicationController
 
   def show
   end
+  
+  def sort
+    @tasks = @assignment.tasks.all
+    @tasks.each do |t|
+      t.position = params[:task].index(t.id.to_s) + 1
+      t.save
+    end
+    respond_to do |format|
+      format.js {render 'shared/save_success'}
+    end
+  end
 
   def edit
     @task = Task.find(params[:id])
@@ -31,16 +42,22 @@ class Admin::TasksController < ApplicationController
     @task = @assignment.tasks.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.html {redirect_to admin_assignment_tasks_path(@assignment)}
+        format.js {render "shared/save_success"}
+      else
+        format.js {render :new}
       end
     end
   end
   
   def update
     @task = Task.find(params[:id])
-    @task.update_attributes(params[:task])
+
     respond_to do |format|
-      format.html {redirect_to admin_assignment_tasks_path(@assignment)}
+      if @task.update_attributes(params[:task])
+        format.js {render "shared/save_success"}
+      else
+        format.js { render :edit }
+      end
     end
   end
   

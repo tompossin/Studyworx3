@@ -1,11 +1,35 @@
+<script>
+  $(window).load(function() {
+    $( "#sortable" ).sortable({
+      axis: 'y',
+      dropOnEmpty: false,
+      items: 'div',
+      handle: '.handle',
+      cursor: 'crosshair',
+      scroll: true,
+      opacity: 0.5,
+      update: function(){
+        $.ajax({
+          type: 'post',
+          dataType: 'script',
+          data: $('#sortable').sortable('serialize') + '&assignment_id=<%=@assignment%>',
+          url: 'tasks/sort' 
+        })
+      }
+    });
+    $( "#sortable" ).disableSelection();
+  });
+</script>
+
 <div id="content-large">
   <article>
     <h1>
       <%= @assignment.name %> 
       <span class="smallest">
         &nbsp;&nbsp;
-        <%=link_to "back", edit_admin_assignment_path(@assignment) %> &nbsp;&nbsp;
-        <%=link_to "normal view", school_assignment_path(@school,@assignment) %>
+        <%=link_to "Task List", admin_assignment_tasks_path(@assignment) %> &nbsp;
+        <%=link_to "Module Home", showmod_admin_assignments_path(mod_id: @assignment.module) %> &nbsp;
+        <%=link_to "Assignments Home", admin_assignments_path %>
       </span>
     </h1>
     <p class="title larger">Task Administration</p>
@@ -14,24 +38,25 @@
     <div id="task_area">
       <% unless @tasks.empty? %>
           <div class="theader">
-            <div class="cell" style="width:175px;">Name</div>
-            <div class="cell" style="width:50px;">Percent</div>
-            <div class="cell" style="width:100px;">Type</div>
-            <div class="cell" style="width:100px;">Template</div>
-            <div class="cell" style="width:100px;">Admin</div>
+            <span class="cell" style="width:175px;">Name</span>
+            <span class="cell" style="width:50px;">Percent</span>
+            <span class="cell" style="width:100px;">Type</span>
+            <span class="cell" style="width:100px;">Template</span>
+            <span class="cell" style="width:100px;">Admin</span>
           </div>
-          <div>
+          <div id="sortable">
           <% for t in @tasks %>
             
-            <div class="trow <%= cycle("odd","even") %>">
-              <div class="cell" style="width:175px;"><%= t.name %></div>
-              <div class="cell" style="width:50px;"><%= number_to_percentage(t.percent, precision:0) %></div>
-              <div class="cell" style="width:100px;"><%= get_task_type_name(t.task_type) %></div>
-              <div class="cell" style="width:100px;"><%= get_templat_name(t.templat_id) %></div>
-              <div class="cell" style="width:100px;">
+            <div id="task_<%=t.id%>" class="trow <%= cycle("odd","even") %>">
+              <span class="cell handle" style="width:10px;">|||||</span>
+              <span class="cell" style="width:165px;"><%= t.name %></span>
+              <span class="cell" style="width:50px;"><%= number_to_percentage(t.percent, precision:0) %></span>
+              <span class="cell" style="width:100px;"><%= get_task_type_name(t.task_type) %></span>
+              <span class="cell" style="width:100px;"><%= get_templat_name(t.templat_id) %></span>
+              <span class="cell" style="width:100px;">
                 <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t),remote: true %> 
                 <%=link_to "destroy",admin_assignment_task_path(@assignment,t), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
+              </span>
             </div>
           <% end %>
           </div>

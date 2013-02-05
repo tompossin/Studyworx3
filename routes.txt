@@ -54,6 +54,9 @@ edit_admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id/ed
                admin_version GET    /admin/versions/:id(.:format)                                           admin/versions#show
                              PUT    /admin/versions/:id(.:format)                                           admin/versions#update
                              DELETE /admin/versions/:id(.:format)                                           admin/versions#destroy
+   showmod_admin_assignments GET    /admin/assignments/showmod(.:format)                                    admin/assignments#showmod
+      sort_admin_assignments POST   /admin/assignments/sort(.:format)                                       admin/assignments#sort
+ sort_admin_assignment_tasks POST   /admin/assignments/:assignment_id/tasks/sort(.:format)                  admin/tasks#sort
       admin_assignment_tasks GET    /admin/assignments/:assignment_id/tasks(.:format)                       admin/tasks#index
                              POST   /admin/assignments/:assignment_id/tasks(.:format)                       admin/tasks#create
    new_admin_assignment_task GET    /admin/assignments/:assignment_id/tasks/new(.:format)                   admin/tasks#new
@@ -61,7 +64,6 @@ edit_admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id/ed
        admin_assignment_task GET    /admin/assignments/:assignment_id/tasks/:id(.:format)                   admin/tasks#show
                              PUT    /admin/assignments/:assignment_id/tasks/:id(.:format)                   admin/tasks#update
                              DELETE /admin/assignments/:assignment_id/tasks/:id(.:format)                   admin/tasks#destroy
-   showmod_admin_assignments GET    /admin/assignments/showmod(.:format)                                    admin/assignments#showmod
            admin_assignments GET    /admin/assignments(.:format)                                            admin/assignments#index
                              POST   /admin/assignments(.:format)                                            admin/assignments#create
         new_admin_assignment GET    /admin/assignments/new(.:format)                                        admin/assignments#new

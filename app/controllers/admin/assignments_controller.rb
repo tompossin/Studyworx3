@@ -12,12 +12,25 @@ class Admin::AssignmentsController < ApplicationController
   end
   
   def showmod
-    @assignments = @school.assignments.where(:module => params[:mod_id]).order('a_order ASC')
+    @assignments = @school.assignments.where(:module => params[:mod_id]).order('position ASC')
     @module = params[:mod_id]
     
   end
 
   def show
+  end
+  
+  # admin/assignments/sort
+  # This is called via ajax after a drag&drop sort.
+  def sort
+    @assignments = @school.assignments.where(:module => params[:mod_id])
+    @assignments.each do |a|
+      a.position = params['assignment'].index(a.id.to_s) + 1
+      a.save
+    end 
+    respond_to do |format|
+      format.js {render 'shared/save_success'}
+    end
   end
 
   def edit

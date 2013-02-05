@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131225904) do
+ActiveRecord::Schema.define(:version => 20130202183427) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
     t.integer  "book_id"
     t.integer  "scoresheet_id"
-    t.integer  "a_order"
+    t.integer  "position"
     t.string   "name"
     t.integer  "weight"
     t.integer  "module"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20130131225904) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "assignments", ["school_id", "module", "a_order"], :name => "index_assignments_on_school_id_and_module_and_a_order"
+  add_index "assignments", ["school_id", "module", "position"], :name => "index_assignments_on_school_id_and_module_and_position"
 
   create_table "blogs", :force => true do |t|
     t.integer  "user_id"
@@ -209,10 +209,12 @@ ActiveRecord::Schema.define(:version => 20130131225904) do
     t.float    "percent"
     t.text     "help"
     t.integer  "task_type"
-    t.integer  "task_order"
+    t.integer  "position"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "tasks", ["assignment_id", "position"], :name => "index_tasks_on_assignment_id_and_position"
 
   create_table "teams", :force => true do |t|
     t.integer  "owner_id"

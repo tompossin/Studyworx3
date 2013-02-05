@@ -18,6 +18,7 @@ gem 'aloha-rails'
 gem 'settingslogic'
 gem 'jquery-qtip2-rails'
 gem 'rails3-jquery-autocomplete'
+gem 'acts_as_list'
 
 
 

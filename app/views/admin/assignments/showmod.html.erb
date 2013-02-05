@@ -1,3 +1,27 @@
+<script>
+  $(window).load(function() {
+    $( "#sortable" ).sortable({
+      axis: 'y',
+      dropOnEmpty: false,
+      items: 'div',
+      handle: '.handle',
+      cursor: 'crosshair',
+      scroll: true,
+      opacity: 0.5,
+      update: function(){
+        $.ajax({
+          type: 'post',
+          dataType: 'script',
+          data: $('#sortable').sortable('serialize') + '&mod_id=<%=@module%>',
+          url: 'sort' 
+        })
+      }
+    });
+    $( "#sortable" ).disableSelection();
+  });
+</script>
+
+
 <div id="content-large">
   <article>
     <h1><%= @school.name %></h1>
@@ -8,33 +32,35 @@
     </div>
     <br />
     <% unless @assignments.empty? %>
-      <div class="theader" style="width:100%">
-        <div class="cell" style="width:27%;">Name</div>
+      <div class="theader">
+        <div class="cell" style="width:30%;">Name</div>
         <div class="cell" style="width:8%;">Module</div>
         <div class="cell" style="width:8%;">Weight</div>
         <div class="cell" style="width:8%;">Tasks</div>
         <div class="cell" style="width:30%;">Admin</div>
       </div>
+      <div id="sortable">
       <% for a in @assignments %>
-        <div class="trow <%= cycle("odd","even") %>" style="width:100%">
-          <div class="cell" style="width:2%"><%= a.a_order %></div>
-          <div class="cell" style="width:25%;"><%= a.name %></div>
-          <div class="cell" style="width:8%;"><%= a.module %></div>
-          <div class="cell" style="width:8%;"><%= a.weight %></div>
-          <div class="cell" style="width:8%;<%= "background-color:red;" unless a.tasks.count > 0 %>;">
+        <div id="assignment_<%=a.id%>" class="trow <%= cycle("odd","even") %>">
+          <span class="cell handle" style="width:5%">||||</span>
+          <span class="cell" style="width:25%;"><%= a.name %></span>
+          <span class="cell" style="width:8%;"><%= a.module %></span>
+          <span class="cell" style="width:8%;"><%= a.weight %></span>
+          <span class="cell" style="width:8%;<%= "background-color:red;" unless a.tasks.count > 0 %>;">
             <%= a.tasks.count %>
-          </div>
-          <div class="cell" style="width:7%;">
+          </span>
+          <span class="cell" style="width:7%;">
             <%=link_to "Edit", edit_admin_assignment_path(a.id) %>
-          </div>
-          <div class="cell" style="width:7%;">
+          </span>
+          <span class="cell" style="width:7%;">
             <%=link_to "Delete", [:admin,a], method: :delete, data: {confirm: "Are you sure?"} %>
-          </div>
-          <div class="cell" style="width:16%;">
+          </span>
+          <span class="cell" style="width:16%;">
             <%=link_to "Add/Edit Tasks", admin_assignment_tasks_path(a.id)  %>
-          </div>
+          </span>
         </div>
       <% end %>
+      </div>
     <% else %>
       <p class="title small">You must first create an assignment.</p>
     <% end %>

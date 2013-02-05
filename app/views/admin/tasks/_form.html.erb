@@ -1,6 +1,6 @@
-<%= form_for [:admin, @assignment, @task] do |f| %>
-  <div class="float_left limited">
-    <%= include_form_validation_errors(@task) %>
+<%= form_for [:admin, @assignment, @task], remote: true do |f| %>
+ <%= include_form_validation_errors(@task) %>
+  <div class="float_left limited">  
     <p class="title smaller">Task Name</p>
     <%= f.text_field :name, {:style=>"width:96%"} %>
     <p class="title smaller">Template</p>

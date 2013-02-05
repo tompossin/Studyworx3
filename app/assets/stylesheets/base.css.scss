@@ -279,6 +279,7 @@ blockquote {
 /* css table elements */
 .trow {
   float:left;
+  width: 100%;
   margin-bottom: 2px;
   border: solid gray 1px;
   border-radius: 10px;
@@ -290,6 +291,7 @@ blockquote {
 }
 .theader {
   float:left;
+  width:100%;
   margin-bottom: 2px;
   .cell {
     float: left;
@@ -325,6 +327,10 @@ blockquote {
   a {
     margin-left: 8px;
   }
+}
+
+.handle {
+  color: #333333; 
 }
 
 .hr_short {
