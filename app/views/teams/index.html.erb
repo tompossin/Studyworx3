@@ -3,10 +3,19 @@
     <div class="float_left title">
       My Teams
     </div>
-    <div class="float_left">
-      <%=link_to(image_tag("iconic/sun_stroke_32x32.png",size: "22x22"),teams_path,{title: "My Teams"}) %>
-      <%=link_to(image_tag("iconic/share_32x32.png",size: "22x22"),new_team_path,{remote: true, title: "Create a new team"}) %>
-      <%=link_to(image_tag("iconic/chat_32x32.png",size: "22x22"),teams_path,{remote: true, title: "Team Messages"}) %>
+    <div class="toolbar limited" >
+      <span class="cell">
+        <%=link_to(image_tag("iconic/sun_stroke_32x32.png",size: "22x22"),teams_path,{title: "My Teams"}) %>
+      </span>
+      <span class="cell">
+        <%=link_to(image_tag("iconic/share_32x32.png",size: "22x22"),new_team_path,{remote: true, title: "Create a new team"}) %>
+      </span>
+      <span class="cell">
+        <%=link_to(image_tag("iconic/chat_32x32.png",size: "22x22"),teams_path,{remote: true, title: "Team Messages"}) %>      
+      </span>
+      <span class="cell">
+        <%=link_to(image_tag("iconic/cog_32x32.png",size: "22x22"),teams_path,{remote: true, title: "Team Maintenance"}) %>      
+      </span>
     </div>
     <div id="team_content" class="float_left">
       <div class="title small">

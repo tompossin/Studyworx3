@@ -1,0 +1,8 @@
+<div class="reply_container">
+   <p class="title smaller">
+     <%= get_full_name(reply.sender_id) if reply.sender_id %> has replied
+   </p>
+   <p>
+     <%= formatter(reply.body) %>
+   </p>       
+</div>

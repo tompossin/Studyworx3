@@ -101,6 +101,8 @@
   
     <li><a href="../Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="../Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="../Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="../Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -209,6 +211,10 @@
   
     <li><a href="../Team.html">Team</a>
   
+    <li><a href="../TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="../TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="../TeamsController.html">TeamsController</a>
   
     <li><a href="../TeamsHelper.html">TeamsHelper</a>
@@ -268,7 +274,7 @@
 
           
           <div class="method-source-code" id="book-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">book</span>
   <span class="ruby-ivar">@book</span> = <span class="ruby-constant">Book</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:book_id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -301,9 +307,11 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@books</span> = <span class="ruby-constant">Book</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
+  <span class="ruby-ivar">@nav_body_content</span> = <span class="ruby-string">&quot;admin/assignments/toolbar&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           

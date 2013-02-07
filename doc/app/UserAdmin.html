@@ -99,6 +99,8 @@
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -207,6 +209,10 @@
   
     <li><a href="./Team.html">Team</a>
   
+    <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
@@ -271,7 +277,7 @@
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">search</span>
     <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'lastname LIKE ?'</span>, <span class="ruby-node">&quot;%#{search}%&quot;</span>])
   <span class="ruby-keyword">else</span>
-    <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>)
+    <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-identifier">limit</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- search-source -->

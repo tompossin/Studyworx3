@@ -1,3 +1,4 @@
+         team_messages_index GET    /team_messages/index(.:format)                                          team_messages#index
        admin_school_templats GET    /admin/schools/:school_id/templats(.:format)                            admin/templats#index
                              POST   /admin/schools/:school_id/templats(.:format)                            admin/templats#create
     new_admin_school_templat GET    /admin/schools/:school_id/templats/new(.:format)                        admin/templats#new
@@ -86,6 +87,17 @@ edit_admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id/ed
                      message GET    /messages/:id(.:format)                                                 messages#show
                              PUT    /messages/:id(.:format)                                                 messages#update
                              DELETE /messages/:id(.:format)                                                 messages#destroy
+          reply_team_message GET    /team_messages/:id/reply(.:format)                                      team_messages#reply
+ cancel_message_team_message GET    /team_messages/:id/cancel_message(.:format)                             team_messages#cancel_message
+   cancel_reply_team_message GET    /team_messages/:id/cancel_reply(.:format)                               team_messages#cancel_reply
+     save_reply_team_message POST   /team_messages/:id/save_reply(.:format)                                 team_messages#save_reply
+               team_messages GET    /team_messages(.:format)                                                team_messages#index
+                             POST   /team_messages(.:format)                                                team_messages#create
+            new_team_message GET    /team_messages/new(.:format)                                            team_messages#new
+           edit_team_message GET    /team_messages/:id/edit(.:format)                                       team_messages#edit
+                team_message GET    /team_messages/:id(.:format)                                            team_messages#show
+                             PUT    /team_messages/:id(.:format)                                            team_messages#update
+                             DELETE /team_messages/:id(.:format)                                            team_messages#destroy
             memberships_team GET    /teams/:id/memberships(.:format)                                        teams#memberships
              add_member_team POST   /teams/:id/add_member(.:format)                                         teams#add_member
           remove_member_team DELETE /teams/:id/remove_member(.:format)                                      teams#remove_member

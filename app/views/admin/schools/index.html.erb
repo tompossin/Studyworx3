@@ -1,25 +1,25 @@
 <div id="content-large">
   <article>
     <h1>School Administration</h1>
-      <div class="theader" style="width:100%;">
-        <div class="cell" style="width:25%;">School Name</div>
-        <div class="cell" style="width:8%;">Active?</div>
-        <div class="cell" style="width:15%;">Start Date</div>
-        <div class="cell" style="width:15%;">End Date</div>
-        <div class="cell" style="width:15%;">Owned By</div>
-        <div class="cell" style="width:15%">Admin</div>
+      <div class="theader">
+        <span class="cell" style="width:25%;">School Name</span>
+        <span class="cell" style="width:8%;">Active?</span>
+        <span class="cell" style="width:12%;">Start Date</span>
+        <span class="cell" style="width:12%;">End Date</span>
+        <span class="cell" style="width:15%;">Owned By</span>
+        <span class="cell" style="width:15%">Admin</span>
       </div>
         <% for s in @schools %>
-          <div class="trow <%= cycle("odd","even") %>" style="width:100%;">
-            <div class="cell" style="width:25%;"><%= s.name %></div>
-            <div class="cell" style="width:8%; background-color:<%= set_color(s.active,:green,:gray)%>;"><%= s.active %></div>
-            <div class="cell" style="width:12%;"><%= s.start_date.strftime("%m/%d/%Y") %></div>
-            <div class="cell" style="width:12%;"><%= s.end_date.strftime("%m/%d/%Y") %></div>
-            <div class="cell" style="width:15%;"><%= get_full_name(s.owner_id) if s.owner_id %></div>
-            <div class="cell" style="width:15%;">
+          <div class="trow <%= cycle("odd","even") %>" >
+            <span class="cell" style="width:25%;"><%= s.name %></span>
+            <span class="cell" style="width:8%; background-color:<%= set_color(s.active,:green,:gray)%>;"><%= s.active %></span>
+            <span class="cell" style="width:12%;"><%= s.start_date.strftime("%m/%d/%Y") %></span>
+            <span class="cell" style="width:12%;"><%= s.end_date.strftime("%m/%d/%Y") %></span>
+            <span class="cell" style="width:15%;"><%= get_full_name(s.owner_id) if s.owner_id %></span>
+            <span class="cell" style="width:15%;">
               <%=link_to "edit", edit_admin_school_path(s.id), {class: "smallest"} %>  
               <%= link_to "View", school_path(s.id),{class: "smallest",:title=>"Visit This Schools Home Page"} %>
-            </div>
+            </span>
           </div>
         <% end %>
   </article>

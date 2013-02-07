@@ -5,20 +5,20 @@
       <%= link_to 'New Blog', new_blog_path %><br />
 
         <div class="theader">
-          <div class="cell" style="width:50px;">Lead Story?</div>
-          <div class="cell" style="width:125px;">Category</div>
-          <div class="cell" style="width:200px;">Topic</div>
-          <div class="cell" style="width:120px;">Admin</div>
+          <span class="cell" style="width:6%;">Lead Story?</span>
+          <span class="cell" style="width:24%;">Category</span>
+          <span class="cell" style="width:40%;">Topic</span>
+          <span class="cell" style="width:14%;">Admin</span>
         </div>
       
       <% @blogs.each do |blog| %>
         <div class="trow">
-          <div class="cell" style="width:50px;"><%= blog.leadstory %></div>
-          <div class="cell" style="width:125px;"><%= sanitize blog.category %></div>
-          <div class="cell" style="width:200px;"><%= sanitize blog.topic %></div>
-          <div class="cell" style="width:30px;"><%= link_to 'Show', blog %></div>
-          <div class="cell" style="width:30px;"><%= link_to 'Edit', edit_blog_path(blog) %></div>
-          <div class="cell" style="width:60px;"><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          <span class="cell" style="width:6%;"><%= blog.leadstory %></span>
+          <span class="cell" style="width:24%;"><%= sanitize blog.category %></span>
+          <span class="cell" style="width:40%;"><%= sanitize blog.topic %></span>
+          <span class="cell" style="width:5%;"><%= link_to 'Show', blog %></span>
+          <span class="cell" style="width:4%;"><%= link_to 'Edit', edit_blog_path(blog) %></span>
+          <span class="cell" style="width:5%;"><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></span>
         </div>
       <% end %>
 

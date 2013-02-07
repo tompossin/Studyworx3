@@ -1,0 +1,2 @@
+module TeamMessagesHelper
+end

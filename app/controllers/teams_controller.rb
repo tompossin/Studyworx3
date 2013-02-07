@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
     @teams_i_own = Team.find_all_by_owner_id(current_user.id)
     @my_teams = current_user.teams
     respond_to do |format|
-      format.js
+      format.html
     end
   end
   

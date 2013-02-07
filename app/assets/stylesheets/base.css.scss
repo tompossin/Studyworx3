@@ -302,7 +302,18 @@ blockquote {
   }
 }
 /* end css table elements */
-
+.toolbar {
+  float:left;
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  .cell {
+    float: left;
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
 .box_trans {
   background-color: rgba(0,0,0,.8);
   border-radius: 8px;

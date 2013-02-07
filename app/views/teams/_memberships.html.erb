@@ -2,6 +2,9 @@
   <%= @team.name %> <%=link_to "edit", edit_team_path(@team),{remote: true, class: "smallest"} %>
 </div>
 <div class="float_left"> 
+  <div class="title large">
+    Adjust Membership in <%= @team.name %>
+  </div>
   <div class="title small float_left">
     Current Members
   </div>
@@ -15,7 +18,7 @@
   </div>
   <%= form_tag memberships_team_path, {method: :get, remote: true } do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
+    <%= text_field_tag :search, params[:search], :placeholder =>"Search for more users" %>
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>

@@ -1,11 +1,12 @@
 app/controllers/blogs_controller.rb:
-  * [ 46] [TODO] I will need to put some limits or paging on this yet.
+  * [ 24] [FIXME] this needs to be fixed because if you do not
+  * [ 49] [TODO] I will need to put some limits or paging on this yet.
 
 app/controllers/home_controller.rb:
-  * [  3] [TODO] This is really just a framework now
+  * [  4] [TODO] This is really just a framework now
 
 app/helpers/application_helper.rb:
-  * [132] [TODO] this may need to moved or eliminated it is an ugly hack.
+  * [180] [TODO] this may need to moved or eliminated it is an ugly hack.
 
 app/models/user.rb:
   * [ 26] [FIXME] I need a Jquery checker on the image uploading page that will prevent

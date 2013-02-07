@@ -1,5 +1,7 @@
 Studyworx3::Application.routes.draw do
 
+  get "team_messages/index"
+
   # ----------
   # :section: Admin Routes
   # This is a namespace for Admin functions
@@ -48,6 +50,13 @@ Studyworx3::Application.routes.draw do
     collection do
       get 'get_read'
     end
+  end
+  resources :team_messages do
+    member do
+      get 'reply', 'cancel_message', 'cancel_reply'
+      post 'save_reply'
+    end
+    
   end
   resources :teams do
     member do

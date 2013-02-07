@@ -1,19 +1,27 @@
-<%= form_for(@team, {remote: true}) do |f| %>
-  <%= f.hidden_field :owner_id %>
-  <p class="title small">
-    Give Your Team a name <span class="smallest red">(required)</span>
-  </p>
-  <%= f.text_field :name %>
-
-  <p class="title small">
-    State Your School name
-  </p>
-  <%= f.select :school_id, options_from_collection_for_select(@schools, "id", "name",@team.school_id), include_blank: true %>
-  <p class="title small">
-    Write a description of your Team.
-  </p>
-  <%= f.text_area :description,{size: "24x6"} %>
-  <p>
-    <%= f.submit submit %>
-  </p>
-<% end %>
+<div class="float_left limited">
+  <%= form_for(@team, {remote: true}) do |f| %>
+    <%= f.hidden_field :owner_id %>
+    <p class="title small">
+      Give Your Team a name <span class="smallest red">(required)</span>
+    </p>
+    <%= f.text_field :name, {:size => "20"} %>
+  
+    <p class="title small">
+      State Your School name
+    </p>
+    <%= f.select :school_id, options_from_collection_for_select(@schools, "id", "name",@team.school_id), include_blank: true %>
+    <p class="title small">
+      Write a description of your Team.
+    </p>
+    <%= f.text_area :description,{size: "24x6"} %>
+    
+    <% if is_admin %>
+      <p>
+        Make this a core Team? <%= f.check_box :coreteam %>
+      </p>
+    <% end %>
+    <p>
+      <%= f.submit submit %>
+    </p>
+  <% end %>
+</div>

@@ -23,12 +23,13 @@ class Admin::ParagraphsController < ApplicationController
 
   def new
     @paragraph = @book.paragraphs.new
-    @paragraphs = Paragraph.unscoped.where(:version_id => @school.version_id,:book_id=>@book.id).order("p_order DESC").limit(10)
+    @paragraphs = Paragraph.unscoped.where(:version_id => @school.version_id,:book_id=>@book.id).order("position DESC").limit(10)
     @version = Version.find(@school.version_id)
     
   end
   
   def create
+    @paragraph = @book.paragraphs.new(params[:paragraph])
     
   end
   

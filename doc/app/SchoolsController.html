@@ -105,6 +105,8 @@
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -213,6 +215,10 @@
   
     <li><a href="./Team.html">Team</a>
   
+    <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
@@ -319,9 +325,9 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
             <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find_or_initialize_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
-  <span class="ruby-identifier">check_for_pending_registrations?</span>
   <span class="ruby-identifier">load_school_vars</span>
-
+  <span class="ruby-identifier">check_for_pending_registrations?</span>
+  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>

@@ -49,7 +49,7 @@ class ProfilesController < ApplicationController
     user.reviewboard = params[:reviewboard]
     user.save
     flash[:alert] = "The review board status has been updated"
-    redirect_to user_admins_path
+    redirect_to admin_user_admins_path
   end
   
   # PERSONAL PREFERENCE MEHTODS

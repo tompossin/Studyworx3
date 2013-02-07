@@ -4,47 +4,47 @@
     <%=link_to "Edit all paragraphs for #{@book.name}", admin_book_paragraphs_path(@book)%>
     <h1>Create New Paragraphs for: <%= @book.name %> - <%= @version.name %></h1>
     <div class="theader">
-      <div class="cell" style="width:60px;">Order</div>
-      <div class="cell" style="width:75px;">Start Ref</div>
-      <div class="cell" style="width:75px;">End Ref</div>
-      <div class="cell" style="width:75px;">Verse Count</div>
-      <div class="cell" style="width:100px;">Admin</div>
+      <span class="cell" style="width:60px;">Order</span>
+      <span class="cell" style="width:75px;">Start Ref</span>
+      <span class="cell" style="width:75px;">End Ref</span>
+      <span class="cell" style="width:75px;">Verse Count</span>
+      <span class="cell" style="width:100px;">Admin</span>
     </div>
     <div class="trow">
       <%=form_for [:admin, @book, @paragraph] do |f| %>
-        <div class="cell" style="width:60px;">
-          <%= f.number_field :p_order, {:disabled=>true,:style=>"width:26px;"} %>
-        </div>
-        <div class="cell" style="width:75px;">
+        <span class="cell" style="width:60px;">
+          <%= f.number_field :position, {:disabled=>true,:style=>"width:26px;"} %>
+        </span>
+        <span class="cell" style="width:75px;">
           <%= f.text_field :startref, {autofocus: true,:style=>"width:50px;"}  %>
-        </div>
-        <div class="cell" style="width:75px;">
+        </span>
+        <span class="cell" style="width:75px;">
           <%= f.text_field :endref, {:style=>"width:50px;"}  %>
-        </div>
-        <div class="cell" style="width:75px;">
+        </span>
+        <span class="cell" style="width:75px;">
           <%= f.number_field :verse_count, {:style=>"width:50px;"}  %>
-        </div>
-        <div class="cell" style="width:150px;">
+        </span>
+        <span class="cell" style="width:150px;">
           <%= f.submit :save %>
-        </div>
+        </span>
       <% end %>
     </div>
       
     
     <% unless @paragraphs.empty? %>
       <div class="theader" style="width:100%;">
-        <div class="cell" style="width:60px;">Order</div>
-        <div class="cell" style="width:75px;">Start Ref</div>
-        <div class="cell" style="width:75px;">End Ref</div>
-        <div class="cell" style="width:75px;">Verse Count</div>
+        <span class="cell" style="width:60px;">Order</span>
+        <span class="cell" style="width:75px;">Start Ref</span>
+        <span class="cell" style="width:75px;">End Ref</span>
+        <span class="cell" style="width:75px;">Verse Count</span>
       </div>
       <% for p in @paragraphs %>
         
-        <div id="p_<%= p.id %>" class="trow <%= cycle("odd","even") %>" style="width:100%;">
-          <div class="cell" style="width:60px;"><%= p.p_order %></div>
-          <div class="cell" style="width:75px;"><%= p.startref %></div>
-          <div class="cell" style="width:75px;"><%= p.endref %></div>
-          <div class="cell" style="width:75px;"><%= p.verse_count %></div>
+        <div id="paragraph_<%= p.id %>" class="trow <%= cycle("odd","even") %>" style="width:100%;">
+          <span class="cell" style="width:60px;"><%= p.position %></span>
+          <span class="cell" style="width:75px;"><%= p.startref %></span>
+          <span class="cell" style="width:75px;"><%= p.endref %></span>
+          <span class="cell" style="width:75px;"><%= p.verse_count %></span>
         </div>
       <% end %>
     <% end %>

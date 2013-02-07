@@ -111,6 +111,8 @@
   
     <li><a href="../Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="../Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="../Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="../Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -219,6 +221,10 @@
   
     <li><a href="../Team.html">Team</a>
   
+    <li><a href="../TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="../TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="../TeamsController.html">TeamsController</a>
   
     <li><a href="../TeamsHelper.html">TeamsHelper</a>
@@ -280,6 +286,7 @@
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-ivar">@paragraph</span> = <span class="ruby-ivar">@book</span>.<span class="ruby-identifier">paragraphs</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:paragraph</span>])
   
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create-source -->
@@ -308,7 +315,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   
 <span class="ruby-keyword">end</span></pre>
@@ -406,7 +413,7 @@
             <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@paragraph</span> = <span class="ruby-ivar">@book</span>.<span class="ruby-identifier">paragraphs</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@paragraphs</span> = <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:version_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">version_id</span>,<span class="ruby-value">:book_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@book</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;p_order DESC&quot;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">10</span>)
+  <span class="ruby-ivar">@paragraphs</span> = <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:version_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">version_id</span>,<span class="ruby-value">:book_id=</span><span class="ruby-operator">&gt;</span><span class="ruby-ivar">@book</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;position DESC&quot;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">10</span>)
   <span class="ruby-ivar">@version</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">version_id</span>)
   
 <span class="ruby-keyword">end</span></pre>
@@ -466,7 +473,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/paragraphs_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   
 <span class="ruby-keyword">end</span></pre>

@@ -109,6 +109,8 @@
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -217,6 +219,10 @@
   
     <li><a href="./Team.html">Team</a>
   
+    <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
@@ -276,7 +282,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@blog</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@blog</span>.<span class="ruby-identifier">destroy</span>
@@ -307,12 +313,13 @@
 
         <div class="method-description">
           
-          
+          <p>FIXME this needs to be fixed because if you do not change the value of the
+boolean fields they seem to to change back to false. Weird and annoying.</p>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@blog</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -381,7 +388,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@blog</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@blog</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -453,7 +460,7 @@ paging on this yet.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/blogs_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@blog</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@blog</span>.<span class="ruby-identifier">remove_previous_lead_story</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:blog</span>][<span class="ruby-value">:leadstory</span>])

@@ -8,6 +8,10 @@ class Message < ActiveRecord::Base
   attr_accessible :parent_id, :recipient_id, :sender_id, :school_id, :team_id, 
   :subject, :body
   ##############################
+  def self.get_unread_team_messages(user)
+    teams = user.teams.all
+    return Message.where(team_id: teams).all
+  end
   def self.get_unread_messages(user_id)
     return Message.where("((recipient_id = ? and recipient_read = ?) 
                                   or (sender_id = ? and sender_read = ?)) 

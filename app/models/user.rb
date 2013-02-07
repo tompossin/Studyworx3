@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   end
   
   # Returns full name of user
-  #  Useage: @user.fullname
+  #  Usage: @user.fullname
   def fullname
     return self.firstname+" "+self.lastname
   end
@@ -93,6 +93,14 @@ class User < ActiveRecord::Base
     end
   end
   
+  
+  # Check the status of an applicant to the school
+  #  Returns: participant.accepted (0,1,2) or false if they have not registered
+  #
+  # The meanings of the 3 values are as follows:
+  # * participant.accepted == 0 pending registration
+  # * participant.accepted == 1 dropped student (not active but still has access)
+  # * participant.accepted == 2 accepted student (active)
   def status
     participant = Participant.where("user_id = ? and school_id = ?",self.id,self.school).first
     if participant
@@ -102,30 +110,30 @@ class User < ActiveRecord::Base
     end
   end
   
+  # Check if this user is staff for current school
+  #  Usage:  current_user.staff? # returns true or false 
   def staff?
-    if self.role
-      if self.role < 4
-        return true || false
-      end
-    end
+      self.role < 4
   end
   
+  # Check if this user is staff for current school
+  #  Usage:  current_user.admin_assistant? # returns true or false
   def admin_assistant?
-    if self.role
-      if self.role < 3
-        return true || false
-      end
-    end
+      self.role < 3
   end
   
+  # Check if this user is staff for current school
+  #  Usage:  current_user.leader? # returns true or false
   def leader?
-    if self.role
-      if self.role < 2
-        return true || false
-      end
-    end
+      self.role < 2
   end
   
+  # Returns a string of the users administrative Status
+  #  Usage: current_user.admin_status 
+  # * user_admin.level == 1 returns "Contributor"
+  # * user_admin.level == 2 returns "Administrator"
+  # * user_admin.level == 3 returns "Super-Admin"
+  # * user_admin.level == nil returns "Undefined"
   def admin_status
     if self.user_admin
       if self.user_admin.level == 1

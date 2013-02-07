@@ -1,5 +1,8 @@
 <div class="title float_left">
   <%= @team.name %> <%=link_to("View", team_path(@team),{remote: true, class: "smallest"})%>
 </div>
-<%=render("form",{submit: "Update Team"})%>
+  <%=render("form",{submit: "Update Team"})%>
+<div class="float_left limited">
+  <%= render("memberships")%>
+</div>
 

@@ -1,6 +1,6 @@
 <%=form_for [:admin, @book, @paragraph] do |f| %>
   <div class="cell" style="width:60px;">
-    <%= f.number_field :p_order, {:disabled=>true,:style=>"width:26px;"} %>
+    <%= f.number_field :position, {:disabled=>true,:style=>"width:26px;"} %>
   </div>
   <div class="cell" style="width:75px;">
     <%= f.text_field :startref, {:style=>"width:50px;"}  %>

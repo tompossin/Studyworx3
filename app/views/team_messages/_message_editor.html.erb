@@ -1,0 +1,9 @@
+<div class="msg_container">
+  <%=form_for @message, :url => team_messages_path(@message), html: {remote: true} do |f| %>
+    <%= link_to( "cancel",cancel_message_team_message_path(current_user.id) ,{:class=>"smaller",:remote=>true}) %><br />
+    <%= f.hidden_field :team_id %>
+    <%= f.text_field :subject, {:class=>"textarea_reduced"} %><br />
+    <%= f.text_area :body, {:class=>"textarea_reduced", :size=>"34x6"}%><br />
+    <%= f.submit "send" %>
+  <% end %>
+</div>

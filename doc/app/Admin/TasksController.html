@@ -82,6 +82,8 @@
     
     <li><a href="#method-i-show">#show</a>
     
+    <li><a href="#method-i-sort">#sort</a>
+    
     <li><a href="#method-i-update">#update</a>
     
   </ul>
@@ -110,6 +112,8 @@
     <li><a href="../Admin/AssignmentsController.html">Admin::AssignmentsController</a>
   
     <li><a href="../Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
+  
+    <li><a href="../Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
   
     <li><a href="../Admin/BooksController.html">Admin::BooksController</a>
   
@@ -219,6 +223,10 @@
   
     <li><a href="../Team.html">Team</a>
   
+    <li><a href="../TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="../TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="../TeamsController.html">TeamsController</a>
   
     <li><a href="../TeamsHelper.html">TeamsHelper</a>
@@ -278,12 +286,14 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:task</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_assignment_tasks_path</span>(<span class="ruby-ivar">@assignment</span>)}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>}
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>}
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -313,7 +323,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">destroy</span>
@@ -347,7 +357,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -410,7 +420,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -456,6 +466,43 @@
       </div><!-- show-method -->
 
     
+      <div id="method-i-sort" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sort</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="sort-source">
+            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sort</span>
+  <span class="ruby-ivar">@tasks</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@tasks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">position</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:task</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">t</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">'shared/save_success'</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sort-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sort-method -->
+
+    
       <div id="method-i-update" class="method-detail ">
         
         <div class="method-heading">
@@ -472,12 +519,16 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tasks_controller.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:task</span>])
+
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_assignment_tasks_path</span>(<span class="ruby-ivar">@assignment</span>)}
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:task</span>])
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>}
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-source -->

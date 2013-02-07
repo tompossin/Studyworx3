@@ -117,6 +117,8 @@
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -224,6 +226,10 @@
     <li><a href="./Task.html">Task</a>
   
     <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
   
     <li><a href="./TeamsController.html">TeamsController</a>
   
@@ -455,7 +461,7 @@
   <span class="ruby-ivar">@teams_i_own</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find_all_by_owner_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@my_teams</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->

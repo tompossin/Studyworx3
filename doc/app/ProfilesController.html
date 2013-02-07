@@ -123,6 +123,8 @@
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -230,6 +232,10 @@
     <li><a href="./Task.html">Task</a>
   
     <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
   
     <li><a href="./TeamsController.html">TeamsController</a>
   
@@ -631,7 +637,7 @@ review board status</p>
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">reviewboard</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:reviewboard</span>]
   <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-identifier">flash</span>[<span class="ruby-value">:alert</span>] = <span class="ruby-string">&quot;The review board status has been updated&quot;</span>
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_admins_path</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_user_admins_path</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- reviewboard_update-source -->
           

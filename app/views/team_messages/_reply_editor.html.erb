@@ -1,0 +1,9 @@
+<div style="float:left;">
+  <%=link_to( "cancel", cancel_reply_team_message_path(@id),{remote: true}) %><br />
+  <%= form_tag({:action=>:save_reply}, {:remote=> true, :id=>current_user.id}) do %>
+    <%= hidden_field_tag :team_id, @message.team_id %>
+    <%= hidden_field_tag :sender_id, @message.sender_id %>
+    <%= text_area_tag :body, nil, {:size=>"34x5"} %><br />
+    <%= submit_tag "save" %>
+  <% end %>
+</div>

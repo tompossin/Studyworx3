@@ -101,6 +101,8 @@
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
+    <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
+  
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
@@ -209,6 +211,10 @@
   
     <li><a href="./Team.html">Team</a>
   
+    <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
@@ -278,7 +284,7 @@ displayed on the home page.</p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@current_article</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;leadstory=?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-ivar">@stories</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>,<span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'navbar and featured and updated_at DESC'</span>)
@@ -309,7 +315,7 @@ displayed on the home page.</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@current_article</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@stories</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>,<span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'navbar and featured and updated_at DESC'</span>)

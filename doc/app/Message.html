@@ -78,6 +78,8 @@
     
     <li><a href="#method-c-get_unread_messages">::get_unread_messages</a>
     
+    <li><a href="#method-c-get_unread_team_messages">::get_unread_team_messages</a>
+    
     <li><a href="#method-c-mark_as_read">::mark_as_read</a>
     
     <li><a href="#method-c-mark_parent_as_unread">::mark_parent_as_unread</a>
@@ -108,6 +110,8 @@
     <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
+  
+    <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
   
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
@@ -217,6 +221,10 @@
   
     <li><a href="./Team.html">Team</a>
   
+    <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
+  
+    <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
+  
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
@@ -277,7 +285,7 @@ for user_id.</p>
 
           
           <div class="method-source-code" id="count_all_read_messages-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count_all_read_messages</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">count</span>(
           <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;((sender_id = #{user_id} and sender_read = true) or (recipient_id = #{user_id} and recipient_read = true)) and parent_id IS NULL&quot;</span>,
@@ -310,7 +318,7 @@ for user_id.</p>
 
           
           <div class="method-source-code" id="count_all_unread_messages-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count_all_unread_messages</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">count</span>(
           <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;((recipient_id = user_id and recipient_read = false) 
@@ -344,7 +352,7 @@ for user_id.</p>
 
           
           <div class="method-source-code" id="get_read_messages-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_read_messages</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">pagesize</span>=<span class="ruby-value">0</span>,<span class="ruby-identifier">page</span>=<span class="ruby-value">0</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;((sender_id = ? and sender_read = true) 
                         or (recipient_id = ? and recipient_read = true)) 
@@ -377,7 +385,7 @@ for user_id.</p>
 
           
           <div class="method-source-code" id="get_unread_messages-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_unread_messages</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;((recipient_id = ? and recipient_read = ?) 
                                 or (sender_id = ? and sender_read = ?)) 
@@ -392,6 +400,37 @@ for user_id.</p>
 
         
       </div><!-- get_unread_messages-method -->
+
+    
+      <div id="method-c-get_unread_team_messages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_unread_team_messages</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_unread_team_messages-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_unread_team_messages</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">teams</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">team_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">teams</span>).<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_unread_team_messages-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_unread_team_messages-method -->
 
     
       <div id="method-c-mark_as_read" class="method-detail ">
@@ -410,7 +449,7 @@ for user_id.</p>
 
           
           <div class="method-source-code" id="mark_as_read-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mark_as_read</span>(<span class="ruby-identifier">msg_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">m</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">msg_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
@@ -448,7 +487,7 @@ for user_id.</p>
 
           
           <div class="method-source-code" id="mark_parent_as_unread-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
