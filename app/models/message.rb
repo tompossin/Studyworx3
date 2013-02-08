@@ -13,7 +13,7 @@ class Message < ActiveRecord::Base
   #
   # Paging can be added by supplying the pagesize and page params.
   def self.get_team_messages(user,pagesize=0,page=0)
-    teams = user.teams.all
+    teams = user.teams_ids
     return Message.where("team_id IN (?) and parent_id IS NULL",
                                     teams).offset(page*pagesize).limit(pagesize)
   end
@@ -31,19 +31,21 @@ class Message < ActiveRecord::Base
                                   user_id,false,user_id,false).all
   end
   
-  # WARNING This is safe ONLY as long as you NEVER use any user supplied data for user_id.
+  # Counts all the personal read messages.
   def self.count_all_read_messages(user_id)
     return Message.count(
-            :conditions=> "((sender_id = (#{user_id}) and sender_read = true) or (recipient_id = #{user_id} and recipient_read = true)) and parent_id IS NULL",
+            :conditions=> ["((sender_id = (?) and sender_read = true) 
+                            or (recipient_id = (?) and recipient_read = true)) 
+                            and parent_id IS NULL",user_id,user_id],
             :distinct=>true)
   end
   
-  # WARNING This is safe ONLY as long as you NEVER use any user supplied data for user_id.
+  # counts all the unread personal messages
   def self.count_all_unread_messages(user_id)
     return Message.count(
-            :conditions => "((recipient_id = user_id and recipient_read = false) 
-                            or (sender_id = user_id and sender_read = false)) 
-                            and parent_id IS NULL",
+            :conditions => ["((recipient_id = (?) and rcipient_read = false) 
+                            or (sender_id = (?) and sender_read = false)) 
+                            and parent_id IS NULL",user_id,user_id],
             :distinct => true)
   end
   

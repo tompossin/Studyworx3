@@ -45,7 +45,7 @@ Studyworx3::Application.routes.draw do
     member do
       get 'reply', 'cancel_message', 'cancel_reply'
       put 'read'
-      post 'save_reply'       
+      post 'reply_create'       
     end
     collection do
       get 'get_read'

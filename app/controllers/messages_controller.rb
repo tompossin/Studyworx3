@@ -1,6 +1,11 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
   
+  # ----------
+  # :section: Message Methods (parent)
+  # This section contains methods for manipulating Personal Messages (parent).
+  # ----------
+  
   # Loading user unread personal conversations via AJAX
   def index
     @messages = Message.get_unread_messages(current_user.id)
@@ -39,12 +44,19 @@ class MessagesController < ApplicationController
     end
   end
 
-  # Sets the message editor via AJAX
+  # Sets the new message editor via AJAX
   def new
     @message = Message.new
 
     respond_to do |format|
       format.js
+    end
+  end
+  
+  # This removes the new message editor via AJAX
+  def cancel_message
+    respond_to do |format|
+      format.js 
     end
   end
 
@@ -57,42 +69,7 @@ class MessagesController < ApplicationController
     end
   end
   
-  # creates a blank reply(no save) and loads the reply editor
-  def reply
-    r = Message.find(params[:id])
-    @message = Message.new
-    @message.parent_id = params[:id]
-    @message.sender_id = current_user.id
-    @message.recipient_id = r.recipient_id
-    @id = params[:id]
-    
-    respond_to do |format|
-      format.js
-    end
-  end
-  
-  # Takes user reply and creates a child message and pushes it to the view. 
-  # This message system is designed to function with only parents and children no grandchildren.
-  def save_reply
-    @id = params[:id] # parent message id
-    parent = Message.mark_parent_as_unread(@id)
-    @reply = parent.children.create(:sender_id=>params[:sender_id].to_i)
-    @reply.recipient_id = params[:recipient_id].to_i
-    @reply.team_id = nil
-    @reply.body = params[:body]
-    @reply.recipient_read = false
-    @reply.sender_read = false
-   
-    respond_to do |format|
-      if @reply.save
-        format.js
-      else
-        format.js {render "shared/save_failed"}
-      end
-    end
-  end
-
-  # This creates a new parent(root) message
+   # This creates a new parent(root) message
   def create
     @message = Message.new
     @message.recipient_id = params[:recipient_id].to_i
@@ -112,8 +89,9 @@ class MessagesController < ApplicationController
       end
     end
   end
-
+  
   # Not used yet
+  # This will update a parent message that has already been posted
   def update
     @message = Message.find(params[:id])
 
@@ -128,24 +106,64 @@ class MessagesController < ApplicationController
     end
   end
   
-  # This removes the message editor
-  def cancel_message
-    respond_to do |format|
-      format.js 
-    end
-  end
+  # ----------
+  # :section: Reply Methods
+  # This section contains methods specifically designed to handle reply (child) Messages.
+  # ----------
   
-  # This removes the reply editor
-  def cancel_reply
-    @message = Message.find(params[:id])
+  # creates a new reply(no save) and loads the reply_new editor
+  def reply
+    r = Message.find(params[:id])
+    @message = Message.new
+    @message.parent_id = params[:id]
+    @message.sender_id = current_user.id
+    @message.recipient_id = r.recipient_id
+    @id = params[:id]
+    
     respond_to do |format|
       format.js
     end
   end
-
-  # DELETE /messages/1
-  # DELETE /messages/1.json
-  # Destroys the message and all children.
+  
+  # This loads the reply_editor in-place to update anexisting message
+  # TODO create matching routes and templates.
+  def reply_edit
+    
+  end
+  
+  # Takes user reply and creates a child message and pushes it to the view. 
+  # This message system is designed to function with only parents and children no grandchildren.
+  def reply_create
+    @id = params[:id] # parent message id
+    parent = Message.mark_parent_as_unread(@id)
+    @reply = parent.children.create(:sender_id=>params[:sender_id].to_i)
+    @reply.recipient_id = params[:recipient_id].to_i
+    @reply.team_id = nil
+    @reply.body = params[:body]
+    @reply.recipient_read = false
+    @reply.sender_read = false
+   
+    respond_to do |format|
+      if @reply.save
+        format.js
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
+  end
+  
+  # This updates an existing reply
+  # TODO create matching routes and templates
+  def reply_update
+    
+  end
+  
+  # ----------
+  # :section: Shared Methods for Messages and Replies
+  # The methods below can be called from either a message or reply context.
+  # ----------
+  
+  # Destroys the message and all children if they exist.
   def destroy
     @message = Message.find(params[:id])
     @id = @message.id.to_s

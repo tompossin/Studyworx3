@@ -1,5 +1,6 @@
 <div id="reply_<%=reply.id%>" class="reply_container">
    <p class="title">
+     <p class="title smallest"><%= distance_of_time_in_words_to_now(reply.updated_at, include_seconds: false) %> ago </p>
      <%= get_full_name(reply.sender_id) if reply.sender_id %>  
      <% if reply.sender_id == current_user.id %>
       &nbsp;&nbsp;<%=link_to "delete", team_message_path(reply.id),{ method: :delete,confirm: "Are you sure you want to delete this reply?", remote: true} %> 

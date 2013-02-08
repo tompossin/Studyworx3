@@ -6,7 +6,10 @@
   <% if message.recipient_id == current_user.id %>
     &nbsp;&nbsp;<%=link_to "delete", message_path(message.id),{method: :delete,confirm: "Are you sure you want to delete this message and all it's comments?", remote: true} %>
   <% end %>
-  <p class="title smaller">To: <%= get_full_name(message.recipient_id)%></p>
+  <p class="title smallest"><%= distance_of_time_in_words_to_now(message.updated_at, include_seconds: false) %> ago </p>
+  <p class="title smaller">From: <%= get_full_name(message.sender_id)%></p>
+  <p class="title smaller bolder">To: <%= get_full_name(message.recipient_id)%></p>
+  <hr />
   <p class="title small"><%= message.subject%></p>
   <p><%= formatter(message.body)%></p>
   <div id="reply_link_<%= message.id %>" class="reply_link">
