@@ -53,8 +53,10 @@ Studyworx3::Application.routes.draw do
   end
   resources :team_messages do
     member do
-      get 'reply', 'cancel_message', 'cancel_reply'
-      post 'save_reply'
+      get 'cancel_message','cancel_edit'
+      get 'reply','reply_edit', 'cancel_reply', 'cancel_reply_edit' 
+      post 'reply_create'
+      put 'reply_update'
     end
     
   end

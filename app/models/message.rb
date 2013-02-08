@@ -8,22 +8,36 @@ class Message < ActiveRecord::Base
   attr_accessible :parent_id, :recipient_id, :sender_id, :school_id, :team_id, 
   :subject, :body
   ##############################
-  def self.get_unread_team_messages(user)
+  
+  # This returns all the team messages for a user.
+  #
+  # Paging can be added by supplying the pagesize and page params.
+  def self.get_team_messages(user,pagesize=0,page=0)
     teams = user.teams.all
-    return Message.where(team_id: teams).all
+    return Message.where("team_id IN (?) and parent_id IS NULL",
+                                    teams).offset(page*pagesize).limit(pagesize)
   end
+  
+  # Gives a total Team Message count for a user.
+  def self.count_team_messages(user)
+    teams = user.team_ids
+    return Message.count(:conditions =>[ "team_id IN (?) and parent_id IS NULL",teams])
+  end
+  
   def self.get_unread_messages(user_id)
     return Message.where("((recipient_id = ? and recipient_read = ?) 
                                   or (sender_id = ? and sender_read = ?)) 
                                   and parent_id IS NULL",
                                   user_id,false,user_id,false).all
   end
+  
   # WARNING This is safe ONLY as long as you NEVER use any user supplied data for user_id.
   def self.count_all_read_messages(user_id)
     return Message.count(
-            :conditions=> "((sender_id = #{user_id} and sender_read = true) or (recipient_id = #{user_id} and recipient_read = true)) and parent_id IS NULL",
+            :conditions=> "((sender_id = (#{user_id}) and sender_read = true) or (recipient_id = #{user_id} and recipient_read = true)) and parent_id IS NULL",
             :distinct=>true)
   end
+  
   # WARNING This is safe ONLY as long as you NEVER use any user supplied data for user_id.
   def self.count_all_unread_messages(user_id)
     return Message.count(
@@ -32,7 +46,8 @@ class Message < ActiveRecord::Base
                             and parent_id IS NULL",
             :distinct => true)
   end
-    
+  
+  # retrieves previously read private messages for a user.  
   def self.get_read_messages(user_id,pagesize=0,page=0)
     return Message.where("((sender_id = ? and sender_read = true) 
                           or (recipient_id = ? and recipient_read = true)) 
@@ -40,6 +55,7 @@ class Message < ActiveRecord::Base
                           user_id,user_id).offset(page*pagesize).limit(pagesize)
   end
   
+  # Marks a message as being read.
   def self.mark_as_read(msg_id,user_id)
     m = Message.find(msg_id)
     if m.recipient_id == user_id
@@ -52,6 +68,9 @@ class Message < ActiveRecord::Base
     return m
   end
   
+  # Marks a messages parent as unread.
+  # This puts previously read messages back in the unread list
+  # when a new reply is made.
   def self.mark_parent_as_unread(id)
     parent = Message.find(id)
     parent.sender_read = false

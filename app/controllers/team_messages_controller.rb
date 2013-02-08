@@ -3,20 +3,46 @@
 class TeamMessagesController < ApplicationController
   before_filter :authenticate_user!
   
+  # ----------
+  # :section: Team Messaging - Parent Message Methods
+  # This section contains all the CRUD methods for Parent messages.
+  # ----------
+  
+  # This is the main display action for Team Messages
   def index
-    @messages = Message.get_unread_team_messages(current_user)
+    @page = params[:page].to_i || 0
+    pagesize = 3
+    @msgcount = Message.count_team_messages(current_user)
+    @messages = Message.get_team_messages(current_user,pagesize,@page)
     @teams = current_user.teams.all
-    @message_partial = "message"
+    @page += 1
+    @current_count = @msgcount - pagesize*@page
+    unless @msgcount <= pagesize*@page
+      @pagelabel = "more messages..."
+    else
+      @page = 0
+      @pagelabel = "End of messages"
+    end
     
     respond_to do |format|
       format.js 
     end
   end
   
-  # Sets the Team message_editor via AJAX
+  # This loads the editor for parent messages
+  def edit
+    @message = Message.find(params[:id])
+    @method = "put"
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # Sets the Team message_new form via AJAX
   def new
     @message = Message.new(team_id: params[:message][:team_id])
-
+    @method = "post"
     respond_to do |format|
       format.js
     end
@@ -41,6 +67,39 @@ class TeamMessagesController < ApplicationController
     end
   end
   
+  # updates an existing parent message
+  def update
+    @message = Message.find(params[:id])
+    
+    respond_to do |format|
+      if @message.update_attributes(params[:message])
+        format.js { render :update, notice: "Message saved."}
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
+  end
+  
+  # This removes the new message editor
+  def cancel_message
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  # This removes the inplace message editor
+  def cancel_edit
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # ----------
+  # :section: Team Message Reply Methods
+  # These Methods handle the basic CRUD methods for replies(child messages)
+  # ----------
+  
   # creates a blank reply(no save) and loads the reply editor
   def reply
     r = Message.find(params[:id])
@@ -57,15 +116,15 @@ class TeamMessagesController < ApplicationController
   
   # Takes user reply and creates a child message and pushes it to the view. 
   # This message system is designed to function with only parents and children no grandchildren.
-  def save_reply
+  def reply_create
     @id = params[:id]
     parent = Message.find(params[:id])
-    @reply = parent.children.create(:sender_id=>params[:sender_id].to_i)
-    @reply.team_id = params[:team_id].to_i
-    @reply.body = params[:body]
+    @message = parent.children.create(:sender_id=>params[:sender_id].to_i)
+    @message.team_id = params[:team_id].to_i
+    @message.body = params[:body]
    
     respond_to do |format|
-      if @reply.save
+      if @message.save
         format.js
       else
         format.js {render "shared/save_failed"}
@@ -73,31 +132,62 @@ class TeamMessagesController < ApplicationController
     end
   end
   
-  # This removes the message editor
-  def cancel_message
+  # This loads the inplace reply editor for child messages
+  def reply_edit
+    @message = Message.find(params[:id])
+    @id = params[:id]
+    
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
   
-  # This removes the reply editor
+  # This updates existing reply (child) records
+  def reply_update
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      if @message.update_attributes(params[:message])
+        format.js
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
+  end
+  
+  # This removes the new reply editor
   def cancel_reply
     @message = Message.find(params[:id])
     respond_to do |format|
       format.js
     end
   end
+  
+  # This removes the inplace reply editor
+  def cancel_reply_edit
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
 
-  # DELETE /messages/1
-  # DELETE /messages/1.json
-  # Destroys the message and all children.
+  # ----------
+  # :section: Shared Methods
+  # These methods are used for either Parent or Child messages
+  # ----------
+  
+  # Destroys the message and all children if any exist.
   def destroy
     @message = Message.find(params[:id])
+    @child = @message.parent_id||false
     @id = @message.id.to_s
     @message.destroy
 
     respond_to do |format|
-      format.js
+      unless @child
+        format.js
+      else
+        format.js {render "reply_destroy"}
+      end  
     end
   end
 

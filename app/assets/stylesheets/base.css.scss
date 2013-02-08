@@ -349,9 +349,11 @@ blockquote {
 }
 
 .more {
-  background-color: white;
+  background-color: rgba(255,255,255,.4);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  border-bottom: solid gray 1px;
+  margin-top: -4px;
   padding:4px;
   text-align: center;
   width:100%;
@@ -457,7 +459,6 @@ blockquote {
 }
 
 .title {
-  font-size: 160%;
   font-style: italic;
   font-family: Garamond, Georgia;
 }
@@ -477,6 +478,9 @@ blockquote {
 .indent_double {
   margin-left: 30px;
 }
+.largest {
+  font-size: 160%;
+}
 .larger {
   font-size: 140%;
 }
@@ -484,11 +488,11 @@ blockquote {
   font-size: 120%;
 }
 .small {
-  font-size: 100%;
+  font-size: 95%;
 }
 
 .smaller {
-  font-size: 90%;
+  font-size: 85%;
 }
 
 .smallest {

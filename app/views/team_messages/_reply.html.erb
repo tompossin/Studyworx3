@@ -1,6 +1,10 @@
-<div class="reply_container">
-   <p class="title smaller">
-     <%= get_full_name(reply.sender_id) if reply.sender_id %> has replied
+<div id="reply_<%=reply.id%>" class="reply_container">
+   <p class="title">
+     <%= get_full_name(reply.sender_id) if reply.sender_id %>  
+     <% if reply.sender_id == current_user.id %>
+      &nbsp;&nbsp;<%=link_to "delete", team_message_path(reply.id),{ method: :delete,confirm: "Are you sure you want to delete this reply?", remote: true} %> 
+      &nbsp;<%=link_to "edit", reply_edit_team_message_path(reply.id), {remote: true} %>
+     <% end %>
    </p>
    <p>
      <%= formatter(reply.body) %>

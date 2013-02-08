@@ -7,16 +7,24 @@
   </div>
 
   <% for m in @messages %>
-    <%=render @message_partial, {message: m } %>
+    <%=render "message", {message: m } %>
   <% end %>
   
+  <!--Pager Code below this line -->
   
-  <% if @linklabel %>
+  <% if @page > 1 %>
     <div class="more">
-      <span> <%=@current_count if @current_count > 0 %> </span>
-      <%=link_to @linklabel, get_read_messages_path({ page: @page||0 }),{remote: true} %>
+      <%=link_to "...previous", team_messages_path({ page: (@page-2)}),{remote: true} %>
     </div>
   <% end %>
+  <% if @pagelabel %>
+    <div class="more">
+      <span> <%=@current_count if @current_count > 0 %> </span>
+      <%=link_to @pagelabel, team_messages_path({ page: @page||0 }),{remote: true} %>
+    </div>
+  <% end %>
+  
+  <!-- End Pager Code -->
   
   
 <% end %>

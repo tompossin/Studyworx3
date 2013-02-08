@@ -11,8 +11,12 @@ module ApplicationHelper
   
   # Gets the full name of the supplied user_id
   def get_full_name(user_id)
-    u = User.find(user_id)
-    return u.firstname + " " + u.lastname
+    if user_id
+      u = User.find(user_id)
+      return u.firstname + " " + u.lastname
+    else
+      return "Unknown"
+    end
   end
   
   # Locates a given users avatar url
@@ -23,6 +27,11 @@ module ApplicationHelper
       avatar = false
     end
     return avatar || Settings.avatar_image  
+  end
+  
+  def get_team_name(team_id)
+    team = Team.find(team_id)
+    return team.name
   end
   
   # Sets the nav_bar(nav_body_content = optional url of partial for nav_body_content element)

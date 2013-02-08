@@ -3,10 +3,12 @@
     <%=link_to(image_tag("blank.png"),profile_path(message.sender_id),{remote: true})%>   
   </div>
   <% if message.sender_id == current_user.id %>
-    &nbsp;&nbsp;<%=link_to "delete", message_path(message.id),{method: :delete,confirm: "Are you sure you want to delete this message and all it's comments?", remote: true} %>
+    &nbsp;&nbsp;<%=link_to "delete", team_message_path(message.id),{method: :delete,confirm: "Are you sure you want to delete this message and all it's comments?", remote: true} %>
+    &nbsp;<%=link_to "edit", edit_team_message_path(message),{remote: true}%>
   <% end %>
+  <p class="title bolder">To: <%= get_team_name(message.team_id) %></p>
   <p class="title smaller">From: <%= get_full_name(message.sender_id)%></p>
-  <p class="title small"><%= message.subject%></p>
+  <p class="title bolder"><%= message.subject%></p>
   <p><%= formatter(message.body)%></p>
   <div id="reply_link_<%= message.id %>" class="reply_link">
     <%= render "reply_link", {message: message} %>
