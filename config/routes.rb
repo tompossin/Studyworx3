@@ -1,5 +1,21 @@
 Studyworx3::Application.routes.draw do
 
+  get "duedates/index"
+
+  get "duedates/show"
+
+  get "duedates/list"
+
+  get "duedates/new"
+
+  get "duedates/edit"
+
+  get "duedates/create"
+
+  get "duedates/update"
+
+  get "duedates/destroy"
+
   get "team_messages/index"
 
   # ----------
@@ -43,8 +59,9 @@ Studyworx3::Application.routes.draw do
   
   resources :messages do
     member do
-      get 'reply', 'cancel_message', 'cancel_reply'
-      put 'read'
+      get 'cancel_message','cancel_message_edit'
+      get 'reply', 'cancel_reply','reply_edit','cancel_reply_edit'
+      put 'read','reply_update'
       post 'reply_create'       
     end
     collection do

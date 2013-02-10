@@ -12,7 +12,7 @@
         $.ajax({
           type: 'post',
           dataType: 'script',
-          data: $('#sortable').sortable('serialize') + '&mod_id=<%=@module%>',
+          data: $('#sortable').sortable('serialize') + '&mod_id=<%= @module %>',
           url: 'sort' 
         })
       }

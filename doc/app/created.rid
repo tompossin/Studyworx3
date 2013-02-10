@@ -1,4 +1,4 @@
-Fri, 08 Feb 2013 10:43:22 -0700
+Fri, 08 Feb 2013 21:13:59 -0700
 doc/README_FOR_APP	Tue, 29 Jan 2013 20:18:12 -0700
 app/controllers/admin/assignments_controller.rb	Mon, 04 Feb 2013 10:25:16 -0700
 app/controllers/admin/books_controller.rb	Tue, 29 Jan 2013 20:18:11 -0700
@@ -14,7 +14,7 @@ app/controllers/application_controller.rb	Wed, 30 Jan 2013 19:41:07 -0700
 app/controllers/assignments_controller.rb	Tue, 29 Jan 2013 20:18:11 -0700
 app/controllers/blogs_controller.rb	Wed, 30 Jan 2013 13:29:41 -0700
 app/controllers/home_controller.rb	Tue, 29 Jan 2013 20:18:11 -0700
-app/controllers/messages_controller.rb	Fri, 08 Feb 2013 09:49:59 -0700
+app/controllers/messages_controller.rb	Fri, 08 Feb 2013 21:11:16 -0700
 app/controllers/papers_controller.rb	Tue, 29 Jan 2013 20:18:11 -0700
 app/controllers/participants_controller.rb	Tue, 29 Jan 2013 20:18:11 -0700
 app/controllers/profiles_controller.rb	Mon, 04 Feb 2013 20:28:54 -0700
@@ -49,7 +49,7 @@ app/models/assignment.rb	Mon, 04 Feb 2013 09:59:50 -0700
 app/models/blog.rb	Tue, 29 Jan 2013 20:18:11 -0700
 app/models/book.rb	Tue, 29 Jan 2013 20:18:11 -0700
 app/models/duedate.rb	Tue, 29 Jan 2013 20:18:11 -0700
-app/models/message.rb	Fri, 08 Feb 2013 10:42:20 -0700
+app/models/message.rb	Fri, 08 Feb 2013 20:36:04 -0700
 app/models/note.rb	Tue, 29 Jan 2013 20:18:11 -0700
 app/models/paper.rb	Tue, 29 Jan 2013 20:18:11 -0700
 app/models/paragraph.rb	Mon, 04 Feb 2013 18:57:56 -0700

@@ -43,6 +43,22 @@ class MessagesController < ApplicationController
       format.js
     end
   end
+  
+  def edit
+    @message = Message.find(params[:id])
+    
+    respond_to do |format|
+      if @message.sender_id == current_user.id
+        format.js
+      else
+        format.js {render "shared/not_owner"}
+      end
+    end 
+  end
+  
+  def cancel_message_edit
+    
+  end
 
   # Sets the new message editor via AJAX
   def new
@@ -62,8 +78,8 @@ class MessagesController < ApplicationController
 
   # Marks the parent message as read
   def read
-    m = Message.mark_as_read(params[:id],current_user.id)
-    @id = m.id.to_s
+    @message = Message.toggle_read_values(params[:id],current_user.id)
+    
     respond_to do |format|
       format.js {render "destroy"}
     end
@@ -90,19 +106,25 @@ class MessagesController < ApplicationController
     end
   end
   
-  # Not used yet
-  # This will update a parent message that has already been posted
+  # This updates a parent message that has already been posted
   def update
     @message = Message.find(params[:id])
-
+    @message.subject = params[:subject]
+    @message.body = params[:body]
+    @message.sender_read = false
+    @message.recipient_read = false
+    
     respond_to do |format|
-      if @message.update_attributes(params[:message])
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { head :no_content }
+      # check for shinanigans
+      if @message.sender_id == current_user.id
+        if @message.save
+          format.js
+        else
+          format.js {render "shared/save_failed"}
+        end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+        format.js {render "shared/not_owner"}
+      end 
     end
   end
   
@@ -125,10 +147,32 @@ class MessagesController < ApplicationController
     end
   end
   
+  # This removes the reply editor
+  def cancel_reply
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # This loads the reply_editor in-place to update anexisting message
-  # TODO create matching routes and templates.
+  # 
   def reply_edit
-    
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      if @message.sender_id = current_user.id
+        format.js
+      else
+        format.js {render "shared/not_owner"}
+      end
+    end
+  end
+  
+  def cancel_reply_edit
+    @message = Message.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
   
   # Takes user reply and creates a child message and pushes it to the view. 
@@ -136,15 +180,15 @@ class MessagesController < ApplicationController
   def reply_create
     @id = params[:id] # parent message id
     parent = Message.mark_parent_as_unread(@id)
-    @reply = parent.children.create(:sender_id=>params[:sender_id].to_i)
-    @reply.recipient_id = params[:recipient_id].to_i
-    @reply.team_id = nil
-    @reply.body = params[:body]
-    @reply.recipient_read = false
-    @reply.sender_read = false
+    @message = parent.children.create(:sender_id=>params[:sender_id].to_i)
+    @message.recipient_id = params[:recipient_id].to_i
+    @message.team_id = nil
+    @message.body = params[:body]
+    @message.recipient_read = false
+    @message.sender_read = false
    
     respond_to do |format|
-      if @reply.save
+      if @message.save
         format.js
       else
         format.js {render "shared/save_failed"}
@@ -153,9 +197,20 @@ class MessagesController < ApplicationController
   end
   
   # This updates an existing reply
-  # TODO create matching routes and templates
+  # 
   def reply_update
+    @message = Message.find(params[:id])
+    parent = Message.mark_parent_as_unread(@message.id)
+    @message.body = params[:body]
+    @message.recipient_read = false
     
+    respond_to do |format|
+      if @message.save
+        format.js 
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
   end
   
   # ----------
@@ -166,11 +221,17 @@ class MessagesController < ApplicationController
   # Destroys the message and all children if they exist.
   def destroy
     @message = Message.find(params[:id])
-    @id = @message.id.to_s
+    parent = @message.parent_id
     @message.destroy
-
+    
     respond_to do |format|
-      format.js
+      if parent and parent > 0
+        # this is a reply message (child)
+        format.js {render "destroy_reply"}
+      else
+        # this is a parent message.
+        format.js 
+      end
     end
   end
 end

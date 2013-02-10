@@ -12,7 +12,7 @@
         $.ajax({
           type: 'post',
           dataType: 'script',
-          data: $('#sortable').sortable('serialize') + '&assignment_id=<%=@assignment%>',
+          data: $('#sortable').sortable('serialize') + '&assignment_id=<%= @assignment.id %>',
           url: 'tasks/sort' 
         })
       }

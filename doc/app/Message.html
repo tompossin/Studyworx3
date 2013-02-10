@@ -423,7 +423,7 @@ href="Message.html">Message</a> count for a user.</p>
           <div class="method-source-code" id="get_team_messages-source">
             <pre><span class="ruby-comment"># File app/models/message.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_team_messages</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">pagesize</span>=<span class="ruby-value">0</span>,<span class="ruby-identifier">page</span>=<span class="ruby-value">0</span>)
-  <span class="ruby-identifier">teams</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">teams_ids</span>
+  <span class="ruby-identifier">teams</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">team_ids</span>
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;team_id IN (?) and parent_id IS NULL&quot;</span>,
                                   <span class="ruby-identifier">teams</span>).<span class="ruby-identifier">offset</span>(<span class="ruby-identifier">page</span>*<span class="ruby-identifier">pagesize</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">pagesize</span>)
 <span class="ruby-keyword">end</span></pre>

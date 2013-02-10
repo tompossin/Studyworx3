@@ -74,11 +74,15 @@
                                DELETE /admin/assignments/:id(.:format)                                        admin/assignments#destroy
              admin_tools_index GET    /admin/tools/index(.:format)                                            admin/tools#index
               admin_tools_book POST   /admin/tools/book(.:format)                                             admin/tools#book
-                 reply_message GET    /messages/:id/reply(.:format)                                           messages#reply
         cancel_message_message GET    /messages/:id/cancel_message(.:format)                                  messages#cancel_message
+   cancel_message_edit_message GET    /messages/:id/cancel_message_edit(.:format)                             messages#cancel_message_edit
+                 reply_message GET    /messages/:id/reply(.:format)                                           messages#reply
           cancel_reply_message GET    /messages/:id/cancel_reply(.:format)                                    messages#cancel_reply
+            reply_edit_message GET    /messages/:id/reply_edit(.:format)                                      messages#reply_edit
+     cancel_reply_edit_message GET    /messages/:id/cancel_reply_edit(.:format)                               messages#cancel_reply_edit
                   read_message PUT    /messages/:id/read(.:format)                                            messages#read
-            save_reply_message POST   /messages/:id/save_reply(.:format)                                      messages#save_reply
+          reply_update_message PUT    /messages/:id/reply_update(.:format)                                    messages#reply_update
+          reply_create_message POST   /messages/:id/reply_create(.:format)                                    messages#reply_create
              get_read_messages GET    /messages/get_read(.:format)                                            messages#get_read
                       messages GET    /messages(.:format)                                                     messages#index
                                POST   /messages(.:format)                                                     messages#create

@@ -13,7 +13,7 @@ class Message < ActiveRecord::Base
   #
   # Paging can be added by supplying the pagesize and page params.
   def self.get_team_messages(user,pagesize=0,page=0)
-    teams = user.teams_ids
+    teams = user.team_ids
     return Message.where("team_id IN (?) and parent_id IS NULL",
                                     teams).offset(page*pagesize).limit(pagesize)
   end
@@ -57,14 +57,22 @@ class Message < ActiveRecord::Base
                           user_id,user_id).offset(page*pagesize).limit(pagesize)
   end
   
-  # Marks a message as being read.
-  def self.mark_as_read(msg_id,user_id)
+  # Toggles a message as being read.
+  def self.toggle_read_values(msg_id,user_id)
     m = Message.find(msg_id)
     if m.recipient_id == user_id
-      m.recipient_read = true
+      if m.recipient_read == false
+        m.recipient_read = true
+      else
+        m.recipient_read = false
+      end
     end
     if m.sender_id == user_id
-      m.sender_read = true
+      if m.sender_read == false
+        m.sender_read = true
+      else
+        m.sender_read = false
+      end
     end
     m.save
     return m

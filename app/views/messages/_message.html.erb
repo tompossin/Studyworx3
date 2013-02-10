@@ -2,10 +2,12 @@
   <div class='avatar' style="background-image:url('<%= get_avatar_url(message.sender_id) %>');">
     <%=link_to(image_tag("blank.png"),profile_path(message.sender_id),{remote: true})%>   
   </div>
-  &nbsp;&nbsp;<%=link_to "Mark as Read", read_message_path(message.id),{method: :put, remote: true} %>
   <% if message.recipient_id == current_user.id %>
-    &nbsp;&nbsp;<%=link_to "delete", message_path(message.id),{method: :delete,confirm: "Are you sure you want to delete this message and all it's comments?", remote: true} %>
+    &nbsp;&nbsp;<%=link_to "delete", message_path(message.id),{method: :delete,confirm: "Are you sure you want to delete this message and all it's comments?", remote: true} %>     
+  <% elsif message.sender_id == current_user.id %>
+    &nbsp;&nbsp;<%=link_to "edit", edit_message_path(message.id),{remote:true} %>
   <% end %>
+  &nbsp;&nbsp;<%=link_to read_link(message), read_message_path(message.id),{method: :put, remote: true} %>
   <p class="title smallest"><%= distance_of_time_in_words_to_now(message.updated_at, include_seconds: false) %> ago </p>
   <p class="title smaller">From: <%= get_full_name(message.sender_id)%></p>
   <p class="title smaller bolder">To: <%= get_full_name(message.recipient_id)%></p>
@@ -13,7 +15,6 @@
   <p class="title small"><%= message.subject%></p>
   <p><%= formatter(message.body)%></p>
   <div id="reply_link_<%= message.id %>" class="reply_link">
-    <!-- Need to move this to a partial so I can reload it easily -->
     <%= render "create_reply", {message: message} %>
   </div>
   <div id="reply_editor_<%= message.id.to_s %>"></div> 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205180824) do
+ActiveRecord::Schema.define(:version => 20130210021447) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -48,17 +48,22 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
     t.integer  "verse_count"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "order"
+    t.integer  "position"
   end
+
+  add_index "books", ["position"], :name => "index_books_on_position"
 
   create_table "duedates", :force => true do |t|
     t.integer  "school_id"
-    t.integer  "assignment_id"
     t.integer  "team_id"
-    t.datetime "due_date"
+    t.integer  "assignment_id"
+    t.datetime "duedate"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "duedates", ["assignment_id"], :name => "index_duedates_on_assignment_id"
+  add_index "duedates", ["school_id", "team_id"], :name => "index_duedates_on_school_id_and_team_id"
 
   create_table "message_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false
@@ -74,17 +79,19 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.integer  "school_id"
-    t.boolean  "sender_read"
-    t.boolean  "recipient_read"
+    t.boolean  "sender_read",    :default => false
+    t.boolean  "recipient_read", :default => false
     t.string   "subject"
     t.text     "body"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "team_id"
   end
 
+  add_index "messages", ["parent_id"], :name => "index_messages_on_parent_id"
   add_index "messages", ["recipient_id", "recipient_read"], :name => "index_messages_on_recipient_id_and_recipient_read"
   add_index "messages", ["recipient_id", "team_id"], :name => "index_messages_on_recipient_id_and_team_id"
+  add_index "messages", ["school_id"], :name => "index_messages_on_school_id"
   add_index "messages", ["sender_id", "sender_read"], :name => "index_messages_on_sender_id_and_sender_read"
 
   create_table "notes", :force => true do |t|
@@ -145,6 +152,9 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
     t.datetime "updated_at",                    :null => false
   end
 
+  add_index "reviews", ["paper_id"], :name => "index_reviews_on_paper_id"
+  add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.string   "rolename"
     t.datetime "created_at", :null => false
@@ -192,6 +202,8 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "scoresheets", ["school_id"], :name => "index_scoresheets_on_school_id"
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -215,6 +227,7 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
   end
 
   add_index "tasks", ["assignment_id", "position"], :name => "index_tasks_on_assignment_id_and_position"
+  add_index "tasks", ["assignment_id", "task_type"], :name => "index_tasks_on_assignment_id_and_task_type"
 
   create_table "teams", :force => true do |t|
     t.integer  "owner_id"
@@ -246,6 +259,8 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "templats", ["school_id", "name"], :name => "index_templats_on_school_id_and_name"
+
   create_table "user_admins", :force => true do |t|
     t.integer  "user_id"
     t.integer  "level",      :default => 0
@@ -254,12 +269,12 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",                    :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -268,14 +283,14 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        :default => 0
+    t.integer  "failed_attempts",                       :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.text     "firstname"
-    t.text     "lastname"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+    t.string   "firstname",              :limit => 100
+    t.string   "lastname",               :limit => 100
     t.string   "phone"
     t.text     "address"
     t.boolean  "reviewboard"
@@ -292,13 +307,14 @@ ActiveRecord::Schema.define(:version => 20130205180824) do
     t.string   "iotd_content_type"
     t.integer  "iotd_file_size"
     t.datetime "iotd_updated_at"
-    t.integer  "school",                 :default => 0
+    t.integer  "school",                                :default => 0
     t.integer  "role"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["lastname"], :name => "index_users_on_lastname"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 

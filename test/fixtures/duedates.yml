@@ -2,12 +2,12 @@
 
 one:
   school_id: 1
-  assignment_id: 1
   team_id: 1
-  due_date: 2013-01-02 15:40:11
+  assignment_id: 1
+  duedate: 2013-02-09 19:14:47
 
 two:
   school_id: 1
-  assignment_id: 1
   team_id: 1
-  due_date: 2013-01-02 15:40:11
+  assignment_id: 1
+  duedate: 2013-02-09 19:14:47

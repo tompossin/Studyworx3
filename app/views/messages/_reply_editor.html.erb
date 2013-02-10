@@ -1,9 +1,8 @@
-<div style="float:left;">
-  <%=link_to( "cancel", cancel_reply_message_path(@id),{remote: true}) %><br />
-  <%= form_tag({:action=>:save_reply}, {:remote=> true, :id=>current_user.id}) do |r| %>
-    <%= hidden_field_tag :recipient_id, @message.recipient_id %>
-    <%= hidden_field_tag :sender_id, current_user.id %>
-    <%= text_area_tag :body, nil, {:size=>"34x5"} %><br />
+<div style="float:left;" >
+  <%=link_to( "cancel", cancel_reply_edit_message_path(message.id),{remote: true}) %><br />
+  <%= form_tag({:action=>:reply_update}, {method: :put, remote: true}) do |r| %>
+    From: <%= get_full_name(message.sender_id) %><br />
+    <%= text_area_tag :body, message.body, {:size=>"30x5"} %><br />
     <%= submit_tag "save" %>
   <% end %>
 </div>
