@@ -5,6 +5,7 @@ class School < ActiveRecord::Base
   has_many :duetimes
   has_many :templats
   has_many :scoresheets
+  has_many :teams
   
   ### Attributes ############################
     attr_accessible :active, :description, :end_date, :enrolement_type, :language_id, :location

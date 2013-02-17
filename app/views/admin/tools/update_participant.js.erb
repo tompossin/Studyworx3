@@ -1,0 +1,5 @@
+$('#editor').empty();
+$('#cancel_link').removeClass("visible");
+$('#cancel_link').addClass("invisible");
+$('#participant_<%=j @participant.id.to_s %>').replaceWith("<%=j render "participant",{p: @participant}%>");
+

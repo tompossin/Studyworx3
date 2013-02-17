@@ -1,0 +1,33 @@
+<div id="content-large">    
+    <article>
+      <header style="background-image:url('<%= @school.header.url%>');">
+        <div class="avatar" style="background-image:url('<%= @school.logo.url(:thumb) %>')"></div>
+        <h1>
+          <%= @school.name %>
+        </h1>
+        <p class="title small">Welcome <%=current_user.fullname %></p>
+      </header>
+        <section class="float_left limited">
+          <h2>Current Personnel</h2>
+          <div class="theader">
+            <span class="cell" style="width: 30%;">Name</span>
+            <span class="cell" style="width: 30%;">Role</span>
+            <span class="cell" style="width: 20%;">Status</span>
+          </div>
+          <% for p in @participants %>
+            <%= render "participant",{p: p} %>
+          <% end %>
+        </section>
+        <section class="float_left limited">
+          <div id="cancel_link" class="invisible">
+            <%=link_to "cancel",admin_tools_cancel_edit_path, {remote: true} %>
+          </div>
+          <div id="editor">
+            <!-- This content is replaced via AJAX (admin: tools_controller) -->
+          </div>
+        </section>
+    </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>
+ 

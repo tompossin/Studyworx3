@@ -1,23 +1,5 @@
 Studyworx3::Application.routes.draw do
 
-  get "duedates/index"
-
-  get "duedates/show"
-
-  get "duedates/list"
-
-  get "duedates/new"
-
-  get "duedates/edit"
-
-  get "duedates/create"
-
-  get "duedates/update"
-
-  get "duedates/destroy"
-
-  get "team_messages/index"
-
   # ----------
   # :section: Admin Routes
   # This is a namespace for Admin functions
@@ -46,9 +28,14 @@ Studyworx3::Application.routes.draw do
           post 'sort'
         end
       end
+      resources :duedates do
+          get :list
+      end
     end
-    get "tools/index"
+    get "tools/index","tools/personnel", "tools/cancel_edit"
     post "tools/book"
+    put "tools/update_participant/:id" => "tools#update_participant", as: :tools_update_participant
+    get 'tools/edit_participant/:id' => "tools#edit_participant", as: :tools_edit_participant
   end
   
   

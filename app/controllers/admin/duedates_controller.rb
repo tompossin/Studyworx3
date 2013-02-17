@@ -1,8 +1,16 @@
 class Admin::DuedatesController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :is_school_admin
+  
+  # admin/assignment/duedates
+  #
+  # Lists all assignment/duetimes in the current module.
   def index
+    
   end
 
   def show
+    
   end
 
   def list

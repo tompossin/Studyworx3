@@ -1,0 +1,8 @@
+<div id="participant_<%= p.id %>" class="trow" <%=raw status_color(p.accepted) %>>
+  <span class="cell smaller" style="width:35%;"><%= p.user.fullname %></span> 
+  <span class="cell smallest" style="width:30%;"><%= p.role.rolename %></span>
+  <span class="cell smallest" style="width:10%;"><%= p.status %></span>
+  <span class=-"cell" style="width:5%;">
+    <%=link_to "Edit", admin_tools_edit_participant_path(p.id),{remote: true,class: "smallest"} %>
+  </span>
+</div>

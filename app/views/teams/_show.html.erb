@@ -1,22 +1,25 @@
-<div class="title float_left">
-  <p class="title"><%= @team.name %> </p>
-</div>
-<div class="title small float_left">
-  Description 
-  <div class="smaller indent">
+<div class="floatbox_transs">
+  <div class="title float_left">
+    <span class="title"><%= @team.name %></span>
+    <span class="smallest"><%= " - "+@team.school.name %></span>
+    <span class="smallest red"><%= " - [Core Team]" if @team.coreteam %></span>
+  </div>
+  
+  <% if @team.owner_id == current_user.id %>
+    <div class="team">
+      <%=link_to "Membership", memberships_team_path(@team),{remote: true, class: "smallest"} %> 
+      <%=link_to "Edit this team", edit_team_path(@team),{remote: true, class: "smallest"} %> 
+      <%=link_to "Delete entire Team", @team, {method: "delete", remote: true, class: "smallest"} %>
+    </div>
+  <% end %>
+  
+  <div class="float_left indent_double">
     <%= formatter(@team.description) %>
   </div>  
-</div>
-<% if @team.owner_id == current_user.id %>
-  <div class="team">
-    <%=link_to "Membership", memberships_team_path(@team),{remote: true, class: "smallest"} %> 
-    <%=link_to "Edit this team", edit_team_path(@team),{remote: true, class: "smallest"} %> 
-    <%=link_to "Delete entire Team", @team, {method: "delete", remote: true, class: "smallest"} %>
-  </div>
-<% end %>
+</div>  
 <div class="float_left"> 
   <div class="title small float_left">
-    Current Members: <span class="smallest red"><%= @members.count %></span>
+    Current Members: <span class="small red"><%= @members.count %></span>
   </div>
   <div class="team" style="border-left: 1px solid gray;">
     <% for m in @members %>

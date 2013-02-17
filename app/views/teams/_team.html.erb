@@ -1,0 +1,5 @@
+<p>
+  <span><%=link_to(team.name, team_path(team.id),{remote: true}) %></span>
+  <span class="smallest"><%= " - "+team.school.name %> </span>
+  <span class="smallest red"><%= " - [Core Team]" if team.coreteam %></span>
+</p>

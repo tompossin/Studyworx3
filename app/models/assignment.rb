@@ -12,4 +12,6 @@ class Assignment < ActiveRecord::Base
   validates :name, :module, :school_id, :weight, :instructions, presence: true
   validates :weight, :module, :inclusion => {:in => 0..100}
   
+
+  
 end

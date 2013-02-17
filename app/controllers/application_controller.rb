@@ -89,12 +89,35 @@ class ApplicationController < ActionController::Base
   # * Participant.accepted == 1 is a dropped/rejected application
   # * Participant.accepted == 2 is an accepted student
   def is_student
-    student = Participant.where("school_id = ? and user_id = ? and accepted = ?", 
-                                      current_user.school,current_user.id,2).first
-    unless student
+    unless current_user.role < 5
       redirect_to root_path, alert: "You must be a student to use this page"
     end
   end
+  
+  # === Before_filter (redirect on failure)
+  # Unless the User has a current User.role < 4 they are redirected
+  def is_school_staff
+    unless current_user.role < 4
+      redirect_to schools_path, alert: "You must be a school Staff to access this page."
+    end
+  end
+  
+  # === Before_filter (redirect on failure)
+  # Unless the User has a current User.role < 3 they are redirected.
+  def is_school_admin
+    unless current_user.role < 3
+      redirect_to schools_path, alert: "You must be a School Admin to access this page."
+    end
+  end
+  
+  # === Before_filter (redirect on failure)
+  # unless the User has a current user.role < 2 they are redirected.
+  def is_school_leader
+    unless current_user.role < 2
+      redirect_to schools_path, alert: "You must be the School Leader to access this page."
+    end
+  end
+  
   
 
   

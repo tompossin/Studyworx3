@@ -5,8 +5,14 @@ class Participant < ActiveRecord::Base
   belongs_to :role
   belongs_to :school
   belongs_to :user
+  
+
+  # ------------------
+  # :section: Data Security Section
+  # This section contains validations and access declarations
   # ------------------
   attr_accessible :accepted, :prereq, :role_id, :school_id, :user_id, :language_id
+  validates :school_id, :user_id, presence: true
   # ===============================================================================
   
   #----------
@@ -15,7 +21,18 @@ class Participant < ActiveRecord::Base
   #
   # These methods are typically used in the scope of a school object
   #----------
-
+  
+  def status
+     if self.accepted == 0
+       "P"
+     elsif self.accepted == 1
+       "D"
+     elsif self.accepted == 2
+       "A"
+     else
+       "U"
+     end
+  end
   # Typical Usage:
   #  @pending_participants = @school.participants.pending
   def self.pending

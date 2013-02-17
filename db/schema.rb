@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130210021447) do
+ActiveRecord::Schema.define(:version => 20130216164705) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -135,11 +135,12 @@ ActiveRecord::Schema.define(:version => 20130210021447) do
     t.integer  "school_id"
     t.integer  "language_id"
     t.boolean  "prereq",      :default => false
-    t.integer  "accepted",    :default => 0
+    t.integer  "accepted",    :default => 0,     :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
 
+  add_index "participants", ["school_id", "role_id"], :name => "index_participants_on_school_id_and_role_id"
   add_index "participants", ["school_id"], :name => "index_participants_on_school_id"
   add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
 
@@ -234,9 +235,9 @@ ActiveRecord::Schema.define(:version => 20130210021447) do
     t.integer  "school_id"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.boolean  "coreteam"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "coreteam",    :default => false, :null => false
   end
 
   add_index "teams", ["coreteam"], :name => "index_teams_on_coreteam"

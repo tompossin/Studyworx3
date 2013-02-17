@@ -1,4 +1,4 @@
-<h1>Editing participant</h1>
+<h1>Editing <%= get_full_name(@participant.user_id)%></h1>
 
 <%= form_for( [@school,@participant],{remote: true} ) do |f| %>
   <div class="smaller">
@@ -7,6 +7,9 @@
   </div>
   <div class="smaller">
     Edit Status: <%= f.select( :accepted,{"Pending"=>"0","Dropped"=>"1","Accept"=>"2"} , { :include_blank => true })%>
+  </div>
+  <div>
+    Edit Role: <%= f.select( :role_id, {"Student"=>"4","Staff"=>"3","Admin Assistant"=>"2","Leader"=>"1"})%>
   </div>
   <div class="actions">
     <%= f.submit "Register now" %>

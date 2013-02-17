@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_one :user_admin
   has_many :participants
-  has_many :schools,:through => :participants
+  has_many :schools, :through => :participants
   has_many :members
   has_many :blogs
   has_one :note
@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
   def fullname
     return self.firstname+" "+self.lastname
   end
+  
   
   # Checks users authority to administrate schools
   # * A school admin has a participant.role_id < 3

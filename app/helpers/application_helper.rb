@@ -1,6 +1,7 @@
 module ApplicationHelper
   
   # Return the full name of the current_user
+  # DEPRECATED use current_user.fullname instead
   def full_name 
     if current_user
       current_user.firstname + " " + current_user.lastname
@@ -10,12 +11,38 @@ module ApplicationHelper
   end
   
   # Gets the full name of the supplied user_id
+  # INFO it usually better to find a way to user.fullname
+  # Although it is not always possible to use the model fullname method.
   def get_full_name(user_id)
     if user_id
       u = User.find(user_id)
       return u.firstname + " " + u.lastname
     else
       return "Unknown"
+    end
+  end
+  
+  # Gets the name for a school_id
+  # INFO for use when calling associated models will not work.
+  def get_school_name(school_id)
+    if school_id
+      school = School.select(:name).find(school_id)
+      return school.name
+    else
+      return "Public"
+    end
+  end
+  
+  # Takes accepted status and returns a text color as a style attribute
+  def status_color(accepted)
+    if accepted == 0
+      return "style=\"color:red;\""
+    elsif accepted == 1
+      return "style=\"color:gray;\""
+    elsif accepted == 2
+      return "style=\"color:black;\""
+    else
+      return "style=\"color:red;\""
     end
   end
   
@@ -33,6 +60,8 @@ module ApplicationHelper
     team = Team.find(team_id)
     return team.name
   end
+  
+  
   
   # Sets the nav_bar(nav_body_content = optional url of partial for nav_body_content element)
   def nav_bar(nav_body_content = false)
@@ -75,45 +104,53 @@ module ApplicationHelper
   # This should only be used for small text objects.
   # Clearly not the fastest car on the strip.
   # I am going for safe and dead simple here.
+  #  def formatter(content)
+  #    content = strip_links(content)
+  #    newstr = ""
+  #   unless content.nil?
+  #     content.each_line() do |l|
+  #       l.rstrip!
+  #       if l.match(/\^\^/)
+  #         l.gsub!(/\^\^/, "")
+  #         newstr<<content_tag("p",l,class: "title larger")
+  #       elsif l.match(/\>\>/)
+  #         l.gsub!(/\>\>/,"")
+  #         newstr<<content_tag("p",l,class: "title large right")
+  #       elsif l.match(/\+\+/)
+  #         l.gsub!(/\+\+/,"")
+  #         newstr<<content_tag("p",l,class: "title small bolder")
+  #       elsif l.match(/\"\"/)
+  #         l.gsub!(/\"\"/,"")
+  #         newstr<<content_tag("blockquote",l)
+  #       elsif l.match(/\/\//)
+  #         l.gsub!(/\/\//,"")
+  #         newstr<<content_tag("p",l,class: "italic")
+  #       elsif l.match(/\*\s/)
+  #         l.gsub!(/\*/,"")
+  #         newstr<<content_tag("ul",content_tag("li",l))
+  #       elsif l.match(/\s\s\s\s/)
+  #         l.gsub!(/\s\s\s\s/,"")
+  #         newstr<<content_tag("p",l,class: "indent_double")
+  #       elsif l.match(/\s\s/)   
+  #         l.gsub!(/\s\s/,"")
+  #         newstr<<content_tag("p",l,class: "indent")
+  #       elsif l.match(/::/)
+  #         l.gsub!(/::/,"")
+  #         newstr<<content_tag("a",l,{ href: "#{l}",target: "_blank"})
+  #       else
+  #         newstr<<content_tag("p",l) 
+  #       end    
+  #     end
+  #   end
+  #   return sanitize(newstr)
+  #  end
+  
+  
+  # This is a drop in replacement using Redcarpet
   def formatter(content)
-    content = strip_links(content)
-    newstr = ""
-    unless content.nil?
-      content.each_line() do |l|
-        l.rstrip!
-        if l.match(/\^\^/)
-          l.gsub!(/\^\^/, "")
-          newstr<<content_tag("p",l,class: "title larger")
-        elsif l.match(/\>\>/)
-          l.gsub!(/\>\>/,"")
-          newstr<<content_tag("p",l,class: "title large right")
-        elsif l.match(/\+\+/)
-          l.gsub!(/\+\+/,"")
-          newstr<<content_tag("p",l,class: "title small bolder")
-        elsif l.match(/\"\"/)
-          l.gsub!(/\"\"/,"")
-          newstr<<content_tag("blockquote",l)
-        elsif l.match(/\/\//)
-          l.gsub!(/\/\//,"")
-          newstr<<content_tag("p",l,class: "italic")
-        elsif l.match(/\*\s/)
-          l.gsub!(/\*/,"")
-          newstr<<content_tag("ul",content_tag("li",l))
-        elsif l.match(/\s\s\s\s/)
-          l.gsub!(/\s\s\s\s/,"")
-          newstr<<content_tag("p",l,class: "indent_double")
-        elsif l.match(/\s\s/)   
-          l.gsub!(/\s\s/,"")
-          newstr<<content_tag("p",l,class: "indent")
-        elsif l.match(/::/)
-          l.gsub!(/::/,"")
-          newstr<<content_tag("a",l,{ href: "#{l}",target: "_blank"})
-        else
-          newstr<<content_tag("p",l) 
-        end    
-      end
-    end
-    return sanitize(newstr)
+    options = [hard_wrap: true, filter_html: true, autolink: true, superscripts: true]
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, *options)
+    return markdown.render(content).html_safe
   end
   
   # changes color by t=true/false

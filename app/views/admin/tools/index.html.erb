@@ -13,7 +13,8 @@
           <%=link_to "Edit School", edit_admin_school_path(@school) %><br />
           <%=link_to "Edit Assignments", admin_assignments_path %><br />
           <%=link_to "Edit Templates", admin_school_templats_path(current_user.school) %><br />
-          <%=link_to "Edit Scoresheets", admin_school_scoresheets_path(current_user.school) %>
+          <%=link_to "Edit Scoresheets", admin_school_scoresheets_path(current_user.school) %><br />
+          <%=link_to "Edit Personnel", admin_tools_personnel_path %>
         </section>
       <% end %>
       <% if is_admin %>

@@ -8,12 +8,12 @@ body {
     margin-bottom: 1px;
   }
   a {
-    color: #777777;
+    color: #666666;
     text-decoration: none;
     font-size: 10pt;
   }
   a:hover {
-    color:#0F440B;
+    color:#999999;
   }
   p:empty {
     display:none;
@@ -470,6 +470,15 @@ blockquote {
 
 .limited {
   width: 45%;
+  margin-right: 10px;
+}
+
+.invisible {
+  display: none;
+}
+
+.visible {
+  display: block;
 }
 
 .indent {
