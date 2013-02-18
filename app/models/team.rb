@@ -17,7 +17,7 @@ class Team < ActiveRecord::Base
   def add_member(user)
     already_member = self.users.exists?(user.id)
     if self.coreteam
-      has_a_coreteam = user.teams.where("school_id = ? and coreteam = ?",user.school,true).first
+      has_a_coreteam = user.teams.where("school_id = ? and coreteam = ?",self.school_id,true).first
     end
     unless already_member or has_a_coreteam
       self.users<<user

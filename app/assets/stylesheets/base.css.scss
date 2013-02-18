@@ -200,6 +200,17 @@ blockquote {
   border-radius: 5px;
 }
 
+#popup {
+  position: absolute;
+  margin-left: 67%;
+  width:30%;
+  border-left:2px solid #787878;border-right:2px solid #787878;border-radius:10px;
+  padding:10px;
+  margin-top: 40px;
+  background-color: rgba(0,0,0,.9);
+  font-size: 10pt;
+}
+
 #profile {
   position:absolute;
   right: 12px;

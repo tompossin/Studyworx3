@@ -1,5 +1,5 @@
 <p class="title smaller" style="margin-left: 10px;">
-  <%=link_to m.firstname+" "+m.lastname, profile_path(m.id), {remote: true} %> 
+  <%=link_to m.fullname, teams_show_user_path(m.id), {remote: true} %> 
   <% if @team.owner_id == current_user.id %>
     <%=link_to "remove", remove_member_team_path(@team.id, user_id: m.id), {method: "delete", remote: true, class: "smaller"} %>
   <% end %>

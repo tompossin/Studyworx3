@@ -1,10 +1,10 @@
 class School < ActiveRecord::Base
   has_many :participants
   has_many :users, :through => :participants
-  has_many :assignments
-  has_many :duetimes
-  has_many :templats
-  has_many :scoresheets
+  has_many :assignments, :dependent => :destroy
+  has_many :duetimes, :dependent => :destroy
+  has_many :templats, :dependent => :destroy
+  has_many :scoresheets, :dependent => :destroy
   has_many :teams
   
   ### Attributes ############################

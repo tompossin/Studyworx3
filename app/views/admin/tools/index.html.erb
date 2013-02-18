@@ -10,11 +10,11 @@
       <% if current_user.admin_assistant? %>
         <section class="float_left limited">
           <h2>School Admin Tools</h2>
-          <%=link_to "Edit School", edit_admin_school_path(@school) %><br />
-          <%=link_to "Edit Assignments", admin_assignments_path %><br />
-          <%=link_to "Edit Templates", admin_school_templats_path(current_user.school) %><br />
-          <%=link_to "Edit Scoresheets", admin_school_scoresheets_path(current_user.school) %><br />
-          <%=link_to "Edit Personnel", admin_tools_personnel_path %>
+          <%=link_to "School Admin", edit_admin_school_path(@school) %><br />
+          <%=link_to "Assignment Admin", admin_assignments_path %><br />
+          <%=link_to "Template Admin", admin_school_templats_path(current_user.school) %><br />
+          <%=link_to "Scoresheet Admin", admin_school_scoresheets_path(current_user.school) %><br />
+          <%=link_to "Personnel Admin", admin_tools_personnel_path %>
         </section>
       <% end %>
       <% if is_admin %>

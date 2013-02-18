@@ -99,6 +99,14 @@ class TeamsController < ApplicationController
     end  
   end
   
+  # Shows the profile for a team member or potential team member in the #popup window.
+  def show_user
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # Adds or Removes members from a team
   def memberships
     @team = Team.find(params[:id])

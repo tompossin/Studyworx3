@@ -90,6 +90,12 @@
     
     <li><a href="#method-i-is_owner">#is_owner</a>
     
+    <li><a href="#method-i-is_school_admin">#is_school_admin</a>
+    
+    <li><a href="#method-i-is_school_leader">#is_school_leader</a>
+    
+    <li><a href="#method-i-is_school_staff">#is_school_staff</a>
+    
     <li><a href="#method-i-is_student">#is_student</a>
     
     <li><a href="#method-i-is_superadmin">#is_superadmin</a>
@@ -126,6 +132,10 @@
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
+  
+    <li><a href="./Admin/DuedatesController.html">Admin::DuedatesController</a>
+  
+    <li><a href="./Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
   
     <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -534,6 +544,111 @@ reviewed papers</p>
       </div><!-- is_contributor-method -->
 
     
+      <div id="method-i-is_school_admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_school_admin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-is_school_admin-label-Before_filter+%28redirect+on+failure%29">Before_filter (redirect on failure)</h3>
+
+<p>Unless the <a href="User.html">User</a> has a current User.role &lt; 3 they
+are redirected.</p>
+          
+
+          
+          <div class="method-source-code" id="is_school_admin-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_admin</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a School Admin to access this page.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_school_admin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_school_admin-method -->
+
+    
+      <div id="method-i-is_school_leader" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_school_leader</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-is_school_leader-label-Before_filter+%28redirect+on+failure%29">Before_filter (redirect on failure)</h3>
+
+<p>unless the <a href="User.html">User</a> has a current user.role &lt; 2 they
+are redirected.</p>
+          
+
+          
+          <div class="method-source-code" id="is_school_leader-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_leader</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be the School Leader to access this page.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_school_leader-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_school_leader-method -->
+
+    
+      <div id="method-i-is_school_staff" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_school_staff</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h3 id="method-i-is_school_staff-label-Before_filter+%28redirect+on+failure%29">Before_filter (redirect on failure)</h3>
+
+<p>Unless the <a href="User.html">User</a> has a current User.role &lt; 4 they
+are redirected</p>
+          
+
+          
+          <div class="method-source-code" id="is_school_staff-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_staff</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a school Staff to access this page.&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_school_staff-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_school_staff-method -->
+
+    
       <div id="method-i-is_student" class="method-detail ">
         
         <div class="method-heading">
@@ -562,9 +677,7 @@ are not a student</p>
           <div class="method-source-code" id="is_student-source">
             <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_student</span>
-  <span class="ruby-identifier">student</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and user_id = ? and accepted = ?&quot;</span>, 
-                                    <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-value">2</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">student</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">5</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a student to use this page&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -627,7 +740,7 @@ this redirects to root path with a warning</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

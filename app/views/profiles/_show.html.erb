@@ -2,24 +2,27 @@
   <div class="floatbox_trans" style="max-width:300px;">
     <div class='avatar' style="background-image:url('<%= @user.avatar.url(:thumb) %>');">
     </div>
-    <p class="title">Home of <br /><%= @user.firstname+" "+@user.lastname %> </p>
-    <%=link_to "edit",edit_profile_path(@user.id),{class: "smaller"}%>
+    <p class="title">Home of <br />
+      <%= @user.fullname %> 
+    </p>
     <div class="floatbox_trans">
-    <p class="title">A bit about <%= @user.firstname %></p>
-    <hr />
-    <% if @user.note %>
-      <div id="bio">
-        <%= formatter(@user.note.bio) || nil %>
-      </div>
-    <% end %>
-    <hr />
-  </div>
+      <p class="title">
+        A bit about <%= @user.firstname %>
+      </p>
+      <hr />
+      <% if @user.note %>
+        <div id="bio">
+          <%= formatter(@user.note.bio) unless @user.note.bio.nil? %>
+        </div>
+      <% end %>
+      <hr />
+    </div>
   </div>
   
   <div class="floatbox_trans" style="max-width:300px;">
     <% if @user.note %>
       <p class="title">Thought for the Day!</p>
-      <%= formatter(@user.note.public) || nil  %>
+      <%= formatter(@user.note.public) unless @user.note.public.nil?  %>
     <% end %>
     <p class="title">Picture of the Day!</p>
     <%= link_to(image_tag(@user.iotd.url(:medium)),@user.iotd.url, target: "_blank" ) %>

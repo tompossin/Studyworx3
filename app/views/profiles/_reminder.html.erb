@@ -3,6 +3,6 @@
     Note to Self... 
     <%=link_to( "edit", reminder_load_profile_path(current_user.id),{title: "Note to Self", remote: true, class: "smallest"}) if current_user %>
   </div>
-  <%= formatter(current_user.note.reminder) if current_user.note %>
+  <%= formatter(current_user.note.reminder) unless current_user.note.reminder.nil? %>
 </div>
 

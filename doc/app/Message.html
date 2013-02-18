@@ -82,9 +82,9 @@
     
     <li><a href="#method-c-get_unread_messages">::get_unread_messages</a>
     
-    <li><a href="#method-c-mark_as_read">::mark_as_read</a>
-    
     <li><a href="#method-c-mark_parent_as_unread">::mark_parent_as_unread</a>
+    
+    <li><a href="#method-c-toggle_read_values">::toggle_read_values</a>
     
   </ul>
 </nav>
@@ -118,6 +118,10 @@
     <li><a href="./Admin/BooksController.html">Admin::BooksController</a>
   
     <li><a href="./Admin/BooksHelper.html">Admin::BooksHelper</a>
+  
+    <li><a href="./Admin/DuedatesController.html">Admin::DuedatesController</a>
+  
+    <li><a href="./Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
   
     <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -470,44 +474,6 @@ href="Message.html">Message</a> count for a user.</p>
       </div><!-- get_unread_messages-method -->
 
     
-      <div id="method-c-mark_as_read" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mark_as_read</span><span
-            class="method-args">(msg_id,user_id)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Marks a message as being read.</p>
-          
-
-          
-          <div class="method-source-code" id="mark_as_read-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 61</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mark_as_read</span>(<span class="ruby-identifier">msg_id</span>,<span class="ruby-identifier">user_id</span>)
-  <span class="ruby-identifier">m</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">msg_id</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
-    <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
-    <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">m</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mark_as_read-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mark_as_read-method -->
-
-    
       <div id="method-c-mark_parent_as_unread" class="method-detail ">
         
         <div class="method-heading">
@@ -525,7 +491,7 @@ in the unread list when a new reply is made.</p>
 
           
           <div class="method-source-code" id="mark_parent_as_unread-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 76</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
@@ -542,6 +508,52 @@ in the unread list when a new reply is made.</p>
       </div><!-- mark_parent_as_unread-method -->
 
     
+      <div id="method-c-toggle_read_values" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">toggle_read_values</span><span
+            class="method-args">(msg_id,user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Toggles a message as being read.</p>
+          
+
+          
+          <div class="method-source-code" id="toggle_read_values-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">toggle_read_values</span>(<span class="ruby-identifier">msg_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">m</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">msg_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_read</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_read</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">m</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">m</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- toggle_read_values-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- toggle_read_values-method -->
+
+    
     </section><!-- public-class-method-details -->
   
   </section><!-- 5Buntitled-5D -->
@@ -551,7 +563,7 @@ in the unread list when a new reply is made.</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

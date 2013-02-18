@@ -71,6 +71,7 @@ Studyworx3::Application.routes.draw do
       delete 'remove_member'
     end
   end
+  get 'teams/show_user/:id' => 'teams#show_user', as: :teams_show_user
   resources :reviews
   resources :papers
   resources :schools do
@@ -93,6 +94,7 @@ Studyworx3::Application.routes.draw do
   devise_for :users
   resources :home
   match 'shared/cancel' => 'shared#cancel', :as => :cancel
+  match 'shared/close_popup' => 'shared#close_popup', as: :close_popup
 
   root :to => 'home#index'
   

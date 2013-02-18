@@ -127,6 +127,7 @@ cancel_reply_edit_team_message GET    /team_messages/:id/cancel_reply_edit(.:for
                           team GET    /teams/:id(.:format)                                                    teams#show
                                PUT    /teams/:id(.:format)                                                    teams#update
                                DELETE /teams/:id(.:format)                                                    teams#destroy
+               teams_show_user GET    /teams/show_user/:id(.:format)                                          teams#show_user
                        reviews GET    /reviews(.:format)                                                      reviews#index
                                POST   /reviews(.:format)                                                      reviews#create
                     new_review GET    /reviews/new(.:format)                                                  reviews#new
@@ -219,4 +220,5 @@ cancel_reply_edit_team_message GET    /team_messages/:id/cancel_reply_edit(.:for
                                PUT    /home/:id(.:format)                                                     home#update
                                DELETE /home/:id(.:format)                                                     home#destroy
                         cancel        /shared/cancel(.:format)                                                shared#cancel
+                   close_popup        /shared/close_popup(.:format)                                           shared#close_popup
                           root        /                                                                       home#index

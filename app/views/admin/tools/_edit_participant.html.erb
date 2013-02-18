@@ -1,17 +1,17 @@
 <h1>Editing <%= @participant.user.fullname %></h1>
 
 <%= form_for(@participant, {url: admin_tools_update_participant_path(@participant), remote: true} ) do |f|  %>
-  <div class="smaller">
+  <p class="smaller">
     Pre-requisites? 
     <%= f.check_box :prereq %>
-  </div>
-  <div class="smaller">
+  </p>
+  <p class="smaller">
     Edit Status: <%= f.select( :accepted, {"Pending"=>"0","Dropped"=>"1","Accept"=>"2"} , { :include_blank => true })%>
-  </div>
-  <div>
+  </p>
+  <p>
     Edit Role: <%= f.select( :role_id, {"Student"=>"4","Staff"=>"3","Admin Assistant"=>"2","Leader"=>"1"})%>
-  </div>
-  <div class="actions">
+  </p>
+  <p class="actions">
     <%= f.submit "Update #{@participant.user.fullname}" %>
-  </div>
+  </p>
 <% end %>

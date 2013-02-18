@@ -99,57 +99,13 @@ module ApplicationHelper
       "None"
     end
   end
-
-  # This formats plain text into VERY basic html.
-  # This should only be used for small text objects.
-  # Clearly not the fastest car on the strip.
-  # I am going for safe and dead simple here.
-  #  def formatter(content)
-  #    content = strip_links(content)
-  #    newstr = ""
-  #   unless content.nil?
-  #     content.each_line() do |l|
-  #       l.rstrip!
-  #       if l.match(/\^\^/)
-  #         l.gsub!(/\^\^/, "")
-  #         newstr<<content_tag("p",l,class: "title larger")
-  #       elsif l.match(/\>\>/)
-  #         l.gsub!(/\>\>/,"")
-  #         newstr<<content_tag("p",l,class: "title large right")
-  #       elsif l.match(/\+\+/)
-  #         l.gsub!(/\+\+/,"")
-  #         newstr<<content_tag("p",l,class: "title small bolder")
-  #       elsif l.match(/\"\"/)
-  #         l.gsub!(/\"\"/,"")
-  #         newstr<<content_tag("blockquote",l)
-  #       elsif l.match(/\/\//)
-  #         l.gsub!(/\/\//,"")
-  #         newstr<<content_tag("p",l,class: "italic")
-  #       elsif l.match(/\*\s/)
-  #         l.gsub!(/\*/,"")
-  #         newstr<<content_tag("ul",content_tag("li",l))
-  #       elsif l.match(/\s\s\s\s/)
-  #         l.gsub!(/\s\s\s\s/,"")
-  #         newstr<<content_tag("p",l,class: "indent_double")
-  #       elsif l.match(/\s\s/)   
-  #         l.gsub!(/\s\s/,"")
-  #         newstr<<content_tag("p",l,class: "indent")
-  #       elsif l.match(/::/)
-  #         l.gsub!(/::/,"")
-  #         newstr<<content_tag("a",l,{ href: "#{l}",target: "_blank"})
-  #       else
-  #         newstr<<content_tag("p",l) 
-  #       end    
-  #     end
-  #   end
-  #   return sanitize(newstr)
-  #  end
   
-  
-  # This is a drop in replacement using Redcarpet
+  # This is a drop in replacement using Redcarpet. 
+  # This looks simple but was a real pain to configure.
   def formatter(content)
-    options = [hard_wrap: true, filter_html: true, autolink: true, superscripts: true]
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, *options)
+    render_options = {hard_wrap: true, filter_html: true, safe_links_only: true}
+    markdown_options = {no_intraemphasis: true, autolink: true, superscript: true}
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(render_options),markdown_options)
     return markdown.render(content).html_safe
   end
   

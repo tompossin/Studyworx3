@@ -3,5 +3,5 @@
     Public - Thought of the Day... 
     <%=link_to( "edit", public_load_profile_path(current_user.id),{title: "Public-Thought of the Day", remote: true, class: "smallest"}) if current_user%>
   </div>
-  <%= formatter(current_user.note.public) if current_user.note %>
+  <%= formatter(current_user.note.public) unless current_user.note.public.nil? %>
 </div>
