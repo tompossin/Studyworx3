@@ -1,2 +1,28 @@
-<h1>Admin::Duedates#list</h1>
-<p>Find me in app/views/admin/duedates/list.html.erb</p>
+<div id="content-large">
+  <article>
+    <div>
+      <h2>Add Due Dates to Assignments</h2>
+      <p><%=link_to "Due-Date Home Page", admin_duedates_path %></p>
+      <p class="title large">Team: <%= @team.name %></p>
+      <p class="title large">Module: <%= @mod_id %></p>
+    </div>
+    <div class="float_left">
+        <div id="table_header" class="theader">
+          <span class="cell" style="width:20%;">Name</span>
+          <span class="cell" style="width:50%;">Due Date</span>
+        </div>
+      <% for d in @duedates %>
+        <div id="row_<%=d.id%>" class="trow">
+          <span class="cell" style="width:20%;">
+            <%= d.assignment.name %>
+          </span>
+          <div id="duedate_<%=d.id%>">
+            <%= render "show", {d: d} %>
+          </div>
+        </div>
+      <% end %>
+    </div> 
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

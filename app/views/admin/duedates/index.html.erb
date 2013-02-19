@@ -1,2 +1,28 @@
-<h1>Admin::Duedates#index</h1>
-<p>Find me in app/views/admin/duedates/index.html.erb</p>
+<div id="content-large">
+  <article>
+    <h2>Due Times</h2>
+    <p>
+      Select the Team and Module on which you wish to set due dates.
+    </p>
+    <%=form_tag admin_duedates_list_path do %>
+      <p class="title small">
+        Select a team
+      </p>
+      <p>
+        <%=select_tag "team", options_from_collection_for_select(@teams, "id", "name"),{prompt: "Select a Team"}  %>
+      </p>
+      <p>
+        Select a Module
+      </p>
+      <p>
+        <%=select_tag "module", options_from_collection_for_select(@modules, "module","module"),{prompt: "Select an Assignment Module"} %>
+      </p>
+      <p>
+        <%=submit_tag :submit %>
+      </p>
+      
+    <% end %>
+  </article>  
+</div>
+
+<%= nav_bar(@nav_body_content)%>

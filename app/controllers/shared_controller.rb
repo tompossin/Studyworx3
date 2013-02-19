@@ -4,6 +4,12 @@
 class SharedController < ApplicationController
   before_filter :authenticate_user!
   
+  
+  # ----------
+  # :section: Generic Shared Methods
+  # These can be called from anywhere.
+  # ----------
+  
   # This method can be called from any link pointed here.
   #
   # It should be called with
@@ -45,6 +51,19 @@ class SharedController < ApplicationController
   def save_success
     respond_to do |format|
       format.js
+    end
+  end
+  
+  # ----------
+  # :section: Help Methods
+  # These are help methods for things like the Markdown editors.
+  # ----------
+  
+  # Markdown Help
+  def format_help
+    @partial = "format_help"
+    respond_to do |format|
+      format.js {render :help }
     end
   end
   

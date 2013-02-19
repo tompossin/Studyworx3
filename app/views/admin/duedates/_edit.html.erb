@@ -1,0 +1,10 @@
+  
+<%=form_for [ :admin, d ],{remote: true} do |f| %>  
+  <span class="cell" style="width:60%;">
+      <%= f.datetime_select :duedate %>
+  </span>
+  <span class="cell" style="width:10%;"> 
+    <%= f.submit :save %>
+  </span>
+<% end %>
+

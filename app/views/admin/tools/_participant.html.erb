@@ -1,5 +1,7 @@
 <div id="participant_<%= p.id %>" class="trow" <%=raw status_color(p.accepted) %>>
-  <span class="cell smaller" style="width:35%;"><%= p.user.fullname %></span> 
+  <span class="cell smaller" style="width:35%;">
+    <%=link_to p.user.fullname, show_user_path(p.user.id),{remote: true, title: "Click to view user."} %>
+  </span> 
   <span class="cell smallest" style="width:30%;"><%= p.role.rolename %></span>
   <span class="cell smallest" style="width:10%;"><%= p.status %></span>
   <span class=-"cell" style="width:5%;">

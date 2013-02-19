@@ -28,10 +28,9 @@ Studyworx3::Application.routes.draw do
           post 'sort'
         end
       end
-      resources :duedates do
-          get :list
-      end
     end
+    resources :duedates 
+    post "duedates/list" => "duedates#list", as: :duedates_list
     get "tools/index","tools/personnel", "tools/cancel_edit"
     post "tools/book"
     put "tools/update_participant/:id" => "tools#update_participant", as: :tools_update_participant
@@ -95,6 +94,8 @@ Studyworx3::Application.routes.draw do
   resources :home
   match 'shared/cancel' => 'shared#cancel', :as => :cancel
   match 'shared/close_popup' => 'shared#close_popup', as: :close_popup
+  match 'teams/show_user/:id' => 'teams#show_user', as: :show_user
+  match 'shared/format_help' => 'shared#format_help', as: :help_format
 
   root :to => 'home#index'
   

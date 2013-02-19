@@ -6,4 +6,6 @@ class Duedate < ActiveRecord::Base
   attr_accessible :assignment_id, :duedate, :school_id, :team_id
   
   
+  
+  
 end

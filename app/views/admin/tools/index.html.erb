@@ -12,6 +12,7 @@
           <h2>School Admin Tools</h2>
           <%=link_to "School Admin", edit_admin_school_path(@school) %><br />
           <%=link_to "Assignment Admin", admin_assignments_path %><br />
+          <%=link_to "Due Time Admin", admin_duedates_path %><br />
           <%=link_to "Template Admin", admin_school_templats_path(current_user.school) %><br />
           <%=link_to "Scoresheet Admin", admin_school_scoresheets_path(current_user.school) %><br />
           <%=link_to "Personnel Admin", admin_tools_personnel_path %>

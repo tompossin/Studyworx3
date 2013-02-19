@@ -9,7 +9,7 @@
               <%= f.text_area :bio, {style: "height: 225px;width: 95%;"} %>
             </div>
             <div class="cell">
-              <%= render "shared/format_help" %>
+              <%=link_to "Show Format Help", help_format_path,{remote: true} %>
               <p>
                 <%= f.submit "Update Bio" %>
               </p>
