@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
      
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname 
-  attr_accessible :phone, :address, :bio, :avatar, :wallpaper, :iotd
+  attr_accessible :phone, :address, :bio, :avatar, :wallpaper, :iotd, :timezone
   
   # Sets the current school in User
   #  Usage: @user.set_school(school_id)

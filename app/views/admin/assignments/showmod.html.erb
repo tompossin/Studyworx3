@@ -28,13 +28,13 @@
     <p class="title large">Module <%= @module %> Assignments Administration</p>
     <div>
       <%=link_to "Assignments Home", admin_assignments_path %><br />
+      <%=link_to "Due Times", admin_duedates_path %><br />
       <%=link_to "Add New Assignment", new_admin_assignment_path %>
     </div>
     <br />
     <% unless @assignments.empty? %>
       <div class="theader">
         <div class="cell" style="width:30%;">Name</div>
-        <div class="cell" style="width:14%;">Due Time</div>
         <div class="cell" style="width:8%;">Weight</div>
         <div class="cell" style="width:6%;">Tasks</div>
         <div class="cell" style="width:24%;">Admin</div>
@@ -42,9 +42,8 @@
       <div id="sortable">
       <% for a in @assignments %>
         <div id="assignment_<%=a.id%>" class="trow <%= cycle("odd","even") %>">
-          <span class="cell handle" style="width:5%">||||</span>
+          <span class="cell handle" style="width:7%">||||</span>
           <span class="cell" style="width:25%;"><%= a.name %></span>
-          <span class="cell" style="width:14%;"><%= "not done yet"  %></span>
           <span class="cell" style="width:8%;"><%= a.weight %></span>
           <span class="cell" style="width:6%;<%= "background-color:red;" unless a.tasks.count > 0 %>;">
             <%= a.tasks.count %>

@@ -1,6 +1,6 @@
 class Admin::ScoresheetsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_admin
+  before_filter :is_school_admin
   before_filter :load_school
   before_filter :load_toolbar
   

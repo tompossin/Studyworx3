@@ -12,18 +12,14 @@ class Admin::DuedatesController < ApplicationController
     @nav_body_content = "admin/assignments/toolbar"
     
   end
-
-  def show
-    
-  end
   
   # This lists the assignments by Module, and Team
-  # A form sends the params
+  # A form sends the params for this page.
   # The path is:
-  #   admin_duedates_list_path params {mod_id: :id,team_id: :id} 
+  #  [POST] admin_duedates_list_path returns params[:team] and params[:module]
   def list
     @team = Team.find(params[:team])
-    @duedates = @team.find_or_create_team_duedates_by_module(@school,params[:module],@team)
+    @duedates = @team.find_or_create_team_duedates_by_module(@school,params[:module])
     @nav_body_content = "admin/assignments/toolbar"
     @mod_id = params[:module]
     
@@ -46,10 +42,6 @@ class Admin::DuedatesController < ApplicationController
         format.js {render "shared/save_failed"}
       end
     end
-  end
-
-  def destroy
-    
   end
   
   private

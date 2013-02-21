@@ -48,7 +48,7 @@
           <% for t in @tasks %>
             
             <div id="task_<%=t.id%>" class="trow <%= cycle("odd","even") %>">
-              <span class="cell handle" style="width:10px;">|||||</span>
+              <span class="cell handle" style="width:15px;">|||||</span>
               <span class="cell" style="width:165px;"><%= t.name %></span>
               <span class="cell" style="width:50px;"><%= number_to_percentage(t.percent, precision:0) %></span>
               <span class="cell" style="width:100px;"><%= get_task_type_name(t.task_type) %></span>

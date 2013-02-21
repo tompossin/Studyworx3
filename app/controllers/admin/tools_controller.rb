@@ -1,6 +1,6 @@
 class Admin::ToolsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_admin
+  before_filter :is_school_admin
   before_filter :is_superadmin, only: [:book]
   before_filter :get_school, except: [:book]
   
@@ -31,10 +31,14 @@ class Admin::ToolsController < ApplicationController
     @participant = Participant.find(params[:id])
     
     respond_to do |format|
-      if @participant.update_attributes(params[:participant])
-        format.js 
+      if @participant.role_id <= current_user.role
+        if @participant.update_attributes(params[:participant])
+          format.js 
+        else
+          format.js { render "shared/save_failed" }
+        end
       else
-        format.js { render "shared/save_failed" }
+        format.js {render "illegal_role"}
       end
     end
   end

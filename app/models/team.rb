@@ -38,15 +38,15 @@ class Team < ActiveRecord::Base
   
 
   # Returns a collection of duedates by team and module
-  # school = School.object, mod_id = assignment.module, team = Team.object
-  #  Usage: @team.find_or_create_team_duedates_by_module(@school,params[:module],@team)
-  def find_or_create_team_duedates_by_module(school,mod_id,team)
+  # school = School.object, mod_id = assignment.module
+  #  Usage: @team.find_or_create_team_duedates_by_module(@school,params[:module])
+  def find_or_create_team_duedates_by_module(school,mod_id)
     assignments = school.assignments.where(module: mod_id).all
     dds = []
     assignments.each do |a|
-      tdd = team.duedates.find_by_assignment_id(a.id)
+      tdd = self.duedates.find_by_assignment_id(a.id)
       unless tdd
-        dds << team.duedates.create(assignment_id: a.id,team_id: team.id, school_id: school.id)
+        dds << self.duedates.create(assignment_id: a.id,team_id: self.id, school_id: school.id)
       else
         dds << tdd
       end

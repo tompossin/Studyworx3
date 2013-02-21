@@ -17,6 +17,9 @@
         <% elsif session[:admin_level] == 1 %>
           <%= link_to "Blog Admin", blogs_path %> <br />
           <br />
+        <% elsif current_user.role < 3 %>
+          <%= link_to "Admin Tools", admin_tools_index_path %><br />
+          <br />
         <% end %>
       <%end%>
       <%= link_to "Profile Page", edit_profile_path(current_user.id) if current_user %><br />

@@ -132,6 +132,7 @@ bg=blue</panel_attributes>
 -theme:int
 -school:int
 -role:int
+-timezone:string
 --
 - +all_devise_fields
 - +all_paperclip fields
@@ -733,7 +734,7 @@ bg=red</panel_attributes>
       <h>56</h>
     </coordinates>
     <panel_attributes>/*Last Updated:*/
-02/08/2013
+02/20/2013
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
