@@ -87,6 +87,8 @@ class MessagesController < ApplicationController
   
    # This creates a new parent(root) message
   def create
+    recipient = User.find(params[:recipient_id])
+    sender = current_user
     @message = Message.new
     @message.recipient_id = params[:recipient_id].to_i
     @message.sender_id = current_user.id
@@ -99,6 +101,7 @@ class MessagesController < ApplicationController
     
     respond_to do |format|
       if @message.save
+        MessageMailer.user_email(sender,recipient,params[:subject],@message).deliver
         format.js 
       else
         format.js {render "shared/save_failed"}
@@ -113,11 +116,15 @@ class MessagesController < ApplicationController
     @message.body = params[:body]
     @message.sender_read = false
     @message.recipient_read = false
+    sender = current_user
+    recipient = User.find(@message.recipient_id)
+    subject = "[UPDATED] "+@message.subject
     
     respond_to do |format|
       # check for shinanigans
       if @message.sender_id == current_user.id
         if @message.save
+          MessageMailer.user_email(sender,recipient,subject,@message).deliver
           format.js
         else
           format.js {render "shared/save_failed"}
@@ -186,9 +193,13 @@ class MessagesController < ApplicationController
     @message.body = params[:body]
     @message.recipient_read = false
     @message.sender_read = false
+    sender = current_user
+    recipient = User.find(@message.parent.sender_id)
+    subject = "Re: #{@message.parent.subject}"
    
     respond_to do |format|
       if @message.save
+        MessageMailer.user_email(sender,recipient,subject,@message).deliver
         format.js
       else
         format.js {render "shared/save_failed"}
@@ -203,9 +214,13 @@ class MessagesController < ApplicationController
     parent = Message.mark_parent_as_unread(@message.id)
     @message.body = params[:body]
     @message.recipient_read = false
+    sender = current_user
+    recipient = User.find(@message.parent.sender_id)
+    subject = "Re:[UPDATED-REPLY] #{@message.parent.subject}"
     
     respond_to do |format|
       if @message.save
+        MessageMailer.user_email(sender,recipient,subject,@message).deliver
         format.js 
       else
         format.js {render "shared/save_failed"}

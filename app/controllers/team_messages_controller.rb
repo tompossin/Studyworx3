@@ -11,7 +11,7 @@ class TeamMessagesController < ApplicationController
   # This is the main display action for Team Messages
   def index
     @page = params[:page].to_i || 0
-    pagesize = 3
+    pagesize = 5
     @msgcount = Message.count_team_messages(current_user)
     @messages = Message.get_team_messages(current_user,pagesize,@page)
     @teams = current_user.teams.all
@@ -53,13 +53,16 @@ class TeamMessagesController < ApplicationController
     @message = Message.new
     @message.recipient_id = nil
     @message.sender_id = current_user.id
-    @message.school_id = session[:school_id] if session[:school_id]
+    @message.school_id = current_user.school
     @message.team_id = params[:message][:team_id].to_i
     @message.subject = params[:message][:subject]
     @message.body = params[:message][:body]
+    sender = current_user
+    team = Team.find(params[:message][:team_id])
     
     respond_to do |format|
       if @message.save
+        MessageMailer.team_email(sender,team,@message.subject,@message).deliver
         format.js 
       else
         format.js {render "shared/save_failed"}
@@ -70,9 +73,13 @@ class TeamMessagesController < ApplicationController
   # updates an existing parent message
   def update
     @message = Message.find(params[:id])
+    sender = current_user
+    team = Team.find(@message.team_id)
+    subject = "[UPDATED]: #{@message.subject}"
     
     respond_to do |format|
       if @message.update_attributes(params[:message])
+        MessageMailer.team_email(sender,team,subject,@message).deliver
         format.js { render :update, notice: "Message saved."}
       else
         format.js {render "shared/save_failed"}
@@ -122,9 +129,13 @@ class TeamMessagesController < ApplicationController
     @message = parent.children.create(:sender_id=>params[:sender_id].to_i)
     @message.team_id = params[:team_id].to_i
     @message.body = params[:body]
+    sender = current_user
+    team = Team.find(params[:team_id])
+    subject = "Re: #{@message.parent.subject}"
    
     respond_to do |format|
       if @message.save
+        MessageMailer.team_email(sender,team,subject,@message).deliver
         format.js
       else
         format.js {render "shared/save_failed"}
@@ -145,8 +156,13 @@ class TeamMessagesController < ApplicationController
   # This updates existing reply (child) records
   def reply_update
     @message = Message.find(params[:id])
+    sender = current_user
+    team = Team.find(@message.team_id)
+    subject = "[UPDATED] Re: #{@message.parent.subject}"
+    
     respond_to do |format|
       if @message.update_attributes(params[:message])
+        MessageMailer.team_email(sender,team,subject,@message).deliver
         format.js
       else
         format.js {render "shared/save_failed"}

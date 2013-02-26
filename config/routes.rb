@@ -96,8 +96,9 @@ Studyworx3::Application.routes.draw do
   match 'shared/close_popup' => 'shared#close_popup', as: :close_popup
   match 'teams/show_user/:id' => 'teams#show_user', as: :show_user
   match 'shared/format_help' => 'shared#format_help', as: :help_format
-
+   
   root :to => 'home#index'
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

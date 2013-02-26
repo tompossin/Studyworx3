@@ -14,12 +14,16 @@ gem 'thin'
 gem 'seed_dump'
 gem 'mysql2'
 gem 'closure_tree'
-gem 'aloha-rails'
+#gem 'aloha-rails'
 gem 'settingslogic'
-gem 'jquery-qtip2-rails'
+#gem 'jquery-qtip2-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'acts_as_list'
 gem 'redcarpet'
+#gem 'markitup-rails'
+#gem 'bootstrap-wysihtml5-rails'
+#gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
+gem 'wicked_pdf'
 
 
 
