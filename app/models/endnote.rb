@@ -1,6 +1,3 @@
 class Endnote < ActiveRecord::Base
-  belongs_to :papers
-  #belongs_to :answers
-  
-  attr_accessible :answer_id, :content, :paper_id
+  attr_accessible :content, :content_type, :document_id, :paper_id
 end

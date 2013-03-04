@@ -14,4 +14,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require autocomplete-rails
+//= require wysihtml5
+//= require wysi_advanced
 //= require main

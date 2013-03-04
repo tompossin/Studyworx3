@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225222453) do
+ActiveRecord::Schema.define(:version => 20130304042604) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -35,11 +35,12 @@ ActiveRecord::Schema.define(:version => 20130225222453) do
     t.string   "topic"
     t.text     "excerpt"
     t.text     "article"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.boolean  "featured"
     t.boolean  "leadstory"
     t.boolean  "navbar"
+    t.integer  "content_type", :default => 0
   end
 
   create_table "books", :force => true do |t|
@@ -52,6 +53,21 @@ ActiveRecord::Schema.define(:version => 20130225222453) do
   end
 
   add_index "books", ["position"], :name => "index_books_on_position"
+
+  create_table "documents", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "school_id"
+    t.integer  "assignment_id"
+    t.integer  "task_id"
+    t.text     "content",       :limit => 16777215
+    t.integer  "content_type",                      :default => 0
+    t.text     "staff_note"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  add_index "documents", ["school_id", "assignment_id", "task_id"], :name => "index_documents_on_school_id_and_assignment_id_and_task_id"
+  add_index "documents", ["user_id"], :name => "index_documents_on_user_id"
 
   create_table "duedates", :force => true do |t|
     t.integer  "school_id"
@@ -66,12 +82,16 @@ ActiveRecord::Schema.define(:version => 20130225222453) do
   add_index "duedates", ["school_id", "team_id"], :name => "index_duedates_on_school_id_and_team_id"
 
   create_table "endnotes", :force => true do |t|
-    t.integer  "answer_id"
+    t.integer  "document_id"
     t.integer  "paper_id"
-    t.text     "content",    :limit => 16777215
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.text     "content",      :limit => 16777215
+    t.integer  "content_type",                     :default => 0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
+
+  add_index "endnotes", ["document_id"], :name => "index_endnotes_on_document_id"
+  add_index "endnotes", ["paper_id"], :name => "index_endnotes_on_paper_id"
 
   create_table "message_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false

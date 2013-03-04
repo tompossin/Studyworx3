@@ -154,21 +154,10 @@ module ApplicationHelper
     end
   end
   
-  # Provides a more relaxed version of sanitize these rules match the
-  # ones provided by the mercury editor. So I don't get unexpected
-  # results from an edit.
-  #
-  # WARNING! I have included iframe in here which is crazy but necessary
-  # to include youtube and vimeo videos.
-  def relaxed_sanitize(rawhtml)
-    sanitize rawhtml,:tags=> %w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u ), 
-                      :attributes=> %w(id class style src border align colspan rowspan)
-  end
-  
   # Hides a page element unless a condition is met.
   def hidden_div_unless(condition, attributes = {}, &block)
     unless condition
-      attributes["style"] = "display: none"
+      attributes["style"] = "display: none;"
     end
     content_tag("div", attributes, &block)
   end
@@ -178,17 +167,38 @@ module ApplicationHelper
     render("/shared/validation_errors_block", {object: formobject})
   end
   
+  def content_type_link(content_type,url)
+    if content_type == 1
+      msg = "Switch to Markdown Editor"
+    else
+      msg = "Switch to HTML Editor"
+    end
+    return "<a href='#{url}' data-method='POST'>#{msg}</a>"
+  end
+  
+  # This examines the content_type field and formats content accordingly.
+  # 
+  # This object must have a content_type field of the integer type
+  # * 0 = markdown
+  # * 1 = html
+  def smart_format(content_type,content)
+    if content_type == 0
+      return formatter(content)
+    else
+      return sanitize(content)
+    end
+  end
+  
   # Sets the wallpaper
-  # TODO this may need to moved or eliminated it is an ugly hack.
   def set_wallpaper
     if current_user
       if current_user.wallpaper  
         return "background-image:url('#{current_user.wallpaper.url}');"
       else
-        return "background-color:#dddddd;"
+        return Settings.default_background_color
       end
     else
-      return "background-color:#dddddd;"
+      return Settings.default_background_color
     end
   end
   

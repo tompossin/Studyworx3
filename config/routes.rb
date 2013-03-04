@@ -1,5 +1,6 @@
 Studyworx3::Application.routes.draw do
 
+
   # ----------
   # :section: Admin Routes
   # This is a namespace for Admin functions
@@ -73,6 +74,7 @@ Studyworx3::Application.routes.draw do
   get 'teams/show_user/:id' => 'teams#show_user', as: :teams_show_user
   resources :reviews
   resources :papers
+  resources :documents
   resources :schools do
     member do
       get 'set_current','homeroom'
@@ -82,7 +84,9 @@ Studyworx3::Application.routes.draw do
       resources :tasks
     end
   end
-  resources :blogs
+  resources :blogs do
+    post 'toggle_content_type'
+  end
   resources :profiles do
     member do
       get 'reviewboard', 'reminder_load', 'public_load', 'public_show', 'reminder_show'

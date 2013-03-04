@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_admin
   
+  # TODO I will need to put some limits or paging on this yet.
   def index
     @blogs = Blog.all
 
@@ -21,9 +22,8 @@ class BlogsController < ApplicationController
     end
   end
   
-  # FIXME this needs to be fixed because if you do not
-  # change the value of the boolean fields they seem to
-  # to change back to false. Weird and annoying.
+  # Loads the appropriate editor
+  # TODO create partials for wysihtml5 and markdown
   def edit
     @blog = Blog.find(params[:id])
 
@@ -46,7 +46,6 @@ class BlogsController < ApplicationController
 
   # PUT /blogs/1
   # PUT /blogs/1.json
-  # TODO I will need to put some limits or paging on this yet.
   def update
     @blog = Blog.find(params[:id])
     @blog.remove_previous_lead_story(params[:blog][:leadstory])
@@ -54,6 +53,15 @@ class BlogsController < ApplicationController
     @blog.update_attributes(params[:blog])
     respond_to do |format|
       format.html {render :show }
+    end
+  end
+  
+  # Toggles the content_type attribute and reloads corrected editor
+  def toggle_content_type
+    @blog = Blog.find(params[:blog_id])
+    @blog.change_content_type
+    respond_to do |format|
+      format.html {render :edit}
     end
   end
 

@@ -1,0 +1,59 @@
+<div id="wysihtml5-toolbar" style="display: none;">
+  <a data-wysihtml5-command="bold" title="Bold"><%=image_tag("tb/text-bold.png")%></a>
+  <a data-wysihtml5-command="italic" title="Italic"><%=image_tag("tb/text_italic.png")%></a>
+  <a data-wysihtml5-command="underline" title="Underline"><%=image_tag("tb/edit-underline.png")%></a>
+  <a data-wysihtml5-command="formatInline" title="Superscript" data-wysihtml5-command-value="sup"><%=image_tag("tb/edit-superscript.png")%></a>
+  <a data-wysihtml5-command="insertOrderedList" title="Numbered List"><%=image_tag("tb/list_num.png")%></a>
+  <a data-wysihtml5-command="insertUnorderedList" title="Bulleted List"><%=image_tag("tb/list_bullets.png")%></a>
+  
+  <a title="Increase font size" data-wysihtml5-command="fontSize" data-wysihtml5-command-value="large"><%=image_tag("tb/edit-size-up.png")%></a>
+  <a title="Decrease font size" data-wysihtml5-command="fontSize" data-wysihtml5-command-value="small"><%=image_tag("tb/edit-size-down.png")%></a>
+  
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">H1</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">H2</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">H3</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4">H4</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5">H5</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6">H6</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="blockquote"><%=image_tag("tb/quote.png", :size => "16x16")%></a>
+  <a data-wysihtml5-command="insertHtml" data-wysihtml5-command-value="<hr />"><%=image_tag("tb/insert-horizontal-rule.png")%></a>
+
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red"><%=image_tag("red/type.png")%></a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green"><%=image_tag("green/type.png")%></a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue"><%=image_tag("blue/type.png")%></a>
+
+  <a data-wysihtml5-command="insertImage" title="Insert Image"><%=image_tag("tb/image-map.png")%></a>
+  <a data-wysihtml5-command="createLink" title="Insert Link"><%=image_tag("tb/link.png")%></a>
+  
+  <!--This is the dialog box for Images-->
+  <div data-wysihtml5-dialog="insertImage" style="display: none;">
+    <label>
+      Image:
+      <input data-wysihtml5-dialog-field="src" value="http://">
+    </label><br />
+    <label>
+      Height:
+      <input data-wysihtml5-dialog-field="height">
+    </label><br />
+    <label>
+      Width:
+      <input data-wysihtml5-dialog-field="width">
+    </label><br />
+    <label>
+      Align:
+      <input data-wysihtml5-dialog-field="align" value="enter left/right">
+    </label><br />
+    <a data-wysihtml5-dialog-action="save">OK</a>
+    <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </div>
+  
+  <!--This is the Dialog Box for Links-->
+  <div data-wysihtml5-dialog="createLink" style="display: none;">
+    <label>
+      Link: <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+    </label>
+    <a data-wysihtml5-dialog-action="save">OK</a>
+    <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </div>
+  
+</div>

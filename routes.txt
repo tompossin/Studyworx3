@@ -172,6 +172,7 @@ cancel_reply_edit_team_message GET    /team_messages/:id/cancel_reply_edit(.:for
                         school GET    /schools/:id(.:format)                                                  schools#show
                                PUT    /schools/:id(.:format)                                                  schools#update
                                DELETE /schools/:id(.:format)                                                  schools#destroy
+      blog_toggle_content_type POST   /blogs/:blog_id/toggle_content_type(.:format)                           blogs#toggle_content_type
                          blogs GET    /blogs(.:format)                                                        blogs#index
                                POST   /blogs(.:format)                                                        blogs#create
                       new_blog GET    /blogs/new(.:format)                                                    blogs#new

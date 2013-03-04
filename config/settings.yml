@@ -8,7 +8,7 @@
 #   neat_setting: 24
 #   awesome_setting: <%= "Did you know 5 + 5 = #{5 + 5}?" %>
 #
-# This settings are called by System.setting_name
+# This settings are called by Settings.setting_name
 #
 #################################
 # Default settings ##############
@@ -17,6 +17,7 @@ defaults: &defaults
   avatar_image: "/assets/iconic/user_24x32.png"
   pagesize: 5
   default_nav_body: "layouts/nav_blank"
+  default_background_color: "background-color:#dddddd;"
 #################################
 # Environmnet specific settings # 
 development:

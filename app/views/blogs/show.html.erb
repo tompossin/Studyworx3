@@ -11,7 +11,7 @@
       <%= @blog.topic %>
     </p>
     <div class="article_content">
-      <%= formatter(@blog.article)%>
+      <%= smart_format(@blog.content_type,@blog.article) %>
     </div>
   </article>
 </div>  

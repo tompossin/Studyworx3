@@ -13,17 +13,14 @@ gem 'paperclip'
 gem 'thin'
 gem 'seed_dump'
 gem 'mysql2'
-gem 'closure_tree'
-#gem 'aloha-rails'
-gem 'settingslogic'
-#gem 'jquery-qtip2-rails'
+gem 'closure_tree' # replaces acts_as_tree
+gem 'settingslogic' # This does global settings but I may not need it later.
+#gem 'jquery-qtip2-rails' # I might use this later for tool tips
 gem 'rails3-jquery-autocomplete'
 gem 'acts_as_list'
-gem 'redcarpet'
-#gem 'markitup-rails'
-#gem 'bootstrap-wysihtml5-rails'
-#gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
+gem 'redcarpet' # parser for markdown
 gem 'wicked_pdf'
+gem 'wysihtml5-rails'
 
 
 
