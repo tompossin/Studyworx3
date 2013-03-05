@@ -1,2 +1,29 @@
-<h1>Assignments#show</h1>
-<p>Find me in app/views/assignments/show.html.erb</p>
+<div id="content-large">
+  <article>
+    <div class="float_left limited">
+      <h2><%= @assignment.name %></h2>
+      <%=link_to "Homeroom", homeroom_school_path(@school)%>
+      <p class="title large">
+        Assignment Tasks
+      </p>
+      <div class="theader">
+        <span class="cell" style="width:30%;">Task Name</span>
+        <span class="cell" style="width:30%;">Task Type</span>
+      </div>
+      <%= render @assignment.tasks %>
+    </div>
+    <div class="float_left limited">
+      <h2>
+        Instructions
+      </h2>
+      <div id="instructions" class="float_left">
+        <%= formatter(@assignment.instructions) %>
+        <h2>
+          Resources
+        </h2>
+        <%= formatter(@assignment.resources) %>
+      </div>
+    </div>
+  </article>
+</div>
+<%= nav_bar(@nav_body_content) %>

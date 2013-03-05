@@ -55,7 +55,17 @@
   </div>
 
   <div id="class-metadata">
+    <nav id="sections-section" class="section">
+  <h3 class="section-header">Sections</h3>
+  <ul class="link-list">
     
+      <li><a href="#5Buntitled-5D"></a></li>
+    
+      <li><a href="#Available+Methods">Available Methods</a></li>
+    
+  </ul>
+</nav>
+
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
@@ -71,6 +81,8 @@
   <ul class="link-list">
     
     <li><a href="#method-c-all_active">::all_active</a>
+    
+    <li><a href="#method-i-current_assignments">#current_assignments</a>
     
   </ul>
 </nav>
@@ -141,6 +153,10 @@
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
   
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./Team/:.html">Team:::</a>
+  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -159,11 +175,21 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./Document.html">Document</a>
+  
+    <li><a href="./DocumentsController.html">DocumentsController</a>
+  
+    <li><a href="./DocumentsHelper.html">DocumentsHelper</a>
+  
     <li><a href="./Duedate.html">Duedate</a>
+  
+    <li><a href="./Endnote.html">Endnote</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
     <li><a href="./Message.html">Message</a>
+  
+    <li><a href="./MessageMailer.html">MessageMailer</a>
   
     <li><a href="./MessagesController.html">MessagesController</a>
   
@@ -211,8 +237,6 @@
   
     <li><a href="./Task.html">Task</a>
   
-    <li><a href="./Team.html">Team</a>
-  
     <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
   
     <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
@@ -256,7 +280,35 @@
 
     <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+  </section><!-- 5Buntitled-5D -->
+
+  
+  
+  <section id="Available+Methods" class="documentation-section">
+    
+    <div class="documentation-section-title">
+      <h2 class="section-header">
+        Available Methods
+      </h2>
+      <span class="section-click-top">
+        <a href="#top">&uarr; top</a>
+      </span>
+    </div>
+    
+
+    
+    <div class="description">
+      
+    </div>
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-Available+Methods-method-details" class="method-section section">
       <h3 class="section-header">Public Class Methods</h3>
 
     
@@ -271,12 +323,12 @@
 
         <div class="method-description">
           
-          <p>Methods #####################</p>
+          <p>Returns all active schools</p>
           
 
           
           <div class="method-source-code" id="all_active-source">
-            <pre><span class="ruby-comment"># File app/models/school.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_active</span>
   <span class="ruby-identifier">schools</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">active</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -292,14 +344,50 @@
     
     </section><!-- public-class-method-details -->
   
-  </section><!-- 5Buntitled-5D -->
+     <section id="public-instance-Available+Methods-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-current_assignments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_assignments</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns all current assignments</p>
+          
+
+          
+          <div class="method-source-code" id="current_assignments-source">
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_assignments</span>
+  <span class="ruby-identifier">assignments</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">includes</span>([<span class="ruby-value">:duedates</span>]).<span class="ruby-identifier">where</span>( <span class="ruby-string">&quot;duedates.duedate &gt; ?&quot;</span>, <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">in_time_zone</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- current_assignments-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- current_assignments-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- Available+Methods -->
 
 </div><!-- documentation -->
 
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

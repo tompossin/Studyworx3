@@ -2,7 +2,7 @@ class School < ActiveRecord::Base
   has_many :participants
   has_many :users, :through => :participants
   has_many :assignments, :dependent => :destroy
-  has_many :duetimes, :dependent => :destroy
+  has_many :duedates, :dependent => :destroy
   has_many :templats, :dependent => :destroy
   has_many :scoresheets, :dependent => :destroy
   has_many :teams
@@ -33,9 +33,21 @@ class School < ActiveRecord::Base
     :size => { :in => 0..1000.kilobytes }
   ###############################
   
-  # Methods #####################
+  # -----------
+  # :section: Available Methods
+  # -----------
+  
+  # Returns all active schools
   def self.all_active
     schools = School.where(active: true).all
+  end
+  
+  # Returns all current assignments
+  def current_assignments(user)
+    team = user.teams.where("school_id = ? and coreteam = ?",user.school,true).first
+    if team
+      assignments = self.assignments.includes([:duedates]).where( "duedates.duedate > ? and team_id = ?", Time.now.in_time_zone,team).order("duedates.duedate ASC")
+    end
   end
 
 end

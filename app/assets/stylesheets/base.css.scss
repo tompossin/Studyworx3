@@ -14,6 +14,7 @@ body {
   }
   a:hover {
     color:#999999;
+    background-color:white;
   }
   p:empty {
     display:none;
@@ -104,6 +105,8 @@ blockquote {
   font-family: Garamond, Georgia;
   text-align: center;
 }
+
+
 
 code {
   display: block;
@@ -327,10 +330,11 @@ code {
   width: 100%;
   padding: 4px;
   border-radius: 4px;
+  border-bottom: solid gray 1px;
+  border-top: solid gray 1px;
   .cell {
     float: left;
     text-align: center;
-    padding-left: 8px;
     padding-right: 8px;
   }
 }
@@ -490,7 +494,7 @@ code {
 
 .limited {
   width: 45%;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 .invisible {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304042604) do
+ActiveRecord::Schema.define(:version => 20130304235550) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130304042604) do
   end
 
   add_index "duedates", ["assignment_id"], :name => "index_duedates_on_assignment_id"
+  add_index "duedates", ["duedate"], :name => "index_duedates_on_duedate"
   add_index "duedates", ["school_id", "team_id"], :name => "index_duedates_on_school_id_and_team_id"
 
   create_table "endnotes", :force => true do |t|

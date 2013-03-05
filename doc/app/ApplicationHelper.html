@@ -64,6 +64,8 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-content_type_link">#content_type_link</a>
+    
     <li><a href="#method-i-formatter">#formatter</a>
     
     <li><a href="#method-i-full_name">#full_name</a>
@@ -94,11 +96,11 @@
     
     <li><a href="#method-i-nav_bar">#nav_bar</a>
     
-    <li><a href="#method-i-relaxed_sanitize">#relaxed_sanitize</a>
-    
     <li><a href="#method-i-set_color">#set_color</a>
     
     <li><a href="#method-i-set_wallpaper">#set_wallpaper</a>
+    
+    <li><a href="#method-i-smart_format">#smart_format</a>
     
     <li><a href="#method-i-status_color">#status_color</a>
     
@@ -173,6 +175,10 @@
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
   
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./Team/:.html">Team:::</a>
+  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -191,11 +197,21 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./Document.html">Document</a>
+  
+    <li><a href="./DocumentsController.html">DocumentsController</a>
+  
+    <li><a href="./DocumentsHelper.html">DocumentsHelper</a>
+  
     <li><a href="./Duedate.html">Duedate</a>
+  
+    <li><a href="./Endnote.html">Endnote</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
     <li><a href="./Message.html">Message</a>
+  
+    <li><a href="./MessageMailer.html">MessageMailer</a>
   
     <li><a href="./MessagesController.html">MessagesController</a>
   
@@ -243,8 +259,6 @@
   
     <li><a href="./Task.html">Task</a>
   
-    <li><a href="./Team.html">Team</a>
-  
     <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
   
     <li><a href="./TeamMessagesHelper.html">TeamMessagesHelper</a>
@@ -290,6 +304,41 @@
     
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-content_type_link" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">content_type_link</span><span
+            class="method-args">(content_type,url)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="content_type_link-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 170</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">content_type_link</span>(<span class="ruby-identifier">content_type</span>,<span class="ruby-identifier">url</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">msg</span> = <span class="ruby-string">&quot;Switch to Markdown Editor&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">msg</span> = <span class="ruby-string">&quot;Switch to HTML Editor&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;a href='#{url}' data-method='POST'&gt;#{msg}&lt;/a&gt;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- content_type_link-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- content_type_link-method -->
 
     
       <div id="method-i-formatter" class="method-detail ">
@@ -591,10 +640,10 @@ will not work.</p>
 
           
           <div class="method-source-code" id="hidden_div_unless-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 169</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
-    <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none&quot;</span>
+    <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none;&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">content_tag</span>(<span class="ruby-string">&quot;div&quot;</span>, <span class="ruby-identifier">attributes</span>, &amp;<span class="ruby-identifier">block</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -804,42 +853,6 @@ href="ApplicationHelper.html#method-i-nav_bar">#nav_bar</a>(nav_body_content
       </div><!-- nav_bar-method -->
 
     
-      <div id="method-i-relaxed_sanitize" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">relaxed_sanitize</span><span
-            class="method-args">(rawhtml)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Provides a more relaxed version of sanitize these rules match the ones
-provided by the mercury editor. So I don’t get unexpected results from an
-edit.</p>
-
-<p>WARNING! I have included iframe in here which is crazy but necessary to
-include youtube and vimeo videos.</p>
-          
-
-          
-          <div class="method-source-code" id="relaxed_sanitize-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 163</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">relaxed_sanitize</span>(<span class="ruby-identifier">rawhtml</span>)
-  <span class="ruby-identifier">sanitize</span> <span class="ruby-identifier">rawhtml</span>,<span class="ruby-value">:tags=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(div p a img iframe blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u )</span>, 
-                    <span class="ruby-value">:attributes=</span><span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(id class style src border align colspan rowspan)</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- relaxed_sanitize-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- relaxed_sanitize-method -->
-
-    
       <div id="method-i-set_color" class="method-detail ">
         
         <div class="method-heading">
@@ -889,22 +902,21 @@ to True/False. But really should be renamed for that sort of thing.</p>
 
         <div class="method-description">
           
-          <p>Sets the wallpaper TODO this may need to moved or eliminated it is an ugly
-hack.</p>
+          <p>Sets the wallpaper</p>
           
 
           
           <div class="method-source-code" id="set_wallpaper-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 183</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 193</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span>  
       <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-image:url('#{current_user.wallpaper.url}');&quot;</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-color:#dddddd;&quot;</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">default_background_color</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-color:#dddddd;&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">default_background_color</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- set_wallpaper-source -->
@@ -915,6 +927,47 @@ hack.</p>
 
         
       </div><!-- set_wallpaper-method -->
+
+    
+      <div id="method-i-smart_format" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">smart_format</span><span
+            class="method-args">(content_type,content)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This examines the content_type field and formats content accordingly.</p>
+
+<p>This object must have a content_type field of the integer type</p>
+<ul><li>
+<p>0 = markdown</p>
+</li><li>
+<p>1 = html</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="smart_format-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">smart_format</span>(<span class="ruby-identifier">content_type</span>,<span class="ruby-identifier">content</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">formatter</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- smart_format-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- smart_format-method -->
 
     
       <div id="method-i-status_color" class="method-detail ">
@@ -971,7 +1024,7 @@ hack.</p>
 
           
           <div class="method-source-code" id="validation_errors_block-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 177</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 166</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validation_errors_block</span>(<span class="ruby-identifier">formobject</span>)
   <span class="ruby-identifier">render</span>(<span class="ruby-string">&quot;/shared/validation_errors_block&quot;</span>, {<span class="ruby-identifier">object</span><span class="ruby-operator">:</span> <span class="ruby-identifier">formobject</span>})
 <span class="ruby-keyword">end</span></pre>
@@ -994,7 +1047,7 @@ hack.</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

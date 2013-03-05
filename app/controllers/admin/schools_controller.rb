@@ -24,7 +24,11 @@ class Admin::SchoolsController < ApplicationController
   end
 
   def create
-    @school = School.new(params[:school])
+    if is_my_school(params[:school][:id])
+      @school = School.new(params[:school])
+    end
+      
+    
 
     respond_to do |format|
       if @school.save
@@ -49,4 +53,8 @@ class Admin::SchoolsController < ApplicationController
 
   def destroy
   end
+  
+  private
+
+ 
 end

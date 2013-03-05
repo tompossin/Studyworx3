@@ -60,6 +60,14 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def is_my_school?(school_id)
+    if current_user.school == school_id
+      return true
+    else
+      return false
+    end
+  end
+  
 # ------
 # :section: before_filters
 # The methods below are used as before filters in controllers

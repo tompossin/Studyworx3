@@ -74,14 +74,16 @@ Studyworx3::Application.routes.draw do
   get 'teams/show_user/:id' => 'teams#show_user', as: :teams_show_user
   resources :reviews
   resources :papers
-  resources :documents
+  
   resources :schools do
     member do
       get 'set_current','homeroom'
     end
     resources :participants
     resources :assignments do
-      resources :tasks
+      resources :tasks do
+        resources :documents
+      end
     end
   end
   resources :blogs do

@@ -70,19 +70,11 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-create">#create</a>
-    
-    <li><a href="#method-i-destroy">#destroy</a>
-    
     <li><a href="#method-i-edit">#edit</a>
     
     <li><a href="#method-i-index">#index</a>
     
     <li><a href="#method-i-list">#list</a>
-    
-    <li><a href="#method-i-new">#new</a>
-    
-    <li><a href="#method-i-show">#show</a>
     
     <li><a href="#method-i-update">#update</a>
     
@@ -155,6 +147,10 @@
   
     <li><a href="../Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
   
+    <li><a href="../Team.html">Team</a>
+  
+    <li><a href="../Team/:.html">Team:::</a>
+  
     <li><a href="../ApplicationController.html">ApplicationController</a>
   
     <li><a href="../ApplicationHelper.html">ApplicationHelper</a>
@@ -173,11 +169,21 @@
   
     <li><a href="../Book.html">Book</a>
   
+    <li><a href="../Document.html">Document</a>
+  
+    <li><a href="../DocumentsController.html">DocumentsController</a>
+  
+    <li><a href="../DocumentsHelper.html">DocumentsHelper</a>
+  
     <li><a href="../Duedate.html">Duedate</a>
+  
+    <li><a href="../Endnote.html">Endnote</a>
   
     <li><a href="../HomeController.html">HomeController</a>
   
     <li><a href="../Message.html">Message</a>
+  
+    <li><a href="../MessageMailer.html">MessageMailer</a>
   
     <li><a href="../MessagesController.html">MessagesController</a>
   
@@ -224,8 +230,6 @@
     <li><a href="../SharedController.html">SharedController</a>
   
     <li><a href="../Task.html">Task</a>
-  
-    <li><a href="../Team.html">Team</a>
   
     <li><a href="../TeamMessagesController.html">TeamMessagesController</a>
   
@@ -274,64 +278,6 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-create" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- create-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- create-method -->
-
-    
-      <div id="method-i-destroy" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">destroy</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- destroy-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- destroy-method -->
-
-    
       <div id="method-i-edit" class="method-detail ">
         
         <div class="method-heading">
@@ -348,8 +294,13 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 22</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-ivar">@duedate</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
           
@@ -379,8 +330,11 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-ivar">@teams</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">coreteam</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+  <span class="ruby-ivar">@modules</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">group</span>(<span class="ruby-value">:module</span>)
+  <span class="ruby-ivar">@nav_body_content</span> = <span class="ruby-string">&quot;admin/assignments/toolbar&quot;</span>
   
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
@@ -404,13 +358,22 @@
 
         <div class="method-description">
           
-          
+          <p>This lists the assignments by Module, and <a href="../Team.html">Team</a> A
+form sends the params for this page. The path is:</p>
+
+<pre class="ruby">[<span class="ruby-constant">POST</span>] <span class="ruby-identifier">admin_duedates_list_path</span> <span class="ruby-identifier">returns</span> <span class="ruby-identifier">params</span>[:<span class="ruby-identifier">team</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">params</span>[:<span class="ruby-keyword">module</span>]
+</pre>
           
 
           
           <div class="method-source-code" id="list-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">list</span>
+  <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:team</span>])
+  <span class="ruby-ivar">@duedates</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">find_or_create_team_duedates_by_module</span>(<span class="ruby-ivar">@school</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>])
+  <span class="ruby-ivar">@nav_body_content</span> = <span class="ruby-string">&quot;admin/assignments/toolbar&quot;</span>
+  <span class="ruby-ivar">@mod_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>]
+  
 <span class="ruby-keyword">end</span></pre>
           </div><!-- list-source -->
           
@@ -420,65 +383,6 @@
 
         
       </div><!-- list-method -->
-
-    
-      <div id="method-i-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
-
-    
-      <div id="method-i-show" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">show</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-  
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- show-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- show-method -->
 
     
       <div id="method-i-update" class="method-detail ">
@@ -497,8 +401,16 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/duedates_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-ivar">@duedate</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@duedate</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:duedate</span>])
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-source -->
           
@@ -519,7 +431,7 @@
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

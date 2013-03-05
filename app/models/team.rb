@@ -42,16 +42,17 @@ class Team < ActiveRecord::Base
   #  Usage: @team.find_or_create_team_duedates_by_module(@school,params[:module])
   def find_or_create_team_duedates_by_module(school,mod_id)
     assignments = school.assignments.where(module: mod_id).all
-    dds = []
+    tdd_ids = []
     assignments.each do |a|
-      tdd = self.duedates.find_by_assignment_id(a.id)
+      tdd = self.duedates.unscoped.find_by_assignment_id(a.id)
       unless tdd
-        dds << self.duedates.create(assignment_id: a.id,team_id: self.id, school_id: school.id)
+        ndd = self.duedates.create(assignment_id: a.id,team_id: self.id, school_id: school.id)
+        tdd_ids << ndd.id
       else
-        dds << tdd
+        tdd_ids << tdd.id
       end
     end
-    return dds  
+    duedates = Duedate.find(tdd_ids) 
   end
   
 end

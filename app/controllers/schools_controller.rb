@@ -15,6 +15,7 @@ class SchoolsController < ApplicationController
       if current_user.school < 1
         format.html # index.html.erb
       else
+        @assignments = @school.current_assignments(current_user)
         format.html { render :homeroom }
       end
     end
@@ -36,6 +37,7 @@ class SchoolsController < ApplicationController
     @school = School.find(current_user.school)
     check_for_pending_registrations?
     load_school_vars
+    @assignments = @school.current_assignments(current_user)
     
     respond_to do |format|
       format.html 
@@ -75,4 +77,6 @@ class SchoolsController < ApplicationController
       @registrations = false
     end
   end
+  
+  
 end

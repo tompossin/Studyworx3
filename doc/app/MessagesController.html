@@ -187,6 +187,10 @@
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
   
+    <li><a href="./Team.html">Team</a>
+  
+    <li><a href="./Team/:.html">Team:::</a>
+  
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
@@ -205,11 +209,21 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./Document.html">Document</a>
+  
+    <li><a href="./DocumentsController.html">DocumentsController</a>
+  
+    <li><a href="./DocumentsHelper.html">DocumentsHelper</a>
+  
     <li><a href="./Duedate.html">Duedate</a>
+  
+    <li><a href="./Endnote.html">Endnote</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
     <li><a href="./Message.html">Message</a>
+  
+    <li><a href="./MessageMailer.html">MessageMailer</a>
   
     <li><a href="./MessagesController.html">MessagesController</a>
   
@@ -256,8 +270,6 @@
     <li><a href="./SharedController.html">SharedController</a>
   
     <li><a href="./Task.html">Task</a>
-  
-    <li><a href="./Team.html">Team</a>
   
     <li><a href="./TeamMessagesController.html">TeamMessagesController</a>
   
@@ -416,6 +428,8 @@
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">recipient</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recipient_id</span>])
+  <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:recipient_id</span>].<span class="ruby-identifier">to_i</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sender_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -428,6 +442,7 @@
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-constant">MessageMailer</span>.<span class="ruby-identifier">user_email</span>(<span class="ruby-identifier">sender</span>,<span class="ruby-identifier">recipient</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:subject</span>],<span class="ruby-ivar">@message</span>).<span class="ruby-identifier">deliver</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
@@ -679,18 +694,22 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 110</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">subject</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:subject</span>]
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:body</span>]
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-identifier">recipient</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_id</span>)
+  <span class="ruby-identifier">subject</span> = <span class="ruby-string">&quot;[UPDATED] &quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@message</span>.<span class="ruby-identifier">subject</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-comment"># check for shinanigans</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sender_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-constant">MessageMailer</span>.<span class="ruby-identifier">user_email</span>(<span class="ruby-identifier">sender</span>,<span class="ruby-identifier">recipient</span>,<span class="ruby-identifier">subject</span>,<span class="ruby-ivar">@message</span>).<span class="ruby-identifier">deliver</span>
         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
@@ -763,7 +782,7 @@ Messages.</p>
 
           
           <div class="method-source-code" id="cancel_reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 151</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_reply</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -796,7 +815,7 @@ Messages.</p>
 
           
           <div class="method-source-code" id="cancel_reply_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 171</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_reply_edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -829,7 +848,7 @@ Messages.</p>
 
           
           <div class="method-source-code" id="reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply</span>
   <span class="ruby-identifier">r</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
@@ -870,7 +889,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_create-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 180</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_create</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>] <span class="ruby-comment"># parent message id</span>
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-ivar">@id</span>)
@@ -880,9 +899,13 @@ no grandchildren.</p>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:body</span>]
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-identifier">recipient</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@message</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">sender_id</span>)
+  <span class="ruby-identifier">subject</span> = <span class="ruby-node">&quot;Re: #{@message.parent.subject}&quot;</span>
  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-constant">MessageMailer</span>.<span class="ruby-identifier">user_email</span>(<span class="ruby-identifier">sender</span>,<span class="ruby-identifier">recipient</span>,<span class="ruby-identifier">subject</span>,<span class="ruby-ivar">@message</span>).<span class="ruby-identifier">deliver</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
@@ -915,7 +938,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 160</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 167</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -952,15 +975,19 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_update-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 201</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 212</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_update</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-ivar">@message</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:body</span>]
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_read</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">current_user</span>
+  <span class="ruby-identifier">recipient</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@message</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">sender_id</span>)
+  <span class="ruby-identifier">subject</span> = <span class="ruby-node">&quot;Re:[UPDATED-REPLY] #{@message.parent.subject}&quot;</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-constant">MessageMailer</span>.<span class="ruby-identifier">user_email</span>(<span class="ruby-identifier">sender</span>,<span class="ruby-identifier">recipient</span>,<span class="ruby-identifier">subject</span>,<span class="ruby-ivar">@message</span>).<span class="ruby-identifier">deliver</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
@@ -1029,7 +1056,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 222</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 237</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">parent</span> = <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">parent_id</span>
@@ -1064,7 +1091,7 @@ no grandchildren.</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

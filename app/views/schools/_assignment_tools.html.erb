@@ -1,5 +1,13 @@
 <!--This is the assignment toolbar on the homeroom page -->
 <div class="float_left">
   <h2>Assignments</h2>
-  <em>Add Assignment tools here.</em>
+  <div class="toolbar">
+    <span class="cell"><%=link_to(image_tag("gray/previous.png"),root_path,{title: "View previous Assignments"})%></span>
+    <span class="cell"><%=link_to(image_tag("gray/next.png"),root_path,{title: "View all Assignments"})%></span>
+    <span class="cell"><%=link_to(image_tag("gray/addressbook.png"),root_path,{title: "View Grades"})%></span>
+  </div>
+    <p class="title large">
+      Current Assignments
+    </p>
+    <%= render @assignments %>
 </div>
