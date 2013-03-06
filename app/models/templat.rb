@@ -1,5 +1,6 @@
 class Templat < ActiveRecord::Base
   belongs_to :school
+  has_many :tasks
   
   default_scope order: 'name ASC'
   

@@ -1,6 +1,7 @@
 class Assignment < ActiveRecord::Base
   has_many :duedates, :dependent => :destroy
   has_many :tasks, :dependent => :destroy
+  has_many :documents
   belongs_to :school
   acts_as_list
   

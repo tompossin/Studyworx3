@@ -1,0 +1,12 @@
+<div id="preview">
+  <%=link_to "close", cancel_path, {remote: true, id: "cancel"} %>
+  <div>
+    <%= smart_format(d.content_type, d.content) %>
+  </div>
+  <hr />
+  <div>
+    <h4>Endnotes:</h4>
+    <%= formatter(d.endnote.content) unless d.endnote.content.nil? %>
+  </div>
+  
+</div>

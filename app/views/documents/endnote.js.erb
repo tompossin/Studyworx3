@@ -1,0 +1,5 @@
+$('#popup').removeClass('invisible');
+$('#popup_cancel').addClass('invisible');
+$('#popup').addClass('visible');
+$('#popup_content').html("<%=j render "documents/endnote",{d: @endnote} %>");
+

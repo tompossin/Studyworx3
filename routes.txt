@@ -179,6 +179,17 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                               school GET    /schools/:id(.:format)                                                                     schools#show
                                      PUT    /schools/:id(.:format)                                                                     schools#update
                                      DELETE /schools/:id(.:format)                                                                     schools#destroy
+                    document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
+          document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
+    document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions
+             document_update_endnote PUT    /documents/:document_id/update_endnote(.:format)                                           documents#update_endnote
+                           documents GET    /documents(.:format)                                                                       documents#index
+                                     POST   /documents(.:format)                                                                       documents#create
+                        new_document GET    /documents/new(.:format)                                                                   documents#new
+                       edit_document GET    /documents/:id/edit(.:format)                                                              documents#edit
+                            document GET    /documents/:id(.:format)                                                                   documents#show
+                                     PUT    /documents/:id(.:format)                                                                   documents#update
+                                     DELETE /documents/:id(.:format)                                                                   documents#destroy
             blog_toggle_content_type POST   /blogs/:blog_id/toggle_content_type(.:format)                                              blogs#toggle_content_type
                                blogs GET    /blogs(.:format)                                                                           blogs#index
                                      POST   /blogs(.:format)                                                                           blogs#create

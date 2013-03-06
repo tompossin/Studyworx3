@@ -1,0 +1,6 @@
+$('#popup').removeClass('visible');
+$('#popup').addClass('invisible');
+$('#popup_cancel').removeClass('invisible');
+$('#popup_content').empty();
+$('#notice').css("display","block");
+$('#notice').html("<%=j render :text=>"Saved" %>").fadeOut(7000);

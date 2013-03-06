@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
   belongs_to :assignment
+  belongs_to :templat
+  has_many :documents
   
   default_scope order: 'position ASC'
   

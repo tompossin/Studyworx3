@@ -88,7 +88,7 @@ module ApplicationHelper
   # This assigns friendly names to task_types
   def get_task_type_name(id=false)
     if id == 1
-      "Text Editor"
+      "Document"
     elsif id == 2
       "Discussion"
     elsif id == 3

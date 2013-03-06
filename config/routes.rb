@@ -86,6 +86,10 @@ Studyworx3::Application.routes.draw do
       end
     end
   end
+  resources :documents do
+    get 'endnote','task_instructions','assignment_instructions'
+    put 'update_endnote'
+  end
   resources :blogs do
     post 'toggle_content_type'
   end

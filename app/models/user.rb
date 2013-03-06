@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :schools, :through => :participants
   has_many :members
   has_many :blogs
+  has_many :documents
   has_one :note
   has_and_belongs_to_many :teams
   

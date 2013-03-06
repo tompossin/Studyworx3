@@ -1,5 +1,11 @@
-<h1>New document</h1>
+<div id="content-large">  
+  <article>
+    <h1><%= "#{@task.assignment.name} - #{@task.name}" %></h1>
+    <%=link_to "<#{@task.assignment.name} task list", school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
+    
+    <%= render 'form' %>
 
-<%= render 'form' %>
+  </article>
+</div>
 
-<%= link_to 'Back', documents_path %>
+<%= nav_bar(@nav_body_content)%>
