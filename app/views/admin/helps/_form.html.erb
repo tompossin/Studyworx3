@@ -1,0 +1,12 @@
+<%=render "shared/autosave", { url: admin_help_path(@help) } %>
+<%=form_for [:admin,@help], {remote: true} do |f| %>
+  <div class="toolbar">
+    <span class="cell"><%= f.submit :save %></span>
+    <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), admin_help_path(@help),{remote: true,title: "Preview Help file"} if @help.id %></span>
+  </div>  
+  <label>Title:</label>
+  <%= f.text_field :title %><br />
+  <label>Content:</label>
+  <%= f.text_area :content , {style: "width:96%;"} %>
+
+<% end %>

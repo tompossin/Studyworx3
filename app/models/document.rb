@@ -19,5 +19,16 @@ class Document < ActiveRecord::Base
     end
   end
   
+  def self.toggle_type(document_id)
+    document = Document.find(document_id)
+    if document.content_type == 0
+      document.content_type = 1
+    else
+      document.content_type = 0
+    end
+    document.save
+    return document
+  end
+  
   
 end

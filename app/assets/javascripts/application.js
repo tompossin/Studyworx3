@@ -16,4 +16,5 @@
 //= require autocomplete-rails
 //= require wysihtml5
 //= require wysi_advanced
+//= require jquery.autosave.min.js
 //= require main

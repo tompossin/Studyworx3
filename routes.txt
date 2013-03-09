@@ -78,6 +78,13 @@
                        admin_duedate GET    /admin/duedates/:id(.:format)                                                              admin/duedates#show
                                      PUT    /admin/duedates/:id(.:format)                                                              admin/duedates#update
                                      DELETE /admin/duedates/:id(.:format)                                                              admin/duedates#destroy
+                         admin_helps GET    /admin/helps(.:format)                                                                     admin/helps#index
+                                     POST   /admin/helps(.:format)                                                                     admin/helps#create
+                      new_admin_help GET    /admin/helps/new(.:format)                                                                 admin/helps#new
+                     edit_admin_help GET    /admin/helps/:id/edit(.:format)                                                            admin/helps#edit
+                          admin_help GET    /admin/helps/:id(.:format)                                                                 admin/helps#show
+                                     PUT    /admin/helps/:id(.:format)                                                                 admin/helps#update
+                                     DELETE /admin/helps/:id(.:format)                                                                 admin/helps#destroy
                  admin_duedates_list POST   /admin/duedates/list(.:format)                                                             admin/duedates#list
                    admin_tools_index GET    /admin/tools/index(.:format)                                                               admin/tools#index
                admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#personnel
@@ -183,6 +190,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions
              document_update_endnote PUT    /documents/:document_id/update_endnote(.:format)                                           documents#update_endnote
+                document_toggle_type PUT    /documents/:document_id/toggle_type(.:format)                                              documents#toggle_type
                            documents GET    /documents(.:format)                                                                       documents#index
                                      POST   /documents(.:format)                                                                       documents#create
                         new_document GET    /documents/new(.:format)                                                                   documents#new

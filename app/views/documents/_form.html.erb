@@ -1,22 +1,18 @@
 
-    <%= form_for(@document,{remote: true}) do |f| %>
-      <%= include_form_validation_errors(@document) %>
-      <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :school_id %>
-      <%= f.hidden_field :assignment_id %>
-      <%= f.hidden_field :task_id %>
-      <%= f.hidden_field :content_type %>
-      
-      <div class="toolbar">
-        <span class="cell"><%= f.submit :save %></span>
-        <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), document_path(@document),{remote: true,title: "Preview Document(Please save first)"} %></span>
-        <span class="cell"><%=link_to image_tag("iconic/read_more_32x32.png",size: "20x20"), document_endnote_path(@document),{remote: true, title: "Open Endnotes for editing."} %></span>
-        <span class="cell"><%=link_to image_tag("iconic/book_28x32.png", size: "16x20") ,document_assignment_instructions_path(@document),{remote: true, title: "Open Assignment Instructions."} %></span>
-        <span class="cell"><%=link_to image_tag("iconic/book_alt_32x32.png", size: "20x20"),document_task_instructions_path(@document),{remote: true, title: "Open Task Instructions."} %></span>
-        <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20") %></span>
-      </div>
-      <div class="field">
-        <%= f.text_area :content, {style: "width:96%;"} %>
-      </div
-    <% end %>
+<%= form_for(@document,{remote: true}) do |f| %>
+  
+  <%= include_form_validation_errors(@document) %>
+  
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :school_id %>
+  <%= f.hidden_field :assignment_id %>
+  <%= f.hidden_field :task_id %>
+  <%= f.hidden_field :content_type %>
+  
+  <%= smart_toolbar(@document.content_type, "toolbar_markdown")%>
+  
+  <div class="field">
+    <%= f.text_area :content, { id: 'wysihtml5-textarea', style: "width:96%"} %>
+  </div>
 
+<% end %>

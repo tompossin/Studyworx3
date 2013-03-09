@@ -64,7 +64,17 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-find_or_create">::find_or_create</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -258,6 +268,50 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-find_or_create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_or_create</span><span
+            class="method-args">(user_id,school_id,assignment_id,task_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_or_create-source">
+            <pre><span class="ruby-comment"># File app/models/document.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_or_create</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and task_id = ?&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">task_id</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">document</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">task_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">task_id</span>)
+    <span class="ruby-identifier">task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">task_id</span>)
+    <span class="ruby-identifier">document</span>.<span class="ruby-identifier">content</span> = <span class="ruby-identifier">task</span>.<span class="ruby-identifier">templat</span>.<span class="ruby-identifier">content</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">templat</span>
+    <span class="ruby-identifier">document</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">document</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_or_create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_or_create-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

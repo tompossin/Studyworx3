@@ -100,10 +100,8 @@ label {
 }
 
 blockquote {
-  font-size: 90%;
-  font-style: italic;
-  font-family: Garamond, Georgia;
-  text-align: center;
+  font-size: 96%;
+  margin-left: 16px;
 }
 
 
@@ -142,6 +140,7 @@ code {
 
 #preview {
   position: absolute;
+  overflow: auto;
   background-color: white;
   border-radius: 10px;
   top: 40px;

@@ -1,7 +1,12 @@
+
+  
 <div id="content-large">  
   <article>
     <h1><%= "#{@task.assignment.name} - #{@task.name}" %></h1>
     <%=link_to "<#{@task.assignment.name} task list", school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%=link_to "...Change to HTML Editor...",document_toggle_type_path(@document),{method: "put", title: "Converth this document for use with thes HTML editor."} if @document.content_type == 0 %>
+    <%=link_to "...Change to Markdown Editor...",document_toggle_type_path(@document),{method: "put", title: "Converth this document for use with the Markdown editor."} if @document.content_type == 1 %>
     
     <%= render 'form' %>
 
@@ -9,3 +14,5 @@
 </div>
 
 <%= nav_bar(@nav_body_content)%>
+
+<%= smart_edit(@document.content_type, document_path(@document)) %>

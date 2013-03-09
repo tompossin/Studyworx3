@@ -1,6 +1,5 @@
 Studyworx3::Application.routes.draw do
 
-
   # ----------
   # :section: Admin Routes
   # This is a namespace for Admin functions
@@ -31,6 +30,7 @@ Studyworx3::Application.routes.draw do
       end
     end
     resources :duedates 
+    resources :helps
     post "duedates/list" => "duedates#list", as: :duedates_list
     get "tools/index","tools/personnel", "tools/cancel_edit"
     post "tools/book"
@@ -88,7 +88,7 @@ Studyworx3::Application.routes.draw do
   end
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions'
-    put 'update_endnote'
+    put 'update_endnote', 'toggle_type'
   end
   resources :blogs do
     post 'toggle_content_type'

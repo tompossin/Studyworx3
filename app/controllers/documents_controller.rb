@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_task, only: [:new]
+  include FormatContent
   
   # This shows a formatted preview version of the current document.
   def show
@@ -86,6 +87,23 @@ class DocumentsController < ApplicationController
     
     respond_to do |format|
       format.js
+    end
+  end
+  
+  # Toggle the data type of the record
+  # TODO add @document.save to make it "safer"
+  def toggle_type
+    @document = Document.toggle_type(params[:document_id])
+    if @document.content_type == 1
+      @document.content = markdown_to_html(@document.content)
+      @document.save
+    else
+      @document.content = html_to_markdown(@document.content)
+      @document.save
+    end
+    @task = Task.find(@document.task_id)
+    respond_to do |format|
+      format.html {render :new }
     end
   end
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304235550) do
+ActiveRecord::Schema.define(:version => 20130309015156) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(:version => 20130304235550) do
 
   add_index "endnotes", ["document_id"], :name => "index_endnotes_on_document_id"
   add_index "endnotes", ["paper_id"], :name => "index_endnotes_on_paper_id"
+
+  create_table "helps", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "content_type", :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
 
   create_table "message_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false

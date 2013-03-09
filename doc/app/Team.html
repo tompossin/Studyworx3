@@ -350,16 +350,17 @@ mod_id = assignment.module</p>
             <pre><span class="ruby-comment"># File app/models/team.rb, line 43</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_or_create_team_duedates_by_module</span>(<span class="ruby-identifier">school</span>,<span class="ruby-identifier">mod_id</span>)
     <span class="ruby-identifier">assignments</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">where</span>(<span class="ruby-keyword">module</span><span class="ruby-operator">:</span> <span class="ruby-identifier">mod_id</span>).<span class="ruby-identifier">all</span>
-    <span class="ruby-identifier">dds</span> = []
+    <span class="ruby-identifier">tdd_ids</span> = []
     <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">tdd</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">duedates</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">tdd</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">duedates</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>)
       <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tdd</span>
-        <span class="ruby-identifier">dds</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">duedates</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">team_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">ndd</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">duedates</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">team_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">tdd_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ndd</span>.<span class="ruby-identifier">id</span>
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">dds</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tdd</span>
+        <span class="ruby-identifier">tdd_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tdd</span>.<span class="ruby-identifier">id</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">dds</span>  
+    <span class="ruby-identifier">duedates</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">tdd_ids</span>) 
   <span class="ruby-keyword">end</span>
   
 <span class="ruby-keyword">end</span></pre>

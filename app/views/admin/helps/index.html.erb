@@ -1,0 +1,15 @@
+<div id="content-large">
+  <article>
+    <h3>System Helps Admin</h3>
+    <p><%=link_to "Admin Tools", admin_tools_index_path %></p>
+    <p><%=link_to "New Help Record", new_admin_help_path %></p>
+    <div class="theader">
+      <span class="cell" style="width:6%;">ID</span>
+      <span class="cell" style="width:40%;">Name</span>
+      <span class="cell" style="width:40%;">Admin</span>
+    </div> 
+    <%= render @helps if @helps %> 
+  </article>  
+</div>
+
+<%= nav_bar(@nav_body_content) %>

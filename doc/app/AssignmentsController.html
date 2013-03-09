@@ -294,7 +294,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
@@ -323,7 +323,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
@@ -352,7 +352,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -376,13 +376,14 @@
 
         <div class="method-description">
           
-          
+          <p>This is the <a href="Assignment.html">Assignment</a> home page</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>  
+  <span class="ruby-ivar">@assignment</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           

@@ -1,0 +1,8 @@
+
+<div class="trow">
+  <span class="cell" style="width:6%;"><%= help.id %></span>
+  <span class="cell" style="width:50%;"><%= help.title %></span>
+  <span class="cell" style="width:10%;"><%=link_to "Preview", admin_help_path(help), {remote: true} %></span>
+  <span class="cell" style="width:7%;"><%=link_to "Edit", edit_admin_help_path(help) %></span>
+  <span class="cell" style="width:10%;"><%=link_to "Destroy", admin_help_path(help), method: :delete, data: { confirm: 'Are you sure?'}%></span>
+</div>

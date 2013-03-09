@@ -1,4 +1,6 @@
+
 module ApplicationHelper
+  include FormatContent
   
   # Return the full name of the current_user
   # DEPRECATED use current_user.fullname instead
@@ -61,7 +63,51 @@ module ApplicationHelper
     return team.name
   end
   
+  # This loads the right editor and tools for the content_type
+  # * 1 == html
+  # * 0 == markdown (Default)
+  # * With this settup I could conceivably add other content_types later.
+  def smart_edit(content_type=0,save_url)
+    if content_type == 1
+      render "shared/wysihtml5_js"
+    else
+      render "shared/autosave", {url: save_url}
+    end
+  end
   
+  # This loads the appropriate toolbar for the content_type
+  # * 1 == html
+  # * 0 == markdown (Default)
+  # * With this settup I could conceivably add other content_types later.
+  def smart_toolbar(content_type,md_toobar_partial_name)
+    if content_type == 1
+      render "shared/wysihtml5_toolbar"
+    else
+      render md_toobar_partial_name
+    end
+  end
+  
+  # This examines the content_type field and formats content accordingly.
+  # 
+  # This object must have a content_type field of the integer type
+  # * 0 = markdown
+  # * 1 = html
+  def smart_format(content_type,content)
+    if content_type == 0
+      return markdown_to_html(content)
+    else
+      return sanitize(content)
+    end
+  end
+  
+  # This is a drop in replacement using Redcarpet. 
+  # This looks simple but was a real pain to configure.
+  def formatter(content)
+    render_options = {hard_wrap: true, filter_html: true, safe_links_only: true}
+    markdown_options = {no_intraemphasis: true, autolink: true, superscript: true}
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(render_options),markdown_options)
+    return markdown.render(content).html_safe
+  end
   
   # Sets the nav_bar(nav_body_content = optional url of partial for nav_body_content element)
   def nav_bar(nav_body_content = false)
@@ -98,15 +144,6 @@ module ApplicationHelper
     else
       "None"
     end
-  end
-  
-  # This is a drop in replacement using Redcarpet. 
-  # This looks simple but was a real pain to configure.
-  def formatter(content)
-    render_options = {hard_wrap: true, filter_html: true, safe_links_only: true}
-    markdown_options = {no_intraemphasis: true, autolink: true, superscript: true}
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(render_options),markdown_options)
-    return markdown.render(content).html_safe
   end
   
   # changes color by t=true/false
@@ -174,19 +211,6 @@ module ApplicationHelper
       msg = "Switch to HTML Editor"
     end
     return "<a href='#{url}' data-method='POST'>#{msg}</a>"
-  end
-  
-  # This examines the content_type field and formats content accordingly.
-  # 
-  # This object must have a content_type field of the integer type
-  # * 0 = markdown
-  # * 1 = html
-  def smart_format(content_type,content)
-    if content_type == 0
-      return formatter(content)
-    else
-      return sanitize(content)
-    end
   end
   
   # Sets the wallpaper
