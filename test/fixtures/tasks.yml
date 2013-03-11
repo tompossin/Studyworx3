@@ -7,7 +7,7 @@ one:
   percent: 1.5
   help: MyString
   task_type: 1
-  task_order: 1
+  position: 1
 
 two:
   assignment_id: 1
@@ -16,4 +16,4 @@ two:
   percent: 1.5
   help: MyString
   task_type: 1
-  task_order: 1
+  position: 1

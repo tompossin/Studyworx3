@@ -6,7 +6,7 @@ module FormatContent
   # This convert Markdown to Html
   def markdown_to_html(content)
     render_options = {hard_wrap: true, filter_html: true, safe_links_only: true}
-    markdown_options = {no_intraemphasis: true, autolink: true, superscript: true}
+    markdown_options = {no_intraemphasis: true, autolink: true, superscript: true, fenced_code_blocks: true }
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(render_options),markdown_options)
     return markdown.render(content).html_safe
   end

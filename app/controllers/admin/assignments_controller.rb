@@ -1,6 +1,6 @@
 class Admin::AssignmentsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_school_admin
+  before_filter :is_school_admin, except: [:show_help]
   before_filter :load_toolbar
   before_filter :load_school
   
@@ -17,7 +17,11 @@ class Admin::AssignmentsController < ApplicationController
     
   end
 
-  def show
+  def show_help
+    @assignment = Assignment.find(params[:assignment_id])
+    respond_to do |format|
+      format.js
+    end
   end
   
   # admin/assignments/sort

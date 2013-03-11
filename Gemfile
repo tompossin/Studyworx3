@@ -16,7 +16,7 @@ gem 'mysql2'
 gem 'closure_tree' # replaces acts_as_tree
 gem 'settingslogic' # This does global settings but I may not need it later.
 #gem 'jquery-qtip2-rails' # I might use this later for tool tips
-gem 'rails3-jquery-autocomplete'
+#gem 'rails3-jquery-autocomplete'
 gem 'acts_as_list'
 gem 'redcarpet' # parser for markdown
 gem 'wicked_pdf'

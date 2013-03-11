@@ -1,0 +1,17 @@
+
+<% content_for :fullscreen do %>
+    
+    <h1><%= "#{@task.assignment.name} - #{@task.name}" %></h1>
+    <%=link_to "<#{@task.assignment.name} task list", school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
+   
+    <%= render 'form' %>
+    
+    
+    <%= smart_edit(@document.content_type, document_path(@document)) %>
+    <script>
+      $('#fullscreen_container').show();
+    </script>
+
+<%end%>
+
+

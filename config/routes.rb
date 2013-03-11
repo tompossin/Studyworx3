@@ -19,11 +19,13 @@ Studyworx3::Application.routes.draw do
     end
     resources :versions
     resources :assignments  do
+      get 'show_help'
       collection do
         get 'showmod'
         post 'sort'
       end 
       resources :tasks do
+        get 'show_help'
         collection do
           post 'sort'
         end
@@ -87,7 +89,7 @@ Studyworx3::Application.routes.draw do
     end
   end
   resources :documents do
-    get 'endnote','task_instructions','assignment_instructions'
+    get 'endnote','task_instructions','assignment_instructions','fullscreen','normal'
     put 'update_endnote', 'toggle_type'
   end
   resources :blogs do

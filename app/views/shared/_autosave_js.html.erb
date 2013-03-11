@@ -1,0 +1,44 @@
+<!-- You need to pass the url variable_autosave.html.erb_autosave.html.erb to this script as a local variable when you call this partial -->
+<script type="text/javascript">
+  jQuery(function($) {
+    // Autosaves every nth keystroke
+    var ksToAutosave = 25;
+    var kCount = 0;
+    $("textarea").bind("keyup",function(){
+      kCount ++;
+      if(kCount == ksToAutosave) {
+        kCount = 0;
+        autoSavePost();
+      }     
+    });
+    // Save on click unless the class="noauto"
+    $('a').not(".noauto").bind("click", function(){
+      autoSavePost();
+    });
+    // Do autosave if checkbox is clicked and the value is "checked"
+    $('input[type=checkbox]').bind("click",function(){
+      if(this.checked){
+        autoSavePost();
+      }else{
+        $('#popup').hide();
+      }
+    });
+    // capture ctrl+s to trigger autoSavePost
+    $(document).keydown(function(e) {
+        if ( (e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey) )
+        {
+            e.preventDefault();
+            autoSavePost();
+        }       
+    }); 
+  function autoSavePost() {
+    $.ajax({
+      type: "PUT",
+      url: "<%=j url %>",
+      data: $('form').serialize(),
+      dataType: "script"
+    });
+     
+  }
+  });
+</script>

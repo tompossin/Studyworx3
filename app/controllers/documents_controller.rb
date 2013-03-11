@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_task, only: [:new]
+  before_filter :get_task, only: [:new ]
   include FormatContent
   
   # This shows a formatted preview version of the current document.
@@ -20,10 +20,17 @@ class DocumentsController < ApplicationController
       format.html 
     end
   end
+  
+  def normal
+    @document = Document.find(params[:document_id])
+    @task = @document.task
+    respond_to do |format|
+      format.html { render :new }
+    end
+  end
 
 
   # Updates document
-  # TODO add ajax
   # TODO autosave
   # TODO endnote w/ autosave
   # TODO check ownership
@@ -32,7 +39,11 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        format.js { render "shared/save_success"}
+        unless params[:autopreview]
+          format.js { render "shared/save_success" }
+        else
+          format.js { render "autopreview" }
+        end
       else
         format.js { render "shared/save_failed" }
       end
@@ -91,7 +102,6 @@ class DocumentsController < ApplicationController
   end
   
   # Toggle the data type of the record
-  # TODO add @document.save to make it "safer"
   def toggle_type
     @document = Document.toggle_type(params[:document_id])
     if @document.content_type == 1
@@ -104,6 +114,16 @@ class DocumentsController < ApplicationController
     @task = Task.find(@document.task_id)
     respond_to do |format|
       format.html {render :new }
+    end
+  end
+  
+  # Fullscreen editing
+  def fullscreen
+    @document = Document.find(params[:document_id])
+    @task = @document.task
+
+    respond_to do |format|
+      format.html 
     end
   end
   

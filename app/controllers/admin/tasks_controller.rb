@@ -1,6 +1,6 @@
 class Admin::TasksController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_school_admin
+  before_filter :is_school_admin, except: [:show_help]
   before_filter :load_assignment
   before_filter :load_toolbar
   before_filter :load_school
@@ -10,7 +10,11 @@ class Admin::TasksController < ApplicationController
     @tasks = @assignment.tasks.all 
   end
 
-  def show
+  def show_help
+    @task = Task.find(params[:task_id])
+    respond_to do |format|
+      format.js
+    end
   end
   
   def sort

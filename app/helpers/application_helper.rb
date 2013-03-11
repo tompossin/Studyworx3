@@ -69,21 +69,9 @@ module ApplicationHelper
   # * With this settup I could conceivably add other content_types later.
   def smart_edit(content_type=0,save_url)
     if content_type == 1
-      render "shared/wysihtml5_js"
+      render "shared/wysihtml5_js", {url: save_url}
     else
-      render "shared/autosave", {url: save_url}
-    end
-  end
-  
-  # This loads the appropriate toolbar for the content_type
-  # * 1 == html
-  # * 0 == markdown (Default)
-  # * With this settup I could conceivably add other content_types later.
-  def smart_toolbar(content_type,md_toobar_partial_name)
-    if content_type == 1
-      render "shared/wysihtml5_toolbar"
-    else
-      render md_toobar_partial_name
+      render "shared/autosave_js", {url: save_url}
     end
   end
   

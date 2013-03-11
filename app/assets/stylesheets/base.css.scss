@@ -37,20 +37,25 @@ td {
   border-top: solid gray 1px;
 }
 
-h1{
+h1,h2,h3,h4,h5,h6 {
   font-family: Garamond, Georgia;
   font-style: italic;
   text-align: left;
 }
-h2 {
-  font-family: Garamond, Georgia;
-  font-style: italic;
-  text-align: left;
+
+h4 {
+  font-size: 125%;
+  border-bottom: solid 1px black;
 }
-h3 {
-  font-family: Garamond, Georgia;
-  font-style: italic;
-  text-align: left;
+h5 {
+  font-size: 125%;
+  color: green;
+  border-bottom: solid 1px green;
+}
+h6 {
+  font-size: 125%;
+  color: red;
+  border-bottom: solid 1px red;
 }
 
 ul {
@@ -100,16 +105,25 @@ label {
 }
 
 blockquote {
-  font-size: 96%;
-  margin-left: 16px;
+  margin-left: 1em;
+  margin-right: 1em;
+  blockquote {
+    color:green;
+    margin-left: 0px;
+    blockquote {
+      color: red;
+      margin-left: 0px;
+    }
+  }
 }
 
 
 
 code {
   display: block;
-  background-color: black;
-  color: white;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  padding: 3px;
 }
 
 #alert {
@@ -143,6 +157,7 @@ code {
   overflow: auto;
   background-color: white;
   border-radius: 10px;
+  border: solid 1px gray;
   top: 40px;
   width: 62%;
   height: 90%;
@@ -221,6 +236,7 @@ code {
 }
 
 #popup {
+  display:none;
   position: fixed;
   margin-left: 67%;
   width:30%;
@@ -231,6 +247,12 @@ code {
   font-size: 10pt;
   height: 85%;
   overflow: auto; 
+}
+
+#popup_content {
+  float: left;
+  width:100%;
+  position: relative;
 }
 
 #profile {
@@ -348,6 +370,19 @@ code {
     padding-right: 16px;
   }
 }
+.fixed_position {
+  position: fixed;
+  background-color: black;
+}
+.fullscreen {
+  display: none;
+  background-color: white;
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+}
 .box_trans {
   background-color: rgba(0,0,0,.8);
   border-radius: 8px;
@@ -356,6 +391,7 @@ code {
   color: white;
 }
 .box_paper {
+  float:left;
   background-color: #f9f9f9;
   border-radius: 10px;
   width: 96%;

@@ -1,18 +1,20 @@
-
-<%= form_for(@document,{remote: true}) do |f| %>
+<div id="editor_container" >
+  <%= form_for(@document,{remote: true, style: "height:100%;"}) do |f| %>
+    
+    <%= include_form_validation_errors(@document) %>
+    
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :school_id %>
+    <%= f.hidden_field :assignment_id %>
+    <%= f.hidden_field :task_id %>
+    <%= f.hidden_field :content_type %>
+    
+    <%= render "toolbar_markdown" %>
+    <%= render "shared/wysihtml5_toolbar" if @document.content_type == 1 %>
+    
+    <div style="width:100%;height:100%;" >
+      <%= f.text_area :content,  { rows: "24",id: 'wysihtml5-textarea', style: "width:96%;"} %>
+    </div>
   
-  <%= include_form_validation_errors(@document) %>
-  
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :school_id %>
-  <%= f.hidden_field :assignment_id %>
-  <%= f.hidden_field :task_id %>
-  <%= f.hidden_field :content_type %>
-  
-  <%= smart_toolbar(@document.content_type, "toolbar_markdown")%>
-  
-  <div class="field">
-    <%= f.text_area :content, { id: 'wysihtml5-textarea', style: "width:96%"} %>
-  </div>
-
-<% end %>
+  <% end %>
+</div>

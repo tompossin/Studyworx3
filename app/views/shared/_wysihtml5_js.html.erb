@@ -4,4 +4,24 @@
     stylesheets:  "<%= stylesheet_path('application') %>",
     parserRules:  wysihtml5ParserRules
   });
+  
+// This is the autosave code
+// I may need to go back to timed saves this triggers a lot of saves.
+  $("a").bind("click",function(){
+      autoSavePost();
+  });
+// This is the actual autosave function
+  function autoSavePost() {
+    $.ajax({
+      type: "PUT",
+      url: "<%=j url %>",
+      data: $('form').serialize(),
+      dataType: "script"
+    });
+     
+  }
+  
+  
+  
+  
 </script>

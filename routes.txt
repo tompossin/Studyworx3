@@ -54,8 +54,10 @@
                        admin_version GET    /admin/versions/:id(.:format)                                                              admin/versions#show
                                      PUT    /admin/versions/:id(.:format)                                                              admin/versions#update
                                      DELETE /admin/versions/:id(.:format)                                                              admin/versions#destroy
+          admin_assignment_show_help GET    /admin/assignments/:assignment_id/show_help(.:format)                                      admin/assignments#show_help
            showmod_admin_assignments GET    /admin/assignments/showmod(.:format)                                                       admin/assignments#showmod
               sort_admin_assignments POST   /admin/assignments/sort(.:format)                                                          admin/assignments#sort
+     admin_assignment_task_show_help GET    /admin/assignments/:assignment_id/tasks/:task_id/show_help(.:format)                       admin/tasks#show_help
          sort_admin_assignment_tasks POST   /admin/assignments/:assignment_id/tasks/sort(.:format)                                     admin/tasks#sort
               admin_assignment_tasks GET    /admin/assignments/:assignment_id/tasks(.:format)                                          admin/tasks#index
                                      POST   /admin/assignments/:assignment_id/tasks(.:format)                                          admin/tasks#create
@@ -189,6 +191,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                     document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions
+                 document_fullscreen GET    /documents/:document_id/fullscreen(.:format)                                               documents#fullscreen
+                     document_normal GET    /documents/:document_id/normal(.:format)                                                   documents#normal
              document_update_endnote PUT    /documents/:document_id/update_endnote(.:format)                                           documents#update_endnote
                 document_toggle_type PUT    /documents/:document_id/toggle_type(.:format)                                              documents#toggle_type
                            documents GET    /documents(.:format)                                                                       documents#index

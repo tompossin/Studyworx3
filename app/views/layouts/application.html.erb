@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Studyworx</title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <script>
@@ -24,13 +24,20 @@
     	<% else %>
     	 <%= render 'layouts/login'%>
       <% end %>
-    	<%= render "layouts/alert"%>
   	</div>
-  	<div id="popup" class="invisible">
-  	  <div>
-  	    <%=link_to "Close", close_popup_path,{remote: true, id: "popup_cancel"} %>
-  	  </div>
-  	  <div id="popup_content"></div>
+  	
+  	<div id="fullscreen_container" class="fullscreen">
+  	  <%= yield :fullscreen %>
   	</div>
+  	
+  	<div id="popup">
+      <div id="popup_cancel" >
+        <%=link_to "Close", close_popup_path,{remote: true, class: "noauto"} %>
+      </div>
+      <div id="popup_content">
+      </div>
+    </div>
+    
+  	<%= render "layouts/alert"%>
   </body>
 </html>

@@ -3,7 +3,7 @@
 one:
   book_id: 1
   version_id: 1
-  p_order: 1
+  position: 1
   verse_count: 1
   startref: MyString
   endref: MyString
@@ -11,7 +11,7 @@ one:
 two:
   book_id: 1
   version_id: 1
-  p_order: 1
+  position: 1
   verse_count: 1
   startref: MyString
   endref: MyString

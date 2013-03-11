@@ -1,5 +1,4 @@
-<div id="wysihtml5-toolbar" >
-  <span class="cell"><%= submit_tag "save" %></span>
+<div id="wysihtml5-toolbar" class="toolbar" >
   <a data-wysihtml5-command="bold" title="Bold"><%=image_tag("tb/text-bold.png")%></a>
   <a data-wysihtml5-command="italic" title="Italic"><%=image_tag("tb/text_italic.png")%></a>
   <a data-wysihtml5-command="underline" title="Underline"><%=image_tag("tb/edit-underline.png")%></a>
@@ -25,7 +24,6 @@
 
   <a data-wysihtml5-command="insertImage" title="Insert Image"><%=image_tag("tb/image-map.png")%></a>
   <a data-wysihtml5-command="createLink" title="Insert Link"><%=image_tag("tb/link.png")%></a>
-  <span class="red"> NO_AUTOSAVE_BE_CAREFUL</span>
  
   <!--This is the dialog box for Images-->
   <div data-wysihtml5-dialog="insertImage" style="display: none;">

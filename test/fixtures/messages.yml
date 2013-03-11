@@ -5,21 +5,19 @@ one:
   sender_id: 1
   recipient_id: 1
   school_id: 1
-  has_read: false
-  archived: false
-  sender_trashed: false
-  recipient_trashed: false
+  sender_read: false
+  recipient_read: false
   subject: MyString
   body: MyText
+  team_id: 1
 
 two:
   parent_id: 1
   sender_id: 1
   recipient_id: 1
   school_id: 1
-  has_read: false
-  archived: false
-  sender_trashed: false
-  recipient_trashed: false
+  sender_read: false
+  recipient_read: false
   subject: MyString
   body: MyText
+  team_id: 1
