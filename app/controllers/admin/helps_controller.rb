@@ -20,7 +20,7 @@ class Admin::HelpsController < ApplicationController
   def edit
     @help = Help.find(params[:id])
   end
-  
+
   def create
     @help = Help.create(params[:help])
     respond_to do |format|
@@ -30,9 +30,15 @@ class Admin::HelpsController < ApplicationController
   
   def update
     @help = Help.find(params[:id])
+    
     respond_to do |format|
       if @help.update_attributes(params[:help])
-        format.js {render "shared/save_success"}
+        unless params[:autopreview]
+          format.js {render "shared/save_success"}
+        else
+          @autopreview = @help
+          format.js {render "shared/autopreview"}
+        end
       else
         format.js {render "shared/save_failed"}
       end

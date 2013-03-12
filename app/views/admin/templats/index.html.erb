@@ -1,7 +1,13 @@
 <div id="content-large">
   <article>
+    <p id="breadcrumbs">
+      <%=link_to "Admin Tools", admin_tools_index_path %>
+    </p>
     <h1><%= @school.name%> - Templates</h1>
-    <p><%=link_to "Create a new Template", new_admin_school_templat_path(@school), remote: true %></p>
+    
+    <p>
+      <%=link_to "Create a new Template", new_admin_school_templat_path(@school), remote: true %>
+    </p>
     
     <div id="templat_area">
       <% unless @templats.empty? %>

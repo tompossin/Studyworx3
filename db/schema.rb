@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309015156) do
+ActiveRecord::Schema.define(:version => 20130311215400) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -236,8 +236,9 @@ ActiveRecord::Schema.define(:version => 20130309015156) do
     t.integer  "school_id"
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "content_type", :default => 0
   end
 
   add_index "scoresheets", ["school_id"], :name => "index_scoresheets_on_school_id"

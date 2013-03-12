@@ -1,9 +1,12 @@
 <div id="content-large">
   <article>
+    <p id="breadcrumbs">
+      <%=link_to "Admin Tools", admin_tools_index_path %>
+    </p>
     <h1><%= @school.name %> - Scoresheets</h1>
     <p>Choose a scoresheet from the list below to edit or create a new one.</p>
     <p>
-      <%=link_to "Create a new scoresheet", new_admin_school_scoresheet_path(@school),remote: true %>
+      <%=link_to "Create a new scoresheet", new_admin_school_scoresheet_path(@school) %>
     </p>
     <div class="float_left limited">
       <div id="scoresheet_element">
@@ -17,7 +20,7 @@
               <div class="trow <%= cycle("odd","even")%>" style="width:100%;">
                 <div class="cell" style="width:50%;"><%= s.name %></div>
                 <div class="cell" style="width:40%;">
-                  <%=link_to "edit", edit_admin_school_scoresheet_path(@school,s), remote: true %> 
+                  <%=link_to "edit", edit_admin_school_scoresheet_path(@school,s) %> 
                   <%=link_to "delete", admin_school_scoresheet_path(@school,s), method: :delete, data: { confirm: 'Are you sure?'} %>
                 </div>
               </div>   

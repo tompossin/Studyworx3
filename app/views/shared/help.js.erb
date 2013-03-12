@@ -1,4 +1,4 @@
-$('#popup').removeClass('invisible');
-$('#popup').addClass('visible');
-$('#popup_content').html("<%=j render @partial %>");
+$('#popup').show();
+$('#popup_cancel').show();
+$('#popup_content').html("<%=j render "shared/help", {h: @help} %>");
 

@@ -1,8 +1,13 @@
-<%=render "shared/autosave", { url: admin_help_path(@help) } %>
+<%=render "shared/autosave_js", { url: admin_help_path(@help) } %>
 <%=form_for [:admin,@help], {remote: true} do |f| %>
   <div class="toolbar">
-    <span class="cell"><%= f.submit :save %></span>
+    <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink" %></span>
+    <span class="cell">&nbsp;</span>
     <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), admin_help_path(@help),{remote: true,title: "Preview Help file"} if @help.id %></span>
+    <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20"),help_path(1),{class: "noauto",remote: true, title: "View Markdown Cheatsheet"} %></span>
+    <span class="cell">|</span>
+    <span class="cell"><%= render text: "Auto-Preview?" if @help.content_type == 0 %></span><span class="cell"><%=check_box_tag "autopreview" if @help.content_type == 0 %></span>
+    <span class="cell">|</span>
   </div>  
   <label>Title:</label>
   <%= f.text_field :title %><br />

@@ -15,6 +15,7 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.find_or_create(current_user.id, params[:school_id], params[:assignment_id], params[:task_id])
     endnote = Endnote.find_or_create_by_document_id(@document.id)
+    @normal = true
 
     respond_to do |format|
       format.html 
@@ -24,25 +25,37 @@ class DocumentsController < ApplicationController
   def normal
     @document = Document.find(params[:document_id])
     @task = @document.task
+    @normal = true
+    
     respond_to do |format|
       format.html { render :new }
+    end
+  end
+  
+  # Fullscreen editing
+  def fullscreen
+    @document = Document.find(params[:document_id])
+    @task = @document.task
+    @normal = false
+
+    respond_to do |format|
+      format.html 
     end
   end
 
 
   # Updates document
-  # TODO autosave
   # TODO endnote w/ autosave
-  # TODO check ownership
   def update
-    @document = Document.find(params[:id])
+    @document = Document.where("user_id = ? and id = ?",current_user.id,params[:id]).first
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
+        @autopreview = @document
         unless params[:autopreview]
           format.js { render "shared/save_success" }
         else
-          format.js { render "autopreview" }
+          format.js { render "shared/autopreview" }
         end
       else
         format.js { render "shared/save_failed" }
@@ -52,9 +65,8 @@ class DocumentsController < ApplicationController
 
   # DELETE /documents/1
   # TODO Implement w/ AJAX
-  # TODO check ownership
   def destroy
-    @document = Document.find(params[:id])
+    @document = Document.where("user_id = ? and id = ?",current_user.id,params[:id]).first
     @document.destroy
 
     respond_to do |format|
@@ -114,16 +126,6 @@ class DocumentsController < ApplicationController
     @task = Task.find(@document.task_id)
     respond_to do |format|
       format.html {render :new }
-    end
-  end
-  
-  # Fullscreen editing
-  def fullscreen
-    @document = Document.find(params[:document_id])
-    @task = @document.task
-
-    respond_to do |format|
-      format.html 
     end
   end
   

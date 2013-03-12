@@ -1,8 +1,11 @@
 <div id="content-large">
   <article>
+    <p id="breadcrumbs">
+      <%=link_to "Homeroom", homeroom_school_path(@school)%>
+    </p>
+    <h2><%= @assignment.name %></h2>
+    
     <div class="float_left limited">
-      <h2><%= @assignment.name %></h2>
-      <%=link_to "<Homeroom", homeroom_school_path(@school)%>
       <p class="title large">
         Assignment Tasks
       </p>

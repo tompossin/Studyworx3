@@ -10,19 +10,24 @@ class Admin::ScoresheetsController < ApplicationController
 
   def show
     @scoresheet = @school.scoresheets.find(params[:id])
+    @autopreview = @scoresheet
+    
+    respond_to do |format|
+      format.js 
+    end
   end
 
   def edit
     @scoresheet = Scoresheet.find(params[:id])
     respond_to do |format|
-      format.js
+      format.html
     end
   end
 
   def new
     @scoresheet = @school.scoresheets.new
     respond_to do |format|
-      format.js
+      format.html
     end
   end
   
@@ -38,9 +43,18 @@ class Admin::ScoresheetsController < ApplicationController
   def update
     @scoresheet = Scoresheet.find(params[:id])
     @scoresheet.update_attributes(params[:scoresheet])
-    @scoresheet.save
+    
     respond_to do |format|
-      format.html {redirect_to admin_school_scoresheets_path(@school)}
+      if @scoresheet.save
+        @autopreview = @scoresheet
+        unless params[:autopreview]
+          format.js { render "shared/save_success" }
+        else
+          format.js { render "shared/autopreview" }
+        end
+      else
+        format.js {render "shared/save_failed"}
+      end
     end
   end
   

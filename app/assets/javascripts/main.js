@@ -2,6 +2,11 @@
  * @author Tom Possin
  */
 
+$(window).load(function(){
+  $('#alert').fadeOut(5000);
+  $('#notice').fadeOut(5000);
+});
+
 	function ShowHide(divId)
 	{
 		if(document.getElementById(divId).style.display == 'none')

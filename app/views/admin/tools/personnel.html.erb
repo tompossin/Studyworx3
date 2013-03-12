@@ -7,6 +7,9 @@
         </h1>
         <p class="title small">Welcome <%=current_user.fullname %></p>
       </header>
+        <p id="breadcrumbs">
+          <%=link_to "Admin Tools", admin_tools_index_path %>
+        </p>
         <section class="float_left limited">
           <h2>Current Personnel</h2>
           <div class="theader">

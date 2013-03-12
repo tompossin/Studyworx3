@@ -8,12 +8,12 @@
           <%= content if content %>
         </div>
         <div id="scratchpad_heading">
-          <div class="tab"><%=link_to(image_tag("iconic/home_16x16.png"), schools_path,{title: "Start Here"}) if current_user %></div>
-          <div class="tab"><%=link_to(image_tag("iconic/paperclip_14x16.png"), reminder_show_profile_path(current_user.id),{title: "Note to Self", remote: true}) if current_user %></div>     
-          <div class="tab"><%=link_to(image_tag("iconic/lightbulb_10x16.png"), public_show_profile_path(current_user.id),{title: "Public-Thought of the Day", remote: true}) if current_user %></div> 
-          <div class="tab"><%=link_to(image_tag("iconic/comment_stroke_16x14.png"), messages_path,{title: "Messaging", remote: true}) if current_user %></div>
-          <div class="tab"><%=link_to(image_tag("iconic/cloud_16x10.png"), team_messages_path,{title: "Team Messages", remote: true}) if current_user %></div>
-          <div class="tab"><%=link_to(image_tag("iconic/sun_stroke_16x16.png"), teams_path,{title: "Teams Admin"}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/home_16x16.png",size: "16x16"), schools_path,{title: "Start Here"}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/paperclip_14x16.png",size: "16x16"), reminder_show_profile_path(current_user.id),{title: "Note to Self", remote: true}) if current_user %></div>     
+          <div class="tab"><%=link_to(image_tag("iconic/lightbulb_10x16.png",size: "16x16"), public_show_profile_path(current_user.id),{title: "Public-Thought of the Day", remote: true}) if current_user %></div> 
+          <div class="tab"><%=link_to(image_tag("iconic/comment_stroke_16x14.png",size: "16x16"), messages_path,{title: "Messaging", remote: true}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/cloud_16x10.png",size: "16x16"), team_messages_path,{title: "Team Messages", remote: true}) if current_user %></div>
+          <div class="tab"><%=link_to(image_tag("iconic/sun_stroke_16x16.png",size: "16x16"), teams_path,{title: "Teams Admin"}) if current_user %></div>
         </div> 
         <div id="reminder">
           <%= render :partial=>"profiles/reminder"%>

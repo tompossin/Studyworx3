@@ -253,5 +253,5 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                               cancel        /shared/cancel(.:format)                                                                   shared#cancel
                          close_popup        /shared/close_popup(.:format)                                                              shared#close_popup
                            show_user        /teams/show_user/:id(.:format)                                                             teams#show_user
-                         help_format        /shared/format_help(.:format)                                                              shared#format_help
+                                help        /shared/help/:id(.:format)                                                                 shared#help
                                 root        /                                                                                          home#index

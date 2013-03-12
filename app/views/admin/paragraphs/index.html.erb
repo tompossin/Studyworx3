@@ -1,8 +1,13 @@
 <div id="content-large">
   <article>
+    <p id="breadcrumbs">
+      <%=link_to "Choose another book", admin_tools_index_path %>
+    </p>
+    <br />
+    <p>
+      <%=link_to "Add new paragraphs", new_admin_book_paragraph_path(@book) %>
+    </p>
     
-    <%=link_to "Choose another book", admin_tools_index_path %><br />
-    <%=link_to "Add new paragraphs", new_admin_book_paragraph_path(@book) %>
     <h1><%= @book.name %> - Paragraphs - <%= @version.name %></h1>
     
       <% unless @paragraphs.empty? %>

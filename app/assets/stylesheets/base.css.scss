@@ -152,12 +152,31 @@ code {
   padding:10px;
 }
 
+#breadcrumbs {
+  width: 96%;
+  box-shadow: 8px 8px 5px #888888;
+  border: 1px solid #dddddd;
+  border-right: 3px solid #999999;
+  border-left: 4px solid #dedede;
+  border-bottom: 2px solid #bcbcbc;
+  border-radius: 5px 5px 5px 5px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  a {
+    margin-left: 1em;
+  }
+}
+
 #preview {
   position: absolute;
   overflow: auto;
   background-color: white;
   border-radius: 10px;
-  border: solid 1px gray;
+  border-top: solid 2px gray;
+  border-left: solid 1px gray;
+  border-right: solid 3px gray;
+  border-bottom: solid 5px gray;
+  box-shadow: 10px 10px 5px #000000;
   top: 40px;
   width: 62%;
   height: 90%;
@@ -378,6 +397,7 @@ code {
   display: none;
   background-color: white;
   position:absolute;
+  padding: 1em;
   left: 0px;
   top: 0px;
   width: 100%;

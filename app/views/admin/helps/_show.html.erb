@@ -1,4 +1,5 @@
-<div class="box_paper">
+<div id="preview">
+  <%=link_to "close", cancel_path, {remote: true, id: "cancel"} %>
   <h3><%= help.title %></h3>
   <div>
     <%= smart_format(help.content_type, help.content) %>

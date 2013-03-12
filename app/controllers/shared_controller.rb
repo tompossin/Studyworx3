@@ -60,8 +60,9 @@ class SharedController < ApplicationController
   # ----------
   
   # Markdown Help
-  def format_help
-    @partial = "format_help"
+  def help
+    @help = Help.find(params[:id])
+
     respond_to do |format|
       format.js {render :help }
     end

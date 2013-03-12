@@ -1,11 +1,23 @@
+<%=render "shared/autosave_js", { url: admin_school_scoresheet_path(@school,@scoresheet) } %>
+
 <%= form_for [:admin, @school, @scoresheet] do |f|  %>
+
+  <div class="toolbar">
+    <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink" %></span>
+    <span class="cell">&nbsp;</span>
+    <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), admin_school_scoresheet_path(@school,@scoresheet),{remote: true,title: "Preview Scoresheet"} if @scoresheet.id %></span>
+    <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20"),help_path(1),{class: "noauto",remote: true, title: "View Markdown Cheatsheet"} %></span>
+    <span class="cell">|</span>
+    <span class="cell"><%= render text: "Auto-Preview?" if @scoresheet.content_type == 0 %></span><span class="cell"><%=check_box_tag "autopreview" if @scoresheet.content_type == 0 %></span>
+    <span class="cell">|</span>
+  </div> 
 
   <%= include_form_validation_errors(@scoresheet) %>
 
   <p>Name</p>
   <%= f.text_field :name, {:style=>"width:300px;"} %>
   <p>Content</p>
-  <%= f.text_area :content, {:style=>"width:300px;height:350px;"} %>
+  <%= f.text_area :content, {:style=>"width:96%;height:300px;"} %>
   <br /><%= f.submit :save %>
 <% end %>
 

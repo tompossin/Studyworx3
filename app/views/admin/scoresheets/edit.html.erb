@@ -1,0 +1,14 @@
+
+<div id="content-large">
+  <article>
+    <p id="breadcrumbs">
+      <%=link_to "Scoresheet Admin", admin_school_scoresheets_path(@school.id) %>
+    </p>
+    <h1>Edit Scoresheet - <%= @scoresheet.name %></h1>
+    <%=render "admin/scoresheets/form" %>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content)%>
+
+<%= smart_edit(@scoresheet.content_type, admin_school_scoresheet_path(@school,@scoresheet)) %>
