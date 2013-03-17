@@ -1,18 +1,33 @@
+<%=render "shared/autosave_js", { url: admin_school_templat_path(@school,@templat) } %>
+
 <%=form_for [:admin,@school,@templat] do |f| %>
+  <div class="title smaller">Save Ctrl+s | Undo Ctrl+z </div>
+  <div class="toolbar">
+    <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink" %></span>
+    <span class="cell">&nbsp;</span>
+    <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), admin_school_templat_path(@school,@templat),{remote: true,title: "Preview Scoresheet"} if @templat.id %></span>
+    <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20"),help_path(1),{class: "noauto",remote: true, title: "View Markdown Cheatsheet"} %></span>
+    <span class="cell"><%=link_to image_tag("iconic/denied_32x32.png",size: "20x20"), close_popup_path, {class: "noauto",remote: true, title: "Close popup viewer"} %></span>
+
+    <span class="cell seperator"><%=link_to( image_tag("iconic/loop_alt4_32x24.png",size: "32x20"),"#logolink",{id: "autopreview-trigger",title: "click checkbox to auto-preview"}) if @templat.content_type == 0 %><%= check_box_tag( "autopreview" ) if @templat.content_type == 0 %></span>
+
+    <span class="cell">&nbsp;&nbsp;&nbsp;</span>
+    <span class="cell"><%=link_to image_tag("iconic/x_28x28.png",size: "20x20"),admin_school_templat_path(@school,@templat),{method: "delete",title: "Delete", data: { confirm: 'Are you sure?'}}%></span>
+  
+  </div>
 
   <%= include_form_validation_errors(@templat) %>
 
-  <div class="float_left limited">
-    <p class="title smaller">Name</p>
-    <%= f.text_field :name, {:style=>"width:92%;"} %>
-    <p class="title smaller">
-      Make available to everyone? <%= f.check_box :public %>
+  <div class="float_left">
+    <p>
+      <span class="title smaller">Name</span>     
+      <span class="title smaller"><%= f.text_field :name %></span>   
     </p>
-  </div>
-  <div class="float_left limited">
-    <p class="title smaller">Create Template content below</p>
-    <%= f.text_area :content, {:style=>"width:100%;height:300px;"} %>
-    <br /><%= f.submit :save %>
+    <p>
+      <span class="title smaller">Content</span>&nbsp;&nbsp;&nbsp;
+      <span class="title smaller">Make available to everyone? <%= f.check_box :public %></span>
+    </p>
+    <%= f.text_area :content, {:style=>"width:96%",rows: "20"} %>
   </div>
 <% end%>
 

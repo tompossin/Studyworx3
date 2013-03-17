@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require wysihtml5
 //= require wysi_advanced
+//= require Markdown.Converter
 //= require main

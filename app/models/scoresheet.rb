@@ -1,4 +1,6 @@
 class Scoresheet < ActiveRecord::Base
   belongs_to :school
-  attr_accessible :content, :name, :school_id
+  attr_accessible :content, :name, :school_id, :content_type
+  
+  
 end

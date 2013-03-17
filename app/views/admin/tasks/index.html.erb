@@ -23,18 +23,17 @@
 
 <div id="content-large">
   <article>
+    <div id="breadcrumbs">
+      <%=link_to "Assignments Home", admin_assignments_path %>
+      <%=link_to "Module Home", showmod_admin_assignments_path(mod_id: @assignment.module) %>
+    </div>
     <h1>
       <%= @assignment.name %> 
-      <span class="smallest">
-        &nbsp;&nbsp;
-        <%=link_to "Task List", admin_assignment_tasks_path(@assignment) %> &nbsp;
-        <%=link_to "Module Home", showmod_admin_assignments_path(mod_id: @assignment.module) %> &nbsp;
-        <%=link_to "Assignments Home", admin_assignments_path %>
-      </span>
     </h1>
     <p class="title larger">Task Administration</p>
-    <p>Add or Edit tasks for this assignment below.</p>
-    <p><%=link_to "Add a Task", new_admin_assignment_task_path(@assignment),{ remote: :true }%></p>
+    <p>
+      <%=link_to "Add a Task", new_admin_assignment_task_path(@assignment),{ remote: :true }%>
+    </p>
     <div id="task_area">
       <% unless @tasks.empty? %>
           <div class="theader">

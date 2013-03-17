@@ -54,8 +54,17 @@ class ProfilesController < ApplicationController
   
   # PERSONAL PREFERENCE MEHTODS
   #
-  # This sets the theme of a user.
+  # This toggles between white and the theme of the user.
   def settheme
+    if session[:theme]
+      session[:theme] = false
+    else
+      session[:theme] = true
+    end
+    
+    respond_to do |format|
+      format.html {redirect_to schools_path}
+    end
     
   end
   

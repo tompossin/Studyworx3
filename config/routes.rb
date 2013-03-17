@@ -83,24 +83,27 @@ Studyworx3::Application.routes.draw do
     end
     resources :participants
     resources :assignments do
+			get 'help','time_remaining'
       resources :tasks do
         resources :documents
       end
     end
   end
   resources :documents do
-    get 'endnote','task_instructions','assignment_instructions','fullscreen','normal'
+    get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
     put 'update_endnote', 'toggle_type'
   end
   resources :blogs do
     post 'toggle_content_type'
   end
+  resources :turnins
   resources :profiles do
     member do
       get 'reviewboard', 'reminder_load', 'public_load', 'public_show', 'reminder_show'
-      post 'reviewboard_update', 'settheme', 'reminder_save', 'public_save'
+      post 'reviewboard_update', 'reminder_save', 'public_save'
       put 'bio_save'
     end
+    get 'settheme'
   end
   devise_for :users
   resources :home

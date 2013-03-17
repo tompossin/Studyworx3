@@ -38,6 +38,11 @@ class School < ActiveRecord::Base
   # :section: Available Methods
   # -----------
   
+  # Returns all school staff
+  def staff
+    staff = self.users.where("participants.role_id < 4").all
+    return staff
+  end
   # Returns all active schools
   def self.all_active
     schools = School.where(active: true).all

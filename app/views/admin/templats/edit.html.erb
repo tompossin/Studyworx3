@@ -1,0 +1,15 @@
+<div id="content-large">
+  <article>
+    <div id="breadcrumbs">
+      <%=link_to "Template Home", admin_school_templats_path(@school) %>
+    </div>
+    <h1>Editing <%= @templat.name %></h1>
+
+    <%= render "admin/templats/form"%>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>
+
+<%= smart_edit(@templat.content_type, admin_school_templat_path(@school,@templat)) %>
+

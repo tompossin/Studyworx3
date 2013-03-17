@@ -9,36 +9,42 @@ class Admin::TemplatsController < ApplicationController
   end
 
   def show
+    @templat = @school.templats.find(params[:id])
+    
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit
     @templat = @school.templats.find(params[:id])
     respond_to do |format|
-      format.js
+      format.html
     end
   end
 
   def new
-    @templat = @school.templats.new
+    @templat = @school.templats.create(name: "Add Name...",content: "Add Content here...")
     respond_to do |format|
-      format.js
-    end
-  end
-  
-  def create
-    @templat = @school.templats.new(params[:templat])
-    respond_to do |format|
-      if @templat.save
-        format.html {redirect_to admin_school_templats_path(@school)}
-      end
+      format.html
     end
   end
   
   def update
     @templat = Templat.find(params[:id])
-    @templat.update_attributes(params[:templat])
+    
     respond_to do |format|
-      format.html {redirect_to admin_school_templats_path(@school)}
+      if @templat.update_attributes(params[:templat])
+        unless params[:autopreview]
+          format.js { render "shared/save_success" }
+        else
+          @autopreview = @templat
+          format.js { render "shared/autopreview" }
+        end
+      else
+        format.js {render "shared/save_failed"}
+      end
+      
     end
   end
   

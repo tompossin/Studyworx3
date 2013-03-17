@@ -72,6 +72,10 @@
     
     <li><a href="#method-c-find_or_create">::find_or_create</a>
     
+    <li><a href="#method-c-toggle_type">::toggle_type</a>
+    
+    <li><a href="#method-i-as_file">#as_file</a>
+    
   </ul>
 </nav>
 
@@ -108,6 +112,10 @@
     <li><a href="./Admin/DuedatesController.html">Admin::DuedatesController</a>
   
     <li><a href="./Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
+  
+    <li><a href="./Admin/HelpsController.html">Admin::HelpsController</a>
+  
+    <li><a href="./Admin/HelpsHelper.html">Admin::HelpsHelper</a>
   
     <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -172,6 +180,10 @@
     <li><a href="./Duedate.html">Duedate</a>
   
     <li><a href="./Endnote.html">Endnote</a>
+  
+    <li><a href="./FormatContent.html">FormatContent</a>
+  
+    <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -310,7 +322,80 @@
       </div><!-- find_or_create-method -->
 
     
+      <div id="method-c-toggle_type" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">toggle_type</span><span
+            class="method-args">(document_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="toggle_type-source">
+            <pre><span class="ruby-comment"># File app/models/document.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">toggle_type</span>(<span class="ruby-identifier">document_id</span>)
+  <span class="ruby-identifier">document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">document_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">document</span>.<span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">document</span>.<span class="ruby-identifier">content_type</span> = <span class="ruby-value">1</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">document</span>.<span class="ruby-identifier">content_type</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">document</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">document</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- toggle_type-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- toggle_type-method -->
+
+    
     </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-as_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_file</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="as_file-source">
+            <pre><span class="ruby-comment"># File app/models/document.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_file</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- as_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- as_file-method -->
+
+    
+    </section><!-- public-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

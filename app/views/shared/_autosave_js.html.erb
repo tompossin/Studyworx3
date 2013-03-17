@@ -1,5 +1,10 @@
-<!-- You need to pass the url variable_autosave.html.erb_autosave.html.erb to this script as a local variable when you call this partial -->
+
 <script type="text/javascript">
+/*
+ * You need to pass the url variable to this script as a local variable when you call this partial
+ * Put this is erb brackets on your page - render "shared/autosave", { url: path_to_update } 
+ * Tom Possin
+ */
   jQuery(function() {
     // Autosaves every nth keystroke
     var ksToAutosave = 25;
@@ -11,9 +16,15 @@
         autoSavePost();
       }     
     });
-    // Save on click unless the class="noauto"
-    $('a').not(".noauto").bind("click", function(){
-      autoSavePost();
+    
+    // Trigger a click on the named checkbox when this link is clicked
+    $('#autopreview-trigger').bind("click",function(){
+      $('#autopreview').trigger("click");
+        if(this.checked){
+          $(this).prop("checked", true);
+        }else{
+          $(this).prop("checked", false);
+        }
     });
     // Do autosave if checkbox is clicked and the value is "checked"
     $('input[type=checkbox]').bind("click",function(){
@@ -23,6 +34,11 @@
         $('#popup').hide();
       }
     });
+    // Save on click unless the class="noauto"
+    $('a').not(".noauto").bind("click", function(){
+      autoSavePost();
+    });
+    // T
     // capture ctrl+s to trigger autoSavePost
     $(document).keydown(function(e) {
         if ( (e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey) )

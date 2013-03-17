@@ -133,6 +133,10 @@
   
     <li><a href="./Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
   
+    <li><a href="./Admin/HelpsController.html">Admin::HelpsController</a>
+  
+    <li><a href="./Admin/HelpsHelper.html">Admin::HelpsHelper</a>
+  
     <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
     <li><a href="./Admin/ParagraphsHelper.html">Admin::ParagraphsHelper</a>
@@ -196,6 +200,10 @@
     <li><a href="./Duedate.html">Duedate</a>
   
     <li><a href="./Endnote.html">Endnote</a>
+  
+    <li><a href="./FormatContent.html">FormatContent</a>
+  
+    <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -323,7 +331,7 @@ avoid route conflicts with devise.</p>
 
           
           <div class="method-source-code" id="bio_save-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 129</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bio_save</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">note</span>
   <span class="ruby-ivar">@note</span>.<span class="ruby-identifier">bio</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:note</span>][<span class="ruby-value">:bio</span>]
@@ -398,7 +406,7 @@ associated notes record This will create one for them.</p>
 
           
           <div class="method-source-code" id="public_load-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 103</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">public_load</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -439,7 +447,7 @@ associated notes record This will create one for them.</p>
 
           
           <div class="method-source-code" id="public_save-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 119</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">public_save</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -474,7 +482,7 @@ associated notes record This will create one for them.</p>
 
           
           <div class="method-source-code" id="public_show-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 96</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">public_show</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;profiles/public_save&quot;</span>}
@@ -506,7 +514,7 @@ associated notes record This will create one for them.</p>
 
           
           <div class="method-source-code" id="reminder_load-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reminder_load</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -547,7 +555,7 @@ associated notes record This will create one for them.</p>
 
           
           <div class="method-source-code" id="reminder_save-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reminder_save</span>
   <span class="ruby-ivar">@note</span> = <span class="ruby-constant">Note</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -582,7 +590,7 @@ associated notes record This will create one for them.</p>
 
           
           <div class="method-source-code" id="reminder_show-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 64</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reminder_show</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;profiles/reminder_save&quot;</span>}
@@ -678,13 +686,22 @@ review board status</p>
           
           <p>PERSONAL PREFERENCE MEHTODS</p>
 
-<p>This sets the theme of a user.</p>
+<p>This toggles between white and the theme of the user.</p>
           
 
           
           <div class="method-source-code" id="settheme-source">
             <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">settheme</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>]
+    <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>] = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_path</span>}
+  <span class="ruby-keyword">end</span>
   
 <span class="ruby-keyword">end</span></pre>
           </div><!-- settheme-source -->
@@ -751,7 +768,7 @@ non-existent notes in the associated record.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 147</span>
+            <pre><span class="ruby-comment"># File app/controllers/profiles_controller.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])

@@ -160,6 +160,8 @@
                   school_participant GET    /schools/:school_id/participants/:id(.:format)                                             participants#show
                                      PUT    /schools/:school_id/participants/:id(.:format)                                             participants#update
                                      DELETE /schools/:school_id/participants/:id(.:format)                                             participants#destroy
+              school_assignment_help GET    /schools/:school_id/assignments/:assignment_id/help(.:format)                              assignments#help
+    school_assignment_time_remaining GET    /schools/:school_id/assignments/:assignment_id/time_remaining(.:format)                    assignments#time_remaining
     school_assignment_task_documents GET    /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents(.:format)          documents#index
                                      POST   /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents(.:format)          documents#create
  new_school_assignment_task_document GET    /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents/new(.:format)      documents#new
@@ -193,6 +195,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions
                  document_fullscreen GET    /documents/:document_id/fullscreen(.:format)                                               documents#fullscreen
                      document_normal GET    /documents/:document_id/normal(.:format)                                                   documents#normal
+                      document_print GET    /documents/:document_id/print(.:format)                                                    documents#print
+                   document_download GET    /documents/:document_id/download(.:format)                                                 documents#download
              document_update_endnote PUT    /documents/:document_id/update_endnote(.:format)                                           documents#update_endnote
                 document_toggle_type PUT    /documents/:document_id/toggle_type(.:format)                                              documents#toggle_type
                            documents GET    /documents(.:format)                                                                       documents#index
@@ -210,16 +214,23 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                                 blog GET    /blogs/:id(.:format)                                                                       blogs#show
                                      PUT    /blogs/:id(.:format)                                                                       blogs#update
                                      DELETE /blogs/:id(.:format)                                                                       blogs#destroy
+                             turnins GET    /turnins(.:format)                                                                         turnins#index
+                                     POST   /turnins(.:format)                                                                         turnins#create
+                          new_turnin GET    /turnins/new(.:format)                                                                     turnins#new
+                         edit_turnin GET    /turnins/:id/edit(.:format)                                                                turnins#edit
+                              turnin GET    /turnins/:id(.:format)                                                                     turnins#show
+                                     PUT    /turnins/:id(.:format)                                                                     turnins#update
+                                     DELETE /turnins/:id(.:format)                                                                     turnins#destroy
                  reviewboard_profile GET    /profiles/:id/reviewboard(.:format)                                                        profiles#reviewboard
                reminder_load_profile GET    /profiles/:id/reminder_load(.:format)                                                      profiles#reminder_load
                  public_load_profile GET    /profiles/:id/public_load(.:format)                                                        profiles#public_load
                  public_show_profile GET    /profiles/:id/public_show(.:format)                                                        profiles#public_show
                reminder_show_profile GET    /profiles/:id/reminder_show(.:format)                                                      profiles#reminder_show
           reviewboard_update_profile POST   /profiles/:id/reviewboard_update(.:format)                                                 profiles#reviewboard_update
-                    settheme_profile POST   /profiles/:id/settheme(.:format)                                                           profiles#settheme
                reminder_save_profile POST   /profiles/:id/reminder_save(.:format)                                                      profiles#reminder_save
                  public_save_profile POST   /profiles/:id/public_save(.:format)                                                        profiles#public_save
                     bio_save_profile PUT    /profiles/:id/bio_save(.:format)                                                           profiles#bio_save
+                    profile_settheme GET    /profiles/:profile_id/settheme(.:format)                                                   profiles#settheme
                             profiles GET    /profiles(.:format)                                                                        profiles#index
                                      POST   /profiles(.:format)                                                                        profiles#create
                          new_profile GET    /profiles/new(.:format)                                                                    profiles#new

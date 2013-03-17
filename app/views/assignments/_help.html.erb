@@ -1,0 +1,6 @@
+<div class="box_paper">
+	<h3>Assignment Instructions</h3>
+	<%= smart_format(@assignment.instructions) if @assignment.instructions %>
+	<h3>Available Resources</h3>
+	<%= smart_format(@assignment.resources) if @assignment.resources %>
+</div>

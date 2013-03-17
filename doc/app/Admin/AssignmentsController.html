@@ -80,7 +80,7 @@
     
     <li><a href="#method-i-new">#new</a>
     
-    <li><a href="#method-i-show">#show</a>
+    <li><a href="#method-i-show_help">#show_help</a>
     
     <li><a href="#method-i-showmod">#showmod</a>
     
@@ -124,6 +124,10 @@
     <li><a href="../Admin/DuedatesController.html">Admin::DuedatesController</a>
   
     <li><a href="../Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
+  
+    <li><a href="../Admin/HelpsController.html">Admin::HelpsController</a>
+  
+    <li><a href="../Admin/HelpsHelper.html">Admin::HelpsHelper</a>
   
     <li><a href="../Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -188,6 +192,10 @@
     <li><a href="../Duedate.html">Duedate</a>
   
     <li><a href="../Endnote.html">Endnote</a>
+  
+    <li><a href="../FormatContent.html">FormatContent</a>
+  
+    <li><a href="../Help.html">Help</a>
   
     <li><a href="../HomeController.html">HomeController</a>
   
@@ -304,7 +312,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment</span>])
   <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">school_id</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>
@@ -342,7 +350,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@mod</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">module</span>
@@ -381,7 +389,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@tasks</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">all</span>
@@ -445,7 +453,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -459,10 +467,10 @@
       </div><!-- new-method -->
 
     
-      <div id="method-i-show" class="method-detail ">
+      <div id="method-i-show_help" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">show</span><span
+          <span class="method-name">show_help</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -474,18 +482,22 @@
           
 
           
-          <div class="method-source-code" id="show-source">
+          <div class="method-source-code" id="show_help-source">
             <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_help</span>
+  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- show-source -->
+          </div><!-- show_help-source -->
           
         </div>
 
         
 
         
-      </div><!-- show-method -->
+      </div><!-- show_help-method -->
 
     
       <div id="method-i-showmod" class="method-detail ">
@@ -536,7 +548,7 @@
 
           
           <div class="method-source-code" id="sort-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sort</span>
   <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:module</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:mod_id</span>])
   <span class="ruby-ivar">@assignments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
@@ -573,7 +585,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment</span>])

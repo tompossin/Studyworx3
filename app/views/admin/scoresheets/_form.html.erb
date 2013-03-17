@@ -1,17 +1,20 @@
 <%=render "shared/autosave_js", { url: admin_school_scoresheet_path(@school,@scoresheet) } %>
 
 <%= form_for [:admin, @school, @scoresheet] do |f|  %>
-
+  <div class="title smaller">Save Ctrl+s | Undo Ctrl+z </div>
   <div class="toolbar">
     <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink" %></span>
     <span class="cell">&nbsp;</span>
     <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), admin_school_scoresheet_path(@school,@scoresheet),{remote: true,title: "Preview Scoresheet"} if @scoresheet.id %></span>
     <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20"),help_path(1),{class: "noauto",remote: true, title: "View Markdown Cheatsheet"} %></span>
-    <span class="cell">|</span>
-    <span class="cell"><%= render text: "Auto-Preview?" if @scoresheet.content_type == 0 %></span><span class="cell"><%=check_box_tag "autopreview" if @scoresheet.content_type == 0 %></span>
-    <span class="cell">|</span>
-  </div> 
+    <span class="cell"><%=link_to image_tag("iconic/denied_32x32.png",size: "20x20"), close_popup_path, {class: "noauto",remote: true, title: "Close popup viewer"} %></span>
 
+    <span class="cell seperator"><%=link_to image_tag("iconic/loop_alt4_32x24.png",size: "32x20"),"#logolink",{id: "autopreview-trigger",title: "click checkbox to auto-preview"} if @scoresheet.content_type == 0 %><%=check_box_tag "autopreview" if @scoresheet.content_type == 0 %></span>
+
+    <span class="cell">&nbsp;&nbsp;&nbsp;</span>
+    <span class="cell"><%=link_to image_tag("iconic/x_28x28.png",size: "20x20"),admin_school_scoresheet_path(@school,@scoresheet),{method: "delete",title: "Delete", data: { confirm: 'Are you sure?'}}%></span>
+    
+  </div> 
   <%= include_form_validation_errors(@scoresheet) %>
 
   <p>Name</p>

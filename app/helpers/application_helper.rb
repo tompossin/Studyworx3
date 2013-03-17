@@ -80,7 +80,7 @@ module ApplicationHelper
   # This object must have a content_type field of the integer type
   # * 0 = markdown
   # * 1 = html
-  def smart_format(content_type,content)
+  def smart_format(content_type=0,content)
     if content_type == 0
       return markdown_to_html(content)
     else
@@ -187,10 +187,6 @@ module ApplicationHelper
     content_tag("div", attributes, &block)
   end
   
-  # This inserts the standard validation errors block into a form
-  def validation_errors_block(formobject)
-    render("/shared/validation_errors_block", {object: formobject})
-  end
   
   def content_type_link(content_type,url)
     if content_type == 1
@@ -204,8 +200,12 @@ module ApplicationHelper
   # Sets the wallpaper
   def set_wallpaper
     if current_user
-      if current_user.wallpaper  
-        return "background-image:url('#{current_user.wallpaper.url}');"
+      if current_user.wallpaper 
+        unless session[:theme] 
+          return "background-image:url('#{current_user.wallpaper.url}');"
+        else
+          return Settings.default_background_color
+        end
       else
         return Settings.default_background_color
       end

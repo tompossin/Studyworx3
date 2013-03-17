@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Studyworx</title>
+    <%= stylesheet_link_tag "base", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <style>
+      @media screen {
+        .noprint {display: block; }
+      }
+        
+      @media print {
+        .noprint {display: none;}
+      } 
+      
+      blockquote {
+        margin-left: 1em;
+        blockquote {
+          margin-left: 1em;
+          color: green;
+          blockquote {
+            margin-left: 1em;
+            color: red;
+          }
+        }
+      } 
+    </style>
+    
+  </head>
+  <body>
+  	<div id='content'>
+
+  	    <%= yield %>
+
+  	</div>
+  </body>
+</html>

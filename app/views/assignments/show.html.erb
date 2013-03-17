@@ -1,31 +1,27 @@
 <div id="content-large">
   <article>
     <p id="breadcrumbs">
-      <%=link_to "Homeroom", homeroom_school_path(@school)%>
+      <span class="cell"><%=link_to "Homeroom", homeroom_school_path(@school)%></span>
     </p>
     <h2><%= @assignment.name %></h2>
+    <div class="toolbar" >
+      <span class="cell"><%=link_to "Instructions/Resources", school_assignment_help_path(@school,@assignment),{remote: true, title: "Click to view Assignment Instructions and Resources."}  %></span>    
+      <span class="cell" ><%=link_to "turn-in",new_turnin_path(assignment_id: @assignment),{remote: true, title: "Click to make this assignment available to your checker."} %></span>
+      <span class="cell" ><%=link_to(image_tag("iconic/clock_16x16.png",size: "16x16"), school_assignment_time_remaining_path(@school,@assignment),{remote: true, title: "Click to view time remaining."}) %></span>
+      <span id="stopwatch" class="cell" > 
+        <%=image_tag("gray/arrow1_w.png",size: "10x10")%> Click to check time remaining
+      </span>
+    </div>
     
-    <div class="float_left limited">
+    <div class="float_left">
       <p class="title large">
-        Assignment Tasks
+        Assignment Tasks <span id="checker" class="smallest red" ><%= " -- Checker: #{@checker.fullname}" if @checker %></span>
       </p>
       <div class="theader">
-        <span class="cell" style="width:30%;">Task Name</span>
-        <span class="cell" style="width:30%;">Task Type</span>
+        <span class="cell" style="width:60%;">Task Name</span>
+        <span class="cell" style="width:25%;">Print/View</span>
       </div>
       <%= render @assignment.tasks %>
-    </div>
-    <div class="float_left limited">
-      <h2>
-        Instructions
-      </h2>
-      <div id="instructions" class="float_left">
-        <%= formatter(@assignment.instructions) %>
-        <h2>
-          Resources
-        </h2>
-        <%= formatter(@assignment.resources) %>
-      </div>
     </div>
   </article>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130311215400) do
+ActiveRecord::Schema.define(:version => 20130316190255) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -294,11 +294,25 @@ ActiveRecord::Schema.define(:version => 20130311215400) do
     t.string   "name"
     t.text     "content"
     t.boolean  "public"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "content_type", :default => 0
   end
 
   add_index "templats", ["school_id", "name"], :name => "index_templats_on_school_id_and_name"
+
+  create_table "turnins", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.integer  "staff_id"
+    t.text     "comment"
+    t.boolean  "done",          :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "turnins", ["staff_id"], :name => "index_turnins_on_staff_id"
+  add_index "turnins", ["user_id", "assignment_id"], :name => "index_turnins_on_user_id_and_assignment_id"
 
   create_table "user_admins", :force => true do |t|
     t.integer  "user_id"

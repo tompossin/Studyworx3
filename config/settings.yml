@@ -17,7 +17,7 @@ defaults: &defaults
   avatar_image: "/assets/iconic/user_24x32.png"
   pagesize: 5
   default_nav_body: "layouts/nav_blank"
-  default_background_color: "background-color:#dddddd;"
+  default_background_color: "background-color:white;"
 #################################
 # Environmnet specific settings # 
 development:

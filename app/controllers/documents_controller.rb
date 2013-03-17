@@ -2,6 +2,8 @@ class DocumentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_task, only: [:new ]
   include FormatContent
+  require 'tempfile'
+  layout "print", only: [:print, :download]
   
   # This shows a formatted preview version of the current document.
   def show
@@ -10,6 +12,7 @@ class DocumentsController < ApplicationController
       format.js
     end
   end
+  
   
   # Loads or Creates a [document->endnote] if necessary.
   def new
@@ -42,10 +45,30 @@ class DocumentsController < ApplicationController
       format.html 
     end
   end
+  
+  # This displays a printable version of the document
+  def print
+    @document = Document.where(user_id: current_user.id,task_id: params[:document_id]).first
+    
+    respond_to do |format|
+      format.html 
+    end
+  end
+  
+  def download
+    @document = Document.where("user_id = ? and task_id = ?", current_user.id, params[:document_id]).first
+    content = render_to_string template: "documents/download"
+    user_id = current_user.id
+    assignment = @document.assignment.name
+    task = @document.task.name
+    filename = assignment+"_"+task.gsub(/ /, '_')
+    
+    output = convert_file(content, user_id, filename, params[:file_type])
+    send_file(output[:filepath], filename: output[:filename])
+  end
 
 
   # Updates document
-  # TODO endnote w/ autosave
   def update
     @document = Document.where("user_id = ? and id = ?",current_user.id,params[:id]).first
 
@@ -64,13 +87,12 @@ class DocumentsController < ApplicationController
   end
 
   # DELETE /documents/1
-  # TODO Implement w/ AJAX
   def destroy
     @document = Document.where("user_id = ? and id = ?",current_user.id,params[:id]).first
     @document.destroy
 
     respond_to do |format|
-      format.html { redirect_to documents_url }
+      format.html { redirect_to schools_url }
     end
   end
   
@@ -134,5 +156,6 @@ class DocumentsController < ApplicationController
   def get_task
     @task = Task.find(params[:task_id])
   end
+  
   
 end

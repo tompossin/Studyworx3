@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :members
   has_many :blogs
   has_many :documents
+  has_many :turnins
   has_one :note
   has_and_belongs_to_many :teams
   
@@ -41,6 +42,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname 
   attr_accessible :phone, :address, :bio, :avatar, :wallpaper, :iotd, :timezone
   
+  
   # Sets the current school in User
   #  Usage: @user.set_school(school_id)
   def set_school(school_id)
@@ -59,7 +61,11 @@ class User < ActiveRecord::Base
   # Returns full name of user
   #  Usage: @user.fullname
   def fullname
-    return self.firstname+" "+self.lastname
+    self.firstname+" "+self.lastname
+  end
+  
+  def coreteam
+    self.teams.where("school_id = ? and coreteam = ?",self.school, true).first
   end
   
   

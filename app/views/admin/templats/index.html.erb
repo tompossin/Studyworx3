@@ -6,7 +6,7 @@
     <h1><%= @school.name%> - Templates</h1>
     
     <p>
-      <%=link_to "Create a new Template", new_admin_school_templat_path(@school), remote: true %>
+      <%=link_to "Create a new Template", new_admin_school_templat_path(@school) %>
     </p>
     
     <div id="templat_area">
@@ -21,7 +21,7 @@
               <div class="trow <%= cycle("odd","even") %>">
                 <div class="cell" style="width:300px;"><%= t.name %></div>
                 <div class="cell" style="width:100px;">
-                  <%=link_to "edit", edit_admin_school_templat_path(@school,t), remote: true %> 
+                  <%=link_to "edit", edit_admin_school_templat_path(@school,t) %> 
                   <%=link_to "delete", admin_school_templat_path(@school,t), method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
               </div>

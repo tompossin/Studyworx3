@@ -24,13 +24,13 @@
 
 <div id="content-large">
   <article>
+    <div id="breadcrumbs">
+      <%=link_to "Assignments Home", admin_assignments_path %>
+      <%=link_to "Due Times", admin_duedates_path %>
+    </div>
     <h1><%= @school.name %></h1>
     <p class="title large">Module <%= @module %> Assignments Administration</p>
-    <div>
-      <%=link_to "Assignments Home", admin_assignments_path %><br />
-      <%=link_to "Due Times", admin_duedates_path %><br />
-      <%=link_to "Add New Assignment", new_admin_assignment_path %>
-    </div>
+    <p><%=link_to "Add New Assignment", new_admin_assignment_path %></p>
     <br />
     <% unless @assignments.empty? %>
       <div class="theader">

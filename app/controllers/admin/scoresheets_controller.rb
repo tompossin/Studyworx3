@@ -25,7 +25,7 @@ class Admin::ScoresheetsController < ApplicationController
   end
 
   def new
-    @scoresheet = @school.scoresheets.new
+    @scoresheet = @school.scoresheets.create(name: "Put Title here...", content: "Add content here...")
     respond_to do |format|
       format.html
     end
@@ -58,6 +58,7 @@ class Admin::ScoresheetsController < ApplicationController
     end
   end
   
+  # TODO Add a link to this from the toolbar in the editor.
   def destroy
     @scoresheet = Scoresheet.find(params[:id])
     @scoresheet.destroy

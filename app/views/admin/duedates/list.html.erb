@@ -1,13 +1,11 @@
 <div id="content-large">
   <article>
+    <p id="breadcrumbs">
+      <%=link_to "Due-Date Home Page", admin_duedates_path %>
+      <%=link_to "Re-order list", admin_duedates_list_path(team: @team.id,module: @mod_id),{method: "post"}%>
+    </p>
     <div>
       <h2>Add Due Dates to Assignments</h2>
-      <p>
-        <%=link_to "Due-Date Home Page", admin_duedates_path %>
-      </p>
-      <p>
-        <%=link_to "Re-order list", admin_duedates_list_path(team: @team.id,module: @mod_id),{method: "post"}%>
-      </p>
       <p class="title large">Team: <%= @team.name %></p>
       <p class="title large">Module: <%= @mod_id %></p>
     </div>

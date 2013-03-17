@@ -1,0 +1,14 @@
+<div >
+  <% if @duedate %>
+    <span class="red" >
+      Due: 
+    </span>
+    <%= @duedate.duedate.to_formatted_s(:long) %>  
+    <span class="red" >
+      you have <%= distance_of_time_in_words(Time.now.in_time_zone, @duedate.duedate.in_time_zone) %> left to work.
+    </span>
+  <% else %>
+    <span >No due time is set.</span>
+  <% end %>
+  
+</div>

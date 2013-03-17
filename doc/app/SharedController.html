@@ -86,7 +86,7 @@
     
     <li><a href="#method-i-close_popup">#close_popup</a>
     
-    <li><a href="#method-i-format_help">#format_help</a>
+    <li><a href="#method-i-help">#help</a>
     
     <li><a href="#method-i-save_failed">#save_failed</a>
     
@@ -128,6 +128,10 @@
     <li><a href="./Admin/DuedatesController.html">Admin::DuedatesController</a>
   
     <li><a href="./Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
+  
+    <li><a href="./Admin/HelpsController.html">Admin::HelpsController</a>
+  
+    <li><a href="./Admin/HelpsHelper.html">Admin::HelpsHelper</a>
   
     <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -192,6 +196,10 @@
     <li><a href="./Duedate.html">Duedate</a>
   
     <li><a href="./Endnote.html">Endnote</a>
+  
+    <li><a href="./FormatContent.html">FormatContent</a>
+  
+    <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -510,10 +518,10 @@ update calls in other controllers.</p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-format_help" class="method-detail ">
+      <div id="method-i-help" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">format_help</span><span
+          <span class="method-name">help</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -521,26 +529,27 @@ update calls in other controllers.</p>
 
         <div class="method-description">
           
-          <p>Markdown Help</p>
+          <p>Markdown <a href="Help.html">Help</a></p>
           
 
           
-          <div class="method-source-code" id="format_help-source">
+          <div class="method-source-code" id="help-source">
             <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 63</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">format_help</span>
-  <span class="ruby-ivar">@partial</span> = <span class="ruby-string">&quot;format_help&quot;</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
+  <span class="ruby-ivar">@help</span> = <span class="ruby-constant">Help</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:help</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- format_help-source -->
+          </div><!-- help-source -->
           
         </div>
 
         
 
         
-      </div><!-- format_help-method -->
+      </div><!-- help-method -->
 
     
     </section><!-- public-instance-method-details -->

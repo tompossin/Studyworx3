@@ -1,0 +1,10 @@
+<div>
+  <%= smart_format(@document.content_type, @document.content) %>
+  <% if @document.endnote.content %>
+    <h3>Footnotes: </h3>
+    <%= smart_format(@document.endnote.content_type, @document.endnote.content) %>
+  <% end %>
+  
+  <hr />
+</div>
+

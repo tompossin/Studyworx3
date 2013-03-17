@@ -30,5 +30,9 @@ class Document < ActiveRecord::Base
     return document
   end
   
+  def as_file
+    
+  end
+  
   
 end

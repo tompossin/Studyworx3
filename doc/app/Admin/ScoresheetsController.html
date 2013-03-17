@@ -121,6 +121,10 @@
   
     <li><a href="../Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
   
+    <li><a href="../Admin/HelpsController.html">Admin::HelpsController</a>
+  
+    <li><a href="../Admin/HelpsHelper.html">Admin::HelpsHelper</a>
+  
     <li><a href="../Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
     <li><a href="../Admin/ParagraphsHelper.html">Admin::ParagraphsHelper</a>
@@ -184,6 +188,10 @@
     <li><a href="../Duedate.html">Duedate</a>
   
     <li><a href="../Endnote.html">Endnote</a>
+  
+    <li><a href="../FormatContent.html">FormatContent</a>
+  
+    <li><a href="../Help.html">Help</a>
   
     <li><a href="../HomeController.html">HomeController</a>
   
@@ -300,7 +308,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:scoresheet</span>])
   <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">school_id</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>
@@ -330,12 +338,12 @@
 
         <div class="method-description">
           
-          
+          <p>TODO Add a link to this from the toolbar in the editor.</p>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">destroy</span>
@@ -369,11 +377,11 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
@@ -432,11 +440,11 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 22</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Put Title here...&quot;</span>, <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Add content here...&quot;</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -468,6 +476,11 @@
             <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@autopreview</span> = <span class="ruby-ivar">@scoresheet</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -495,13 +508,22 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/scoresheets_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:scoresheet</span>])
-  <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">save</span>
+  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_school_scoresheets_path</span>(<span class="ruby-ivar">@school</span>)}
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@scoresheet</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-ivar">@autopreview</span> = <span class="ruby-ivar">@scoresheet</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:autopreview</span>]
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span> }
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/autopreview&quot;</span> }
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-source -->

@@ -70,8 +70,6 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-create">#create</a>
-    
     <li><a href="#method-i-destroy">#destroy</a>
     
     <li><a href="#method-i-edit">#edit</a>
@@ -120,6 +118,10 @@
     <li><a href="../Admin/DuedatesController.html">Admin::DuedatesController</a>
   
     <li><a href="../Admin/DuedatesHelper.html">Admin::DuedatesHelper</a>
+  
+    <li><a href="../Admin/HelpsController.html">Admin::HelpsController</a>
+  
+    <li><a href="../Admin/HelpsHelper.html">Admin::HelpsHelper</a>
   
     <li><a href="../Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -184,6 +186,10 @@
     <li><a href="../Duedate.html">Duedate</a>
   
     <li><a href="../Endnote.html">Endnote</a>
+  
+    <li><a href="../FormatContent.html">FormatContent</a>
+  
+    <li><a href="../Help.html">Help</a>
   
     <li><a href="../HomeController.html">HomeController</a>
   
@@ -284,41 +290,6 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-create" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@templat</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">templats</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:templat</span>])
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@templat</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_school_templats_path</span>(<span class="ruby-ivar">@school</span>)}
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- create-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- create-method -->
-
-    
       <div id="method-i-destroy" class="method-detail ">
         
         <div class="method-heading">
@@ -335,7 +306,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@templat</span> = <span class="ruby-constant">Templat</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@templat</span>.<span class="ruby-identifier">destroy</span>
@@ -369,11 +340,11 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@templat</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">templats</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
@@ -432,11 +403,11 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@templat</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">templats</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@templat</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">templats</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Add Name...&quot;</span>,<span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Add Content here...&quot;</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -467,6 +438,11 @@
           <div class="method-source-code" id="show-source">
             <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-ivar">@templat</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">templats</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -494,12 +470,22 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/templats_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@templat</span> = <span class="ruby-constant">Templat</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@templat</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:templat</span>])
+  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_school_templats_path</span>(<span class="ruby-ivar">@school</span>)}
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@templat</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:templat</span>])
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:autopreview</span>]
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span> }
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@autopreview</span> = <span class="ruby-ivar">@templat</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/autopreview&quot;</span> }
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
+    
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-source -->

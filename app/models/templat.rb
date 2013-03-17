@@ -4,5 +4,5 @@ class Templat < ActiveRecord::Base
   
   default_scope order: 'name ASC'
   
-  attr_accessible :content, :name, :public, :school_id
+  attr_accessible :content, :name, :public, :school_id, :content_type
 end

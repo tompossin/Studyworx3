@@ -1,0 +1,11 @@
+<div id="preview">
+
+  <%=link_to "close", cancel_path, {remote: true, id: "cancel"} %>
+  <br />
+  <h2>
+    <%= t.name %>
+  </h2>
+  <div>
+    <%= smart_format(t.content_type, t.content) %>
+  </div>
+</div>

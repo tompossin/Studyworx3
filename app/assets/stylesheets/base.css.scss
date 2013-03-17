@@ -1,6 +1,12 @@
+html {
+  height: 100%;  
+}
 body {
 	margin:0px;
+	height: 100%;
+	width: 100%;
 	background-size: 100%;
+	background-attachment: fixed;
 	font-family: Verdana,Helvetica,Arial,Sans-serif;
 	font-size: 10pt;
 	p {
@@ -78,14 +84,17 @@ article {
   padding: 10px;
   opacity: .75;
   width: 100%;
-  min-height: 600px;
+  min-height: 60%;
   border: 1px solid gray;
   border-radius:10px;
+  box-shadow: 8px 10px 6px #444444;
 }
 
 aside {
   float:right;width:30%;
-  border-left:2px solid #cdcdcd;border-right:2px solid #dedede;border-radius:10px;
+  border:2px solid #cdcdcd;
+  border-radius:10px;
+  box-shadow: 12px 10px 8px #444444;
   padding:10px;
   margin-top: 10px;
   background-color: rgba(255,255,255,.75);
@@ -139,6 +148,7 @@ code {
 
 #content {
   position: relative;
+  height: 100%;
   float:left;
   top: 20px;
   width: 98%;
@@ -147,7 +157,9 @@ code {
 }
 
 #content-large {
-  left:0px;width:62%;
+  left:0px;
+  width:62%;
+  height: 92%;
   float:left;
   padding:10px;
 }
@@ -165,6 +177,10 @@ code {
   a {
     margin-left: 1em;
   }
+}
+
+#editor_container {
+  height: 100%;
 }
 
 #preview {
@@ -240,7 +256,8 @@ code {
 
 #nav_body_content {
   float:left;
-  width:100%;
+  height: 97%;
+  width:99%;
 }
 
 #notice {
@@ -260,6 +277,7 @@ code {
   margin-left: 67%;
   width:30%;
   border-left:2px solid #787878;border-right:2px solid #787878;border-radius:10px;
+  box-shadow: 10px 10px 5px #000000;
   padding:10px;
   margin-top: 40px;
   background-color: rgba(0,0,0,.9);
@@ -381,8 +399,8 @@ code {
   width: 96%;
   padding: 4px;
   border-radius: 4px;
-  border-bottom: solid gray 1px;
-  border-top: solid gray 1px;
+  border: 1px solid gray;
+  box-shadow: 3px 3px 2px #888888;
   .cell {
     float: left;
     text-align: center;
@@ -412,9 +430,11 @@ code {
 }
 .box_paper {
   float:left;
+  overflow: auto;
   background-color: #f9f9f9;
   border-radius: 10px;
   width: 96%;
+  height: 100%;
   min-height: 200px;
   padding: 8px;
 }
@@ -494,6 +514,7 @@ code {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   margin-bottom: 10px;
+  box-shadow: 3px 3px 2px #888888;
   padding:3%;
 }
 
@@ -556,6 +577,24 @@ code {
   padding: 2%;
 }
 
+.seperator {
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: 6px double #aaaaaa;
+  border-right: 6px double #aaaaaa;
+}
+
+.letter {
+  border: none;
+  box-shadow: none;
+  width: 7in;
+}
+
+.shadow {
+  box-shadow: 3px 3px 2px #888888;
+}
+
 .title {
   font-style: italic;
   font-family: Garamond, Georgia;
@@ -566,8 +605,17 @@ code {
 }
 
 .limited {
-  width: 45%;
-  margin-right: 15px;
+  width: 44%;
+  margin-right: 2%;
+}
+
+.onethird {
+	width: 30%;
+	margin-right: 2%;
+}
+.twothirds {
+	width: 60%;
+	margin-right: 2%;
 }
 
 .invisible {
