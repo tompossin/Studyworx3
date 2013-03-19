@@ -55,17 +55,42 @@ class ProfilesController < ApplicationController
   # PERSONAL PREFERENCE MEHTODS
   #
   # This toggles between white and the theme of the user.
-  def settheme
-    if session[:theme]
-      session[:theme] = false
+  def toggletheme
+    if session[:no_wallpaper]
+      session[:no_wallpaper] = false
     else
-      session[:theme] = true
+      session[:no_wallpaper] = true
     end
     
     respond_to do |format|
-      format.html {redirect_to schools_path}
+      format.html {redirect_to :back}
     end
     
+  end
+  
+  # This sets the default theme for a user.
+  def settheme
+    current_user.preference.theme = params[:preference][:theme]
+    current_user.preference.rows = params[:rows]
+    current_user.preference.bgcolor = params[:preference][:bgcolor]
+    
+    respond_to do |format|
+      if current_user.preference.save
+        set_session
+        format.js {render "reminder_save"}
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
+  end
+  
+  # Loads the theme editor
+  def loadtheme 
+    @preference = Preference.find_or_create_by_user_id(current_user.id)
+    
+    respond_to do |format|
+      format.js
+    end
   end
   
   # NOTE TO SELF METHODS
@@ -163,6 +188,11 @@ class ProfilesController < ApplicationController
   
   protected
   
+  def set_session
+    session[:theme] = current_user.preference.theme
+    session[:rows] = current_user.preference.rows
+    session[:bgcolor] = current_user.preference.bgcolor
+  end
 
   
 end

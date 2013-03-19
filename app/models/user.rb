@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   has_many :blogs
   has_many :documents
   has_many :turnins
+  has_many :grades
   has_one :note
+  has_one :preference
   has_and_belongs_to_many :teams
   
   

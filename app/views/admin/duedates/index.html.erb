@@ -10,7 +10,7 @@
     <p>
       Select the Team and Module on which you wish to set due dates.
     </p>
-    <%=form_tag admin_duedates_list_path do %>
+    <%=form_tag admin_duedates_list_path,{method: 'get'} do %>
       <p class="title small">
         Select a team
       </p>

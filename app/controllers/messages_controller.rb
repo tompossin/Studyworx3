@@ -70,6 +70,7 @@ class MessagesController < ApplicationController
   end
   
   # This removes the new message editor via AJAX
+  # FIXME This is called mistakenly by a message edit.
   def cancel_message
     respond_to do |format|
       format.js 

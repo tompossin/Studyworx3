@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316190255) do
+ActiveRecord::Schema.define(:version => 20130318220452) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(:version => 20130316190255) do
 
   add_index "books", ["position"], :name => "index_books_on_position"
 
+  create_table "colors", :force => true do |t|
+    t.string   "color"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "documents", :force => true do |t|
     t.integer  "user_id"
     t.integer  "school_id"
@@ -93,6 +100,23 @@ ActiveRecord::Schema.define(:version => 20130316190255) do
 
   add_index "endnotes", ["document_id"], :name => "index_endnotes_on_document_id"
   add_index "endnotes", ["paper_id"], :name => "index_endnotes_on_paper_id"
+
+  create_table "grades", :force => true do |t|
+    t.integer  "school_id",        :null => false
+    t.integer  "assignment_id",    :null => false
+    t.integer  "user_id",          :null => false
+    t.integer  "staff_id"
+    t.integer  "grade"
+    t.text     "staff_comments"
+    t.text     "student_comments"
+    t.text     "scratchpad"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "grades", ["school_id", "assignment_id", "user_id"], :name => "index_grades_on_school_id_and_assignment_id_and_user_id"
+  add_index "grades", ["staff_id"], :name => "index_grades_on_staff_id"
+  add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
 
   create_table "helps", :force => true do |t|
     t.string   "title"
@@ -135,9 +159,9 @@ ActiveRecord::Schema.define(:version => 20130316190255) do
     t.integer  "user_id"
     t.text     "reminder"
     t.text     "public"
+    t.text     "bio"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.text     "bio"
   end
 
   create_table "papers", :force => true do |t|
@@ -180,6 +204,17 @@ ActiveRecord::Schema.define(:version => 20130316190255) do
   add_index "participants", ["school_id", "role_id"], :name => "index_participants_on_school_id_and_role_id"
   add_index "participants", ["school_id"], :name => "index_participants_on_school_id"
   add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
+
+  create_table "preferences", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "theme",      :limit => 100, :default => "base"
+    t.string   "bgcolor",                   :default => "white"
+    t.integer  "rows",                      :default => 20
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "preferences", ["user_id"], :name => "index_preferences_on_user_id"
 
   create_table "reviews", :force => true do |t|
     t.integer  "paper_id"
@@ -301,10 +336,17 @@ ActiveRecord::Schema.define(:version => 20130316190255) do
 
   add_index "templats", ["school_id", "name"], :name => "index_templats_on_school_id_and_name"
 
+  create_table "themes", :force => true do |t|
+    t.string   "name"
+    t.string   "filename"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "turnins", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "assignment_id"
-    t.integer  "staff_id"
+    t.integer  "user_id",                          :null => false
+    t.integer  "assignment_id",                    :null => false
+    t.integer  "staff_id",                         :null => false
     t.text     "comment"
     t.boolean  "done",          :default => false
     t.datetime "created_at",                       :null => false
@@ -347,7 +389,6 @@ ActiveRecord::Schema.define(:version => 20130316190255) do
     t.string   "phone"
     t.text     "address"
     t.boolean  "reviewboard"
-    t.integer  "theme"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

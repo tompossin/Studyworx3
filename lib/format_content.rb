@@ -1,4 +1,5 @@
-# ### Formatting Module
+# == Formatting Module
+#
 # This module contains methods for converting text to various formats
 module FormatContent
   

@@ -165,6 +165,8 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./Color.html">Color</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -176,6 +178,12 @@
     <li><a href="./Endnote.html">Endnote</a>
   
     <li><a href="./FormatContent.html">FormatContent</a>
+  
+    <li><a href="./Grade.html">Grade</a>
+  
+    <li><a href="./GradesController.html">GradesController</a>
+  
+    <li><a href="./GradesHelper.html">GradesHelper</a>
   
     <li><a href="./Help.html">Help</a>
   
@@ -204,6 +212,8 @@
     <li><a href="./ParticipantsController.html">ParticipantsController</a>
   
     <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./Preference.html">Preference</a>
   
     <li><a href="./ProfilesController.html">ProfilesController</a>
   
@@ -241,6 +251,14 @@
   
     <li><a href="./Templat.html">Templat</a>
   
+    <li><a href="./Theme.html">Theme</a>
+  
+    <li><a href="./Turnin.html">Turnin</a>
+  
+    <li><a href="./TurninsController.html">TurninsController</a>
+  
+    <li><a href="./TurninsHelper.html">TurninsHelper</a>
+  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -258,8 +276,9 @@
 
   <div id="description" class="description">
     
-<p>### Formatting Module This module contains methods for converting text to
-various formats</p>
+<h2 id="label-Formatting+Module">Formatting Module</h2>
+
+<p>This module contains methods for converting text to various formats</p>
 
   </div><!-- description -->
 
@@ -307,7 +326,7 @@ perfectly railsy but close.</p>
 
           
           <div class="method-source-code" id="convert_file-source">
-            <pre><span class="ruby-comment"># File lib/format_content.rb, line 9</span>
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">format</span>)
   <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;tmp/docs/#{user_id}*&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">my_file</span><span class="ruby-operator">|</span>
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">my_file</span>)
@@ -348,7 +367,7 @@ editors</p>
 
           
           <div class="method-source-code" id="html_to_markdown-source">
-            <pre><span class="ruby-comment"># File lib/format_content.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">html_to_markdown</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">filenumber</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">filenumber</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;.html&quot;</span>
@@ -387,7 +406,7 @@ better job than pandoc on Markdown</p>
 
           
           <div class="method-source-code" id="markdown_to_html-source">
-            <pre><span class="ruby-comment"># File lib/format_content.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">markdown_to_html</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">render_options</span> = {<span class="ruby-identifier">hard_wrap</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">filter_html</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">safe_links_only</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>}
   <span class="ruby-identifier">markdown_options</span> = {<span class="ruby-identifier">no_intraemphasis</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">autolink</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">superscript</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">fenced_code_blocks</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> }

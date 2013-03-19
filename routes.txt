@@ -73,13 +73,6 @@
                     admin_assignment GET    /admin/assignments/:id(.:format)                                                           admin/assignments#show
                                      PUT    /admin/assignments/:id(.:format)                                                           admin/assignments#update
                                      DELETE /admin/assignments/:id(.:format)                                                           admin/assignments#destroy
-                      admin_duedates GET    /admin/duedates(.:format)                                                                  admin/duedates#index
-                                     POST   /admin/duedates(.:format)                                                                  admin/duedates#create
-                   new_admin_duedate GET    /admin/duedates/new(.:format)                                                              admin/duedates#new
-                  edit_admin_duedate GET    /admin/duedates/:id/edit(.:format)                                                         admin/duedates#edit
-                       admin_duedate GET    /admin/duedates/:id(.:format)                                                              admin/duedates#show
-                                     PUT    /admin/duedates/:id(.:format)                                                              admin/duedates#update
-                                     DELETE /admin/duedates/:id(.:format)                                                              admin/duedates#destroy
                          admin_helps GET    /admin/helps(.:format)                                                                     admin/helps#index
                                      POST   /admin/helps(.:format)                                                                     admin/helps#create
                       new_admin_help GET    /admin/helps/new(.:format)                                                                 admin/helps#new
@@ -87,7 +80,14 @@
                           admin_help GET    /admin/helps/:id(.:format)                                                                 admin/helps#show
                                      PUT    /admin/helps/:id(.:format)                                                                 admin/helps#update
                                      DELETE /admin/helps/:id(.:format)                                                                 admin/helps#destroy
-                 admin_duedates_list POST   /admin/duedates/list(.:format)                                                             admin/duedates#list
+                 admin_duedates_list GET    /admin/duedates/list(.:format)                                                             admin/duedates#list
+                      admin_duedates GET    /admin/duedates(.:format)                                                                  admin/duedates#index
+                                     POST   /admin/duedates(.:format)                                                                  admin/duedates#create
+                   new_admin_duedate GET    /admin/duedates/new(.:format)                                                              admin/duedates#new
+                  edit_admin_duedate GET    /admin/duedates/:id/edit(.:format)                                                         admin/duedates#edit
+                       admin_duedate GET    /admin/duedates/:id(.:format)                                                              admin/duedates#show
+                                     PUT    /admin/duedates/:id(.:format)                                                              admin/duedates#update
+                                     DELETE /admin/duedates/:id(.:format)                                                              admin/duedates#destroy
                    admin_tools_index GET    /admin/tools/index(.:format)                                                               admin/tools#index
                admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#personnel
              admin_tools_cancel_edit GET    /admin/tools/cancel_edit(.:format)                                                         admin/tools#cancel_edit
@@ -183,6 +183,13 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                    school_assignment GET    /schools/:school_id/assignments/:id(.:format)                                              assignments#show
                                      PUT    /schools/:school_id/assignments/:id(.:format)                                              assignments#update
                                      DELETE /schools/:school_id/assignments/:id(.:format)                                              assignments#destroy
+                       school_grades GET    /schools/:school_id/grades(.:format)                                                       grades#index
+                                     POST   /schools/:school_id/grades(.:format)                                                       grades#create
+                    new_school_grade GET    /schools/:school_id/grades/new(.:format)                                                   grades#new
+                   edit_school_grade GET    /schools/:school_id/grades/:id/edit(.:format)                                              grades#edit
+                        school_grade GET    /schools/:school_id/grades/:id(.:format)                                                   grades#show
+                                     PUT    /schools/:school_id/grades/:id(.:format)                                                   grades#update
+                                     DELETE /schools/:school_id/grades/:id(.:format)                                                   grades#destroy
                              schools GET    /schools(.:format)                                                                         schools#index
                                      POST   /schools(.:format)                                                                         schools#create
                           new_school GET    /schools/new(.:format)                                                                     schools#new
@@ -221,6 +228,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                               turnin GET    /turnins/:id(.:format)                                                                     turnins#show
                                      PUT    /turnins/:id(.:format)                                                                     turnins#update
                                      DELETE /turnins/:id(.:format)                                                                     turnins#destroy
+                             hand_in POST   /hand_in/assignment/:assignment_id(.:format)                                               turnins#hand_in
+                             collect POST   /collect/:user_id/assignment/:assignment_id(.:format)                                      turnins#collect
                  reviewboard_profile GET    /profiles/:id/reviewboard(.:format)                                                        profiles#reviewboard
                reminder_load_profile GET    /profiles/:id/reminder_load(.:format)                                                      profiles#reminder_load
                  public_load_profile GET    /profiles/:id/public_load(.:format)                                                        profiles#public_load
@@ -229,8 +238,10 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
           reviewboard_update_profile POST   /profiles/:id/reviewboard_update(.:format)                                                 profiles#reviewboard_update
                reminder_save_profile POST   /profiles/:id/reminder_save(.:format)                                                      profiles#reminder_save
                  public_save_profile POST   /profiles/:id/public_save(.:format)                                                        profiles#public_save
+                    settheme_profile POST   /profiles/:id/settheme(.:format)                                                           profiles#settheme
                     bio_save_profile PUT    /profiles/:id/bio_save(.:format)                                                           profiles#bio_save
-                    profile_settheme GET    /profiles/:profile_id/settheme(.:format)                                                   profiles#settheme
+                   profile_loadtheme GET    /profiles/:profile_id/loadtheme(.:format)                                                  profiles#loadtheme
+                 profile_toggletheme GET    /profiles/:profile_id/toggletheme(.:format)                                                profiles#toggletheme
                             profiles GET    /profiles(.:format)                                                                        profiles#index
                                      POST   /profiles(.:format)                                                                        profiles#create
                          new_profile GET    /profiles/new(.:format)                                                                    profiles#new

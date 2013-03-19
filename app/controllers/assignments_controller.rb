@@ -2,21 +2,13 @@ class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_school
   
+  # Loads Assignment help
   def help
 		@assignment = Assignment.find(params[:assignment_id])
 		
 		respond_to do |format|
 			format.js 
 		end
-  end
-  
-  def help_task
-    @assignment = Assignment.find(params[:assignment_id])
-    
-    respond_to do |format|
-      format.html 
-      format.js 
-    end
   end
 
   # This is the Assignment home page

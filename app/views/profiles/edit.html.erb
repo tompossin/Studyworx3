@@ -1,14 +1,14 @@
 <div id='content-large' >
-    <%= render "profiles/show"%>
-    <div class="floatbox_trans limited">
+
+    <div class="floatbox_trans">
       <p class="title">Edit my bio</p>
       <%= form_for @user.note, :url => bio_save_profile_path(@user.id), :html => { :multipart => true, :remote => true } do |f| %>
 
-          <div class="trow">
-            <div class="cell" style="width:275px;">
-              <%= f.text_area :bio, {style: "height: 225px;width: 90%;"} %>
+          <div>
+            <div>
+              <%= f.text_area :bio, {style: "height: 225px;"} %>
             </div>
-            <div class="cell">
+            <div>
               <%=link_to "Show Format Help", help_path(1),{remote: true} %>
               <p>
                 <%= f.submit "Update Bio" %>

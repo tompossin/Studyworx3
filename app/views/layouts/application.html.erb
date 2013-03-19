@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Studyworx</title>
     
-    <%= stylesheet_link_tag "base", :media => "all" %>
+    <%= stylesheet_link_tag set_css, :media => "all" %>
     <%= stylesheet_link_tag "wysiwyg", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     
   </head>
-  <body style="<%= set_wallpaper %>">
+  <body style="<%= set_wallpaper %>"> 
     
   	<div id='content'>
   		<%= yield %>
@@ -37,6 +37,7 @@
       </div>
     </div>
     
-  	<%= render "layouts/alert"%>
+  	<%= render "layouts/alert" %>
+  	
   </body>
 </html>

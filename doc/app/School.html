@@ -84,6 +84,8 @@
     
     <li><a href="#method-i-current_assignments">#current_assignments</a>
     
+    <li><a href="#method-i-staff">#staff</a>
+    
   </ul>
 </nav>
 
@@ -179,6 +181,8 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./Color.html">Color</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -190,6 +194,12 @@
     <li><a href="./Endnote.html">Endnote</a>
   
     <li><a href="./FormatContent.html">FormatContent</a>
+  
+    <li><a href="./Grade.html">Grade</a>
+  
+    <li><a href="./GradesController.html">GradesController</a>
+  
+    <li><a href="./GradesHelper.html">GradesHelper</a>
   
     <li><a href="./Help.html">Help</a>
   
@@ -218,6 +228,8 @@
     <li><a href="./ParticipantsController.html">ParticipantsController</a>
   
     <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./Preference.html">Preference</a>
   
     <li><a href="./ProfilesController.html">ProfilesController</a>
   
@@ -254,6 +266,14 @@
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
     <li><a href="./Templat.html">Templat</a>
+  
+    <li><a href="./Theme.html">Theme</a>
+  
+    <li><a href="./Turnin.html">Turnin</a>
+  
+    <li><a href="./TurninsController.html">TurninsController</a>
+  
+    <li><a href="./TurninsHelper.html">TurninsHelper</a>
   
     <li><a href="./User.html">User</a>
   
@@ -336,7 +356,7 @@
 
           
           <div class="method-source-code" id="all_active-source">
-            <pre><span class="ruby-comment"># File app/models/school.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_active</span>
   <span class="ruby-identifier">schools</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">active</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -372,7 +392,7 @@
 
           
           <div class="method-source-code" id="current_assignments-source">
-            <pre><span class="ruby-comment"># File app/models/school.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">current_assignments</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">team</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and coreteam = ?&quot;</span>,<span class="ruby-identifier">user</span>.<span class="ruby-identifier">school</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">team</span>
@@ -387,6 +407,37 @@
 
         
       </div><!-- current_assignments-method -->
+
+    
+      <div id="method-i-staff" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">staff</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns all school staff</p>
+          
+
+          
+          <div class="method-source-code" id="staff-source">
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">staff</span>
+  <span class="ruby-identifier">staff</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;participants.role_id &lt; 4&quot;</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">staff</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- staff-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- staff-method -->
 
     
     </section><!-- public-instance-method-details -->

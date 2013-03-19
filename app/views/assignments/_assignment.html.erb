@@ -1,3 +1,8 @@
-<p>
-  <%=link_to assignment.name, school_assignment_path(@school,assignment) %>
-</p>
+<div class="trow">
+  <span class="cell" style="width: 40%;" >
+    <%=link_to assignment.name, school_assignment_path(@school,assignment),{title: "Click to go to assignment page."} %>
+  </span>
+  <span class="cell title" >
+    Module: <%= assignment.module %>
+  </span>  
+</div>

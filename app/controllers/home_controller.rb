@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
   before_filter :load_school
 
-  # TODO This is really just a framework now
-  # * Fix the navbar so that only featured stories show
-  # * Add a search field to search by category
-  # * Maybe add a full text search
-  # * May need to add the exerpt/lead-in to give short intros that can be displayed on the home page.
+  # This is really just a framework now
+  # TODO Fix the navbar so that only featured stories show
+  # TODO Add a search field to search by category
+  # TODO Maybe add a full text search
+  # TODO May need to add the exerpt/lead-in to give short intros that can be displayed on the home page.
   def index
     @current_article = Blog.where("leadstory=?",true).first
     @stories = Blog.find(:all,:order =>'navbar and featured and updated_at DESC')

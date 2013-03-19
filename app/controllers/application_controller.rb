@@ -22,8 +22,11 @@ class ApplicationController < ActionController::Base
           session[:admin_level] = 0
         end
       end
+      
     end
   end
+  
+  
   
   # Set the users timezone
   def set_time_zone

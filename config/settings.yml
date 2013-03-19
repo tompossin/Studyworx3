@@ -18,6 +18,7 @@ defaults: &defaults
   pagesize: 5
   default_nav_body: "layouts/nav_blank"
   default_background_color: "background-color:white;"
+  css: "base"
 #################################
 # Environmnet specific settings # 
 development:

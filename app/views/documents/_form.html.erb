@@ -13,7 +13,7 @@
     <%= render "shared/wysihtml5_toolbar" if @document.content_type == 1 %>
     
     <div class="float_left shadow" style="width:97%;" >
-      <%= f.text_area :content,  {rows: 18, id: 'wysihtml5-textarea',style: "width:99%;"} %>
+      <%= f.text_area :content,  {rows: current_user.preference.rows, id: 'wysihtml5-textarea',style: "width:99%;"} %>
     </div>
   
   <% end %>

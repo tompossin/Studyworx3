@@ -201,16 +201,43 @@ module ApplicationHelper
   def set_wallpaper
     if current_user
       if current_user.wallpaper 
-        unless session[:theme] 
+        unless session[:no_wallpaper] 
           return "background-image:url('#{current_user.wallpaper.url}');"
         else
-          return Settings.default_background_color
+          if session[:bgcolor]
+            return "background-color: #{session[:bgcolor]};"
+          else
+            return Settings.default_background_color
+          end
         end
       else
         return Settings.default_background_color
       end
     else
       return Settings.default_background_color
+    end
+  end
+  
+  # Set main css file
+  def set_preferences
+      unless current_user.preference
+        p = Preference.create(user_id: current_user.id)
+      end
+        pref = Preference.where(user_id: current_user.id).first
+        session[:theme] = pref.theme
+        session[:bgcolor] = pref.bgcolor
+        session[:rows] = pref.rows
+  end
+  
+  # Set css file
+  def set_css
+    if current_user
+      unless session[:theme]
+        set_preferences
+      end
+      return session[:theme]
+    else
+      return "base"
     end
   end
   

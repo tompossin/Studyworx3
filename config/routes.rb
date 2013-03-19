@@ -31,9 +31,10 @@ Studyworx3::Application.routes.draw do
         end
       end
     end
-    resources :duedates 
+    
     resources :helps
-    post "duedates/list" => "duedates#list", as: :duedates_list
+    get "duedates/list" => "duedates#list", as: :duedates_list
+    resources :duedates 
     get "tools/index","tools/personnel", "tools/cancel_edit"
     post "tools/book"
     put "tools/update_participant/:id" => "tools#update_participant", as: :tools_update_participant
@@ -88,6 +89,9 @@ Studyworx3::Application.routes.draw do
         resources :documents
       end
     end
+    resources :grades do
+      
+    end
   end
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
@@ -96,14 +100,17 @@ Studyworx3::Application.routes.draw do
   resources :blogs do
     post 'toggle_content_type'
   end
-  resources :turnins
+  resources :turnins 
+  match 'hand_in/assignment/:assignment_id' => 'turnins#hand_in', via: [:post], as: :hand_in
+  match 'collect/:user_id/assignment/:assignment_id' => 'turnins#collect', via: [:post], as: :collect
+
   resources :profiles do
     member do
       get 'reviewboard', 'reminder_load', 'public_load', 'public_show', 'reminder_show'
-      post 'reviewboard_update', 'reminder_save', 'public_save'
+      post 'reviewboard_update', 'reminder_save', 'public_save','settheme'
       put 'bio_save'
     end
-    get 'settheme'
+    get 'loadtheme','toggletheme'
   end
   devise_for :users
   resources :home

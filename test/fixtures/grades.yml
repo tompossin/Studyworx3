@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school_id: 1
+  assignment_id: 1
+  user_id: 1
+  staff_id: 1
+  grade: 1
+  staff_comments: MyText
+  student_comments: MyText
+  scratchpad: MyText
+
+two:
+  school_id: 1
+  assignment_id: 1
+  user_id: 1
+  staff_id: 1
+  grade: 1
+  staff_comments: MyText
+  student_comments: MyText
+  scratchpad: MyText

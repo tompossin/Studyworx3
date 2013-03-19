@@ -1,5 +1,5 @@
 <div class="reminder">
-  <div class="title smaller" style="background-color:white;">
+  <div class="title smaller">
     Note to Self... 
     <%=link_to( "edit", reminder_load_profile_path(current_user.id),{title: "Note to Self", remote: true, class: "smallest"}) if current_user %>
   </div>

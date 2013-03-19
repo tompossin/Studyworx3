@@ -1,0 +1,16 @@
+<script>
+  var wcss = $("#content-large").css("width");
+  $("#toggle").click(function () {
+    
+    if ($("#content-large").css("width") == wcss) {
+      $("aside").slideToggle("slow", function() {
+        $("#content-large").css("width", "98%");
+      });
+    }else{
+      $("#content-large").css("width", "63%");
+      $("aside").slideToggle("slow");
+    }         
+  });
+</script>
+
+

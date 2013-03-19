@@ -70,13 +70,11 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-edit">#edit</a>
-    
-    <li><a href="#method-i-index">#index</a>
-    
-    <li><a href="#method-i-new">#new</a>
+    <li><a href="#method-i-help">#help</a>
     
     <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-time_remaining">#time_remaining</a>
     
   </ul>
 </nav>
@@ -173,6 +171,8 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./Color.html">Color</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -184,6 +184,12 @@
     <li><a href="./Endnote.html">Endnote</a>
   
     <li><a href="./FormatContent.html">FormatContent</a>
+  
+    <li><a href="./Grade.html">Grade</a>
+  
+    <li><a href="./GradesController.html">GradesController</a>
+  
+    <li><a href="./GradesHelper.html">GradesHelper</a>
   
     <li><a href="./Help.html">Help</a>
   
@@ -212,6 +218,8 @@
     <li><a href="./ParticipantsController.html">ParticipantsController</a>
   
     <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./Preference.html">Preference</a>
   
     <li><a href="./ProfilesController.html">ProfilesController</a>
   
@@ -248,6 +256,14 @@
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
     <li><a href="./Templat.html">Templat</a>
+  
+    <li><a href="./Theme.html">Theme</a>
+  
+    <li><a href="./Turnin.html">Turnin</a>
+  
+    <li><a href="./TurninsController.html">TurninsController</a>
+  
+    <li><a href="./TurninsHelper.html">TurninsHelper</a>
   
     <li><a href="./User.html">User</a>
   
@@ -286,10 +302,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-edit" class="method-detail ">
+      <div id="method-i-help" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">edit</span><span
+          <span class="method-name">help</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -297,80 +313,27 @@
 
         <div class="method-description">
           
-          
+          <p>Loads <a href="Assignment.html">Assignment</a> help</p>
           
 
           
-          <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+          <div class="method-source-code" id="help-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
+              <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
+              
+              <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+                      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+              <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- edit-source -->
+          </div><!-- help-source -->
           
         </div>
 
         
 
         
-      </div><!-- edit-method -->
-
-    
-      <div id="method-i-index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">index</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- index-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- index-method -->
-
-    
-      <div id="method-i-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
+      </div><!-- help-method -->
 
     
       <div id="method-i-show" class="method-detail ">
@@ -389,9 +352,14 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>  
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">turnin</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">turnins</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">turnin</span>.<span class="ruby-identifier">staff_id</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">turnin</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -401,6 +369,45 @@
 
         
       </div><!-- show-method -->
+
+    
+      <div id="method-i-time_remaining" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">time_remaining</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This calculates the time remaining to complete an assignment</p>
+          
+
+          
+          <div class="method-source-code" id="time_remaining-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">time_remaining</span>
+  <span class="ruby-identifier">coreteam</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">coreteam</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">coreteam</span>
+      <span class="ruby-ivar">@duedate</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;assignment_id = ? and team_id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>], <span class="ruby-identifier">coreteam</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/no_coreteam&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- time_remaining-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- time_remaining-method -->
 
     
     </section><!-- public-instance-method-details -->

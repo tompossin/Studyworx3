@@ -1,5 +1,5 @@
 <div style="float:left;">
-  <div class="floatbox_trans" style="max-width:300px;">
+  <div class="floatbox_trans">
     <div class='avatar' style="background-image:url('<%= @user.avatar.url(:thumb) %>');">
     </div>
     <p class="title">Home of <br />
@@ -19,7 +19,7 @@
     </div>
   </div>
   
-  <div class="floatbox_trans" style="max-width:300px;">
+  <div class="floatbox_trans" >
     <% if @user.note %>
       <p class="title">Thought for the Day!</p>
       <%= formatter(@user.note.public) unless @user.note.public.nil?  %>

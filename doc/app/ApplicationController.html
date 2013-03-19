@@ -199,6 +199,8 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./Color.html">Color</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -210,6 +212,12 @@
     <li><a href="./Endnote.html">Endnote</a>
   
     <li><a href="./FormatContent.html">FormatContent</a>
+  
+    <li><a href="./Grade.html">Grade</a>
+  
+    <li><a href="./GradesController.html">GradesController</a>
+  
+    <li><a href="./GradesHelper.html">GradesHelper</a>
   
     <li><a href="./Help.html">Help</a>
   
@@ -238,6 +246,8 @@
     <li><a href="./ParticipantsController.html">ParticipantsController</a>
   
     <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./Preference.html">Preference</a>
   
     <li><a href="./ProfilesController.html">ProfilesController</a>
   
@@ -274,6 +284,14 @@
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
     <li><a href="./Templat.html">Templat</a>
+  
+    <li><a href="./Theme.html">Theme</a>
+  
+    <li><a href="./Turnin.html">Turnin</a>
+  
+    <li><a href="./TurninsController.html">TurninsController</a>
+  
+    <li><a href="./TurninsHelper.html">TurninsHelper</a>
   
     <li><a href="./User.html">User</a>
   
@@ -353,6 +371,7 @@ any way.</p>
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin_level</span>] = <span class="ruby-value">0</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
+    
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- assign_session_variables-source -->
@@ -381,7 +400,7 @@ any way.</p>
 
           
           <div class="method-source-code" id="set_time_zone-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_time_zone</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">timezone</span>.<span class="ruby-identifier">nil?</span>
@@ -455,7 +474,7 @@ any way.</p>
 
           
           <div class="method-source-code" id="is_my_school-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_my_school?</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">school_id</span>
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
@@ -500,7 +519,7 @@ any way.</p>
 
           
           <div class="method-source-code" id="is_owner-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 55</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_owner</span>(<span class="ruby-identifier">record_user_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">record_user_id</span>
     <span class="ruby-keyword">true</span>
@@ -580,7 +599,7 @@ redirects to root path with a warning</p>
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
@@ -623,7 +642,7 @@ reviewed papers</p>
 
           
           <div class="method-source-code" id="is_contributor-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 101</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
@@ -659,7 +678,7 @@ are redirected.</p>
 
           
           <div class="method-source-code" id="is_school_admin-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 129</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_admin</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a School Admin to access this page.&quot;</span>
@@ -694,7 +713,7 @@ are redirected.</p>
 
           
           <div class="method-source-code" id="is_school_leader-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_leader</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be the School Leader to access this page.&quot;</span>
@@ -729,7 +748,7 @@ are redirected</p>
 
           
           <div class="method-source-code" id="is_school_staff-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 121</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_staff</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">schools_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a school Staff to access this page.&quot;</span>
@@ -771,7 +790,7 @@ are not a student</p>
 
           
           <div class="method-source-code" id="is_student-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 113</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_student</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">5</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You must be a student to use this page&quot;</span>
@@ -810,7 +829,7 @@ this redirects to root path with a warning</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 79</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
