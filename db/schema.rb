@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318220452) do
+ActiveRecord::Schema.define(:version => 20130321002459) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20130318220452) do
     t.integer  "rows",                      :default => 20
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.boolean  "wallpaper",                 :default => false
   end
 
   add_index "preferences", ["user_id"], :name => "index_preferences_on_user_id"
@@ -339,14 +340,17 @@ ActiveRecord::Schema.define(:version => 20130318220452) do
   create_table "themes", :force => true do |t|
     t.string   "name"
     t.string   "filename"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "wallpaper",  :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
+
+  add_index "themes", ["filename"], :name => "index_themes_on_filename", :unique => true
 
   create_table "turnins", :force => true do |t|
     t.integer  "user_id",                          :null => false
     t.integer  "assignment_id",                    :null => false
-    t.integer  "staff_id",                         :null => false
+    t.integer  "staff_id"
     t.text     "comment"
     t.boolean  "done",          :default => false
     t.datetime "created_at",                       :null => false

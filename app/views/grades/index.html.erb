@@ -1,37 +1,7 @@
-<h1>Listing grades</h1>
+<div id="content-large">
+  <article>
+    
+  </article>
+</div>
 
-<table>
-  <tr>
-    <th>School</th>
-    <th>Assignment</th>
-    <th>User</th>
-    <th>Staff</th>
-    <th>Grade</th>
-    <th>Staff comments</th>
-    <th>Student comments</th>
-    <th>Scratchpad</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @grades.each do |grade| %>
-  <tr>
-    <td><%= grade.school_id %></td>
-    <td><%= grade.assignment_id %></td>
-    <td><%= grade.user_id %></td>
-    <td><%= grade.staff_id %></td>
-    <td><%= grade.grade %></td>
-    <td><%= grade.staff_comments %></td>
-    <td><%= grade.student_comments %></td>
-    <td><%= grade.scratchpad %></td>
-    <td><%= link_to 'Show', grade %></td>
-    <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
-    <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Grade', new_grade_path %>
+<%= nav_bar(@nav_body_content %>

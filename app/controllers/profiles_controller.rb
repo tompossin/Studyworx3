@@ -56,10 +56,10 @@ class ProfilesController < ApplicationController
   #
   # This toggles between white and the theme of the user.
   def toggletheme
-    if session[:no_wallpaper]
-      session[:no_wallpaper] = false
+    if session[:wallpaper]
+      session[:wallpaper] = false
     else
-      session[:no_wallpaper] = true
+      session[:wallpaper] = true
     end
     
     respond_to do |format|
@@ -70,13 +70,18 @@ class ProfilesController < ApplicationController
   
   # This sets the default theme for a user.
   def settheme
-    current_user.preference.theme = params[:preference][:theme]
-    current_user.preference.rows = params[:rows]
-    current_user.preference.bgcolor = params[:preference][:bgcolor]
+    ct = Theme.find_by_filename(params[:preference][:theme])
+    current_user.preference.update_attributes(params[:preference])
+    if ct.wallpaper
+      session[:wallpaper] = true
+    else
+      session[:wallpaper] = false
+    end
     
     respond_to do |format|
       if current_user.preference.save
         set_session
+        format.html {redirect_to :back}
         format.js {render "reminder_save"}
       else
         format.js {render "shared/save_failed"}

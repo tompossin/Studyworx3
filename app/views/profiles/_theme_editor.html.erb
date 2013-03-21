@@ -2,14 +2,14 @@
   <p class="title" >Edit your personal settings</p>
   <p class="title smaller">(Changing these settings will require a page refresh.)</p>
   
-  <%=form_tag(settheme_profile_path(current_user.id), {remote: true, method: "post"}) do %>
+  <%=form_tag(settheme_profile_path(current_user.id), { method: "post"}) do %>
     <%= select "preference","theme", Theme.all.collect {|t| [t.name,t.filename]}, {include_blank: true } %>
  
     <p  class="title small" >
       Select how many rows your text editor should have.<br />
       (more rows = taller)
     </p>
-    <%= number_field_tag "rows", current_user.preference.rows, in: 16..40 %>
+    <%= number_field_tag "preference[rows]", current_user.preference.rows, in: 16..40 %>
     <p>
       Select a color for the default background color (Unity theme color)<br />
       <%= select "preference", "bgcolor", Color.all.collect {|c| [c.name, c.color]} %>

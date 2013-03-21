@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   # * This creates session values if they do not exist it does not alter them in any way.
   def assign_session_variables
     if current_user
+      # Set user_admin level
       unless session[:admin_level]
         admin = UserAdmin.find_by_user_id(current_user.id)
         if admin
@@ -22,7 +23,14 @@ class ApplicationController < ActionController::Base
           session[:admin_level] = 0
         end
       end
-      
+      # set user preferences
+      unless session[:theme]
+        pref = current_user.preference
+        session[:wallpaper] = pref.wallpaper
+        session[:rows] = pref.rows
+        session[:bgcolor] = pref.bgcolor
+        session[:theme] = pref.theme
+      end
     end
   end
   

@@ -201,7 +201,7 @@ module ApplicationHelper
   def set_wallpaper
     if current_user
       if current_user.wallpaper 
-        unless session[:no_wallpaper] 
+        if session[:wallpaper]
           return "background-image:url('#{current_user.wallpaper.url}');"
         else
           if session[:bgcolor]
@@ -227,6 +227,7 @@ module ApplicationHelper
         session[:theme] = pref.theme
         session[:bgcolor] = pref.bgcolor
         session[:rows] = pref.rows
+        session[:wallpaper] = pref.wallpaper
   end
   
   # Set css file

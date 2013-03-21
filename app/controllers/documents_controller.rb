@@ -13,7 +13,6 @@ class DocumentsController < ApplicationController
     end
   end
   
-  
   # Loads or Creates a [document->endnote] if necessary.
   def new
     @document = Document.find_or_create(current_user.id, params[:school_id], params[:assignment_id], params[:task_id])

@@ -1,13 +1,13 @@
 class GradesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_school_staff, except: [:index, :show]
+  before_filter :get_school
   
   def index
-    @grades = Grade.all
+    @grades = @school.grades.all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @grades }
+      format.html 
     end
   end
 
@@ -80,5 +80,11 @@ class GradesController < ApplicationController
       format.html { redirect_to grades_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  
+  def get_school
+    @school = School.find(current_user.school)
   end
 end
