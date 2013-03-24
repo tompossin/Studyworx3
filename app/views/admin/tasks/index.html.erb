@@ -32,7 +32,7 @@
     </h1>
     <p class="title larger">Task Administration</p>
     <p>
-      <%=link_to "Add a Task", new_admin_assignment_task_path(@assignment),{ remote: :true }%>
+      <%=link_to "Add a Task", new_admin_assignment_task_path(@assignment)%>
     </p>
     <div id="task_area">
       <% unless @tasks.empty? %>
@@ -53,7 +53,7 @@
               <span class="cell" style="width:100px;"><%= get_task_type_name(t.task_type) %></span>
               <span class="cell" style="width:100px;"><%= get_templat_name(t.templat_id) %></span>
               <span class="cell" style="width:100px;">
-                <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t),remote: true %> 
+                <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t) %> 
                 <%=link_to "destroy",admin_assignment_task_path(@assignment,t), method: :delete, data: { confirm: 'Are you sure?' } %>
               </span>
             </div>

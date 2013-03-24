@@ -273,12 +273,6 @@
   
     <li><a href="./Theme.html">Theme</a>
   
-    <li><a href="./Turnin.html">Turnin</a>
-  
-    <li><a href="./TurninsController.html">TurninsController</a>
-  
-    <li><a href="./TurninsHelper.html">TurninsHelper</a>
-  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -334,9 +328,11 @@
 
           
           <div class="method-source-code" id="admin_assistant-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 131</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_assistant?</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span> 
+      <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- admin_assistant-3F-source -->
           
@@ -375,7 +371,7 @@
 
           
           <div class="method-source-code" id="admin_status-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 147</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_status</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>
     <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -569,9 +565,11 @@
 
           
           <div class="method-source-code" id="leader-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">leader?</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span> 
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- leader-3F-source -->
           
@@ -644,7 +642,9 @@
           <div class="method-source-code" id="staff-3F-source">
             <pre><span class="ruby-comment"># File app/models/user.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">staff?</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
+   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span> 
+    <span class="ruby-keyword">true</span>
+   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- staff-3F-source -->
           

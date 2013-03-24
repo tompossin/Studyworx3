@@ -4,6 +4,7 @@ class Assignment < ActiveRecord::Base
   has_many :documents
   has_many :turnins
   has_many :grades
+  belongs_to :scoresheet
   belongs_to :school
   acts_as_list
   
@@ -14,6 +15,7 @@ class Assignment < ActiveRecord::Base
   # Validations for Assignments
   validates :name, :module, :school_id, :weight, :instructions, presence: true
   validates :weight, :module, :inclusion => {:in => 0..100}
+  
   
 
   

@@ -75,6 +75,7 @@ article {
   float: left;
   background-color: white;
   padding-left: 10px;
+  padding-bottom: 20px;
   opacity: .75;
   width: 98%;
   min-height: 60%;
@@ -446,9 +447,11 @@ code {
 }
 .floatbox_trans {
   float: left;
+  background-color: rgba(0,0,0,.8);
   border-radius: 8px;
   padding:10px;
   margin: 10px;
+  color: white;
 }
 
 .float_left {

@@ -71,13 +71,6 @@ ul {
   padding-bottom:0px;
 }
 
-header {
-  height:200px;
-  background-color:white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
 article {
   float: left;
   background-color: white;
@@ -102,7 +95,10 @@ aside {
 }
 
 header {
-  
+  height:75px;
+  background-color:white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 footer {

@@ -64,7 +64,19 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-assign_staff_to_students">::assign_staff_to_students</a>
+    
+    <li><a href="#method-c-hand_in_to_staff">::hand_in_to_staff</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -245,12 +257,6 @@
   
     <li><a href="./Theme.html">Theme</a>
   
-    <li><a href="./Turnin.html">Turnin</a>
-  
-    <li><a href="./TurninsController.html">TurninsController</a>
-  
-    <li><a href="./TurninsHelper.html">TurninsHelper</a>
-  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -284,6 +290,85 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-assign_staff_to_students" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assign_staff_to_students</span><span
+            class="method-args">(school_id,student_id,assignment_id,staff_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds or creates grade records from the staff perspective. It also updates
+the staff_id of the record. TODO Need to insert scoresheet data into these
+records</p>
+          
+
+          
+          <div class="method-source-code" id="assign_staff_to_students-source">
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assign_staff_to_students</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">staff_id</span>)
+  <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and user_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">grade</span>
+    <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">staff_id</span> = <span class="ruby-identifier">staff_id</span>
+  <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">grade</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- assign_staff_to_students-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- assign_staff_to_students-method -->
+
+    
+      <div id="method-c-hand_in_to_staff" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hand_in_to_staff</span><span
+            class="method-args">(school_id,student_id,assignment_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds or creates grades records from the student perspective. TODO Need to
+insert scoresheet data into these records</p>
+          
+
+          
+          <div class="method-source-code" id="hand_in_to_staff-source">
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hand_in_to_staff</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and user_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">grade</span>
+    <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">grade</span>    
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hand_in_to_staff-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hand_in_to_staff-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

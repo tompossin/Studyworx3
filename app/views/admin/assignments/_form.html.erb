@@ -7,12 +7,16 @@
     <%= f.number_field :weight %>
     <p>Module</p>
     <%= f.number_field :module %>
+    <p>Bible Book (required for charting)</p>
+    <%= f.select :book_id, Book.all.collect {|b| [ b.name, b.id ] }, { :include_blank => true } %>
+    <p>Scoresheet</p>
+    <%= f.select :scoresheet_id, @school.scoresheets.all.collect {|s| [s.name, s.id]}, {include_blank: true} %>
     <p>Resources</p>
     <%= f.text_area :resources, {:style=>"width:96%;height: 80px;"} %>
   </div>
   <div class="float_left limited">
     <p>Instructions</p>
-    <%= f.text_area :instructions, {:style=>"width:96%;height: 222px;"} %>
+    <%= f.text_area :instructions, {:style=>"width:96%;height: 316px;"} %>
     <br /><%= f.submit :update %>
   </div>
 <% end %>

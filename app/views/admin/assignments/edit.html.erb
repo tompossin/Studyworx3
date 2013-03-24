@@ -1,11 +1,10 @@
 <div id="content-large">
   <article>
+    <div id="breadcrumbs">
+      <%=link_to "Assignment Home", admin_assignments_path %>
+    </div>
     <h2>
       Assignment Admin
-      <span class="smallest">
-        &nbsp;&nbsp;
-        <%=link_to "Go to Assignment Home", admin_assignments_path %>
-      </span>
     </h2>
     <%= render "admin/assignments/form"%>
     <!--Task editor below divis line -->

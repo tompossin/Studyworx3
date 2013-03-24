@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321002459) do
+ActiveRecord::Schema.define(:version => 20130322235153) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -102,18 +102,21 @@ ActiveRecord::Schema.define(:version => 20130321002459) do
   add_index "endnotes", ["paper_id"], :name => "index_endnotes_on_paper_id"
 
   create_table "grades", :force => true do |t|
-    t.integer  "school_id",        :null => false
-    t.integer  "assignment_id",    :null => false
-    t.integer  "user_id",          :null => false
+    t.integer  "school_id",                           :null => false
+    t.integer  "assignment_id",                       :null => false
+    t.integer  "user_id",                             :null => false
     t.integer  "staff_id"
     t.integer  "grade"
     t.text     "staff_comments"
     t.text     "student_comments"
     t.text     "scratchpad"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.boolean  "viewable",         :default => false
+    t.boolean  "done",             :default => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
+  add_index "grades", ["done"], :name => "index_grades_on_done"
   add_index "grades", ["school_id", "assignment_id", "user_id"], :name => "index_grades_on_school_id_and_assignment_id_and_user_id"
   add_index "grades", ["staff_id"], :name => "index_grades_on_staff_id"
   add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
@@ -352,13 +355,16 @@ ActiveRecord::Schema.define(:version => 20130321002459) do
     t.integer  "assignment_id",                    :null => false
     t.integer  "staff_id"
     t.text     "comment"
+    t.boolean  "viewable",      :default => false
     t.boolean  "done",          :default => false
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
 
+  add_index "turnins", ["done"], :name => "index_turnins_on_done"
   add_index "turnins", ["staff_id"], :name => "index_turnins_on_staff_id"
   add_index "turnins", ["user_id", "assignment_id"], :name => "index_turnins_on_user_id_and_assignment_id"
+  add_index "turnins", ["viewable"], :name => "index_turnins_on_viewable"
 
   create_table "user_admins", :force => true do |t|
     t.integer  "user_id"

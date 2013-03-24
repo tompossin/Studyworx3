@@ -1,0 +1,6 @@
+<%=form_tag school_load_team_path(@school), {method: :get, remote: true} do %>
+  <label>Select Team to Grade</label><br />
+  <%= select_tag "team", options_from_collection_for_select(@teams,'id','name'), :prompt => "Select a Team" %>
+  <%= submit_tag "load" %>
+<% end %>
+

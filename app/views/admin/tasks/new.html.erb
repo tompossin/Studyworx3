@@ -1,0 +1,15 @@
+<div id="content-large"> 
+  <article>
+    <div id="breadcrumbs">
+      <span class="cell" ><%= link_to "Module Home",showmod_admin_assignments_path(mod_id: @assignment.module) %></span>
+      <span class="cell" ><%= link_to @assignment.name, admin_assignment_tasks_path(@assignment) %></span>
+    </div>
+    <h1>New task for <%= @assignment.name %></h1>
+    <%= render "admin/tasks/form" %>
+    
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>
+
+

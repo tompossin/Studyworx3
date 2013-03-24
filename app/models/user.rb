@@ -123,19 +123,25 @@ class User < ActiveRecord::Base
   # Check if this user is staff for current school
   #  Usage:  current_user.staff? # returns true or false 
   def staff?
-      self.role < 4
+    if self.role and self.role < 4 
+      true
+    end
   end
   
   # Check if this user is staff for current school
   #  Usage:  current_user.admin_assistant? # returns true or false
   def admin_assistant?
-      self.role < 3
+    if self.role and self.role < 3 
+      true
+    end
   end
   
   # Check if this user is staff for current school
   #  Usage:  current_user.leader? # returns true or false
   def leader?
-      self.role < 2
+    if self.role and self.role < 2 
+      true
+    end
   end
   
   # Returns a string of the users administrative Status

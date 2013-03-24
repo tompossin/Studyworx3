@@ -7,6 +7,7 @@ class School < ActiveRecord::Base
   has_many :scoresheets, :dependent => :destroy
   has_many :teams
   has_many :documents
+  has_many :grades
   
   ### Attributes ############################
     attr_accessible :active, :description, :end_date, :enrolement_type, :language_id, :location
@@ -43,17 +44,30 @@ class School < ActiveRecord::Base
     staff = self.users.where("participants.role_id < 4").all
     return staff
   end
+  
+  # Returns all accepted students
+  def students
+    students = self.users.where("participants.role_id = 4 and accepted = 2").all
+    return students
+  end
+  
   # Returns all active schools
   def self.all_active
     schools = School.where(active: true).all
   end
   
-  # Returns all current assignments
+  # Returns all current assignments for coreteam members (students)
   def current_assignments(user)
     team = user.teams.where("school_id = ? and coreteam = ?",user.school,true).first
     if team
       assignments = self.assignments.includes([:duedates]).where( "duedates.duedate > ? and team_id = ?", Time.now.in_time_zone,team).order("duedates.duedate ASC")
     end
+  end
+  
+  # Returns all curent assignments by coreteam (staff basically)
+  def current_team_assignments(team_id)
+    assignments = self.assignments.includes([:duedates]).where("duedates.duedate > ? and team_id = ?",Time.now.in_time_zone, team_id).order("duedates.duedate ASC")
+    
   end
 
 end

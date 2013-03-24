@@ -12,24 +12,20 @@ class GradesController < ApplicationController
   end
 
   # GET /grades/1
-  # GET /grades/1.json
   def show
     @grade = Grade.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @grade }
+      format.html 
     end
   end
 
   # GET /grades/new
-  # GET /grades/new.json
   def new
     @grade = Grade.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @grade }
+      format.html 
     end
   end
 
@@ -39,46 +35,90 @@ class GradesController < ApplicationController
   end
 
   # POST /grades
-  # POST /grades.json
   def create
     @grade = Grade.new(params[:grade])
 
     respond_to do |format|
       if @grade.save
         format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
-        format.json { render json: @grade, status: :created, location: @grade }
       else
         format.html { render action: "new" }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /grades/1
-  # PUT /grades/1.json
+  # Update the grade record with the new staff and status info.
   def update
     @grade = Grade.find(params[:id])
 
     respond_to do |format|
-      if @grade.update_attributes(params[:grade])
-        format.html { redirect_to @grade, notice: 'Grade was successfully updated.' }
-        format.json { head :no_content }
+      unless params[:grade][:staff_id] == ""
+        if @grade.update_attributes(params[:grade])
+          @checker = User.find(@grade.staff_id)
+          format.js 
+        else
+          format.js { render "shared/save_failed"}
+        end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
+        format.js { render "need_staff" }
+      end
+    end
+  end
+  
+  def hand_in
+    @grade = Grade.hand_in_to_staff(@school.id, params[:assignment_id], current_user.id)
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def load_team
+    @students = User.includes(:teams).where("teams.id = ?",params[:team]).all
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def load_module
+    @assignments = Assignment.where("module = ?",params[:module]).all
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def collect
+    @teams = @school.teams.all
+    @modules = @school.assignments.pluck(:module).uniq
+    
+    respond_to do |format|
+      format.html 
+    end
+  end
+  
+  # Batch create grading records for the current_user (staff)
+  def collect_save
+    staff_id = current_user.id
+    
+    respond_to do |format|
+      unless params[:assignment_ids].nil? or params[:user_ids].nil?
+        Grade.assign_students_and_assignments_to_staff(@school.id,params[:assignment_ids],params[:user_ids],staff_id)
+        format.html {redirect_to :back}
+      else
+        format.html {redirect_to :back, notice: 'You must select at least one student and one assignment.'}
       end
     end
   end
 
   # DELETE /grades/1
-  # DELETE /grades/1.json
   def destroy
     @grade = Grade.find(params[:id])
     @grade.destroy
 
     respond_to do |format|
       format.html { redirect_to grades_url }
-      format.json { head :no_content }
     end
   end
   

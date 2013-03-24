@@ -70,11 +70,17 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-collect">#collect</a>
+    
+    <li><a href="#method-i-collect_save">#collect_save</a>
+    
     <li><a href="#method-i-create">#create</a>
     
     <li><a href="#method-i-destroy">#destroy</a>
     
     <li><a href="#method-i-edit">#edit</a>
+    
+    <li><a href="#method-i-hand_in">#hand_in</a>
     
     <li><a href="#method-i-index">#index</a>
     
@@ -267,12 +273,6 @@
   
     <li><a href="./Theme.html">Theme</a>
   
-    <li><a href="./Turnin.html">Turnin</a>
-  
-    <li><a href="./TurninsController.html">TurninsController</a>
-  
-    <li><a href="./TurninsHelper.html">TurninsHelper</a>
-  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -310,6 +310,81 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-collect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">collect</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="collect-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">collect</span>
+  <span class="ruby-ivar">@teams</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@students</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">students</span>
+  <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- collect-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- collect-method -->
+
+    
+      <div id="method-i-collect_save" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">collect_save</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="collect_save-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">collect_save</span>
+  <span class="ruby-identifier">staff_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_ids</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">student_id</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_ids</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">assignment_id</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">assign_staff_to_students</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">staff_id</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- collect_save-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- collect_save-method -->
+
+    
       <div id="method-i-create" class="method-detail ">
         
         <div class="method-heading">
@@ -321,22 +396,20 @@
 
         <div class="method-description">
           
-          <p>POST /grades POST /grades.json</p>
+          <p>POST /grades</p>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>])
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@grade</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Grade was successfully created.'</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grade</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grade</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;new&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -361,19 +434,18 @@
 
         <div class="method-description">
           
-          <p>DELETE /grades/1 DELETE /grades/1.json</p>
+          <p>DELETE /grades/1</p>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">destroy</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">grades_url</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- destroy-source -->
@@ -402,7 +474,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -414,6 +486,40 @@
 
         
       </div><!-- edit-method -->
+
+    
+      <div id="method-i-hand_in" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hand_in</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="hand_in-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hand_in</span>
+  <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">hand_in_to_staff</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hand_in-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hand_in-method -->
 
     
       <div id="method-i-index" class="method-detail ">
@@ -432,13 +538,12 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@grades</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@grades</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">all</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grades</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
@@ -462,18 +567,17 @@
 
         <div class="method-description">
           
-          <p>GET /grades/new GET /grades/new.json</p>
+          <p>GET /grades/new</p>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">new</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grade</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -497,18 +601,17 @@
 
         <div class="method-description">
           
-          <p>GET /grades/1 GET /grades/1.json</p>
+          <p>GET /grades/1</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grade</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
@@ -532,22 +635,25 @@
 
         <div class="method-description">
           
-          <p>PUT /grades/1 PUT /grades/1.json</p>
+          <p>Update the grade record with the new staff and status info.</p>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>])
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@grade</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Grade was successfully updated.'</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>][<span class="ruby-value">:staff_id</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>])
+        <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">staff_id</span>)
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+      <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;edit&quot;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;need_staff&quot;</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

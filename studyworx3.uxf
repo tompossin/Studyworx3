@@ -19,8 +19,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>882</x>
-      <y>21</y>
+      <x>14</x>
+      <y>882</y>
       <w>119</w>
       <h>161</h>
     </coordinates>
@@ -40,91 +40,6 @@
 /added by the school/
 /admins/
 bg=gray</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>7</x>
-      <y>0</y>
-      <w>546</w>
-      <h>497</h>
-    </coordinates>
-    <panel_attributes>*Personnel*
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>896</x>
-      <y>301</y>
-      <w>98</w>
-      <h>133</h>
-    </coordinates>
-    <panel_attributes>*paragraphs*
---
--&lt;&lt;d(PK):int
---
-&gt;&gt;book_id:int
-&gt;&gt;version_id:int
---
---
--content:longtext
--position:int
--verse_count:int
--startref:text
--endref:text
-bg=gray</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>693</x>
-      <y>1008</y>
-      <w>119</w>
-      <h>119</h>
-    </coordinates>
-    <panel_attributes>*charttexts*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;title_id:int
-&gt;&gt;participant_id:int
---
---
--content:textlong
--staffnote:text
--editor:int
---
-/Outsides of Verticals/
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>560</x>
-      <y>217</y>
-      <w>119</w>
-      <h>14</h>
-    </coordinates>
-    <panel_attributes>*&gt;= Contributor(UA1)*
-bg=#3c7a00</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>483</x>
-      <y>665</y>
-      <w>364</w>
-      <h>679</h>
-    </coordinates>
-    <panel_attributes>*Tables for assignment task data*
-
-</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -152,43 +67,175 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>308</x>
-      <y>714</y>
-      <w>112</w>
-      <h>77</h>
+      <x>441</x>
+      <y>560</y>
+      <w>119</w>
+      <h>133</h>
     </coordinates>
-    <panel_attributes>*scoresheets*
+    <panel_attributes>*documents*
 --
 &lt;&lt;id(PK):int
+--
+&gt;&gt;user_id:int
+&gt;&gt;school_id:int
+&gt;&gt;assignment_id:int
+&gt;&gt;task_id:int
+--
+--
+-body:textlong
+-content_type:int
+-staffnote:text
+--
+/Freeform writing work/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>287</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*&lt;= Leader(1)*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>406</x>
+      <y>14</y>
+      <w>133</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>*teams*
+--
+&lt;&lt;id:integer(PK)
 --
 &gt;&gt;school_id:int
 --
 --
+-owner_id:int
 -name:string
--content:text
+-description:text
+-coreteam:boolean
+--
+--
+/Teams HABTM Users/
 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>245</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*&lt;= student(4)*
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>154</x>
+      <y>1134</y>
+      <w>98</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>*versions*
+--
+&lt;&lt;id(PK):int
+--
+--
+-name:text
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>798</x>
+      <y>161</y>
+      <w>140</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>*Peer Reviewed papers*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>315</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*&gt;= Admin(UA2)*
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>301</x>
+      <y>140</y>
+      <w>119</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>*participants*
+--
+&lt;&lt;id(PK):int
+--
+--
+&gt;&gt;user_id:int
+&gt;&gt;role_id:int
+&gt;&gt;school_id:int
+&gt;&gt;lanuguage_id:int
+--
+--
+-prereq:boolean
+-accepted:int
+--
+--
+/has_many_through/
+users -&gt;
+praticipants-&gt;
+schools
+
+
+fg=black
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>21</x>
-      <y>259</y>
-      <w>126</w>
-      <h>84</h>
+      <x>623</x>
+      <y>560</y>
+      <w>112</w>
+      <h>98</h>
     </coordinates>
-    <panel_attributes>*notes*
+    <panel_attributes>*topics*
 --
 &lt;&lt;id(PK):int
 --
-&gt;&gt;user_id:int
+&gt;&gt;task_id:int
+&gt;&gt;assignment_id:int
 --
 --
--bio:text
--reminder:text
--public:text
-</panel_attributes>
+-title:string
+-description:text
+-order:int
+
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -222,49 +269,98 @@ bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Class</type>
+    <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>560</x>
-      <y>245</y>
-      <w>119</w>
-      <h>14</h>
+      <x>7</x>
+      <y>0</y>
+      <w>546</w>
+      <h>497</h>
     </coordinates>
-    <panel_attributes>*No Interface*
-bg=black
-fg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>406</x>
-      <y>14</y>
-      <w>133</w>
-      <h>112</h>
-    </coordinates>
-    <panel_attributes>*teams*
---
-&lt;&lt;id:integer(PK)
---
-&gt;&gt;school_id:int
---
---
--owner_id:int
--name:string
--description:text
--coreteam:boolean
---
---
-/Teams HABTM Users/
-
+    <panel_attributes>*Personnel*
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>504</x>
-      <y>1183</y>
+      <x>602</x>
+      <y>301</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*&gt;= Contributor(UA1)*
+bg=#3c7a00</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>154</x>
+      <y>994</y>
+      <w>98</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>*paragraphs*
+--
+-&lt;&lt;d(PK):int
+--
+&gt;&gt;book_id:int
+&gt;&gt;version_id:int
+--
+--
+-content:longtext
+-position:int
+-verse_count:int
+-startref:text
+-endref:text
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>616</x>
+      <y>1022</y>
+      <w>119</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>*observations*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+--
+--
+-link:text
+-color:text
+-code:text
+-name:text
+-position:int
+--
+/ This table holds/
+/links to icons for/
+/Observation types/
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>273</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*&lt;= Assistant(2)*
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>441</x>
+      <y>1022</y>
       <w>119</w>
       <h>147</h>
     </coordinates>
@@ -287,98 +383,64 @@ bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>868</x>
-      <y>189</y>
-      <w>154</w>
-      <h>308</h>
-    </coordinates>
-    <panel_attributes>*Bible data*
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>504</x>
-      <y>1008</y>
-      <w>119</w>
-      <h>168</h>
+      <x>21</x>
+      <y>378</y>
+      <w>126</w>
+      <h>105</h>
     </coordinates>
-    <panel_attributes>*titles*
+    <panel_attributes>*themes*
 --
 &lt;&lt;id(PK):int
 --
-&gt;&gt;parent_id:int
-&gt;&gt;participant_id:int
-&gt;&gt;assignment_id:int
-&gt;&gt;task_id:int
-&gt;&gt;paragraph_id:int
+-name:string
+-filename:string
+-wallpaper:boolean
 --
 --
--title:string
--title_type:int
--position:int
--verse_count:int
--staffnote:text
---
-/ Main Title Editing/
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>483</x>
-      <y>511</y>
-      <w>364</w>
-      <h>147</h>
-    </coordinates>
-    <panel_attributes>*Assignment Grading data*
+Reference Table
+No Interface
+
+bg=black
+fg=white
+
 
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Class</type>
+    <type>com.umlet.element.UseCase</type>
     <coordinates>
-      <x>560</x>
+      <x>602</x>
       <y>147</y>
-      <w>119</w>
-      <h>14</h>
-    </coordinates>
-    <panel_attributes>*= User(5)*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>896</x>
-      <y>441</y>
-      <w>98</w>
+      <w>105</w>
       <h>49</h>
     </coordinates>
-    <panel_attributes>*versions*
---
-&lt;&lt;id(PK):int
---
---
--name:text
-bg=gray</panel_attributes>
+    <panel_attributes>All tables Include:
+/*Rails fields*/
+bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>560</x>
-      <y>161</y>
-      <w>119</w>
-      <h>14</h>
+      <x>287</x>
+      <y>840</y>
+      <w>112</w>
+      <h>77</h>
     </coordinates>
-    <panel_attributes>*&lt;= student(4)*
-bg=yellow</panel_attributes>
+    <panel_attributes>*scoresheets*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+--
+--
+-name:string
+-content:text
+
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -403,7 +465,286 @@ bg=black</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>308</x>
+      <x>161</x>
+      <y>378</y>
+      <w>91</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>*colors*
+--
+&lt;&lt;id(PK):int
+--
+-color:string
+-name:string
+--
+--
+Reference Table
+No Interface
+
+bg=black
+fg=white
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>427</x>
+      <y>539</y>
+      <w>154</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>*Writing task data*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>273</x>
+      <y>399</y>
+      <w>133</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>*message_hierarchies*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;ancestor_id:int
+&gt;&gt;descendant_id:int
+&gt;&gt;generations:int
+--
+/  Self Join Table/
+
+bg=black
+fg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>217</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*Access Key*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>420</x>
+      <y>140</y>
+      <w>119</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>*participant_roles*
+--
+&lt;&lt;id(PK):int
+--
+-rolename:text
+--
+--
+/--RolesAvailable/
+/----1=leader/
+/----2=assistant/
+/----3=staff/
+/----4=student/
+--
+Reference table only
+No interface
+bg=black
+fg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>805</x>
+      <y>21</y>
+      <w>112</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>*blogs*
+--
+id:int(PK)
+--
+&gt;&gt;user_id:int
+--
+--
+-category:string
+-topic:string
+-excerpt:text
+-article:text
+-featured:boolean
+-leadstory:boolean
+-navbar:boolean
+
+bg=#3c7a00</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>812</x>
+      <y>308</y>
+      <w>112</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>*reviews*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;paper_id:int
+&gt;&gt;user_id:int
+--
+--
+-content:text
+-approved:boolean
+
+
+
+
+bg=#3c7a00</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>616</x>
+      <y>840</y>
+      <w>119</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>*charttexts*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;title_id:int
+&gt;&gt;participant_id:int
+--
+--
+-content:textlong
+-staffnote:text
+-editor:int
+--
+/Outsides of Verticals/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>21</x>
+      <y>14</y>
+      <w>126</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>*users*
+--
+&lt;&lt;id(PK):int
+--
+--
+-email:string
+-firstname:string
+-lastname:string
+-phone:string
+-address:text
+-reviewboard:boolean
+-avatar:paperclip
+-wallpaper:paperclip
+-iotd:paperclip
+-theme_id:int
+-school:int
+-role:int
+-timezone:string
+--
+- +all_devise_fields
+- +all_paperclip fields
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>441</x>
+      <y>700</y>
+      <w>119</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>*endnotes*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;document_id:int
+&gt;&gt;paper_id:int
+--
+--
+-content:text
+-content_type:int
+--
+/belongs_to answers/
+/and papers/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>231</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*= User(5)*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>784</x>
+      <y>518</y>
+      <w>168</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>*Assignment Grading data*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>161</x>
+      <y>140</y>
+      <w>126</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>*user_admins*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;user_id:int
+--
+--
+-level:int
+--
+1 = Contributor
+2 = Admin
+3 = SuperAdmin
+
+
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>287</x>
       <y>518</y>
       <w>112</w>
       <h>182</h>
@@ -434,51 +775,98 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>707</x>
-      <y>182</y>
-      <w>112</w>
-      <h>112</h>
+      <x>21</x>
+      <y>259</y>
+      <w>126</w>
+      <h>105</h>
     </coordinates>
-    <panel_attributes>*papers*
+    <panel_attributes>*notes*
 --
-id:int(PK)
+&lt;&lt;id(PK):int
 --
 &gt;&gt;user_id:int
 --
 --
--category:string
--title:string
--synopsis:text
--body:text
--published:boolean
-
-
-bg=#3c7a00</panel_attributes>
+-bio:text
+-reminder:text
+-public:text
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>784</x>
+      <y>0</y>
+      <w>168</w>
+      <h>413</h>
+    </coordinates>
+    <panel_attributes>*Public Data*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>21</x>
-      <y>357</y>
-      <w>126</w>
-      <h>105</h>
+      <x>441</x>
+      <y>840</y>
+      <w>119</w>
+      <h>168</h>
     </coordinates>
-    <panel_attributes>*themes*
+    <panel_attributes>*titles*
 --
 &lt;&lt;id(PK):int
 --
--name:string
--filename:string
--wallpaper:boolean
+&gt;&gt;parent_id:int
+&gt;&gt;participant_id:int
+&gt;&gt;assignment_id:int
+&gt;&gt;task_id:int
+&gt;&gt;paragraph_id:int
 --
 --
-Reference Table
-No Interface
-
-bg=black
-fg=white
-
+-title:string
+-title_type:int
+-position:int
+-verse_count:int
+-staffnote:text
+--
+/ Main Title Editing/
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>259</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*&lt;= staff(3)*
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>602</x>
+      <y>77</y>
+      <w>105</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>/*Last Updated:*/
+03/22/2013
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>413</x>
+      <y>518</y>
+      <w>364</w>
+      <h>679</h>
+    </coordinates>
+    <panel_attributes>*Tables for assignment task data*
 
 </panel_attributes>
     <additional_attributes/>
@@ -486,27 +874,212 @@ fg=white
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>511</x>
-      <y>714</y>
-      <w>119</w>
-      <h>133</h>
+      <x>287</x>
+      <y>707</y>
+      <w>112</w>
+      <h>119</h>
     </coordinates>
-    <panel_attributes>*documents*
+    <panel_attributes>*templats*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+--
+--
+-name:string
+-content:text
+-public:boolean
+--
+/loads with task/
+/*purposely mispelled/
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>623</x>
+      <y>672</y>
+      <w>112</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>*comments*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;topic_id:int
+&gt;&gt;parent_id:int
+&gt;&gt;team_id:int
+&gt;&gt;participant_id:int
+--
+--
+-content:text
+-comments_count:int
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>161</x>
+      <y>259</y>
+      <w>126</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>*preferences*
 --
 &lt;&lt;id(PK):int
 --
 &gt;&gt;user_id:int
+--
+--
+-theme:int
+-bgcolor:string
+-rows:int
+-wallpaper:boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>798</x>
+      <y>539</y>
+      <w>140</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>*grades*
+--
+&lt;&lt;id(PK):int
+--
 &gt;&gt;school_id:int
 &gt;&gt;assignment_id:int
-&gt;&gt;task_id:int
+&gt;&gt;user_id:int
 --
 --
--body:textlong
--content_type:int
--staffnote:text
+-staff_id:int
+-grade:int
+-staff_comments:text
+-student_comments:text
+-scratchpad:text
+-viewable:boolean
+-done:boolean
+
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>602</x>
+      <y>539</y>
+      <w>154</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>*Discussion task data*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>154</x>
+      <y>903</y>
+      <w>98</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>*books*
 --
-/Freeform writing work/
-bg=yellow</panel_attributes>
+&lt;&lt;id(PK):int
+
+--
+-short_name:text
+-name:text
+-verse_count:int
+-position:int
+
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>147</x>
+      <y>882</y>
+      <w>119</w>
+      <h>308</h>
+    </coordinates>
+    <panel_attributes>*Bible data*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>427</x>
+      <y>819</y>
+      <w>336</w>
+      <h>357</h>
+    </coordinates>
+    <panel_attributes>*Charting task data*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>161</x>
+      <y>518</y>
+      <w>112</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>*assignments*
+--
+&lt;&lt;id(PK):int
+--
+&gt;&gt;school_id:int
+&gt;&gt;book_id:int
+&gt;&gt;scoresheet_id:int
+--
+--
+-position:int
+-name:text
+-weight:int
+-module:int
+-resources:text
+-instructions:text
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>602</x>
+      <y>329</y>
+      <w>119</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>*No Interface*
+bg=black
+fg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>7</x>
+      <y>861</y>
+      <w>266</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>*Super Admin*
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -549,274 +1122,12 @@ bg=blue</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>161</x>
-      <y>791</y>
+      <x>812</x>
+      <y>182</y>
       <w>112</w>
-      <h>119</h>
+      <h>112</h>
     </coordinates>
-    <panel_attributes>*templats*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;school_id:int
---
---
--name:string
--content:text
--public:boolean
---
-/loads with task/
-/*purposely mispelled/
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>161</x>
-      <y>357</y>
-      <w>91</w>
-      <h>105</h>
-    </coordinates>
-    <panel_attributes>*colors*
---
-&lt;&lt;id(PK):int
---
--color:string
--name:string
---
---
-Reference Table
-No Interface
-
-bg=black
-fg=white
-
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>707</x>
-      <y>308</y>
-      <w>112</w>
-      <h>91</h>
-    </coordinates>
-    <panel_attributes>*reviews*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;paper_id:int
-&gt;&gt;user_id:int
---
---
--content:text
--approved:boolean
-
-
-
-
-bg=#3c7a00</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>511</x>
-      <y>854</y>
-      <w>119</w>
-      <h>105</h>
-    </coordinates>
-    <panel_attributes>*endnotes*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;document_id:int
-&gt;&gt;paper_id:int
---
---
--content:text
--content_type:int
---
-/belongs_to answers/
-/and papers/
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>273</x>
-      <y>399</y>
-      <w>133</w>
-      <h>84</h>
-    </coordinates>
-    <panel_attributes>*message_hierarchies*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;ancestor_id:int
-&gt;&gt;descendant_id:int
-&gt;&gt;generations:int
---
-/  Self Join Table/
-
-bg=black
-fg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>161</x>
-      <y>518</y>
-      <w>112</w>
-      <h>147</h>
-    </coordinates>
-    <panel_attributes>*assignments*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;school_id:int
-&gt;&gt;book_id:int
-&gt;&gt;scoresheet_id:int
---
---
--position:int
--name:text
--weight:int
--module:int
--resources:text
--instructions:text
-
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>420</x>
-      <y>140</y>
-      <w>119</w>
-      <h>154</h>
-    </coordinates>
-    <panel_attributes>*participant_roles*
---
-&lt;&lt;id(PK):int
---
--rolename:text
---
---
-/--RolesAvailable/
-/----1=leader/
-/----2=assistant/
-/----3=staff/
-/----4=student/
---
-Reference table only
-No interface
-bg=black
-fg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>560</x>
-      <y>175</y>
-      <w>119</w>
-      <h>14</h>
-    </coordinates>
-    <panel_attributes>*&lt;= staff(3)*
-bg=cyan</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>560</x>
-      <y>189</y>
-      <w>119</w>
-      <h>14</h>
-    </coordinates>
-    <panel_attributes>*&lt;= Assistant(2)*
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>854</x>
-      <y>0</y>
-      <w>175</w>
-      <h>504</h>
-    </coordinates>
-    <panel_attributes>*Super Admin*
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>560</x>
-      <y>133</y>
-      <w>119</w>
-      <h>14</h>
-    </coordinates>
-    <panel_attributes>*Access Key*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.UseCase</type>
-    <coordinates>
-      <x>567</x>
-      <y>63</y>
-      <w>105</w>
-      <h>49</h>
-    </coordinates>
-    <panel_attributes>All tables Include:
-/*Rails fields*/
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>693</x>
-      <y>161</y>
-      <w>140</w>
-      <h>245</h>
-    </coordinates>
-    <panel_attributes>*Peer Reviewed papers*
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.UseCase</type>
-    <coordinates>
-      <x>567</x>
-      <y>7</y>
-      <w>105</w>
-      <h>49</h>
-    </coordinates>
-    <panel_attributes>/*Last Updated:*/
-03/20/2013
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>707</x>
-      <y>14</y>
-      <w>112</w>
-      <h>133</h>
-    </coordinates>
-    <panel_attributes>*blogs*
+    <panel_attributes>*papers*
 --
 id:int(PK)
 --
@@ -824,345 +1135,13 @@ id:int(PK)
 --
 --
 -category:string
--topic:string
--excerpt:text
--article:text
--featured:boolean
--leadstory:boolean
--navbar:boolean
+-title:string
+-synopsis:text
+-body:text
+-published:boolean
+
 
 bg=#3c7a00</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>700</x>
-      <y>714</y>
-      <w>112</w>
-      <h>98</h>
-    </coordinates>
-    <panel_attributes>*topics*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;task_id:int
-&gt;&gt;assignment_id:int
---
---
--title:string
--description:text
--order:int
-
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>497</x>
-      <y>980</y>
-      <w>336</w>
-      <h>357</h>
-    </coordinates>
-    <panel_attributes>*Charting task data*
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>301</x>
-      <y>140</y>
-      <w>119</w>
-      <h>154</h>
-    </coordinates>
-    <panel_attributes>*participants*
---
-&lt;&lt;id(PK):int
---
---
-&gt;&gt;user_id:int
-&gt;&gt;role_id:int
-&gt;&gt;school_id:int
-&gt;&gt;lanuguage_id:int
---
---
--prereq:boolean
--accepted:int
---
---
-/has_many_through/
-users -&gt;
-praticipants-&gt;
-schools
-
-
-fg=black
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>560</x>
-      <y>203</y>
-      <w>119</w>
-      <h>14</h>
-    </coordinates>
-    <panel_attributes>*&lt;= Leader(1)*
-bg=blue</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>161</x>
-      <y>140</y>
-      <w>126</w>
-      <h>105</h>
-    </coordinates>
-    <panel_attributes>*user_admins*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;user_id:int
---
---
--level:int
---
-1 = Contributor
-2 = Admin
-3 = SuperAdmin
-
-
-bg=gray</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>896</x>
-      <y>210</y>
-      <w>98</w>
-      <h>84</h>
-    </coordinates>
-    <panel_attributes>*books*
---
-&lt;&lt;id(PK):int
-
---
--short_name:text
--name:text
--verse_count:int
--position:int
-
-bg=gray</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>700</x>
-      <y>833</y>
-      <w>112</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>*comments*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;topic_id:int
-&gt;&gt;parent_id:int
-&gt;&gt;team_id:int
-&gt;&gt;participant_id:int
---
---
--content:text
--comments_count:int
-
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>693</x>
-      <y>1183</y>
-      <w>119</w>
-      <h>147</h>
-    </coordinates>
-    <panel_attributes>*observations*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;school_id:int
---
---
--link:text
--color:text
--code:text
--name:text
--position:int
---
-/ This table holds/
-/links to icons for/
-/Observation types/
-
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>161</x>
-      <y>259</y>
-      <w>126</w>
-      <h>91</h>
-    </coordinates>
-    <panel_attributes>*preferences*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;user_id:int
---
---
--theme:int
--bgcolor:string
--rows:int
--wallpaper:boolean
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>21</x>
-      <y>14</y>
-      <w>126</w>
-      <h>231</h>
-    </coordinates>
-    <panel_attributes>*users*
---
-&lt;&lt;id(PK):int
---
---
--email:string
--firstname:string
--lastname:string
--phone:string
--address:text
--reviewboard:boolean
--avatar:paperclip
--wallpaper:paperclip
--iotd:paperclip
--theme_id:int
--school:int
--role:int
--timezone:string
---
-- +all_devise_fields
-- +all_paperclip fields
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>497</x>
-      <y>693</y>
-      <w>154</w>
-      <h>273</h>
-    </coordinates>
-    <panel_attributes>*Writing task data*
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>560</x>
-      <y>231</y>
-      <w>119</w>
-      <h>14</h>
-    </coordinates>
-    <panel_attributes>*&gt;= Admin(UA2)*
-bg=gray</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>679</x>
-      <y>518</y>
-      <w>140</w>
-      <h>133</h>
-    </coordinates>
-    <panel_attributes>*grades*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;school_id:int
-&gt;&gt;assignment_id:int
-&gt;&gt;user_id:int
---
---
--staff_id:int
--grade:int
--staff_comments:text
--student_comments:text
--scratchpad:text
-
-bg=cyan</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>518</x>
-      <y>539</y>
-      <w>105</w>
-      <h>98</h>
-    </coordinates>
-    <panel_attributes>*turnins*
---
-&lt;&lt;id(PK):int
---
-&gt;&gt;user_id:int
-&gt;&gt;assignment_id:int
---
---
--staff_id:int
--comment:text
--done:boolean
-
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>686</x>
-      <y>0</y>
-      <w>154</w>
-      <h>413</h>
-    </coordinates>
-    <panel_attributes>*Public Data*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Note</type>
-    <coordinates>
-      <x>679</x>
-      <y>693</y>
-      <w>154</w>
-      <h>273</h>
-    </coordinates>
-    <panel_attributes>*Discussion task data*
-
-</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

@@ -305,12 +305,6 @@
   
     <li><a href="./Theme.html">Theme</a>
   
-    <li><a href="./Turnin.html">Turnin</a>
-  
-    <li><a href="./TurninsController.html">TurninsController</a>
-  
-    <li><a href="./TurninsHelper.html">TurninsHelper</a>
-  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -949,7 +943,7 @@ to True/False. But really should be renamed for that sort of thing.</p>
 
           
           <div class="method-source-code" id="set_css-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 233</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 234</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_css</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>]
@@ -957,7 +951,7 @@ to True/False. But really should be renamed for that sort of thing.</p>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>]
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;base&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;base-right&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- set_css-source -->
@@ -989,12 +983,13 @@ to True/False. But really should be renamed for that sort of thing.</p>
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 222</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_preferences</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">preference</span>
-      <span class="ruby-identifier">p</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">p</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">theme</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;base-right&quot;</span>,<span class="ruby-identifier">bgcolor</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;white&quot;</span>,<span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">wallpaper</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
     <span class="ruby-keyword">end</span>
       <span class="ruby-identifier">pref</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
       <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>] = <span class="ruby-identifier">pref</span>.<span class="ruby-identifier">theme</span>
       <span class="ruby-identifier">session</span>[<span class="ruby-value">:bgcolor</span>] = <span class="ruby-identifier">pref</span>.<span class="ruby-identifier">bgcolor</span>
       <span class="ruby-identifier">session</span>[<span class="ruby-value">:rows</span>] = <span class="ruby-identifier">pref</span>.<span class="ruby-identifier">rows</span>
+      <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper</span>] = <span class="ruby-identifier">pref</span>.<span class="ruby-identifier">wallpaper</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- set_preferences-source -->
           
@@ -1026,7 +1021,7 @@ to True/False. But really should be renamed for that sort of thing.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span> 
-      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:no_wallpaper</span>] 
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper</span>]
         <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-image:url('#{current_user.wallpaper.url}');&quot;</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:bgcolor</span>]

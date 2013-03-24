@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_filter :load_school
+  before_filter :load_note
 
   # This is really just a framework now
   # TODO Fix the navbar so that only featured stories show
@@ -17,6 +18,15 @@ class HomeController < ApplicationController
     render :index
   end
   private
+  
+  def load_note
+    if current_user
+      unless current_user.note
+        note = Note.create(user_id: current_user.id)
+        current_user.note = note
+      end
+    end      
+  end
   
   def load_school
     if current_user

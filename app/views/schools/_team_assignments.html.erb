@@ -1,0 +1,10 @@
+<div class="float_left">
+  <%= form_tag school_load_team_assignments_path(@school),{remote: true, method: :get} do %>
+    <h3>Select a team to view assignments</h3>
+    <%= select_tag "team", options_from_collection_for_select(@teams,'id','name'), :prompt => "Select a Team" %>
+    <%= submit_tag "Select" %>
+  <% end %>
+</div>
+<div id="team_assignments">
+  
+</div>

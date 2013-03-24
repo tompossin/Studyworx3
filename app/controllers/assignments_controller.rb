@@ -14,8 +14,8 @@ class AssignmentsController < ApplicationController
   # This is the Assignment home page
   def show  
     @assignment = @school.assignments.find(params[:id])
-    turnin = @assignment.turnins.where("user_id = ?",current_user.id).first
-    @checker = User.find(turnin.staff_id) if turnin
+    grade = @assignment.grades.where("user_id = ?",current_user.id).first
+    @checker = User.find(grade.staff_id) if grade
     respond_to do |format|
       format.html 
     end

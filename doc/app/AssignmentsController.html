@@ -259,12 +259,6 @@
   
     <li><a href="./Theme.html">Theme</a>
   
-    <li><a href="./Turnin.html">Turnin</a>
-  
-    <li><a href="./TurninsController.html">TurninsController</a>
-  
-    <li><a href="./TurninsHelper.html">TurninsHelper</a>
-  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -355,8 +349,8 @@
             <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>  
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-identifier">turnin</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">turnins</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">turnin</span>.<span class="ruby-identifier">staff_id</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">turnin</span>
+  <span class="ruby-identifier">grade</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">grade</span>.<span class="ruby-identifier">staff_id</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">grade</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
   <span class="ruby-keyword">end</span>

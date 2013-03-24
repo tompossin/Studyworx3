@@ -6,7 +6,7 @@
     <h2><%= @assignment.name %></h2>
     <div class="toolbar" >
       <span class="cell"><%=link_to "Instructions/Resources", school_assignment_help_path(@school,@assignment),{remote: true, title: "Click to view Assignment Instructions and Resources."}  %></span>    
-      <span class="cell" ><%=link_to "turn-in",hand_in_path(assignment_id: @assignment),{remote: true, method: "post", title: "Click to make this assignment available to your checker."} %></span>
+      <span class="cell" ><%=link_to "turn-in",school_hand_in_path(@school,assignment_id: @assignment),{remote: true, method: "post", title: "Click to make this assignment available to your checker."} %></span>
       <span class="cell" ><%=link_to(image_tag("iconic/clock_16x16.png",size: "16x16"), school_assignment_time_remaining_path(@school,@assignment),{remote: true, title: "Click to view time remaining."}) %></span>
       <span id="stopwatch" class="cell" > 
         <%=image_tag("gray/arrow1_w.png",size: "10x10")%> Click to check time remaining

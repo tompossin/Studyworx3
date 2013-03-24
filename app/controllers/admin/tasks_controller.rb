@@ -31,14 +31,14 @@ class Admin::TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     respond_to do |format|
-      format.js
+      format.html
     end
   end
 
   def new
     @task = @assignment.tasks.new
     respond_to do |format|
-      format.js
+      format.html
     end
   end
   
@@ -46,9 +46,9 @@ class Admin::TasksController < ApplicationController
     @task = @assignment.tasks.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.js {render "shared/save_success"}
+        format.html {redirect_to admin_assignment_tasks_path(@assignment), notice: 'Task has been created'}
       else
-        format.js {render :new}
+        format.html {render :new}
       end
     end
   end
@@ -58,9 +58,9 @@ class Admin::TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.js {render "shared/save_success"}
+        format.html {redirect_to :back, notice: 'Task has been saved.'}
       else
-        format.js { render :edit }
+        format.html { render :edit }
       end
     end
   end

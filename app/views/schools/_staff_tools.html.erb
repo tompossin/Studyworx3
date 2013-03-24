@@ -1,7 +1,7 @@
 <!--This is the staff toolbar on the homeroom page -->
 <div class="float_left">
   <h2>Staff Tools</h2>
-  <p><%= link_to "Collect Assignments", turnins_path %></p>
+  <p><%= link_to "Collect Assignments", school_collect_path(current_user.school) %></p>
   <p><%=link_to "Grading Office", school_grades_path(current_user.school) %></p>
   <p><%= link_to "Reports","" %></p>
 </div>

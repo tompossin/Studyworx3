@@ -2,7 +2,7 @@
   <article>
     <p id="breadcrumbs">
       <%=link_to "Due-Date Home Page", admin_duedates_path %>
-      <%=link_to "Re-order list", admin_duedates_list_path(team: @team.id,module: @mod_id),{method: "post"}%>
+      <%=link_to "Re-order list", admin_duedates_list_path(team: @team.id,module: @mod_id) %>
     </p>
     <div>
       <h2>Add Due Dates to Assignments</h2>

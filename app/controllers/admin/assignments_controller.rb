@@ -7,7 +7,7 @@ class Admin::AssignmentsController < ApplicationController
   # Load the school/assignments page
   def index
     @assignments = @school.assignments.all
-    @mods = @assignments.group_by(&:module)
+    @mods = @school.assignments.group_by(&:module)
 
   end
   

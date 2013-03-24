@@ -35,6 +35,11 @@ module ApplicationHelper
     end
   end
   
+  def get_assignment_name(assignment_id)
+    a = Assignment.find(assignment_id)
+    return a.name
+  end
+  
   # Takes accepted status and returns a text color as a style attribute
   def status_color(accepted)
     if accepted == 0
@@ -221,7 +226,7 @@ module ApplicationHelper
   # Set main css file
   def set_preferences
       unless current_user.preference
-        p = Preference.create(user_id: current_user.id)
+        p = Preference.create(user_id: current_user.id,theme: "base-right",bgcolor: "white",rows: 20, wallpaper: false)
       end
         pref = Preference.where(user_id: current_user.id).first
         session[:theme] = pref.theme
@@ -238,7 +243,7 @@ module ApplicationHelper
       end
       return session[:theme]
     else
-      return "base"
+      return "base-right"
     end
   end
   

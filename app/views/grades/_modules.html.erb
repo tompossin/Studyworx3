@@ -1,0 +1,5 @@
+<%=form_tag school_load_module_path(@school), {method: :get, remote: true} do %>
+  <label>Select Assignment Module</label><br />
+  <%= select_tag "module", options_for_select(@modules,@mod_id), :prompt => "Select a Module" %>
+  <%= submit_tag "load" %>
+<% end %>

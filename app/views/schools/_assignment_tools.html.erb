@@ -9,5 +9,6 @@
   </div>
   <p>&nbsp;</p>
 
-    <%= render @assignments %>
+    <%= render @assignments unless current_user.staff? %>
+    <%= render 'team_assignments' if current_user.staff? %>
 </div>

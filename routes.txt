@@ -190,6 +190,12 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                         school_grade GET    /schools/:school_id/grades/:id(.:format)                                                   grades#show
                                      PUT    /schools/:school_id/grades/:id(.:format)                                                   grades#update
                                      DELETE /schools/:school_id/grades/:id(.:format)                                                   grades#destroy
+                      school_hand_in POST   /schools/:school_id/hand_in/assignment/:assignment_id(.:format)                            grades#hand_in
+                      school_collect GET    /schools/:school_id/collect(.:format)                                                      grades#collect
+                 school_collect_save POST   /schools/:school_id/collect_save(.:format)                                                 grades#collect_save
+                    school_load_team GET    /schools/:school_id/load_team/students(.:format)                                           grades#load_team
+                  school_load_module GET    /schools/:school_id/load_module/assignments(.:format)                                      grades#load_module
+        school_load_team_assignments GET    /schools/:school_id/load/team/assignments(.:format)                                        schools#load_team_assignments
                              schools GET    /schools(.:format)                                                                         schools#index
                                      POST   /schools(.:format)                                                                         schools#create
                           new_school GET    /schools/new(.:format)                                                                     schools#new
@@ -221,15 +227,6 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                                 blog GET    /blogs/:id(.:format)                                                                       blogs#show
                                      PUT    /blogs/:id(.:format)                                                                       blogs#update
                                      DELETE /blogs/:id(.:format)                                                                       blogs#destroy
-                             turnins GET    /turnins(.:format)                                                                         turnins#index
-                                     POST   /turnins(.:format)                                                                         turnins#create
-                          new_turnin GET    /turnins/new(.:format)                                                                     turnins#new
-                         edit_turnin GET    /turnins/:id/edit(.:format)                                                                turnins#edit
-                              turnin GET    /turnins/:id(.:format)                                                                     turnins#show
-                                     PUT    /turnins/:id(.:format)                                                                     turnins#update
-                                     DELETE /turnins/:id(.:format)                                                                     turnins#destroy
-                             hand_in POST   /hand_in/assignment/:assignment_id(.:format)                                               turnins#hand_in
-                             collect POST   /collect/:user_id/assignment/:assignment_id(.:format)                                      turnins#collect
                  reviewboard_profile GET    /profiles/:id/reviewboard(.:format)                                                        profiles#reviewboard
                reminder_load_profile GET    /profiles/:id/reminder_load(.:format)                                                      profiles#reminder_load
                  public_load_profile GET    /profiles/:id/public_load(.:format)                                                        profiles#public_load

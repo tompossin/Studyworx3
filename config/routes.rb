@@ -89,10 +89,15 @@ Studyworx3::Application.routes.draw do
         resources :documents
       end
     end
-    resources :grades do
-      
-    end
+    resources :grades
+    match 'hand_in/assignment/:assignment_id' => 'grades#hand_in', via: [:post], as: :hand_in
+    match 'collect' => 'grades#collect',via: [:get], as: :collect
+    match 'collect_save' => 'grades#collect_save',via: [:post], as: :collect_save
+    match 'load_team/students' => 'grades#load_team', via: [:get], as: :load_team 
+    match 'load_module/assignments' => 'grades#load_module', via: [:get], as: :load_module
+    match 'load/team/assignments' => 'schools#load_team_assignments', via: [:get], as: :load_team_assignments
   end
+  
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
     put 'update_endnote', 'toggle_type'
@@ -100,10 +105,7 @@ Studyworx3::Application.routes.draw do
   resources :blogs do
     post 'toggle_content_type'
   end
-  resources :turnins 
-  match 'hand_in/assignment/:assignment_id' => 'turnins#hand_in', via: [:post], as: :hand_in
-  match 'collect/:user_id/assignment/:assignment_id' => 'turnins#collect', via: [:post], as: :collect
-
+  
   resources :profiles do
     member do
       get 'reviewboard', 'reminder_load', 'public_load', 'public_show', 'reminder_show'

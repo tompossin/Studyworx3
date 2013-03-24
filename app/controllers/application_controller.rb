@@ -25,11 +25,15 @@ class ApplicationController < ActionController::Base
       end
       # set user preferences
       unless session[:theme]
-        pref = current_user.preference
-        session[:wallpaper] = pref.wallpaper
-        session[:rows] = pref.rows
-        session[:bgcolor] = pref.bgcolor
-        session[:theme] = pref.theme
+        unless current_user.preference
+          pref = Preference.create(user_id: current_user.id, wallpaper: false, rows: 20, bgcolor: "white", theme:"base-right")
+        else
+          pref = current_user.preference
+          session[:wallpaper] = pref.wallpaper if pref.wallpaper
+          session[:rows] = pref.rows if pref.rows
+          session[:bgcolor] = pref.bgcolor if pref.bgcolor
+          session[:theme] = pref.theme if pref.theme
+        end
       end
     end
   end

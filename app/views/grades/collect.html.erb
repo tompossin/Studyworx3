@@ -1,0 +1,39 @@
+<div id="breadcrumbs">
+  <%=link_to "Homeroom", schools_path %>
+</div>
+<div id="content-large">
+  <article>
+    <div class="theader">
+      <div class="float_left limited">
+        <h3>Select Students</h3>
+            <%= render 'teams' %>
+      </div>
+      
+      <div class="float_left limited">
+        <h3>Select Assignments</h3>
+            <%= render 'modules' %>
+      </div>
+    </div>
+    <%= form_tag 'collect_save' do %>
+      <div class="theader">
+        <div class="float_left limited" >
+          
+          <div id="students" >
+            <em>Select Students by team above.</em>
+          </div>
+        </div>
+        
+        <div class="float_left limited" >
+          
+          <div id="assignments">
+            <em>Select assignments by module above.</em>
+          </div>
+        </div>
+      </div>
+      
+      <p class="theader" ><%= submit_tag "save" %></p>
+    <% end %>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

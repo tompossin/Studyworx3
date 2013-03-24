@@ -1,7 +1,11 @@
 <div id="content-large">
   <article>
-    
+    <div id="breadcrumbs">
+      <%= link_to "Homeroom", schools_path %>
+    </div>
+    <h2>Current Grades</h2>
+    <%= render partial: 'grade', collection: @grades %>
   </article>
 </div>
 
-<%= nav_bar(@nav_body_content %>
+<%= nav_bar(@nav_body_content) %>

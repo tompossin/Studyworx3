@@ -15,7 +15,11 @@ class SchoolsController < ApplicationController
       if current_user.school < 1
         format.html # index.html.erb
       else
-        @assignments = @school.current_assignments(current_user)
+        unless current_user.staff?
+          @assignments = @school.current_assignments(current_user)
+        else
+          @teams = @school.teams.where('coreteam = ?',true)
+        end
         format.html { render :homeroom }
       end
     end
@@ -37,10 +41,25 @@ class SchoolsController < ApplicationController
     @school = School.find(current_user.school)
     check_for_pending_registrations?
     load_school_vars
-    @assignments = @school.current_assignments(current_user)
+    unless current_user.staff?
+      @assignments = @school.current_assignments(current_user)
+    else
+      @teams = @school.teams.where('coreteam = ?',true)
+    end
     
     respond_to do |format|
       format.html 
+    end
+  end
+  
+  # Load assignments according to selected coreteam
+  def load_team_assignments
+    @school = School.find(current_user.school)
+    @team = Team.find(params[:team])
+    @assignments = @school.current_team_assignments(@team.id)
+    
+    respond_to do |format|
+      format.js 
     end
   end
   

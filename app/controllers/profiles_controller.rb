@@ -73,8 +73,10 @@ class ProfilesController < ApplicationController
     ct = Theme.find_by_filename(params[:preference][:theme])
     current_user.preference.update_attributes(params[:preference])
     if ct.wallpaper
+      current_user.preference.wallpaper = true
       session[:wallpaper] = true
     else
+      current_user.preference.wallpaper = false
       session[:wallpaper] = false
     end
     
