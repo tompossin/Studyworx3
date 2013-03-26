@@ -196,6 +196,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                     school_load_team GET    /schools/:school_id/load_team/students(.:format)                                           grades#load_team
                   school_load_module GET    /schools/:school_id/load_module/assignments(.:format)                                      grades#load_module
         school_load_team_assignments GET    /schools/:school_id/load/team/assignments(.:format)                                        schools#load_team_assignments
+               school_grading_office GET    /schools/:school_id/grading_office(.:format)                                               grades#office
                              schools GET    /schools(.:format)                                                                         schools#index
                                      POST   /schools(.:format)                                                                         schools#create
                           new_school GET    /schools/new(.:format)                                                                     schools#new
@@ -203,6 +204,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                               school GET    /schools/:id(.:format)                                                                     schools#show
                                      PUT    /schools/:id(.:format)                                                                     schools#update
                                      DELETE /schools/:id(.:format)                                                                     schools#destroy
+          user_assignment_load_tasks GET    /user/:user_id/assignment/:assignment_id/load_tasks(.:format)                              grades#load_tasks
+              user_task_grading_view GET    /user/:user_id/task/:task_id/grading_view(.:format)                                        grades#grading_view
                     document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions

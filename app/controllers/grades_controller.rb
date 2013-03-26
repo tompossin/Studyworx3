@@ -3,20 +3,56 @@ class GradesController < ApplicationController
   before_filter :is_school_staff, except: [:index, :show]
   before_filter :get_school
   
+  # This is the main Student grade page.
   def index
-    @grades = @school.grades.all
+    @grades = current_user.grades.all
 
     respond_to do |format|
       format.html 
     end
   end
 
-  # GET /grades/1
+  # This zooms in on individual grades for assignments.
   def show
     @grade = Grade.find(params[:id])
 
     respond_to do |format|
       format.html 
+    end
+  end
+  
+  # This is the grading office page. The homepage for staff grading.
+  def office
+    @pending = Grade.includes(:assignment).where("grades.staff_id = ? and returned = ? and (grades.viewable = ? or grades.done = ?)",current_user.id,false,true,true).all
+    
+    respond_to do |format|
+      format.html 
+      format.js 
+    end
+  end
+  
+  # This loads a rendered non-editable version of the document for grading.
+  # It looks at task_type and loads the appropriate document/chart/discussion
+  # It will also load grading tools if the user is staff or higher.
+  def grading_view
+    @task = Task.find(params[:task_id])
+    @user_id = params[:user_id]
+    
+    respond_to do |format|
+      if @task.task_type == 1
+        @document = Document.where("user_id = ? and task_id = ?",params[:user_id],@task.id).first
+        if current_user.staff?
+          @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first if current_user.staff?
+          @partial_file = select_partial(@task.task_type)
+        end
+        format.js 
+      elsif @task.task_type == 2
+        format.js {render "shared/selection_not_known"}
+      elsif @task.task_type == 3
+        format.js {render "shared/selection_not_known"}
+      else
+        format.js {render "shared/selection_not_known"}
+      end
     end
   end
 
@@ -48,19 +84,29 @@ class GradesController < ApplicationController
   end
 
   # Update the grade record with the new staff and status info.
+  # If you want to just save a grade record with only a success reponse use a hidden field called save_only.
+  # Not sure if this is very smart but makes the forms easier and fewer routes to maintain.
   def update
     @grade = Grade.find(params[:id])
 
     respond_to do |format|
-      unless params[:grade][:staff_id] == ""
+      if params[:save_only] # normal save (expects a save_only field)
         if @grade.update_attributes(params[:grade])
-          @checker = User.find(@grade.staff_id)
-          format.js 
+          format.js {render "shared/save_success"}
         else
-          format.js { render "shared/save_failed"}
+          format.js {render "shared/save_failed"}
         end
-      else
-        format.js { render "need_staff" }
+      else # save the student turnin form making sure they choose a staff person.
+        unless params[:grade][:staff_id] == ""
+          if @grade.update_attributes(params[:grade])
+            @checker = User.find(@grade.staff_id)
+            format.js 
+          else
+            format.js { render "shared/save_failed"}
+          end
+        else
+          format.js { render "need_staff" }
+        end
       end
     end
   end
@@ -83,6 +129,17 @@ class GradesController < ApplicationController
   
   def load_module
     @assignments = Assignment.where("module = ?",params[:module]).all
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def load_tasks
+    @assignment = Assignment.find(params[:assignment_id])
+    @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id], params[:assignment_id]).first
+    @user = User.find(params[:user_id])
+    @tasks = @assignment.tasks.all
     
     respond_to do |format|
       format.js 
@@ -127,4 +184,20 @@ class GradesController < ApplicationController
   def get_school
     @school = School.find(current_user.school)
   end
+  
+  # Select the file name for the correct partial
+  def select_partial(task_type)
+    if task_type == 1
+      "grades/partials/gv_document"
+    elsif
+      "grades/partials/gv_chart"
+    elsif
+      "grades/partials/gv_discussion"
+    else
+      false
+    end
+  end
+  
+  
 end
+

@@ -3,7 +3,7 @@ class Grade < ActiveRecord::Base
   belongs_to :assignment
   belongs_to :school
   
-  attr_accessible :assignment_id, :grade, :school_id, :scratchpad, :staff_comments, :staff_id, :student_comments, :user_id, :viewable, :done
+  attr_accessible :assignment_id, :grade, :school_id, :scratchpad, :staff_comments, :staff_id, :student_comments, :user_id, :viewable, :done, :returned
   
   # Finds or creates grades (staff not yet assigned) records from the student perspective.
   #

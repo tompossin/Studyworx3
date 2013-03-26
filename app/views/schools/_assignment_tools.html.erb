@@ -5,7 +5,7 @@
     <span class="cell title large" >Current Assignments</span>
     <span class="cell"><%=link_to(image_tag("gray/previous.png",size: "16x16"),root_path,{title: "View previous Assignments"})%></span>
     <span class="cell"><%=link_to(image_tag("gray/next.png", size: "16x16"),root_path,{title: "View all Assignments"})%></span>
-    <span class="cell"><%=link_to(image_tag("gray/addressbook.png", size: "16x16"),root_path,{title: "View Grades"})%></span>
+    <span class="cell"><%=link_to(image_tag("gray/addressbook.png", size: "16x16"),school_grades_path(@school),{title: "View Grades"})%></span>
   </div>
   <p>&nbsp;</p>
 

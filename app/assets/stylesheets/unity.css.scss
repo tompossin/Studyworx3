@@ -112,7 +112,6 @@ blockquote {
 }
 
 
-
 code {
   display: block;
   background-color: #e0e0e0;
@@ -146,7 +145,7 @@ code {
 }
 
 #breadcrumbs {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 37%;
   width: 36%;

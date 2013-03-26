@@ -1,0 +1,20 @@
+<% if @assignment %>
+  <div class="theader" >
+    <span class="cell"><%= @user.fullname + ": " %></span>
+    <span class="cell"><%= @assignment.name %></span>
+  </div>
+<% end %>
+<div id="tlinks">
+  <%= render partial: "grades/partials/tlink", collection: @tasks %>
+</div>
+<div id="stickienote">
+  This is where the Stickie Note goes.
+</div>
+<div id="scratchpad">
+  <%= form_for [@school,@grade], {remote: true} do |f| %>
+    <%= hidden_field_tag "save_only","true" %>
+    <label>Grading Notes: </label> <%= f.submit :save %><br />
+    <%= f.text_area :scratchpad, size: "40x16" %>
+  <% end %>
+</div>
+  

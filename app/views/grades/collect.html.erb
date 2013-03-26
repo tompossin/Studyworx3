@@ -6,12 +6,12 @@
     <div class="theader">
       <div class="float_left limited">
         <h3>Select Students</h3>
-            <%= render 'teams' %>
+            <%= render 'grades/partials/teams' %>
       </div>
       
       <div class="float_left limited">
         <h3>Select Assignments</h3>
-            <%= render 'modules' %>
+            <%= render 'grades/partials/modules' %>
       </div>
     </div>
     <%= form_tag 'collect_save' do %>
@@ -31,7 +31,9 @@
         </div>
       </div>
       
-      <p class="theader" ><%= submit_tag "save" %></p>
+      <div class="toolbar" >
+        <span class="cell" ><%= submit_tag "save" %></span>
+      </div>
     <% end %>
   </article>
 </div>

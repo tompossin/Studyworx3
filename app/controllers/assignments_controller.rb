@@ -15,7 +15,7 @@ class AssignmentsController < ApplicationController
   def show  
     @assignment = @school.assignments.find(params[:id])
     grade = @assignment.grades.where("user_id = ?",current_user.id).first
-    @checker = User.find(grade.staff_id) if grade
+    @checker = User.find(grade.staff_id) if grade and grade.staff_id
     respond_to do |format|
       format.html 
     end

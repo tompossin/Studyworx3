@@ -149,7 +149,6 @@ code {
   top: 20px;
   width: 98%;
   margin: 5px;
-  padding: 5px;
 }
 
 #content-large {
@@ -161,8 +160,11 @@ code {
 }
 
 #breadcrumbs {
-  width: 96%;
-  box-shadow: 8px 8px 5px #888888;
+  position: fixed;
+  background-color: white;
+  top: 0px;
+  right: 39%;
+  width: 36%;
   border: 1px solid #dddddd;
   border-right: 3px solid #999999;
   border-left: 4px solid #dedede;
@@ -276,7 +278,7 @@ code {
   box-shadow: 10px 10px 5px #000000;
   padding:10px;
   margin-top: 40px;
-  background-color: rgba(0,0,0,.9);
+  background-color: rgba(255,255,255,.85);
   font-size: 10pt;
   height: 85%;
   overflow: auto; 

@@ -96,12 +96,16 @@ Studyworx3::Application.routes.draw do
     match 'load_team/students' => 'grades#load_team', via: [:get], as: :load_team 
     match 'load_module/assignments' => 'grades#load_module', via: [:get], as: :load_module
     match 'load/team/assignments' => 'schools#load_team_assignments', via: [:get], as: :load_team_assignments
+    match 'grading_office' => 'grades#office', via: [:get], as: :grading_office
   end
+  match 'user/:user_id/assignment/:assignment_id/load_tasks' => 'grades#load_tasks', via: [:get], as: :user_assignment_load_tasks
+  match 'user/:user_id/task/:task_id/grading_view' => 'grades#grading_view', via: [:get], as: :user_task_grading_view
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
     put 'update_endnote', 'toggle_type'
   end
+  
   resources :blogs do
     post 'toggle_content_type'
   end

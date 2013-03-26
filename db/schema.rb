@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322235153) do
+ActiveRecord::Schema.define(:version => 20130324190037) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20130322235153) do
     t.text     "scratchpad"
     t.boolean  "viewable",         :default => false
     t.boolean  "done",             :default => false
+    t.boolean  "returned",         :default => false
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end

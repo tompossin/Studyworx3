@@ -146,9 +146,9 @@ code {
 }
 
 #breadcrumbs {
-  position: absolute;
+  position: fixed;
   top: 0px;
-  left: 175px;
+  right: 39%;
   width: 36%;
   box-shadow: 3px 3px 3px #888888;
   border-radius: 5px 5px 5px 5px;

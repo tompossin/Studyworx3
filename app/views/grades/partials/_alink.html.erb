@@ -1,0 +1,8 @@
+<div class="trow">
+  <span class="cell" style="width:35%;">
+    <%=link_to alink.assignment.name, user_assignment_load_tasks_path(alink.user_id,alink.assignment.id), {remote: true, style: "color: #{set_color(alink.done)};", title: tfmsg(alink.done,"Assignment Complete - ready to grade.","Assignment Viewable but not complete")} %>
+  </span>
+  <span class="cell" style="width:30%;"><%=link_to alink.user.fullname, "",{remote: true, title:"View recent staff comments."} %></span>
+  <span class="cell" style="width:15%;"><%= link_to "Return" %></span>
+
+</div>

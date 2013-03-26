@@ -68,6 +68,11 @@ module ApplicationHelper
     return team.name
   end
   
+  def relaxed_sanitize(rawhtml)
+    sanitize rawhtml,:tags=> %w(div p a img blockquote pre h1 h2 h3 h4 h5 h6 table thead tbody tfoot th tr td span ol li ul br b strong em i u ),
+                      :attributes=> %w(id class style src border align colspan rowspan)
+  end
+  
   # This loads the right editor and tools for the content_type
   # * 1 == html
   # * 0 == markdown (Default)
@@ -143,13 +148,20 @@ module ApplicationHelper
   # Returns whatever color is given in the 2nd and 3rd attribute
   # Defaults to tcolor="green" and fcolor="gray"
   # Useful for changing background/foreground colors on object lists with boolean attributes.
-  # Conceivably this could return any reasonable string in response to True/False.
-  # But really should be renamed for that sort of thing.
   def set_color(t,tcolor="green",fcolor="gray")
     if t
       tcolor
     else
       fcolor
+    end
+  end
+  
+  # Sets a message in response to true/false
+  def tfmsg(t,tmsg="True",fmsg="False")
+    if t
+      tmsg
+    else
+      fmsg
     end
   end
   

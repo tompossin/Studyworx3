@@ -1,0 +1,18 @@
+<div id="content-large">
+  <article>
+    <div id="breadcrumbs">
+      <span class="cell"><%=link_to "Homeroom", schools_path %></span>
+    </div>
+    <h1>Grading Office</h1>
+    <div class="float_left limited" >
+      <%= render partial: "grades/partials/alink", collection: @pending %>
+    </div>
+    <div class="float_left limited" >
+      Load recent staff comments here. <br />
+      Maybe with a "view all" link as well.
+    </div>   
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>
+
