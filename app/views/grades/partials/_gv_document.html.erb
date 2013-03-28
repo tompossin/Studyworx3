@@ -1,13 +1,13 @@
-<div id="breadcrumbs">
+<% content_for :breadcrumbs do %>
   <span><%=link_to "Grading Office", school_grading_office_path(@school.id) %></span>
-  <span class="cell"><%= link_to "Grading Tools", user_assignment_load_tasks_path(user_id,task.assignment_id), {remote: true} %></span>
-</div>
+  <span class="cell"><%= link_to "Grading Tools", user_assignment_load_tasks_path(@user_id,@task.assignment_id), {remote: true} %></span>
+<% end %>
 <article>
   
-  <h3><%= "#{task.assignment.name} - #{task.name}" %></h3>
+  <h3><%= "#{@task.assignment.name} - #{@task.name}" %></h3>
   
-  <% if document %>
-    <%= smart_format(document.content_type, document.content) %>
+  <% if @document %>
+    <%= smart_format(@document.content_type, @document.content) %>
   <% else %>
     <p>There is no content available for this task.</p>
   <% end %>

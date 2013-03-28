@@ -1,8 +1,9 @@
+<% content_for :breadcrumbs do %>
+  <span class="cell"><%=link_to "Homeroom", schools_path %></span>
+<% end %>
 <div id="content-large">
   <article>
-    <div id="breadcrumbs">
-      <span class="cell"><%=link_to "Homeroom", schools_path %></span>
-    </div>
+    
     <h1>Grading Office</h1>
     <div class="float_left limited" >
       <%= render partial: "grades/partials/alink", collection: @pending %>

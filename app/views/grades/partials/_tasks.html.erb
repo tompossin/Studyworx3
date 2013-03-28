@@ -1,20 +1,34 @@
-<% if @assignment %>
-  <div class="theader" >
-    <span class="cell"><%= @user.fullname + ": " %></span>
-    <span class="cell"><%= @assignment.name %></span>
-  </div>
-<% end %>
-<div id="tlinks">
-  <%= render partial: "grades/partials/tlink", collection: @tasks %>
-</div>
-<div id="stickienote">
-  This is where the Stickie Note goes.
-</div>
-<div id="scratchpad">
-  <%= form_for [@school,@grade], {remote: true} do |f| %>
-    <%= hidden_field_tag "save_only","true" %>
-    <label>Grading Notes: </label> <%= f.submit :save %><br />
-    <%= f.text_area :scratchpad, size: "40x16" %>
+<!-- Chartids is a narrow column on the right side of the popup box for vertical links. Use <p>Number</p> -->
+<div id="chartids"></div>
+
+<!-- gradingtools is a container positioned on the left 90% of the popup content container. -->
+<div id="gradingtools">
+  <% if @assignment %>
+    <div class="theader">
+      <span class="cell"><%= @user.fullname + ": " %></span>
+      <span class="cell"><%= @assignment.name %></span>
+    </div>
   <% end %>
-</div>
   
+  <!-- tlinks are links that load individual tasks and corresponding grading tools -->
+  <div id="tlinks">
+    <%= render partial: "grades/partials/tlink", collection: @tasks %>
+  </div>
+  
+  <div id="grading_link">
+    <%=link_to "Finish Grading", grade_finish_grading_path(@grade), {remote: true}%>
+  </div>
+  
+  <div id="staffnote"></div>
+  <!-- Scratchpad is part of the grade rocord -->  
+  <div id="scratchpad">
+    <%= form_for [@school,@grade], {remote: true} do |f| %>
+      <%= hidden_field_tag "save_only","true" %>
+      <%= f.submit :save %> <label class="cell">Grading Notes: </label>
+      <span id="scratchpad_slide" class="cell click"> show/hide</span><br />
+      <div id="scratchpad_editor">
+        <%= f.text_area :scratchpad, {size: "34x16", style: "background-color:#eaeaea;"} %>
+      </div>
+    <% end %>
+  </div>
+</div>  

@@ -1,0 +1,9 @@
+<div id="comments_slide" class="click">
+  <span class="title larger">Recent Comments </span>- Show/Hide
+</div>
+<div id="comments">
+  <% for g in @grades %>
+    <h3><%= g.assignment.name %> - <%= get_full_name(g.staff_id)%></h3>
+    <%= formatter(g.staff_comments) if g.staff_comments %>
+  <% end -%>
+</div>

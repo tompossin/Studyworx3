@@ -5,7 +5,7 @@ class Document < ActiveRecord::Base
   belongs_to :user
   belongs_to :school
   
-  attr_accessible :assignment_id, :content, :content_type, :school_id, :task_id, :user_id
+  attr_accessible :assignment_id, :content, :content_type, :school_id, :task_id, :user_id, :staff_note
   
   def self.find_or_create(user_id,school_id,assignment_id,task_id)
     if document = Document.where("user_id = ? and task_id = ?",user_id,task_id).first

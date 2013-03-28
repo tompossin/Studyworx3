@@ -11,6 +11,34 @@ class GradesController < ApplicationController
       format.html 
     end
   end
+  
+  # This is the staff grade entry page
+  def grades
+    @user = User.find(params[:user_id])
+    @grades = @user.grades.all
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # Finish a students grade record
+  def finish_grading
+    @grade = Grade.find(params[:grade_id])
+    @grades = Grade.includes(:assignment).where("user_id = ?",@grade.user_id).order("updated_at DESC").limit(10)
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def finish
+    @grade = Grade.find(params[:grade_id])
+    
+    respond_to do |format|
+      format.js
+    end
+  end
 
   # This zooms in on individual grades for assignments.
   def show

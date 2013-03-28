@@ -1,8 +1,9 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Choose another book", admin_tools_index_path %>
+<% end %>
 <div id="content-large">
   <article>
-    <p id="breadcrumbs">
-      <%=link_to "Choose another book", admin_tools_index_path %>
-    </p>
+    
     <br />
     <p>
       <%=link_to "Add new paragraphs", new_admin_book_paragraph_path(@book) %>

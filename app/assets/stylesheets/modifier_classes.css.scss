@@ -1,0 +1,81 @@
+.handle {
+  color: #333333; 
+}
+.shadow {
+  box-shadow: 3px 3px 2px #888888;
+}
+
+.title {
+  font-style: italic;
+  font-family: Garamond, Georgia;
+}
+/* Generic class modifiers */
+.right {
+  text-align: right;
+}
+
+.limited {
+  width: 44%;
+  margin-right: 2%;
+}
+
+.onethird {
+  width: 30%;
+  margin-right: 2%;
+}
+.twothirds {
+  width: 60%;
+  margin-right: 2%;
+}
+
+.invisible {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.indent {
+  margin-left: 15px;
+}
+
+.indent_double {
+  margin-left: 30px;
+}
+.largest {
+  font-size: 160%;
+}
+.larger {
+  font-size: 140%;
+}
+.large {
+  font-size: 120%;
+}
+.small {
+  font-size: 95%;
+}
+
+.smaller {
+  font-size: 85%;
+}
+
+.smallest {
+  font-size: 75%;
+}
+
+.red {
+  color: red;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bolder {
+  font-weight: 600;
+}
+
+.white {
+  color:white;
+}

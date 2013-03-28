@@ -100,6 +100,8 @@ Studyworx3::Application.routes.draw do
   end
   match 'user/:user_id/assignment/:assignment_id/load_tasks' => 'grades#load_tasks', via: [:get], as: :user_assignment_load_tasks
   match 'user/:user_id/task/:task_id/grading_view' => 'grades#grading_view', via: [:get], as: :user_task_grading_view
+  match 'user/:user_id/grades' => 'grades#grades', via: [:get], as: :user_grades
+  match 'grade/:grade_id/finish_grading' => 'grades#finish_grading', via: [:get], as: :grade_finish_grading
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'

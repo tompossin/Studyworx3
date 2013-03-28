@@ -1,8 +1,9 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Template Home", admin_school_templats_path(@school) %>
+<% end %>
 <div id="content-large">
   <article>
-    <div id="breadcrumbs">
-      <%=link_to "Template Home", admin_school_templats_path(@school) %>
-    </div>
+    
     <h1>Editing <%= @templat.name %></h1>
 
     <%= render "admin/templats/form"%>

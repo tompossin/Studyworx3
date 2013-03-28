@@ -1,9 +1,10 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Due-Date Home Page", admin_duedates_path %>
+  <%=link_to "Re-order list", admin_duedates_list_path(team: @team.id,module: @mod_id) %>
+<% end %>
 <div id="content-large">
   <article>
-    <p id="breadcrumbs">
-      <%=link_to "Due-Date Home Page", admin_duedates_path %>
-      <%=link_to "Re-order list", admin_duedates_list_path(team: @team.id,module: @mod_id) %>
-    </p>
+    
     <div>
       <h2>Add Due Dates to Assignments</h2>
       <p class="title large">Team: <%= @team.name %></p>

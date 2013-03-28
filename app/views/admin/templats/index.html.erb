@@ -1,8 +1,9 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Admin Tools", admin_tools_index_path %>
+<% end %>
 <div id="content-large">
   <article>
-    <p id="breadcrumbs">
-      <%=link_to "Admin Tools", admin_tools_index_path %>
-    </p>
+    
     <h1><%= @school.name%> - Templates</h1>
     
     <p>

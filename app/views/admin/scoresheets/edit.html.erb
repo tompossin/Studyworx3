@@ -1,9 +1,9 @@
-
+<% content_for :breadcrumbs do %>
+  <%=link_to "Scoresheet Admin", admin_school_scoresheets_path(@school.id) %>
+<% end %>
 <div id="content-large">
   <article>
-    <p id="breadcrumbs">
-      <%=link_to "Scoresheet Admin", admin_school_scoresheets_path(@school.id) %>
-    </p>
+    
     <h1>Edit Scoresheet - <%= @scoresheet.name %></h1>
     <%=render "admin/scoresheets/form" %>
   </article>

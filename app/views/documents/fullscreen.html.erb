@@ -1,10 +1,8 @@
-
+<% content_for :breadcrumbs do %>
+  <%=link_to "#{@task.assignment.name} task list", school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
+<% end %>
 <% content_for :fullscreen do %>
 
-    <p id="breadcrumbs">
-      <%=link_to "#{@task.assignment.name} task list", school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
-    </p>
-    
     <h1><%= "#{@task.assignment.name} - #{@task.name}" %></h1>
     
     <%= render 'form' %>

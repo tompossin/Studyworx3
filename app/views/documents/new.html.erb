@@ -1,6 +1,6 @@
-<div id="breadcrumbs">
+<% content_for :breadcrumbs do %>
   <%=link_to "#{@task.assignment.name} task list", school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
-</div>
+<% end %>
 
 <div id="content-large" >  
   <article>

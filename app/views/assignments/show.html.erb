@@ -1,6 +1,6 @@
-<div id="breadcrumbs">
+<% content_for :breadcrumbs do %>
   <span class="cell"><%=link_to "Homeroom", homeroom_school_path(@school)%></span>
-</div>
+<% end %>
 <div id="content-large">
   <article>
     <h2><%= @assignment.name %></h2>

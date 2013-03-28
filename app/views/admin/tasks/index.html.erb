@@ -20,13 +20,13 @@
     $( "#sortable" ).disableSelection();
   });
 </script>
-
+<% content_for :breadcrumbs do %>
+  <%=link_to "Assignments Home", admin_assignments_path %>
+  <%=link_to "Module Home", showmod_admin_assignments_path(mod_id: @assignment.module) %>
+<% end %>
 <div id="content-large">
   <article>
-    <div id="breadcrumbs">
-      <%=link_to "Assignments Home", admin_assignments_path %>
-      <%=link_to "Module Home", showmod_admin_assignments_path(mod_id: @assignment.module) %>
-    </div>
+    
     <h1>
       <%= @assignment.name %> 
     </h1>

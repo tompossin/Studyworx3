@@ -1,8 +1,9 @@
+<% content_for :breadcrumbs do %>
+  <%= link_to "Homeroom", schools_path %>
+<% end %>
 <div id="content-large">
   <article>
-    <div id="breadcrumbs">
-      <%= link_to "Homeroom", schools_path %>
-    </div>
+    
     <h2>Current Grades</h2>
     <%= render partial: 'grades/partials/grade', collection: @grades %>
   </article>

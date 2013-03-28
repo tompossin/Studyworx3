@@ -1,8 +1,9 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Admin Tools", admin_tools_index_path %>
+<% end %>
 <div id="content-large">
   <article>
-    <p id="breadcrumbs">
-      <%=link_to "Admin Tools", admin_tools_index_path %>
-    </p>
+    
     <h3>System Helps Admin</h3>
     
     <p><%=link_to "New Help Record", new_admin_help_path %></p>
