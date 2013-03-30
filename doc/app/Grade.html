@@ -70,9 +70,13 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-c-assign_staff_to_students">::assign_staff_to_students</a>
+    <li><a href="#method-c-assign_staff_to_student">::assign_staff_to_student</a>
+    
+    <li><a href="#method-c-assign_students_and_assignments_to_staff">::assign_students_and_assignments_to_staff</a>
     
     <li><a href="#method-c-hand_in_to_staff">::hand_in_to_staff</a>
+    
+    <li><a href="#method-i-duetime">#duetime</a>
     
   </ul>
 </nav>
@@ -168,6 +172,10 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./Book.html">Book</a>
+  
+    <li><a href="./ChartsController.html">ChartsController</a>
+  
+    <li><a href="./ChartsHelper.html">ChartsHelper</a>
   
     <li><a href="./Color.html">Color</a>
   
@@ -294,11 +302,11 @@
       <h3 class="section-header">Public Class Methods</h3>
 
     
-      <div id="method-c-assign_staff_to_students" class="method-detail ">
+      <div id="method-c-assign_staff_to_student" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">assign_staff_to_students</span><span
-            class="method-args">(school_id,student_id,assignment_id,staff_id)</span>
+          <span class="method-name">assign_staff_to_student</span><span
+            class="method-args">(school_id,assignment_id,student_id,staff_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -306,54 +314,93 @@
         <div class="method-description">
           
           <p>Finds or creates grade records from the staff perspective. It also updates
-the staff_id of the record. TODO Need to insert scoresheet data into these
-records</p>
+the staff_id of the record.</p>
           
 
           
-          <div class="method-source-code" id="assign_staff_to_students-source">
-            <pre><span class="ruby-comment"># File app/models/grade.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assign_staff_to_students</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">staff_id</span>)
-  <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and user_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">first</span>
+          <div class="method-source-code" id="assign_staff_to_student-source">
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assign_staff_to_student</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">staff_id</span>)
+  <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and assignment_id = ? and user_id = ?&quot;</span>,<span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">student_id</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">grade</span>
-    <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>)
+    <span class="ruby-identifier">scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find_or_default</span>(<span class="ruby-identifier">assignment_id</span>)
+    <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">scratchpad</span><span class="ruby-operator">:</span> <span class="ruby-identifier">scoresheet</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">staff_id</span> = <span class="ruby-identifier">staff_id</span>
-  <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">save</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">grade</span>
+  <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">save</span>  
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- assign_staff_to_students-source -->
+          </div><!-- assign_staff_to_student-source -->
           
         </div>
 
         
 
         
-      </div><!-- assign_staff_to_students-method -->
+      </div><!-- assign_staff_to_student-method -->
 
     
-      <div id="method-c-hand_in_to_staff" class="method-detail ">
+      <div id="method-c-assign_students_and_assignments_to_staff" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">hand_in_to_staff</span><span
-            class="method-args">(school_id,student_id,assignment_id)</span>
+          <span class="method-name">assign_students_and_assignments_to_staff</span><span
+            class="method-args">(school_id,assignment_ids,student_ids,staff_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          <p>Finds or creates grades records from the student perspective. TODO Need to
-insert scoresheet data into these records</p>
+          <p>The name sort of says it all. Does the batch assignments chosen from the
+collect page.</p>
+          
+
+          
+          <div class="method-source-code" id="assign_students_and_assignments_to_staff-source">
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assign_students_and_assignments_to_staff</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">assignment_ids</span>,<span class="ruby-identifier">student_ids</span>,<span class="ruby-identifier">staff_id</span>)
+  <span class="ruby-identifier">student_ids</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">assignment_ids</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assign_staff_to_student</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">a</span>.<span class="ruby-identifier">to_i</span>,<span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_i</span>,<span class="ruby-identifier">staff_id</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- assign_students_and_assignments_to_staff-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- assign_students_and_assignments_to_staff-method -->
+
+    
+      <div id="method-c-hand_in_to_staff" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hand_in_to_staff</span><span
+            class="method-args">(school_id,assignment_id,student_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds or creates grades (staff not yet assigned) records from the student
+perspective.</p>
+
+<p>This is called before the form is loaded, so that there is a real record w/
+an id to work on. The staff_id is assigned by the update call when the
+student submits the form.</p>
           
 
           
           <div class="method-source-code" id="hand_in_to_staff-source">
-            <pre><span class="ruby-comment"># File app/models/grade.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hand_in_to_staff</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">assignment_id</span>)
-  <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and user_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">first</span>
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hand_in_to_staff</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">student_id</span>)
+  <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and assignment_id = ? and user_id = ?&quot;</span>,<span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">student_id</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">grade</span>
-    <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">student_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>)
+    <span class="ruby-identifier">scoresheet</span> = <span class="ruby-constant">Scoresheet</span>.<span class="ruby-identifier">find_or_default</span>(<span class="ruby-identifier">assignment_id</span>)
+    <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">scratchpad</span><span class="ruby-operator">:</span> <span class="ruby-identifier">scoresheet</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">grade</span>    
 <span class="ruby-keyword">end</span></pre>
@@ -368,6 +415,54 @@ insert scoresheet data into these records</p>
 
     
     </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-duetime" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">duetime</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="duetime-source">
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">duetime</span>
+  <span class="ruby-identifier">student</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">team</span> = <span class="ruby-identifier">student</span>.<span class="ruby-identifier">coreteam</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">team</span>
+    <span class="ruby-identifier">due</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;assignment_id = ? and team_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">team</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">in_time_zone</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">due</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">due</span>.<span class="ruby-identifier">duedate</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">time</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">due</span>.<span class="ruby-identifier">duedate</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- duetime-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- duetime-method -->
+
+    
+    </section><!-- public-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

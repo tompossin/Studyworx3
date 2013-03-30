@@ -1,3 +1,7 @@
+/*
+ * The elements, ids, and classes in this file are the same for all themes.
+ * This file is loaded first so any changes brought by later stylesheets will modify these values
+ */
 html {
   height: 100%;  
 }
@@ -83,7 +87,41 @@ blockquote {
   }
 }
 
+article {
+  float: left;
+  padding-left: 10px;
+  width: 98%;
+  min-height: 60%;
+}
 
+aside {
+  float:left;
+  width:37%;
+  margin-top: 17px;
+  font-size: 10pt;
+}
+
+figure {
+  margin-left:auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figcaption {
+  font-family: Garamond, Georgia;
+  font-style: italic;
+  text-align: center;
+}
+
+footer {
+  
+}
 
 code {
   display: block;

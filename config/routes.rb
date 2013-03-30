@@ -1,5 +1,8 @@
 Studyworx3::Application.routes.draw do
 
+  resources :observations
+
+
   # ----------
   # :section: Admin Routes
   # This is a namespace for Admin functions
@@ -102,6 +105,9 @@ Studyworx3::Application.routes.draw do
   match 'user/:user_id/task/:task_id/grading_view' => 'grades#grading_view', via: [:get], as: :user_task_grading_view
   match 'user/:user_id/grades' => 'grades#grades', via: [:get], as: :user_grades
   match 'grade/:grade_id/finish_grading' => 'grades#finish_grading', via: [:get], as: :grade_finish_grading
+  
+  # Routes for the Charts controller
+  match 'assignment/:assignment_id/charts/start' => 'charts#start', via: [:post], as: :assignment_charts_start
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'

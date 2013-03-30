@@ -41,10 +41,6 @@
           <label>Image of the Day! </label><br />
           <%= f.file_field :iotd %>
         </p>
-        <p>
-          <label>Select your Time zone</label><br />
-          <%= f.time_zone_select(:timezone,ActiveSupport::TimeZone.all.sort,include_blank: true) %>
-        </p>
         <p><%= f.submit %></p>
       <% end %>
     </div>

@@ -28,11 +28,13 @@ class Admin::ToolsController < ApplicationController
   end
   
   def update_participant
-    @participant = Participant.find(params[:id])
+    @participant = Participant.includes(:user).find(params[:id])
+    @user = @participant.user
     
     respond_to do |format|
-      if @participant.role_id <= current_user.role
+      if @participant.role_id >= current_user.role
         if @participant.update_attributes(params[:participant])
+          @user.set_school(@participant.school_id)
           format.js 
         else
           format.js { render "shared/save_failed" }

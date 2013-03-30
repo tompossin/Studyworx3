@@ -1,3 +1,14 @@
+/*
+ * The classes in this file will be loaded last.
+ * Therefore ONLY put classes in here that modify other classes.
+ */
+#breadcrumbs a {
+  padding-left: 4px;
+  padding-right: 4px;
+  border-bottom: solid 1px gray;
+  border-radius: 4px;
+}
+
 .handle {
   color: #333333; 
 }

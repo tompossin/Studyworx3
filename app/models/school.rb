@@ -5,9 +5,11 @@ class School < ActiveRecord::Base
   has_many :duedates, :dependent => :destroy
   has_many :templats, :dependent => :destroy
   has_many :scoresheets, :dependent => :destroy
-  has_many :teams
-  has_many :documents
-  has_many :grades
+  has_many :teams, :dependent => :destroy
+  has_many :documents, :dependent => :destroy
+  has_many :grades, :dependent => :destroy
+  has_many :titles, :dependent => :destroy
+  has_many :observations, :dependent => :destroy
   
   ### Attributes ############################
     attr_accessible :active, :description, :end_date, :enrolement_type, :language_id, :location
@@ -23,7 +25,7 @@ class School < ActiveRecord::Base
   ###############################
   
   # Validations #################
-  validates_presence_of :name
+  validates_presence_of :name, :timezone, :enrolement_type, :start_date, :end_date
   validates_attachment :logo,
     :content_type => { :content_type => ["image/jpeg","image/png"]},
     :size => { :in => 0..1000.kilobytes }
@@ -49,6 +51,10 @@ class School < ActiveRecord::Base
   def students
     students = self.users.where("participants.role_id = 4 and accepted = 2").all
     return students
+  end
+  
+  def coreteams
+    self.teams.where("coreteam = ?",true).all
   end
   
   # Returns all active schools

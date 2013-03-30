@@ -171,6 +171,10 @@
   
     <li><a href="./Book.html">Book</a>
   
+    <li><a href="./ChartsController.html">ChartsController</a>
+  
+    <li><a href="./ChartsHelper.html">ChartsHelper</a>
+  
     <li><a href="./Color.html">Color</a>
   
     <li><a href="./Document.html">Document</a>
@@ -350,7 +354,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>  
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">grade</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">grade</span>.<span class="ruby-identifier">staff_id</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">grade</span>
+  <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">grade</span>.<span class="ruby-identifier">staff_id</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">grade</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">staff_id</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
   <span class="ruby-keyword">end</span>

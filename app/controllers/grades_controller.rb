@@ -1,6 +1,6 @@
 class GradesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_school_staff, except: [:index, :show]
+  before_filter :is_school_staff, only: [:finish, :finish_grading, :grades, :office, :collect, :collect_save]
   before_filter :get_school
   
   # This is the main Student grade page.
@@ -26,6 +26,7 @@ class GradesController < ApplicationController
   def finish_grading
     @grade = Grade.find(params[:grade_id])
     @grades = Grade.includes(:assignment).where("user_id = ?",@grade.user_id).order("updated_at DESC").limit(10)
+    @duetime = @grade.duetime
     
     respond_to do |format|
       format.js
@@ -34,6 +35,7 @@ class GradesController < ApplicationController
   
   def finish
     @grade = Grade.find(params[:grade_id])
+    
     
     respond_to do |format|
       format.js
@@ -69,9 +71,9 @@ class GradesController < ApplicationController
     respond_to do |format|
       if @task.task_type == 1
         @document = Document.where("user_id = ? and task_id = ?",params[:user_id],@task.id).first
+        @partial_file = select_partial(@task.task_type)
         if current_user.staff?
-          @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first if current_user.staff?
-          @partial_file = select_partial(@task.task_type)
+          @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first if current_user.staff?         
         end
         format.js 
       elsif @task.task_type == 2
@@ -175,7 +177,7 @@ class GradesController < ApplicationController
   end
   
   def collect
-    @teams = @school.teams.all
+    @teams = @school.coreteams
     @modules = @school.assignments.pluck(:module).uniq
     
     respond_to do |format|
@@ -216,14 +218,15 @@ class GradesController < ApplicationController
   # Select the file name for the correct partial
   def select_partial(task_type)
     if task_type == 1
-      "grades/partials/gv_document"
-    elsif
-      "grades/partials/gv_chart"
-    elsif
-      "grades/partials/gv_discussion"
+      par =  "grades/partials/gv_document"
+    elsif task_type == 2
+      par = "grades/partials/gv_chart"
+    elsif task_type == 3
+      par =  "grades/partials/gv_discussion"
     else
-      false
+      par = false
     end
+    return par
   end
   
   

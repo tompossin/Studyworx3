@@ -1,9 +1,20 @@
 <article>
   <h2><%= get_full_name(@grade.user_id)%>: <%= get_assignment_name(@grade.assignment_id)%></h2>
   <%=form_for [@school,@grade], {remote: true} do |f| %>
+    <%= include_form_validation_errors(@grade) %>
     <%= hidden_field_tag "save_only", true %>
     <div class="toolbar">
       <%= f.submit :save %>
+      <span><label>Grade: </label><%= f.number_field :grade, size: "3" %></span>
+      
+      <% if @duetime %>
+        <span><label> Due Time: </label><%= time_ago_in_words(@duetime) if @duetime %></span>
+      <% else %>
+        <span><label> Due Time: None </label></span>
+      <% end -%>
+      
+      <span style="color:<%= set_color(@grade.done,"green","red")%>"><label> Turned in? </label><%= @grade.done %></span>
+      <span><label> Return? </label><%= f.check_box :returned %></span>
     </div>
     <div id="left_pane" class="float_left limited">
       <label>Staff Comments</label><br />

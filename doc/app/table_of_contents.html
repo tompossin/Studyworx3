@@ -180,6 +180,12 @@
     <a href="Book.html">Book</a>
   </li>
     <li class="class">
+    <a href="ChartsController.html">ChartsController</a>
+  </li>
+    <li class="module">
+    <a href="ChartsHelper.html">ChartsHelper</a>
+  </li>
+    <li class="class">
     <a href="Color.html">Color</a>
   </li>
     <li class="class">
@@ -379,7 +385,9 @@
   
     <li class="method"><a href="School.html#method-c-all_active">::all_active &mdash; School</a>
   
-    <li class="method"><a href="Grade.html#method-c-assign_staff_to_students">::assign_staff_to_students &mdash; Grade</a>
+    <li class="method"><a href="Grade.html#method-c-assign_staff_to_student">::assign_staff_to_student &mdash; Grade</a>
+  
+    <li class="method"><a href="Grade.html#method-c-assign_students_and_assignments_to_staff">::assign_students_and_assignments_to_staff &mdash; Grade</a>
   
     <li class="method"><a href="Message.html#method-c-count_all_read_messages">::count_all_read_messages &mdash; Message</a>
   
@@ -392,6 +400,8 @@
     <li class="method"><a href="Participant.html#method-c-enroled">::enroled &mdash; Participant</a>
   
     <li class="method"><a href="Document.html#method-c-find_or_create">::find_or_create &mdash; Document</a>
+  
+    <li class="method"><a href="Scoresheet.html#method-c-find_or_default">::find_or_default &mdash; Scoresheet</a>
   
     <li class="method"><a href="Message.html#method-c-get_read_messages">::get_read_messages &mdash; Message</a>
   
@@ -437,9 +447,9 @@
   
     <li class="method"><a href="Admin/ToolsController.html#method-i-cancel_edit">#cancel_edit &mdash; Admin::ToolsController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-cancel_message">#cancel_message &mdash; MessagesController</a>
-  
     <li class="method"><a href="TeamMessagesController.html#method-i-cancel_message">#cancel_message &mdash; TeamMessagesController</a>
+  
+    <li class="method"><a href="MessagesController.html#method-i-cancel_message">#cancel_message &mdash; MessagesController</a>
   
     <li class="method"><a href="MessagesController.html#method-i-cancel_message_edit">#cancel_message_edit &mdash; MessagesController</a>
   
@@ -447,9 +457,9 @@
   
     <li class="method"><a href="MessagesController.html#method-i-cancel_reply">#cancel_reply &mdash; MessagesController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-cancel_reply_edit">#cancel_reply_edit &mdash; MessagesController</a>
-  
     <li class="method"><a href="TeamMessagesController.html#method-i-cancel_reply_edit">#cancel_reply_edit &mdash; TeamMessagesController</a>
+  
+    <li class="method"><a href="MessagesController.html#method-i-cancel_reply_edit">#cancel_reply_edit &mdash; MessagesController</a>
   
     <li class="method"><a href="Blog.html#method-i-change_content_type">#change_content_type &mdash; Blog</a>
   
@@ -465,73 +475,77 @@
   
     <li class="method"><a href="User.html#method-i-coreteam">#coreteam &mdash; User</a>
   
+    <li class="method"><a href="School.html#method-i-coreteams">#coreteams &mdash; School</a>
+  
     <li class="method"><a href="Admin/AssignmentsHelper.html#method-i-count_assignments">#count_assignments &mdash; Admin::AssignmentsHelper</a>
-  
-    <li class="method"><a href="PapersController.html#method-i-create">#create &mdash; PapersController</a>
-  
-    <li class="method"><a href="MessagesController.html#method-i-create">#create &mdash; MessagesController</a>
-  
-    <li class="method"><a href="Admin/ProfilesController.html#method-i-create">#create &mdash; Admin::ProfilesController</a>
-  
-    <li class="method"><a href="GradesController.html#method-i-create">#create &mdash; GradesController</a>
-  
-    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-create">#create &mdash; Admin::ScoresheetsController</a>
   
     <li class="method"><a href="Admin/SchoolsController.html#method-i-create">#create &mdash; Admin::SchoolsController</a>
   
-    <li class="method"><a href="TeamMessagesController.html#method-i-create">#create &mdash; TeamMessagesController</a>
-  
-    <li class="method"><a href="Admin/AssignmentsController.html#method-i-create">#create &mdash; Admin::AssignmentsController</a>
-  
-    <li class="method"><a href="Admin/UserAdminsController.html#method-i-create">#create &mdash; Admin::UserAdminsController</a>
-  
-    <li class="method"><a href="TeamsController.html#method-i-create">#create &mdash; TeamsController</a>
-  
-    <li class="method"><a href="ReviewsController.html#method-i-create">#create &mdash; ReviewsController</a>
-  
-    <li class="method"><a href="ParticipantsController.html#method-i-create">#create &mdash; ParticipantsController</a>
-  
-    <li class="method"><a href="Admin/TasksController.html#method-i-create">#create &mdash; Admin::TasksController</a>
+    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-create">#create &mdash; Admin::ScoresheetsController</a>
   
     <li class="method"><a href="Admin/HelpsController.html#method-i-create">#create &mdash; Admin::HelpsController</a>
   
+    <li class="method"><a href="Admin/UserAdminsController.html#method-i-create">#create &mdash; Admin::UserAdminsController</a>
+  
     <li class="method"><a href="Admin/ParagraphsController.html#method-i-create">#create &mdash; Admin::ParagraphsController</a>
+  
+    <li class="method"><a href="TeamMessagesController.html#method-i-create">#create &mdash; TeamMessagesController</a>
+  
+    <li class="method"><a href="Admin/ProfilesController.html#method-i-create">#create &mdash; Admin::ProfilesController</a>
+  
+    <li class="method"><a href="MessagesController.html#method-i-create">#create &mdash; MessagesController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-create">#create &mdash; TeamsController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-create">#create &mdash; PapersController</a>
+  
+    <li class="method"><a href="ReviewsController.html#method-i-create">#create &mdash; ReviewsController</a>
+  
+    <li class="method"><a href="Admin/AssignmentsController.html#method-i-create">#create &mdash; Admin::AssignmentsController</a>
+  
+    <li class="method"><a href="ParticipantsController.html#method-i-create">#create &mdash; ParticipantsController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-create">#create &mdash; GradesController</a>
+  
+    <li class="method"><a href="Admin/TasksController.html#method-i-create">#create &mdash; Admin::TasksController</a>
   
     <li class="method"><a href="School.html#method-i-current_assignments">#current_assignments &mdash; School</a>
   
-    <li class="method"><a href="Admin/TasksController.html#method-i-destroy">#destroy &mdash; Admin::TasksController</a>
-  
-    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-destroy">#destroy &mdash; Admin::ScoresheetsController</a>
-  
-    <li class="method"><a href="Admin/SchoolsController.html#method-i-destroy">#destroy &mdash; Admin::SchoolsController</a>
-  
-    <li class="method"><a href="Admin/ProfilesController.html#method-i-destroy">#destroy &mdash; Admin::ProfilesController</a>
-  
-    <li class="method"><a href="Admin/TemplatsController.html#method-i-destroy">#destroy &mdash; Admin::TemplatsController</a>
-  
-    <li class="method"><a href="BlogsController.html#method-i-destroy">#destroy &mdash; BlogsController</a>
-  
-    <li class="method"><a href="ParticipantsController.html#method-i-destroy">#destroy &mdash; ParticipantsController</a>
-  
-    <li class="method"><a href="Admin/ParagraphsController.html#method-i-destroy">#destroy &mdash; Admin::ParagraphsController</a>
-  
-    <li class="method"><a href="PapersController.html#method-i-destroy">#destroy &mdash; PapersController</a>
-  
-    <li class="method"><a href="Admin/HelpsController.html#method-i-destroy">#destroy &mdash; Admin::HelpsController</a>
-  
-    <li class="method"><a href="DocumentsController.html#method-i-destroy">#destroy &mdash; DocumentsController</a>
-  
-    <li class="method"><a href="Admin/UserAdminsController.html#method-i-destroy">#destroy &mdash; Admin::UserAdminsController</a>
-  
-    <li class="method"><a href="Admin/AssignmentsController.html#method-i-destroy">#destroy &mdash; Admin::AssignmentsController</a>
-  
-    <li class="method"><a href="TeamsController.html#method-i-destroy">#destroy &mdash; TeamsController</a>
+    <li class="method"><a href="School.html#method-i-current_team_assignments">#current_team_assignments &mdash; School</a>
   
     <li class="method"><a href="ReviewsController.html#method-i-destroy">#destroy &mdash; ReviewsController</a>
   
     <li class="method"><a href="TeamMessagesController.html#method-i-destroy">#destroy &mdash; TeamMessagesController</a>
   
+    <li class="method"><a href="Admin/TasksController.html#method-i-destroy">#destroy &mdash; Admin::TasksController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-destroy">#destroy &mdash; TeamsController</a>
+  
+    <li class="method"><a href="ParticipantsController.html#method-i-destroy">#destroy &mdash; ParticipantsController</a>
+  
+    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-destroy">#destroy &mdash; Admin::ScoresheetsController</a>
+  
+    <li class="method"><a href="Admin/AssignmentsController.html#method-i-destroy">#destroy &mdash; Admin::AssignmentsController</a>
+  
+    <li class="method"><a href="Admin/HelpsController.html#method-i-destroy">#destroy &mdash; Admin::HelpsController</a>
+  
+    <li class="method"><a href="Admin/SchoolsController.html#method-i-destroy">#destroy &mdash; Admin::SchoolsController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-destroy">#destroy &mdash; PapersController</a>
+  
+    <li class="method"><a href="DocumentsController.html#method-i-destroy">#destroy &mdash; DocumentsController</a>
+  
+    <li class="method"><a href="BlogsController.html#method-i-destroy">#destroy &mdash; BlogsController</a>
+  
+    <li class="method"><a href="Admin/TemplatsController.html#method-i-destroy">#destroy &mdash; Admin::TemplatsController</a>
+  
+    <li class="method"><a href="Admin/UserAdminsController.html#method-i-destroy">#destroy &mdash; Admin::UserAdminsController</a>
+  
+    <li class="method"><a href="Admin/ProfilesController.html#method-i-destroy">#destroy &mdash; Admin::ProfilesController</a>
+  
     <li class="method"><a href="GradesController.html#method-i-destroy">#destroy &mdash; GradesController</a>
+  
+    <li class="method"><a href="Admin/ParagraphsController.html#method-i-destroy">#destroy &mdash; Admin::ParagraphsController</a>
   
     <li class="method"><a href="MessagesController.html#method-i-destroy">#destroy &mdash; MessagesController</a>
   
@@ -545,51 +559,57 @@
   
     <li class="method"><a href="DocumentsController.html#method-i-download">#download &mdash; DocumentsController</a>
   
-    <li class="method"><a href="Admin/UserAdminsController.html#method-i-edit">#edit &mdash; Admin::UserAdminsController</a>
-  
-    <li class="method"><a href="Admin/AssignmentsController.html#method-i-edit">#edit &mdash; Admin::AssignmentsController</a>
-  
-    <li class="method"><a href="Admin/TemplatsController.html#method-i-edit">#edit &mdash; Admin::TemplatsController</a>
-  
-    <li class="method"><a href="TeamMessagesController.html#method-i-edit">#edit &mdash; TeamMessagesController</a>
-  
-    <li class="method"><a href="Admin/BooksController.html#method-i-edit">#edit &mdash; Admin::BooksController</a>
-  
-    <li class="method"><a href="Admin/TasksController.html#method-i-edit">#edit &mdash; Admin::TasksController</a>
-  
-    <li class="method"><a href="GradesController.html#method-i-edit">#edit &mdash; GradesController</a>
-  
-    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-edit">#edit &mdash; Admin::ScoresheetsController</a>
-  
-    <li class="method"><a href="Admin/DuedatesController.html#method-i-edit">#edit &mdash; Admin::DuedatesController</a>
+    <li class="method"><a href="Grade.html#method-i-duetime">#duetime &mdash; Grade</a>
   
     <li class="method"><a href="TeamsController.html#method-i-edit">#edit &mdash; TeamsController</a>
   
-    <li class="method"><a href="Admin/SchoolsController.html#method-i-edit">#edit &mdash; Admin::SchoolsController</a>
-  
-    <li class="method"><a href="BlogsController.html#method-i-edit">#edit &mdash; BlogsController</a>
-  
-    <li class="method"><a href="ReviewsController.html#method-i-edit">#edit &mdash; ReviewsController</a>
-  
-    <li class="method"><a href="PapersController.html#method-i-edit">#edit &mdash; PapersController</a>
-  
-    <li class="method"><a href="ProfilesController.html#method-i-edit">#edit &mdash; ProfilesController</a>
+    <li class="method"><a href="Admin/AssignmentsController.html#method-i-edit">#edit &mdash; Admin::AssignmentsController</a>
   
     <li class="method"><a href="Admin/HelpsController.html#method-i-edit">#edit &mdash; Admin::HelpsController</a>
-  
-    <li class="method"><a href="Admin/ProfilesController.html#method-i-edit">#edit &mdash; Admin::ProfilesController</a>
   
     <li class="method"><a href="Admin/ParagraphsController.html#method-i-edit">#edit &mdash; Admin::ParagraphsController</a>
   
     <li class="method"><a href="ParticipantsController.html#method-i-edit">#edit &mdash; ParticipantsController</a>
   
+    <li class="method"><a href="Admin/DuedatesController.html#method-i-edit">#edit &mdash; Admin::DuedatesController</a>
+  
+    <li class="method"><a href="BlogsController.html#method-i-edit">#edit &mdash; BlogsController</a>
+  
+    <li class="method"><a href="TeamMessagesController.html#method-i-edit">#edit &mdash; TeamMessagesController</a>
+  
+    <li class="method"><a href="Admin/ProfilesController.html#method-i-edit">#edit &mdash; Admin::ProfilesController</a>
+  
+    <li class="method"><a href="Admin/BooksController.html#method-i-edit">#edit &mdash; Admin::BooksController</a>
+  
+    <li class="method"><a href="Admin/SchoolsController.html#method-i-edit">#edit &mdash; Admin::SchoolsController</a>
+  
     <li class="method"><a href="MessagesController.html#method-i-edit">#edit &mdash; MessagesController</a>
+  
+    <li class="method"><a href="Admin/UserAdminsController.html#method-i-edit">#edit &mdash; Admin::UserAdminsController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-edit">#edit &mdash; PapersController</a>
+  
+    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-edit">#edit &mdash; Admin::ScoresheetsController</a>
+  
+    <li class="method"><a href="ProfilesController.html#method-i-edit">#edit &mdash; ProfilesController</a>
+  
+    <li class="method"><a href="ReviewsController.html#method-i-edit">#edit &mdash; ReviewsController</a>
+  
+    <li class="method"><a href="Admin/TasksController.html#method-i-edit">#edit &mdash; Admin::TasksController</a>
+  
+    <li class="method"><a href="Admin/TemplatsController.html#method-i-edit">#edit &mdash; Admin::TemplatsController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-edit">#edit &mdash; GradesController</a>
   
     <li class="method"><a href="Admin/ToolsController.html#method-i-edit_participant">#edit_participant &mdash; Admin::ToolsController</a>
   
     <li class="method"><a href="DocumentsController.html#method-i-endnote">#endnote &mdash; DocumentsController</a>
   
     <li class="method"><a href="Team.html#method-i-find_or_create_team_duedates_by_module">#find_or_create_team_duedates_by_module &mdash; Team</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-finish">#finish &mdash; GradesController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-finish_grading">#finish_grading &mdash; GradesController</a>
   
     <li class="method"><a href="ApplicationHelper.html#method-i-formatter">#formatter &mdash; ApplicationHelper</a>
   
@@ -598,6 +618,8 @@
     <li class="method"><a href="User.html#method-i-fullname">#fullname &mdash; User</a>
   
     <li class="method"><a href="DocumentsController.html#method-i-fullscreen">#fullscreen &mdash; DocumentsController</a>
+  
+    <li class="method"><a href="ApplicationHelper.html#method-i-get_assignment_name">#get_assignment_name &mdash; ApplicationHelper</a>
   
     <li class="method"><a href="ApplicationHelper.html#method-i-get_avatar_url">#get_avatar_url &mdash; ApplicationHelper</a>
   
@@ -615,6 +637,10 @@
   
     <li class="method"><a href="ApplicationHelper.html#method-i-get_templat_name">#get_templat_name &mdash; ApplicationHelper</a>
   
+    <li class="method"><a href="GradesController.html#method-i-grades">#grades &mdash; GradesController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-grading_view">#grading_view &mdash; GradesController</a>
+  
     <li class="method"><a href="GradesController.html#method-i-hand_in">#hand_in &mdash; GradesController</a>
   
     <li class="method"><a href="AssignmentsController.html#method-i-help">#help &mdash; AssignmentsController</a>
@@ -631,11 +657,13 @@
   
     <li class="method"><a href="GradesController.html#method-i-index">#index &mdash; GradesController</a>
   
+    <li class="method"><a href="MessagesController.html#method-i-index">#index &mdash; MessagesController</a>
+  
+    <li class="method"><a href="Admin/BooksController.html#method-i-index">#index &mdash; Admin::BooksController</a>
+  
     <li class="method"><a href="Admin/DuedatesController.html#method-i-index">#index &mdash; Admin::DuedatesController</a>
   
     <li class="method"><a href="HomeController.html#method-i-index">#index &mdash; HomeController</a>
-  
-    <li class="method"><a href="MessagesController.html#method-i-index">#index &mdash; MessagesController</a>
   
     <li class="method"><a href="Admin/HelpsController.html#method-i-index">#index &mdash; Admin::HelpsController</a>
   
@@ -643,13 +671,13 @@
   
     <li class="method"><a href="Admin/ProfilesController.html#method-i-index">#index &mdash; Admin::ProfilesController</a>
   
+    <li class="method"><a href="ParticipantsController.html#method-i-index">#index &mdash; ParticipantsController</a>
+  
     <li class="method"><a href="Admin/SchoolsController.html#method-i-index">#index &mdash; Admin::SchoolsController</a>
   
     <li class="method"><a href="Admin/ScoresheetsController.html#method-i-index">#index &mdash; Admin::ScoresheetsController</a>
   
     <li class="method"><a href="Admin/TasksController.html#method-i-index">#index &mdash; Admin::TasksController</a>
-  
-    <li class="method"><a href="Admin/BooksController.html#method-i-index">#index &mdash; Admin::BooksController</a>
   
     <li class="method"><a href="Admin/TemplatsController.html#method-i-index">#index &mdash; Admin::TemplatsController</a>
   
@@ -657,17 +685,15 @@
   
     <li class="method"><a href="Admin/UserAdminsController.html#method-i-index">#index &mdash; Admin::UserAdminsController</a>
   
-    <li class="method"><a href="ParticipantsController.html#method-i-index">#index &mdash; ParticipantsController</a>
+    <li class="method"><a href="PapersController.html#method-i-index">#index &mdash; PapersController</a>
   
     <li class="method"><a href="TeamsController.html#method-i-index">#index &mdash; TeamsController</a>
   
-    <li class="method"><a href="PapersController.html#method-i-index">#index &mdash; PapersController</a>
+    <li class="method"><a href="BlogsController.html#method-i-index">#index &mdash; BlogsController</a>
   
     <li class="method"><a href="TeamMessagesController.html#method-i-index">#index &mdash; TeamMessagesController</a>
   
     <li class="method"><a href="SchoolsController.html#method-i-index">#index &mdash; SchoolsController</a>
-  
-    <li class="method"><a href="BlogsController.html#method-i-index">#index &mdash; BlogsController</a>
   
     <li class="method"><a href="ReviewsController.html#method-i-index">#index &mdash; ReviewsController</a>
   
@@ -699,13 +725,23 @@
   
     <li class="method"><a href="ApplicationController.html#method-i-is_student">#is_student &mdash; ApplicationController</a>
   
-    <li class="method"><a href="ApplicationHelper.html#method-i-is_superadmin">#is_superadmin &mdash; ApplicationHelper</a>
-  
     <li class="method"><a href="ApplicationController.html#method-i-is_superadmin">#is_superadmin &mdash; ApplicationController</a>
+  
+    <li class="method"><a href="ApplicationHelper.html#method-i-is_superadmin">#is_superadmin &mdash; ApplicationHelper</a>
   
     <li class="method"><a href="User.html#method-i-leader-3F">#leader? &mdash; User</a>
   
+    <li class="method"><a href="GradesHelper.html#method-i-letter_grade">#letter_grade &mdash; GradesHelper</a>
+  
     <li class="method"><a href="Admin/DuedatesController.html#method-i-list">#list &mdash; Admin::DuedatesController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-load_module">#load_module &mdash; GradesController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-load_tasks">#load_tasks &mdash; GradesController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-load_team">#load_team &mdash; GradesController</a>
+  
+    <li class="method"><a href="SchoolsController.html#method-i-load_team_assignments">#load_team_assignments &mdash; SchoolsController</a>
   
     <li class="method"><a href="ProfilesController.html#method-i-loadtheme">#loadtheme &mdash; ProfilesController</a>
   
@@ -715,45 +751,47 @@
   
     <li class="method"><a href="ApplicationHelper.html#method-i-nav_bar">#nav_bar &mdash; ApplicationHelper</a>
   
-    <li class="method"><a href="ReviewsController.html#method-i-new">#new &mdash; ReviewsController</a>
-  
-    <li class="method"><a href="Admin/ProfilesController.html#method-i-new">#new &mdash; Admin::ProfilesController</a>
-  
-    <li class="method"><a href="Admin/SchoolsController.html#method-i-new">#new &mdash; Admin::SchoolsController</a>
-  
-    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-new">#new &mdash; Admin::ScoresheetsController</a>
-  
     <li class="method"><a href="Admin/TasksController.html#method-i-new">#new &mdash; Admin::TasksController</a>
-  
-    <li class="method"><a href="TeamMessagesController.html#method-i-new">#new &mdash; TeamMessagesController</a>
-  
-    <li class="method"><a href="BlogsController.html#method-i-new">#new &mdash; BlogsController</a>
   
     <li class="method"><a href="Admin/TemplatsController.html#method-i-new">#new &mdash; Admin::TemplatsController</a>
   
-    <li class="method"><a href="TeamsController.html#method-i-new">#new &mdash; TeamsController</a>
-  
-    <li class="method"><a href="Admin/ParagraphsController.html#method-i-new">#new &mdash; Admin::ParagraphsController</a>
-  
-    <li class="method"><a href="PapersController.html#method-i-new">#new &mdash; PapersController</a>
-  
-    <li class="method"><a href="Admin/HelpsController.html#method-i-new">#new &mdash; Admin::HelpsController</a>
-  
-    <li class="method"><a href="Admin/BooksController.html#method-i-new">#new &mdash; Admin::BooksController</a>
+    <li class="method"><a href="MessagesController.html#method-i-new">#new &mdash; MessagesController</a>
   
     <li class="method"><a href="DocumentsController.html#method-i-new">#new &mdash; DocumentsController</a>
   
-    <li class="method"><a href="GradesController.html#method-i-new">#new &mdash; GradesController</a>
-  
-    <li class="method"><a href="MessagesController.html#method-i-new">#new &mdash; MessagesController</a>
-  
-    <li class="method"><a href="ParticipantsController.html#method-i-new">#new &mdash; ParticipantsController</a>
-  
-    <li class="method"><a href="Admin/AssignmentsController.html#method-i-new">#new &mdash; Admin::AssignmentsController</a>
+    <li class="method"><a href="ReviewsController.html#method-i-new">#new &mdash; ReviewsController</a>
   
     <li class="method"><a href="Admin/UserAdminsController.html#method-i-new">#new &mdash; Admin::UserAdminsController</a>
   
+    <li class="method"><a href="Admin/ParagraphsController.html#method-i-new">#new &mdash; Admin::ParagraphsController</a>
+  
+    <li class="method"><a href="ParticipantsController.html#method-i-new">#new &mdash; ParticipantsController</a>
+  
+    <li class="method"><a href="TeamsController.html#method-i-new">#new &mdash; TeamsController</a>
+  
+    <li class="method"><a href="Admin/BooksController.html#method-i-new">#new &mdash; Admin::BooksController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-new">#new &mdash; PapersController</a>
+  
+    <li class="method"><a href="Admin/SchoolsController.html#method-i-new">#new &mdash; Admin::SchoolsController</a>
+  
+    <li class="method"><a href="Admin/ProfilesController.html#method-i-new">#new &mdash; Admin::ProfilesController</a>
+  
+    <li class="method"><a href="Admin/HelpsController.html#method-i-new">#new &mdash; Admin::HelpsController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-new">#new &mdash; GradesController</a>
+  
+    <li class="method"><a href="BlogsController.html#method-i-new">#new &mdash; BlogsController</a>
+  
+    <li class="method"><a href="TeamMessagesController.html#method-i-new">#new &mdash; TeamMessagesController</a>
+  
+    <li class="method"><a href="Admin/AssignmentsController.html#method-i-new">#new &mdash; Admin::AssignmentsController</a>
+  
+    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-new">#new &mdash; Admin::ScoresheetsController</a>
+  
     <li class="method"><a href="DocumentsController.html#method-i-normal">#normal &mdash; DocumentsController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-office">#office &mdash; GradesController</a>
   
     <li class="method"><a href="Admin/ToolsController.html#method-i-personnel">#personnel &mdash; Admin::ToolsController</a>
   
@@ -769,6 +807,8 @@
   
     <li class="method"><a href="MessagesHelper.html#method-i-read_link">#read_link &mdash; MessagesHelper</a>
   
+    <li class="method"><a href="ApplicationHelper.html#method-i-relaxed_sanitize">#relaxed_sanitize &mdash; ApplicationHelper</a>
+  
     <li class="method"><a href="ProfilesController.html#method-i-reminder_load">#reminder_load &mdash; ProfilesController</a>
   
     <li class="method"><a href="ProfilesController.html#method-i-reminder_save">#reminder_save &mdash; ProfilesController</a>
@@ -781,21 +821,21 @@
   
     <li class="method"><a href="Blog.html#method-i-remove_previous_lead_story">#remove_previous_lead_story &mdash; Blog</a>
   
-    <li class="method"><a href="TeamMessagesController.html#method-i-reply">#reply &mdash; TeamMessagesController</a>
-  
     <li class="method"><a href="MessagesController.html#method-i-reply">#reply &mdash; MessagesController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-reply_create">#reply_create &mdash; MessagesController</a>
+    <li class="method"><a href="TeamMessagesController.html#method-i-reply">#reply &mdash; TeamMessagesController</a>
   
     <li class="method"><a href="TeamMessagesController.html#method-i-reply_create">#reply_create &mdash; TeamMessagesController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-reply_edit">#reply_edit &mdash; MessagesController</a>
+    <li class="method"><a href="MessagesController.html#method-i-reply_create">#reply_create &mdash; MessagesController</a>
   
     <li class="method"><a href="TeamMessagesController.html#method-i-reply_edit">#reply_edit &mdash; TeamMessagesController</a>
   
-    <li class="method"><a href="MessagesController.html#method-i-reply_update">#reply_update &mdash; MessagesController</a>
+    <li class="method"><a href="MessagesController.html#method-i-reply_edit">#reply_edit &mdash; MessagesController</a>
   
     <li class="method"><a href="TeamMessagesController.html#method-i-reply_update">#reply_update &mdash; TeamMessagesController</a>
+  
+    <li class="method"><a href="MessagesController.html#method-i-reply_update">#reply_update &mdash; MessagesController</a>
   
     <li class="method"><a href="ProfilesController.html#method-i-reviewboard">#reviewboard &mdash; ProfilesController</a>
   
@@ -823,45 +863,45 @@
   
     <li class="method"><a href="ProfilesController.html#method-i-settheme">#settheme &mdash; ProfilesController</a>
   
-    <li class="method"><a href="ProfilesController.html#method-i-show">#show &mdash; ProfilesController</a>
+    <li class="method"><a href="TeamsController.html#method-i-show">#show &mdash; TeamsController</a>
   
-    <li class="method"><a href="BlogsController.html#method-i-show">#show &mdash; BlogsController</a>
+    <li class="method"><a href="Admin/TemplatsController.html#method-i-show">#show &mdash; Admin::TemplatsController</a>
+  
+    <li class="method"><a href="Admin/ParagraphsController.html#method-i-show">#show &mdash; Admin::ParagraphsController</a>
+  
+    <li class="method"><a href="Admin/HelpsController.html#method-i-show">#show &mdash; Admin::HelpsController</a>
   
     <li class="method"><a href="ReviewsController.html#method-i-show">#show &mdash; ReviewsController</a>
+  
+    <li class="method"><a href="Admin/ProfilesController.html#method-i-show">#show &mdash; Admin::ProfilesController</a>
+  
+    <li class="method"><a href="HomeController.html#method-i-show">#show &mdash; HomeController</a>
+  
+    <li class="method"><a href="Admin/BooksController.html#method-i-show">#show &mdash; Admin::BooksController</a>
+  
+    <li class="method"><a href="SchoolsController.html#method-i-show">#show &mdash; SchoolsController</a>
+  
+    <li class="method"><a href="DocumentsController.html#method-i-show">#show &mdash; DocumentsController</a>
+  
+    <li class="method"><a href="ProfilesController.html#method-i-show">#show &mdash; ProfilesController</a>
+  
+    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-show">#show &mdash; Admin::ScoresheetsController</a>
+  
+    <li class="method"><a href="BlogsController.html#method-i-show">#show &mdash; BlogsController</a>
   
     <li class="method"><a href="MessagesController.html#method-i-show">#show &mdash; MessagesController</a>
   
     <li class="method"><a href="AssignmentsController.html#method-i-show">#show &mdash; AssignmentsController</a>
   
-    <li class="method"><a href="Admin/TemplatsController.html#method-i-show">#show &mdash; Admin::TemplatsController</a>
-  
-    <li class="method"><a href="DocumentsController.html#method-i-show">#show &mdash; DocumentsController</a>
-  
-    <li class="method"><a href="Admin/ProfilesController.html#method-i-show">#show &mdash; Admin::ProfilesController</a>
-  
-    <li class="method"><a href="TeamsController.html#method-i-show">#show &mdash; TeamsController</a>
-  
-    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-show">#show &mdash; Admin::ScoresheetsController</a>
-  
-    <li class="method"><a href="Admin/BooksController.html#method-i-show">#show &mdash; Admin::BooksController</a>
-  
-    <li class="method"><a href="Admin/HelpsController.html#method-i-show">#show &mdash; Admin::HelpsController</a>
-  
-    <li class="method"><a href="Admin/UserAdminsController.html#method-i-show">#show &mdash; Admin::UserAdminsController</a>
-  
-    <li class="method"><a href="Admin/ParagraphsController.html#method-i-show">#show &mdash; Admin::ParagraphsController</a>
-  
-    <li class="method"><a href="SchoolsController.html#method-i-show">#show &mdash; SchoolsController</a>
-  
-    <li class="method"><a href="Admin/SchoolsController.html#method-i-show">#show &mdash; Admin::SchoolsController</a>
-  
-    <li class="method"><a href="HomeController.html#method-i-show">#show &mdash; HomeController</a>
-  
-    <li class="method"><a href="GradesController.html#method-i-show">#show &mdash; GradesController</a>
-  
     <li class="method"><a href="ParticipantsController.html#method-i-show">#show &mdash; ParticipantsController</a>
   
     <li class="method"><a href="PapersController.html#method-i-show">#show &mdash; PapersController</a>
+  
+    <li class="method"><a href="Admin/SchoolsController.html#method-i-show">#show &mdash; Admin::SchoolsController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-show">#show &mdash; GradesController</a>
+  
+    <li class="method"><a href="Admin/UserAdminsController.html#method-i-show">#show &mdash; Admin::UserAdminsController</a>
   
     <li class="method"><a href="Admin/TasksController.html#method-i-show_help">#show_help &mdash; Admin::TasksController</a>
   
@@ -875,25 +915,31 @@
   
     <li class="method"><a href="ApplicationHelper.html#method-i-smart_format">#smart_format &mdash; ApplicationHelper</a>
   
-    <li class="method"><a href="Admin/TasksController.html#method-i-sort">#sort &mdash; Admin::TasksController</a>
-  
     <li class="method"><a href="Admin/AssignmentsController.html#method-i-sort">#sort &mdash; Admin::AssignmentsController</a>
+  
+    <li class="method"><a href="Admin/TasksController.html#method-i-sort">#sort &mdash; Admin::TasksController</a>
   
     <li class="method"><a href="School.html#method-i-staff">#staff &mdash; School</a>
   
     <li class="method"><a href="User.html#method-i-staff-3F">#staff? &mdash; User</a>
   
-    <li class="method"><a href="Participant.html#method-i-status">#status &mdash; Participant</a>
+    <li class="method"><a href="ChartsController.html#method-i-start">#start &mdash; ChartsController</a>
   
     <li class="method"><a href="User.html#method-i-status">#status &mdash; User</a>
   
+    <li class="method"><a href="Participant.html#method-i-status">#status &mdash; Participant</a>
+  
     <li class="method"><a href="ApplicationHelper.html#method-i-status_color">#status_color &mdash; ApplicationHelper</a>
+  
+    <li class="method"><a href="User.html#method-i-student-3F">#student? &mdash; User</a>
   
     <li class="method"><a href="School.html#method-i-students">#students &mdash; School</a>
   
     <li class="method"><a href="DocumentsController.html#method-i-task_instructions">#task_instructions &mdash; DocumentsController</a>
   
     <li class="method"><a href="MessageMailer.html#method-i-team_email">#team_email &mdash; MessageMailer</a>
+  
+    <li class="method"><a href="ApplicationHelper.html#method-i-tfmsg">#tfmsg &mdash; ApplicationHelper</a>
   
     <li class="method"><a href="AssignmentsController.html#method-i-time_remaining">#time_remaining &mdash; AssignmentsController</a>
   
@@ -903,45 +949,45 @@
   
     <li class="method"><a href="ProfilesController.html#method-i-toggletheme">#toggletheme &mdash; ProfilesController</a>
   
-    <li class="method"><a href="Admin/TasksController.html#method-i-update">#update &mdash; Admin::TasksController</a>
-  
-    <li class="method"><a href="GradesController.html#method-i-update">#update &mdash; GradesController</a>
-  
-    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-update">#update &mdash; Admin::ScoresheetsController</a>
-  
-    <li class="method"><a href="DocumentsController.html#method-i-update">#update &mdash; DocumentsController</a>
-  
-    <li class="method"><a href="Admin/DuedatesController.html#method-i-update">#update &mdash; Admin::DuedatesController</a>
-  
-    <li class="method"><a href="Admin/TemplatsController.html#method-i-update">#update &mdash; Admin::TemplatsController</a>
-  
-    <li class="method"><a href="MessagesController.html#method-i-update">#update &mdash; MessagesController</a>
-  
-    <li class="method"><a href="Admin/HelpsController.html#method-i-update">#update &mdash; Admin::HelpsController</a>
-  
-    <li class="method"><a href="ReviewsController.html#method-i-update">#update &mdash; ReviewsController</a>
-  
-    <li class="method"><a href="ParticipantsController.html#method-i-update">#update &mdash; ParticipantsController</a>
-  
-    <li class="method"><a href="PapersController.html#method-i-update">#update &mdash; PapersController</a>
-  
-    <li class="method"><a href="Admin/SchoolsController.html#method-i-update">#update &mdash; Admin::SchoolsController</a>
-  
     <li class="method"><a href="BlogsController.html#method-i-update">#update &mdash; BlogsController</a>
   
-    <li class="method"><a href="TeamMessagesController.html#method-i-update">#update &mdash; TeamMessagesController</a>
+    <li class="method"><a href="Admin/TasksController.html#method-i-update">#update &mdash; Admin::TasksController</a>
   
     <li class="method"><a href="TeamsController.html#method-i-update">#update &mdash; TeamsController</a>
   
-    <li class="method"><a href="Admin/AssignmentsController.html#method-i-update">#update &mdash; Admin::AssignmentsController</a>
+    <li class="method"><a href="Admin/DuedatesController.html#method-i-update">#update &mdash; Admin::DuedatesController</a>
+  
+    <li class="method"><a href="Admin/HelpsController.html#method-i-update">#update &mdash; Admin::HelpsController</a>
+  
+    <li class="method"><a href="TeamMessagesController.html#method-i-update">#update &mdash; TeamMessagesController</a>
+  
+    <li class="method"><a href="ParticipantsController.html#method-i-update">#update &mdash; ParticipantsController</a>
   
     <li class="method"><a href="Admin/UserAdminsController.html#method-i-update">#update &mdash; Admin::UserAdminsController</a>
   
-    <li class="method"><a href="Admin/ProfilesController.html#method-i-update">#update &mdash; Admin::ProfilesController</a>
+    <li class="method"><a href="Admin/ParagraphsController.html#method-i-update">#update &mdash; Admin::ParagraphsController</a>
+  
+    <li class="method"><a href="ReviewsController.html#method-i-update">#update &mdash; ReviewsController</a>
+  
+    <li class="method"><a href="PapersController.html#method-i-update">#update &mdash; PapersController</a>
   
     <li class="method"><a href="ProfilesController.html#method-i-update">#update &mdash; ProfilesController</a>
   
-    <li class="method"><a href="Admin/ParagraphsController.html#method-i-update">#update &mdash; Admin::ParagraphsController</a>
+    <li class="method"><a href="DocumentsController.html#method-i-update">#update &mdash; DocumentsController</a>
+  
+    <li class="method"><a href="Admin/TemplatsController.html#method-i-update">#update &mdash; Admin::TemplatsController</a>
+  
+    <li class="method"><a href="Admin/AssignmentsController.html#method-i-update">#update &mdash; Admin::AssignmentsController</a>
+  
+    <li class="method"><a href="MessagesController.html#method-i-update">#update &mdash; MessagesController</a>
+  
+    <li class="method"><a href="Admin/ProfilesController.html#method-i-update">#update &mdash; Admin::ProfilesController</a>
+  
+    <li class="method"><a href="Admin/ScoresheetsController.html#method-i-update">#update &mdash; Admin::ScoresheetsController</a>
+  
+    <li class="method"><a href="GradesController.html#method-i-update">#update &mdash; GradesController</a>
+  
+    <li class="method"><a href="Admin/SchoolsController.html#method-i-update">#update &mdash; Admin::SchoolsController</a>
   
     <li class="method"><a href="DocumentsController.html#method-i-update_endnote">#update_endnote &mdash; DocumentsController</a>
   

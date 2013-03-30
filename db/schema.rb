@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324190037) do
+ActiveRecord::Schema.define(:version => 20130330010601) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(:version => 20130324190037) do
   end
 
   add_index "books", ["position"], :name => "index_books_on_position"
+
+  create_table "charttexts", :force => true do |t|
+    t.integer  "user_id",                     :null => false
+    t.integer  "title_id",                    :null => false
+    t.text     "content"
+    t.text     "staff_note"
+    t.integer  "content_type", :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "charttexts", ["user_id", "title_id"], :name => "index_charttexts_on_user_id_and_title_id"
 
   create_table "colors", :force => true do |t|
     t.string   "color"
@@ -106,13 +118,13 @@ ActiveRecord::Schema.define(:version => 20130324190037) do
     t.integer  "assignment_id",                       :null => false
     t.integer  "user_id",                             :null => false
     t.integer  "staff_id"
+    t.boolean  "viewable",         :default => false
+    t.boolean  "done",             :default => false
     t.integer  "grade"
+    t.boolean  "returned",         :default => false
     t.text     "staff_comments"
     t.text     "student_comments"
     t.text     "scratchpad"
-    t.boolean  "viewable",         :default => false
-    t.boolean  "done",             :default => false
-    t.boolean  "returned",         :default => false
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
   end
@@ -168,6 +180,20 @@ ActiveRecord::Schema.define(:version => 20130324190037) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "observations", :force => true do |t|
+    t.integer  "school_id",  :null => false
+    t.integer  "position",   :null => false
+    t.string   "link"
+    t.string   "color"
+    t.string   "code"
+    t.string   "name"
+    t.boolean  "public"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "observations", ["school_id"], :name => "index_observations_on_school_id"
+
   create_table "papers", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -208,6 +234,21 @@ ActiveRecord::Schema.define(:version => 20130324190037) do
   add_index "participants", ["school_id", "role_id"], :name => "index_participants_on_school_id_and_role_id"
   add_index "participants", ["school_id"], :name => "index_participants_on_school_id"
   add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
+
+  create_table "ppoints", :force => true do |t|
+    t.integer  "title_id",       :null => false
+    t.integer  "user_id",        :null => false
+    t.integer  "observation_id"
+    t.integer  "position",       :null => false
+    t.text     "content"
+    t.string   "color"
+    t.text     "staff_note"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "ppoints", ["position"], :name => "index_ppoints_on_position"
+  add_index "ppoints", ["user_id", "title_id"], :name => "index_ppoints_on_user_id_and_title_id"
 
   create_table "preferences", :force => true do |t|
     t.integer  "user_id"
@@ -350,6 +391,36 @@ ActiveRecord::Schema.define(:version => 20130324190037) do
   end
 
   add_index "themes", ["filename"], :name => "index_themes_on_filename", :unique => true
+
+  create_table "title_hierarchies", :id => false, :force => true do |t|
+    t.integer "ancestor_id",   :null => false
+    t.integer "descendant_id", :null => false
+    t.integer "generations",   :null => false
+  end
+
+  add_index "title_hierarchies", ["ancestor_id", "descendant_id"], :name => "index_title_hierarchies_on_ancestor_id_and_descendant_id", :unique => true
+  add_index "title_hierarchies", ["descendant_id"], :name => "index_title_hierarchies_on_descendant_id"
+
+  create_table "titles", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "user_id",       :null => false
+    t.integer  "school_id",     :null => false
+    t.integer  "assignment_id", :null => false
+    t.integer  "task_id",       :null => false
+    t.integer  "paragraph_id",  :null => false
+    t.integer  "title_type",    :null => false
+    t.integer  "position",      :null => false
+    t.string   "title"
+    t.integer  "verse_count",   :null => false
+    t.text     "staff_note"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "titles", ["parent_id"], :name => "index_titles_on_parent_id"
+  add_index "titles", ["school_id"], :name => "index_titles_on_school_id"
+  add_index "titles", ["task_id"], :name => "index_titles_on_task_id"
+  add_index "titles", ["user_id", "assignment_id", "position"], :name => "index_titles_on_user_id_and_assignment_id_and_position"
 
   create_table "turnins", :force => true do |t|
     t.integer  "user_id",                          :null => false

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school_id: 1
+  position: 1
+  link: MyString
+  color: MyString
+  code: MyString
+  name: MyString
+  public: false
+
+two:
+  school_id: 1
+  position: 1
+  link: MyString
+  color: MyString
+  code: MyString
+  name: MyString
+  public: false

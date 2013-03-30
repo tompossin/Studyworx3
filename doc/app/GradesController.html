@@ -80,11 +80,27 @@
     
     <li><a href="#method-i-edit">#edit</a>
     
+    <li><a href="#method-i-finish">#finish</a>
+    
+    <li><a href="#method-i-finish_grading">#finish_grading</a>
+    
+    <li><a href="#method-i-grades">#grades</a>
+    
+    <li><a href="#method-i-grading_view">#grading_view</a>
+    
     <li><a href="#method-i-hand_in">#hand_in</a>
     
     <li><a href="#method-i-index">#index</a>
     
+    <li><a href="#method-i-load_module">#load_module</a>
+    
+    <li><a href="#method-i-load_tasks">#load_tasks</a>
+    
+    <li><a href="#method-i-load_team">#load_team</a>
+    
     <li><a href="#method-i-new">#new</a>
+    
+    <li><a href="#method-i-office">#office</a>
     
     <li><a href="#method-i-show">#show</a>
     
@@ -184,6 +200,10 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./Book.html">Book</a>
+  
+    <li><a href="./ChartsController.html">ChartsController</a>
+  
+    <li><a href="./ChartsHelper.html">ChartsHelper</a>
   
     <li><a href="./Color.html">Color</a>
   
@@ -326,11 +346,10 @@
 
           
           <div class="method-source-code" id="collect-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 76</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 179</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">collect</span>
-  <span class="ruby-ivar">@teams</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">all</span>
-  <span class="ruby-ivar">@students</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">students</span>
-  <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@teams</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">coreteams</span>
+  <span class="ruby-ivar">@modules</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:module</span>).<span class="ruby-identifier">uniq</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
@@ -357,22 +376,22 @@
 
         <div class="method-description">
           
-          
+          <p>Batch create grading records for the current_user (staff)</p>
           
 
           
           <div class="method-source-code" id="collect_save-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 189</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">collect_save</span>
   <span class="ruby-identifier">staff_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_ids</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">student_id</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_ids</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">assignment_id</span><span class="ruby-operator">|</span>
-      <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">assign_staff_to_students</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">staff_id</span>)
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>}
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_ids</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_ids</span>].<span class="ruby-identifier">nil?</span>
+      <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">assign_students_and_assignments_to_staff</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_ids</span>],<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_ids</span>],<span class="ruby-identifier">staff_id</span>)
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:back</span>}
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:back</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'You must select at least one student and one assignment.'</span>}
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- collect_save-source -->
@@ -401,7 +420,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>])
 
@@ -439,7 +458,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 100</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 203</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">destroy</span>
@@ -474,7 +493,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -486,6 +505,162 @@
 
         
       </div><!-- edit-method -->
+
+    
+      <div id="method-i-finish" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finish</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="finish-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">finish</span>
+  <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade_id</span>])
+  
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- finish-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- finish-method -->
+
+    
+      <div id="method-i-finish_grading" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finish_grading</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finish a students grade record</p>
+          
+
+          
+          <div class="method-source-code" id="finish_grading-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">finish_grading</span>
+  <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade_id</span>])
+  <span class="ruby-ivar">@grades</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:assignment</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;updated_at DESC&quot;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-value">10</span>)
+  <span class="ruby-ivar">@duetime</span> = <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">duetime</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- finish_grading-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- finish_grading-method -->
+
+    
+      <div id="method-i-grades" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">grades</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is the staff grade entry page</p>
+          
+
+          
+          <div class="method-source-code" id="grades-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">grades</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
+  <span class="ruby-ivar">@grades</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- grades-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- grades-method -->
+
+    
+      <div id="method-i-grading_view" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">grading_view</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This loads a rendered non-editable version of the document for grading. It
+looks at task_type and loads the appropriate document/chart/discussion It
+will also load grading tools if the user is staff or higher.</p>
+          
+
+          
+          <div class="method-source-code" id="grading_view-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">grading_view</span>
+  <span class="ruby-ivar">@task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:task_id</span>])
+  <span class="ruby-ivar">@user_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>]
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+      <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and task_id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>],<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+      <span class="ruby-ivar">@partial_file</span> = <span class="ruby-identifier">select_partial</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">task_type</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">staff?</span>
+        <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>],<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">first</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">staff?</span>         
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/selection_not_known&quot;</span>}
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/selection_not_known&quot;</span>}
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/selection_not_known&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- grading_view-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- grading_view-method -->
 
     
       <div id="method-i-hand_in" class="method-detail ">
@@ -504,9 +679,9 @@
 
           
           <div class="method-source-code" id="hand_in-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hand_in</span>
-  <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">hand_in_to_staff</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
+  <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">hand_in_to_staff</span>(<span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>], <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
@@ -533,14 +708,14 @@
 
         <div class="method-description">
           
-          
+          <p>This is the main Student grade page.</p>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@grades</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@grades</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">all</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
@@ -554,6 +729,111 @@
 
         
       </div><!-- index-method -->
+
+    
+      <div id="method-i-load_module" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_module</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_module-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_module</span>
+  <span class="ruby-ivar">@assignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;module = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:module</span>]).<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_module-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_module-method -->
+
+    
+      <div id="method-i-load_tasks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_tasks</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_tasks-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 168</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_tasks</span>
+  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
+  <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>]).<span class="ruby-identifier">first</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
+  <span class="ruby-ivar">@tasks</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_tasks-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_tasks-method -->
+
+    
+      <div id="method-i-load_team" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_team</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_team-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_team</span>
+  <span class="ruby-ivar">@students</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:teams</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;teams.id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:team</span>]).<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_team-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_team-method -->
 
     
       <div id="method-i-new" class="method-detail ">
@@ -572,7 +852,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">new</span>
 
@@ -590,6 +870,41 @@
       </div><!-- new-method -->
 
     
+      <div id="method-i-office" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">office</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is the grading office page. The homepage for staff grading.</p>
+          
+
+          
+          <div class="method-source-code" id="office-source">
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">office</span>
+  <span class="ruby-ivar">@pending</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:assignment</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;grades.staff_id = ? and returned = ? and (grades.viewable = ? or grades.done = ?)&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">false</span>,<span class="ruby-keyword">true</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- office-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- office-method -->
+
+    
       <div id="method-i-show" class="method-detail ">
         
         <div class="method-heading">
@@ -601,12 +916,12 @@
 
         <div class="method-description">
           
-          <p>GET /grades/1</p>
+          <p>This zooms in on individual grades for assignments.</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -635,25 +950,36 @@
 
         <div class="method-description">
           
-          <p>Update the grade record with the new staff and status info.</p>
+          <p>Update the grade record with the new staff and status info. If you want to
+just save a grade record with only a success reponse use a hidden field
+called save_only. Not sure if this is very smart but makes the forms easier
+and fewer routes to maintain.</p>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/grades_controller.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@grade</span> = <span class="ruby-constant">Grade</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>][<span class="ruby-value">:staff_id</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:save_only</span>] <span class="ruby-comment"># normal save (expects a save_only field)</span>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>])
-        <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">staff_id</span>)
-        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>}
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
       <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;need_staff&quot;</span> }
+    <span class="ruby-keyword">else</span> <span class="ruby-comment"># save the student turnin form making sure they choose a staff person.</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>][<span class="ruby-value">:staff_id</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:grade</span>])
+          <span class="ruby-ivar">@checker</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@grade</span>.<span class="ruby-identifier">staff_id</span>)
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;need_staff&quot;</span> }
+      <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

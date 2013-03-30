@@ -5,6 +5,8 @@ class Grade < ActiveRecord::Base
   
   attr_accessible :assignment_id, :grade, :school_id, :scratchpad, :staff_comments, :staff_id, :student_comments, :user_id, :viewable, :done, :returned
   
+  validates_numericality_of :grade, :only_integer => true, :allow_nil => true, :less_than_or_equal_to => 100
+  
   # Finds or creates grades (staff not yet assigned) records from the student perspective.
   #
   # This is called before the form is loaded, so that there is a real record w/ an id to work on.
@@ -35,6 +37,22 @@ class Grade < ActiveRecord::Base
       assignment_ids.each do |a|
         self.assign_staff_to_student(school_id,a.to_i,s.to_i,staff_id)
       end
+    end
+  end
+  
+  def duetime
+    student = User.find(self.user_id)
+    team = student.coreteam
+    if team
+      due = Duedate.where("assignment_id = ? and team_id = ?",self.assignment_id, team.id).first
+      time = Time.now.in_time_zone
+      if due and due.duedate > time
+        return due.duedate
+      else
+        return false
+      end
+    else
+      return false
     end
   end
   

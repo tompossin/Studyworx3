@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  parent_id: 1
+  user_id: 1
+  school_id: 1
+  assignment_id: 1
+  task_id: 1
+  paragraph_id: 1
+  title_type: 1
+  position: 1
+  title: MyString
+  verse_count: 1
+  staff_note: MyText
+
+two:
+  parent_id: 1
+  user_id: 1
+  school_id: 1
+  assignment_id: 1
+  task_id: 1
+  paragraph_id: 1
+  title_type: 1
+  position: 1
+  title: MyString
+  verse_count: 1
+  staff_note: MyText

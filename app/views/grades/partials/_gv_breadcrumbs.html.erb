@@ -1,2 +1,11 @@
-<span><%= link_to "Grading Office", school_grading_office_path(@school.id) %></span>
-<span class="cell"><%= link_to "Grading Tools", user_assignment_load_tasks_path(@user_id,@task.assignment_id), {remote: true} %></span>
+
+<% if current_user.student? %>
+  <span><%=link_to "#{get_assignment_name(@task.assignment_id)} Home", school_assignment_path(@school,@task.assignment_id) %></span>
+  <span><%=link_to "Stickie Notes"%></span>
+<% end %>
+
+<% if current_user.staff? %>
+  <span><%= link_to "Grading Office", school_grading_office_path(@school.id) %></span>
+  <span class="cell"><%= link_to "Grading Tools", user_assignment_load_tasks_path(@user_id,@task.assignment_id), {remote: true} %></span>
+<% end %>
+

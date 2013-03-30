@@ -64,7 +64,17 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-find_or_default">::find_or_default</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -156,6 +166,10 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./Book.html">Book</a>
+  
+    <li><a href="./ChartsController.html">ChartsController</a>
+  
+    <li><a href="./ChartsHelper.html">ChartsHelper</a>
   
     <li><a href="./Color.html">Color</a>
   
@@ -278,6 +292,48 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-find_or_default" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_or_default</span><span
+            class="method-args">(assignment_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="find_or_default-source">
+            <pre><span class="ruby-comment"># File app/models/scoresheet.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_or_default</span>(<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:scoresheet</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">scoresheet</span>
+    <span class="ruby-identifier">content</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">scoresheet</span>.<span class="ruby-identifier">content</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">content</span> = <span class="ruby-node">&quot;### Grading notes...&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">content</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_or_default-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_or_default-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

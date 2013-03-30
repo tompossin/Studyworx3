@@ -11,13 +11,16 @@
       <p>
         <%= formatter( @school.location) %>
       </p>
-      <p>
+      <p class="title large">
         <%= @school.tagline %>
       </p>
     </header>    
-    <div class="floatbox_trans limited" 
-      <%= formatter(@school.description) %>
-      <hr />
+    <div class="limited">       
+      <p>
+        <b>About us:</b><br />
+        <%= formatter(@school.description) %>
+      </p>
+      
       <p>
         <b>Pre-Requisites:</b><br />
         <%= formatter(@school.prereqs) %>
@@ -35,10 +38,10 @@
         <%= formatter(@school.mailing_address) %>
       </p>
     </div>
-    <div class="floatbox_trans" style="width:245px;">
-      <caption><%= @school.caption %></caption>
-      <%=image_tag(@school.featured.url(:medium),{:size=>"240x240"}) %>
-    </div>
+    <figure>
+      <figcaption><%= @school.caption %></figcaption><br />
+      <%=image_tag(@school.featured.url(:medium),{:size=>"300x300"}) %>
+    </figure>
   </article>
 </div>
 

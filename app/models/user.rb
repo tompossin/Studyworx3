@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :documents
   has_many :turnins
   has_many :grades
+  has_many :titles
+  has_many :ppoints
+  has_many :charttexts
   has_one :note
   has_one :preference
   has_and_belongs_to_many :teams
@@ -48,10 +51,11 @@ class User < ActiveRecord::Base
   # Sets the current school in User
   #  Usage: @user.set_school(school_id)
   def set_school(school_id)
-    p = self.participants.where(:school_id => school_id).first
+    p = self.participants.includes(:school).where(:school_id => school_id).first
     if p
       self.role = p.role_id 
       self.school = school_id
+      self.timezone = p.school.timezone
       if self.save
         return true
       end
@@ -117,6 +121,14 @@ class User < ActiveRecord::Base
       return participant.accepted
     else
       return false
+    end
+  end
+  
+  # Check if this user is a student for current school
+  #  Usage:  current_user.student? # returns true or false 
+  def student?
+    if self.role and self.role == 4 
+      true
     end
   end
   

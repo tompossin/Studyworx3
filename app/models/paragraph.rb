@@ -1,4 +1,5 @@
 class Paragraph < ActiveRecord::Base
+  has_many :titles
   belongs_to :book
   belongs_to :version
   

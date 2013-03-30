@@ -58,7 +58,17 @@
     
     
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-letter_grade">#letter_grade</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -150,6 +160,10 @@
     <li><a href="./BlogsHelper.html">BlogsHelper</a>
   
     <li><a href="./Book.html">Book</a>
+  
+    <li><a href="./ChartsController.html">ChartsController</a>
+  
+    <li><a href="./ChartsHelper.html">ChartsHelper</a>
   
     <li><a href="./Color.html">Color</a>
   
@@ -272,6 +286,72 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-letter_grade" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">letter_grade</span><span
+            class="method-args">(number_grade)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This converts numeric grades to letter grades.</p>
+          
+
+          
+          <div class="method-source-code" id="letter_grade-source">
+            <pre><span class="ruby-comment"># File app/helpers/grades_helper.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">letter_grade</span>(<span class="ruby-identifier">number_grade</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">number_grade</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">97</span>
+      <span class="ruby-string">&quot;A+&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">92</span>
+      <span class="ruby-string">&quot;A&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">89</span>
+      <span class="ruby-string">&quot;A-&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">87</span>
+      <span class="ruby-string">&quot;B+&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">82</span>
+      <span class="ruby-string">&quot;B&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">79</span>
+      <span class="ruby-string">&quot;B-&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">77</span>
+      <span class="ruby-string">&quot;C+&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">72</span>
+      <span class="ruby-string">&quot;C&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">69</span>
+      <span class="ruby-string">&quot;C-&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">67</span>
+      <span class="ruby-string">&quot;D+&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">62</span>
+      <span class="ruby-string">&quot;D&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">number_grade</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">59</span>
+      <span class="ruby-string">&quot;D-&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-string">&quot;F&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;Pending&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- letter_grade-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- letter_grade-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

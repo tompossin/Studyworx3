@@ -1,10 +1,26 @@
+app/controllers/admin/scoresheets_controller.rb:
+  * [ 61] [TODO] Add a link to this from the toolbar in the editor.
+
+app/controllers/application_controller.rb:
+  * [ 44] [FIXME] I may not want to call this on every call. This way it is sure to happen though ;)
+
 app/controllers/blogs_controller.rb:
   * [  5] [TODO] I will need to put some limits or paging on this yet.
   * [ 26] [TODO] create partials for wysihtml5 and markdown
 
 app/controllers/home_controller.rb:
-  * [  4] [TODO] This is really just a framework now
+  * [  6] [TODO] Fix the navbar so that only featured stories show
+  * [  7] [TODO] Add a search field to search by category
+  * [  8] [TODO] Maybe add a full text search
+  * [  9] [TODO] May need to add the exerpt/lead-in to give short intros that can be displayed on the home page.
+
+app/controllers/messages_controller.rb:
+  * [ 73] [FIXME] This is called mistakenly by a message edit.
+
+app/models/title.rb:
+  * [ 14] [TODO] I need to build a method that populates a new chart setup
+  * [ 16] [TODO] I need to build a destroyer so people can start over
 
 app/models/user.rb:
-  * [ 26] [FIXME] I need a Jquery checker on the image uploading page that will prevent
+  * [ 33] [FIXME] I need a Jquery checker on the image uploading page that will prevent
 

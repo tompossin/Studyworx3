@@ -60,6 +60,10 @@
       <%= f.date_select :end_date %>   
     </p>
     <p>
+      <label>Timezone of School:</label><br />
+      <%= f.time_zone_select :timezone, nil, :include_blank => true %>
+    </p>
+    <p>
       <label>Check box if school is active: </label>
       <%= f.check_box :active %>
     </p>

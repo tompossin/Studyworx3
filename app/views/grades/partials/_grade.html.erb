@@ -1,6 +1,6 @@
 <div class="trow" >
   <span class="cell" style="width: 27%;" ><%= get_assignment_name(grade.assignment_id) %></span> 
-  <span class="cell" style="width: 27%;" ><%= get_full_name(grade.user_id) %> </span>
-  <span class="cell" style="width: 27s%;" >Checker: <%= get_full_name(grade.staff_id) if grade.staff_id %></span>
+  <span class="cell" style="width: 27%;" ><%= letter_grade(grade.grade) %> </span>
+  <span class="cell" style="width: 27s%;" ><%= get_full_name(grade.staff_id) if grade.staff_id %></span>
 </div>
 

@@ -183,6 +183,10 @@
   
     <li><a href="../Book.html">Book</a>
   
+    <li><a href="../ChartsController.html">ChartsController</a>
+  
+    <li><a href="../ChartsHelper.html">ChartsHelper</a>
+  
     <li><a href="../Color.html">Color</a>
   
     <li><a href="../Document.html">Document</a>
@@ -436,7 +440,7 @@
             <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">all</span>
-  <span class="ruby-ivar">@mods</span> = <span class="ruby-ivar">@assignments</span>.<span class="ruby-identifier">group_by</span>(&amp;<span class="ruby-value">:module</span>)
+  <span class="ruby-ivar">@mods</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">group_by</span>(&amp;<span class="ruby-value">:module</span>)
 
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->

@@ -177,6 +177,10 @@
   
     <li><a href="../Book.html">Book</a>
   
+    <li><a href="../ChartsController.html">ChartsController</a>
+  
+    <li><a href="../ChartsHelper.html">ChartsHelper</a>
+  
     <li><a href="../Color.html">Color</a>
   
     <li><a href="../Document.html">Document</a>
@@ -318,7 +322,7 @@
 
           
           <div class="method-source-code" id="book-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">book</span>
   <span class="ruby-ivar">@book</span> = <span class="ruby-constant">Book</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:book_id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -480,11 +484,13 @@
           <div class="method-source-code" id="update_participant-source">
             <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_participant</span>
-  <span class="ruby-ivar">@participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@user</span> = <span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">user</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">role_id</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">role_id</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:participant</span>])
+        <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">set_school</span>(<span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">school_id</span>)
         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span> }

@@ -41,9 +41,10 @@ class ApplicationController < ActionController::Base
   
   
   # Set the users timezone
+  # FIXME I may not want to call this on every call. This way it is sure to happen though ;)
   def set_time_zone
     if current_user
-      unless current_user.timezone.nil?
+      if current_user.timezone
         Time.zone = current_user.timezone
       else
         Time.zone = "UTC"

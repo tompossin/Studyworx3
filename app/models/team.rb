@@ -55,4 +55,5 @@ class Team < ActiveRecord::Base
     duedates = Duedate.find(tdd_ids) 
   end
   
+  
 end
