@@ -1,0 +1,35 @@
+<%= content_for :breadcrumbs do %>
+  <span><%=link_to "Admin Tools", admin_tools_index_path %></span>
+<% end -%>
+
+<div id="content-large">
+  <article>
+    <h1>Listing observations</h1>
+    
+    <%= link_to 'New Observation', new_admin_school_observation_path(current_user.school) %>
+    
+    <br />
+    
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Color</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    
+    <% @observations.each do |observation| %>
+      <tr>
+        <td><%= observation.name %></td>
+        <td><%= observation.code %></td>
+        <td><%= link_to 'Show', admin_school_observation_path(@school,observation) %></td>
+        <td><%= link_to 'Edit', edit_admin_school_observation_path(@school,observation) %></td>
+        <td><%= link_to 'Destroy', admin_school_observation_path(@school,observation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
+  </article>
+</div>
+<%= nav_bar(@nav_body_content) %>

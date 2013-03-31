@@ -1,3 +1,10 @@
 class Observation < ActiveRecord::Base
-  attr_accessible :code, :color, :link, :name, :position, :public, :school_id
+  belongs_to :school
+  
+  #############################
+  default_scope order: 'name ASC'
+  ##############################
+  
+  attr_accessible :code, :name, :position, :public, :school_id
+  
 end

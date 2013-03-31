@@ -1,2 +1,14 @@
-<h1>Charts#start</h1>
-<p>Find me in app/views/charts/start.html.erb</p>
+<%= content_for :breadcrumbs do %>
+  <span><%=link_to @assignment.name, school_assignment_path(current_user.school,@assignment) %></span>
+<% end -%>
+
+<div id="content-large">
+  <article>
+    <h2>Chart Builder - <%= @assignment.name %></h2>
+    <div id="title-container">
+      <%= render partial: "title", collection: @titles %>
+    </div>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

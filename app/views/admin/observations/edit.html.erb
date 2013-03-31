@@ -1,0 +1,16 @@
+<%= content_for :breadcrumbs do %>
+  <span><%=link_to "Admin Tools", admin_tools_index_path %></span>
+  <span><%= link_to 'Observation Home', admin_school_observations_path(@school) %></span>
+  <span><%= link_to 'Show', admin_school_observation_path(@school, @observation) %></span>
+<% end -%>
+
+<div id="content-large">
+  <article>
+    <h1>Editing observation</h1>
+    
+    <%= render 'form' %>
+    
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

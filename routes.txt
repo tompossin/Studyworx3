@@ -12,6 +12,13 @@
              admin_school_scoresheet GET    /admin/schools/:school_id/scoresheets/:id(.:format)                                        admin/scoresheets#show
                                      PUT    /admin/schools/:school_id/scoresheets/:id(.:format)                                        admin/scoresheets#update
                                      DELETE /admin/schools/:school_id/scoresheets/:id(.:format)                                        admin/scoresheets#destroy
+           admin_school_observations GET    /admin/schools/:school_id/observations(.:format)                                           admin/observations#index
+                                     POST   /admin/schools/:school_id/observations(.:format)                                           admin/observations#create
+        new_admin_school_observation GET    /admin/schools/:school_id/observations/new(.:format)                                       admin/observations#new
+       edit_admin_school_observation GET    /admin/schools/:school_id/observations/:id/edit(.:format)                                  admin/observations#edit
+            admin_school_observation GET    /admin/schools/:school_id/observations/:id(.:format)                                       admin/observations#show
+                                     PUT    /admin/schools/:school_id/observations/:id(.:format)                                       admin/observations#update
+                                     DELETE /admin/schools/:school_id/observations/:id(.:format)                                       admin/observations#destroy
                        admin_schools GET    /admin/schools(.:format)                                                                   admin/schools#index
                                      POST   /admin/schools(.:format)                                                                   admin/schools#create
                     new_admin_school GET    /admin/schools/new(.:format)                                                               admin/schools#new
@@ -208,7 +215,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
               user_task_grading_view GET    /user/:user_id/task/:task_id/grading_view(.:format)                                        grades#grading_view
                          user_grades GET    /user/:user_id/grades(.:format)                                                            grades#grades
                 grade_finish_grading GET    /grade/:grade_id/finish_grading(.:format)                                                  grades#finish_grading
-             assignment_charts_start POST   /assignment/:assignment_id/charts/start(.:format)                                          charts#start
+                   task_charts_start GET    /task/:task_id/charts/start(.:format)                                                      charts#start
                     document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions

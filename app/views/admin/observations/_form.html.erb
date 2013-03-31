@@ -1,4 +1,4 @@
-<%= form_for(@observation) do |f| %>
+<%= form_for([:admin,@school,@observation]) do |f| %>
   <% if @observation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@observation.errors.count, "error") %> prohibited this observation from being saved:</h2>
@@ -10,23 +10,9 @@
       </ul>
     </div>
   <% end %>
+  
+  <%= f.hidden_field :school_id %>
 
-  <div class="field">
-    <%= f.label :school_id %><br />
-    <%= f.number_field :school_id %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br />
-    <%= f.number_field :position %>
-  </div>
-  <div class="field">
-    <%= f.label :link %><br />
-    <%= f.text_field :link %>
-  </div>
-  <div class="field">
-    <%= f.label :color %><br />
-    <%= f.text_field :color %>
-  </div>
   <div class="field">
     <%= f.label :code %><br />
     <%= f.text_field :code %>
@@ -34,10 +20,6 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :public %><br />
-    <%= f.check_box :public %>
   </div>
   <div class="actions">
     <%= f.submit %>

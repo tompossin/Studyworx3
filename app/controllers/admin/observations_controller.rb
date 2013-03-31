@@ -1,8 +1,13 @@
-class ObservationsController < ApplicationController
+class Admin::ObservationsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :is_school_admin
+  before_filter :get_school
+  before_filter :set_nav_bar
+  
   # GET /observations
   # GET /observations.json
   def index
-    @observations = Observation.all
+    @observations = @school.observations.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +29,7 @@ class ObservationsController < ApplicationController
   # GET /observations/new
   # GET /observations/new.json
   def new
-    @observation = Observation.new
+    @observation = @school.observations.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +40,7 @@ class ObservationsController < ApplicationController
   # GET /observations/1/edit
   def edit
     @observation = Observation.find(params[:id])
+    
   end
 
   # POST /observations
@@ -44,11 +50,9 @@ class ObservationsController < ApplicationController
 
     respond_to do |format|
       if @observation.save
-        format.html { redirect_to @observation, notice: 'Observation was successfully created.' }
-        format.json { render json: @observation, status: :created, location: @observation }
+        format.html { redirect_to admin_school_observations_url(@school), notice: 'Observation was successfully created.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @observation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +64,7 @@ class ObservationsController < ApplicationController
 
     respond_to do |format|
       if @observation.update_attributes(params[:observation])
-        format.html { redirect_to @observation, notice: 'Observation was successfully updated.' }
+        format.html { redirect_to admin_school_observations_url(@school), notice: 'Observation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,8 +80,18 @@ class ObservationsController < ApplicationController
     @observation.destroy
 
     respond_to do |format|
-      format.html { redirect_to observations_url }
-      format.json { head :no_content }
+      format.html { redirect_to admin_school_observations_url(@school) }
     end
   end
+  
+  private
+  
+  def get_school
+    @school = School.find(current_user.school)
+  end
+  
+  def set_nav_bar
+    @nav_body_content = "admin/assignments/toolbar"
+  end
+  
 end

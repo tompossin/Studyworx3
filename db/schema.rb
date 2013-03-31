@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330010601) do
+ActiveRecord::Schema.define(:version => 20130331002614) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -181,15 +181,13 @@ ActiveRecord::Schema.define(:version => 20130330010601) do
   end
 
   create_table "observations", :force => true do |t|
-    t.integer  "school_id",  :null => false
-    t.integer  "position",   :null => false
-    t.string   "link"
-    t.string   "color"
+    t.integer  "school_id",                     :null => false
+    t.integer  "position",   :default => 0,     :null => false
     t.string   "code"
     t.string   "name"
-    t.boolean  "public"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "public",     :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "observations", ["school_id"], :name => "index_observations_on_school_id"
@@ -417,10 +415,11 @@ ActiveRecord::Schema.define(:version => 20130330010601) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "titles", ["assignment_id"], :name => "index_titles_on_assignment_id"
   add_index "titles", ["parent_id"], :name => "index_titles_on_parent_id"
   add_index "titles", ["school_id"], :name => "index_titles_on_school_id"
   add_index "titles", ["task_id"], :name => "index_titles_on_task_id"
-  add_index "titles", ["user_id", "assignment_id", "position"], :name => "index_titles_on_user_id_and_assignment_id_and_position"
+  add_index "titles", ["user_id", "task_id", "position"], :name => "index_titles_on_user_id_and_task_id_and_position"
 
   create_table "turnins", :force => true do |t|
     t.integer  "user_id",                          :null => false

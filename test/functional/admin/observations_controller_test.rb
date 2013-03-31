@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ObservationsControllerTest < ActionController::TestCase
+class Admin::ObservationsControllerTest < ActionController::TestCase
   setup do
     @observation = observations(:one)
   end
@@ -18,7 +18,7 @@ class ObservationsControllerTest < ActionController::TestCase
 
   test "should create observation" do
     assert_difference('Observation.count') do
-      post :create, observation: { code: @observation.code, color: @observation.color, link: @observation.link, name: @observation.name, position: @observation.position, public: @observation.public, school_id: @observation.school_id }
+      post :create, observation: { code: @observation.code, name: @observation.name, position: @observation.position, public: @observation.public, school_id: @observation.school_id }
     end
 
     assert_redirected_to observation_path(assigns(:observation))
@@ -35,7 +35,7 @@ class ObservationsControllerTest < ActionController::TestCase
   end
 
   test "should update observation" do
-    put :update, id: @observation, observation: { code: @observation.code, color: @observation.color, link: @observation.link, name: @observation.name, position: @observation.position, public: @observation.public, school_id: @observation.school_id }
+    put :update, id: @observation, observation: { code: @observation.code, name: @observation.name, position: @observation.position, public: @observation.public, school_id: @observation.school_id }
     assert_redirected_to observation_path(assigns(:observation))
   end
 

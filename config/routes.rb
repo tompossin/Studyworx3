@@ -1,7 +1,5 @@
 Studyworx3::Application.routes.draw do
 
-  resources :observations
-
 
   # ----------
   # :section: Admin Routes
@@ -14,6 +12,7 @@ Studyworx3::Application.routes.draw do
     resources :schools do
       resources :templats
       resources :scoresheets
+      resources :observations
     end
     resources :profiles
     resources :user_admins
@@ -107,7 +106,7 @@ Studyworx3::Application.routes.draw do
   match 'grade/:grade_id/finish_grading' => 'grades#finish_grading', via: [:get], as: :grade_finish_grading
   
   # Routes for the Charts controller
-  match 'assignment/:assignment_id/charts/start' => 'charts#start', via: [:post], as: :assignment_charts_start
+  match 'task/:task_id/charts/start' => 'charts#start', via: [:get], as: :task_charts_start
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'

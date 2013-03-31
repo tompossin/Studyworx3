@@ -3,4 +3,6 @@ class Preference < ActiveRecord::Base
 
   attr_accessible :bgcolor, :rows, :theme, :user_id, :wallpaper
   
+
+  
 end

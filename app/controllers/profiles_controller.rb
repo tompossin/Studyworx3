@@ -61,6 +61,8 @@ class ProfilesController < ApplicationController
     else
       session[:wallpaper] = true
     end
+    current_user.preference.wallpaper = session[:wallpaper]
+    current_user.preference.save
     
     respond_to do |format|
       format.html {redirect_to :back}
@@ -71,17 +73,13 @@ class ProfilesController < ApplicationController
   # This sets the default theme for a user.
   def settheme
     ct = Theme.find_by_filename(params[:preference][:theme])
-    current_user.preference.update_attributes(params[:preference])
-    if ct.wallpaper
-      current_user.preference.wallpaper = true
-      session[:wallpaper] = true
-    else
-      current_user.preference.wallpaper = false
+    unless ct.wallpaper
       session[:wallpaper] = false
+      current_user.preference.wallpaper = false
     end
     
     respond_to do |format|
-      if current_user.preference.save
+      if current_user.preference.update_attributes(params[:preference])
         set_session
         format.html {redirect_to :back}
         format.js {render "reminder_save"}

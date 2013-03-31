@@ -24,11 +24,14 @@ header {
 #breadcrumbs {
   position: fixed;
   top: 0px;
-  left: 37%;
+  left: 38%;
   width: 36%;
+  background-color: white;
   box-shadow: 3px 3px 3px #888888;
-  border-radius: 5px 5px 5px 5px;
-  padding-bottom: 3px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 4px;
+  padding-top: 4px;
   a {
     margin-left: 1em;
   }
@@ -59,34 +62,6 @@ header {
   width: 100%;
 	background-color:#FFFFDD;
 	margin-bottom: 0px;
-}
-
-#logo {
-	font-size: 12pt;
-	font-weight:bolder;
-	color:#999999;
-	margin-left: 4px;
-	padding-left: 8px;
-	padding-right: 8px;
-	padding-bottom: 4px;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	cursor: pointer;
-}
-#logo a {
-  color: #999999;
-  text-decoration: none;
-  font-size: 14px;
-}
-#logo a:hover {
-  color:black;
-}
-#logo p {
-	font-weight: normal;
-}
-#logo:hover {
-	cursor: pointer;
 }
 
 #nav_heading {

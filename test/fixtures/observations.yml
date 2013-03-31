@@ -3,8 +3,6 @@
 one:
   school_id: 1
   position: 1
-  link: MyString
-  color: MyString
   code: MyString
   name: MyString
   public: false
@@ -12,8 +10,6 @@ one:
 two:
   school_id: 1
   position: 1
-  link: MyString
-  color: MyString
   code: MyString
   name: MyString
   public: false

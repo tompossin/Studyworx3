@@ -1,4 +1,5 @@
 /*
+ * common.css.scss
  * The elements, ids, and classes in this file are the same for all themes.
  * This file is loaded first so any changes brought by later stylesheets will modify these values
  */
@@ -24,7 +25,8 @@ body {
   }
   a:hover {
     color:#999999;
-    background-color:white;
+    background-color: #FFFDA7;
+    border-radius: 4px;
   }
   li {
     font-size: 10pt;
@@ -89,6 +91,7 @@ blockquote {
 
 article {
   float: left;
+  margin-left: 1%;
   padding-left: 10px;
   width: 98%;
   min-height: 60%;
@@ -162,15 +165,14 @@ label {
   top: 0px;
   width: 200px;
   padding-left: 12px;
+  padding-top: 4px;
   padding-right: 4px;
   padding-bottom: 4px;
   color: #999999;
-  border-left:4px solid #ededed;
-  border-bottom:3px solid #bbbbbb;
-  border-right: 2px solid #999999;
   background-color: white;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+  box-shadow: 3px 3px 2px #888888;
 }
 
 #profile a {
@@ -184,6 +186,42 @@ label {
 
 #profile:hover {
   cursor:pointer;
+}
+
+#logo {
+  font-size: 12pt;
+  font-weight:bolder;
+  color:#999999;
+  background-color: white;
+  margin-left: 1%;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 4px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: absolute;
+  top: 0px;
+  box-shadow: 3px 3px 2px #888888;
+}
+#logo a {
+  color: #999999;
+  text-decoration: none;
+  font-size: 14px;
+}
+#logo a:hover {
+  color:black;
+}
+#logo p {
+  font-weight: normal;
+}
+#logo:hover {
+  cursor: pointer;
+}
+
+#title-container {
+  float: right;
+  width: 600px;
+  border: solid 1px gray;
 }
 
 #chartids {
@@ -222,6 +260,31 @@ label {
   margin-bottom: 6px;
   cursor:pointer;
 }
+
+/* These are classes for the charting start page */
+.paragraph_title {
+  float: right;
+  width: 350px;
+  background-color: yellow;
+  border: solid 1px gray;
+}
+
+.segment_title {
+  
+}
+
+.section_title {
+  
+}
+
+.division_title {
+  
+}
+
+.book_title {
+  
+}
+/* End title classes */
 
 /* css table elements */
 .trow {

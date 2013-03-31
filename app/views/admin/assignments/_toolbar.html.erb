@@ -7,6 +7,8 @@
   <%=link_to "Due Time Admin", admin_duedates_path %><br />
   <%=link_to "Template Admin", admin_school_templats_path(current_user.school) %><br />
   <%=link_to "Scoresheet Admin", admin_school_scoresheets_path(current_user.school) %><br />
-  <%=link_to "Personnel Admin", admin_tools_personnel_path %>
+  <%=link_to "Observation Admin", admin_school_observations_path(current_user.school) %><br />
+  <%=link_to "Personnel Admin", admin_tools_personnel_path %><br />
+  <%=link_to( "System help editor", admin_helps_path) if is_admin %>
 </div>
 

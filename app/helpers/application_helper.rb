@@ -157,6 +157,8 @@ module ApplicationHelper
   end
   
   # Sets a message in response to true/false
+  # This is a generic version of set_color it produces string responses to T/F input
+  # * t = true/false the rest is pretty obvious.
   def tfmsg(t,tmsg="True",fmsg="False")
     if t
       tmsg
@@ -238,9 +240,10 @@ module ApplicationHelper
   # Set main css file
   def set_preferences
       unless current_user.preference
-        p = Preference.create(user_id: current_user.id,theme: "base-right",bgcolor: "white",rows: 20, wallpaper: false)
-      end
+        pref = Preference.create(user_id: current_user.id,theme: "base-right",bgcolor: "white",rows: 20, wallpaper: false)
+      else
         pref = Preference.where(user_id: current_user.id).first
+      end
         session[:theme] = pref.theme
         session[:bgcolor] = pref.bgcolor
         session[:rows] = pref.rows

@@ -44,20 +44,18 @@ footer {
 
 #content-large {
   float:left;
-  width:65%;
+  width:64%;
 }
 
 #breadcrumbs {
   position: fixed;
   background-color: white;
   top: 0px;
-  right: 36%;
+  right: 34%;
   width: 36%;
-  border: 1px solid #dddddd;
-  border-right: 3px solid #999999;
-  border-left: 4px solid #dedede;
-  border-bottom: 2px solid #bcbcbc;
-  border-radius: 5px 5px 5px 5px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 3px 3px 2px #888888;
   padding-bottom: 3px;
   padding-top: 3px;
   a {
@@ -94,40 +92,6 @@ footer {
   width: 100%;
 	background-color:#FFFFDD;
 	margin-bottom: 0px;
-}
-
-#logo {
-	font-size: 12pt;
-	font-weight:bolder;
-	color:#999999;
-	background-color: white;
-	margin-left: 4px;
-	padding-left: 8px;
-	padding-right: 8px;
-	padding-bottom: 4px;
-	position: absolute;
-	top: 0px;
-	left: 12px;
-	border-left:2px solid #999999;
-  border-bottom:3px solid #bbbbbb;
-  border-right: 4px solid #ededed;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
-	cursor: pointer;
-}
-#logo a {
-  color: #999999;
-  text-decoration: none;
-  font-size: 14px;
-}
-#logo a:hover {
-  color:black;
-}
-#logo p {
-	font-weight: normal;
-}
-#logo:hover {
-	cursor: pointer;
 }
 
 #nav_heading {
