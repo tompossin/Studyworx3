@@ -1,0 +1,10 @@
+<div id="insert_<%=@title.id.to_s%>" class="book_title insert_select">
+  <span class="title">Click to insert a new Title</span> 
+  <span id="cancel"><%=link_to "Close", cancel_path, {remote: true} %></span>
+  <br />
+  <hr />
+  <span><%=link_to "Book", task_title_create_title_path(@task,@title,title_type: 5),{method: :post, remote: true} %></span>
+  <span><%=link_to "Division", task_title_create_title_path(@task,@title,title_type: 4),{method: :post, remote: true} %></span>
+  <span><%=link_to "Section", task_title_create_title_path(@task,@title,title_type: 3),{method: :post, remote: true} %></span>
+  <span><%=link_to "Segment", task_title_create_title_path(@task,@title,title_type: 2),{method: :post, remote: true} %></span>
+</div>

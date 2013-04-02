@@ -1,0 +1,4 @@
+$("#title_<%=j @title.id.to_s %>").replaceWith("<%=j render "title", {title: @title} %>");
+$('#notice').show();
+$('#notice').html("Saved").fadeOut(3000);
+

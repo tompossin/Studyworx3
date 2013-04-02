@@ -216,6 +216,9 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                          user_grades GET    /user/:user_id/grades(.:format)                                                            grades#grades
                 grade_finish_grading GET    /grade/:grade_id/finish_grading(.:format)                                                  grades#finish_grading
                    task_charts_start GET    /task/:task_id/charts/start(.:format)                                                      charts#start
+                     task_title_save PUT    /task/:task_id/title/:title_id/save(.:format)                                              charts#save
+                task_title_new_title GET    /task/:task_id/title/:title_id/new_title(.:format)                                         charts#new_title
+             task_title_create_title POST   /task/:task_id/title/:title_id/create_title(.:format)                                      charts#create_title
                     document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions

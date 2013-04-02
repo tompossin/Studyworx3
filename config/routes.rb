@@ -107,6 +107,10 @@ Studyworx3::Application.routes.draw do
   
   # Routes for the Charts controller
   match 'task/:task_id/charts/start' => 'charts#start', via: [:get], as: :task_charts_start
+  match 'task/:task_id/title/:title_id/save' => 'charts#save', via: [:put], as: :task_title_save
+  match 'task/:task_id/title/:title_id/new_title' => 'charts#new_title', via: [:get], as: :task_title_new_title
+  match 'task/:task_id/title/:title_id/create_title' => 'charts#create_title', via: [:post], as: :task_title_create_title
+  
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
