@@ -219,6 +219,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                      task_title_save PUT    /task/:task_id/title/:title_id/save(.:format)                                              charts#save
                 task_title_new_title GET    /task/:task_id/title/:title_id/new_title(.:format)                                         charts#new_title
              task_title_create_title POST   /task/:task_id/title/:title_id/create_title(.:format)                                      charts#create_title
+                   task_title_delete DELETE /task/:task_id/title/:title_id(.:format)                                                   charts#delete_title
+                   task_autopopulate POST   /task/:task_id/autopoulate(.:format)                                                       charts#autopopulate
                     document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions

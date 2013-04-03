@@ -159,6 +159,18 @@ label {
   border-radius: 5px;
 }
 
+#spinner {
+  display: none;
+  position: fixed;
+  font-size: 10pt;
+  text-align:center;
+  top: 0px;
+  left: 35%;
+  width: 250px;
+  background-color:yellow;
+  border-radius: 5px;
+}
+
 #profile {
   position:absolute;
   right: 12px;
@@ -225,6 +237,18 @@ label {
   width: 580px;
 }
 
+#start {
+  padding:10px;
+  border-radius: 10px;
+  margin-bottom: 10px; 
+  background-color: silver; 
+  cursor: pointer;
+}
+
+#start:hover {
+  background-color: gray;
+}
+
 #chartids {
   float:right;
   position: static;
@@ -264,15 +288,29 @@ label {
 
 /* These are classes for the charting start page */
 .sortable {
-  background-image:url('iconic/list_16x14.png');
+  background-image:url('gradient1.png');
   background-repeat: repeat-y;
   background-position:left top;
   cursor: pointer;
 }
+.title_delete {
+  float:right;
+  min-width:1em;
+  min-height: 1em;
+  background-color: gray;
+  color: white;
+}
+.title_delete:hover {
+  background-color: black;
+}
+.insert_select span {
+  padding: 2px;
+  margin-right: 2px;
+}
 .paragraph_title {
   float:right;
-  width: 330px;
-  min-width: 330px;
+  width: 320px;
+  min-width: 320px;
   min-height: 1em;
   background-color: yellow;
   border: solid 1px gray;
@@ -283,8 +321,8 @@ label {
 
 .segment_title {
   float:right;
-  width: 380px;
-  min-width: 380px;
+  width: 370px;
+  min-width: 370px;
   min-height: 1em;
   font-weight: bold;
   background-color: green;
@@ -296,8 +334,8 @@ label {
 
 .section_title {
   float:right;
-  width: 430px;
-  min-width: 430px;
+  width: 420px;
+  min-width: 420px;
   min-height: 1em;
   font-weight: bold;
   background-color: cyan;
@@ -309,8 +347,8 @@ label {
 
 .division_title {
   float:right;
-  width: 480px;
-  min-width: 480px;
+  width: 470px;
+  min-width: 470px;
   min-height: 1em;
   font-weight: bold;
   background-color: violet;
@@ -322,8 +360,8 @@ label {
 
 .book_title {
   float:right;
-  width: 550px;
-  min-width: 550px;
+  width: 540px;
+  min-width: 540px;
   min-height: 1em;
   font-family: Garamond, Georgia;
   font-style: italic;

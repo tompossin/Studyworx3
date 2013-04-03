@@ -1,3 +1,11 @@
-<div id="title_<%= title.id %>" class="<%= get_class(title.title_type) %> sortable editable" contentEditable="true" data-new_title_url="<%= task_title_new_title_path(title.task_id,title.id)%>" data-url="<%= task_title_save_path(title.task_id,title.id) %>">
-  <%= title.title %>
+<div id="title_<%= title.id %>" class="<%= get_class(title.title_type) %> sortable">
+  <% unless title.title_type == 1%>
+    <div class="title_delete" data-id="<%= title.id %>" data-url="<%= task_title_delete_path(title.task_id,title.id) %>" title="Click to Delete" >
+      X
+    </div>
+  <% end %>
+  <div class="editable" contentEditable="true" data-new_title_url="<%= task_title_new_title_path(title.task_id,title.id)%>" data-url="<%= task_title_save_path(title.task_id,title.id) %>" title="Click to Edit, dblclick to insert, drag to sort.">
+    <%= title.title %>
+  </div>
 </div>
+

@@ -1,4 +1,5 @@
 <script>
+  // Save if enter or tab is pushed
   $('#title-container').on('keydown','.editable', function(e) {
     if(e.keyCode==13 || e.keyCode==9){
       if(e.keyCode==13){
@@ -13,6 +14,7 @@
     }
   });
   
+  // Autosave the content when focus is lost on the editable field
   $('#title-container').on('focusout','.editable', function(e) {
       $.ajax({
         type: "PUT",
@@ -22,11 +24,27 @@
       });
   });
   
+  // Load the title insertion selector on dblclick
   $('#title-container').on('dblclick','.editable', function(e) {
     $.ajax({
       type: "GET",
       url: $(this).data('new_title_url')
     });
+  });
+  
+  // watch for clicks to delete a title.
+  $('#title-container').on('click','.title_delete', function(e) {
+    if(confirm('Are you sure you wish to delete this?\nIf this is a segment it will delete \nyour vertical chart as well.')){
+      $('#spinner').show();
+      $('#title_'+$(this).data('id')).remove();
+      $.ajax({
+        type: "DELETE",
+        url: $(this).data('url'),
+        dataType: "script"
+      }).done(function(){
+        $('#spinner').hide();
+      });
+    }
   });
   
 </script>

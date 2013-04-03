@@ -6,7 +6,11 @@
   <article>
     <h2>Chart Builder - <%= @assignment.name %></h2>
     <div id="title-container">
-      <%= render partial: "title", collection: @titles %>
+      <% if @titles %>
+        <%= render partial: "title", collection: @titles %>
+      <% else %>
+        <%= render "start_button" %>
+      <% end %>
     </div>
   </article>
 </div>

@@ -1,0 +1,16 @@
+<h3>Click below to start your charts:</h3>
+<span id="start">
+  Start
+</span>
+<script>
+  $('#start').on('click', function() {
+  $('#spinner').show();
+    $.ajax({
+      type: "POST",
+      url: "<%=j task_autopopulate_path(@task) %>",
+      contentType: "html"
+    }).done(function() {
+      $('#spinner').hide();
+    });
+  });
+</script>

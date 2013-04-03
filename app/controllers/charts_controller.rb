@@ -3,9 +3,21 @@ class ChartsController < ApplicationController
   before_filter :get_task
  
   # Start page for charting.
-  def start
-    @titles = Title.find_or_autopopulate(@assignment,@task,current_user)
+  def start  
+    if Title.is_started?(@task.id,current_user.id)
+      @titles = Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).all
+    end
     
+    respond_to do |format| 
+      format.html 
+    end
+  end
+  
+  def autopopulate
+    @titles = Title.autopopulate(@assignment,@task,current_user)
+    respond_to do |format|
+      format.js
+    end
   end
   
   # This loads the dialog for inserting new titles
@@ -17,17 +29,21 @@ class ChartsController < ApplicationController
     end
   end
   
-  # This creates the title record that new_title defines
+  # This creates the title record of the type that the new_title method calls for
   def create_title
     old_title = Title.find(params[:title_id])
     @title = old_title.insert_title(params[:title_type].to_i)
     
     respond_to do |format|
-      format.js
+      if @title
+        format.js
+      else
+        format.js {render "insert_failed"}
+      end
     end
   end
   
-  # This save titles after editing
+  # This saves a title after editing
   def save
     @title = Title.find(params[:title_id])
     new_title = @title.clean_input(params[:title])
@@ -39,6 +55,18 @@ class ChartsController < ApplicationController
       else
         format.js {render "shared/save_failed"}
       end
+    end
+  end
+  
+  # Deletes a single title when called.
+  def delete_title
+    @title = Title.find(params[:title_id])
+    position = @title.position
+    @title.destroy
+    Title.reorder_after_delete(@task.id,current_user.id,position)
+    
+    respond_to do |format|
+      format.js
     end
   end
   
