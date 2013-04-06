@@ -1,5 +1,8 @@
 <%= content_for :breadcrumbs do %>
   <span><%=link_to @assignment.name, school_assignment_path(current_user.school,@assignment) %></span>
+  <span><%=link_to "Charting" %></span>
+  <span><%=link_to "Images" %></span>
+  <span><%=link_to "Start Over", task_titles_destroy_all_path(@task), {id: "destroy_all", remote: true, method: :delete, data: {url: task_titles_destroy_all_path(@task) } } %></span>
 <% end -%>
 
 <div id="content-large">

@@ -70,6 +70,15 @@ class ChartsController < ApplicationController
     end
   end
   
+  # This destroys all titles and all dependencies - (slow)
+  def destroy_all
+    Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).destroy_all
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   private
   
   # Get assignment and duetime for the current selection

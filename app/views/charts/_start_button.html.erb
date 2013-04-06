@@ -7,7 +7,7 @@
   $('#spinner').show();
     $.ajax({
       type: "POST",
-      url: "<%=j task_autopopulate_path(@task) %>",
+      url: "<%=j task_titles_autopopulate_path(@task) %>",
       contentType: "html"
     }).done(function() {
       $('#spinner').hide();

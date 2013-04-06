@@ -111,7 +111,8 @@ Studyworx3::Application.routes.draw do
   match 'task/:task_id/title/:title_id/new_title' => 'charts#new_title', via: [:get], as: :task_title_new_title
   match 'task/:task_id/title/:title_id/create_title' => 'charts#create_title', via: [:post], as: :task_title_create_title
   match 'task/:task_id/title/:title_id' => 'charts#delete_title', via: [:delete], as: :task_title_delete
-  match 'task/:task_id/autopoulate' => 'charts#autopopulate', via: [:post], as: :task_autopopulate
+  match 'task/:task_id/autopopulate' => 'charts#autopopulate', via: [:post], as: :task_titles_autopopulate
+  match 'task/:task_id/destroy_all' => 'charts#destroy_all', via: [:delete], as: :task_titles_destroy_all
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'

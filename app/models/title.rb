@@ -1,5 +1,5 @@
 class Title < ActiveRecord::Base
-  acts_as_tree :order => 'position ASC', :dependent => :destroy
+  acts_as_tree :order => 'position', dependent: :nullify
   belongs_to :assignment
   belongs_to :paragraph
   belongs_to :school
@@ -33,8 +33,6 @@ class Title < ActiveRecord::Base
     return titles
   end
   
-  # TODO I need to build a destroyer so people can start over
-  
   # Checks if a book title exists.
   def has_book_title?
     Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,5])
@@ -60,6 +58,49 @@ class Title < ActiveRecord::Base
   # Reorder titles after a deletion
   def self.reorder_after_delete(task_id,user_id,position)
     self.update_all("position = position - 1",["task_id = ? and user_id = ? and position > ?",task_id,user_id,position])
+  end
+  
+  # This find the next title of the current titles type or returns false
+  def find_next
+    Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",self.task_id, self.user_id,self.title_type, self.position ).first
+  end
+  
+  # This find the children of the current title
+  def find_ttl_children(next_ttl_position = false)    
+    unless next_ttl_position == false # Check if this is the last title of this type
+      ttype = self.title_type - 1 # Start looking for children one level down
+      while ttype > 0 # If children exist get them, otherwise look one more level down
+        if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
+          return Title.where("task_id = ? and user_id = ? and title_type = ? and position < ? and position > ?",self.task_id,self.user_id,ttype,next_ttl_position,self.position).all
+        end
+        ttype -= 1
+      end
+    else # This is the last title of this type
+      ttype = self.title_type - 1
+      while ttype > 0
+        if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
+          return Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",self.task_id,self.user_id,ttype,self.position).all
+        end
+        ttype -= 1 
+      end
+    end
+  end
+  
+  # This builds the title heirarchy and counts the verses for each parent title.
+  # Iterates through the title types staring with type 2 (segments) since this is the lowest level of parent title.
+  def self.build_tree(task_id,user_id)
+    t_types = [2,3,4,5]
+    t_types.each do |tt| 
+      c_titles = self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,tt).all
+      c_titles.each do |c|
+        next_ttl = c.find_next
+        t_children = c.find_ttl_children(next_ttl)
+        c.children = t_children
+        v_count = c.children.sum("verse_count")
+        c.verse_count = v_count
+        c.save
+      end
+    end  
   end
   
   # Clean up incoming params to help with inconsistent behavior of browsers (and users).

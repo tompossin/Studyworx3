@@ -47,4 +47,19 @@
     }
   });
   
+  // Start spinner on destroy_all click
+  $('body').on("click","#destroy_all", function(e) {
+    e.preventDefault();
+    if(confirm('Are you sure?\nThis will destroy all your work on this set of charts.')){
+      $('#spinner').show();
+      $.ajax({
+        type: "DELETE",
+        url: $(this).data('url'),
+        dataType: "script"
+      }).done(function(){
+        $('#spinner').hide();
+      });
+    }    
+  });
+  
 </script>

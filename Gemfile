@@ -21,6 +21,8 @@ gem 'acts_as_list'
 gem 'redcarpet' # parser for markdown
 gem 'wicked_pdf'
 gem 'wysihtml5-rails'
+gem 'rb-readline'
+gem 'rmagick'
 
 
 
