@@ -1,5 +1,5 @@
 class Title < ActiveRecord::Base
-  acts_as_tree :order => 'position', dependent: :nullify
+  acts_as_tree :order => 'position ASC', dependent: :nullify
   belongs_to :assignment
   belongs_to :paragraph
   belongs_to :school
@@ -60,22 +60,32 @@ class Title < ActiveRecord::Base
     self.update_all("position = position - 1",["task_id = ? and user_id = ? and position > ?",task_id,user_id,position])
   end
   
-  # This find the next title of the current titles type or returns false
-  def find_next
-    Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",self.task_id, self.user_id,self.title_type, self.position ).first
+  # Returns all segments for a task/user
+  def self.get_segments(task_id,user_id)
+    self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,2).all
   end
   
-  # This find the children of the current title
-  def find_ttl_children(next_ttl_position = false)    
-    unless next_ttl_position == false # Check if this is the last title of this type
+  # Find the previous title of the current titles type or return nil
+  def find_previous
+    Title.where("task_id = ? and user_id = ? and title_type = ? and position < ?",self.task_id,self.user_id,self.title_type,self.position).first
+  end
+  
+  # Find the next title of the current titles type or return nil
+  def find_next
+    Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",self.task_id,self.user_id,self.title_type,self.position).first
+  end
+  
+  # This finds the children of the current title
+  def find_ttl_children(next_ttl=nil)    
+    unless next_ttl == nil # Check if this is the last title of this type
       ttype = self.title_type - 1 # Start looking for children one level down
       while ttype > 0 # If children exist get them, otherwise look one more level down
         if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
-          return Title.where("task_id = ? and user_id = ? and title_type = ? and position < ? and position > ?",self.task_id,self.user_id,ttype,next_ttl_position,self.position).all
+          return Title.where("task_id = ? and user_id = ? and title_type = ? and position < ? and position > ?",self.task_id,self.user_id,ttype,next_ttl.position,self.position).all
         end
         ttype -= 1
       end
-    else # This is the last title of this type
+    else # This is the last title of this type, same as above except for return query
       ttype = self.title_type - 1
       while ttype > 0
         if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])

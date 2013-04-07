@@ -24,4 +24,8 @@
     window.open("/profiles/"+user_id+"/edit","_self")
   }
 	
+	function ShowSpinner()
+	{
+	  $('#spinner').show();
+	}
   

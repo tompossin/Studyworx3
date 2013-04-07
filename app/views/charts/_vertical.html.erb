@@ -1,0 +1,37 @@
+<div id="vertical_container">
+  <div class="sg">
+    <p class="title larger"><%= @vertical.title %></p>
+  </div>
+  <% for p in @ptitles %>
+    <div id="title_<%=p.id%>" class="p_container" style="min-height:<%=p.verse_count * 24 %>px;">
+      <div class="pt">
+        <%=link_to p.title, task_title_ppoint_new_path(@task,p.id), {remote: true} %>
+      </div>
+      <% for pp in p.ppoints %>
+        <%= render "ppoint", {ppoint: pp} %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div id="outside_container">
+  <div class="title smaller">Save Ctrl+s | Undo Ctrl+z </div>
+  
+  <%=form_for [@task,@charttext] do |f| %>
+  
+    <div class="toolbar">
+      <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink",{id: "here", title: "Save"} %></span>
+      <span class="cell">&nbsp;</span>
+      <span class="cell"><%=link_to image_tag("iconic/book_28x32.png", size: "16x20") ,admin_assignment_show_help_path(@task.assignment_id),{class: "noauto",remote: true, title: "Open Assignment Instructions."} %></span>
+      <span class="cell"><%=link_to image_tag("iconic/book_alt_32x32.png", size: "20x20"),admin_assignment_task_show_help_path(@task.assignment_id,@task.id),{class: "noauto",remote: true, title: "Open Task Instructions."} %></span>
+      <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20"),help_path(1),{class: "noauto",remote: true, title: "View Markdown Cheatsheet"} %></span>
+      <span class="cell"><%=link_to image_tag("iconic/denied_32x32.png",size: "20x20"), close_popup_path, {class: "noauto",remote: true, title: "Close popup viewer"} %></span>  
+      <span class="cell seperator"><%=link_to image_tag("iconic/loop_alt4_32x24.png",size: "32x20"),"#logolink",{id: "autopreview-trigger",title: "click checkbox to auto-preview"} if @charttext.content_type == 0 %><%=check_box_tag "autopreview" if @charttext.content_type == 0 %></span>     
+    </div>
+  
+    <%= f.text_area :content, {rows: current_user.preference.rows, style: "width:99%;"} %>
+    
+  <% end %>
+</div>
+
+<%= render "shared/autosave_js", {url: @url} %>

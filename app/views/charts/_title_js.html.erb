@@ -50,7 +50,7 @@
   // Start spinner on destroy_all click
   $('body').on("click","#destroy_all", function(e) {
     e.preventDefault();
-    if(confirm('Are you sure?\nThis will destroy all your work on this set of charts.')){
+    if(confirm('DO NOT CLICK OK unless you are ABSOLUTELY SURE.\nThis will DESTROY ALL your WORK on this ENTIRE set of charts.\nTHIS CAN NOT BE UNDONE!!!!')){
       $('#spinner').show();
       $.ajax({
         type: "DELETE",

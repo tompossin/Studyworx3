@@ -234,7 +234,7 @@ label {
   float:left;
   margin-left: auto;
   margin-right: auto;
-  width: 580px;
+  width: 98%;
 }
 
 #start {
@@ -261,6 +261,23 @@ label {
   text-align: center;
   width: 100%;
   font-weight: bold; 
+}
+
+#vertical_container {
+  float: left;
+  width: 40%;
+  background-color: #e0e0e0;
+  font-size: 9pt;
+}
+
+#outside_container {
+  float: right;
+  width: 59%;
+}
+
+#controls {
+  float:left;
+  width: 93%;
 }
 
 #gradingtools {
@@ -309,10 +326,10 @@ label {
 }
 .paragraph_title {
   float:right;
-  width: 320px;
-  min-width: 320px;
+  width: 55%;
+  min-width: 55%;
   min-height: 1em;
-  background-color: yellow;
+  background-color: #e0e0e0;
   border: solid 1px gray;
   padding-left: 20px;
   border-top-left-radius:4px;
@@ -321,11 +338,11 @@ label {
 
 .segment_title {
   float:right;
-  width: 370px;
-  min-width: 370px;
+  width: 64%;
+  min-width: 64%;
   min-height: 1em;
   font-weight: bold;
-  background-color: green;
+  background-color: yellow;
   border: solid 1px gray;
   padding-left: 20px;
   border-top-left-radius:4px;
@@ -334,8 +351,8 @@ label {
 
 .section_title {
   float:right;
-  width: 420px;
-  min-width: 420px;
+  width: 73%;
+  min-width: 73%;
   min-height: 1em;
   font-weight: bold;
   background-color: cyan;
@@ -347,8 +364,8 @@ label {
 
 .division_title {
   float:right;
-  width: 470px;
-  min-width: 470px;
+  width: 82%;
+  min-width: 82%;
   min-height: 1em;
   font-weight: bold;
   background-color: violet;
@@ -360,8 +377,8 @@ label {
 
 .book_title {
   float:right;
-  width: 540px;
-  min-width: 540px;
+  width: 94%;
+  min-width: 94%;
   min-height: 1em;
   font-family: Garamond, Georgia;
   font-style: italic;
@@ -378,6 +395,37 @@ label {
   background-color: #f0f0f0;
 }
 /* End title classes */
+
+/* Charting classes */
+.sg {
+  float: left;
+  width: 100%;
+  text-align: center;
+  background-color: yellow;
+  border: solid 1px gray;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.p_container {
+  float: left;
+  width: 100%;
+  border: solid 1px gray;
+}
+
+.pt {
+  float: left;
+  width: 100%;
+  background-color: white;
+  border-bottom: solid 1px gray;
+}
+
+.pp {
+  float: left;
+  width: 100%;
+  text-align: center;
+  background-color: #e0e0e0;
+}
+/* End Charting classes */
 
 /* css table elements */
 .trow {

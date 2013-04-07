@@ -1,4 +1,4 @@
-<div id="title_<%= title.id %>" class="<%= get_class(title.title_type) %> sortable">
+<div id="title_<%= title.id %>" class="<%= get_class(title.title_type) %>">
   <% unless title.title_type == 1%>
     <div class="title_delete" data-id="<%= title.id %>" data-url="<%= task_title_delete_path(title.task_id,title.id) %>" title="Click to Delete" >
       X

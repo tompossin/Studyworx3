@@ -2,7 +2,7 @@ class ChartsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_task
  
-  # Start page for charting.
+  # Start page for charting. It's the title homepage
   def start  
     if Title.is_started?(@task.id,current_user.id)
       @titles = Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).all
@@ -15,6 +15,94 @@ class ChartsController < ApplicationController
   
   def autopopulate
     @titles = Title.autopopulate(@assignment,@task,current_user)
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # This is the main page for editing insides/outsides. It's the charting homepage. 
+  def charting
+    Title.build_tree(@task.id,current_user.id)
+    @titles = Title.where("task_id = ? and user_id = ? and title_type > 1",@task.id,current_user.id).all
+    
+  end
+  
+  # Charting toolkit
+  def tools
+    @segments = Title.get_segments(@task.id,current_user.id)
+    @id = 0
+    
+  end
+  
+  # Loads the editor for vertical charting
+  def vertical
+    @segments = Title.get_segments(@task.id,current_user.id)
+    @vertical = Title.find(params[:vertical_id])
+    @charttext = Charttext.find_or_create_by_title_id(title_id: @vertical.id, user_id: current_user.id,content_type: 0)
+    @ptitles = @vertical.children
+    @id = 0
+    @url = task_charttext_path(@task,@charttext)
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def save_charttext
+    @charttext = Charttext.find(params[:charttext_id])
+    
+    respond_to do |format|
+      if @charttext.update_attributes(params[:charttext])
+        @autopreview = @charttext
+        unless params[:autopreview]
+          format.js { render "shared/save_success" }
+        else
+          format.js { render "shared/autopreview" }
+        end
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
+  end
+  
+  # Create a new paragraph point and load the editor
+  def new_ppoint
+    @ppoint = Ppoint.create( title_id: params[:title_id], user_id: current_user.id, position: 0, content: "Add text" )
+    @observations = Observation.select([:id, :name]).where("school_id = ?", current_user.school).all
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def edit_ppoint
+    @ppoint = Ppoint.find(params[:ppoint_id] )
+    @observations = Observation.select([:id, :name]).where("school_id = ?", current_user.school).all
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  # Save the edited Paragraph point and render the new page element.
+  def save_ppoint
+    @ppoint = Ppoint.find(params[:ppoint_id])
+    
+    respond_to do |format|
+      if @ppoint.update_attributes(params[:ppoint])
+        format.js 
+      else
+        format.js { render "shared/save_failed" }
+      end
+    end
+  end
+  
+  # Destroy the paragraph point and clear the page element
+  def delete_ppoint
+    @ppoint = Ppoint.find(params[:ppoint_id])
+    @ppoint_id = @ppoint.id.to_s
+    @ppoint.destroy
+    
     respond_to do |format|
       format.js
     end

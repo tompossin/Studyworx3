@@ -1,0 +1,4 @@
+<div id="ppoint_<%= ppoint.id.to_s %>" class="pp" style="color:<%= ppoint.color %>;">
+  <%=link_to ppoint.observation.code, task_ppoint_path(@task.id,ppoint.id),{remote: true} %>
+  <%= formatter(ppoint.content) %>
+</div>

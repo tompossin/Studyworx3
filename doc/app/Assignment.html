@@ -64,7 +64,17 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-duetime">#duetime</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -102,6 +112,10 @@
     <li><a href="./Admin/HelpsController.html">Admin::HelpsController</a>
   
     <li><a href="./Admin/HelpsHelper.html">Admin::HelpsHelper</a>
+  
+    <li><a href="./Admin/ObservationsController.html">Admin::ObservationsController</a>
+  
+    <li><a href="./Admin/ObservationsHelper.html">Admin::ObservationsHelper</a>
   
     <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -161,6 +175,8 @@
   
     <li><a href="./ChartsHelper.html">ChartsHelper</a>
   
+    <li><a href="./Charttext.html">Charttext</a>
+  
     <li><a href="./Color.html">Color</a>
   
     <li><a href="./Document.html">Document</a>
@@ -185,6 +201,8 @@
   
     <li><a href="./HomeController.html">HomeController</a>
   
+    <li><a href="./Imaging.html">Imaging</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -194,6 +212,8 @@
     <li><a href="./MessagesHelper.html">MessagesHelper</a>
   
     <li><a href="./Note.html">Note</a>
+  
+    <li><a href="./Observation.html">Observation</a>
   
     <li><a href="./Paper.html">Paper</a>
   
@@ -208,6 +228,8 @@
     <li><a href="./ParticipantsController.html">ParticipantsController</a>
   
     <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./Ppoint.html">Ppoint</a>
   
     <li><a href="./Preference.html">Preference</a>
   
@@ -249,6 +271,8 @@
   
     <li><a href="./Theme.html">Theme</a>
   
+    <li><a href="./Title.html">Title</a>
+  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -282,6 +306,47 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-duetime" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">duetime</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the duetime for the current assignment</p>
+          
+
+          
+          <div class="method-source-code" id="duetime-source">
+            <pre><span class="ruby-comment"># File app/models/assignment.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">duetime</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">team</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;coreteam = ?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">team</span>
+    <span class="ruby-identifier">duetime</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;team_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">team</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- duetime-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- duetime-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

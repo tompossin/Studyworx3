@@ -96,8 +96,8 @@
                                      PUT    /admin/duedates/:id(.:format)                                                              admin/duedates#update
                                      DELETE /admin/duedates/:id(.:format)                                                              admin/duedates#destroy
                    admin_tools_index GET    /admin/tools/index(.:format)                                                               admin/tools#index
-               admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#personnel
-             admin_tools_cancel_edit GET    /admin/tools/cancel_edit(.:format)                                                         admin/tools#cancel_edit
+               admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#index
+             admin_tools_cancel_edit GET    /admin/tools/cancel_edit(.:format)                                                         admin/tools#index
                     admin_tools_book POST   /admin/tools/book(.:format)                                                                admin/tools#book
       admin_tools_update_participant PUT    /admin/tools/update_participant/:id(.:format)                                              admin/tools#update_participant
         admin_tools_edit_participant GET    /admin/tools/edit_participant/:id(.:format)                                                admin/tools#edit_participant
@@ -216,12 +216,20 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                          user_grades GET    /user/:user_id/grades(.:format)                                                            grades#grades
                 grade_finish_grading GET    /grade/:grade_id/finish_grading(.:format)                                                  grades#finish_grading
                    task_charts_start GET    /task/:task_id/charts/start(.:format)                                                      charts#start
+                       task_charting GET    /task/:task_id/charting(.:format)                                                          charts#charting
+                 task_charting_tools GET    /task/:task_id/charting/tools(.:format)                                                    charts#tools
+                       task_vertical GET    /task/:task_id/vertical/:vertical_id(.:format)                                             charts#vertical
+               task_title_ppoint_new GET    /task/:task_id/title/:title_id/ppoint(.:format)                                            charts#new_ppoint
+                         task_ppoint GET    /task/:task_id/ppoint/:ppoint-id(.:format)                                                 charts#edit_ppoint
+                         task_ppoint PUT    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#save_ppoint
+                         task_ppoint DELETE /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#delete_ppoint
                      task_title_save PUT    /task/:task_id/title/:title_id/save(.:format)                                              charts#save
                 task_title_new_title GET    /task/:task_id/title/:title_id/new_title(.:format)                                         charts#new_title
              task_title_create_title POST   /task/:task_id/title/:title_id/create_title(.:format)                                      charts#create_title
                    task_title_delete DELETE /task/:task_id/title/:title_id(.:format)                                                   charts#delete_title
             task_titles_autopopulate POST   /task/:task_id/autopopulate(.:format)                                                      charts#autopopulate
              task_titles_destroy_all DELETE /task/:task_id/destroy_all(.:format)                                                       charts#destroy_all
+                      task_charttext PUT    /task/:task_id/charttext/:charttext_id(.:format)                                           charts#save_charttext
                     document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions

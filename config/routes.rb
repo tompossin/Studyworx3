@@ -107,12 +107,20 @@ Studyworx3::Application.routes.draw do
   
   # Routes for the Charts controller
   match 'task/:task_id/charts/start' => 'charts#start', via: [:get], as: :task_charts_start
+  match 'task/:task_id/charting' => 'charts#charting', via: [:get], as: :task_charting
+  match 'task/:task_id/charting/tools' => 'charts#tools', via: [:get], as: :task_charting_tools
+  match 'task/:task_id/vertical/:vertical_id' => 'charts#vertical', via: [:get], as: :task_vertical
+  match 'task/:task_id/title/:title_id/ppoint' => 'charts#new_ppoint', via: [:get], as: :task_title_ppoint_new
+  match 'task/:task_id/ppoint/:ppoint_id' => 'charts#edit_ppoint', via: [:get], as: :task_ppoint
+  match 'task/:task_id/ppoint/:ppoint_id' => 'charts#save_ppoint', via: [:put], as: :task_ppoint
+  match 'task/:task_id/ppoint/:ppoint_id' => 'charts#delete_ppoint', via: [:delete], as: :task_ppoint
   match 'task/:task_id/title/:title_id/save' => 'charts#save', via: [:put], as: :task_title_save
   match 'task/:task_id/title/:title_id/new_title' => 'charts#new_title', via: [:get], as: :task_title_new_title
   match 'task/:task_id/title/:title_id/create_title' => 'charts#create_title', via: [:post], as: :task_title_create_title
   match 'task/:task_id/title/:title_id' => 'charts#delete_title', via: [:delete], as: :task_title_delete
   match 'task/:task_id/autopopulate' => 'charts#autopopulate', via: [:post], as: :task_titles_autopopulate
   match 'task/:task_id/destroy_all' => 'charts#destroy_all', via: [:delete], as: :task_titles_destroy_all
+  match 'task/:task_id/charttext/:charttext_id' => 'charts#save_charttext', via: [:put], as: :task_charttext
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'

@@ -2,12 +2,13 @@
  * The classes in this file will be loaded last.
  * Therefore ONLY put classes in here that modify other classes.
  */
+#breadcrumbs span {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
 #breadcrumbs a {
-  padding-left: 4px;
-  padding-right: 4px;
-  border-left: solid 1px gray;
-  border-right: solid 1px gray;
-  border-radius: 4px;
+  margin-left: 1em;
 }
 
 .handle {
@@ -24,6 +25,10 @@
 /* Generic class modifiers */
 .right {
   text-align: right;
+}
+
+.center {
+  text-align: center;
 }
 
 .limited {

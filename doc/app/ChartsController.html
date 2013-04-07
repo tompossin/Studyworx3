@@ -70,7 +70,35 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-autopopulate">#autopopulate</a>
+    
+    <li><a href="#method-i-charting">#charting</a>
+    
+    <li><a href="#method-i-create_title">#create_title</a>
+    
+    <li><a href="#method-i-delete_ppoint">#delete_ppoint</a>
+    
+    <li><a href="#method-i-delete_title">#delete_title</a>
+    
+    <li><a href="#method-i-destroy_all">#destroy_all</a>
+    
+    <li><a href="#method-i-edit_ppoint">#edit_ppoint</a>
+    
+    <li><a href="#method-i-new_ppoint">#new_ppoint</a>
+    
+    <li><a href="#method-i-new_title">#new_title</a>
+    
+    <li><a href="#method-i-save">#save</a>
+    
+    <li><a href="#method-i-save_charttext">#save_charttext</a>
+    
+    <li><a href="#method-i-save_ppoint">#save_ppoint</a>
+    
     <li><a href="#method-i-start">#start</a>
+    
+    <li><a href="#method-i-tools">#tools</a>
+    
+    <li><a href="#method-i-vertical">#vertical</a>
     
   </ul>
 </nav>
@@ -112,6 +140,10 @@
     <li><a href="./Admin/HelpsController.html">Admin::HelpsController</a>
   
     <li><a href="./Admin/HelpsHelper.html">Admin::HelpsHelper</a>
+  
+    <li><a href="./Admin/ObservationsController.html">Admin::ObservationsController</a>
+  
+    <li><a href="./Admin/ObservationsHelper.html">Admin::ObservationsHelper</a>
   
     <li><a href="./Admin/ParagraphsController.html">Admin::ParagraphsController</a>
   
@@ -171,6 +203,8 @@
   
     <li><a href="./ChartsHelper.html">ChartsHelper</a>
   
+    <li><a href="./Charttext.html">Charttext</a>
+  
     <li><a href="./Color.html">Color</a>
   
     <li><a href="./Document.html">Document</a>
@@ -195,6 +229,8 @@
   
     <li><a href="./HomeController.html">HomeController</a>
   
+    <li><a href="./Imaging.html">Imaging</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -204,6 +240,8 @@
     <li><a href="./MessagesHelper.html">MessagesHelper</a>
   
     <li><a href="./Note.html">Note</a>
+  
+    <li><a href="./Observation.html">Observation</a>
   
     <li><a href="./Paper.html">Paper</a>
   
@@ -218,6 +256,8 @@
     <li><a href="./ParticipantsController.html">ParticipantsController</a>
   
     <li><a href="./ParticipantsHelper.html">ParticipantsHelper</a>
+  
+    <li><a href="./Ppoint.html">Ppoint</a>
   
     <li><a href="./Preference.html">Preference</a>
   
@@ -259,6 +299,8 @@
   
     <li><a href="./Theme.html">Theme</a>
   
+    <li><a href="./Title.html">Title</a>
+  
     <li><a href="./User.html">User</a>
   
     <li><a href="./UserAdmin.html">UserAdmin</a>
@@ -296,10 +338,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-start" class="method-detail ">
+      <div id="method-i-autopopulate" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">start</span><span
+          <span class="method-name">autopopulate</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -311,9 +353,456 @@
           
 
           
+          <div class="method-source-code" id="autopopulate-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">autopopulate</span>
+  <span class="ruby-ivar">@titles</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">autopopulate</span>(<span class="ruby-ivar">@assignment</span>,<span class="ruby-ivar">@task</span>,<span class="ruby-identifier">current_user</span>)
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- autopopulate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- autopopulate-method -->
+
+    
+      <div id="method-i-charting" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">charting</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is the main page for editing insides/outsides. It’s the charting
+homepage.</p>
+          
+
+          
+          <div class="method-source-code" id="charting-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">charting</span>
+  <span class="ruby-constant">Title</span>.<span class="ruby-identifier">build_tree</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@titles</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type &gt; 1&quot;</span>,<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">all</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- charting-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- charting-method -->
+
+    
+      <div id="method-i-create_title" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_title</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This creates the title record of the type that the <a
+href="ChartsController.html#method-i-new_title">#new_title</a> method calls
+for</p>
+          
+
+          
+          <div class="method-source-code" id="create_title-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_title</span>
+  <span class="ruby-identifier">old_title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">old_title</span>.<span class="ruby-identifier">insert_title</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_type</span>].<span class="ruby-identifier">to_i</span>)
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@title</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;insert_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_title-method -->
+
+    
+      <div id="method-i-delete_ppoint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_ppoint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Destroy the paragraph point and clear the page element</p>
+          
+
+          
+          <div class="method-source-code" id="delete_ppoint-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_ppoint</span>
+  <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>])
+  <span class="ruby-ivar">@ppoint_id</span> = <span class="ruby-ivar">@ppoint</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-ivar">@ppoint</span>.<span class="ruby-identifier">destroy</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete_ppoint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete_ppoint-method -->
+
+    
+      <div id="method-i-delete_title" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_title</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes a single title when called.</p>
+          
+
+          
+          <div class="method-source-code" id="delete_title-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 150</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_title</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
+  <span class="ruby-identifier">position</span> = <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">position</span>
+  <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-constant">Title</span>.<span class="ruby-identifier">reorder_after_delete</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">position</span>)
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete_title-method -->
+
+    
+      <div id="method-i-destroy_all" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy_all</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This destroys all titles and all dependencies - (slow)</p>
+          
+
+          
+          <div class="method-source-code" id="destroy_all-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 162</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_all</span>
+  <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ?&quot;</span>,<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">destroy_all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy_all-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy_all-method -->
+
+    
+      <div id="method-i-edit_ppoint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_ppoint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_ppoint-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit_ppoint</span>
+  <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>] )
+  <span class="ruby-ivar">@observations</span> = <span class="ruby-constant">Observation</span>.<span class="ruby-identifier">select</span>([<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>]).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>).<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- edit_ppoint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- edit_ppoint-method -->
+
+    
+      <div id="method-i-new_ppoint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_ppoint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a new paragraph point and load the editor</p>
+          
+
+          
+          <div class="method-source-code" id="new_ppoint-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_ppoint</span>
+  <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">create</span>( <span class="ruby-identifier">title_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>], <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">position</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Add text&quot;</span> )
+  <span class="ruby-ivar">@observations</span> = <span class="ruby-constant">Observation</span>.<span class="ruby-identifier">select</span>([<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>]).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>).<span class="ruby-identifier">all</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new_ppoint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new_ppoint-method -->
+
+    
+      <div id="method-i-new_title" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_title</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This loads the dialog for inserting new titles</p>
+          
+
+          
+          <div class="method-source-code" id="new_title-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_title</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new_title-method -->
+
+    
+      <div id="method-i-save" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This saves a title after editing</p>
+          
+
+          
+          <div class="method-source-code" id="save-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
+  <span class="ruby-identifier">new_title</span> = <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">clean_input</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>])
+  <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">title</span> = <span class="ruby-identifier">new_title</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save-method -->
+
+    
+      <div id="method-i-save_charttext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_charttext</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="save_charttext-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_charttext</span>
+  <span class="ruby-ivar">@charttext</span> = <span class="ruby-constant">Charttext</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:charttext_id</span>])
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@charttext</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:charttext</span>])
+      <span class="ruby-ivar">@autopreview</span> = <span class="ruby-ivar">@charttext</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:autopreview</span>]
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span> }
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/autopreview&quot;</span> }
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_charttext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_charttext-method -->
+
+    
+      <div id="method-i-save_ppoint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_ppoint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Save the edited <a href="Paragraph.html">Paragraph</a> point and render the
+new page element.</p>
+          
+
+          
+          <div class="method-source-code" id="save_ppoint-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_ppoint</span>
+  <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>])
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@ppoint</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint</span>])
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_ppoint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_ppoint-method -->
+
+    
+      <div id="method-i-start" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Start page for charting. It’s the title homepage</p>
+          
+
+          
           <div class="method-source-code" id="start-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">start</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start</span>  
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">is_started?</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-ivar">@titles</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ?&quot;</span>,<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> 
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- start-source -->
           
@@ -323,6 +812,77 @@
 
         
       </div><!-- start-method -->
+
+    
+      <div id="method-i-tools" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tools</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Charting toolkit</p>
+          
+
+          
+          <div class="method-source-code" id="tools-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">tools</span>
+  <span class="ruby-ivar">@segments</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@id</span> = <span class="ruby-value">0</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- tools-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- tools-method -->
+
+    
+      <div id="method-i-vertical" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vertical</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Loads the editor for vertical charting</p>
+          
+
+          
+          <div class="method-source-code" id="vertical-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vertical</span>
+  <span class="ruby-ivar">@segments</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@vertical</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:vertical_id</span>])
+  <span class="ruby-ivar">@charttext</span> = <span class="ruby-constant">Charttext</span>.<span class="ruby-identifier">find_or_create_by_title_id</span>(<span class="ruby-identifier">title_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@vertical</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">content_type</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+  <span class="ruby-ivar">@ptitles</span> = <span class="ruby-ivar">@vertical</span>.<span class="ruby-identifier">children</span>
+  <span class="ruby-ivar">@id</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@url</span> = <span class="ruby-identifier">task_charttext_path</span>(<span class="ruby-ivar">@task</span>,<span class="ruby-ivar">@charttext</span>)
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- vertical-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- vertical-method -->
 
     
     </section><!-- public-instance-method-details -->
