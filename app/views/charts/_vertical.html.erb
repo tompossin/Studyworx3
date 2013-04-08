@@ -1,3 +1,4 @@
+
 <div id="vertical_container">
   <div class="sg">
     <p class="title larger"><%= @vertical.title %></p>
@@ -20,7 +21,7 @@
   <%=form_for [@task,@charttext] do |f| %>
   
     <div class="toolbar">
-      <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink",{id: "here", title: "Save"} %></span>
+      <span class="cell autosave" title="Save"><%=image_tag("gray/save.png", size: "20x20") %></span>
       <span class="cell">&nbsp;</span>
       <span class="cell"><%=link_to image_tag("iconic/book_28x32.png", size: "16x20") ,admin_assignment_show_help_path(@task.assignment_id),{class: "noauto",remote: true, title: "Open Assignment Instructions."} %></span>
       <span class="cell"><%=link_to image_tag("iconic/book_alt_32x32.png", size: "20x20"),admin_assignment_task_show_help_path(@task.assignment_id,@task.id),{class: "noauto",remote: true, title: "Open Task Instructions."} %></span>
@@ -34,4 +35,5 @@
   <% end %>
 </div>
 
-<%= render "shared/autosave_js", {url: @url} %>
+<%= render "vertical_js", {url: @url} %>
+

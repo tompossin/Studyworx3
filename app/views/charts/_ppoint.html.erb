@@ -1,4 +1,3 @@
-<div id="ppoint_<%= ppoint.id.to_s %>" class="pp" style="color:<%= ppoint.color %>;">
-  <%=link_to ppoint.observation.code, task_ppoint_path(@task.id,ppoint.id),{remote: true} %>
-  <%= formatter(ppoint.content) %>
+<div id="ppoint_<%= ppoint.id.to_s %>" data-taskid="<%=@task.id%>" data-id="<%=ppoint.id%>" class="pp clickable" style="color:<%= ppoint.color %>;" title="<%=ppoint.observation.name%>">
+  <%= formatter("#{ppoint.observation.code} #{ppoint.content}") %>
 </div>

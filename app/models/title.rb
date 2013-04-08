@@ -67,7 +67,7 @@ class Title < ActiveRecord::Base
   
   # Find the previous title of the current titles type or return nil
   def find_previous
-    Title.where("task_id = ? and user_id = ? and title_type = ? and position < ?",self.task_id,self.user_id,self.title_type,self.position).first
+    Title.where("task_id = ? and user_id = ? and title_type = ? and position < ?",self.task_id,self.user_id,self.title_type,self.position).reorder("position DESC").first
   end
   
   # Find the next title of the current titles type or return nil

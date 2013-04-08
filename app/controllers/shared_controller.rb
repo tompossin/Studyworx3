@@ -10,6 +10,17 @@ class SharedController < ApplicationController
   # These can be called from anywhere.
   # ----------
   
+  # This calculates the time and displays it in the notice element
+  # It requires assignment_id as a param
+  def time_remaining
+    assignment = Assignment.find(params[:assignment_id])
+    @duedate = assignment.duetime(current_user)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # This method can be called from any link pointed here.
   #
   # It should be called with

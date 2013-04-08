@@ -1,21 +1,30 @@
+<script>
+  /* 
+   * This handles the form loading tasks for ppoints.
+   */
+  $('article').on("click",".clickable", function(e){
+    var id = $(this).data('id');
+    var tid = $(this).data('taskid');
+    $.ajax({
+      type: "GET",
+      url: "/task/"+tid+"/ppoint/"+id
+    });
+  });
+  
+  // Autosave stuff below this line
 
-<script type="text/javascript">
-/*
- * You need to pass the url variable to this script as a local variable when you call this partial
- * Put this in erb brackets on your page - render "shared/autosave", { url: path_to_update } 
- * Tom Possin
- */
-  jQuery(function() {
+  $(function() {
     // Autosaves every nth keystroke
     var ksToAutosave = 25;
     var kCount = 0;
-    $("textarea").bind("keyup",function(){
+    $("#outside_container").on("keyup","textarea",function(){
       kCount ++;
       if(kCount == ksToAutosave) {
         kCount = 0;
         autoSavePost();
       }     
     });
+  });
     
     // Trigger a click on the named checkbox when this link is clicked
     $('#autopreview-trigger').bind("click",function(){
@@ -28,7 +37,7 @@
     });
     
     // Do autosave if checkbox is clicked and the value is "checked"
-    $('input[type=checkbox]').bind("click",function(){
+    $('#outside_container').on("click","input[type=checkbox]",function(){
       if(this.checked){
         autoSavePost();
       }else{
@@ -36,14 +45,18 @@
       }
     });
     
-    // Save on click unless the class="noauto"
-    $('a').not(".noauto").bind("click", function(){
+    // Save on leaving the textarea
+    $('.autosave').bind("click", function(){
+      autoSavePost();
+    });
+    
+    $('#outside_container').on("focusout","textarea", function(){
       autoSavePost();
     });
     
     // capture ctrl+s to trigger autoSavePost
-    $('article').on('keydown','textarea',function(e) {
-        if ( (e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey) )
+    $('#outside_container').on('keydown','textarea',function(e) {
+        if (e.which == '83' && e.ctrlKey )
         {
             e.preventDefault();
             autoSavePost();
@@ -56,8 +69,7 @@
       url: "<%=j url %>",
       data: $('form').serialize(),
       dataType: "script"
-    });
-     
+    });     
   }
-  });
+  
 </script>

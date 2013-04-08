@@ -1,9 +1,11 @@
+
 <%= content_for :breadcrumbs do %>
   <%=link_to @assignment.name, school_assignment_path(current_user.school,@assignment) %>
   <%=link_to image_tag("iconic/list_nested_16x14.png",size: "16x14"), task_charts_start_path(@task), {title: "Titles Home"} %>
   <%=link_to image_tag("iconic/layers_16x14.png",size: "16x14"),task_charting_path(@task),{onClick: "ShowSpinner()",title: "Charting Home"} %>
   <%=link_to image_tag("iconic/cog_16x16.png",size: "16x16"), task_charting_tools_path(@task), {remote: true, title: "Charting Tools"} %>
   <%=link_to image_tag("iconic/eye_16x12.png",size: "16x12"), "", {title: "Chart Images"} %>
+  <%=link_to image_tag("iconic/clock_16x16.png",size: "16x16"),assignment_time_remaining_path(@task.assignment_id),{remote: true, title: "Check time remaining for this assignment."} %>
 <% end -%>
 
 <div id="content-large">

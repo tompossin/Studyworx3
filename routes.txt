@@ -220,7 +220,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                  task_charting_tools GET    /task/:task_id/charting/tools(.:format)                                                    charts#tools
                        task_vertical GET    /task/:task_id/vertical/:vertical_id(.:format)                                             charts#vertical
                task_title_ppoint_new GET    /task/:task_id/title/:title_id/ppoint(.:format)                                            charts#new_ppoint
-                         task_ppoint GET    /task/:task_id/ppoint/:ppoint-id(.:format)                                                 charts#edit_ppoint
+                         task_ppoint GET    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#edit_ppoint
                          task_ppoint PUT    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#save_ppoint
                          task_ppoint DELETE /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#delete_ppoint
                      task_title_save PUT    /task/:task_id/title/:title_id/save(.:format)                                              charts#save

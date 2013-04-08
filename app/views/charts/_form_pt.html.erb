@@ -1,15 +1,18 @@
 <div id="ppoint_<%=@ppoint.id%>" class="pp">
   <%=form_for [@task,@ppoint], {remote: true} do |f| %>
     <div>
-      <span><%= f.submit :save %></span>
-      <span>&nbsp;</span>
-      <span><%=link_to "Delete",task_ppoint_path(@task,@ppoint),{method: :delete, remote: true}%></span>
-    </div>
-    <div>
-      <span><%= f.select :observation_id, options_from_collection_for_select(@observations,"id","name"), prompt: "Choose..." %></span>
-      <span><%= f.select :color, options_for_select(["black","red","darkred","blue","navy","purple","green","goldenrod","brown"],"black")%></span> 
+      <span><%= f.select :observation_id, options_from_collection_for_select(@observations,"id","name",@ppoint.observation_id), prompt: "Choose..." %></span>
+      <span><%= f.select :color, options_for_select(["black","red","darkred","blue","navy","purple","green","goldenrod","brown"],@ppoint.color),prompt: "Choose..."%></span> 
     </div>
     <%= f.text_area :content, {rows: "3",style:"width:97%;"} %>
+    <div>
+      <span><%= f.submit :save %></span>
+      <span>&nbsp;</span>
+      <span><%=link_to "Cancel",task_ppoint_cancel_path(@task,@ppoint), {remote: true}%></span>
+      <span>&nbsp;</span>
+      <span><%=link_to "Delete",task_ppoint_path(@task,@ppoint),{method: :delete, remote: true}%></span>
+      
+    </div>
     
   <% end %>
 </div>

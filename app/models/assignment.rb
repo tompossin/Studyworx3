@@ -20,10 +20,11 @@ class Assignment < ActiveRecord::Base
   # Get the duetime for the current assignment
   def duetime(user)
     team = user.teams.where("coreteam = ?",true).first
-    if team
-      duetime = Duedate.where("team_id = ? and assignment_id = ?",team.id,self.id)
+    duetime = Duedate.where("team_id = ? and assignment_id = ?",team.id,self.id).first
+    if team and duetime
+      return duetime
     else
-      false
+      return false
     end
   end
 

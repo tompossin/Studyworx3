@@ -40,6 +40,8 @@ class ChartsController < ApplicationController
     @vertical = Title.find(params[:vertical_id])
     @charttext = Charttext.find_or_create_by_title_id(title_id: @vertical.id, user_id: current_user.id,content_type: 0)
     @ptitles = @vertical.children
+    @next_seg = @vertical.find_next
+    @prev_seg = @vertical.find_previous
     @id = 0
     @url = task_charttext_path(@task,@charttext)
     
@@ -94,6 +96,14 @@ class ChartsController < ApplicationController
       else
         format.js { render "shared/save_failed" }
       end
+    end
+  end
+  
+  def cancel_ppoint
+    respond_to do |format|
+      @ppoint = Ppoint.find(params[:ppoint_id])
+      
+      format.js { render "save_ppoint"}
     end
   end
   
@@ -173,7 +183,6 @@ class ChartsController < ApplicationController
   def get_task
     @task = Task.find(params[:task_id])
     @assignment = Assignment.find(@task.assignment_id)
-    @duetime = @assignment.duetime(current_user)
   end
   
   

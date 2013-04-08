@@ -112,8 +112,9 @@ Studyworx3::Application.routes.draw do
   match 'task/:task_id/vertical/:vertical_id' => 'charts#vertical', via: [:get], as: :task_vertical
   match 'task/:task_id/title/:title_id/ppoint' => 'charts#new_ppoint', via: [:get], as: :task_title_ppoint_new
   match 'task/:task_id/ppoint/:ppoint_id' => 'charts#edit_ppoint', via: [:get], as: :task_ppoint
-  match 'task/:task_id/ppoint/:ppoint_id' => 'charts#save_ppoint', via: [:put], as: :task_ppoint
+  match 'task/:task_id/ppoint/:ppoint_id' => 'charts#save_ppoint', via: [:put], as: :task_ppoint  
   match 'task/:task_id/ppoint/:ppoint_id' => 'charts#delete_ppoint', via: [:delete], as: :task_ppoint
+  match 'task/:task_id/ppoint/:ppoint_id/cancel' => 'charts#cancel_ppoint', via: [:get], as: :task_ppoint_cancel
   match 'task/:task_id/title/:title_id/save' => 'charts#save', via: [:put], as: :task_title_save
   match 'task/:task_id/title/:title_id/new_title' => 'charts#new_title', via: [:get], as: :task_title_new_title
   match 'task/:task_id/title/:title_id/create_title' => 'charts#create_title', via: [:post], as: :task_title_create_title
@@ -143,6 +144,7 @@ Studyworx3::Application.routes.draw do
   resources :home
   match 'shared/cancel' => 'shared#cancel', :as => :cancel
   match 'shared/close_popup' => 'shared#close_popup', as: :close_popup
+  match 'assignment/:assignment_id/time_remaining' => 'shared#time_remaining', as: :assignment_time_remaining
   match 'teams/show_user/:id' => 'teams#show_user', as: :show_user
   match 'shared/help/:id' => 'shared#help', as: :help
    

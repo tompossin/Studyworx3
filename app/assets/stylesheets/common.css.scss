@@ -159,6 +159,18 @@ label {
   border-radius: 5px;
 }
 
+#info {
+  display: none;
+  position: fixed;
+  text-align: center;
+  top: 0px;
+  left: 20%;
+  width: 50%;
+  background-color: yellow;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 #spinner {
   display: none;
   position: fixed;
@@ -253,7 +265,9 @@ label {
   float:right;
   position: static;
   width:5%;
-  border-radius: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 6px;
   background-color:yellow;
 }
 
@@ -425,6 +439,12 @@ label {
   text-align: center;
   background-color: #e0e0e0;
 }
+
+.clickable:hover {
+  cursor: pointer;
+  background-color: #FFFDA7;
+  border-radius: 10px;
+}
 /* End Charting classes */
 
 /* css table elements */
@@ -486,8 +506,4 @@ label {
   height: 100%;
 }
 
-.click:hover {
-  cursor:pointer;
-  color: red;
-}
 

@@ -5,8 +5,21 @@
 </div>
 
 <div id="controls" style="float: left;">
-  <p class="right">
-    Select Vertical Chart -->
-  </p>
+  <span style="float:right">
+    Select Chart -->
+  </span>
+  <div style="float:left;">
+    <p class="title large">Chart Selector</p>
+    <% if @prev_seg %>
+      <span><%=link_to "Previous Chart", task_vertical_path(@task,@prev_seg),{remote: true}  %></span>
+    <% else %>
+      <span class="italic red">No Previous</span>
+    <% end %>
+    <% if @next_seg %>
+      <span><%=link_to "Next Chart", task_vertical_path(@task,@next_seg),{remote: true}%></span>
+    <% else %>
+      <span class="italic red">No Next</span>
+    <% end %>
+  </div>
   
 </div>

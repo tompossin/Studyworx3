@@ -7,9 +7,16 @@ header {
   padding-bottom: 15px;
 }
 
+aside {
+  float: left;
+  width: 35%;
+  margin-top: 0px;
+  margin-left: 1%;
+}
+
 #content {
   float: left;
-  height: 94%;
+  min-height: 94%;
   float:left;
   margin-top: 30px;
   width: 100%;
@@ -18,7 +25,8 @@ header {
 
 #content-large {
   float:right;
-  width:63%;
+  width:62%;
+  margin-right: 1%;
 }
 
 #breadcrumbs {
