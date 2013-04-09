@@ -1,5 +1,8 @@
 <% content_for :breadcrumbs do %>
-  <%=link_to "#{@task.assignment.name} task list", school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
+  <%=link_to @task.assignment.name, school_assignment_path(@task.assignment.school_id, @task.assignment_id) %>
+  <%=link_to image_tag("iconic/folder_stroke_16x16.png",size: "16x16"),task_related_documents_path(@task) , {title: "Click to view related documents", remote: true}%>
+  <%=link_to image_tag("iconic/clock_16x16.png",size: "16x16"),assignment_time_remaining_path(@task.assignment_id),{remote: true, title: "Check time remaining for this assignment."} %>
+
 <% end %>
 
 <div id="content-large" >  

@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_task, only: [:new ]
+  before_filter :get_task, only: [:new, :related_documents ]
   include FormatContent
   require 'tempfile'
   layout "print", only: [:print, :download]
@@ -64,6 +64,42 @@ class DocumentsController < ApplicationController
     
     output = convert_file(content, user_id, filename, params[:file_type])
     send_file(output[:filepath], filename: output[:filename])
+  end
+  
+  # task_related_documents_path(@task)
+  # /task/:task_id/documents/related
+  def related_documents
+    @documents = Document.includes(:assignment,:task).where("user_id = ? and assignment_id = ?",current_user.id,@task.assignment_id).all
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # all_user_documents_path
+  # documents/all/user
+  def all_user
+    @documents = Document.includes(:assignment,:task).where("user_id = ?",current_user.id).all
+    respond_to do |format|
+      format.js {render :related_documents}
+    end
+  end
+  
+  # document_sidebar_view_path(@document)
+  # document/:document_id/sidebar
+  def sidebar
+    @document = Document.find(params[:document_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # document_sidebar_edit_path(@document)
+  # document/:document_id/sidebar/edit
+  def sidebar_edit
+    @document = Document.find(params[:document_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
 

@@ -21,17 +21,24 @@ class ChartsController < ApplicationController
   end
   
   # This is the main page for editing insides/outsides. It's the charting homepage. 
+  # TODO build a model method for checking book size and loading appropriate titles a ppoints
+  # INFO this could be worked into the build_tree method.
   def charting
     Title.build_tree(@task.id,current_user.id)
-    @titles = Title.where("task_id = ? and user_id = ? and title_type > 1",@task.id,current_user.id).all
+    @titles = Title.build_horizontal_collection(@task.id,current_user.id)
     
+    respond_to do |format| 
+      format.html 
+    end
   end
   
   # Charting toolkit
   def tools
     @segments = Title.get_segments(@task.id,current_user.id)
     @id = 0
-    
+    respond_to do |format|
+      format.js
+    end
   end
   
   # Loads the editor for vertical charting

@@ -1,0 +1,10 @@
+<div>
+  <p class="title large">Documents</p>
+  <%=link_to "All my documents", all_user_documents_path,{remote: true} %>
+  <hr />
+  <% for d in @documents %>
+    <p>
+      <%=link_to "#{d.assignment.name}/#{d.task.name}", document_sidebar_view_path(d.id),{remote: true} %>
+    </p>    
+  <% end %>
+</div>

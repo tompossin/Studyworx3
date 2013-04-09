@@ -1,0 +1,8 @@
+<div class="box_paper">
+  <div class="toolbar">
+    <span class="tab"><%=link_to "Edit this document", document_sidebar_edit_path(@document),{remote: true} %></span>
+    <span class="tab"><%=link_to "All Documents", all_user_documents_path,{remote: true} %></span>
+  </div>
+  <p class="title larger"><%= "#{@document.assignment.name}/#{@document.task.name}"%></p>
+  <%= smart_format(@document.content_type, @document.content) %>
+</div>

@@ -223,6 +223,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                          task_ppoint GET    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#edit_ppoint
                          task_ppoint PUT    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#save_ppoint
                          task_ppoint DELETE /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#delete_ppoint
+                  task_ppoint_cancel GET    /task/:task_id/ppoint/:ppoint_id/cancel(.:format)                                          charts#cancel_ppoint
                      task_title_save PUT    /task/:task_id/title/:title_id/save(.:format)                                              charts#save
                 task_title_new_title GET    /task/:task_id/title/:title_id/new_title(.:format)                                         charts#new_title
              task_title_create_title POST   /task/:task_id/title/:title_id/create_title(.:format)                                      charts#create_title
@@ -246,6 +247,10 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                             document GET    /documents/:id(.:format)                                                                   documents#show
                                      PUT    /documents/:id(.:format)                                                                   documents#update
                                      DELETE /documents/:id(.:format)                                                                   documents#destroy
+              task_related_documents GET    /task/:task_id/documents/related(.:format)                                                 documents#related_documents
+                  all_user_documents GET    /documents/all/user(.:format)                                                              documents#all_user
+               document_sidebar_view GET    /document/:document_id/sidebar(.:format)                                                   documents#sidebar
+               document_sidebar_edit GET    /document/:document_id/sidebar/edit(.:format)                                              documents#sidebar_edit
             blog_toggle_content_type POST   /blogs/:blog_id/toggle_content_type(.:format)                                              blogs#toggle_content_type
                                blogs GET    /blogs(.:format)                                                                           blogs#index
                                      POST   /blogs(.:format)                                                                           blogs#create
@@ -298,6 +303,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                                      DELETE /home/:id(.:format)                                                                        home#destroy
                               cancel        /shared/cancel(.:format)                                                                   shared#cancel
                          close_popup        /shared/close_popup(.:format)                                                              shared#close_popup
+           assignment_time_remaining        /assignment/:assignment_id/time_remaining(.:format)                                        shared#time_remaining
                            show_user        /teams/show_user/:id(.:format)                                                             teams#show_user
                                 help        /shared/help/:id(.:format)                                                                 shared#help
                                 root        /                                                                                          home#index

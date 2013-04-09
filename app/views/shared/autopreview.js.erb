@@ -1,3 +1,5 @@
+$('#notice').show().html("Saved").fadeOut(3000);
 $('#popup').show();
-$('#popup_content').html("<%=j render "shared/autopreview",{a: @autopreview} %>");
+$('#popup_content').empty().html("<%=j render "shared/autopreview",{a: @autopreview} %>");
+
 

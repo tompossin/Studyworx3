@@ -2,7 +2,7 @@
   /* 
    * This handles the form loading tasks for ppoints.
    */
-  $('article').on("click",".clickable", function(e){
+  $('#vertical_container').on("click",".clickable", function(e){
     var id = $(this).data('id');
     var tid = $(this).data('taskid');
     $.ajax({
@@ -12,7 +12,6 @@
   });
   
   // Autosave stuff below this line
-
   $(function() {
     // Autosaves every nth keystroke
     var ksToAutosave = 25;

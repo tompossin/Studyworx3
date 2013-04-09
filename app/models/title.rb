@@ -65,6 +65,10 @@ class Title < ActiveRecord::Base
     self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,2).all
   end
   
+  def self.count_segments(task_id,user_id)
+    self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,2).count
+  end
+  
   # Find the previous title of the current titles type or return nil
   def find_previous
     Title.where("task_id = ? and user_id = ? and title_type = ? and position < ?",self.task_id,self.user_id,self.title_type,self.position).reorder("position DESC").first
@@ -75,10 +79,20 @@ class Title < ActiveRecord::Base
     Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",self.task_id,self.user_id,self.title_type,self.position).first
   end
   
+  # Build a title collection based on book size
+  def self.build_horizontal_collection(task_id,user_id)
+    segment_count = Title.count_segments(task_id,user_id)
+    if segment_count > 7
+      Title.where("task_id = ? and user_id = ? and title_type > ?",task_id,user_id,1).all
+    else
+      Title.where("task_id = ? and user_id = ?",task_id,user_id).all
+    end
+  end
+  
   # This finds the children of the current title
   def find_ttl_children(next_ttl=nil)    
     unless next_ttl == nil # Check if this is the last title of this type
-      ttype = self.title_type - 1 # Start looking for children one level down
+      ttype = self.title_type - 1 # Set ttype to Start looking for children one level down
       while ttype > 0 # If children exist get them, otherwise look one more level down
         if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
           return Title.where("task_id = ? and user_id = ? and title_type = ? and position < ? and position > ?",self.task_id,self.user_id,ttype,next_ttl.position,self.position).all
@@ -101,13 +115,12 @@ class Title < ActiveRecord::Base
   def self.build_tree(task_id,user_id)
     t_types = [2,3,4,5]
     t_types.each do |tt| 
-      c_titles = self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,tt).all
-      c_titles.each do |c|
+      current_titles = self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,tt).all
+      current_titles.each do |c|
         next_ttl = c.find_next
-        t_children = c.find_ttl_children(next_ttl)
-        c.children = t_children
-        v_count = c.children.sum("verse_count")
-        c.verse_count = v_count
+        children_found = c.find_ttl_children(next_ttl)
+        c.children = children_found
+        c.verse_count = c.children.sum("verse_count")
         c.save
       end
     end  

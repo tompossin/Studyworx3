@@ -127,6 +127,11 @@ Studyworx3::Application.routes.draw do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
     put 'update_endnote', 'toggle_type'
   end
+  # Document sidebar viewer/editor routes
+  match 'task/:task_id/documents/related' => 'documents#related_documents', via: [:get], as: :task_related_documents
+  match 'documents/all/user' => 'documents#all_user', via: [:get], as: :all_user_documents
+  match 'document/:document_id/sidebar' => 'documents#sidebar', via: [:get], as: :document_sidebar_view
+  match 'document/:document_id/sidebar/edit' => 'documents#sidebar_edit', via: [:get], as: :document_sidebar_edit
   
   resources :blogs do
     post 'toggle_content_type'
