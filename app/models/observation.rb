@@ -7,4 +7,6 @@ class Observation < ActiveRecord::Base
   
   attr_accessible :code, :name, :position, :public, :school_id
   
+  validates :code, :name, :school_id, presence: true
+  
 end

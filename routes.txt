@@ -219,6 +219,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                        task_charting GET    /task/:task_id/charting(.:format)                                                          charts#charting
                  task_charting_tools GET    /task/:task_id/charting/tools(.:format)                                                    charts#tools
                        task_vertical GET    /task/:task_id/vertical/:vertical_id(.:format)                                             charts#vertical
+                   task_print_charts GET    /task/:task_id/print/charts(.:format)                                                      charts#print
+                task_download_charts GET    /task/:task_id/download/charts(.:format)                                                   charts#download
                task_title_ppoint_new GET    /task/:task_id/title/:title_id/ppoint(.:format)                                            charts#new_ppoint
                          task_ppoint GET    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#edit_ppoint
                          task_ppoint PUT    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#save_ppoint
@@ -231,6 +233,10 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
             task_titles_autopopulate POST   /task/:task_id/autopopulate(.:format)                                                      charts#autopopulate
              task_titles_destroy_all DELETE /task/:task_id/destroy_all(.:format)                                                       charts#destroy_all
                       task_charttext PUT    /task/:task_id/charttext/:charttext_id(.:format)                                           charts#save_charttext
+                         task_images GET    /task/:task_id/images(.:format)                                                            images#index
+            task_download_horizontal GET    /task/:task_id/download_horizontal(.:format)                                               images#download_horizontal
+              task_download_vertical GET    /task/:task_id/download_vertical(.:format)                                                 images#download_vertical
+            task_download_all_charts GET    /task/:task_id/download_all_charts(.:format)                                               images#download_all_charts
                     document_endnote GET    /documents/:document_id/endnote(.:format)                                                  documents#endnote
           document_task_instructions GET    /documents/:document_id/task_instructions(.:format)                                        documents#task_instructions
     document_assignment_instructions GET    /documents/:document_id/assignment_instructions(.:format)                                  documents#assignment_instructions
@@ -304,6 +310,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                               cancel        /shared/cancel(.:format)                                                                   shared#cancel
                          close_popup        /shared/close_popup(.:format)                                                              shared#close_popup
            assignment_time_remaining        /assignment/:assignment_id/time_remaining(.:format)                                        shared#time_remaining
-                           show_user        /teams/show_user/:id(.:format)                                                             teams#show_user
+                      close_lightbox        /shared/close_lightbox(.:format)                                                           shared#close_lightbox
                                 help        /shared/help/:id(.:format)                                                                 shared#help
+                           show_user        /teams/show_user/:id(.:format)                                                             teams#show_user
                                 root        /                                                                                          home#index

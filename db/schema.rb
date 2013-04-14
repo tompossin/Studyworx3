@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130331002614) do
+ActiveRecord::Schema.define(:version => 20130413193451) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -234,15 +234,15 @@ ActiveRecord::Schema.define(:version => 20130331002614) do
   add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
 
   create_table "ppoints", :force => true do |t|
-    t.integer  "title_id",       :null => false
-    t.integer  "user_id",        :null => false
+    t.integer  "title_id",                            :null => false
+    t.integer  "user_id",                             :null => false
     t.integer  "observation_id"
-    t.integer  "position",       :null => false
+    t.integer  "position",                            :null => false
     t.text     "content"
-    t.string   "color"
+    t.string   "color",          :default => "black", :null => false
     t.text     "staff_note"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   add_index "ppoints", ["position"], :name => "index_ppoints_on_position"
@@ -332,6 +332,16 @@ ActiveRecord::Schema.define(:version => 20130331002614) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "states", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "uptodate",   :default => false
+    t.integer  "type",       :default => 0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "states", ["user_id"], :name => "index_states_on_user_id"
+
   create_table "tasks", :force => true do |t|
     t.integer  "assignment_id"
     t.integer  "templat_id"
@@ -405,11 +415,12 @@ ActiveRecord::Schema.define(:version => 20130331002614) do
     t.integer  "school_id",     :null => false
     t.integer  "assignment_id", :null => false
     t.integer  "task_id",       :null => false
-    t.integer  "paragraph_id",  :null => false
+    t.integer  "paragraph_id"
     t.integer  "title_type",    :null => false
     t.integer  "position",      :null => false
+    t.integer  "segnum"
     t.string   "title"
-    t.integer  "verse_count",   :null => false
+    t.integer  "verse_count"
     t.text     "staff_note"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false

@@ -23,15 +23,16 @@ gem 'wicked_pdf'
 gem 'wysihtml5-rails'
 gem 'rb-readline'
 gem 'rmagick'
-
-
+gem 'devise'
+#gem 'execjs'
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-  gem 'devise'
+  
   
   # handles local copy of rails docs - start server with {:> yard server --gems
   gem 'yard'
@@ -44,6 +45,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'

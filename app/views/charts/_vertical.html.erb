@@ -15,10 +15,16 @@
   <% end %>
 </div>
 
+<script>
+  $(document).ready(function () {
+       $("#charttext_content").tabby();  
+  });
+</script>
+
 <div id="outside_container">
   <div class="title smaller">Save Ctrl+s | Undo Ctrl+z </div>
   
-  <%=form_for [@task,@charttext] do |f| %>
+  <%=form_for [@task,@charttext],{class: "tabby"} do |f| %>
   
     <div class="toolbar">
       <%=image_tag("gray/save.png",{size: "20x20", class: "cell clickable autosave",title: "save"}) %>

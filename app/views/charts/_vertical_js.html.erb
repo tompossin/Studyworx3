@@ -44,11 +44,11 @@
       }
     });
     
-    // Save on leaving the textarea
+    // save on clicking a "click" button
     $('.autosave').bind("click", function(){
       autoSavePost();
     });
-    
+    // Save on leaving the textarea
     $('#outside_container').on("focusout","textarea", function(){
       autoSavePost();
     });
@@ -61,6 +61,7 @@
             autoSavePost();
         }       
     }); 
+    
     
   function autoSavePost() {
     $.ajax({

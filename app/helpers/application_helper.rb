@@ -240,7 +240,7 @@ module ApplicationHelper
   # Set main css file
   def set_preferences
       unless current_user.preference
-        pref = Preference.create(user_id: current_user.id,theme: "base-right",bgcolor: "white",rows: 20, wallpaper: false)
+        pref = Preference.create(user_id: current_user.id,theme: "default-right",bgcolor: "white",rows: 20, wallpaper: false)
       else
         pref = Preference.where(user_id: current_user.id).first
       end
@@ -258,7 +258,7 @@ module ApplicationHelper
       end
       return session[:theme]
     else
-      return "base-right"
+      return "default-right"
     end
   end
   

@@ -3,17 +3,30 @@ module Imaging
 require 'rvg/rvg'
 include Magick
 protected
+  
+  # This removes non-alphanumeric characters to make legal filenames.
+  def name_cleaner(raw_string)
+    return raw_string.gsub(/[^A-Za-z0-9_\-\.]/, '_')
+  end
+  
+  def clear_images(user_id)
+    Dir.glob("public/images/#{user_id.to_s}*") do |my_file|
+      File.delete(my_file)
+    end
+  end
 
-  def build_standard_horizontal(task_id,participant_id)
-    titles = Title.find(:all, :conditions=>['task_id=? and participant_id=?',task_id,participant_id],:order=>'title_order Asc')
-    total_verses = Title.sum(:verse_count, :conditions=>['task_id=? and participant_id=? and title_type=?',task_id,participant_id,1])
-    total_segments = Title.count(:all, :conditions=>['task_id=? and participant_id=? and title_type=?',task_id,participant_id,2])
-    total_sections = Title.count(:all, :conditions=>['task_id=? and participant_id=? and title_type=?',task_id,participant_id,3])
-    total_divisions = Title.count(:all, :conditions=>['task_id=? and participant_id=? and title_type=?',task_id,participant_id,4])
+  def build_standard_horizontal(task_id,user_id)
+    user = User.find(user_id)
+    task = Task.find(task_id)
+    titles = Title.where("task_id = ? and user_id = ?",task_id,user_id).all
+    total_verses = Title.sum(:verse_count, :conditions=>['task_id=? and user_id=? and title_type=?',task_id,user_id,1])
+    total_segments = Title.count(:all, :conditions=>['task_id=? and user_id=? and title_type=?',task_id,user_id,2])
+    total_sections = Title.count(:all, :conditions=>['task_id=? and user_id=? and title_type=?',task_id,user_id,3])
+    total_divisions = Title.count(:all, :conditions=>['task_id=? and user_id=? and title_type=?',task_id,user_id,4])
     sz = "small" if total_segments < 8
     size = sz || "large" 
       # Begin Processing image
-      RVG::dpi = 96
+      Magick::RVG.dpi = 96
       # Set image size
       i_width = 900
       i_height = 1200
@@ -132,21 +145,26 @@ protected
             canvas.g do |div|
               div.rect(width,height,x_anchor,y_5).styles(:fill =>'transparent',:stroke=>'black', :stroke_width=> '1')
               div.text(text_position.to_i,text_anchor,title.title).rotate(90).styles(:font_style=>'italic',:font_size=>28,:font_weight=>'bold')
-              div.text(text_position.to_i-24,15,participant_name(participant_id)+" - "+Time.now.to_s(:long)).rotate(90).styles(:font_style=>'italic',:font_size=>10,:font_weight=>'bold')
+              div.text(text_position.to_i-24,15,user.fullname+" - "+Time.now.to_s(:long)).rotate(90).styles(:font_style=>'italic',:font_size=>10,:font_weight=>'bold')
             end            
           end
         end
       end 
+      
       # Image Creation complete
-      @id = participant_id.to_s
-      rvg.draw.write('public/images/student/'+ @id +'_horizontal.jpg')
+      aname = name_cleaner(task.assignment.name)
+      img_path = 'public/images/'
+      FileUtils.mkpath img_path
+      id = user_id.to_s 
+      rvg.draw.scale(0.65).write(img_path+id+'_'+aname+'_horizontal.jpg')
+      rvg.draw.destroy!
   end
 
-  def build_standard_vertical(task_id,participant_id)
-    max_verses = Title.maximum(:verse_count,:conditions=>['task_id=? AND participant_id=? AND title_type=?',task_id,participant_id,2])
+  def build_standard_vertical(task,user_id,title_id)
+    max_verses = Title.maximum(:verse_count,:conditions=>['task_id=? AND user_id=? AND title_type=?',task.id,user_id,2])
     vertical_units = 1200/max_verses
-    segment = Title.find_by_id(params[:id])
-    ptitles = Title.find(:all, :include =>['ppoints'], :conditions=>['parent_id=?',params[:id]])
+    segment = Title.find(title_id)
+    ptitles = segment.children.all
     # set default variables
     total_height = segment.verse_count.to_f*vertical_units.to_f
     header_height = 55
@@ -155,7 +173,7 @@ protected
     i_center = 150
     i_height = total_height + header_height + 1 # the 1 extra pixel is for the border or it gets cut off
     # Begin creating the image
-    RVG::dpi = 96
+    Magick::RVG.dpi = 96
     rvg = RVG.new(i_width, i_height) do |canvas|
       canvas.background_fill = 'white'
       # Create header
@@ -164,7 +182,7 @@ protected
         vert = 16
         ha = segment.title.split('.')
         ha.each{|hh|
-          h.text(i_center,vert,hh).styles(:font_style=>'italic',:font_size=>14,:font_weight=>'bold',:text_anchor=>'middle')
+          h.text(i_center,vert,hh).styles(:font_style=>'italic',:font_size=>14,:font_weight=>700,:text_anchor=>'middle')
           vert += 16
         }
         
@@ -175,17 +193,18 @@ protected
         height = pt.verse_count*vertical_units
         canvas.g do |t|
           t.rect(300,height,0,y_2).styles(:fill=>'white',:stroke=>'black',:stroke_width=>'1')
-          t.text(4, y_2+12,pt.title).styles(:font_weight=>'bold')
+          t.text(4, y_2+12,pt.title).styles(:font_size=>11,:font_style=>'italic',:font_weight=>700)
         end
         # Create ppoints for each paragraph title
         t_2 = y_2+22
         for pp in pt.ppoints
-          o = Observation.find_by_id(pp.observation_id)          
+          o = Observation.find(pp.observation_id)          
           canvas.g do |p|
             content = pp.content
             content = o.code+" "+pp.content if o
+            content = content.split(/\n/)
             content.each{|e|
-              p.text(i_center,t_2,e).styles(:font_size=>10,:text_anchor=>'middle')
+              p.text(i_center,t_2,e).styles(:font_size=>10,:font_style=>'normal',:font_weight=>400,:text_anchor=>'middle',:fill=>pp.color)
               t_2 += 11
             }                       
           end
@@ -193,7 +212,34 @@ protected
         y_2 += height
       end      
     end 
-    @id = participant_id.to_s
-    rvg.draw.write('public/images/student/'+ @id +'_vertical.jpg')
+    
+    # Image built now write it to file
+    aname = name_cleaner(task.assignment.name)
+    img_path = 'public/images/'
+    id = user_id.to_s
+    FileUtils.mkpath img_path
+    rvg.draw.scale(0.70).write(img_path+id+'_'+aname+'_vertical_'+segment.segnum.to_s+'.jpg')
+    rvg.draw.destroy!
   end
+  
+  def build_all_verticals(task_id,user_id)
+    task = Task.find(task_id)
+    segments = Title.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,2).all
+    segments.each do |s|
+      build_standard_vertical(task,user_id,s.id)
+    end
+  end
+  
+  def build_all_charts(task_id,user_id)
+    task = Task.find(task_id)
+    build_standard_horizontal(task_id,user_id)
+    build_all_verticals(task_id,user_id)
+  end
+  
+  def zip_all_charts(task_id,user_id)
+    task = Task.find(task_id)
+    build_all_charts(task_id,user_id)
+    system("zip public/images/#{user_id.to_s}_#{task.assignment.name} public/images/#{user_id.to_s}*")
+  end
+  
 end

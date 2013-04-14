@@ -54,16 +54,14 @@ class DocumentsController < ApplicationController
     end
   end
   
+  # This creates and downloads the requested file type
   def download
     @document = Document.where("user_id = ? and task_id = ?", current_user.id, params[:document_id]).first
     content = render_to_string template: "documents/download"
-    user_id = current_user.id
-    assignment = @document.assignment.name
-    task = @document.task.name
-    filename = assignment+"_"+task.gsub(/ /, '_')
+    filename = @document.assignment.name+"_"+@document.task.name
     
-    output = convert_file(content, user_id, filename, params[:file_type])
-    send_file(output[:filepath], filename: output[:filename])
+    download = convert_file(content, current_user, filename, params[:file_type])
+    send_file(download[:filepath], filename: download[:filename])
   end
   
   # task_related_documents_path(@task)
@@ -78,7 +76,7 @@ class DocumentsController < ApplicationController
   # all_user_documents_path
   # documents/all/user
   def all_user
-    @documents = Document.includes(:assignment,:task).where("user_id = ?",current_user.id).all
+    @documents = Document.includes(:assignment,:task).where("user_id = ?",current_user.id).reorder("assignments.name ASC").all
     respond_to do |format|
       format.js {render :related_documents}
     end

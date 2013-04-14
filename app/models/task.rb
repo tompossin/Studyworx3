@@ -13,6 +13,10 @@ class Task < ActiveRecord::Base
     greater_than_or_equal_to: 0, 
     less_than_or_equal_to: 100,
     message: "Must be between 0 and 100"
-
+  
+  # Cleans a string for use as a filename
+  def clean_name(rawtext)
+    rawtext.gsub(/[^A-Za-z0-9_\-\.]/, '_')
+  end
   
 end

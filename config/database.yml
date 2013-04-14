@@ -25,7 +25,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: studyworx3
+  database: studyworx3_dev
   username: root
   password: nvjfir94
   socket: /var/run/mysqld/mysqld.sock

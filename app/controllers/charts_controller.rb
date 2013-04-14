@@ -1,6 +1,9 @@
 class ChartsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_task
+  layout "print", only: [:print, :download]
+  include Imaging
+  include FormatContent
  
   # Start page for charting. It's the title homepage
   def start  
@@ -24,12 +27,32 @@ class ChartsController < ApplicationController
   # TODO build a model method for checking book size and loading appropriate titles a ppoints
   # INFO this could be worked into the build_tree method.
   def charting
-    Title.build_tree(@task.id,current_user.id)
+    state = State.find_or_create_by_user_id(current_user.id)
+    unless state.uptodate
+      Title.build_tree(@task.id,current_user.id)
+    end 
     @titles = Title.build_horizontal_collection(@task.id,current_user.id)
     
     respond_to do |format| 
       format.html 
     end
+  end
+  
+  def print
+    @verticals = Title.get_segments(@task.id,current_user.id)
+    build_all_charts(@task.id,current_user.id)
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def download
+    @verticals = Title.get_vertical_charts(@task.id,current_user.id)
+    content = render_to_string template: "charts/download"
+    filename = @task.assignment.name+"_"+@task.name
+    
+    output = convert_file(content, current_user, filename, params[:file_type])
+    send_file(output[:filepath], filename: output[:filename])
   end
   
   # Charting toolkit
@@ -76,7 +99,7 @@ class ChartsController < ApplicationController
   
   # Create a new paragraph point and load the editor
   def new_ppoint
-    @ppoint = Ppoint.create( title_id: params[:title_id], user_id: current_user.id, position: 0, content: "Add text" )
+    @ppoint = Ppoint.create(title_id: params[:title_id],user_id: current_user.id,color: 'black',position: 0 )
     @observations = Observation.select([:id, :name]).where("school_id = ?", current_user.school).all
     
     respond_to do |format|
@@ -96,6 +119,9 @@ class ChartsController < ApplicationController
   # Save the edited Paragraph point and render the new page element.
   def save_ppoint
     @ppoint = Ppoint.find(params[:ppoint_id])
+    if params[:ppoint][:content].empty?
+      params[:ppoint][:content] = "Add content here."
+    end
     
     respond_to do |format|
       if @ppoint.update_attributes(params[:ppoint])
@@ -139,8 +165,10 @@ class ChartsController < ApplicationController
     old_title = Title.find(params[:title_id])
     @title = old_title.insert_title(params[:title_type].to_i)
     
+    
     respond_to do |format|
       if @title
+        State.update_state(current_user.id)
         format.js
       else
         format.js {render "insert_failed"}
@@ -156,6 +184,7 @@ class ChartsController < ApplicationController
     
     respond_to do |format|
       if @title.save
+        State.update_state(current_user.id)
         format.js 
       else
         format.js {render "shared/save_failed"}
@@ -169,6 +198,7 @@ class ChartsController < ApplicationController
     position = @title.position
     @title.destroy
     Title.reorder_after_delete(@task.id,current_user.id,position)
+    State.update_state(current_user.id)
     
     respond_to do |format|
       format.js
@@ -178,6 +208,7 @@ class ChartsController < ApplicationController
   # This destroys all titles and all dependencies - (slow)
   def destroy_all
     Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).destroy_all
+    State.update_state(current_user)
     
     respond_to do |format|
       format.js

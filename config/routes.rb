@@ -110,6 +110,8 @@ Studyworx3::Application.routes.draw do
   match 'task/:task_id/charting' => 'charts#charting', via: [:get], as: :task_charting
   match 'task/:task_id/charting/tools' => 'charts#tools', via: [:get], as: :task_charting_tools
   match 'task/:task_id/vertical/:vertical_id' => 'charts#vertical', via: [:get], as: :task_vertical
+  match 'task/:task_id/print/charts' => 'charts#print', via: [:get], as: :task_print_charts
+  match 'task/:task_id/download/charts' => 'charts#download', via: [:get], as: :task_download_charts
   match 'task/:task_id/title/:title_id/ppoint' => 'charts#new_ppoint', via: [:get], as: :task_title_ppoint_new
   match 'task/:task_id/ppoint/:ppoint_id' => 'charts#edit_ppoint', via: [:get], as: :task_ppoint
   match 'task/:task_id/ppoint/:ppoint_id' => 'charts#save_ppoint', via: [:put], as: :task_ppoint  
@@ -122,6 +124,12 @@ Studyworx3::Application.routes.draw do
   match 'task/:task_id/autopopulate' => 'charts#autopopulate', via: [:post], as: :task_titles_autopopulate
   match 'task/:task_id/destroy_all' => 'charts#destroy_all', via: [:delete], as: :task_titles_destroy_all
   match 'task/:task_id/charttext/:charttext_id' => 'charts#save_charttext', via: [:put], as: :task_charttext
+  
+  # Routes for the images controller
+  match 'task/:task_id/images' => 'images#index', via: [:get], as: :task_images
+  match 'task/:task_id/download_horizontal' => 'images#download_horizontal', via: [:get], as: :task_download_horizontal
+  match 'task/:task_id/download_vertical' => 'images#download_vertical', via: [:get], as: :task_download_vertical
+  match 'task/:task_id/download_all_charts' => 'images#download_all_charts', via: [:get], as: :task_download_all_charts
   
   resources :documents do
     get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
@@ -150,9 +158,9 @@ Studyworx3::Application.routes.draw do
   match 'shared/cancel' => 'shared#cancel', :as => :cancel
   match 'shared/close_popup' => 'shared#close_popup', as: :close_popup
   match 'assignment/:assignment_id/time_remaining' => 'shared#time_remaining', as: :assignment_time_remaining
-  match 'teams/show_user/:id' => 'teams#show_user', as: :show_user
+  match 'shared/close_lightbox' => 'shared#close_lightbox', as: :close_lightbox
   match 'shared/help/:id' => 'shared#help', as: :help
-   
+  match 'teams/show_user/:id' => 'teams#show_user', as: :show_user
   root :to => 'home#index'
   
   

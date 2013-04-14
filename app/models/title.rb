@@ -11,7 +11,7 @@ class Title < ActiveRecord::Base
   default_scope order: "position ASC"
   
   
-  attr_accessible :assignment_id, :paragraph_id, :parent_id, :position, :school_id, :staff_note, :task_id, :title, :title_type, :user_id, :verse_count
+  attr_accessible :assignment_id, :paragraph_id, :parent_id, :position, :segnum, :school_id, :staff_note, :task_id, :title, :title_type, :user_id, :verse_count
 
   # Check if this assignment has already been populated with paragraph refs.
   def self.is_started?(task_id,user_id)
@@ -36,6 +36,20 @@ class Title < ActiveRecord::Base
   # Checks if a book title exists.
   def has_book_title?
     Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,5])
+  end
+  
+  def self.charts_ready?(task_id,user_id)
+    result = true
+    unless Title.exists?(["task_id = ? and user_id = ? and title_type = ?",task_id,user_id,1])
+      result = false
+    end
+    unless Title.exists?(["task_id = ? and user_id = ? and title_type = ?",task_id,user_id,2])
+      result = false
+    end
+    unless Title.exists?(["task_id = ? and user_id = ? and title_type = ?",task_id,user_id,5])
+      result = false
+    end
+    return result
   end
   
   # Insert a new title, reorder records, and assignment hierarchy
@@ -63,6 +77,11 @@ class Title < ActiveRecord::Base
   # Returns all segments for a task/user
   def self.get_segments(task_id,user_id)
     self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,2).all
+  end
+  
+  # Returns all segment titles with related PTs PPs and CTs
+  def self.get_vertical_charts(task_id, user_id)
+    self.includes(:ppoints,:charttext).where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,2).all
   end
   
   def self.count_segments(task_id,user_id)
@@ -112,18 +131,23 @@ class Title < ActiveRecord::Base
   
   # This builds the title heirarchy and counts the verses for each parent title.
   # Iterates through the title types staring with type 2 (segments) since this is the lowest level of parent title.
+  # * This also adds serment numbers to segment titles
   def self.build_tree(task_id,user_id)
     t_types = [2,3,4,5]
     t_types.each do |tt| 
       current_titles = self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,tt).all
+      segnum = 1 if tt == 2
       current_titles.each do |c|
         next_ttl = c.find_next
         children_found = c.find_ttl_children(next_ttl)
         c.children = children_found
         c.verse_count = c.children.sum("verse_count")
+        c.segnum = segnum if c.title_type == 2 
         c.save
+        segnum += 1 if c.title_type == 2
       end
-    end  
+    end 
+    State.reset_state(user_id)
   end
   
   # Clean up incoming params to help with inconsistent behavior of browsers (and users).
@@ -131,6 +155,7 @@ class Title < ActiveRecord::Base
   # This also corrects for people trying to save a blank string since this is a problem in Mozilla 
   # Mozilla won't let you click into an element with a blank string in it.
   # It also reloads the verse refs if people accidently blast them.
+  # TODO add &nbsp; to the gsub below and test
   def clean_input(title_content)
     content = title_content.gsub(/\s|<br>/,'') 
     if content == ""

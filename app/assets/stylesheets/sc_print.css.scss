@@ -1,0 +1,117 @@
+html {
+  width: 100%;
+}
+body {
+  margin:0px;
+  width: 100%;
+  font-family: Verdana,Helvetica,Arial,Sans-serif;
+  font-size: 10pt;
+  p {
+    margin-top: 4px;
+    margin-bottom: 1px;
+  }
+  a {
+    color: #666666;
+    text-decoration: none;
+    font-size: 10pt;
+  }
+  a:hover {
+    color:#999999;
+    background-color: #FFFDA7;
+    border-radius: 4px;
+  }
+  li {
+    font-size: 10pt;
+  }
+}
+
+header {
+  margin-left: 1in;
+  margin-right: 1in;
+  margin-bottom: .25in;
+  border-bottom: solid 1px gray;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: Garamond, Georgia;
+  font-style: italic;
+  text-align: left;
+}
+
+h4 {
+  font-size: 125%;
+  border-bottom: solid 1px black;
+}
+h5 {
+  font-size: 125%;
+  color: green;
+  border-bottom: solid 1px green;
+}
+h6 {
+  font-size: 125%;
+  color: red;
+  border-bottom: solid 1px red;
+}
+
+blockquote {
+  margin-left: 1em;
+  margin-right: 1em;
+  blockquote {
+    color:green;
+    margin-left: 0px;
+    blockquote {
+      color: red;
+      margin-left: 0px;
+    }
+  }
+}
+
+article {
+  width: 6.5in;
+}
+
+aside {
+  width:2.75in;
+}
+
+section {
+  width: 6.5in;
+  margin-left:auto;
+  margin-right: auto;
+  page-break-after: always;
+  overflow: hidden;
+}
+
+figure {
+  margin-left:auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figcaption {
+  font-family: Garamond, Georgia;
+  font-style: italic;
+  text-align: center;
+}
+
+code {
+  display: block;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.float_left {
+  float: left;
+}
+

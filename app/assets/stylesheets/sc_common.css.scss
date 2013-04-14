@@ -33,20 +33,6 @@ body {
   }
 }
 
-table {
-  border-spacing:0px 2px;
-}
-th {
-  padding-left: 6px;
-  padding-right: 6px;
-}
-td {
-  padding-left: 6px;
-  padding-right: 6px;
-  border-bottom: solid gray 1px;
-  border-top: solid gray 1px;
-}
-
 h1,h2,h3,h4,h5,h6 {
   font-family: Garamond, Georgia;
   font-style: italic;
@@ -181,6 +167,37 @@ label {
   width: 250px;
   background-color:yellow;
   border-radius: 5px;
+}
+
+#lightbox {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 0px;
+  background-color: rgba(0,0,0,.7);
+}
+
+#lightbox_content {
+  position: relative;
+  width: 50%;
+  height: 82%; 
+  margin-left: auto;
+  margin-right: auto;
+  top: 8%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#lightbox_data {
+  position: absolute;
+  width: 96%;
+  margin: 2%;
+  overflow: auto;
+}
+
+#popup_cancel {
+  float: right;
 }
 
 #profile {

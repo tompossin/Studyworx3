@@ -3,15 +3,21 @@
 # This module contains methods for converting text to various formats
 module FormatContent
   
+  # This removes non-alphanumeric characters to make legal filenames.
+  def name_cleaner(raw_string)
+    return raw_string.gsub(/[^A-Za-z0-9_\-\.]/, '_')
+  end
+  
   # This method converts html content into various formats
   # * Formats: pdf, docx, doc, odt, rtf, md
   # * I am converting the content to an html string first because it seems to do a better job overall.
   #   * This allows me to flush the raw data through a template first. Not perfectly railsy but close.
-  def convert_file(content,user_id,filename,format)
-    Dir.glob("tmp/docs/#{user_id}*") do |my_file|
+  def convert_file(content,user,filename,format)
+    name = name_cleaner(filename)
+    Dir.glob("tmp/docs/#{user.id.to_s}*") do |my_file|
       File.delete(my_file)
     end
-    new_file_name = "#{user_id}_#{filename}.#{format}"
+    new_file_name = "#{user.id.to_s}_#{name}.#{format}"
     Tempfile.open(['pandoc','.html'], Rails.root.join('tmp/docs') ) do |f|
       f.print(content)
       f.flush

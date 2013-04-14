@@ -44,6 +44,11 @@ class SharedController < ApplicationController
     end
   end
   
+  def close_lightbox
+    respond_to do |format|
+      format.js
+    end
+  end
     
   # This sends a disappearing saved failed message to #alert.
   #

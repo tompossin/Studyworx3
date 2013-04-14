@@ -1,7 +1,7 @@
 <%= content_for :breadcrumbs do %>
   <span><%=link_to @assignment.name, school_assignment_path(current_user.school,@assignment) %></span>
   <%=link_to image_tag("iconic/layers_16x14.png",size: "16x14"),task_charting_path(@task),{onClick: "ShowSpinner()",title: "Charting Home"} %>
-  <%=link_to image_tag("iconic/eye_16x12.png",size: "16x12"), "", {title: "Chart Images"} %>
+  <%=link_to image_tag("iconic/eye_16x12.png",size: "16x12"), task_images_path(@task), {remote: true, title: "Chart Images"} %>
   <%=link_to image_tag("iconic/clock_16x16.png",size: "16x16"),assignment_time_remaining_path(@task.assignment_id),{remote: true, title: "Check time remaining for this assignment."} %>
 
   <span style="float:right;"><%=link_to "Start Over", "", {id: "destroy_all", title: "Destroy ALL titles an charts and start over.", data: {url: task_titles_destroy_all_path(@task) } } %></span>
