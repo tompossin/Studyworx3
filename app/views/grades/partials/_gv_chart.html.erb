@@ -1,0 +1,22 @@
+
+<div id="vertical_container">
+  <div class="sg">
+    <p class="title larger"><%= @vertical.title %></p>
+  </div>
+  <% for p in @ptitles %>
+    <div id="title_<%=p.id%>" class="p_container" style="min-height:<%=p.verse_count * 24 %>px;">
+      <div class="pt">
+        <%=link_to p.title, task_title_ppoint_new_path(@task,p.id), {remote: true} %>
+      </div>
+      <% for pp in p.ppoints %>
+        <%= render "ppoint", {ppoint: pp} %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div id="outside_container">
+  <article>
+    <%= smart_format(@vertical.charttext.content_type, @vertical.charttext.content) if @vertical.charttext %>
+  </article>
+</div>

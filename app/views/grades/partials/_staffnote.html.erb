@@ -1,12 +1,13 @@
-<% if @document %>
-  <%= form_for @document, {remote: true} do |f| %>
-    <%= f.submit :save %>
-    <label class="cell">Stickie Note: </label>
-    <span id="staffnote_slide" class="cell click"> show/hide</span><br />
-    <div id="staffnote_editor">
-      <%= f.text_area :staff_note, {size: "34x12", style:"background-color: yellow;"} %>
-    </div>  
-  <% end -%>
-<% else%>  
-  <p class="red">No Document to grade.</p>
+<p>
+  <label>Staff Note</label> <span id="staffnote_slide" class="cell clickable"> show/hide</span><br />
+</p>
+<% if @staffnote %>
+  <div class="staffnote">
+    <%= smart_format(@staffnote.content_type, @staffnote.content)%>
+  </div>
+<% else%>
+  <div class="staffnote">
+    <p class="red">No Staff Note Exists.</p>
+    <p>Click Title to add one.</p>
+  </div>    
 <% end -%>

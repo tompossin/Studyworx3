@@ -79,7 +79,7 @@ Studyworx3::Application.routes.draw do
   get 'teams/show_user/:id' => 'teams#show_user', as: :teams_show_user
   resources :reviews
   resources :papers
-  
+  resources :staffnotes
   resources :schools do
     member do
       get 'set_current','homeroom'
@@ -102,6 +102,7 @@ Studyworx3::Application.routes.draw do
   end
   match 'user/:user_id/assignment/:assignment_id/load_tasks' => 'grades#load_tasks', via: [:get], as: :user_assignment_load_tasks
   match 'user/:user_id/task/:task_id/grading_view' => 'grades#grading_view', via: [:get], as: :user_task_grading_view
+  match 'user/:user_id/task/:task_id/vertical/:vertical_id' => 'grades#grade_vertical', via: [:get], as: :user_task_grade_vertical
   match 'user/:user_id/grades' => 'grades#grades', via: [:get], as: :user_grades
   match 'grade/:grade_id/finish_grading' => 'grades#finish_grading', via: [:get], as: :grade_finish_grading
   
@@ -132,8 +133,8 @@ Studyworx3::Application.routes.draw do
   match 'task/:task_id/download_all_charts' => 'images#download_all_charts', via: [:get], as: :task_download_all_charts
   
   resources :documents do
-    get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
-    put 'update_endnote', 'toggle_type'
+    get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download','staffnote'
+    put 'update_endnote','update_staffnote', 'toggle_type'
   end
   # Document sidebar viewer/editor routes
   match 'task/:task_id/documents/related' => 'documents#related_documents', via: [:get], as: :task_related_documents

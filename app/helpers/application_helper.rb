@@ -92,7 +92,7 @@ module ApplicationHelper
   # * 1 = html
   def smart_format(content_type=0,content)
     if content_type == 0
-      return markdown_to_html(content)
+      return markdown_to_html(content) unless content.nil?
     else
       return sanitize(content)
     end

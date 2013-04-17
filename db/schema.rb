@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413193451) do
+ActiveRecord::Schema.define(:version => 20130416171340) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -332,10 +332,23 @@ ActiveRecord::Schema.define(:version => 20130413193451) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "staffnotes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.integer  "noteable_id"
+    t.string   "noteable_type", :limit => 20
+    t.text     "content"
+    t.integer  "content_type",                :default => 0
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
+
+  add_index "staffnotes", ["noteable_id", "noteable_type"], :name => "index_staffnotes_on_noteable_id_and_noteable_type"
+  add_index "staffnotes", ["user_id", "assignment_id"], :name => "index_staffnotes_on_user_id_and_assignment_id"
+
   create_table "states", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "uptodate",   :default => false
-    t.integer  "type",       :default => 0
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end

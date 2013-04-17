@@ -101,7 +101,7 @@ class DocumentsController < ApplicationController
   end
 
 
-  # Updates document
+  # Updates document (by the owner)
   def update
     @document = Document.where("user_id = ? and id = ?",current_user.id,params[:id]).first
 
@@ -115,6 +115,34 @@ class DocumentsController < ApplicationController
         end
       else
         format.js { render "shared/save_failed" }
+      end
+    end
+  end
+  
+  def staffnote
+    @document = Document.find(params[:document_id])
+    @staffnote = @document.staffnotes.first
+    unless @staffnote
+      @staffnote = @document.staffnotes.create(user_id: @document.user_id, assignment_id: @document.assignment_id)
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # update staffnote only (by the staff)
+  def update_staffnote
+    @document = Document.find(params[:id])
+    @document.staff_note = params[:document][:staff_note]
+    respond_to do |format|
+      if current_user.role < 4
+        if @document.save
+          format.js {render "shared/save_success"}
+        else
+          format.js {render "shared/save_failed"}
+        end
+      else
+        format.js {render "shared/save_failed"}
       end
     end
   end

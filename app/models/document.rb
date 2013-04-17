@@ -4,6 +4,7 @@ class Document < ActiveRecord::Base
   belongs_to :task
   belongs_to :user
   belongs_to :school
+  has_many :staffnotes, as: :noteable, dependent: :destroy
   
   attr_accessible :assignment_id, :content, :content_type, :school_id, :task_id, :user_id, :staff_note
   

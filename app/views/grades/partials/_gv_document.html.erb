@@ -1,7 +1,10 @@
 
 <article>
-  
-  <h3><%= "#{@task.assignment.name} - #{@task.name}" %></h3>
+  <h3>
+    <%=image_tag("staffnote.png", {size: "16x16", style: "float:left;", title: "Click on title to edit."}) if @staffnote %>
+    <span>&nbsp;</span>
+    <%=link_to "#{@task.assignment.name} - #{@task.name}", document_staffnote_path(@document),{remote: true, title: "Click to create or update a staff note."}%>
+  </h3>
   
   <% if @document %>
     <%= smart_format(@document.content_type, @document.content) %>

@@ -15,6 +15,10 @@
     <%= render partial: "grades/partials/tlink", collection: @tasks %>
   </div>
   
+  <div id="chart_nav">
+    <!-- Added and removed when charts are loaded -->
+  </div>
+  
   <div id="grading_link">
     <%=link_to "Finish Grading", grade_finish_grading_path(@grade), {remote: true}%>
   </div>
@@ -25,9 +29,9 @@
     <%= form_for [@school,@grade], {remote: true} do |f| %>
       <%= hidden_field_tag "save_only","true" %>
       <%= f.submit :save %> <label class="cell">Grading Notes: </label>
-      <span id="scratchpad_slide" class="cell click"> show/hide</span><br />
+      <span id="scratchpad_slide" class="cell clickable"> show/hide</span><br />
       <div id="scratchpad_editor">
-        <%= f.text_area :scratchpad, {size: "34x16", style: "background-color:#eaeaea;"} %>
+        <%= f.text_area :scratchpad, {class: "gradingnote"} %>
       </div>
     <% end %>
   </div>

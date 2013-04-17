@@ -492,6 +492,22 @@ label {
 }
 /* end css table elements */
 
+.staffnote {
+  background-color: yellow;
+  width: 75%;
+  height: 200px;
+  padding: 1em;
+  border: inset 2px #eeeeee;
+  
+}
+.gradingnote {
+  width: 75%;
+  height: 200px;
+  padding: 1em;
+  border: inset 2px #eeeeee;
+  background-color: #eaeaea;
+}
+
 .toolbar {
   float:left;
   width: 96%;

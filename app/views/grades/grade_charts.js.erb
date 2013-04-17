@@ -1,0 +1,4 @@
+$('#content-large').html("<%=j render "grades/partials/gv_chart_outline" %>");
+$('#chartids').html("<%=j render partial: "grades/partials/chartid", collection: @verticals %>");
+$('#staffnote').empty();
+$('#chart_nav').html("<%=j render "grades/partials/prev_next" %>");

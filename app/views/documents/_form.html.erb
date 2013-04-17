@@ -1,3 +1,11 @@
+<% unless @document.content_type == 1 %>
+  <script>
+    $(document).ready(function () {
+         $("#wysihtml5-textarea").tabby();  
+    });
+  </script>
+<% end %>
+
 <div id="editor_container" >
   <%= form_for(@document,{remote: true}) do |f| %>
     

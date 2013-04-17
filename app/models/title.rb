@@ -6,6 +6,7 @@ class Title < ActiveRecord::Base
   belongs_to :task
   belongs_to :user
   has_many :ppoints, :dependent => :destroy
+  has_many :staffnotes, as: :noteable, dependent: :destroy
   has_one :charttext, :dependent => :destroy
   
   default_scope order: "position ASC"

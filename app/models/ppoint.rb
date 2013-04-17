@@ -2,6 +2,7 @@ class Ppoint < ActiveRecord::Base
   belongs_to :title
   belongs_to :user
   belongs_to :observation
+  has_many :staffnotes, as: :noteable, dependent: :destroy
   
   attr_accessible :color, :content, :observation_id, :position, :staff_note, :title_id, :user_id
   
