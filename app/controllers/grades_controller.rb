@@ -81,8 +81,8 @@ class GradesController < ApplicationController
       elsif @task.task_type == 2
         format.js {render "shared/selection_not_known"}
       elsif @task.task_type == 3
-        @titles = Title.build_horizontal_collection(@task.id,current_user.id)
-        @verticals = Title.get_segments(@task.id,current_user.id)
+        @titles = Title.build_horizontal_collection(@task.id,@user.id)
+        @verticals = Title.get_segments(@task.id,@user.id)
         format.js {render "grades/grade_charts"}        
       else
         format.js {render "shared/selection_not_known"}
@@ -94,8 +94,6 @@ class GradesController < ApplicationController
     @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
     @vertical = Title.find(params[:vertical_id])
-    @charttext = @vertical.charttext
-    @ptitles = @vertical.children
     @prev_seg = @vertical.find_previous
     @next_seg = @vertical.find_next
     

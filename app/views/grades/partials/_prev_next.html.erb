@@ -1,11 +1,11 @@
 <% if @prev_seg %>
-  <span><%=link_to "Previous Chart", user_task_grade_vertical_path(@user,@task,@prev_seg),{remote: true}  %></span>
+  <%=link_to "Previous Chart", user_task_grade_vertical_path(@user,@task,@prev_seg),{remote: true, class: "button gray"}  %>
 <% else %>
-  <span class="italic red">No Previous</span>
+  <span class="button gray">No Previous</span>
 <% end %>
-<span> --- </span>
+
 <% if @next_seg %>
-  <span><%=link_to "Next Chart", user_task_grade_vertical_path(@user,@task,@next_seg),{remote: true}%></span>
+  <%=link_to "Next Chart", user_task_grade_vertical_path(@user,@task,@next_seg),{remote: true, class: "button gray"}%>
 <% else %>
-  <span class="italic red">No Next</span>
+  <span class="button gray">No Next</span>
 <% end %>

@@ -492,6 +492,67 @@ label {
 }
 /* end css table elements */
 
+/* button classes */
+/* core button styling*/
+.button {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em 2em .55em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  border-radius: .5em;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+  text-decoration: none;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+/*button colors*/
+.gray {
+  color: #333333;
+  border: solid 1px #a0a0a0;
+  background: #e0e0e0;
+  background: -moz-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -webkit-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -ms-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -o-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+}
+.gray:hover {
+  background: #a0a0a0;
+  background: -webkit-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+  background: -moz-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+  background: -ms-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+  background: -o-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+}
+.gray:active {
+  color: #999999;
+  background: -webkit-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+  background: -moz-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+  background: -ms-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+  background: -o-linear-gradient(top,  #a0a0a0,  #e0e0e0);
+}
+span.gray:hover {
+  background: -webkit-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -moz-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -ms-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -o-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+}
+span.gray:active {
+  background: -webkit-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -moz-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -ms-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+  background: -o-linear-gradient(top,  #e0e0e0,  #a0a0a0);
+}
+
+/* END button classes */
+
 .staffnote {
   background-color: yellow;
   width: 75%;

@@ -1,10 +1,15 @@
 <p>
   <label>Staff Note</label> <span id="staffnote_slide" class="cell clickable"> show/hide</span><br />
 </p>
+<!--This should be the default load unless staff which loads the editor-->
 <% if @staffnote %>
-  <div class="staffnote">
-    <%= smart_format(@staffnote.content_type, @staffnote.content)%>
-  </div>
+  <% unless current_user.staff? %>
+    <div class="staffnote">
+      <%= smart_format(@staffnote.content_type, @staffnote.content)%>
+    </div>
+  <% else %>
+    <%= render "staffnotes/form" %>
+  <% end %>
 <% else%>
   <div class="staffnote">
     <p class="red">No Staff Note Exists.</p>

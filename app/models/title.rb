@@ -39,6 +39,11 @@ class Title < ActiveRecord::Base
     Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,5])
   end
   
+  def get_book_title
+    @title = Title.where("task_id = ? and user_id = ? and title_type = ?", self.task_id,self.user_id,5).first
+    return @title.title
+  end
+  
   def self.charts_ready?(task_id,user_id)
     result = true
     unless Title.exists?(["task_id = ? and user_id = ? and title_type = ?",task_id,user_id,1])

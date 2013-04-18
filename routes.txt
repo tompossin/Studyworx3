@@ -232,15 +232,18 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                task_title_ppoint_new GET    /task/:task_id/title/:title_id/ppoint(.:format)                                            charts#new_ppoint
                          task_ppoint GET    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#edit_ppoint
                          task_ppoint PUT    /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#save_ppoint
+               task_ppoint_staffnote GET    /task/:task_id/ppoint/:ppoint_id/staffnote(.:format)                                       charts#ppoint_staffnote
                          task_ppoint DELETE /task/:task_id/ppoint/:ppoint_id(.:format)                                                 charts#delete_ppoint
                   task_ppoint_cancel GET    /task/:task_id/ppoint/:ppoint_id/cancel(.:format)                                          charts#cancel_ppoint
                      task_title_save PUT    /task/:task_id/title/:title_id/save(.:format)                                              charts#save
                 task_title_new_title GET    /task/:task_id/title/:title_id/new_title(.:format)                                         charts#new_title
              task_title_create_title POST   /task/:task_id/title/:title_id/create_title(.:format)                                      charts#create_title
+                task_title_staffnote GET    /task/:task_id/title/:title_id/staffnote(.:format)                                         charts#title_staffnote
                    task_title_delete DELETE /task/:task_id/title/:title_id(.:format)                                                   charts#delete_title
             task_titles_autopopulate POST   /task/:task_id/autopopulate(.:format)                                                      charts#autopopulate
              task_titles_destroy_all DELETE /task/:task_id/destroy_all(.:format)                                                       charts#destroy_all
                       task_charttext PUT    /task/:task_id/charttext/:charttext_id(.:format)                                           charts#save_charttext
+            task_charttext_staffnote GET    /task/:task_id/charttext/:charttext_id/staffnote(.:format)                                 charts#charttext_staffnote
                          task_images GET    /task/:task_id/images(.:format)                                                            images#index
             task_download_horizontal GET    /task/:task_id/download_horizontal(.:format)                                               images#download_horizontal
               task_download_vertical GET    /task/:task_id/download_vertical(.:format)                                                 images#download_vertical

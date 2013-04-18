@@ -116,15 +116,18 @@ Studyworx3::Application.routes.draw do
   match 'task/:task_id/title/:title_id/ppoint' => 'charts#new_ppoint', via: [:get], as: :task_title_ppoint_new
   match 'task/:task_id/ppoint/:ppoint_id' => 'charts#edit_ppoint', via: [:get], as: :task_ppoint
   match 'task/:task_id/ppoint/:ppoint_id' => 'charts#save_ppoint', via: [:put], as: :task_ppoint  
+  match 'task/:task_id/ppoint/:ppoint_id/staffnote' => 'charts#ppoint_staffnote', via: [:get], as: :task_ppoint_staffnote
   match 'task/:task_id/ppoint/:ppoint_id' => 'charts#delete_ppoint', via: [:delete], as: :task_ppoint
   match 'task/:task_id/ppoint/:ppoint_id/cancel' => 'charts#cancel_ppoint', via: [:get], as: :task_ppoint_cancel
   match 'task/:task_id/title/:title_id/save' => 'charts#save', via: [:put], as: :task_title_save
   match 'task/:task_id/title/:title_id/new_title' => 'charts#new_title', via: [:get], as: :task_title_new_title
   match 'task/:task_id/title/:title_id/create_title' => 'charts#create_title', via: [:post], as: :task_title_create_title
+  match 'task/:task_id/title/:title_id/staffnote' => 'charts#title_staffnote', via: [:get], as: :task_title_staffnote
   match 'task/:task_id/title/:title_id' => 'charts#delete_title', via: [:delete], as: :task_title_delete
   match 'task/:task_id/autopopulate' => 'charts#autopopulate', via: [:post], as: :task_titles_autopopulate
   match 'task/:task_id/destroy_all' => 'charts#destroy_all', via: [:delete], as: :task_titles_destroy_all
   match 'task/:task_id/charttext/:charttext_id' => 'charts#save_charttext', via: [:put], as: :task_charttext
+  match 'task/:task_id/charttext/:charttext_id/staffnote' => 'charts#charttext_staffnote', via: [:get], as: :task_charttext_staffnote 
   
   # Routes for the images controller
   match 'task/:task_id/images' => 'images#index', via: [:get], as: :task_images

@@ -41,7 +41,7 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    closure_tree (3.10.1)
+    closure_tree (3.10.2)
       activerecord (>= 3.0.0)
       with_advisory_lock (>= 0.0.6)
     cocaine (0.5.1)
@@ -70,7 +70,7 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    highline (1.6.16)
+    highline (1.6.18)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -94,7 +94,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-sftp (2.1.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.6)
+    net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     orm_adapter (0.4.0)
@@ -169,13 +169,11 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.1)
       rack (>= 1.0)
-    wicked_pdf (0.9.4)
-      rails
     with_advisory_lock (0.0.6)
       activerecord (>= 3.0.0)
     wysihtml5-rails (0.0.4)
       railties (>= 3.1.0)
-    yard (0.8.5.2)
+    yard (0.8.6.1)
 
 PLATFORMS
   ruby
@@ -203,6 +201,5 @@ DEPENDENCIES
   thin
   uglifier
   unicorn
-  wicked_pdf
   wysihtml5-rails
   yard

@@ -1,3 +1,4 @@
-<div id="ppoint_<%= ppoint.id.to_s %>" data-taskid="<%=@task.id%>" data-id="<%=ppoint.id%>" class="pp clickable" style="color:<%= ppoint.color %>;" title="<%=ppoint.observation.name if ppoint.observation %>">
+<div id="Ppoint_<%= ppoint.id.to_s %>" data-taskid="<%=@task.id%>" data-id="<%=ppoint.id%>" class="pp clickable" style="color:<%= ppoint.color %>;" title="<%=ppoint.observation.name if ppoint.observation %>">  
+  <%= image_tag("staffnote.png",{size: "16x16",id: "staffnote_#{ppoint.staffnotes.first.id.to_s}",title: "Click to view staffnote.", style: "float:right;"}) if ppoint.staffnotes.first %>
   <%= formatter(ppoint.merged_content) %>
 </div>

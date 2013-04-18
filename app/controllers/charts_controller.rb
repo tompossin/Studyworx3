@@ -80,6 +80,17 @@ class ChartsController < ApplicationController
     end
   end
   
+  def charttext_staffnote
+    @charttext = Charttext.find(params[:charttext_id])
+    @staffnote = @charttext.staffnotes.first
+    unless @staffnote
+      @staffnote = @charttext.staffnotes.create(user_id: @charttext.user_id, assignment_id: @charttext.title.assignment_id)
+    end
+    respond_to do |format|
+      format.js {render "staffnote" }
+    end
+  end
+  
   def save_charttext
     @charttext = Charttext.find(params[:charttext_id])
     
@@ -99,7 +110,8 @@ class ChartsController < ApplicationController
   
   # Create a new paragraph point and load the editor
   def new_ppoint
-    @ppoint = Ppoint.create(title_id: params[:title_id],user_id: current_user.id,color: 'black',position: 0 )
+    title = Title.find(params[:title_id])
+    @ppoint = Ppoint.create(title_id: params[:title_id],user_id: title.user_id,color: 'black',position: 0 )
     @observations = Observation.select([:id, :name]).where("school_id = ?", current_user.school).all
     
     respond_to do |format|
@@ -113,6 +125,17 @@ class ChartsController < ApplicationController
     
     respond_to do |format|
       format.js 
+    end
+  end
+  
+  def ppoint_staffnote
+    @ppoint = Ppoint.find(params[:ppoint_id])
+    @staffnote = @ppoint.staffnotes.first
+    unless @staffnote
+      @staffnote = @ppoint.staffnotes.create(user_id: @ppoint.user_id, assignment_id: @ppoint.title.assignment_id)
+    end
+    respond_to do |format|
+      format.js {render "staffnote" }
     end
   end
   
@@ -176,11 +199,22 @@ class ChartsController < ApplicationController
     end
   end
   
+  def title_staffnote
+    @title = Title.find(params[:title_id])
+    @staffnote = @title.staffnotes.first
+    unless @staffnote
+      @staffnote = @title.staffnotes.create(user_id: @title.user_id, assignment_id: @title.assignment_id)
+    end
+    respond_to do |format|
+      format.js {render "staffnote" }
+    end
+  end
+  
   # This saves a title after editing
+  # TODO Must have been on crack when I named title.title instead of title.content may need to refactor that someday
   def save
     @title = Title.find(params[:title_id])
-    new_title = @title.clean_input(params[:title])
-    @title.title = new_title
+    @title.title = @title.clean_input(params[:title])
     
     respond_to do |format|
       if @title.save
