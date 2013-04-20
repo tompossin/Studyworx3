@@ -1,7 +1,12 @@
 $('#content-large').html("<%=j render "grades/partials/finish" %>");
 $('#tlinks').empty();
 $('#grading_link').empty();
+$('#chart_nav').empty();
+$('#chartids').empty();
 $('#staffnote').html("<%=j render "grades/partials/comments" %>");
 $('#comments_slide').click(function() {
   $('#comments').slideToggle('slow');
+});
+$('#scratchpad_slide').click(function() {
+  $('.gradingnote').slideToggle('slow');
 });

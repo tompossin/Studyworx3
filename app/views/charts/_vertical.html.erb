@@ -1,7 +1,7 @@
 
 <div id="vertical_container">
   <div class="sg">
-    <p class="title larger"><%= @vertical.title %></p>
+    <p class="title larger"><span><%= @vertical.segnum %>. </span><%= @vertical.title %></p>
   </div>
   <% for p in @ptitles %>
     <div id="title_<%=p.id%>" class="p_container" style="min-height:<%=p.verse_count * 24 %>px;">

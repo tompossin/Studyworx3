@@ -317,6 +317,15 @@ label {
   width:94%;
 }
 
+#half_pane {
+  float: left;
+  width: 49%;
+  height: 60%;
+}
+#half_pane textarea {
+  width: 98%;
+}
+
 .avatar {
   position: relative;
   float:left;
@@ -468,7 +477,7 @@ label {
 /* css table elements */
 .trow {
   float:left;
-  width: 100%;
+  width: 98%;
   margin-bottom: 2px;
   border: solid gray 1px;
   border-radius: 10px;
@@ -480,7 +489,7 @@ label {
 }
 .theader {
   float:left;
-  width:100%;
+  width:98%;
   margin-bottom: 2px;
   .cell {
     float: left;

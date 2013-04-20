@@ -1,9 +1,29 @@
-<%= form_for @staffnote, {remote: true} do |f| %>
-  <%= f.submit :save %>
+
+<% if current_user.staff? %>
+  <%= form_for @staffnote, {remote: true} do |f| %>
+    <%= f.submit :save %>
+    <label class="cell">Stickie Note: </label>
+    <span id="staffnote_slide" class="cell clickable"> show/hide</span>
+    <span><%=link_to "delete", @staffnote,{remote: true, confirm: "Are you sure?", method: :delete } %></span><br />
+    <div id="staffnote_editor">
+      <%= f.text_area :content, { class: "staffnote"} %>
+    </div>  
+  <% end -%>
+<% else %> <!-- If the user is a student -->
+  <% if @staffnote %>
+    <label class="cell">Stickie Note: </label>
+    <span id="staffnote_slide" class="cell clickable"> show/hide</span>
+    <span><%=link_to "delete", @staffnote,{remote: true, confirm: "Are you sure?", method: :delete } %></span><br />
+    <div class="staffnote">
+      <%= smart_format(@staffnote.content_type, @staffnote.content) %>
+    </div>
+  <% else %> <!-- If there is no staffnote -->
   <label class="cell">Stickie Note: </label>
-  <span id="staffnote_slide" class="cell clickable"> show/hide</span>
-  <span><%=link_to "delete", @staffnote,{remote: true, confirm: "Are you sure?", method: :delete } %></span><br />
-  <div id="staffnote_editor">
-    <%= f.text_area :content, { class: "staffnote"} %>
-  </div>  
-<% end -%>
+    <span id="staffnote_slide" class="cell clickable"> show/hide</span>
+    <br />
+    
+    <div class="staffnote">
+      <p>No staffnote.</p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,1 +1,7 @@
-<p><%=link_to chartid.segnum, user_task_grade_vertical_path(@user,@task,chartid.id),{remote: true} %></p>
+<p>
+  <% if @vertical %>
+    <%=link_to_unless chartid.segnum == @vertical.segnum, chartid.segnum, user_task_grade_vertical_path(@user,@task,chartid.id),{remote: true} %>
+  <% else %>
+    <%=link_to chartid.segnum, user_task_grade_vertical_path(@user,@task,chartid.id),{remote: true} %>
+  <% end %>
+</p>

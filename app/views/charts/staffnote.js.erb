@@ -1,9 +1,14 @@
 $('#staffnote').html("<%=j render "staffnotes/form" %>");
-if($("#staffnote_<%=j @staffnote.id.to_s %>").length){
-  $('#notice').show().html("Loading...").fadeOut(2000);
-}else{
-  $("#<%=j @staffnote.noteable_type %>_<%=j @staffnote.noteable_id.to_s %>").prepend("<%=j render "staffnotes/snicon" %>");
-}
+<% if current_user.staff? %>
+  if($("#staffnote_<%=j @staffnote.id.to_s %>").length){
+    $('#notice').show().html("Loading...").fadeOut(2000);
+  }else{
+    $("#<%=j @staffnote.noteable_type %>_<%=j @staffnote.noteable_id.to_s %>").prepend("<%=j render "staffnotes/snicon" %>");
+  }
+<% end %>
+$('#staffnote_slide').click(function(){
+  $('#staffnote_editor').slideToggle('slow');
+});
 
 
 

@@ -1,4 +1,4 @@
-<div id="ppoint_<%=@ppoint.id%>" class="pp">
+<div id="Ppoint_<%=@ppoint.id%>" class="pp">
   <%=form_for [@task,@ppoint], {remote: true} do |f| %>
     <%= include_form_validation_errors(@ppoint) %>
     <%= f.hidden_field :title_id %>

@@ -4,7 +4,7 @@
 <% end %>
 <div id="content-large">
   <article>
-    <h2><%= @assignment.name %></h2>
+    <h2><%= @assignment.name %><%= " - "+letter_grade(@grade.grade) if @grade %></h2>
     <div class="toolbar" >
       <span class="cell"><%=link_to "Instructions/Resources", school_assignment_help_path(@school,@assignment),{remote: true, title: "Click to view Assignment Instructions and Resources."}  %></span>    
       <span class="cell" ><%=link_to "turn-in",school_hand_in_path(@school,assignment_id: @assignment),{remote: true, method: "post", title: "Click to make this assignment available to your checker."} %></span>

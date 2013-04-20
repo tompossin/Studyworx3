@@ -67,16 +67,15 @@ class GradesController < ApplicationController
   def grading_view
     @task = Task.includes(:assignment).find(params[:task_id])
     @assignment = @task.assignment
+    @tasks = @assignment.tasks.all
     @user = User.find(params[:user_id])
-    
+    @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first        
+        
     respond_to do |format|
       if @task.task_type == 1
         @document = Document.where("user_id = ? and task_id = ?",params[:user_id],@task.id).first
         @staffnote = @document.staffnotes.first
         @partial_file = select_partial(@task.task_type)
-        if current_user.staff?
-          @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first if current_user.staff?         
-        end
         format.js 
       elsif @task.task_type == 2
         format.js {render "shared/selection_not_known"}
@@ -93,6 +92,7 @@ class GradesController < ApplicationController
   def grade_vertical
     @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
+    @verticals = Title.get_segments(@task.id,@user.id)
     @vertical = Title.find(params[:vertical_id])
     @prev_seg = @vertical.find_previous
     @next_seg = @vertical.find_next

@@ -72,7 +72,6 @@ class ChartsController < ApplicationController
     @ptitles = @vertical.children
     @next_seg = @vertical.find_next
     @prev_seg = @vertical.find_previous
-    @id = 0
     @url = task_charttext_path(@task,@charttext)
     
     respond_to do |format|
@@ -80,10 +79,11 @@ class ChartsController < ApplicationController
     end
   end
   
+  # Adds a staffnote to a chartext if user is staff else just fetch
   def charttext_staffnote
     @charttext = Charttext.find(params[:charttext_id])
     @staffnote = @charttext.staffnotes.first
-    unless @staffnote
+    unless @staffnote or current_user.student?
       @staffnote = @charttext.staffnotes.create(user_id: @charttext.user_id, assignment_id: @charttext.title.assignment_id)
     end
     respond_to do |format|
@@ -128,10 +128,11 @@ class ChartsController < ApplicationController
     end
   end
   
+  # Add a staffnote to a ppoint if the user is a staff otherwise just fetch
   def ppoint_staffnote
     @ppoint = Ppoint.find(params[:ppoint_id])
     @staffnote = @ppoint.staffnotes.first
-    unless @staffnote
+    unless @staffnote or current_user.student?
       @staffnote = @ppoint.staffnotes.create(user_id: @ppoint.user_id, assignment_id: @ppoint.title.assignment_id)
     end
     respond_to do |format|
@@ -158,6 +159,10 @@ class ChartsController < ApplicationController
   def cancel_ppoint
     respond_to do |format|
       @ppoint = Ppoint.find(params[:ppoint_id])
+      if @ppoint.content == nil
+        @ppoint.content = "Add content"
+        @ppoint.save
+      end
       
       format.js { render "save_ppoint"}
     end
@@ -202,7 +207,7 @@ class ChartsController < ApplicationController
   def title_staffnote
     @title = Title.find(params[:title_id])
     @staffnote = @title.staffnotes.first
-    unless @staffnote
+    unless @staffnote or current_user.student?
       @staffnote = @title.staffnotes.create(user_id: @title.user_id, assignment_id: @title.assignment_id)
     end
     respond_to do |format|
