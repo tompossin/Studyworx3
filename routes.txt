@@ -80,6 +80,7 @@
                     admin_assignment GET    /admin/assignments/:id(.:format)                                                           admin/assignments#show
                                      PUT    /admin/assignments/:id(.:format)                                                           admin/assignments#update
                                      DELETE /admin/assignments/:id(.:format)                                                           admin/assignments#destroy
+                       admin_reports GET    /admin/reports(.:format)                                                                   admin/reports#index
                          admin_helps GET    /admin/helps(.:format)                                                                     admin/helps#index
                                      POST   /admin/helps(.:format)                                                                     admin/helps#create
                       new_admin_help GET    /admin/helps/new(.:format)                                                                 admin/helps#new
@@ -87,7 +88,6 @@
                           admin_help GET    /admin/helps/:id(.:format)                                                                 admin/helps#show
                                      PUT    /admin/helps/:id(.:format)                                                                 admin/helps#update
                                      DELETE /admin/helps/:id(.:format)                                                                 admin/helps#destroy
-                 admin_duedates_list GET    /admin/duedates/list(.:format)                                                             admin/duedates#list
                       admin_duedates GET    /admin/duedates(.:format)                                                                  admin/duedates#index
                                      POST   /admin/duedates(.:format)                                                                  admin/duedates#create
                    new_admin_duedate GET    /admin/duedates/new(.:format)                                                              admin/duedates#new
@@ -95,6 +95,7 @@
                        admin_duedate GET    /admin/duedates/:id(.:format)                                                              admin/duedates#show
                                      PUT    /admin/duedates/:id(.:format)                                                              admin/duedates#update
                                      DELETE /admin/duedates/:id(.:format)                                                              admin/duedates#destroy
+                 admin_duedates_list GET    /admin/duedates/list(.:format)                                                             admin/duedates#list
                          admin_tools GET    /admin/tools/index(.:format)                                                               admin/tools#index
                     admin_tools_book POST   /admin/tools/book(.:format)                                                                admin/tools#book
       admin_tools_update_participant PUT    /admin/tools/update_participant/:id(.:format)                                              admin/tools#update_participant
