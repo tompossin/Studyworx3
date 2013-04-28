@@ -1,11 +1,20 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "blogs", blogs_path %>
+<% end %>
 
+<!--This is lame but the strip_tags helper is only available in the view-->
 <% @blog.article = strip_tags(@blog.article) if @blog.content_type == 0 %>
+<!--end-->
+
+<%=render "shared/autosave_js", {url: blog_path(@blog)} if @blog.content_type == 0 %>
+
 <%= form_for @blog do |f| %>
-  <div id="content-large">
+  <div id="content-large">   
     <article>
+      <%= render( "toolbar_markdown") if @blog.content_type == 0 %>
       <%= render "shared/wysihtml5_toolbar" if @blog.content_type == 1 %>
       <p class="title">Article Content:</p>
-      <%= f.text_area :article, { :id => 'wysihtml5-textarea',:style=>"width:98%;height:400px;"} %>
+      <%= f.text_area :article, {rows: current_user.preference.rows , :id => 'wysihtml5-textarea',:style=>"width:98%;"} %>
     </article>
   </div>
   <aside>

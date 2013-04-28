@@ -12,13 +12,30 @@ class GradesController < ApplicationController
     end
   end
   
+  def show
+    @grade = Grade.find(params[:id])
+    @staffnotes = Staffnote.where("user_id = ? and assignment_id = ?",current_user.id,@grade.assignment_id)
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def coversheet
+    @grade = Grade.find(params[:grade_id])
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # This is the staff grade entry page
   def grades
     @user = User.find(params[:user_id])
     @grades = @user.grades.all
     
     respond_to do |format|
-      format.js
+      format.js 
     end
   end
   
@@ -39,15 +56,6 @@ class GradesController < ApplicationController
     
     respond_to do |format|
       format.js
-    end
-  end
-
-  # This zooms in on individual grades for assignments.
-  def show
-    @grade = Grade.find(params[:id])
-
-    respond_to do |format|
-      format.html 
     end
   end
   

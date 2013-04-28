@@ -2,10 +2,11 @@ class Admin::ToolsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_school_admin
   before_filter :is_superadmin, only: [:book]
-  before_filter :get_school, except: [:book]
+  before_filter :get_school
   
   def index
     @books = Book.all
+    @versions = Version.all
     @nav_body_content = "admin/assignments/toolbar"
   end
   
@@ -44,11 +45,14 @@ class Admin::ToolsController < ApplicationController
       end
     end
   end
-
+  
+  # FIXME This is broken needs to load a selector for editing books.
   def book
     @book = Book.find(params[:book_id])
+    @version = Version.find(params[:version_id])
+    @paragraphs = @book.paragraphs.where(:version_id => @version.id).all
     respond_to do |format|
-      format.html {redirect_to admin_book_paragraphs_path(@book)}
+      format.html {render "admin/paragraphs/index"}
     end
   end
   

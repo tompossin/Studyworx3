@@ -35,4 +35,18 @@ module GradesHelper
     end
   end
   
+  def get_staffnote_url(noteable_type, noteable_id)
+    if noteable_type == "Document"
+      document_staffnote_path(noteable_id)
+    elsif noteable_type == "Ppoint"
+      ppoint_staffnote_path(noteable_id)
+    elsif noteable_type == "Title"
+      title_staffnote_path(noteable_id)
+    elsif noteable_type == "Charttext"
+      charttext_staffnote_path(noteable_id)
+    else
+      ""
+    end
+  end
+  
 end

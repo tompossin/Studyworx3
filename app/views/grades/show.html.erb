@@ -1,0 +1,18 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Grades", school_grades_path(@school) %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <h3>Staff Notes - <%= get_assignment_name(@grade.assignment_id) %></h3>
+    <p class="title">Click link to view your related work.</p>
+    <% @staffnotes.each do |note| %>
+      <div class="note">
+        <%=link_to "view your work", get_staffnote_url(note.noteable_type,note.noteable_id), {remote: true} %>
+        <%= formatter(note.content) if note.content %>
+      </div>
+    <% end %>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

@@ -8,18 +8,18 @@
           <%= link_to "Schools Admin", admin_schools_path %> <br />
           <%= link_to "Blog Admin", blogs_path %> <br />
           <%= link_to "System Help Admin", admin_helps_path %><br />
-          <%= link_to "Admin Tools", admin_tools_index_path %><br />
+          <%= link_to "Admin Tools", admin_tools_path %><br />
           <br />
         <% elsif session[:admin_level] == 2 %>
           <%= link_to "Schools Admin", admin_schools_path %> <br />
           <%= link_to "Blog Admin", blogs_path %> <br />
-          <%= link_to "Admin Tools", admin_tools_index_path %><br />
+          <%= link_to "Admin Tools", admin_tools_path %><br />
           <br />
         <% elsif session[:admin_level] == 1 %>
           <%= link_to "Blog Admin", blogs_path %> <br />
           <br />
         <% elsif current_user.role and current_user.role < 3 %>
-          <%= link_to "Admin Tools", admin_tools_index_path %><br />
+          <%= link_to "Admin Tools", admin_tools_path %><br />
           <br />
         <% end %>
       <%end%>

@@ -37,10 +37,12 @@ Studyworx3::Application.routes.draw do
     resources :helps
     get "duedates/list" => "duedates#list", as: :duedates_list
     resources :duedates 
-    get "tools/index","tools/personnel", "tools/cancel_edit"
-    post "tools/book"
+    get "tools/index" => "tools#index", as: :tools
+    post "tools/book" => "tools#book", as: :tools_book
     put "tools/update_participant/:id" => "tools#update_participant", as: :tools_update_participant
     get 'tools/edit_participant/:id' => "tools#edit_participant", as: :tools_edit_participant
+    get "tools/personnel" => "tools#personnel", as: :tools_personnel
+    get "tools/cancel_edit" => "tools#cancel_edit", as: :tools_cancel_edit
   end
   
   
@@ -80,6 +82,12 @@ Studyworx3::Application.routes.draw do
   resources :reviews
   resources :papers
   resources :staffnotes
+    # Staffnote parent views
+    match 'document/:document_id/staffnote' => 'staffnotes#document', via: [:get], as: :document_staffnote
+    match 'title/:title_id/staffnote' => 'staffnotes#title', via: [:get], as: :title_staffnote
+    match 'ppoint/:ppoint_id/staffnote' => 'staffnotes#ppoint', via: [:get], as: :ppoint_staffnote
+    match 'charttext/:charttext_id/staffnote' => 'staffnotes#charttext', via: [:get], as: :charttext_staffnote
+    
   resources :schools do
     member do
       get 'set_current','homeroom'
@@ -92,6 +100,7 @@ Studyworx3::Application.routes.draw do
       end
     end
     resources :grades
+    match 'grades/:grade_id/coversheet' => 'grades#coversheet', via: [:get], as: :grade_coversheet
     match 'hand_in/assignment/:assignment_id' => 'grades#hand_in', via: [:post], as: :hand_in
     match 'collect' => 'grades#collect',via: [:get], as: :collect
     match 'collect_save' => 'grades#collect_save',via: [:post], as: :collect_save

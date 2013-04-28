@@ -1,6 +1,13 @@
 <div class="trow" >
-  <span class="cell" style="width: 27%;" ><%= get_assignment_name(grade.assignment_id) %></span> 
-  <span class="cell" style="width: 27%;" ><%= letter_grade(grade.grade) %> </span>
-  <span class="cell" style="width: 27s%;" ><%= get_full_name(grade.staff_id) if grade.staff_id %></span>
+  <span class="cell" style="width: 27%;" >
+    <%=link_to get_assignment_name(grade.assignment_id), school_grade_path(grade.school_id,grade) %>
+  </span> 
+  <span class="cell" style="width: 27%;" >
+    <%=link_to( letter_grade(grade.grade), school_grade_coversheet_path(grade.school_id,grade), {remote: true}) if grade.grade %>
+    <%= letter_grade(grade.grade) unless grade.grade %> 
+  </span>
+  <span class="cell" style="width: 27s%;" >
+    <%= get_full_name(grade.staff_id) if grade.staff_id %>
+  </span>
 </div>
 

@@ -19,6 +19,6 @@
     <%= f.text_field :title %>
   </div>
     <label>Content:</label>
-    <%= f.text_area :content , {style: "width:96%;"} %>
+    <%= f.text_area :content , {rows: current_user.preference.rows, style: "width:96%;"} %>
 
 <% end %>

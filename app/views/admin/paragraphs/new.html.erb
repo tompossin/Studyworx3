@@ -1,6 +1,6 @@
 <div id="content-large">
   <article>
-    <%=link_to "Choose another book", admin_tools_index_path %><br />
+    <%=link_to "Choose another book", admin_tools_path %><br />
     <%=link_to "Edit all paragraphs for #{@book.name}", admin_book_paragraphs_path(@book)%>
     <h1>Create New Paragraphs for: <%= @book.name %> - <%= @version.name %></h1>
     <div class="theader">

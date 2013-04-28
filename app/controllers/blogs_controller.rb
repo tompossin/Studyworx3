@@ -52,7 +52,13 @@ class BlogsController < ApplicationController
 
     @blog.update_attributes(params[:blog])
     respond_to do |format|
-      format.html {render :show }
+      if params[:autopreview] == "1"
+        format.html {render :show }
+        format.js
+      else
+        format.html {render :show}
+        format.js {render "shared/close_popup"}
+      end
     end
   end
   

@@ -95,12 +95,12 @@
                        admin_duedate GET    /admin/duedates/:id(.:format)                                                              admin/duedates#show
                                      PUT    /admin/duedates/:id(.:format)                                                              admin/duedates#update
                                      DELETE /admin/duedates/:id(.:format)                                                              admin/duedates#destroy
-                   admin_tools_index GET    /admin/tools/index(.:format)                                                               admin/tools#index
-               admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#index
-             admin_tools_cancel_edit GET    /admin/tools/cancel_edit(.:format)                                                         admin/tools#index
+                         admin_tools GET    /admin/tools/index(.:format)                                                               admin/tools#index
                     admin_tools_book POST   /admin/tools/book(.:format)                                                                admin/tools#book
       admin_tools_update_participant PUT    /admin/tools/update_participant/:id(.:format)                                              admin/tools#update_participant
         admin_tools_edit_participant GET    /admin/tools/edit_participant/:id(.:format)                                                admin/tools#edit_participant
+               admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#personnel
+             admin_tools_cancel_edit GET    /admin/tools/cancel_edit(.:format)                                                         admin/tools#cancel_edit
               cancel_message_message GET    /messages/:id/cancel_message(.:format)                                                     messages#cancel_message
          cancel_message_edit_message GET    /messages/:id/cancel_message_edit(.:format)                                                messages#cancel_message_edit
                        reply_message GET    /messages/:id/reply(.:format)                                                              messages#reply
@@ -165,6 +165,10 @@
                            staffnote GET    /staffnotes/:id(.:format)                                                                  staffnotes#show
                                      PUT    /staffnotes/:id(.:format)                                                                  staffnotes#update
                                      DELETE /staffnotes/:id(.:format)                                                                  staffnotes#destroy
+                  document_staffnote GET    /document/:document_id/staffnote(.:format)                                                 staffnotes#document
+                     title_staffnote GET    /title/:title_id/staffnote(.:format)                                                       staffnotes#title
+                    ppoint_staffnote GET    /ppoint/:ppoint_id/staffnote(.:format)                                                     staffnotes#ppoint
+                 charttext_staffnote GET    /charttext/:charttext_id/staffnote(.:format)                                               staffnotes#charttext
                   set_current_school GET    /schools/:id/set_current(.:format)                                                         schools#set_current
                      homeroom_school GET    /schools/:id/homeroom(.:format)                                                            schools#homeroom
                  school_participants GET    /schools/:school_id/participants(.:format)                                                 participants#index
@@ -204,6 +208,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                         school_grade GET    /schools/:school_id/grades/:id(.:format)                                                   grades#show
                                      PUT    /schools/:school_id/grades/:id(.:format)                                                   grades#update
                                      DELETE /schools/:school_id/grades/:id(.:format)                                                   grades#destroy
+             school_grade_coversheet GET    /schools/:school_id/grades/:grade_id/coversheet(.:format)                                  grades#coversheet
                       school_hand_in POST   /schools/:school_id/hand_in/assignment/:assignment_id(.:format)                            grades#hand_in
                       school_collect GET    /schools/:school_id/collect(.:format)                                                      grades#collect
                  school_collect_save POST   /schools/:school_id/collect_save(.:format)                                                 grades#collect_save
@@ -255,7 +260,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                      document_normal GET    /documents/:document_id/normal(.:format)                                                   documents#normal
                       document_print GET    /documents/:document_id/print(.:format)                                                    documents#print
                    document_download GET    /documents/:document_id/download(.:format)                                                 documents#download
-                  document_staffnote GET    /documents/:document_id/staffnote(.:format)                                                documents#staffnote
+                                     GET    /documents/:document_id/staffnote(.:format)                                                documents#staffnote
              document_update_endnote PUT    /documents/:document_id/update_endnote(.:format)                                           documents#update_endnote
            document_update_staffnote PUT    /documents/:document_id/update_staffnote(.:format)                                         documents#update_staffnote
                 document_toggle_type PUT    /documents/:document_id/toggle_type(.:format)                                              documents#toggle_type

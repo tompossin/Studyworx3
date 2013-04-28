@@ -578,6 +578,19 @@ span.gray:active {
   background-color: #eaeaea;
 }
 
+.note {
+  float: left;
+  width: 200px;
+  height: 175px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 4px;
+  overflow: auto;
+  border-radius: 3px;
+  background-color: yellow;
+  box-shadow: 2px 2px 3px rgba(0,0,0,.2);
+}
+
 .toolbar {
   float:left;
   width: 96%;

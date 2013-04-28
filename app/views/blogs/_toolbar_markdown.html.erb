@@ -1,0 +1,14 @@
+<div class="title smaller">Save Ctrl+s | Undo Ctrl+z </div>
+<div class="toolbar">
+  <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink",{id: "here", title: "Save"} %></span>
+  <span class="cell">&nbsp;</span>
+  <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20"),help_path(1),{class: "noauto",remote: true, title: "View Markdown Cheatsheet"} %></span>
+  <span class="cell"><%=link_to image_tag("iconic/denied_32x32.png",size: "20x20"), close_popup_path, {class: "noauto",remote: true, title: "Close popup viewer"} %></span>
+
+  <span class="cell seperator"><%=link_to image_tag("iconic/loop_alt4_32x24.png",size: "32x20"),"#logolink",{id: "autopreview-trigger",title: "click checkbox to auto-preview"} if @blog.content_type == 0 %><%=check_box_tag "autopreview" if @blog.content_type == 0 %></span>
+  <span class="cell">&nbsp;</span>
+
+  <span class="cell"><%=link_to image_tag("iconic/x_28x28.png",size: "20x20"), @blog ,{method: "delete",title: "Delete", data: { confirm: 'Are you sure?'}}%></span>
+    
+</div>
+      
