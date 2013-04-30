@@ -1,0 +1,22 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Writers Desk", writers_desk_path %>
+<% end %>
+<script>
+  $(document).ready(function () {
+       $("#paper_content").tabby();  
+  });
+</script>
+
+<div id="content-large">
+  <article>
+    <%= render "shared/autosave_js", {url: paper_path(@paper)} %>
+    
+    <%= form_for @paper do |f| %>
+      <%= render "toolbar_markdown" %>
+      <h3><%= @paper.title %></h3>
+      <%= f.text_area :content, {rows: current_user.preference.rows, style: "width:98%;"} %>
+    <% end %>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content)%>

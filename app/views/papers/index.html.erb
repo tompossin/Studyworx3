@@ -1,31 +1,14 @@
-<h1>Listing papers</h1>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>Title</th>
-    <th>Synopsis</th>
-    <th>Body</th>
-    <th>Published</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @papers.each do |paper| %>
-  <tr>
-    <td><%= paper.user_id %></td>
-    <td><%= paper.title %></td>
-    <td><%= paper.synopsis %></td>
-    <td><%= paper.body %></td>
-    <td><%= paper.published %></td>
-    <td><%= link_to 'Show', paper %></td>
-    <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
-    <td><%= link_to 'Destroy', paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% content_for :breadcrumbs do %>
+  <%=link_to "Homeroom", schools_path %>
+  <%=link_to "Writers Desk", writers_desk_path %>
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Paper', new_paper_path %>
+<div id="content-large">
+  <article>
+    <h2>Journal</h2>
+    <p>List of articles, papers, and whatever.</p>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

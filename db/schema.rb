@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(:version => 20130416171340) do
   create_table "papers", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
+    t.string   "author",     :limit => 100
+    t.text     "tags"
     t.text     "synopsis"
     t.text     "body",       :limit => 16777215
     t.boolean  "published"

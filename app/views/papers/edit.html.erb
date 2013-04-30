@@ -1,6 +1,13 @@
-<h1>Editing paper</h1>
+<% content_for :breadcrumbs do %>
+  <%=link_to "Journal Home", journal_path %>
+  <%=link_to "Writers Desk", writers_desk_path %>
+<% end %>
 
-<%= render 'form' %>
+<div id="content-large">
+  <article>
+    <%= render 'form' %>
+  </article>
+</div>
 
-<%= link_to 'Show', @paper %> |
-<%= link_to 'Back', papers_path %>
+<%= nav_bar(@nav_body_content) %>
+

@@ -1,0 +1,12 @@
+
+<h3>Endnotes...</h3>
+
+
+<%= form_for @endnote,{url: "/paper/#{@endnote.paper_id}/endnote/#{@endnote.id}",remote: true} do |f| %>
+  <div>
+    <%= f.submit :save %>
+  </div>
+  <div>
+    <%= f.text_area :content, {style: "width:96%;"} %>
+  </div>
+<% end %>

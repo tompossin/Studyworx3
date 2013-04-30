@@ -159,6 +159,11 @@
                                paper GET    /papers/:id(.:format)                                                                      papers#show
                                      PUT    /papers/:id(.:format)                                                                      papers#update
                                      DELETE /papers/:id(.:format)                                                                      papers#destroy
+                             journal        /journal(.:format)                                                                         papers#index
+                        writers_desk        /writers_desk(.:format)                                                                    papers#writers_desk
+                         paper_write        /paper/:id/write(.:format)                                                                 papers#write
+                       paper_endnote GET    /paper/:paper_id/endnote(.:format)                                                         papers#endnote
+                paper_endnote_update PUT    /paper/:paper_id/endnote/:endnote_id(.:format)                                             papers#update_endnote
                           staffnotes GET    /staffnotes(.:format)                                                                      staffnotes#index
                                      POST   /staffnotes(.:format)                                                                      staffnotes#create
                        new_staffnote GET    /staffnotes/new(.:format)                                                                  staffnotes#new
@@ -331,5 +336,4 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
            assignment_time_remaining        /assignment/:assignment_id/time_remaining(.:format)                                        shared#time_remaining
                       close_lightbox        /shared/close_lightbox(.:format)                                                           shared#close_lightbox
                                 help        /shared/help/:id(.:format)                                                                 shared#help
-                           show_user        /teams/show_user/:id(.:format)                                                             teams#show_user
                                 root        /                                                                                          home#index

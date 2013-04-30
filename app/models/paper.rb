@@ -3,5 +3,5 @@ class Paper < ActiveRecord::Base
   belongs_to :user 
   has_one :endnote
   
-  attr_accessible :body, :synopsis, :title, :user_id
+  attr_accessible :tags, :author , :content, :synopsis, :title, :user_id
 end

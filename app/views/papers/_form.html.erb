@@ -1,37 +1,23 @@
 <%= form_for(@paper) do |f| %>
-  <% if @paper.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+  <% include_form_validation_errors(@paper) %>
 
-      <ul>
-      <% @paper.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
+  <%= f.hidden_field :user_id %>
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, {style: "width:97%;"} %>
   </div>
-  <div class="field">
+  <div class="field" style="float:left;width:50%;">
+    <%= f.label :author %><br />
+    <%= f.text_field :author, {style: "width:95%;"} %><br />
+    <%= f.label :tags %><br />
+    <%= f.text_area :tags, {rows: 4, style: "width: 95%;"} %>
+  </div>
+  <div class="field" style="float: left;width:50%;">
     <%= f.label :synopsis %><br />
-    <%= f.text_area :synopsis %>
+    <%= f.text_area :synopsis, {rows: 12, style: "width: 95%;"} %>
   </div>
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :published %><br />
-    <%= f.check_box :published %>
-  </div>
-  <div class="actions">
+  
+  <div class="actions" style="width:100%;float:left;">
     <%= f.submit %>
   </div>
 <% end %>

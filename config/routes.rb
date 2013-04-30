@@ -83,8 +83,17 @@ Studyworx3::Application.routes.draw do
     end
   end
   get 'teams/show_user/:id' => 'teams#show_user', as: :teams_show_user
+  
   resources :reviews
-  resources :papers
+  resources :papers 
+  
+  # Papers routes
+  match 'journal' => 'papers#index', as: :journal
+  match 'writers_desk' => 'papers#writers_desk', as: :writers_desk
+  match 'paper/:id/write' => 'papers#write', as: :paper_write
+  match 'paper/:paper_id/endnote' => 'papers#endnote', via: [:get], as: :paper_endnote
+  match 'paper/:paper_id/endnote/:endnote_id' => 'papers#update_endnote', via: [:put], as: :paper_endnote_update
+  
   resources :staffnotes
     # Staffnote parent views
     match 'document/:document_id/staffnote' => 'staffnotes#document', via: [:get], as: :document_staffnote
@@ -179,7 +188,7 @@ Studyworx3::Application.routes.draw do
   match 'assignment/:assignment_id/time_remaining' => 'shared#time_remaining', as: :assignment_time_remaining
   match 'shared/close_lightbox' => 'shared#close_lightbox', as: :close_lightbox
   match 'shared/help/:id' => 'shared#help', as: :help
-  match 'teams/show_user/:id' => 'teams#show_user', as: :show_user
+  
   root :to => 'home#index'
   
   

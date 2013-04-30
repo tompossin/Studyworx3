@@ -9,9 +9,17 @@ class PapersController < ApplicationController
       format.json { render json: @papers }
     end
   end
-
-  # GET /papers/1
-  # GET /papers/1.json
+  
+  def writers_desk
+    @papers = Paper.where("user_id = ?",current_user.id)
+    @nav_body_content = "papers/writers_tools"
+  end
+  
+  def write
+    @paper = Paper.find(params[:id])
+    
+  end
+  
   def show
     @paper = Paper.find(params[:id])
 
@@ -24,7 +32,7 @@ class PapersController < ApplicationController
   # GET /papers/new
   # GET /papers/new.json
   def new
-    @paper = Paper.new
+    @paper = Paper.new(user_id: current_user.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,11 +52,9 @@ class PapersController < ApplicationController
 
     respond_to do |format|
       if @paper.save
-        format.html { redirect_to @paper, notice: 'Paper was successfully created.' }
-        format.json { render json: @paper, status: :created, location: @paper }
+        format.html { redirect_to writers_desk_path, notice: 'Paper was successfully created.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @paper.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,14 +63,21 @@ class PapersController < ApplicationController
   # PUT /papers/1.json
   def update
     @paper = Paper.find(params[:id])
-
+    
     respond_to do |format|
       if @paper.update_attributes(params[:paper])
-        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
-        format.json { head :no_content }
+        @autopreview = @paper
+        format.html { redirect_to writers_desk_path, notice: 'Paper was successfully updated.' }
+        format.js do
+          if params[:autopreview] ==  "1"
+            render "shared/autopreview"
+          else
+            render "shared/save_success"
+          end 
+        end
       else
         format.html { render action: "edit" }
-        format.json { render json: @paper.errors, status: :unprocessable_entity }
+        format.js { render "shared/save_failed"}
       end
     end
   end
@@ -76,8 +89,26 @@ class PapersController < ApplicationController
     @paper.destroy
 
     respond_to do |format|
-      format.html { redirect_to papers_url }
-      format.json { head :no_content }
+      format.html { redirect_to writers_desk_url }
     end
   end
+  
+  def endnote
+    @endnote = Endnote.find_or_create_by_paper_id(params[:paper_id])
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def update_endnote
+    @endnote = Endnote.find(params[:endnote_id])
+    respond_to do |format|
+      if @endnote.update_attributes(params[:endnote])
+        format.js {render "shared/save_success"}
+      else
+        format.js {render "shared/save_failed"}
+      end
+    end
+  end
+  
 end
