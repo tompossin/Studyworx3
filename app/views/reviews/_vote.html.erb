@@ -1,0 +1,7 @@
+<%=form_for [@paper,@review],{remote: true} do |f| %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :paper_id %>
+  <%= f.submit :vote %>
+  <%= f.label :approved %>
+  <%= f.check_box :approved %>
+<% end %>

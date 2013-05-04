@@ -31,6 +31,13 @@ class StaffnotesController < ApplicationController
     end
   end
   
+  def comment
+    @comment = Comment.find(params[:comment_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   def update
     @staffnote = Staffnote.find(params[:id])
     

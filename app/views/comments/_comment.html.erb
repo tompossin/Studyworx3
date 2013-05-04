@@ -1,0 +1,20 @@
+<div>
+  <p class="title smaller">
+    <% if @grading_view and current_user.staff? %>
+      <span>
+        <%=link_to(image_tag("staffnote.png",size: "16x16"),task_comment_staffnote_path(t,c),{remote: true, title: "click to edit staffnote."})%>
+      </span>
+    <% end %>
+    <span>
+      <%= get_full_name(c.user_id)%> wrote <%= time_ago_in_words(c.updated_at) %> ago...
+    </span>   
+  </p>
+  <%= formatter(c.content) %>
+</div>
+<div id="comment_link_<%=j c.id.to_s %>">
+  <% unless @grading_view %>
+    <%=link_to( "comment", new_child_task_comment_path(t,c),{remote: true}) unless c.depth == 2 %>
+    <%=link_to( "edit", edit_task_comment_path(t,c),{remote: true}) if c.user_id = current_user.id %>
+  <% end %>
+    
+</div>

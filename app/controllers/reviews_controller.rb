@@ -1,84 +1,88 @@
 
 class ReviewsController < ApplicationController
-  # GET /reviews
-  # GET /reviews.json
+  before_filter :authenticate_user!
+  before_filter :is_admin
+  
   def index
-    @reviews = Review.all
+    @paper = Paper.find(params[:paper_id])
+    @reviews = @paper.reviews.all
+    @votes = @paper.tally_votes
+    @nav_body_content = "reviews/reviews"
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @reviews }
+      format.html 
     end
   end
 
-  # GET /reviews/1
-  # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @review }
+      format.html 
     end
   end
 
-  # GET /reviews/new
-  # GET /reviews/new.json
   def new
-    @review = Review.new
+    @paper = Paper.find(params[:paper_id])
+    @review = @paper.reviews.find_or_create_by_user_id(user_id: current_user.id)
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @review }
+      format.js
     end
   end
 
-  # GET /reviews/1/edit
   def edit
+    @paper = Paper.find(params[:paper_id])
     @review = Review.find(params[:id])
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+  
+  def vote
+    @paper = Paper.find(params[:paper_id])
+    @review = @paper.reviews.find_or_create_by_user_id(user_id: current_user.id)
+    respond_to do |format|
+      format.js
+    end
   end
 
-  # POST /reviews
-  # POST /reviews.json
   def create
+    @paper = Paper.find(params[:paper_id])
     @review = Review.new(params[:review])
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render json: @review, status: :created, location: @review }
+        @reviews = @paper.reviews.all
+        format.js 
       else
-        format.html { render action: "new" }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.js {render "shared/save_failed"}
       end
     end
   end
 
-  # PUT /reviews/1
-  # PUT /reviews/1.json
   def update
+    @paper = Paper.find(params[:paper_id])
     @review = Review.find(params[:id])
-
+    
     respond_to do |format|
       if @review.update_attributes(params[:review])
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { head :no_content }
+        @reviews = @paper.reviews.all
+        @votes = @paper.tally_votes
+        format.js {render "create"}
       else
-        format.html { render action: "edit" }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
+        format.js {render "shared/save_failed"}
       end
     end
   end
 
-  # DELETE /reviews/1
-  # DELETE /reviews/1.json
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
 
     respond_to do |format|
       format.html { redirect_to reviews_url }
-      format.json { head :no_content }
     end
   end
 end

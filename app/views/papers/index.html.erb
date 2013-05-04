@@ -1,6 +1,7 @@
 <% content_for :breadcrumbs do %>
-  <%=link_to "Homeroom", schools_path %>
-  <%=link_to "Writers Desk", writers_desk_path %>
+  <%=link_to "Studyworx Journal", journal_path unless current_user %>
+  <%=link_to "Homeroom", schools_path if current_user %>
+  <%=link_to "Writers Desk", writers_desk_path if current_user %>
 <% end %>
 
 

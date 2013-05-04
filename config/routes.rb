@@ -84,8 +84,10 @@ Studyworx3::Application.routes.draw do
   end
   get 'teams/show_user/:id' => 'teams#show_user', as: :teams_show_user
   
-  resources :reviews
-  resources :papers 
+  resources :papers do
+    resources :reviews
+  end
+  match 'paper/:paper_id/reviews/vote' => 'reviews#vote', via: :get, as: :paper_reviews_vote
   
   # Papers routes
   match 'journal' => 'papers#index', as: :journal
@@ -100,6 +102,7 @@ Studyworx3::Application.routes.draw do
     match 'title/:title_id/staffnote' => 'staffnotes#title', via: [:get], as: :title_staffnote
     match 'ppoint/:ppoint_id/staffnote' => 'staffnotes#ppoint', via: [:get], as: :ppoint_staffnote
     match 'charttext/:charttext_id/staffnote' => 'staffnotes#charttext', via: [:get], as: :charttext_staffnote
+    match 'comment/:comment_id/staffnote' => 'staffnotes#comment', via: :get, as: :comment_staffnote
     
   resources :schools do
     member do
@@ -112,7 +115,10 @@ Studyworx3::Application.routes.draw do
         resources :documents
       end
     end
+    
     resources :grades
+    
+    # custom grade routes
     match 'grades/:grade_id/coversheet' => 'grades#coversheet', via: [:get], as: :grade_coversheet
     match 'hand_in/assignment/:assignment_id' => 'grades#hand_in', via: [:post], as: :hand_in
     match 'collect' => 'grades#collect',via: [:get], as: :collect
@@ -122,12 +128,23 @@ Studyworx3::Application.routes.draw do
     match 'load/team/assignments' => 'schools#load_team_assignments', via: [:get], as: :load_team_assignments
     match 'grading_office' => 'grades#office', via: [:get], as: :grading_office
   end
+  
   match 'user/:user_id/assignment/:assignment_id/load_tasks' => 'grades#load_tasks', via: [:get], as: :user_assignment_load_tasks
   match 'user/:user_id/task/:task_id/grading_view' => 'grades#grading_view', via: [:get], as: :user_task_grading_view
   match 'user/:user_id/task/:task_id/vertical/:vertical_id' => 'grades#grade_vertical', via: [:get], as: :user_task_grade_vertical
   match 'user/:user_id/grades' => 'grades#grades', via: [:get], as: :user_grades
   match 'grade/:grade_id/finish_grading' => 'grades#finish_grading', via: [:get], as: :grade_finish_grading
   
+  # Discussion Task Routes 
+  match "task/:task_id/comment/:id/new_child" => 'comments#new_child', via: :get, as: :new_child_task_comment
+  match "task/:task_id/comment/:id/cancel_edit" => 'comments#cancel', via: :get, as: :cancel_edit_task_comment
+  match "task/:task_id/comment/:id/staffnote" => 'comments#staffnote', via: :get, as: :task_comment_staffnote
+  resources :tasks do
+    resources :comments do
+      put :update_staffnote
+    end
+  end
+   
   # Routes for the Charts controller
   match 'task/:task_id/charts/start' => 'charts#start', via: [:get], as: :task_charts_start
   match 'task/:task_id/charting' => 'charts#charting', via: [:get], as: :task_charting
@@ -158,9 +175,11 @@ Studyworx3::Application.routes.draw do
   match 'task/:task_id/download_all_charts' => 'images#download_all_charts', via: [:get], as: :task_download_all_charts
   
   resources :documents do
-    get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download','staffnote'
+    get 'endnote','task_instructions','assignment_instructions','fullscreen','normal','print','download'
     put 'update_endnote','update_staffnote', 'toggle_type'
   end
+  match 'task/:task_id/document/:document_id/staffnote' => 'documents#staffnote', via: [:get], as: :task_document_staffnote
+  
   # Document sidebar viewer/editor routes
   match 'task/:task_id/documents/related' => 'documents#related_documents', via: [:get], as: :task_related_documents
   match 'documents/all/user' => 'documents#all_user', via: [:get], as: :all_user_documents

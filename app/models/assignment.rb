@@ -1,12 +1,12 @@
 class Assignment < ActiveRecord::Base
   has_many :duedates, :dependent => :destroy
-  has_many :tasks, :dependent => :destroy
-  has_many :documents
-  has_many :turnins
-  has_many :grades
-  has_many :titles
-  belongs_to :scoresheet
-  belongs_to :school
+  has_many :tasks, :dependent => :destroy, inverse_of: :assignment
+  has_many :documents, inverse_of: :assignment
+  has_many :turnins, inverse_of: :assignment
+  has_many :grades, inverse_of: :assignment
+  has_many :titles, inverse_of: :assignment
+  belongs_to :scoresheet, inverse_of: :assignments
+  belongs_to :school, inverse_of: :assignments
   acts_as_list
   
   default_scope order: 'module ASC'

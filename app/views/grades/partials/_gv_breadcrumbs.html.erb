@@ -1,7 +1,7 @@
 
 <% if current_user.student? %>
   <span><%=link_to "#{get_assignment_name(@assignment.id)} Home", school_assignment_path(@school,@assignment.id) %></span>
-  <span><%=link_to "Stickie Notes"%></span>
+  <span><%=link_to "Stickie Notes", school_grade_path(@school,@grade)%></span>
 <% end %>
 
 <% if current_user.staff? %>

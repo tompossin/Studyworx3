@@ -6,17 +6,18 @@
   <article>
     <h2>Writers Desk</h2>
     <div class="theader">
-      <span class="cell" style="width: 25%;">Title</span>
+      <span class="cell" style="width: 20%;">Title</span>
       <span class="cell" style="width: 35%;">Last Edit</span>
       <span class="cell" style="width: 20%;">Tools</span>
     </div>
     <% @papers.each do |p| %>
       <div class="trow">
-        <span class="cell" style="width: 35%;"><%= p.title %></span>
-        <span class="cell" style="width: 30%;"><%= time_ago_in_words(p.updated_at) %> ago</span>
-        <span class="cell"><%=link_to "write", paper_write_path(p) %></span>
-        <span class="cell"><%=link_to "edit", edit_paper_path(p)%></span>
-        <span class="cell"><%=link_to "delete", p,{method: :delete, confirm: "Are you sure?"}%></span>
+        <span class="cell" style="width: 30%;"><%= p.title %></span>
+        <span class="cell" style="width: 25%;"><%= time_ago_in_words(p.updated_at) %> ago</span>
+        <span class="cell" style="width: 5%;"><%=link_to "write", paper_write_path(p) %></span>
+        <span class="cell" style="width: 4%;"><%=link_to "edit", edit_paper_path(p)%></span>
+        <span class="cell" style="width: 6%;"><%=link_to "delete", p,{method: :delete, confirm: "Are you sure?"}%></span>
+        <span class="cell" style="width: 15%;"><%= get_published_state(p) %></span>
       </div>
     <% end %>
   </article>

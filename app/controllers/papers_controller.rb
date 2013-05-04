@@ -1,9 +1,14 @@
 class PapersController < ApplicationController
-  # GET /papers
-  # GET /papers.json
+  before_filter :authenticate_user!, except:[:index, :show]
+  
+  
   def index
     @papers = Paper.all
-
+    @reviewable = Paper.all_drafts
+    if current_user
+      @nav_body_content = "papers/reviewer_tools" if current_user.is_administrator
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @papers }

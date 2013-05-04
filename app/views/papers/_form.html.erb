@@ -10,7 +10,9 @@
     <%= f.label :author %><br />
     <%= f.text_field :author, {style: "width:95%;"} %><br />
     <%= f.label :tags %><br />
-    <%= f.text_area :tags, {rows: 4, style: "width: 95%;"} %>
+    <%= f.text_area :tags, {rows: 4, style: "width: 95%;"} %><br />
+    <%= f.label :draft %>
+    <%= f.check_box :draft %> (Check to release for review)
   </div>
   <div class="field" style="float: left;width:50%;">
     <%= f.label :synopsis %><br />

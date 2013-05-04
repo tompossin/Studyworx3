@@ -21,8 +21,9 @@ module ChartsHelper
   end
   
   # This takes the same arguments as image_tag but produces a full url to the image.
+  # added parenthensis to this to silence warnings but I have not fully tested this yet. 5.1.13
   def absolute_image_tag(*args)
-    raw(image_tag(*args).sub /src="(.*?)"/, "src=\"#{request.protocol}#{request.host_with_port}" + '\1"')
+    raw(image_tag(*args).sub( /src="(.*?)"/, "src=\"#{request.protocol}#{request.host_with_port}" + '\1"'))
   end
   
   def get_chart_image(user,task,title=nil,type)

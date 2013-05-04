@@ -1,29 +1,17 @@
-<div class="floatbox_trans">
-<h1>Listing reviews</h1>
-
-<table>
-  <tr>
-    <th>Paper</th>
-    <th>User</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @reviews.each do |review| %>
-  <tr>
-    <td><%= review.paper_id %></td>
-    <td><%= review.user_id %></td>
-    <td><%= review.content %></td>
-    <td><%= link_to 'Show', review %></td>
-    <td><%= link_to 'Edit', edit_review_path(review) %></td>
-    <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% content_for :breadcrumbs do %>
+  <%=link_to "Journal", journal_path %>
+  <%=link_to "Review Tools"%>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Review', new_review_path %>
+<div id="content-large" style="height: 98%;">
+  <article style="height:98%;">
+    <div class="reader">
+      <p class="title largest"><%= @paper.title %></p>
+      <p class="title small"><%= get_full_name(@paper.user_id) %> - Last updated: <%= time_ago_in_words(@paper.updated_at)%> ago.</p>
+      <hr />
+      <%= formatter(@paper.content) %>
+    </div>
+  </article>
 </div>
+
+<%= nav_bar(@nav_body_content) %>

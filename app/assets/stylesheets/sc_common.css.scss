@@ -80,7 +80,7 @@ article {
   margin-left: 1%;
   padding-left: 10px;
   width: 98%;
-  min-height: 60%;
+  height: 100%;
 }
 
 aside {
@@ -621,6 +621,38 @@ span.gray:active {
   top: 0px;
   width: 100%;
   height: 100%;
+}
+
+.reader {
+  float: left;
+  background-color: #fafafa;
+  margin-top: 1%;
+  padding: 2%;
+  width: 95%;
+  height: 95%;
+  overflow: auto;
+  border-radius: 4px;
+}
+
+.review {
+  background-color: #fafafa;
+  border-radius: 4px;
+  margin: 1%;
+  padding: 1%;
+  width: 96%;
+}
+
+.current {
+  background-color: #555555;
+  color: white;
+}
+
+.comment {
+  position: relative;
+  margin-left:4%;
+  margin-top: 1%;
+  padding-left: 1%;
+  border-left: solid 1px gray;
 }
 
 

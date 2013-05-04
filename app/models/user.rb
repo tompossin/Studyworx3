@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :titles
   has_many :ppoints
   has_many :charttexts
+  has_many :comments
   has_one :note
   has_one :preference
   has_and_belongs_to_many :teams
@@ -107,6 +108,11 @@ class User < ActiveRecord::Base
     end
   end
   
+  def is_administrator
+    if self.user_admin.level > 1
+      true
+    end
+  end
   
   # Check the status of an applicant to the school
   #  Returns: participant.accepted (0,1,2) or false if they have not registered

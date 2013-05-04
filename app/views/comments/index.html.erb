@@ -1,0 +1,35 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to @task.assignment_name, school_assignment_path(current_user.school,@task.assignment_id) %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <section class="topic">
+      <h3><%= @task.name %> Topic</h3>
+      <%= formatter(@task.help) %>
+      <div>
+        <%=link_to "New Root Comment", new_task_comment_path(@task),{remote: true}%>
+      </div>
+      <div id="new_root"></div>
+    </section>
+    <section>
+      <% @comments.each do |c| %>
+        <div id="comment_<%=c.id.to_s%>" class="comment">
+          <%= render partial: "comment",locals: {c: c, t: @task}  %>
+          <% c.children.each do |cc| %>
+            <div id="comment_<%=cc.id.to_s%>" class="comment">
+              <%= render partial: "comment", locals: {c: cc, t: @task}  %>
+              <% cc.children.each do |ccc| %>
+                <div id="comment_<%=ccc.id.to_s%>" class="comment">
+                  <%= render partial: "comment", locals: {c: ccc, t: @task}  %>
+                </div> 
+              <% end %>
+            </div> 
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

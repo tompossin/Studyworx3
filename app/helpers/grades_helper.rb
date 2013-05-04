@@ -44,6 +44,8 @@ module GradesHelper
       title_staffnote_path(noteable_id)
     elsif noteable_type == "Charttext"
       charttext_staffnote_path(noteable_id)
+    elsif noteable_type == "Comment"
+      comment_staffnote_path(noteable_id)
     else
       ""
     end

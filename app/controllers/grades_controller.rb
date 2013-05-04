@@ -12,6 +12,7 @@ class GradesController < ApplicationController
     end
   end
   
+  # This is the staffnote viewing page
   def show
     @grade = Grade.find(params[:id])
     @staffnotes = Staffnote.where("user_id = ? and assignment_id = ?",current_user.id,@grade.assignment_id)
@@ -82,11 +83,12 @@ class GradesController < ApplicationController
     respond_to do |format|
       if @task.task_type == 1
         @document = Document.where("user_id = ? and task_id = ?",params[:user_id],@task.id).first
-        @staffnote = @document.staffnotes.first
+        @staffnote = @document.staffnotes.first if @document
         @partial_file = select_partial(@task.task_type)
         format.js 
       elsif @task.task_type == 2
-        format.js {render "shared/selection_not_known"}
+        @comments = @task.comments.roots
+        format.js {render template: "grades/discussion"}
       elsif @task.task_type == 3
         @titles = Title.build_horizontal_collection(@task.id,@user.id)
         @verticals = Title.get_segments(@task.id,@user.id)

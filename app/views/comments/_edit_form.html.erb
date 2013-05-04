@@ -1,0 +1,16 @@
+<div id="form_container">
+  <%=link_to "cancel", cancel_edit_task_comment_path(t,c), {id: "cancel",remote: true} %><br />
+  <%=form_for [t,c],{remote: true, method: :put} do |f| %>
+  
+    <%= include_form_validation_errors(c) %>
+    
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :task_id %>
+    <%= f.hidden_field :parent_id %>
+    
+    <%= f.text_area :content, {style: "width: 98%;"} %><br />
+    <%= f.submit :save %>
+    
+  <% end %>
+</div>
+

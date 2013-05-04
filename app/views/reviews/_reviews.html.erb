@@ -1,0 +1,25 @@
+<div class="title small">
+  <p id="tally">
+    <%= render "tally"%>
+  </p>
+  <p id="vote" >
+      <%=link_to "vote to approve this paper", paper_reviews_vote_path(@paper.id), {remote: true} %> 
+  </p>
+</div>
+
+<div>
+  <%=link_to "Review this paper", new_paper_review_path(@paper.id), {remote: true} %>
+</div>
+
+<div id="review_editor">
+  
+</div>
+
+<% @reviews.each do |r| %>
+  <div id="review_<%=r.id%>" class="review">
+    <p class="title smallest">Reviewed by: <%= current_user.fullname %> <%= time_ago_in_words(r.updated_at)%> ago.
+       &nbsp;<%=link_to "edit", edit_paper_review_path(@paper,r), {remote: true, class: "small"} %>
+    </p>
+    <%= formatter(r.content) %>
+  </div>    
+<% end %>

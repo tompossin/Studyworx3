@@ -1,6 +1,8 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Studyworx Journal", journal_path %>
+<% end %>
 <div id="content-large">
-  <article>
-    
+  <article>   
     <header>
       <div class="avatar" style="background-image:url('<%= @school.logo.url(:thumb) %>')"></div>
       <h1>

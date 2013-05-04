@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416171340) do
+ActiveRecord::Schema.define(:version => 20130504131206) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -72,6 +72,28 @@ ActiveRecord::Schema.define(:version => 20130416171340) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "comment_hierarchies", :id => false, :force => true do |t|
+    t.integer "ancestor_id",   :null => false
+    t.integer "descendant_id", :null => false
+    t.integer "generations",   :null => false
+  end
+
+  add_index "comment_hierarchies", ["ancestor_id", "descendant_id"], :name => "index_comment_hierarchies_on_ancestor_id_and_descendant_id", :unique => true
+  add_index "comment_hierarchies", ["descendant_id"], :name => "index_comment_hierarchies_on_descendant_id"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "parent_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comments", ["parent_id"], :name => "index_comments_on_parent_id"
+  add_index "comments", ["task_id"], :name => "index_comments_on_task_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "documents", :force => true do |t|
     t.integer  "user_id"
@@ -198,10 +220,11 @@ ActiveRecord::Schema.define(:version => 20130416171340) do
     t.string   "author",     :limit => 100
     t.text     "tags"
     t.text     "synopsis"
-    t.text     "body",       :limit => 16777215
-    t.boolean  "published"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.text     "content",    :limit => 16777215
+    t.boolean  "draft",                          :default => false
+    t.boolean  "published",                      :default => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   create_table "paragraphs", :force => true do |t|
@@ -446,6 +469,18 @@ ActiveRecord::Schema.define(:version => 20130416171340) do
   add_index "titles", ["school_id"], :name => "index_titles_on_school_id"
   add_index "titles", ["task_id"], :name => "index_titles_on_task_id"
   add_index "titles", ["user_id", "task_id", "position"], :name => "index_titles_on_user_id_and_task_id_and_position"
+
+  create_table "topics", :force => true do |t|
+    t.integer  "assignment_id", :null => false
+    t.integer  "task_id",       :null => false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "topics", ["assignment_id"], :name => "index_topics_on_assignment_id"
+  add_index "topics", ["task_id"], :name => "index_topics_on_task_id"
 
   create_table "turnins", :force => true do |t|
     t.integer  "user_id",                          :null => false

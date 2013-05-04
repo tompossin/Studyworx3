@@ -145,13 +145,13 @@
                                      PUT    /teams/:id(.:format)                                                                       teams#update
                                      DELETE /teams/:id(.:format)                                                                       teams#destroy
                      teams_show_user GET    /teams/show_user/:id(.:format)                                                             teams#show_user
-                             reviews GET    /reviews(.:format)                                                                         reviews#index
-                                     POST   /reviews(.:format)                                                                         reviews#create
-                          new_review GET    /reviews/new(.:format)                                                                     reviews#new
-                         edit_review GET    /reviews/:id/edit(.:format)                                                                reviews#edit
-                              review GET    /reviews/:id(.:format)                                                                     reviews#show
-                                     PUT    /reviews/:id(.:format)                                                                     reviews#update
-                                     DELETE /reviews/:id(.:format)                                                                     reviews#destroy
+                       paper_reviews GET    /papers/:paper_id/reviews(.:format)                                                        reviews#index
+                                     POST   /papers/:paper_id/reviews(.:format)                                                        reviews#create
+                    new_paper_review GET    /papers/:paper_id/reviews/new(.:format)                                                    reviews#new
+                   edit_paper_review GET    /papers/:paper_id/reviews/:id/edit(.:format)                                               reviews#edit
+                        paper_review GET    /papers/:paper_id/reviews/:id(.:format)                                                    reviews#show
+                                     PUT    /papers/:paper_id/reviews/:id(.:format)                                                    reviews#update
+                                     DELETE /papers/:paper_id/reviews/:id(.:format)                                                    reviews#destroy
                               papers GET    /papers(.:format)                                                                          papers#index
                                      POST   /papers(.:format)                                                                          papers#create
                            new_paper GET    /papers/new(.:format)                                                                      papers#new
@@ -159,6 +159,7 @@
                                paper GET    /papers/:id(.:format)                                                                      papers#show
                                      PUT    /papers/:id(.:format)                                                                      papers#update
                                      DELETE /papers/:id(.:format)                                                                      papers#destroy
+                  paper_reviews_vote GET    /paper/:paper_id/reviews/vote(.:format)                                                    reviews#vote
                              journal        /journal(.:format)                                                                         papers#index
                         writers_desk        /writers_desk(.:format)                                                                    papers#writers_desk
                          paper_write        /paper/:id/write(.:format)                                                                 papers#write
@@ -175,6 +176,7 @@
                      title_staffnote GET    /title/:title_id/staffnote(.:format)                                                       staffnotes#title
                     ppoint_staffnote GET    /ppoint/:ppoint_id/staffnote(.:format)                                                     staffnotes#ppoint
                  charttext_staffnote GET    /charttext/:charttext_id/staffnote(.:format)                                               staffnotes#charttext
+                   comment_staffnote GET    /comment/:comment_id/staffnote(.:format)                                                   staffnotes#comment
                   set_current_school GET    /schools/:id/set_current(.:format)                                                         schools#set_current
                      homeroom_school GET    /schools/:id/homeroom(.:format)                                                            schools#homeroom
                  school_participants GET    /schools/:school_id/participants(.:format)                                                 participants#index
@@ -234,6 +236,24 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
             user_task_grade_vertical GET    /user/:user_id/task/:task_id/vertical/:vertical_id(.:format)                               grades#grade_vertical
                          user_grades GET    /user/:user_id/grades(.:format)                                                            grades#grades
                 grade_finish_grading GET    /grade/:grade_id/finish_grading(.:format)                                                  grades#finish_grading
+              new_child_task_comment GET    /task/:task_id/comment/:id/new_child(.:format)                                             comments#new_child
+            cancel_edit_task_comment GET    /task/:task_id/comment/:id/cancel_edit(.:format)                                           comments#cancel
+              task_comment_staffnote GET    /task/:task_id/comment/:id/staffnote(.:format)                                             comments#staffnote
+       task_comment_update_staffnote PUT    /tasks/:task_id/comments/:comment_id/update_staffnote(.:format)                            comments#update_staffnote
+                       task_comments GET    /tasks/:task_id/comments(.:format)                                                         comments#index
+                                     POST   /tasks/:task_id/comments(.:format)                                                         comments#create
+                    new_task_comment GET    /tasks/:task_id/comments/new(.:format)                                                     comments#new
+                   edit_task_comment GET    /tasks/:task_id/comments/:id/edit(.:format)                                                comments#edit
+                        task_comment GET    /tasks/:task_id/comments/:id(.:format)                                                     comments#show
+                                     PUT    /tasks/:task_id/comments/:id(.:format)                                                     comments#update
+                                     DELETE /tasks/:task_id/comments/:id(.:format)                                                     comments#destroy
+                               tasks GET    /tasks(.:format)                                                                           tasks#index
+                                     POST   /tasks(.:format)                                                                           tasks#create
+                            new_task GET    /tasks/new(.:format)                                                                       tasks#new
+                           edit_task GET    /tasks/:id/edit(.:format)                                                                  tasks#edit
+                                task GET    /tasks/:id(.:format)                                                                       tasks#show
+                                     PUT    /tasks/:id(.:format)                                                                       tasks#update
+                                     DELETE /tasks/:id(.:format)                                                                       tasks#destroy
                    task_charts_start GET    /task/:task_id/charts/start(.:format)                                                      charts#start
                        task_charting GET    /task/:task_id/charting(.:format)                                                          charts#charting
                  task_charting_tools GET    /task/:task_id/charting/tools(.:format)                                                    charts#tools
@@ -266,7 +286,6 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                      document_normal GET    /documents/:document_id/normal(.:format)                                                   documents#normal
                       document_print GET    /documents/:document_id/print(.:format)                                                    documents#print
                    document_download GET    /documents/:document_id/download(.:format)                                                 documents#download
-                                     GET    /documents/:document_id/staffnote(.:format)                                                documents#staffnote
              document_update_endnote PUT    /documents/:document_id/update_endnote(.:format)                                           documents#update_endnote
            document_update_staffnote PUT    /documents/:document_id/update_staffnote(.:format)                                         documents#update_staffnote
                 document_toggle_type PUT    /documents/:document_id/toggle_type(.:format)                                              documents#toggle_type
@@ -277,6 +296,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                             document GET    /documents/:id(.:format)                                                                   documents#show
                                      PUT    /documents/:id(.:format)                                                                   documents#update
                                      DELETE /documents/:id(.:format)                                                                   documents#destroy
+             task_document_staffnote GET    /task/:task_id/document/:document_id/staffnote(.:format)                                   documents#staffnote
               task_related_documents GET    /task/:task_id/documents/related(.:format)                                                 documents#related_documents
                   all_user_documents GET    /documents/all/user(.:format)                                                              documents#all_user
                document_sidebar_view GET    /document/:document_id/sidebar(.:format)                                                   documents#sidebar
