@@ -13,10 +13,7 @@
 
   <span class="cell seperator"><%=link_to image_tag("iconic/loop_alt4_32x24.png",size: "32x20"),"#logolink",{id: "autopreview-trigger",title: "click checkbox to auto-preview"} if @document.content_type == 0 %><%=check_box_tag "autopreview" if @document.content_type == 0 %></span>
   <span class="cell">&nbsp;</span>
-  <span class="cell">
-    <%=link_to image_tag("iconic/fork_28x32.png", size: "20x20"),document_toggle_type_path(@document),{method: "put", title: "Convert this document for use with thes HTML editor.", data: {confirm: "Are you sure? This can be messy to undo."}} if @document.content_type == 0 %>
-    <%=link_to image_tag("iconic/fork_28x32.png", size: "20x20"),document_toggle_type_path(@document),{method: "put", title: "Revert to Markdown - Save a seperate copy first.", data: { confirm: 'This could cause data loss, save this outside of studyworx first just to be sure.' }} if @document.content_type == 1 %>
-  </span>
+  
   <span class="cell"><%=link_to image_tag("iconic/x_28x28.png",size: "20x20"), document_path(@document),{method: "delete",title: "Delete", data: { confirm: 'Are you sure?'}}%></span>
     
 </div>

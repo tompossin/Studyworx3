@@ -1,22 +1,18 @@
-<div>
-  <header>
-    
+<div>    
     <h2><%= @task.assignment.name %></h2>
-
-    <p><%= current_user.fullname %></p>
-
+    <p style="text-align: right;"><%= current_user.fullname %></p>
   </header>
-  <div class="float_left">
-    <h3>Horizontal Chart</h3>
-    <%= get_chart_image(current_user,@task,"horizontal") %>
-  </div>
+  <section>
+      <h3>Download the horizontal and vertical images seperately</h3>
+  </section>
 
     <% @verticals.each do |v| %>
-      <section class="float_left">
-        <h3><%= v.title %></h3>
-        <%= get_chart_image(current_user,@task,v,"vertical")%>
-        <%= smart_format(v.charttext.content_type,v.charttext.content) %>
-      </section>
+      <section>       
+          <h3><%= v.segnum.to_s+": "+v.title %></h3>
+          <hr />
+          <%= smart_format(v.charttext.content_type,v.charttext.content) %>   
+          <hr />
+      </section>      
     <% end %>
 
 </div>

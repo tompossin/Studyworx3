@@ -29,11 +29,13 @@
         <section class="float_left limited">
           <h2>Global Admin Tools</h2>
           <p class="title small">Select a book below to edit paragraph info</p>
-          <%= form_tag admin_tools_book_path do %>
+          <%= form_tag admin_tools_book_path, {method: :get} do %>
             <%= select_tag "version_id", options_from_collection_for_select(@versions, "id","name",@school.version_id)%><br />
             <%= select_tag "book_id", options_from_collection_for_select(@books, "id", "name") %>
             <%= submit_tag "Select" %>
           <% end %>
+          <p><%=link_to "Edit/Create Versions", admin_versions_path %></p>
+          <p><%=link_to "Book list", admin_books_path %></p>
         </section>      
       <% end %>
     </article>

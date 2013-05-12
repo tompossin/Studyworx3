@@ -5,9 +5,9 @@
   <article>   
     <header>
       <div class="avatar" style="background-image:url('<%= @school.logo.url(:thumb) %>')"></div>
-      <h1>
+      <p class="title larger bolder">
         <%= @school.name %>
-      </h1>
+      </p>
       <p class="title small">Welcome <%=current_user.fullname %></p>
     </header>
     <div class="float_left limited">

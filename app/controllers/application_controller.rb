@@ -77,7 +77,8 @@ class ApplicationController < ActionController::Base
   end
   
   def is_my_school?(school_id)
-    if current_user.school == school_id
+    school = School.find(school_id)
+    if current_user.id == school.owner_id
       return true
     else
       return false

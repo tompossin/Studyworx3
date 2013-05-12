@@ -1,0 +1,7 @@
+<%= form_for [:admin,@version] do |f| %>
+  <%= include_form_validation_errors(@version) %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %><br />
+  <%= f.submit :save %>
+  
+<% end %>

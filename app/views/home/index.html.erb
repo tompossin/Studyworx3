@@ -4,12 +4,7 @@
 <div id="content-large">
   <article>
       <h1><%= @current_article.topic if @current_article %></h1>
-      <div id="debug">
-        <h3>Session values</h3>
-        <% session.each do |k,v| %>
-          <p><%= "#{k} = #{v}" %></p>
-        <% end %>
-      </div>
+      <%= render "shared/debug_session" %>
       <div><%= smart_format(@current_article.content_type, @current_article.article) if @current_article %></div>
 
   </article>

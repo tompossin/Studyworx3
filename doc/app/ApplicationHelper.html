@@ -181,6 +181,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -235,6 +237,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -256,6 +264,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -293,6 +305,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -312,6 +326,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -389,7 +411,7 @@
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">msg</span> = <span class="ruby-string">&quot;Switch to HTML Editor&quot;</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;a href='#{url}' data-method='POST'&gt;#{msg}&lt;/a&gt;&quot;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;&lt;a href=&#39;#{url}&#39; data-method=&#39;POST&#39;&gt;#{msg}&lt;/a&gt;&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- content_type_link-source -->
           
@@ -1036,7 +1058,7 @@ attributes.</p>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>]
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;base-right&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;default-right&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- set_css-source -->
@@ -1068,7 +1090,7 @@ attributes.</p>
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 241</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_preferences</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">preference</span>
-      <span class="ruby-identifier">pref</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">theme</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;base-right&quot;</span>,<span class="ruby-identifier">bgcolor</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;white&quot;</span>,<span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">wallpaper</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">pref</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">theme</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;default-right&quot;</span>,<span class="ruby-identifier">bgcolor</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;white&quot;</span>,<span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">wallpaper</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">pref</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
     <span class="ruby-keyword">end</span>
@@ -1108,7 +1130,7 @@ attributes.</p>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span> 
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper</span>]
-        <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-image:url('#{current_user.wallpaper.url}');&quot;</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-image:url(&#39;#{current_user.wallpaper.url}&#39;);&quot;</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:bgcolor</span>]
           <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-color: #{session[:bgcolor]};&quot;</span>
@@ -1200,7 +1222,7 @@ attributes.</p>
             <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smart_format</span>(<span class="ruby-identifier">content_type</span>=<span class="ruby-value">0</span>,<span class="ruby-identifier">content</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">markdown_to_html</span>(<span class="ruby-identifier">content</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">markdown_to_html</span>(<span class="ruby-identifier">content</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-keyword">end</span>

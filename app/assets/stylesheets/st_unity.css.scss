@@ -1,90 +1,19 @@
 /*
  * Clean theme (nav_bar left w/ colored background)
  */
-header {
-  width: 100%;
-  height: 75px;
-  padding-bottom: 15px;
-}
-
 aside {
   float: left;
-  width: 35%;
+  width: 34%;
   margin-top: 0px;
   margin-left: 1%;
 }
 
-#content {
-  float: left;
-  height: 98%;
-  float:left;
-  margin-top: 30px;
-  width: 100%;
-
-}
-
 #content-large {
   float:right;
-  width:62%;
+  width:63%;
   margin-right: 1%;
 }
 
-#breadcrumbs {
-  position: fixed;
-  top: 0px;
-  left: 38%;
-  width: 36%;
-  background-color: white;
-  box-shadow: 3px 3px 3px #888888;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  padding-bottom: 4px;
-  padding-top: 4px;
-}
-
-#editor_container {
-  height: 100%;
-}
-
-#preview {
-  position: absolute;
-  overflow: auto;
-  background-color: white;
-  border-radius: 10px;
-  border-top: solid 2px gray;
-  border-left: solid 1px gray;
-  border-right: solid 3px gray;
-  border-bottom: solid 5px gray;
-  box-shadow: 6px 6px 4px #555555;
-  top: 30px;
-  width: 61%;
-  height: 90%;
-  margin-left: 37%;
-  padding: 5px;
-}
-
-#header {
-  width: 100%;
-	background-color:#FFFFDD;
-	margin-bottom: 0px;
-}
-
-#nav_heading {
-  float:right;
-  width:100%;
-}
-
-#nav_heading_content {
-  float:left;
-  width:65%
-}
-
-#nav_body_content {
-  float:left;
-  margin-left: 3%;
-  height: 97%;
-  width:96%;
-}
 
 #popup {
   display:none;
@@ -134,55 +63,6 @@ aside {
   background-color: #bfbfbf;
 }
 
-.article_content {
-  text-align: justify;
-  border-radius: 8px;
-  padding: 8px;
-}
-.fixed_position {
-  position: fixed;
-  background-color: black;
-}
-
-.box_trans {
-  background-color: rgba(0,0,0,.8);
-  border-radius: 8px;
-  padding:10px;
-  margin: 10px;
-  color: white;
-}
-.box_paper {
-  float:left;
-  overflow: auto;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  width: 96%;
-  height: 100%;
-  min-height: 200px;
-  padding: 8px;
-}
-.floatbox_trans {
-  float: left;
-  border-radius: 8px;
-  padding:10px;
-  margin: 10px;
-}
-
-.float_left {
-  float: left;
-  width: 100%;
-  margin-top:4px;
-  margin-bottom:4px;
-  a {
-    margin-left: 8px;
-  }
-}
-
-
-.hr_short {
-  width: 20%;
-}
-
 .more {
   background-color: rgba(255,255,255,.4);
   border-bottom-left-radius: 10px;
@@ -197,13 +77,13 @@ aside {
 
 .msg_container {
   float:left;
-  width: 94%;
+  width: 96%;
   border: 1px solid gray;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 20px;
   padding-bottom: 14px;
-  padding-left: 4px;
+  padding-left: 1%;
   margin-bottom: 10px;
   box-shadow: 3px 3px 2px #888888;
 }
@@ -223,7 +103,7 @@ aside {
 }
 
 .reminder {
-  width:88%;
+  width:90%;
   float:left;
   font-style: italic;
   font-family: Garamond, Georgia;
@@ -233,7 +113,7 @@ aside {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
   margin-bottom: 10px;
-  margin-left: 4px;
+  margin-left: 1%;
   box-shadow: 3px 3px 2px #888888;
   padding:3%;
 }
@@ -250,7 +130,7 @@ aside {
 .reply_container {
   float:left;
   width: 80%;
-  margin-left: 15%;
+  margin-left: 16%;
   padding: 2%;
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;

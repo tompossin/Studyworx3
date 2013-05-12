@@ -84,6 +84,8 @@
     
     <li><a href="#method-i-cancel">#cancel</a>
     
+    <li><a href="#method-i-close_lightbox">#close_lightbox</a>
+    
     <li><a href="#method-i-close_popup">#close_popup</a>
     
     <li><a href="#method-i-help">#help</a>
@@ -91,6 +93,8 @@
     <li><a href="#method-i-save_failed">#save_failed</a>
     
     <li><a href="#method-i-save_success">#save_success</a>
+    
+    <li><a href="#method-i-time_remaining">#time_remaining</a>
     
   </ul>
 </nav>
@@ -144,6 +148,8 @@
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
   
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
@@ -199,6 +205,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -220,6 +232,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -257,6 +273,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -276,6 +294,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -386,7 +412,7 @@ for cancel buttons and whatnot.</p>
 
           
           <div class="method-source-code" id="cancel-source">
-            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -400,6 +426,38 @@ for cancel buttons and whatnot.</p>
 
         
       </div><!-- cancel-method -->
+
+    
+      <div id="method-i-close_lightbox" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close_lightbox</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="close_lightbox-source">
+            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close_lightbox</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- close_lightbox-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close_lightbox-method -->
 
     
       <div id="method-i-close_popup" class="method-detail ">
@@ -426,7 +484,7 @@ controllers.</p>
 
           
           <div class="method-source-code" id="close_popup-source">
-            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close_popup</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -461,7 +519,7 @@ create or update calls in other controllers.</p>
 
           
           <div class="method-source-code" id="save_failed-source">
-            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_failed</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -496,7 +554,7 @@ update calls in other controllers.</p>
 
           
           <div class="method-source-code" id="save_success-source">
-            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_success</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -510,6 +568,42 @@ update calls in other controllers.</p>
 
         
       </div><!-- save_success-method -->
+
+    
+      <div id="method-i-time_remaining" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">time_remaining</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This calculates the time and displays it in the notice element It requires
+assignment_id as a param</p>
+          
+
+          
+          <div class="method-source-code" id="time_remaining-source">
+            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">time_remaining</span>
+  <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
+  <span class="ruby-ivar">@duedate</span> = <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">duetime</span>(<span class="ruby-identifier">current_user</span>)
+
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- time_remaining-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- time_remaining-method -->
 
     
     </section><!-- public-instance-method-details -->
@@ -564,7 +658,7 @@ update calls in other controllers.</p>
 
           
           <div class="method-source-code" id="help-source">
-            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/shared_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
   <span class="ruby-ivar">@help</span> = <span class="ruby-constant">Help</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

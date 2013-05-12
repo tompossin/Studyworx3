@@ -1,2 +1,15 @@
-<h1>Admin::Books#new</h1>
-<p>Find me in app/views/admin/books/new.html.erb</p>
+<% content_for :breadcrumbs do %>
+  <%=link_to "Admin Tools", admin_tools_path %>
+  <%=link_to "Books Home", admin_books_path %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <p class="title larger bolder">New Book</p>
+    
+    <%= render "form" %>
+    
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

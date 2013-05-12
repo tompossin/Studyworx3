@@ -1,14 +1,20 @@
 <% content_for :breadcrumbs do %>
   <%=link_to "Studyworx Journal", journal_path unless current_user %>
   <%=link_to "Homeroom", schools_path if current_user %>
-  <%=link_to "Writers Desk", writers_desk_path if current_user %>
+  <%=link_to "Writers Desk", writers_desk_path if current_user and current_user.is_contributor %>
 <% end %>
 
 
 <div id="content-large">
   <article>
-    <h2>Journal</h2>
+    <h2>StudyWorx Journal</h2>
     <p>List of articles, papers, and whatever.</p>
+    <% @papers.each do |p| %>
+      <div>
+        <p class="title"><%= p.author%></p>
+        <%= formatter(p.synopsis) %>
+      </div>    
+    <% end %>
   </article>
 </div>
 

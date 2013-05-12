@@ -22,16 +22,16 @@ gem 'settingslogic' # This does global settings but I may not need it later.
 gem 'acts_as_list'
 gem 'redcarpet' # parser for markdown
 gem 'wysihtml5-rails'
-gem 'rb-readline'
+gem 'rb-readline', '~> 0.4.2'
 gem 'rmagick'
-
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-  gem 'devise'
+  
   
   # handles local copy of rails docs - start server with {:> yard server --gems
   gem 'yard'

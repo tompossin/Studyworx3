@@ -1,0 +1,9 @@
+<div>
+  <p class="title smaller">
+    <em>
+      <%= get_full_name(c.user_id)%> wrote <%= time_ago_in_words(c.updated_at) %> ago...
+    </em>   
+  </p>
+  <%= formatter(c.content) %>
+</div>
+

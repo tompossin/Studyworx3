@@ -39,12 +39,18 @@ class Admin::AssignmentsController < ApplicationController
 
   def edit
     @assignment = Assignment.find(params[:id])
+    @module = @assignment.module
     @tasks = @assignment.tasks.all
     
   end
 
   def new
-    @assignment = Assignment.new
+    unless params[:mod_id]
+      @assignment = Assignment.new
+    else
+      @module = params[:mod_id]
+      @assignment = Assignment.new(module: params[:mod_id])
+    end
   end
   
   def create
@@ -62,6 +68,7 @@ class Admin::AssignmentsController < ApplicationController
   def update
     @assignment = Assignment.find(params[:id])
     @assignment.update_attributes(params[:assignment])
+    @module = @assignment.module
     respond_to do |format|
       if @assignment.save
         format.html {redirect_to edit_admin_assignment_path(@assignment), notice: 'Assignment was successfully saved.'}

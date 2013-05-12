@@ -62,7 +62,7 @@ class GradesController < ApplicationController
   
   # This is the grading office page. The homepage for staff grading.
   def office
-    @pending = Grade.includes(:assignment).where("grades.staff_id = ? and returned = ? and (grades.viewable = ? or grades.done = ?)",current_user.id,false,true,true).all
+    @pending = Grade.includes(:assignment).where("school_id = ? and grades.staff_id = ? and returned = ? and (grades.viewable = ? or grades.done = ?)",current_user.school,current_user.id,false,true,true).all
     
     respond_to do |format|
       format.html 
@@ -78,7 +78,8 @@ class GradesController < ApplicationController
     @assignment = @task.assignment
     @tasks = @assignment.tasks.all
     @user = User.find(params[:user_id])
-    @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first        
+    @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first 
+    @gradingview = true       
         
     respond_to do |format|
       if @task.task_type == 1
@@ -222,6 +223,15 @@ class GradesController < ApplicationController
       else
         format.html {redirect_to :back, notice: 'You must select at least one student and one assignment.'}
       end
+    end
+  end
+  
+  def return
+    @grade = Grade.find(params[:grade_id])
+    @grade.returned = true
+    @grade.save
+    respond_to do |format|
+      format.html {redirect_to school_grading_office_path(@school)}  
     end
   end
 

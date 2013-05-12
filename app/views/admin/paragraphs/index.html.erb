@@ -3,34 +3,20 @@
 <% end %>
 <div id="content-large">
   <article>
-    
-    <br />
+    <p class="title larger bolder"><%= @book.name %> - Paragraphs - <%= @version.name %></p>
     <p>
-      <%=link_to "Add new paragraphs", new_admin_book_paragraph_path(@book) %>
+      <%=link_to "Add new paragraphs to the end", new_admin_version_book_paragraph_path(@version,@book) %>
     </p>
-    
-    <h1><%= @book.name %> - Paragraphs - <%= @version.name %></h1>
-    
-      <% unless @paragraphs.empty? %>
-        <div id="table_header" class="theader">
-          <span class="cell" style="width:60px;">Order</span>
-          <span class="cell" style="width:75px;">Start Ref</span>
-          <span class="cell" style="width:75px;">End Ref</span>
-          <span class="cell" style="width:75px;">Verse Count</span>
-          <span class="cell" style="width:100px;">Admin</span>
-        </div>
-        <% for p in @paragraphs %>
-          <div id="paragraph_<%= p.id %>" class="trow <%= cycle("odd","even") %>">
-            <span class="cell" style="width:60px;"><%= p.position %></span>
-            <span class="cell" style="width:75px;"><%= p.startref %></span>
-            <span class="cell" style="width:75px;"><%= p.endref %></span>
-            <span class="cell" style="width:75px;"><%= p.verse_count %></span>
-            <span class="cell" style="width:150px;">
-              <%=link_to "edit", edit_admin_book_paragraph_path(@book,p), remote: true %>
-            </span>
-          </div>
-        <% end %>
-      <% end %>
+
+    <div id="table_header" class="theader">
+      <span class="cell" style="width:60px;">Order</span>
+      <span class="cell" style="width:75px;">Start Ref</span>
+      <span class="cell" style="width:75px;">End Ref</span>
+      <span class="cell" style="width:75px;">Verse Count</span>
+      <span class="cell" style="width:100px;">Admin</span>
+    </div>
+    <%= render partial: "paragraph", collection: @paragraphs %>
+          
     
   </article>
 </div>

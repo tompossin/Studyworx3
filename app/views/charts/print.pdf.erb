@@ -1,26 +1,20 @@
 <div>
-  <div class="noprint">
-    <%= link_to "close", :back %>
-  </div>
   <header>    
     <h2><%= @task.assignment.name %></h2>
     <p style="text-align: right;"><%= current_user.fullname %></p>
   </header>
-  <section class="float_left" >
-    <%= get_chart_image(current_user,@task,"horizontal") %>
-  </section>
+
 
     <% @verticals.each do |v| %>
       <section class="page_before float_left">
-        <div style="float:left;width:30%;">
-          <h3><%= v.title %></h3>
-          <%= get_chart_image(current_user,@task,v,"vertical")%>
+        <div >
+          <h3><%= v.segnum.to_s+": "+v.title %></h3>
         </div>
-        
-        <div style="float:right;width:60%;">
+        <hr />
+        <div >
           <%= smart_format(v.charttext.content_type,v.charttext.content) %>
         </div>
-        
+        <hr />
       </section>
     <% end %>
 

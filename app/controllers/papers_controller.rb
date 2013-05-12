@@ -3,11 +3,11 @@ class PapersController < ApplicationController
   
   
   def index
-    @papers = Paper.all
-    @reviewable = Paper.all_drafts
-    if current_user
-      @nav_body_content = "papers/reviewer_tools" if current_user.is_administrator
-    end
+    @papers = Paper.all_published    
+    if current_user and current_user.is_contributor
+      @reviewable = Paper.all_drafts
+    end    
+    @nav_body_content = "papers/reviewer_tools" if current_user and current_user.reviewboard
     
     respond_to do |format|
       format.html # index.html.erb

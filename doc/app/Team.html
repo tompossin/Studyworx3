@@ -70,9 +70,11 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-add_member">#add_member</a>
+    <li><a href="#method-c-all_i_own">::all_i_own</a>
     
-    <li><a href="#method-i-find_or_create_team_duedates_by_module">#find_or_create_team_duedates_by_module</a>
+    <li><a href="#method-c-find_or_create_team_duedates_by_module">::find_or_create_team_duedates_by_module</a>
+    
+    <li><a href="#method-i-add_member">#add_member</a>
     
     <li><a href="#method-i-remove_member">#remove_member</a>
     
@@ -129,6 +131,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -183,6 +187,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -204,6 +214,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -241,6 +255,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -260,6 +276,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -315,6 +339,90 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-all_i_own" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_i_own</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_i_own-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_i_own</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;owner_id = ?&quot;</span>,<span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_i_own-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_i_own-method -->
+
+    
+      <div id="method-c-find_or_create_team_duedates_by_module" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_or_create_team_duedates_by_module</span><span
+            class="method-args">(school,team,mod_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a collection of duedates by team and module school = School.object,
+mod_id = assignment.module</p>
+
+<pre class="ruby"><span class="ruby-constant">Usage</span><span class="ruby-operator">:</span> <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find_or_create_team_duedates_by_module</span>(<span class="ruby-ivar">@school</span>,<span class="ruby-ivar">@team</span>,<span class="ruby-identifier">params</span>[:<span class="ruby-keyword">module</span>])
+</pre>
+          
+
+          
+          <div class="method-source-code" id="find_or_create_team_duedates_by_module-source">
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 48</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_or_create_team_duedates_by_module</span>(<span class="ruby-identifier">school</span>,<span class="ruby-identifier">team</span>,<span class="ruby-identifier">mod_id</span>)
+    <span class="ruby-identifier">assignments</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">where</span>(<span class="ruby-keyword">module</span><span class="ruby-operator">:</span> <span class="ruby-identifier">mod_id</span>).<span class="ruby-identifier">all</span>
+    <span class="ruby-identifier">tdd_ids</span> = []
+    <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">tdd</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;team_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">team</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tdd</span>
+        <span class="ruby-identifier">ndd</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">team_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">team</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">tdd_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ndd</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">tdd_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tdd</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">duedates</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:assignment</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">tdd_ids</span>) 
+  <span class="ruby-keyword">end</span>
+  
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_or_create_team_duedates_by_module-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_or_create_team_duedates_by_module-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
 
@@ -342,7 +450,7 @@
 
           
           <div class="method-source-code" id="add_member-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_member</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">already_member</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">coreteam</span>
@@ -365,54 +473,6 @@
       </div><!-- add_member-method -->
 
     
-      <div id="method-i-find_or_create_team_duedates_by_module" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_or_create_team_duedates_by_module</span><span
-            class="method-args">(school,mod_id)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns a collection of duedates by team and module school = School.object,
-mod_id = assignment.module</p>
-
-<pre class="ruby"><span class="ruby-constant">Usage</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">find_or_create_team_duedates_by_module</span>(<span class="ruby-ivar">@school</span>,<span class="ruby-identifier">params</span>[:<span class="ruby-keyword">module</span>])
-</pre>
-          
-
-          
-          <div class="method-source-code" id="find_or_create_team_duedates_by_module-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 43</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_or_create_team_duedates_by_module</span>(<span class="ruby-identifier">school</span>,<span class="ruby-identifier">mod_id</span>)
-    <span class="ruby-identifier">assignments</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">where</span>(<span class="ruby-keyword">module</span><span class="ruby-operator">:</span> <span class="ruby-identifier">mod_id</span>).<span class="ruby-identifier">all</span>
-    <span class="ruby-identifier">tdd_ids</span> = []
-    <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">tdd</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">duedates</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>)
-      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tdd</span>
-        <span class="ruby-identifier">ndd</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">duedates</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">team_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school</span>.<span class="ruby-identifier">id</span>)
-        <span class="ruby-identifier">tdd_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ndd</span>.<span class="ruby-identifier">id</span>
-      <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">tdd_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tdd</span>.<span class="ruby-identifier">id</span>
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">duedates</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">tdd_ids</span>) 
-  <span class="ruby-keyword">end</span>
-  
-  
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- find_or_create_team_duedates_by_module-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- find_or_create_team_duedates_by_module-method -->
-
-    
       <div id="method-i-remove_member" class="method-detail ">
         
         <div class="method-heading">
@@ -429,7 +489,7 @@ mod_id = assignment.module</p>
 
           
           <div class="method-source-code" id="remove_member-source">
-            <pre><span class="ruby-comment"># File app/models/team.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/models/team.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_member</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">user</span>)
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>

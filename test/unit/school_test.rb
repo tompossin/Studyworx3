@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class SchoolTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  # Required attributes
+  # :owner_id, :name, :timezone, :start_date, :end_date
+  
+  
+  
 end

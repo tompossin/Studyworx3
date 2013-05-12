@@ -1,7 +1,7 @@
 class Duedate < ActiveRecord::Base
   belongs_to :assignment
   belongs_to :school
-  belongs_to :team
+  belongs_to :team, inverse_of: :duedate
   
   default_scope order: "duedate ASC"
   

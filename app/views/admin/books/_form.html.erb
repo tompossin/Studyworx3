@@ -1,0 +1,11 @@
+<%=form_for :admin, @book do |f| %>
+  <%= include_form_validation_errors(@book) %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %><br />
+  <%= f.label :short_name %><br />
+  <%= f.text_field :short_name %><br />
+  <%= f.label :verse_count %><br />
+  <%= f.number_field :verse_count %><br />
+  <%= f.submit :save %>
+  
+<% end %>

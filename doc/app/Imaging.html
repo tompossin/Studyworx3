@@ -76,9 +76,19 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-build_all_charts">#build_all_charts</a>
+    
+    <li><a href="#method-i-build_all_verticals">#build_all_verticals</a>
+    
     <li><a href="#method-i-build_standard_horizontal">#build_standard_horizontal</a>
     
     <li><a href="#method-i-build_standard_vertical">#build_standard_vertical</a>
+    
+    <li><a href="#method-i-clear_images">#clear_images</a>
+    
+    <li><a href="#method-i-name_cleaner">#name_cleaner</a>
+    
+    <li><a href="#method-i-zip_all_charts">#zip_all_charts</a>
     
   </ul>
 </nav>
@@ -132,6 +142,8 @@
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
   
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
@@ -187,6 +199,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -208,6 +226,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -245,6 +267,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -264,6 +288,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -318,11 +350,77 @@
       <h3 class="section-header">Protected Instance Methods</h3>
 
     
+      <div id="method-i-build_all_charts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_all_charts</span><span
+            class="method-args">(task_id,user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="build_all_charts-source">
+            <pre><span class="ruby-comment"># File lib/imaging.rb, line 233</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_all_charts</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-identifier">build_standard_horizontal</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">build_all_verticals</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- build_all_charts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- build_all_charts-method -->
+
+    
+      <div id="method-i-build_all_verticals" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">build_all_verticals</span><span
+            class="method-args">(task_id,user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="build_all_verticals-source">
+            <pre><span class="ruby-comment"># File lib/imaging.rb, line 225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_all_verticals</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-identifier">segments</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">2</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">segments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">build_standard_vertical</span>(<span class="ruby-identifier">task</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">s</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- build_all_verticals-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- build_all_verticals-method -->
+
+    
       <div id="method-i-build_standard_horizontal" class="method-detail ">
         
         <div class="method-heading">
           <span class="method-name">build_standard_horizontal</span><span
-            class="method-args">(task_id,participant_id)</span>
+            class="method-args">(task_id,user_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -334,17 +432,19 @@
 
           
           <div class="method-source-code" id="build_standard_horizontal-source">
-            <pre><span class="ruby-comment"># File lib/imaging.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_standard_horizontal</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>)
-  <span class="ruby-identifier">titles</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">'task_id=? and participant_id=?'</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>],<span class="ruby-value">:order=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'title_order Asc'</span>)
-  <span class="ruby-identifier">total_verses</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">:verse_count</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">'task_id=? and participant_id=? and title_type=?'</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>,<span class="ruby-value">1</span>])
-  <span class="ruby-identifier">total_segments</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">'task_id=? and participant_id=? and title_type=?'</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>,<span class="ruby-value">2</span>])
-  <span class="ruby-identifier">total_sections</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">'task_id=? and participant_id=? and title_type=?'</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>,<span class="ruby-value">3</span>])
-  <span class="ruby-identifier">total_divisions</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">'task_id=? and participant_id=? and title_type=?'</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>,<span class="ruby-value">4</span>])
+            <pre><span class="ruby-comment"># File lib/imaging.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_standard_horizontal</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-identifier">titles</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">total_verses</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">:verse_count</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">&#39;task_id=? and user_id=? and title_type=?&#39;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">1</span>])
+  <span class="ruby-identifier">total_segments</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">&#39;task_id=? and user_id=? and title_type=?&#39;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">2</span>])
+  <span class="ruby-identifier">total_sections</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">&#39;task_id=? and user_id=? and title_type=?&#39;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">3</span>])
+  <span class="ruby-identifier">total_divisions</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">count</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">&#39;task_id=? and user_id=? and title_type=?&#39;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">4</span>])
   <span class="ruby-identifier">sz</span> = <span class="ruby-string">&quot;small&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">total_segments</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">8</span>
   <span class="ruby-identifier">size</span> = <span class="ruby-identifier">sz</span> <span class="ruby-operator">||</span> <span class="ruby-string">&quot;large&quot;</span> 
     <span class="ruby-comment"># Begin Processing image</span>
-    <span class="ruby-constant">RVG</span><span class="ruby-operator">::</span><span class="ruby-identifier">dpi</span> = <span class="ruby-value">96</span>
+    <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">RVG</span>.<span class="ruby-identifier">dpi</span> = <span class="ruby-value">96</span>
     <span class="ruby-comment"># Set image size</span>
     <span class="ruby-identifier">i_width</span> = <span class="ruby-value">900</span>
     <span class="ruby-identifier">i_height</span> = <span class="ruby-value">1200</span>
@@ -359,7 +459,7 @@
     <span class="ruby-identifier">height_pixel_unit</span> = <span class="ruby-identifier">pu_height</span><span class="ruby-operator">/</span><span class="ruby-identifier">total_verses</span>
     <span class="ruby-comment"># Create blank new image</span>
     <span class="ruby-identifier">rvg</span> = <span class="ruby-constant">RVG</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">i_width</span>, <span class="ruby-identifier">i_height</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">canvas</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">background_fill</span> = <span class="ruby-string">'white'</span>
+      <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">background_fill</span> = <span class="ruby-string">&#39;white&#39;</span>
       <span class="ruby-comment"># Iterate through all titles</span>
       <span class="ruby-keyword">for</span> <span class="ruby-identifier">title</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">titles</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">title</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -367,7 +467,7 @@
           <span class="ruby-keyword">unless</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;large&quot;</span>
             <span class="ruby-identifier">height</span> = <span class="ruby-identifier">title</span>.<span class="ruby-identifier">verse_count</span>*<span class="ruby-identifier">height_pixel_unit</span>
             <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ptitle</span><span class="ruby-operator">|</span>
-              <span class="ruby-identifier">ptitle</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>, <span class="ruby-identifier">height</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">y_1</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'transparent'</span>, <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'1'</span>)
+              <span class="ruby-identifier">ptitle</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>, <span class="ruby-identifier">height</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">y_1</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;transparent&#39;</span>, <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;black&#39;</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;1&#39;</span>)
               <span class="ruby-identifier">ptitle</span>.<span class="ruby-identifier">text</span>(<span class="ruby-value">4</span>, <span class="ruby-identifier">y_1</span><span class="ruby-operator">+</span><span class="ruby-value">12</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>)
             <span class="ruby-keyword">end</span>
             <span class="ruby-comment"># increment the vertical starting point for the next paragraph title</span>
@@ -380,20 +480,20 @@
             <span class="ruby-identifier">text_anchor</span> = <span class="ruby-identifier">height</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>
             <span class="ruby-identifier">x_anchor</span> = <span class="ruby-value">300</span>
             <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">seg</span><span class="ruby-operator">|</span>
-              <span class="ruby-identifier">seg</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">100</span>,<span class="ruby-identifier">height</span>,<span class="ruby-value">300</span>,<span class="ruby-identifier">y_2</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'transparent'</span>, <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">'1'</span>)
+              <span class="ruby-identifier">seg</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">100</span>,<span class="ruby-identifier">height</span>,<span class="ruby-value">300</span>,<span class="ruby-identifier">y_2</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;transparent&#39;</span>, <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;black&#39;</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;1&#39;</span>)
               <span class="ruby-keyword">if</span> <span class="ruby-identifier">height</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">225</span>
                 <span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">each</span>(<span class="ruby-string">&quot; &quot;</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-                  <span class="ruby-identifier">seg</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">t</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)
+                  <span class="ruby-identifier">seg</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">t</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>)
                   <span class="ruby-identifier">x_anchor</span> <span class="ruby-operator">-=</span> <span class="ruby-value">12</span>
                 }  
               <span class="ruby-keyword">else</span>
-                <span class="ruby-identifier">seg</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)
+                <span class="ruby-identifier">seg</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>)
               <span class="ruby-keyword">end</span>            
             <span class="ruby-keyword">end</span>     
           <span class="ruby-keyword">else</span>
             <span class="ruby-identifier">height</span> = <span class="ruby-identifier">title</span>.<span class="ruby-identifier">verse_count</span>*<span class="ruby-identifier">height_pixel_unit</span>
             <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ptitle</span><span class="ruby-operator">|</span>
-              <span class="ruby-identifier">ptitle</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>, <span class="ruby-identifier">height</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">y_2</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'transparent'</span>, <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'black'</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'1'</span>)
+              <span class="ruby-identifier">ptitle</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>, <span class="ruby-identifier">height</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">y_2</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;transparent&#39;</span>, <span class="ruby-value">:stroke</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;black&#39;</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;1&#39;</span>)
               <span class="ruby-identifier">ptitle</span>.<span class="ruby-identifier">text</span>(<span class="ruby-value">4</span>, <span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-value">12</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>)
             <span class="ruby-keyword">end</span>
           <span class="ruby-keyword">end</span>
@@ -406,14 +506,14 @@
           <span class="ruby-identifier">x_anchor</span> = <span class="ruby-value">400</span>
           <span class="ruby-identifier">x_anchor</span> <span class="ruby-operator">-=</span> <span class="ruby-value">100</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;large&quot;</span>
           <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sec</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">100</span>,<span class="ruby-identifier">height</span>,<span class="ruby-identifier">x_anchor</span>,<span class="ruby-identifier">y_3</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'transparent'</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'black'</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">'1'</span>)
+            <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">100</span>,<span class="ruby-identifier">height</span>,<span class="ruby-identifier">x_anchor</span>,<span class="ruby-identifier">y_3</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;transparent&#39;</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;black&#39;</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;1&#39;</span>)
             <span class="ruby-keyword">if</span> <span class="ruby-identifier">height</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">225</span>
               <span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">each</span>(<span class="ruby-string">&quot; &quot;</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_3</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">t</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)
+                <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_3</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">t</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>)
                 <span class="ruby-identifier">x_anchor</span> <span class="ruby-operator">-=</span> <span class="ruby-value">12</span>
               }
             <span class="ruby-keyword">else</span>
-              <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_3</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)
+              <span class="ruby-identifier">sec</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_3</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>)
             <span class="ruby-keyword">end</span>
             
           <span class="ruby-keyword">end</span>
@@ -429,14 +529,14 @@
           <span class="ruby-identifier">height</span> = <span class="ruby-identifier">title</span>.<span class="ruby-identifier">verse_count</span>*<span class="ruby-identifier">height_pixel_unit</span>
           <span class="ruby-identifier">text_anchor</span> = <span class="ruby-identifier">height</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>
           <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">div</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">100</span>,<span class="ruby-identifier">height</span>,<span class="ruby-identifier">x_anchor</span>,<span class="ruby-identifier">y_4</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'transparent'</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'black'</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">'1'</span>)
+            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">100</span>,<span class="ruby-identifier">height</span>,<span class="ruby-identifier">x_anchor</span>,<span class="ruby-identifier">y_4</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;transparent&#39;</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;black&#39;</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;1&#39;</span>)
             <span class="ruby-keyword">if</span> <span class="ruby-identifier">height</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">225</span>
               <span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">each</span>(<span class="ruby-string">&quot; &quot;</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_4</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">t</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)   
+                <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_4</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">t</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">12</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>)   
                 <span class="ruby-identifier">x_anchor</span> <span class="ruby-operator">-=</span> <span class="ruby-value">12</span>
               }
             <span class="ruby-keyword">else</span>
-              <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_4</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">16</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)
+              <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">x_anchor</span><span class="ruby-operator">+</span><span class="ruby-value">80</span>,<span class="ruby-identifier">y_4</span><span class="ruby-operator">+</span><span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">16</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>)
             <span class="ruby-keyword">end</span>   
           <span class="ruby-keyword">end</span>
           <span class="ruby-comment"># Increment the vertical starting point for the next division</span>
@@ -461,16 +561,21 @@
           <span class="ruby-identifier">text_anchor</span> = <span class="ruby-value">10</span>
           <span class="ruby-identifier">text_position</span> = <span class="ruby-identifier">x_anchor</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">width</span> <span class="ruby-operator">-</span> <span class="ruby-value">40</span>
           <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">div</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-identifier">width</span>,<span class="ruby-identifier">height</span>,<span class="ruby-identifier">x_anchor</span>,<span class="ruby-identifier">y_5</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">'transparent'</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'black'</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">'1'</span>)
-            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">text_position</span>.<span class="ruby-identifier">to_i</span>,<span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'italic'</span>,<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">28</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>)
-            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">text_position</span>.<span class="ruby-identifier">to_i</span><span class="ruby-operator">-</span><span class="ruby-value">24</span>,<span class="ruby-value">15</span>,<span class="ruby-identifier">participant_name</span>(<span class="ruby-identifier">participant_id</span>)<span class="ruby-operator">+</span><span class="ruby-string">&quot; - &quot;</span><span class="ruby-operator">+</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">:long</span>)).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'italic'</span>,<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">10</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>)
+            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-identifier">width</span>,<span class="ruby-identifier">height</span>,<span class="ruby-identifier">x_anchor</span>,<span class="ruby-identifier">y_5</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;transparent&#39;</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;black&#39;</span>, <span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;1&#39;</span>)
+            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">text_position</span>.<span class="ruby-identifier">to_i</span>,<span class="ruby-identifier">text_anchor</span>,<span class="ruby-identifier">title</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;italic&#39;</span>,<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">28</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>)
+            <span class="ruby-identifier">div</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">text_position</span>.<span class="ruby-identifier">to_i</span><span class="ruby-operator">-</span><span class="ruby-value">24</span>,<span class="ruby-value">15</span>,<span class="ruby-identifier">user</span>.<span class="ruby-identifier">fullname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; - &quot;</span><span class="ruby-operator">+</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value">:long</span>)).<span class="ruby-identifier">rotate</span>(<span class="ruby-value">90</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;italic&#39;</span>,<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">10</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;bold&#39;</span>)
           <span class="ruby-keyword">end</span>            
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span> 
+    
     <span class="ruby-comment"># Image Creation complete</span>
-    <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>
-    <span class="ruby-identifier">rvg</span>.<span class="ruby-identifier">draw</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">'public/images/student/'</span><span class="ruby-operator">+</span> <span class="ruby-ivar">@id</span> <span class="ruby-operator">+</span><span class="ruby-string">'_horizontal.jpg'</span>)
+    <span class="ruby-identifier">aname</span> = <span class="ruby-identifier">name_cleaner</span>(<span class="ruby-identifier">task</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">img_path</span> = <span class="ruby-string">&#39;public/images/&#39;</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkpath</span> <span class="ruby-identifier">img_path</span>
+    <span class="ruby-identifier">id</span> = <span class="ruby-identifier">user_id</span>.<span class="ruby-identifier">to_s</span> 
+    <span class="ruby-identifier">rvg</span>.<span class="ruby-identifier">draw</span>.<span class="ruby-identifier">scale</span>(<span class="ruby-value">0.65</span>).<span class="ruby-identifier">write</span>(<span class="ruby-identifier">img_path</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;_&#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">aname</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;_horizontal.jpg&#39;</span>)
+    <span class="ruby-identifier">rvg</span>.<span class="ruby-identifier">draw</span>.<span class="ruby-identifier">destroy!</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- build_standard_horizontal-source -->
           
@@ -486,7 +591,7 @@
         
         <div class="method-heading">
           <span class="method-name">build_standard_vertical</span><span
-            class="method-args">(task_id,participant_id)</span>
+            class="method-args">(task,user_id,title_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -498,12 +603,12 @@
 
           
           <div class="method-source-code" id="build_standard_vertical-source">
-            <pre><span class="ruby-comment"># File lib/imaging.rb, line 145</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_standard_vertical</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>)
-  <span class="ruby-identifier">max_verses</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-value">:verse_count</span>,<span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">'task_id=? AND participant_id=? AND title_type=?'</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">participant_id</span>,<span class="ruby-value">2</span>])
+            <pre><span class="ruby-comment"># File lib/imaging.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_standard_vertical</span>(<span class="ruby-identifier">task</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">title_id</span>)
+  <span class="ruby-identifier">max_verses</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-value">:verse_count</span>,<span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">&#39;task_id=? AND user_id=? AND title_type=?&#39;</span>,<span class="ruby-identifier">task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">2</span>])
   <span class="ruby-identifier">vertical_units</span> = <span class="ruby-value">1200</span><span class="ruby-operator">/</span><span class="ruby-identifier">max_verses</span>
-  <span class="ruby-identifier">segment</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-identifier">ptitles</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>, <span class="ruby-value">:include</span> =<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'ppoints'</span>], <span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">'parent_id=?'</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]])
+  <span class="ruby-identifier">segment</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">title_id</span>)
+  <span class="ruby-identifier">ptitles</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">all</span>
   <span class="ruby-comment"># set default variables</span>
   <span class="ruby-identifier">total_height</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">verse_count</span>.<span class="ruby-identifier">to_f</span>*<span class="ruby-identifier">vertical_units</span>.<span class="ruby-identifier">to_f</span>
   <span class="ruby-identifier">header_height</span> = <span class="ruby-value">55</span>
@@ -512,37 +617,38 @@
   <span class="ruby-identifier">i_center</span> = <span class="ruby-value">150</span>
   <span class="ruby-identifier">i_height</span> = <span class="ruby-identifier">total_height</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">header_height</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-comment"># the 1 extra pixel is for the border or it gets cut off</span>
   <span class="ruby-comment"># Begin creating the image</span>
-  <span class="ruby-constant">RVG</span><span class="ruby-operator">::</span><span class="ruby-identifier">dpi</span> = <span class="ruby-value">96</span>
+  <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">RVG</span>.<span class="ruby-identifier">dpi</span> = <span class="ruby-value">96</span>
   <span class="ruby-identifier">rvg</span> = <span class="ruby-constant">RVG</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">i_width</span>, <span class="ruby-identifier">i_height</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">canvas</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">background_fill</span> = <span class="ruby-string">'white'</span>
+    <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">background_fill</span> = <span class="ruby-string">&#39;white&#39;</span>
     <span class="ruby-comment"># Create header</span>
     <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">h</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>,<span class="ruby-identifier">header_height</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'white'</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'black'</span>,<span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'1'</span>)
+      <span class="ruby-identifier">h</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>,<span class="ruby-identifier">header_height</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;white&#39;</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;black&#39;</span>,<span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;1&#39;</span>)
       <span class="ruby-identifier">vert</span> = <span class="ruby-value">16</span>
-      <span class="ruby-identifier">ha</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">'.'</span>)
+      <span class="ruby-identifier">ha</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">title</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;.&#39;</span>)
       <span class="ruby-identifier">ha</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">hh</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">h</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">i_center</span>,<span class="ruby-identifier">vert</span>,<span class="ruby-identifier">hh</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'italic'</span>,<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)
+        <span class="ruby-identifier">h</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">i_center</span>,<span class="ruby-identifier">vert</span>,<span class="ruby-identifier">hh</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;italic&#39;</span>,<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">14</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">700</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>)
         <span class="ruby-identifier">vert</span> <span class="ruby-operator">+=</span> <span class="ruby-value">16</span>
       }
       
-      <span class="ruby-comment">#h.text(4,32,segment.verse_ref).style(:font_style=&gt;'italic',:font_size=&gt;14)</span>
+      <span class="ruby-comment">#h.text(4,32,segment.verse_ref).style(:font_style=&gt;&#39;italic&#39;,:font_size=&gt;14)</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-comment"># Create Titles</span>
     <span class="ruby-keyword">for</span> <span class="ruby-identifier">pt</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">ptitles</span>
       <span class="ruby-identifier">height</span> = <span class="ruby-identifier">pt</span>.<span class="ruby-identifier">verse_count</span>*<span class="ruby-identifier">vertical_units</span>
       <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">t</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>,<span class="ruby-identifier">height</span>,<span class="ruby-value">0</span>,<span class="ruby-identifier">y_2</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'white'</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'black'</span>,<span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'1'</span>)
-        <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>(<span class="ruby-value">4</span>, <span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-value">12</span>,<span class="ruby-identifier">pt</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'bold'</span>)
+        <span class="ruby-identifier">t</span>.<span class="ruby-identifier">rect</span>(<span class="ruby-value">300</span>,<span class="ruby-identifier">height</span>,<span class="ruby-value">0</span>,<span class="ruby-identifier">y_2</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:fill=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;white&#39;</span>,<span class="ruby-value">:stroke=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;black&#39;</span>,<span class="ruby-value">:stroke_width=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;1&#39;</span>)
+        <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span>(<span class="ruby-value">4</span>, <span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-value">12</span>,<span class="ruby-identifier">pt</span>.<span class="ruby-identifier">title</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">11</span>,<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;italic&#39;</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">700</span>)
       <span class="ruby-keyword">end</span>
       <span class="ruby-comment"># Create ppoints for each paragraph title</span>
       <span class="ruby-identifier">t_2</span> = <span class="ruby-identifier">y_2</span><span class="ruby-operator">+</span><span class="ruby-value">22</span>
       <span class="ruby-keyword">for</span> <span class="ruby-identifier">pp</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">pt</span>.<span class="ruby-identifier">ppoints</span>
-        <span class="ruby-identifier">o</span> = <span class="ruby-constant">Observation</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">pp</span>.<span class="ruby-identifier">observation_id</span>)          
+        <span class="ruby-identifier">o</span> = <span class="ruby-constant">Observation</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">pp</span>.<span class="ruby-identifier">observation_id</span>)          
         <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">g</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
           <span class="ruby-identifier">content</span> = <span class="ruby-identifier">pp</span>.<span class="ruby-identifier">content</span>
           <span class="ruby-identifier">content</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">code</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">pp</span>.<span class="ruby-identifier">content</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">o</span>
+          <span class="ruby-identifier">content</span> = <span class="ruby-identifier">content</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\n/</span>)
           <span class="ruby-identifier">content</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">p</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">i_center</span>,<span class="ruby-identifier">t_2</span>,<span class="ruby-identifier">e</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">10</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">'middle'</span>)
+            <span class="ruby-identifier">p</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">i_center</span>,<span class="ruby-identifier">t_2</span>,<span class="ruby-identifier">e</span>).<span class="ruby-identifier">styles</span>(<span class="ruby-value">:font_size=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">10</span>,<span class="ruby-value">:font_style=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;normal&#39;</span>,<span class="ruby-value">:font_weight=</span><span class="ruby-operator">&gt;</span><span class="ruby-value">400</span>,<span class="ruby-value">:text_anchor=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;middle&#39;</span>,<span class="ruby-value">:fill=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">pp</span>.<span class="ruby-identifier">color</span>)
             <span class="ruby-identifier">t_2</span> <span class="ruby-operator">+=</span> <span class="ruby-value">11</span>
           }                       
         <span class="ruby-keyword">end</span>
@@ -550,8 +656,14 @@
       <span class="ruby-identifier">y_2</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">height</span>
     <span class="ruby-keyword">end</span>      
   <span class="ruby-keyword">end</span> 
-  <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">participant_id</span>.<span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">rvg</span>.<span class="ruby-identifier">draw</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">'public/images/student/'</span><span class="ruby-operator">+</span> <span class="ruby-ivar">@id</span> <span class="ruby-operator">+</span><span class="ruby-string">'_vertical.jpg'</span>)
+  
+  <span class="ruby-comment"># Image built now write it to file</span>
+  <span class="ruby-identifier">aname</span> = <span class="ruby-identifier">name_cleaner</span>(<span class="ruby-identifier">task</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">img_path</span> = <span class="ruby-string">&#39;public/images/&#39;</span>
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">user_id</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkpath</span> <span class="ruby-identifier">img_path</span>
+  <span class="ruby-identifier">rvg</span>.<span class="ruby-identifier">draw</span>.<span class="ruby-identifier">scale</span>(<span class="ruby-value">0.70</span>).<span class="ruby-identifier">write</span>(<span class="ruby-identifier">img_path</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;_&#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">aname</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;_vertical_&#39;</span><span class="ruby-operator">+</span><span class="ruby-identifier">segment</span>.<span class="ruby-identifier">segnum</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&#39;.jpg&#39;</span>)
+  <span class="ruby-identifier">rvg</span>.<span class="ruby-identifier">draw</span>.<span class="ruby-identifier">destroy!</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- build_standard_vertical-source -->
           
@@ -561,6 +673,100 @@
 
         
       </div><!-- build_standard_vertical-method -->
+
+    
+      <div id="method-i-clear_images" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear_images</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clear_images-source">
+            <pre><span class="ruby-comment"># File lib/imaging.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_images</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;public/images/#{user_id.to_s}*&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">my_file</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">my_file</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clear_images-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clear_images-method -->
+
+    
+      <div id="method-i-name_cleaner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">name_cleaner</span><span
+            class="method-args">(raw_string)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This removes non-alphanumeric characters to make legal filenames.</p>
+          
+
+          
+          <div class="method-source-code" id="name_cleaner-source">
+            <pre><span class="ruby-comment"># File lib/imaging.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">name_cleaner</span>(<span class="ruby-identifier">raw_string</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">raw_string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[^A-Za-z0-9_\-\.]/</span>, <span class="ruby-string">&#39;_&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- name_cleaner-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- name_cleaner-method -->
+
+    
+      <div id="method-i-zip_all_charts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">zip_all_charts</span><span
+            class="method-args">(task_id,user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="zip_all_charts-source">
+            <pre><span class="ruby-comment"># File lib/imaging.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">zip_all_charts</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">task</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-identifier">build_all_charts</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;zip public/images/#{user_id.to_s}_#{task.assignment.name} public/images/#{user_id.to_s}*&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- zip_all_charts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- zip_all_charts-method -->
 
     
     </section><!-- protected-instance-method-details -->

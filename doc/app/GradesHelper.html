@@ -64,7 +64,11 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-get_staffnote_url">#get_staffnote_url</a>
+    
     <li><a href="#method-i-letter_grade">#letter_grade</a>
+    
+    <li><a href="#method-i-user_color">#user_color</a>
     
   </ul>
 </nav>
@@ -118,6 +122,8 @@
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
   
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
@@ -173,6 +179,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -194,6 +206,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -231,6 +247,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -250,6 +268,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -302,6 +328,48 @@
     
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-get_staffnote_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_staffnote_url</span><span
+            class="method-args">(noteable_type, noteable_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_staffnote_url-source">
+            <pre><span class="ruby-comment"># File app/helpers/grades_helper.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_staffnote_url</span>(<span class="ruby-identifier">noteable_type</span>, <span class="ruby-identifier">noteable_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">noteable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Document&quot;</span>
+    <span class="ruby-identifier">document_staffnote_path</span>(<span class="ruby-identifier">noteable_id</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">noteable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Ppoint&quot;</span>
+    <span class="ruby-identifier">ppoint_staffnote_path</span>(<span class="ruby-identifier">noteable_id</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">noteable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Title&quot;</span>
+    <span class="ruby-identifier">title_staffnote_path</span>(<span class="ruby-identifier">noteable_id</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">noteable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Charttext&quot;</span>
+    <span class="ruby-identifier">charttext_staffnote_path</span>(<span class="ruby-identifier">noteable_id</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">noteable_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Comment&quot;</span>
+    <span class="ruby-identifier">comment_staffnote_path</span>(<span class="ruby-identifier">noteable_id</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_staffnote_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_staffnote_url-method -->
 
     
       <div id="method-i-letter_grade" class="method-detail ">
@@ -362,6 +430,38 @@
 
         
       </div><!-- letter_grade-method -->
+
+    
+      <div id="method-i-user_color" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_color</span><span
+            class="method-args">(comment,user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_color-source">
+            <pre><span class="ruby-comment"># File app/helpers/grades_helper.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_color</span>(<span class="ruby-identifier">comment</span>,<span class="ruby-identifier">user</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">comment</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;background-color: #{current_user.preference.hlcolor};&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- user_color-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- user_color-method -->
 
     
     </section><!-- public-instance-method-details -->

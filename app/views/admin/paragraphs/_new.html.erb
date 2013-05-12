@@ -1,0 +1,21 @@
+<div id="paragraph_<%= @paragraph.id.to_s %>" class="trow">
+  <%=form_for [:admin, @version, @book, @paragraph], {remote: true} do |f| %>
+    <% f.hidden_field :position %>
+    <div class="cell" style="width:60px;">
+      <%= f.number_field :position, {:disabled=>true,:style=>"width:26px;"} %>
+    </div>
+    <div class="cell" style="width:80px;">
+      <%= f.text_field :startref, {:style=>"width:50px;"}  %>
+    </div>
+    <div class="cell" style="width:80px;">
+      <%= f.text_field :endref, {:style=>"width:50px;"}  %>
+    </div>
+    <div class="cell" style="width:75px;">
+      <%= f.number_field :verse_count, {:style=>"width:50px;"}  %>
+    </div>
+    <div class="cell" style="width:150px;">
+      <%= f.submit :save %> 
+      <%=link_to "cancel", admin_version_book_paragraph_cancel_path(@version,@book,@paragraph),{remote: true} %>
+    </div>
+  <% end %>
+</div>

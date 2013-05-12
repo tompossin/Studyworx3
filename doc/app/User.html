@@ -78,6 +78,12 @@
     
     <li><a href="#method-i-fullname">#fullname</a>
     
+    <li><a href="#method-i-fullname_lnf">#fullname_lnf</a>
+    
+    <li><a href="#method-i-is_administrator">#is_administrator</a>
+    
+    <li><a href="#method-i-is_contributor">#is_contributor</a>
+    
     <li><a href="#method-i-is_school_admin-3F">#is_school_admin?</a>
     
     <li><a href="#method-i-is_school_leader-3F">#is_school_leader?</a>
@@ -145,6 +151,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -199,6 +207,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -220,6 +234,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -257,6 +275,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -276,6 +296,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -348,7 +376,7 @@
 
           
           <div class="method-source-code" id="admin_assistant-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 145</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 164</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_assistant?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span> 
     <span class="ruby-keyword">true</span>
@@ -391,7 +419,7 @@
 
           
           <div class="method-source-code" id="admin_status-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 165</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 184</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_status</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>
     <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -433,7 +461,7 @@
 
           
           <div class="method-source-code" id="coreteam-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">coreteam</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and coreteam = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span>, <span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -465,7 +493,7 @@
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">lastname</span>
 <span class="ruby-keyword">end</span></pre>
@@ -477,6 +505,100 @@
 
         
       </div><!-- fullname-method -->
+
+    
+      <div id="method-i-fullname_lnf" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fullname_lnf</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fullname_lnf-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname_lnf</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lastname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;, &quot;</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- fullname_lnf-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- fullname_lnf-method -->
+
+    
+      <div id="method-i-is_administrator" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_administrator</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_administrator-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_administrator</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_administrator-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_administrator-method -->
+
+    
+      <div id="method-i-is_contributor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_contributor</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_contributor-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_contributor-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_contributor-method -->
 
     
       <div id="method-i-is_school_admin-3F" class="method-detail ">
@@ -500,7 +622,7 @@
 
           
           <div class="method-source-code" id="is_school_admin-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_admin?</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>)
     <span class="ruby-identifier">participant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find_by_school_id</span>(<span class="ruby-identifier">school_id</span>)
@@ -544,7 +666,7 @@
 
           
           <div class="method-source-code" id="is_school_leader-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 97</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_leader?</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>)
     <span class="ruby-identifier">participant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find_by_school_id</span>(<span class="ruby-identifier">school_id</span>)
@@ -585,7 +707,7 @@
 
           
           <div class="method-source-code" id="leader-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 153</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 172</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">leader?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span> 
     <span class="ruby-keyword">true</span>
@@ -619,7 +741,7 @@
 
           
           <div class="method-source-code" id="set_school-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-identifier">p</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:school</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">p</span>
@@ -661,7 +783,7 @@
 
           
           <div class="method-source-code" id="staff-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">staff?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span> 
     <span class="ruby-keyword">true</span>
@@ -704,7 +826,7 @@
 
           
           <div class="method-source-code" id="status-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 118</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">status</span>
   <span class="ruby-identifier">participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and school_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">participant</span>
@@ -741,7 +863,7 @@
 
           
           <div class="method-source-code" id="student-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 129</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 148</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">student?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> 
     <span class="ruby-keyword">true</span>

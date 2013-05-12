@@ -1,0 +1,15 @@
+
+<h3>Debug Session values <button id="debug_toggle" type="button">show/hide</button></h3>
+
+<div id="debug_session" class="invisible">
+  <% session.each do |k,v| %>
+    <p><%= "#{k} = #{v}" %></p>
+  <% end %>
+  <p><%= Time.now.in_time_zone %></p>
+</div>
+  
+<script>
+  $("button").click(function () {
+    $("#debug_session").slideToggle("slow");
+  });
+</script>

@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_task
+  layout "print_discussion", only: [:print,:download]
+  include FormatContent
   
   def index
     @comments = @task.comments.roots  
@@ -28,6 +30,29 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  
+  def print
+    @comments = @task.comments.roots
+    @grading_view = true
+    respond_to do |format|
+      format.html
+      format.pdf do
+        filename = @task.assignment.name+"_"+@task.name
+        content = render_to_string template: "comments/print"
+        output = convert_file(content, current_user, filename, "pdf")
+        send_file(output[:filepath], filename: output[:filename])
+      end
+    end
+  end
+  
+  def download
+    @comments = @task.comments.roots
+    @grading_view = true
+    filename = @task.assignment.name+"_"+@task.name
+    content = render_to_string template: "comments/download"
+    output = convert_file(content, current_user, filename, params[:file_type])
+    send_file(output[:filepath], filename: output[:filename])
   end
   
   # Create a new

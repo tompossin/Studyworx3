@@ -131,6 +131,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -185,6 +187,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -206,6 +214,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -243,6 +255,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -262,6 +276,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -341,6 +363,7 @@ the staff_id of the record.</p>
     <span class="ruby-identifier">grade</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">student_id</span>,<span class="ruby-identifier">scratchpad</span><span class="ruby-operator">:</span> <span class="ruby-identifier">scoresheet</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">staff_id</span> = <span class="ruby-identifier">staff_id</span>
+  <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">returned</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-identifier">grade</span>.<span class="ruby-identifier">save</span>  
 <span class="ruby-keyword">end</span></pre>
           </div><!-- assign_staff_to_student-source -->
@@ -370,7 +393,7 @@ collect page.</p>
 
           
           <div class="method-source-code" id="assign_students_and_assignments_to_staff-source">
-            <pre><span class="ruby-comment"># File app/models/grade.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assign_students_and_assignments_to_staff</span>(<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">assignment_ids</span>,<span class="ruby-identifier">student_ids</span>,<span class="ruby-identifier">staff_id</span>)
   <span class="ruby-identifier">student_ids</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">assignment_ids</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
@@ -450,7 +473,7 @@ student submits the form.</p>
 
           
           <div class="method-source-code" id="duetime-source">
-            <pre><span class="ruby-comment"># File app/models/grade.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/models/grade.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">duetime</span>
   <span class="ruby-identifier">student</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">team</span> = <span class="ruby-identifier">student</span>.<span class="ruby-identifier">coreteam</span>

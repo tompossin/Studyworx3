@@ -125,6 +125,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -179,6 +181,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -200,6 +208,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -237,6 +249,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -256,6 +270,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -329,10 +351,11 @@
             <pre><span class="ruby-comment"># File app/models/assignment.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">duetime</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">team</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;coreteam = ?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">team</span>
-    <span class="ruby-identifier">duetime</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;team_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">team</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">duetime</span> = <span class="ruby-constant">Duedate</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;team_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">team</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">team</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">duetime</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">duetime</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- duetime-source -->

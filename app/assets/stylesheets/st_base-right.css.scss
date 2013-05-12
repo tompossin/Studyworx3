@@ -4,8 +4,8 @@
 article {
   float: left;
   background-color: rgba(255,255,255,.75);
-  padding: 10px;
-  width: 100%;
+  padding: 1%;
+  width: 98%;
   min-height: 60%;
   border: 1px solid gray;
   border-radius:10px;
@@ -13,106 +13,36 @@ article {
 
 aside {
   float:right;
-  width:36%;
+  width:34%;
   border:2px solid #cdcdcd;
   border-radius:10px;
   box-shadow: 12px 10px 8px #444444;
-  padding: .75%;
   margin-top: 0px;
   background-color: rgba(255,255,255,.75);
   font-size: 10pt;
-}
-
-header {
-  height:75px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding-bottom: 10px;
-  border-bottom: solid 1px gray;
-}
-
-footer {
-  
-}
-
-#content {
-  float: left;
-  height: 96%;
-  float:left;
-  margin-top: 30px;
-  width: 100%;
+  margin-right: .3%;
 }
 
 #content-large {
   float:left;
-  width:59%;
+  width:64%;
+  margin-left: .2%;
 }
 
-#breadcrumbs {
-  position: fixed;
-  background-color: white;
-  top: 0px;
-  right: 34%;
-  width: 36%;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  box-shadow: 3px 3px 2px #888888;
-  padding-bottom: 3px;
-  padding-top: 3px;
-}
 
-#editor_container {
-  height: 100%;
-}
-
-#preview {
-  position: absolute;
-  overflow: auto;
-  background-color: white;
-  border-radius: 10px;
-  border-top: solid 2px gray;
-  border-left: solid 1px gray;
-  border-right: solid 3px gray;
-  border-bottom: solid 5px gray;
-  box-shadow: 10px 10px 5px #000000;
-  top: 40px;
-  width: 62%;
-  height: 90%;
-  margin-left: 18px;
-  padding: 5px;
+footer {
+  
 }
 
 #current_school {
   
 }
 
-#header {
-  width: 100%;
-	background-color:#FFFFDD;
-	margin-bottom: 0px;
-}
-
-#nav_heading {
-  float:right;
-  width:100%;
-}
-
-#nav_heading_content {
-  float:left;
-  width:65%
-}
-
-#nav_body_content {
-  float:left;
-  height: 97%;
-  width:99%;
-}
-
 #popup {
   display:none;
   position: fixed;
-  margin-left: 62%;
-  width:36%;
+  margin-left: 65%;
+  width:32%;
   border-left:2px solid #787878;border-right:2px solid #787878;border-radius:10px;
   box-shadow: 10px 10px 5px #000000;
   padding:10px;
@@ -154,58 +84,6 @@ footer {
   background-color: #bfbfbf;
 }
 
-.article_content {
-  background-color: rgba(255,255,255,.8);
-  text-align: justify;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.fixed_position {
-  position: fixed;
-  background-color: black;
-}
-
-.box_trans {
-  background-color: rgba(0,0,0,.8);
-  border-radius: 8px;
-  padding:10px;
-  margin: 10px;
-  color: white;
-}
-.box_paper {
-  float:left;
-  overflow: auto;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  width: 96%;
-  height: 100%;
-  min-height: 200px;
-  padding: 8px;
-}
-.floatbox_trans {
-  float: left;
-  background-color: rgba(0,0,0,.8);
-  border-radius: 8px;
-  padding:10px;
-  margin: 10px;
-  color: white;
-}
-
-.float_left {
-  float: left;
-  width: 100%;
-  margin-top:4px;
-  margin-bottom:4px;
-  a {
-    margin-left: 8px;
-  }
-}
-
-.hr_short {
-  width: 20%;
-}
-
 .more {
   background-color: rgba(255,255,255,.4);
   border-bottom-left-radius: 10px;
@@ -220,7 +98,9 @@ footer {
 
 .msg_container {
   float:left;
-  width: 100%;
+  width: 98%;
+  padding-left: 1%;
+  margin-left: 1%;
   border-left: 1px solid gray;
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
@@ -256,7 +136,7 @@ footer {
   border-bottom-left-radius: 20px;
   margin-bottom: 10px;
   box-shadow: 3px 3px 2px #888888;
-  padding:3%;
+  padding:2%;
 }
 
 .reply_link {

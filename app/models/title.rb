@@ -116,28 +116,22 @@ class Title < ActiveRecord::Base
   
   # This finds the children of the current title
   def find_ttl_children(next_ttl=nil)    
-    unless next_ttl == nil # Check if this is the last title of this type
-      ttype = self.title_type - 1 # Set ttype to Start looking for children one level down
-      while ttype > 0 # If children exist get them, otherwise look one more level down
-        if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
+    ttype = self.title_type - 1 # Set ttype to Start looking for children one level down
+    while ttype > 0 # If children exist get them, otherwise look one more level down
+      if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
+        unless next_ttl == nil # Check if this is the last title of this type
           return Title.where("task_id = ? and user_id = ? and title_type = ? and position < ? and position > ?",self.task_id,self.user_id,ttype,next_ttl.position,self.position).all
-        end
-        ttype -= 1
-      end
-    else # This is the last title of this type, same as above except for return query
-      ttype = self.title_type - 1
-      while ttype > 0
-        if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
+        else # this is the last title of this type
           return Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",self.task_id,self.user_id,ttype,self.position).all
         end
-        ttype -= 1 
       end
+      ttype -= 1
     end
   end
   
   # This builds the title heirarchy and counts the verses for each parent title.
   # Iterates through the title types staring with type 2 (segments) since this is the lowest level of parent title.
-  # * This also adds serment numbers to segment titles
+  # * This also adds segment numbers to segment titles
   def self.build_tree(task_id,user_id)
     t_types = [2,3,4,5]
     t_types.each do |tt| 

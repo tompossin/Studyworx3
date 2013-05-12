@@ -1,0 +1,17 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Admin Tools", admin_tools_path %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <p class="title larger bolder">Available Bible Versions</p>
+    <p><%=link_to "new", new_admin_version_path %></p>
+    <div class="theader">
+      <span class="cell" style="width:15%;">Name</span>
+      <span class="cell" style="width:40%;">Admin</span>
+    </div>
+    <%= render @versions if @versions %>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

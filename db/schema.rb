@@ -229,14 +229,14 @@ ActiveRecord::Schema.define(:version => 20130504131206) do
 
   create_table "paragraphs", :force => true do |t|
     t.integer  "book_id"
-    t.string   "content",     :limit => 50, :null => false
-    t.integer  "position",                  :null => false
-    t.string   "startref",    :limit => 20, :null => false
-    t.string   "endref",      :limit => 20, :null => false
-    t.integer  "verse_count",               :null => false
-    t.integer  "version_id",                :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "content",     :limit => 50
+    t.integer  "position",                                 :null => false
+    t.string   "startref",    :limit => 20
+    t.string   "endref",      :limit => 20
+    t.integer  "verse_count",               :default => 1, :null => false
+    t.integer  "version_id",                               :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   add_index "paragraphs", ["book_id"], :name => "bookId"
@@ -277,9 +277,10 @@ ActiveRecord::Schema.define(:version => 20130504131206) do
     t.integer  "user_id"
     t.string   "theme",      :limit => 100, :default => "base"
     t.string   "bgcolor",                   :default => "white"
+    t.string   "hlcolor",    :limit => 20,  :default => "#BEF5BC", :null => false
     t.integer  "rows",                      :default => 20
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.boolean  "wallpaper",                 :default => false
   end
 
@@ -304,6 +305,7 @@ ActiveRecord::Schema.define(:version => 20130504131206) do
   end
 
   create_table "schools", :force => true do |t|
+    t.integer  "user_id",               :null => false
     t.integer  "version_id"
     t.integer  "language_id"
     t.string   "name"
@@ -319,7 +321,6 @@ ActiveRecord::Schema.define(:version => 20130504131206) do
     t.string   "timezone"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
-    t.integer  "owner_id"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"

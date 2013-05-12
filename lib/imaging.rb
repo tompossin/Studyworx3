@@ -16,6 +16,7 @@ protected
   end
 
   def build_standard_horizontal(task_id,user_id)
+    clear_images(user_id)
     user = User.find(user_id)
     task = Task.find(task_id)
     titles = Title.where("task_id = ? and user_id = ?",task_id,user_id).all
@@ -64,7 +65,7 @@ protected
               canvas.g do |seg|
                 seg.rect(100,height,300,y_2).styles(:fill =>'transparent', :stroke => 'black', :stroke_width=> '1')
                 if height < 225
-                  title.title.each(" "){|t|
+                  title.title.split(" ").each {|t|
                     seg.text(x_anchor+80,y_2+text_anchor,t).rotate(90).styles(:font_size=>12,:font_weight=>'bold',:text_anchor=>'middle')
                     x_anchor -= 12
                   }  
@@ -90,7 +91,7 @@ protected
             canvas.g do |sec|
               sec.rect(100,height,x_anchor,y_3).styles(:fill =>'transparent',:stroke=>'black', :stroke_width=> '1')
               if height < 225
-                title.title.each(" "){|t|
+                title.title.split(" ").each {|t|
                   sec.text(x_anchor+80,y_3+text_anchor,t).rotate(90).styles(:font_size=>12,:font_weight=>'bold',:text_anchor=>'middle')
                   x_anchor -= 12
                 }
@@ -113,7 +114,7 @@ protected
             canvas.g do |div|
               div.rect(100,height,x_anchor,y_4).styles(:fill =>'transparent',:stroke=>'black', :stroke_width=> '1')
               if height < 225
-                title.title.each(" "){|t|
+                title.title.split(" ").each {|t| # This method does not exist
                   div.text(x_anchor+80,y_4+text_anchor,t).rotate(90).styles(:font_size=>12,:font_weight=>'bold',:text_anchor=>'middle')   
                   x_anchor -= 12
                 }

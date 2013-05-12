@@ -4,8 +4,8 @@ class TeamsController < ApplicationController
   
   # Display all the users current teams
   def index
-    @teams_i_own = Team.find_all_by_owner_id(current_user.id)
-    @my_teams = current_user.teams
+    @teams_i_own = Team.all_i_own(current_user).sorted
+    @my_teams = current_user.teams.sorted
     respond_to do |format|
       format.html
     end
@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
   # Show a single teams details
   def show
     @team = Team.find(params[:id])
-    @members = @team.users.all
+    @members = @team.users.order_by_lastname
 
     respond_to do |format|
       format.js
@@ -22,16 +22,14 @@ class TeamsController < ApplicationController
   end
     
   # load the page used to add and remove members
+  # TODO Need to filter the lists better. Core teams need to be from the current school.
+  # Other personal teams can be anybody.
+  # Only school_admins should see the core team checkbox.
   def edit
     @team = Team.find(params[:id])
-    @members = @team.users.all
-    
-    if session[:school_id]
-      @school = School.find(session[:school_id])
-      @users = @school.users
-    else
-      @users = User.limit(20).all
-    end
+    @members = @team.users.order_by_lastname
+    @school = School.find(@team.school_id)
+    @users = @school.users.order_by_lastname
 
     respond_to do |format|
       format.js
@@ -50,7 +48,7 @@ class TeamsController < ApplicationController
   
   def create
     @team = current_user.teams.create(params[:team])
-    @members = @team.users.all
+    @members = @team.users.order_by_lastname
 
     respond_to do |format|
       unless @team.coreteam == "1" and current_user.role > 2
@@ -71,7 +69,7 @@ class TeamsController < ApplicationController
     respond_to do |format|
       unless params[:team][:coreteam] == "1" and current_user.role > 2
         if @team.update_attributes(params[:team])
-          @members = @team.users.all
+          @members = @team.users.order_by_lastname
           format.js 
         else
           format.js {render("shared/save_failure")}
@@ -87,8 +85,8 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.users.clear
     @team.destroy
-    @teams_i_own = Team.find_all_by_owner_id(current_user.id)
-    @my_teams = current_user.teams
+    @teams_i_own = Team.all_i_own(current_user)
+    @my_teams = current_user.teams.sorted
 
     respond_to do |format|
       if @team.destroy
@@ -110,9 +108,9 @@ class TeamsController < ApplicationController
   # Adds or Removes members from a team
   def memberships
     @team = Team.find(params[:id])
-    @members = @team.users.all
+    @members = @team.users.order_by_lastname
     school = School.find(@team.school_id)
-    @users = school.users.all
+    @users = school.users.order_by_lastname
 
     respond_to do |format|
       format.js
@@ -125,7 +123,7 @@ class TeamsController < ApplicationController
     user = User.find(params[:user_id])
     @team = Team.find(params[:id]) 
     school = School.find(@team.school_id) 
-    @users = school.users.all
+    @users = school.users.order_by_lastname
     
     respond_to do |format|
       if @team.add_member(user)
@@ -145,7 +143,7 @@ class TeamsController < ApplicationController
     school = School.find(@team.school_id)
     
     @members = @team.users
-    @users = school.users.all
+    @users = school.users.order_by_lastname
     
     respond_to do |format|
       format.js {render :memberships }

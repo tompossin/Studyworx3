@@ -5,6 +5,7 @@ class StaffnotesController < ApplicationController
   
   def document
     @document = Document.find(params[:document_id])
+    @name = @document.task.name
     respond_to do |format|
       format.js
     end
@@ -12,6 +13,7 @@ class StaffnotesController < ApplicationController
   
   def title
     @title = Title.find(params[:title_id])
+    @name = @title.task.name
     respond_to do |format|
       format.js
     end
@@ -19,6 +21,7 @@ class StaffnotesController < ApplicationController
   
   def ppoint
     @ppoint = Ppoint.find(params[:ppoint_id])
+    @name = @ppoint.title.title
     respond_to do |format|
       format.js
     end
@@ -26,6 +29,8 @@ class StaffnotesController < ApplicationController
   
   def charttext
     @charttext = Charttext.find(params[:charttext_id])
+    title = @charttext.title
+    @name = title.title+" - Segment # "+title.segnum.to_s
     respond_to do |format|
       format.js
     end
@@ -33,6 +38,8 @@ class StaffnotesController < ApplicationController
   
   def comment
     @comment = Comment.find(params[:comment_id])
+    @name = @comment.task.name
+    @description = @comment.task.help
     respond_to do |format|
       format.js
     end

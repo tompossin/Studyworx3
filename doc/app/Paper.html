@@ -64,7 +64,21 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-all_drafts">::all_drafts</a>
+    
+    <li><a href="#method-c-all_published">::all_published</a>
+    
+    <li><a href="#method-i-tally_votes">#tally_votes</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -114,6 +128,8 @@
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
   
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
@@ -169,6 +185,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -190,6 +212,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -227,6 +253,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -246,6 +274,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -296,6 +332,108 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-all_drafts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_drafts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_drafts-source">
+            <pre><span class="ruby-comment"># File app/models/paper.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_drafts</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;draft = ?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_drafts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_drafts-method -->
+
+    
+      <div id="method-c-all_published" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_published</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_published-source">
+            <pre><span class="ruby-comment"># File app/models/paper.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_published</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;published = ?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_published-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_published-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-tally_votes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tally_votes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="tally_votes-source">
+            <pre><span class="ruby-comment"># File app/models/paper.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">tally_votes</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;approved = ?&quot;</span>, <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- tally_votes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- tally_votes-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

@@ -141,6 +141,8 @@
   
     <li><a href="../Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="../Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="../Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="../Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -195,6 +197,12 @@
   
     <li><a href="../Color.html">Color</a>
   
+    <li><a href="../Comment.html">Comment</a>
+  
+    <li><a href="../CommentsController.html">CommentsController</a>
+  
+    <li><a href="../CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="../Document.html">Document</a>
   
     <li><a href="../DocumentsController.html">DocumentsController</a>
@@ -216,6 +224,10 @@
     <li><a href="../Help.html">Help</a>
   
     <li><a href="../HomeController.html">HomeController</a>
+  
+    <li><a href="../ImagesController.html">ImagesController</a>
+  
+    <li><a href="../ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="../Imaging.html">Imaging</a>
   
@@ -253,6 +265,8 @@
   
     <li><a href="../ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="../ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="../Review.html">Review</a>
   
     <li><a href="../ReviewsController.html">ReviewsController</a>
@@ -272,6 +286,14 @@
     <li><a href="../Settings.html">Settings</a>
   
     <li><a href="../SharedController.html">SharedController</a>
+  
+    <li><a href="../Staffnote.html">Staffnote</a>
+  
+    <li><a href="../StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="../StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="../State.html">State</a>
   
     <li><a href="../Task.html">Task</a>
   
@@ -348,7 +370,7 @@
   <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">school_id</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">showmod_admin_assignments_path</span>(<span class="ruby-value">:mod_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">module</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Assignment was successfully created.'</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">showmod_admin_assignments_path</span>(<span class="ruby-value">:mod_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">module</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Assignment was successfully created.&#39;</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;new&quot;</span> }
     <span class="ruby-keyword">end</span>
@@ -387,7 +409,7 @@
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">destroy</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">showmod_admin_assignments_path</span>(<span class="ruby-identifier">mod_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@mod</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Assignment was Deleted.'</span>}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">showmod_admin_assignments_path</span>(<span class="ruby-identifier">mod_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@mod</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Assignment was Deleted.&#39;</span>}
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">showmod_admin_assingments_path</span>(<span class="ruby-identifier">mod_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@mod</span>), <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Failed to delete assignment.&quot;</span>}
     <span class="ruby-keyword">end</span>
@@ -548,7 +570,7 @@
           <div class="method-source-code" id="showmod-source">
             <pre><span class="ruby-comment"># File app/controllers/admin/assignments_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">showmod</span>
-  <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:module</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:mod_id</span>]).<span class="ruby-identifier">order</span>(<span class="ruby-string">'position ASC'</span>)
+  <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:module</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:mod_id</span>]).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;position ASC&#39;</span>)
   <span class="ruby-ivar">@module</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:mod_id</span>]
   
 <span class="ruby-keyword">end</span></pre>
@@ -582,11 +604,11 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sort</span>
   <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:module</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:mod_id</span>])
   <span class="ruby-ivar">@assignments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">position</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">'assignment'</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">position</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;assignment&#39;</span>].<span class="ruby-identifier">index</span>(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">a</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-keyword">end</span> 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">'shared/save_success'</span>}
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&#39;shared/save_success&#39;</span>}
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- sort-source -->
@@ -621,9 +643,9 @@
   <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_admin_assignment_path</span>(<span class="ruby-ivar">@assignment</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">'Assignment was successfully saved.'</span>}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_admin_assignment_path</span>(<span class="ruby-ivar">@assignment</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Assignment was successfully saved.&#39;</span>}
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_admin_assignment_path</span>(<span class="ruby-ivar">@assignment</span>), <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">'Assignment was not saved'</span>}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">edit_admin_assignment_path</span>(<span class="ruby-ivar">@assignment</span>), <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Assignment was not saved&#39;</span>}
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

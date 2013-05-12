@@ -1,0 +1,17 @@
+<div id="row_<%=duedate.id%>" class="trow">
+  <span class="cell" style="width:20%;">
+    <%= duedate.assignment.name %>
+  </span>
+  <div id="duedate_<%=duedate.id%>">
+    <span class="cell" style="width:60%;">
+      <% unless duedate.duedate.nil? %>
+        <%= Time.zone.parse(duedate.duedate.to_s).to_formatted_s(:long_ordinal) %>
+      <% else %>
+        Please set a due date.
+      <% end %>
+    </span>
+    <span class="cell" style="width:10%;"> 
+      <%=link_to "Edit", edit_admin_duedate_path(duedate),{remote: true} %>
+    </span>
+  </div>
+</div>

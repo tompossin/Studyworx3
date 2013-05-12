@@ -1,14 +1,11 @@
 <!--This is the assignment toolbar on the homeroom page -->
 <div class="float_left">
-  <h2>Assignments</h2>
-  <div class="toolbar">
-    <span class="cell title large" >Current Assignments</span>
-    <span class="cell"><%=link_to(image_tag("gray/previous.png",size: "16x16"),root_path,{title: "View previous Assignments"})%></span>
-    <span class="cell"><%=link_to(image_tag("gray/next.png", size: "16x16"),root_path,{title: "View all Assignments"})%></span>
-    <span class="cell"><%=link_to(image_tag("gray/addressbook.png", size: "16x16"),school_grades_path(@school),{title: "View Grades"})%></span>
-  </div>
-  <p>&nbsp;</p>
+  <p class="title largest bolder">Grades</p>
+    <p class="cell title large">
+      View your current Grades <%=link_to(image_tag("gray/addressbook.png", size: "16x16"),school_grades_path(@school),{title: "View your Grades"})%>     
+    </p>
 
+  <p class="title largest bolder">Assignments</p>
     <%= render @assignments unless current_user.staff? %>
     <%= render 'team_assignments' if current_user.staff? %>
 </div>

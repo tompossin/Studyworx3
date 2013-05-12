@@ -82,6 +82,8 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-all_user">#all_user</a>
+    
     <li><a href="#method-i-assignment_instructions">#assignment_instructions</a>
     
     <li><a href="#method-i-destroy">#destroy</a>
@@ -98,7 +100,15 @@
     
     <li><a href="#method-i-print">#print</a>
     
+    <li><a href="#method-i-related_documents">#related_documents</a>
+    
     <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-sidebar">#sidebar</a>
+    
+    <li><a href="#method-i-sidebar_edit">#sidebar_edit</a>
+    
+    <li><a href="#method-i-staffnote">#staffnote</a>
     
     <li><a href="#method-i-task_instructions">#task_instructions</a>
     
@@ -107,6 +117,8 @@
     <li><a href="#method-i-update">#update</a>
     
     <li><a href="#method-i-update_endnote">#update_endnote</a>
+    
+    <li><a href="#method-i-update_staffnote">#update_staffnote</a>
     
   </ul>
 </nav>
@@ -160,6 +172,8 @@
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
   
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
@@ -215,6 +229,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -236,6 +256,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -273,6 +297,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -292,6 +318,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -346,6 +380,39 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-all_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_user</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>all_user_documents_path documents/all/user</p>
+          
+
+          
+          <div class="method-source-code" id="all_user-source">
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_user</span>
+  <span class="ruby-ivar">@documents</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:assignment</span>,<span class="ruby-value">:task</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">reorder</span>(<span class="ruby-string">&quot;assignments.name ASC&quot;</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:related_documents</span>}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_user-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_user-method -->
+
+    
       <div id="method-i-assignment_instructions" class="method-detail ">
         
         <div class="method-heading">
@@ -362,7 +429,7 @@
 
           
           <div class="method-source-code" id="assignment_instructions-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 118</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 180</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">assignment_instructions</span>
   <span class="ruby-identifier">d</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">assignment</span>
@@ -397,7 +464,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 151</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">first</span>
   <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">destroy</span>
@@ -427,22 +494,19 @@
 
         <div class="method-description">
           
-          
+          <p>This creates and downloads the requested file type</p>
           
 
           
           <div class="method-source-code" id="download-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">download</span>
   <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and task_id = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>]).<span class="ruby-identifier">first</span>
   <span class="ruby-identifier">content</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;documents/download&quot;</span>
-  <span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
-  <span class="ruby-identifier">assignment</span> = <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span>
-  <span class="ruby-identifier">task</span> = <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">task</span>.<span class="ruby-identifier">name</span>
-  <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">assignment</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">task</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/ /</span>, <span class="ruby-string">'_'</span>)
+  <span class="ruby-identifier">filename</span> = <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@document</span>.<span class="ruby-identifier">task</span>.<span class="ruby-identifier">name</span>
   
-  <span class="ruby-identifier">output</span> = <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_type</span>])
-  <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">output</span>[<span class="ruby-value">:filepath</span>], <span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">output</span>[<span class="ruby-value">:filename</span>])
+  <span class="ruby-identifier">download</span> = <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_type</span>])
+  <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">download</span>[<span class="ruby-value">:filepath</span>], <span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">download</span>[<span class="ruby-value">:filename</span>])
 <span class="ruby-keyword">end</span></pre>
           </div><!-- download-source -->
           
@@ -470,7 +534,7 @@
 
           
           <div class="method-source-code" id="endnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">endnote</span>
   <span class="ruby-ivar">@endnote</span> = <span class="ruby-constant">Endnote</span>.<span class="ruby-identifier">find_by_document_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -629,6 +693,39 @@
       </div><!-- print-method -->
 
     
+      <div id="method-i-related_documents" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">related_documents</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>task_related_documents_path(@task) /task/:task_id/documents/related</p>
+          
+
+          
+          <div class="method-source-code" id="related_documents-source">
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">related_documents</span>
+  <span class="ruby-ivar">@documents</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:assignment</span>,<span class="ruby-value">:task</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- related_documents-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- related_documents-method -->
+
+    
       <div id="method-i-show" class="method-detail ">
         
         <div class="method-heading">
@@ -662,6 +759,109 @@
       </div><!-- show-method -->
 
     
+      <div id="method-i-sidebar" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sidebar</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>document_sidebar_view_path(@document) document/:document_id/sidebar</p>
+          
+
+          
+          <div class="method-source-code" id="sidebar-source">
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sidebar</span>
+  <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sidebar-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sidebar-method -->
+
+    
+      <div id="method-i-sidebar_edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sidebar_edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>document_sidebar_edit_path(@document) document/:document_id/sidebar/edit</p>
+          
+
+          
+          <div class="method-source-code" id="sidebar_edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 96</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sidebar_edit</span>
+  <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sidebar_edit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sidebar_edit-method -->
+
+    
+      <div id="method-i-staffnote" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">staffnote</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="staffnote-source">
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">staffnote</span>
+  <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
+  <span class="ruby-ivar">@staffnote</span> = <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">staffnotes</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@staffnote</span>
+    <span class="ruby-ivar">@staffnote</span> = <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">staffnotes</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">assignment_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- staffnote-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- staffnote-method -->
+
+    
       <div id="method-i-task_instructions" class="method-detail ">
         
         <div class="method-heading">
@@ -678,7 +878,7 @@
 
           
           <div class="method-source-code" id="task_instructions-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 128</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 190</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">task_instructions</span>
   <span class="ruby-identifier">d</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
   <span class="ruby-ivar">@task</span> = <span class="ruby-identifier">d</span>.<span class="ruby-identifier">task</span>
@@ -713,7 +913,7 @@
 
           
           <div class="method-source-code" id="toggle_type-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 138</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 200</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">toggle_type</span>
   <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">toggle_type</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -749,12 +949,12 @@
 
         <div class="method-description">
           
-          <p>Updates document</p>
+          <p>Updates document (by the owner)</p>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">first</span>
 
@@ -797,7 +997,7 @@
 
           
           <div class="method-source-code" id="update_endnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 106</span>
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_endnote</span>
   <span class="ruby-ivar">@endnote</span> = <span class="ruby-constant">Endnote</span>.<span class="ruby-identifier">find_by_document_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:document_id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -816,6 +1016,48 @@
 
         
       </div><!-- update_endnote-method -->
+
+    
+      <div id="method-i-update_staffnote" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_staffnote</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>update staffnote only (by the staff)</p>
+          
+
+          
+          <div class="method-source-code" id="update_staffnote-source">
+            <pre><span class="ruby-comment"># File app/controllers/documents_controller.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_staffnote</span>
+  <span class="ruby-ivar">@document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">staff_note</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:document</span>][<span class="ruby-value">:staff_note</span>]
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@document</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>}
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_failed&quot;</span>}
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_staffnote-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_staffnote-method -->
 
     
     </section><!-- public-instance-method-details -->

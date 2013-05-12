@@ -23,9 +23,7 @@ class ChartsController < ApplicationController
     end
   end
   
-  # This is the main page for editing insides/outsides. It's the charting homepage. 
-  # TODO build a model method for checking book size and loading appropriate titles a ppoints
-  # INFO this could be worked into the build_tree method.
+  # This is the main page for editing insides/outsides. It's the charting homepage.
   def charting
     state = State.find_or_create_by_user_id(current_user.id)
     unless state.uptodate
@@ -43,11 +41,18 @@ class ChartsController < ApplicationController
     build_all_charts(@task.id,current_user.id)
     respond_to do |format|
       format.html
+      format.pdf do
+        filename = @task.assignment.name+"_"+@task.name
+        content = render_to_string template: "charts/print"
+        output = convert_file(content, current_user, filename, "pdf")
+        send_file(output[:filepath], filename: output[:filename])
+      end
     end
   end
   
   def download
-    @verticals = Title.get_vertical_charts(@task.id,current_user.id)
+    @verticals = Title.get_segments(@task.id,current_user.id)
+    build_all_charts(@task.id,current_user.id)
     content = render_to_string template: "charts/download"
     filename = @task.assignment.name+"_"+@task.name
     
@@ -58,6 +63,7 @@ class ChartsController < ApplicationController
   # Charting toolkit
   def tools
     @segments = Title.get_segments(@task.id,current_user.id)
+    @vertical = @task.titles.new(segnum: 0) # this is necessary when this is loaded seperate from the rest of the charting page.
     @id = 0
     respond_to do |format|
       format.js

@@ -1,6 +1,6 @@
 <% content_for :breadcrumbs do %>
   <%=link_to "Due-Date Home Page", admin_duedates_path %>
-  <%=link_to "Re-order list", admin_duedates_list_path(team: @team.id,module: @mod_id) %>
+  <%=link_to "Re-order list", list_admin_duedates_path(team: @team.id,module: @mod_id) %>
 <% end %>
 <div id="content-large">
   <article>
@@ -15,16 +15,7 @@
           <span class="cell" style="width:20%;">Name</span>
           <span class="cell" style="width:50%;">Due Date</span>
         </div>
-      <% for d in @duedates %>
-        <div id="row_<%=d.id%>" class="trow">
-          <span class="cell" style="width:20%;">
-            <%= d.assignment.name %>
-          </span>
-          <div id="duedate_<%=d.id%>">
-            <%= render "show", {d: d} %>
-          </div>
-        </div>
-      <% end %>
+        <%= render partial: "duedate", collection:  @duedates %>       
     </div> 
   </article>
 </div>

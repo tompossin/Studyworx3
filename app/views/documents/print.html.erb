@@ -2,6 +2,9 @@
   <div class="noprint">
     <%= link_to "close", :back %>
   </div>
+  <h2>
+    <%= @document.assignment.name %>
+  </h2>
   <%= smart_format(@document.content_type, @document.content) %>
   <h4>
     Footnotes: 

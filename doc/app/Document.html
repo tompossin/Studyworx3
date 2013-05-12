@@ -129,6 +129,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -183,6 +185,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -204,6 +212,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -241,6 +253,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -260,6 +274,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -330,7 +352,7 @@
 
           
           <div class="method-source-code" id="find_or_create-source">
-            <pre><span class="ruby-comment"># File app/models/document.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/models/document.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_or_create</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">school_id</span>,<span class="ruby-identifier">assignment_id</span>,<span class="ruby-identifier">task_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and task_id = ?&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">task_id</span>).<span class="ruby-identifier">first</span>
     <span class="ruby-identifier">document</span>
@@ -368,7 +390,7 @@
 
           
           <div class="method-source-code" id="toggle_type-source">
-            <pre><span class="ruby-comment"># File app/models/document.rb, line 22</span>
+            <pre><span class="ruby-comment"># File app/models/document.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">toggle_type</span>(<span class="ruby-identifier">document_id</span>)
   <span class="ruby-identifier">document</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">document_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">document</span>.<span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
@@ -411,7 +433,7 @@
 
           
           <div class="method-source-code" id="as_file-source">
-            <pre><span class="ruby-comment"># File app/models/document.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/document.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">as_file</span>
   
 <span class="ruby-keyword">end</span></pre>

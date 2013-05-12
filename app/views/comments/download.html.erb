@@ -1,0 +1,23 @@
+<article>
+  <section class="topic">
+    <h3><%= @task.assignment.name %> Discussion Topic</h3>
+    <%= formatter(@task.help) %>
+  </section>
+  <section>
+    <% @comments.each do |c| %>
+      <blockquote>
+        <%= render partial: "comment",locals: {c: c, t: @task, u: current_user }  %>
+        <% c.children.each do |cc| %>
+          <blockquote>
+            <%= render partial: "comment", locals: {c: cc, t: @task, u: current_user}  %>
+            <% cc.children.each do |ccc| %>
+              <blockquote>
+                <%= render partial: "comment", locals: {c: ccc, t: @task, u: current_user}  %>
+              </blockquote> 
+            <% end %>
+          </blockquote> 
+        <% end %>
+      </blockuqote>
+    <% end %>
+  </section>
+</article>

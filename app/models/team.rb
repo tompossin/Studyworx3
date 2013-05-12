@@ -3,12 +3,13 @@
 class Team < ActiveRecord::Base
   belongs_to :school
   has_and_belongs_to_many :users
-  has_many :duedates
+  has_many :duedates, inverse_of: :team
   
+  scope :sorted, order: "school_id,coreteam DESC"
   
   attr_accessible :description, :name, :owner_id, :school_id, :coreteam
   ##########################################################
-  validates_presence_of :name, :owner_id
+  validates_presence_of :name, :owner_id, :school_id
   
   # Adds a member(user) to a team.
   #  Usage: @team.add_member(@user_object)
@@ -36,23 +37,27 @@ class Team < ActiveRecord::Base
     end
   end
   
+  def self.all_i_own(user)
+    Team.where("owner_id = ?",user.id)
+  end
+  
 
   # Returns a collection of duedates by team and module
   # school = School.object, mod_id = assignment.module
-  #  Usage: @team.find_or_create_team_duedates_by_module(@school,params[:module])
-  def find_or_create_team_duedates_by_module(school,mod_id)
+  #  Usage: Team.find_or_create_team_duedates_by_module(@school,@team,params[:module])
+  def self.find_or_create_team_duedates_by_module(school,team,mod_id)
     assignments = school.assignments.where(module: mod_id).all
     tdd_ids = []
     assignments.each do |a|
-      tdd = self.duedates.unscoped.find_by_assignment_id(a.id)
+      tdd = Duedate.unscoped.where("team_id = ? and assignment_id = ?",team.id,a.id).first
       unless tdd
-        ndd = self.duedates.create(assignment_id: a.id,team_id: self.id, school_id: school.id)
+        ndd = Duedate.create(team_id: team.id, assignment_id: a.id, school_id: school.id)
         tdd_ids << ndd.id
       else
         tdd_ids << tdd.id
       end
     end
-    duedates = Duedate.find(tdd_ids) 
+    duedates = Duedate.includes(:assignment).find(tdd_ids) 
   end
   
   

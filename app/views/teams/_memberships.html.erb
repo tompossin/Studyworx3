@@ -5,21 +5,18 @@
   <div class="title large">
     Adjust Membership in <%= @team.name %>
   </div>
+  
   <div class="title small float_left">
     Current Members
   </div>
   <div class="team">
-    <% for m in @members %>
-      <%= render("member",{m: m})%>
-    <% end %>
+    <%= render partial: "member", collection: @members %>
   </div>
+  
   <div class="title small float_left">
     User list
   </div>
-
   <div class="team">
-    <% for u in @users %>
-      <%=render("user",{u: u})%>
-    <% end %>
+    <%= render partial: "user", collection: @users %>
   </div>
 </div>

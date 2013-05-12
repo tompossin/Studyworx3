@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_one :preference
   has_and_belongs_to_many :teams
   
+  #default_scope order: "lastname,firstname ASC"
+  scope :order_by_lastname, order: "lastname,firstname ASC"
+  scope :order_by_firstname, order: "firstname, lastname ASC"
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -71,6 +74,10 @@ class User < ActiveRecord::Base
     self.firstname+" "+self.lastname
   end
   
+  def fullname_lnf
+    self.lastname+", "+self.firstname
+  end
+  
   def coreteam
     self.teams.where("school_id = ? and coreteam = ?",self.school, true).first
   end
@@ -109,7 +116,13 @@ class User < ActiveRecord::Base
   end
   
   def is_administrator
-    if self.user_admin.level > 1
+    if self.user_admin and self.user_admin.level > 1
+      true
+    end
+  end
+  
+  def is_contributor
+    if self.user_admin and self.user_admin.level > 0
       true
     end
   end

@@ -51,4 +51,10 @@ module GradesHelper
     end
   end
   
+  def user_color(comment,user)
+    if comment.user_id == user.id
+      return "background-color: #{current_user.preference.hlcolor};"
+    end
+  end
+  
 end

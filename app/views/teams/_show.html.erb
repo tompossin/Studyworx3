@@ -22,8 +22,6 @@
     Current Members: <span class="small red"><%= @members.count %></span>
   </div>
   <div class="team" style="border-left: 1px solid gray;">
-    <% for m in @members %>
-      <%= render("member",{m: m})%>
-    <% end %>
+    <%= render partial: "member", collection: @members %>
   </div>
 </div>

@@ -12,7 +12,7 @@ class School < ActiveRecord::Base
   has_many :observations, :dependent => :destroy
   
   ### Attributes ############################
-    attr_accessible :active, :description, :end_date, :enrolement_type, :language_id, :location
+    attr_accessible :owner_id, :active, :description, :end_date, :language_id, :location
     attr_accessible :mailing_address, :name, :prereqs, :start_date, :tagline, :timezone, :version_id
     attr_accessible :caption
   ###############################
@@ -25,7 +25,8 @@ class School < ActiveRecord::Base
   ###############################
   
   # Validations #################
-  validates_presence_of :name, :timezone, :enrolement_type, :start_date, :end_date
+  validates_presence_of :owner_id, :name, :timezone, :start_date, :end_date
+  validates :name, uniqueness: true
   validates_attachment :logo,
     :content_type => { :content_type => ["image/jpeg","image/png"]},
     :size => { :in => 0..1000.kilobytes }
@@ -72,8 +73,16 @@ class School < ActiveRecord::Base
   
   # Returns all curent assignments by coreteam (staff basically)
   def current_team_assignments(team_id)
-    assignments = self.assignments.includes([:duedates]).where("duedates.duedate > ? and team_id = ?",Time.now.in_time_zone, team_id).order("duedates.duedate ASC")
-    
+    assignments = self.assignments.includes([:duedates]).where("duedates.duedate > ? and team_id = ?",Time.now.in_time_zone, team_id).order("duedates.duedate ASC")   
+  end
+  
+  # Creates a participant record for the creator of the school
+  def create_leader(user)
+    participant = Participant.new(school_id: self.id, user_id: user.id)
+    participant.role_id = 1
+    participant.accepted = 2
+    participant.prereq = true
+    participant.save
   end
 
 end

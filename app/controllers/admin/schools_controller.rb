@@ -2,12 +2,16 @@
 # * for non-administrative functions see SchoolsController
 class Admin::SchoolsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_superadmin, :only => [:index]
+  before_filter :is_admin, :only => [:index]
   
   # Return all schools newest first
   # * /admin/schools
   def index
+    if current_user.user_admin.level == 3
       @schools = School.order("start_date DESC").all
+    else
+      @schools = current_user.schools.order("start_date DESC").all
+    end
   end
 
   def show
@@ -17,6 +21,13 @@ class Admin::SchoolsController < ApplicationController
   def edit
     @school = School.find(params[:id])   
     @nav_body_content = "admin/assignments/toolbar"
+    respond_to do |format|
+      if is_my_school?(@school.id)
+        format.html 
+      else
+        format.html {redirect_to :back, alert: "not authorized to edit!"}
+      end
+    end
   end
 
   def new
@@ -24,14 +35,12 @@ class Admin::SchoolsController < ApplicationController
   end
 
   def create
-    if is_my_school(params[:school][:id])
-      @school = School.new(params[:school])
-    end
-      
+    @school = School.new(params[:school])
+    @school.owner_id = current_user.id
     
-
     respond_to do |format|
       if @school.save
+        @school.create_leader(current_user)
         format.html { redirect_to school_path(@school), notice: 'School was successfully created.' }
       else
         format.html { render action: "new" }
@@ -43,10 +52,14 @@ class Admin::SchoolsController < ApplicationController
     @school = School.find(params[:id])
 
     respond_to do |format|
-      if @school.update_attributes(params[:school])
-        format.html { redirect_to school_path(@school), notice: 'School was successfully updated.' }
+      if is_my_school?(@school.id)
+        if @school.update_attributes(params[:school])
+          format.html { redirect_to school_path(@school), notice: 'School was successfully updated.' }
+        else
+          format.html { render action: "edit" }
+        end
       else
-        format.html { render action: "edit" }
+        format.html {redirect_to :back, alert: "You are not authorized to update."}
       end
     end
   end

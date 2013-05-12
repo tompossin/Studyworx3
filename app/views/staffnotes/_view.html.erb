@@ -1,3 +1,7 @@
 <div>
+  <p class="title large bolder"><%= name %></p>
+  <% if description %>
+    <div><%= formatter(description) %></div>
+  <% end %>
   <%= smart_format(content_type, content)%>
 </div>

@@ -14,6 +14,10 @@
       Select a color for the default background color (Unity theme color)<br />
       <%= select "preference", "bgcolor", Color.all.collect {|c| [c.name, c.color]} %>
     </p>
+    <p>
+      Select a color to use a a highlight in discussion tasks
+      <%= select "preference", "hlcolor", Color.all.collect {|c| [c.name, c.color]} %>
+    </p>
     <%= submit_tag "save" %>
   <% end %>
 </div>

@@ -1,2 +1,2 @@
-$("#comment_<%=@comment.id.to_s %>").html("<%=j render partial: "comment", locals: {c: @comment, t: @task} %>");
+$("#comment_<%=@comment.id.to_s %>").html("<%=j render partial: "comment", locals: {c: @comment, t: @task, u: current_user} %>");
 

@@ -1,3 +1,3 @@
 $('#popup').show();
-$('#popup_content').html("<%=j render "view", {content_type: @document.content_type,content: @document.content}%>");
+$('#popup_content').html("<%=j render "view", {content_type: @document.content_type,content: @document.content,name: @name,description: ""}%>");
 

@@ -145,6 +145,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -199,6 +201,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -220,6 +228,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -257,6 +269,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -276,6 +290,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -346,12 +368,12 @@
 
           
           <div class="method-source-code" id="add_member-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 124</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_member</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]) 
   <span class="ruby-identifier">school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@team</span>.<span class="ruby-identifier">school_id</span>) 
-  <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">add_member</span>(<span class="ruby-identifier">user</span>)
@@ -388,10 +410,10 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:team</span>])
-  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">coreteam</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1&quot;</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
@@ -431,13 +453,13 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@teams_i_own</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find_all_by_owner_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-ivar">@my_teams</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>
+  <span class="ruby-ivar">@teams_i_own</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">all_i_own</span>(<span class="ruby-identifier">current_user</span>)
+  <span class="ruby-ivar">@my_teams</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">sorted</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">destroy</span>
@@ -468,22 +490,19 @@
 
         <div class="method-description">
           
-          <p>load the page used to add and remove members</p>
+          <p>load the page used to add and remove members TODO Need to filter the lists
+better. Core teams need to be from the current school. Other personal teams
+can be anybody. Only school_admins should see the core team checkbox.</p>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
-  
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:school_id</span>]
-    <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:school_id</span>])
-    <span class="ruby-ivar">@users</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">users</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">limit</span>(<span class="ruby-value">20</span>).<span class="ruby-identifier">all</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
+  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@team</span>.<span class="ruby-identifier">school_id</span>)
+  <span class="ruby-ivar">@users</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -517,8 +536,8 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@teams_i_own</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find_all_by_owner_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-ivar">@my_teams</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>
+  <span class="ruby-ivar">@teams_i_own</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">all_i_own</span>(<span class="ruby-identifier">current_user</span>).<span class="ruby-identifier">sorted</span>
+  <span class="ruby-ivar">@my_teams</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">sorted</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
   <span class="ruby-keyword">end</span>
@@ -549,12 +568,12 @@
 
           
           <div class="method-source-code" id="memberships-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 111</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">memberships</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
   <span class="ruby-identifier">school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@team</span>.<span class="ruby-identifier">school_id</span>)
-  <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -586,7 +605,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">build</span>()
   <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">owner_id</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
@@ -621,7 +640,7 @@
 
           
           <div class="method-source-code" id="remove_member-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 141</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_member</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -629,7 +648,7 @@
   <span class="ruby-identifier">school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@team</span>.<span class="ruby-identifier">school_id</span>)
   
   <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>
-  <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@users</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:memberships</span> }
@@ -664,7 +683,7 @@
             <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -697,7 +716,7 @@ window.</p>
 
           
           <div class="method-source-code" id="show_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 103</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_user</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -730,14 +749,14 @@ window.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:team</span>][<span class="ruby-value">:coreteam</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1&quot;</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:team</span>])
-        <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>
+        <span class="ruby-ivar">@members</span> = <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">order_by_lastname</span>
         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span>(<span class="ruby-string">&quot;shared/save_failure&quot;</span>)}

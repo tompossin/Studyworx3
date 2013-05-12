@@ -28,6 +28,7 @@ class Grade < ActiveRecord::Base
       grade = self.create(school_id: school_id, assignment_id: assignment_id, user_id: student_id,scratchpad: scoresheet)
     end
     grade.staff_id = staff_id
+    grade.returned = false
     grade.save  
   end
   

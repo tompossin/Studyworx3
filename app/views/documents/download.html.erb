@@ -1,3 +1,6 @@
+<h2>
+  <%= @document.assignment.name %>
+</h2>
 <div>
   <%= smart_format(@document.content_type, @document.content) %>
   <% if @document.endnote.content %>

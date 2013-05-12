@@ -1,4 +1,4 @@
 <p class="title smaller" style="margin-left: 10px;">
-  <%=link_to u.fullname, teams_show_user_path(u.id), {remote: true} %> 
-  <%=link_to "Add", add_member_team_path(@team.id, user_id: u.id), {method: "post", remote: true, class: "smaller"} %>
+  <%=link_to user.fullname_lnf, teams_show_user_path(user.id), {remote: true} %> 
+  <%=link_to "Add", add_member_team_path(@team.id, user_id: user.id), {method: "post", remote: true, class: "smaller"} %>
 </p>

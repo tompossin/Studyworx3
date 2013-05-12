@@ -5,7 +5,7 @@
 <div id="content-large">
   <article>
     <section class="topic">
-      <h3><%= @task.name %> Topic</h3>
+      <h3><%= @task.assignment.name %> Discussion Topic</h3>
       <%= formatter(@task.help) %>
       <div>
         <%=link_to "New Root Comment", new_task_comment_path(@task),{remote: true}%>
@@ -15,13 +15,13 @@
     <section>
       <% @comments.each do |c| %>
         <div id="comment_<%=c.id.to_s%>" class="comment">
-          <%= render partial: "comment",locals: {c: c, t: @task}  %>
+          <%= render partial: "comment",locals: {c: c, t: @task, u: current_user }  %>
           <% c.children.each do |cc| %>
             <div id="comment_<%=cc.id.to_s%>" class="comment">
-              <%= render partial: "comment", locals: {c: cc, t: @task}  %>
+              <%= render partial: "comment", locals: {c: cc, t: @task, u: current_user}  %>
               <% cc.children.each do |ccc| %>
                 <div id="comment_<%=ccc.id.to_s%>" class="comment">
-                  <%= render partial: "comment", locals: {c: ccc, t: @task}  %>
+                  <%= render partial: "comment", locals: {c: ccc, t: @task, u: current_user}  %>
                 </div> 
               <% end %>
             </div> 

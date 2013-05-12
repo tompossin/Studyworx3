@@ -13,12 +13,17 @@ Studyworx3::Application.routes.draw do
       resources :scoresheets
       resources :observations
     end
+    resources :books
     resources :profiles
     resources :user_admins
-    resources :books do
-      resources :paragraphs
+    resources :versions do
+      resources :books do
+        resources :paragraphs do
+          get "cancel","insert"
+        end
+      end
     end
-    resources :versions
+    
     resources :assignments  do
       get 'show_help'
       collection do
@@ -37,12 +42,17 @@ Studyworx3::Application.routes.draw do
     get "reports" => 'reports#index', as: :reports
     
     resources :helps
-    resources :duedates
-      get "duedates/list" => "duedates#list", as: :duedates_list
+    
+    resources :duedates do
+      collection do
+        get 'list'
+      end
+      
+    end
      
     # Tools
     get "tools/index" => "tools#index", as: :tools
-    post "tools/book" => "tools#book", as: :tools_book
+    get "tools/book" => "tools#book", as: :tools_book
     put "tools/update_participant/:id" => "tools#update_participant", as: :tools_update_participant
     get 'tools/edit_participant/:id' => "tools#edit_participant", as: :tools_edit_participant
     get "tools/personnel" => "tools#personnel", as: :tools_personnel
@@ -123,6 +133,7 @@ Studyworx3::Application.routes.draw do
     match 'hand_in/assignment/:assignment_id' => 'grades#hand_in', via: [:post], as: :hand_in
     match 'collect' => 'grades#collect',via: [:get], as: :collect
     match 'collect_save' => 'grades#collect_save',via: [:post], as: :collect_save
+    match 'grades/:grade_id/return' => 'grades#return', via: :post, as: :return_grade
     match 'load_team/students' => 'grades#load_team', via: [:get], as: :load_team 
     match 'load_module/assignments' => 'grades#load_module', via: [:get], as: :load_module
     match 'load/team/assignments' => 'schools#load_team_assignments', via: [:get], as: :load_team_assignments
@@ -141,6 +152,9 @@ Studyworx3::Application.routes.draw do
   match "task/:task_id/comment/:id/staffnote" => 'comments#staffnote', via: :get, as: :task_comment_staffnote
   resources :tasks do
     resources :comments do
+      collection do
+        get :print, :download
+      end
       put :update_staffnote
     end
   end

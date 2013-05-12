@@ -1,7 +1,7 @@
 class Preference < ActiveRecord::Base
   belongs_to :user
 
-  attr_accessible :bgcolor, :rows, :theme, :user_id, :wallpaper
+  attr_accessible :bgcolor, :hlcolor, :rows, :theme, :user_id, :wallpaper
   
 
   

@@ -1,6 +1,6 @@
 <div id='content-large' >
 
-    <div class="floatbox_trans">
+    <div class="floatbox_trans limited">
       <p class="title">Edit my bio</p>
       <%= form_for @user.note, :url => bio_save_profile_path(@user.id), :html => { :multipart => true, :remote => true } do |f| %>
 
@@ -18,7 +18,7 @@
 
       <% end %>
     </div>
-    <div class="floatbox_trans" >
+    <div class="floatbox_trans limited" >
       <p class="title">Edit my Profile</p>
       <%= form_for @user, :url => profile_path(current_user.id), :html => { :multipart => true } do |f| %>
         <p><%= f.submit %></p>

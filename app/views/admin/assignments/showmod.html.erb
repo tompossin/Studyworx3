@@ -30,7 +30,7 @@
     
     <h1><%= @school.name %></h1>
     <p class="title large">Module <%= @module %> Assignments Administration</p>
-    <p><%=link_to "Add New Assignment", new_admin_assignment_path %></p>
+    <p><%=link_to "Add New Assignment", new_admin_assignment_path(mod_id: @module) %></p>
     <br />
     <% unless @assignments.empty? %>
       <div class="theader">

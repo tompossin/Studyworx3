@@ -1,6 +1,6 @@
 <p class="title smaller" style="margin-left: 10px;">
-  <%=link_to m.fullname, teams_show_user_path(m.id), {remote: true} %> 
+  <%=link_to member.fullname_lnf, teams_show_user_path(member.id), {remote: true} %> 
   <% if @team.owner_id == current_user.id %>
-    <%=link_to "remove", remove_member_team_path(@team.id, user_id: m.id), {method: "delete", remote: true, class: "smaller"} %>
+    <%=link_to "remove", remove_member_team_path(@team.id, user_id: member.id), {method: "delete", remote: true, class: "smaller"} %>
   <% end %>
 </p>

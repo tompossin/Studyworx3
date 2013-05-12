@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <%= stylesheet_link_tag set_css, :media => "all" %>
+    <%= csrf_meta_tags %>
+    <style>
+      @media screen {
+        .noprint {display: block; }
+      }
+        
+      @media print {
+        .noprint {display: none;}
+      } 
+      
+    </style>
+    
+  </head>
+  <body>
+    <div id='content'>
+
+        <%= yield %>
+
+    </div>
+  </body>
+</html>

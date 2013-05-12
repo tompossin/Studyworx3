@@ -3,6 +3,7 @@
 one:
   version_id: 1
   language_id: 1
+  owner_id: 1
   name: MyString
   location: MyString
   prereqs: MyText
@@ -11,13 +12,13 @@ one:
   mailing_address: MyText
   tagline: 
   description: 
-  enrolement_type: false
   active: false
   timezone: MyString
 
 two:
   version_id: 1
   language_id: 1
+  owner_id: 1
   name: MyString
   location: MyString
   prereqs: MyText
@@ -26,6 +27,5 @@ two:
   mailing_address: MyText
   tagline: 
   description: 
-  enrolement_type: false
   active: false
   timezone: MyString

@@ -48,11 +48,11 @@ class Admin::ToolsController < ApplicationController
   
   # FIXME This is broken needs to load a selector for editing books.
   def book
-    @book = Book.find(params[:book_id])
-    @version = Version.find(params[:version_id])
-    @paragraphs = @book.paragraphs.where(:version_id => @version.id).all
+    #@book = Book.find(params[:book_id])
+    #@version = Version.find(params[:version_id])
+    #@paragraphs = @book.paragraphs.where(:version_id => @version.id).all
     respond_to do |format|
-      format.html {render "admin/paragraphs/index"}
+      format.html {redirect_to admin_version_book_paragraphs_url(params[:version_id],params[:book_id])}
     end
   end
   

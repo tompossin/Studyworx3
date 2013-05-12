@@ -26,6 +26,13 @@
                         admin_school GET    /admin/schools/:id(.:format)                                                               admin/schools#show
                                      PUT    /admin/schools/:id(.:format)                                                               admin/schools#update
                                      DELETE /admin/schools/:id(.:format)                                                               admin/schools#destroy
+                         admin_books GET    /admin/books(.:format)                                                                     admin/books#index
+                                     POST   /admin/books(.:format)                                                                     admin/books#create
+                      new_admin_book GET    /admin/books/new(.:format)                                                                 admin/books#new
+                     edit_admin_book GET    /admin/books/:id/edit(.:format)                                                            admin/books#edit
+                          admin_book GET    /admin/books/:id(.:format)                                                                 admin/books#show
+                                     PUT    /admin/books/:id(.:format)                                                                 admin/books#update
+                                     DELETE /admin/books/:id(.:format)                                                                 admin/books#destroy
                       admin_profiles GET    /admin/profiles(.:format)                                                                  admin/profiles#index
                                      POST   /admin/profiles(.:format)                                                                  admin/profiles#create
                    new_admin_profile GET    /admin/profiles/new(.:format)                                                              admin/profiles#new
@@ -40,20 +47,22 @@
                     admin_user_admin GET    /admin/user_admins/:id(.:format)                                                           admin/user_admins#show
                                      PUT    /admin/user_admins/:id(.:format)                                                           admin/user_admins#update
                                      DELETE /admin/user_admins/:id(.:format)                                                           admin/user_admins#destroy
-               admin_book_paragraphs GET    /admin/books/:book_id/paragraphs(.:format)                                                 admin/paragraphs#index
-                                     POST   /admin/books/:book_id/paragraphs(.:format)                                                 admin/paragraphs#create
-            new_admin_book_paragraph GET    /admin/books/:book_id/paragraphs/new(.:format)                                             admin/paragraphs#new
-           edit_admin_book_paragraph GET    /admin/books/:book_id/paragraphs/:id/edit(.:format)                                        admin/paragraphs#edit
-                admin_book_paragraph GET    /admin/books/:book_id/paragraphs/:id(.:format)                                             admin/paragraphs#show
-                                     PUT    /admin/books/:book_id/paragraphs/:id(.:format)                                             admin/paragraphs#update
-                                     DELETE /admin/books/:book_id/paragraphs/:id(.:format)                                             admin/paragraphs#destroy
-                         admin_books GET    /admin/books(.:format)                                                                     admin/books#index
-                                     POST   /admin/books(.:format)                                                                     admin/books#create
-                      new_admin_book GET    /admin/books/new(.:format)                                                                 admin/books#new
-                     edit_admin_book GET    /admin/books/:id/edit(.:format)                                                            admin/books#edit
-                          admin_book GET    /admin/books/:id(.:format)                                                                 admin/books#show
-                                     PUT    /admin/books/:id(.:format)                                                                 admin/books#update
-                                     DELETE /admin/books/:id(.:format)                                                                 admin/books#destroy
+ admin_version_book_paragraph_cancel GET    /admin/versions/:version_id/books/:book_id/paragraphs/:paragraph_id/cancel(.:format)       admin/paragraphs#cancel
+ admin_version_book_paragraph_insert GET    /admin/versions/:version_id/books/:book_id/paragraphs/:paragraph_id/insert(.:format)       admin/paragraphs#insert
+       admin_version_book_paragraphs GET    /admin/versions/:version_id/books/:book_id/paragraphs(.:format)                            admin/paragraphs#index
+                                     POST   /admin/versions/:version_id/books/:book_id/paragraphs(.:format)                            admin/paragraphs#create
+    new_admin_version_book_paragraph GET    /admin/versions/:version_id/books/:book_id/paragraphs/new(.:format)                        admin/paragraphs#new
+   edit_admin_version_book_paragraph GET    /admin/versions/:version_id/books/:book_id/paragraphs/:id/edit(.:format)                   admin/paragraphs#edit
+        admin_version_book_paragraph GET    /admin/versions/:version_id/books/:book_id/paragraphs/:id(.:format)                        admin/paragraphs#show
+                                     PUT    /admin/versions/:version_id/books/:book_id/paragraphs/:id(.:format)                        admin/paragraphs#update
+                                     DELETE /admin/versions/:version_id/books/:book_id/paragraphs/:id(.:format)                        admin/paragraphs#destroy
+                 admin_version_books GET    /admin/versions/:version_id/books(.:format)                                                admin/books#index
+                                     POST   /admin/versions/:version_id/books(.:format)                                                admin/books#create
+              new_admin_version_book GET    /admin/versions/:version_id/books/new(.:format)                                            admin/books#new
+             edit_admin_version_book GET    /admin/versions/:version_id/books/:id/edit(.:format)                                       admin/books#edit
+                  admin_version_book GET    /admin/versions/:version_id/books/:id(.:format)                                            admin/books#show
+                                     PUT    /admin/versions/:version_id/books/:id(.:format)                                            admin/books#update
+                                     DELETE /admin/versions/:version_id/books/:id(.:format)                                            admin/books#destroy
                       admin_versions GET    /admin/versions(.:format)                                                                  admin/versions#index
                                      POST   /admin/versions(.:format)                                                                  admin/versions#create
                    new_admin_version GET    /admin/versions/new(.:format)                                                              admin/versions#new
@@ -88,6 +97,7 @@
                           admin_help GET    /admin/helps/:id(.:format)                                                                 admin/helps#show
                                      PUT    /admin/helps/:id(.:format)                                                                 admin/helps#update
                                      DELETE /admin/helps/:id(.:format)                                                                 admin/helps#destroy
+                 list_admin_duedates GET    /admin/duedates/list(.:format)                                                             admin/duedates#list
                       admin_duedates GET    /admin/duedates(.:format)                                                                  admin/duedates#index
                                      POST   /admin/duedates(.:format)                                                                  admin/duedates#create
                    new_admin_duedate GET    /admin/duedates/new(.:format)                                                              admin/duedates#new
@@ -95,9 +105,8 @@
                        admin_duedate GET    /admin/duedates/:id(.:format)                                                              admin/duedates#show
                                      PUT    /admin/duedates/:id(.:format)                                                              admin/duedates#update
                                      DELETE /admin/duedates/:id(.:format)                                                              admin/duedates#destroy
-                 admin_duedates_list GET    /admin/duedates/list(.:format)                                                             admin/duedates#list
                          admin_tools GET    /admin/tools/index(.:format)                                                               admin/tools#index
-                    admin_tools_book POST   /admin/tools/book(.:format)                                                                admin/tools#book
+                    admin_tools_book GET    /admin/tools/book(.:format)                                                                admin/tools#book
       admin_tools_update_participant PUT    /admin/tools/update_participant/:id(.:format)                                              admin/tools#update_participant
         admin_tools_edit_participant GET    /admin/tools/edit_participant/:id(.:format)                                                admin/tools#edit_participant
                admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#personnel
@@ -220,6 +229,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                       school_hand_in POST   /schools/:school_id/hand_in/assignment/:assignment_id(.:format)                            grades#hand_in
                       school_collect GET    /schools/:school_id/collect(.:format)                                                      grades#collect
                  school_collect_save POST   /schools/:school_id/collect_save(.:format)                                                 grades#collect_save
+                 school_return_grade POST   /schools/:school_id/grades/:grade_id/return(.:format)                                      grades#return
                     school_load_team GET    /schools/:school_id/load_team/students(.:format)                                           grades#load_team
                   school_load_module GET    /schools/:school_id/load_module/assignments(.:format)                                      grades#load_module
         school_load_team_assignments GET    /schools/:school_id/load/team/assignments(.:format)                                        schools#load_team_assignments
@@ -239,6 +249,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
               new_child_task_comment GET    /task/:task_id/comment/:id/new_child(.:format)                                             comments#new_child
             cancel_edit_task_comment GET    /task/:task_id/comment/:id/cancel_edit(.:format)                                           comments#cancel
               task_comment_staffnote GET    /task/:task_id/comment/:id/staffnote(.:format)                                             comments#staffnote
+                 print_task_comments GET    /tasks/:task_id/comments/print(.:format)                                                   comments#print
+              download_task_comments GET    /tasks/:task_id/comments/download(.:format)                                                comments#download
        task_comment_update_staffnote PUT    /tasks/:task_id/comments/:comment_id/update_staffnote(.:format)                            comments#update_staffnote
                        task_comments GET    /tasks/:task_id/comments(.:format)                                                         comments#index
                                      POST   /tasks/:task_id/comments(.:format)                                                         comments#create

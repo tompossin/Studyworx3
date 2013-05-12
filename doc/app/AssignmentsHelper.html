@@ -119,6 +119,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -173,6 +175,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -194,6 +202,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -231,6 +243,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -250,6 +264,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -325,7 +347,7 @@
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-comment"># Charting Task</span>
     <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">task</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">task_charts_start_path</span>(<span class="ruby-identifier">task</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Click to begin Charting.&quot;</span>})
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> <span class="ruby-comment"># Discussion Task</span>
-    <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">task</span>.<span class="ruby-identifier">name</span>,<span class="ruby-string">&quot;/&quot;</span>)
+    <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">task</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">task_comments_path</span>(<span class="ruby-identifier">task</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Click to join this discussion.&quot;</span>})
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-comment"># document type task</span>
     <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">task</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">new_school_assignment_task_document_path</span>(<span class="ruby-identifier">school</span>,<span class="ruby-identifier">assignment</span>,<span class="ruby-identifier">task</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Click to work on this task.&quot;</span>})
   <span class="ruby-keyword">else</span>

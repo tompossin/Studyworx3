@@ -125,6 +125,8 @@
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
   
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
     <li><a href="./Admin/SchoolsHelper.html">Admin::SchoolsHelper</a>
@@ -179,6 +181,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -200,6 +208,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -237,6 +249,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -256,6 +270,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -326,12 +348,14 @@
 
           
           <div class="method-source-code" id="document_docx_link-source">
-            <pre><span class="ruby-comment"># File app/helpers/documents_helper.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/helpers/documents_helper.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">document_docx_link</span>(<span class="ruby-identifier">task</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;docx&quot;</span>, <span class="ruby-identifier">document_download_path</span>(<span class="ruby-identifier">task</span>, <span class="ruby-identifier">file_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;docx&quot;</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Download a docx version&quot;</span>})
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;docx&quot;</span>, <span class="ruby-identifier">task_download_charts_path</span>(<span class="ruby-identifier">task</span>,<span class="ruby-identifier">file_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;docx&quot;</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Download a docx version&quot;</span>})
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span> <span class="ruby-string">&quot;n/a&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-string">&quot;iconic/denied_16x16.png&quot;</span>,<span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;16x16&quot;</span>))
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- document_docx_link-source -->
@@ -360,12 +384,14 @@
 
           
           <div class="method-source-code" id="document_odt_link-source">
-            <pre><span class="ruby-comment"># File app/helpers/documents_helper.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/helpers/documents_helper.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">document_odt_link</span>(<span class="ruby-identifier">task</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;odt&quot;</span>, <span class="ruby-identifier">document_download_path</span>(<span class="ruby-identifier">task</span>, <span class="ruby-identifier">file_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;odt&quot;</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Download an odt version&quot;</span>})
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;odt&quot;</span>, <span class="ruby-identifier">document_download_path</span>(<span class="ruby-identifier">task</span>, <span class="ruby-identifier">file_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;odt&quot;</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Download an Open Document version&quot;</span>})
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;odt&quot;</span>, <span class="ruby-identifier">task_download_charts_path</span>(<span class="ruby-identifier">task</span>,<span class="ruby-identifier">file_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;odt&quot;</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Download an Open Document version&quot;</span>})
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span> <span class="ruby-string">&quot;n/a&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-string">&quot;iconic/denied_16x16.png&quot;</span>,<span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;16x16&quot;</span>))
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- document_odt_link-source -->
@@ -394,12 +420,14 @@
 
           
           <div class="method-source-code" id="document_pdf_link-source">
-            <pre><span class="ruby-comment"># File app/helpers/documents_helper.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/helpers/documents_helper.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">document_pdf_link</span>(<span class="ruby-identifier">task</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;pdf&quot;</span>, <span class="ruby-identifier">document_download_path</span>(<span class="ruby-identifier">task</span>,<span class="ruby-identifier">file_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;pdf&quot;</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Download a pdf version&quot;</span>})
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;pdf&quot;</span>, <span class="ruby-identifier">task_print_charts_path</span>(<span class="ruby-identifier">task</span>,<span class="ruby-identifier">format</span><span class="ruby-operator">:</span> <span class="ruby-value">:pdf</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Download a pdf version&quot;</span>})
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span> <span class="ruby-string">&quot;n/a&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-string">&quot;iconic/denied_16x16.png&quot;</span>,<span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;16x16&quot;</span>))
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- document_pdf_link-source -->
@@ -432,8 +460,10 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">document_print_link</span>(<span class="ruby-identifier">task</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;print&quot;</span>, <span class="ruby-identifier">document_print_path</span>(<span class="ruby-identifier">task</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Show a printable version&quot;</span>})
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">task</span>.<span class="ruby-identifier">task_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>( <span class="ruby-string">&quot;print&quot;</span>, <span class="ruby-identifier">task_print_charts_path</span>(<span class="ruby-identifier">task</span>),{<span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Show a printable version&quot;</span>})
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span> <span class="ruby-string">&quot;n/a&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-string">&quot;iconic/denied_16x16.png&quot;</span>,<span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;16x16&quot;</span>))
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- document_print_link-source -->

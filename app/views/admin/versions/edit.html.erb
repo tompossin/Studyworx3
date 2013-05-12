@@ -1,0 +1,15 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Admin Tools", admin_tools_path %>
+  <%=link_to "Version Tools", admin_versions_path %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <p class="title larger bolder">Edit Bible Version</p>
+
+    <%= render "form" if @version %>
+    
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

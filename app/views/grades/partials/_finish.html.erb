@@ -16,11 +16,11 @@
       <span style="color:<%= set_color(@grade.done,"green","red")%>"><label> Turned in? </label><%= @grade.done %></span>
       <span><label> Return? </label><%= f.check_box :returned %></span>
     </div>
-    <div id="half_pane">
+    <div class="half_pane">
       <label>Staff Comments</label><br />
       <%= f.text_area :staff_comments, {style: "background-color:pink;"} %>
     </div>
-    <div id="half_pane">
+    <div class="half_pane">
       <label>Student Comments (cover sheet)</label><br />
       <%= f.text_area :student_comments %>
     </div>

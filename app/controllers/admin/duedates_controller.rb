@@ -19,7 +19,7 @@ class Admin::DuedatesController < ApplicationController
   #  [POST] admin_duedates_list_path returns params[:team] and params[:module]
   def list
     @team = Team.find(params[:team])
-    @duedates = @team.find_or_create_team_duedates_by_module(@school,params[:module])
+    @duedates = Team.find_or_create_team_duedates_by_module(@school,@team,params[:module])
     @nav_body_content = "admin/assignments/toolbar"
     @mod_id = params[:module]
     

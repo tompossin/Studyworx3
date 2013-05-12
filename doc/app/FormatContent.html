@@ -70,6 +70,8 @@
     
     <li><a href="#method-i-markdown_to_html">#markdown_to_html</a>
     
+    <li><a href="#method-i-name_cleaner">#name_cleaner</a>
+    
   </ul>
 </nav>
 
@@ -122,6 +124,8 @@
     <li><a href="./Admin/ProfilesController.html">Admin::ProfilesController</a>
   
     <li><a href="./Admin/ProfilesHelper.html">Admin::ProfilesHelper</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
   
     <li><a href="./Admin/SchoolsController.html">Admin::SchoolsController</a>
   
@@ -177,6 +181,12 @@
   
     <li><a href="./Color.html">Color</a>
   
+    <li><a href="./Comment.html">Comment</a>
+  
+    <li><a href="./CommentsController.html">CommentsController</a>
+  
+    <li><a href="./CommentsHelper.html">CommentsHelper</a>
+  
     <li><a href="./Document.html">Document</a>
   
     <li><a href="./DocumentsController.html">DocumentsController</a>
@@ -198,6 +208,10 @@
     <li><a href="./Help.html">Help</a>
   
     <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./ImagesController.html">ImagesController</a>
+  
+    <li><a href="./ImagesHelper.html">ImagesHelper</a>
   
     <li><a href="./Imaging.html">Imaging</a>
   
@@ -235,6 +249,8 @@
   
     <li><a href="./ProfilesHelper.html">ProfilesHelper</a>
   
+    <li><a href="./ReportsHelper.html">ReportsHelper</a>
+  
     <li><a href="./Review.html">Review</a>
   
     <li><a href="./ReviewsController.html">ReviewsController</a>
@@ -254,6 +270,14 @@
     <li><a href="./Settings.html">Settings</a>
   
     <li><a href="./SharedController.html">SharedController</a>
+  
+    <li><a href="./Staffnote.html">Staffnote</a>
+  
+    <li><a href="./StaffnotesController.html">StaffnotesController</a>
+  
+    <li><a href="./StaffnotesHelper.html">StaffnotesHelper</a>
+  
+    <li><a href="./State.html">State</a>
   
     <li><a href="./Task.html">Task</a>
   
@@ -316,7 +340,7 @@
         
         <div class="method-heading">
           <span class="method-name">convert_file</span><span
-            class="method-args">(content,user_id,filename,format)</span>
+            class="method-args">(content,user,filename,format)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -338,13 +362,14 @@ perfectly railsy but close.</p>
 
           
           <div class="method-source-code" id="convert_file-source">
-            <pre><span class="ruby-comment"># File lib/format_content.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">format</span>)
-  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;tmp/docs/#{user_id}*&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">my_file</span><span class="ruby-operator">|</span>
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>,<span class="ruby-identifier">user</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">format</span>)
+  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name_cleaner</span>(<span class="ruby-identifier">filename</span>)
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;tmp/docs/#{user.id.to_s}*&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">my_file</span><span class="ruby-operator">|</span>
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">my_file</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">new_file_name</span> = <span class="ruby-node">&quot;#{user_id}_#{filename}.#{format}&quot;</span>
-  <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">open</span>([<span class="ruby-string">'pandoc'</span>,<span class="ruby-string">'.html'</span>], <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">'tmp/docs'</span>) ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">new_file_name</span> = <span class="ruby-node">&quot;#{user.id.to_s}_#{name}.#{format}&quot;</span>
+  <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">open</span>([<span class="ruby-string">&#39;pandoc&#39;</span>,<span class="ruby-string">&#39;.html&#39;</span>], <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;tmp/docs&#39;</span>) ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">content</span>)
     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">flush</span>
     <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;pandoc -s -S #{f.path} -o tmp/docs/#{new_file_name}&quot;</span>)
@@ -379,7 +404,7 @@ editors</p>
 
           
           <div class="method-source-code" id="html_to_markdown-source">
-            <pre><span class="ruby-comment"># File lib/format_content.rb, line 34</span>
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">html_to_markdown</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">filenumber</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">filenumber</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;.html&quot;</span>
@@ -418,7 +443,7 @@ better job than pandoc on Markdown</p>
 
           
           <div class="method-source-code" id="markdown_to_html-source">
-            <pre><span class="ruby-comment"># File lib/format_content.rb, line 26</span>
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">markdown_to_html</span>(<span class="ruby-identifier">content</span>)
   <span class="ruby-identifier">render_options</span> = {<span class="ruby-identifier">hard_wrap</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">filter_html</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">safe_links_only</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>}
   <span class="ruby-identifier">markdown_options</span> = {<span class="ruby-identifier">no_intraemphasis</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">autolink</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">superscript</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">fenced_code_blocks</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> }
@@ -433,6 +458,36 @@ better job than pandoc on Markdown</p>
 
         
       </div><!-- markdown_to_html-method -->
+
+    
+      <div id="method-i-name_cleaner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">name_cleaner</span><span
+            class="method-args">(raw_string)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This removes non-alphanumeric characters to make legal filenames.</p>
+          
+
+          
+          <div class="method-source-code" id="name_cleaner-source">
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">name_cleaner</span>(<span class="ruby-identifier">raw_string</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">raw_string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[^A-Za-z0-9_\-\.]/</span>, <span class="ruby-string">&#39;_&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- name_cleaner-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- name_cleaner-method -->
 
     
     </section><!-- public-instance-method-details -->

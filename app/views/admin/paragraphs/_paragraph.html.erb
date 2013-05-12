@@ -1,0 +1,11 @@
+<div id="paragraph_<%= paragraph.id.to_s %>" class="trow <%= cycle("odd","even") %>">
+  <span class="cell" style="width:75px;"><%= paragraph.position %></span>
+  <span class="cell" style="width:85px;"><%= paragraph.startref %></span>
+  <span class="cell" style="width:85px;"><%= paragraph.endref %></span>
+  <span class="cell" style="width:75px;"><%= paragraph.verse_count %></span>
+  <span class="cell" style="width:130px;">
+    <%=link_to "edit", edit_admin_version_book_paragraph_path(@version,@book,paragraph), remote: true %> &nbsp;
+    <%=link_to(image_tag("gray/arrow1_n.png",size:"16x16"),admin_version_book_paragraph_insert_path(@version,@book,paragraph),{remote: true, title: "Insert new paragraph above this one."}) %> &nbsp;
+    <%=link_to(image_tag("gray/trash.png",size: "16x16"),admin_version_book_paragraph_path(@version,@book,paragraph),{remote: true, method: :delete, confirm: "Are you sure?", title: "Delete this paragraph"}) %>
+  </span>
+</div>
