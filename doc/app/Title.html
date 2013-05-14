@@ -127,6 +127,8 @@
   
     <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
   
+    <li><a href="./Admin/AssignmentsController/:.html">Admin::AssignmentsController:::</a>
+  
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
     <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
@@ -180,6 +182,10 @@
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
+    <li><a href="./Admin/VersionsController.html">Admin::VersionsController</a>
+  
+    <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -452,13 +458,13 @@
 title. Iterates through the title types staring with type 2 (segments)
 since this is the lowest level of parent title.</p>
 <ul><li>
-<p>This also adds serment numbers to segment titles</p>
+<p>This also adds segment numbers to segment titles</p>
 </li></ul>
           
 
           
           <div class="method-source-code" id="build_tree-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 141</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">build_tree</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">t_types</span> = [<span class="ruby-value">2</span>,<span class="ruby-value">3</span>,<span class="ruby-value">4</span>,<span class="ruby-value">5</span>]
   <span class="ruby-identifier">t_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tt</span><span class="ruby-operator">|</span> 
@@ -704,7 +710,7 @@ and test</p>
 
           
           <div class="method-source-code" id="clean_input-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 165</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 159</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_input</span>(<span class="ruby-identifier">title_content</span>)
   <span class="ruby-identifier">content</span> = <span class="ruby-identifier">title_content</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s|&lt;br&gt;/</span>,<span class="ruby-string">&#39;&#39;</span>) 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">content</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
@@ -812,22 +818,16 @@ and test</p>
           <div class="method-source-code" id="find_ttl_children-source">
             <pre><span class="ruby-comment"># File app/models/title.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_ttl_children</span>(<span class="ruby-identifier">next_ttl</span>=<span class="ruby-keyword">nil</span>)    
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">next_ttl</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-comment"># Check if this is the last title of this type</span>
-    <span class="ruby-identifier">ttype</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span> <span class="ruby-comment"># Set ttype to Start looking for children one level down</span>
-    <span class="ruby-keyword">while</span> <span class="ruby-identifier">ttype</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-comment"># If children exist get them, otherwise look one more level down</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">exists?</span>([<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>])
+  <span class="ruby-identifier">ttype</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span> <span class="ruby-comment"># Set ttype to Start looking for children one level down</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">ttype</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-comment"># If children exist get them, otherwise look one more level down</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">exists?</span>([<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>])
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">next_ttl</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-comment"># Check if this is the last title of this type</span>
         <span class="ruby-keyword">return</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &lt; ? and position &gt; ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>,<span class="ruby-identifier">next_ttl</span>.<span class="ruby-identifier">position</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">all</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">ttype</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">else</span> <span class="ruby-comment"># This is the last title of this type, same as above except for return query</span>
-    <span class="ruby-identifier">ttype</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">while</span> <span class="ruby-identifier">ttype</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">exists?</span>([<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>])
+      <span class="ruby-keyword">else</span> <span class="ruby-comment"># this is the last title of this type</span>
         <span class="ruby-keyword">return</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &gt; ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">all</span>
       <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">ttype</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span> 
     <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">ttype</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- find_ttl_children-source -->

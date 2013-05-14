@@ -5,7 +5,15 @@ class CommentsController < ApplicationController
   include FormatContent
   
   def index
-    @comments = @task.comments.roots  
+    @comments = @task.comments.roots
+    assignment = Assignment.find(@task.assignment_id)
+    respond_to do |format|
+      if assignment.editable?(current_user)
+        format.html
+      else
+        format.html { redirect_to print_task_comments_path(@task) }
+      end
+    end  
   end
   
   # Start a new root comment (parent)
@@ -56,20 +64,31 @@ class CommentsController < ApplicationController
   end
   
   # Create a new
-  def create
-    @comment = Comment.create(params[:comment])
+  def create    
+    assignment = Assignment.find(@task.assignment_id)
+    
     respond_to do |format|
+      if assignment.editable?(current_user)
+        @comment = Comment.create(params[:comment])
         format.html {redirect_to task_comments_path(@task) }
+      else
+        format.html {redirect_to print_task_comments_path(@task) }
+      end
     end
   end
   
   def update
     @comment = Comment.find(params[:id])
+    assignment = Assignment.find(@task.assignment_id)
     respond_to do |format|
-      if @comment.update_attributes(params[:comment])
-        format.js {render "comment"}
+      if assignment.editable?(current_user)
+        if @comment.update_attributes(params[:comment])
+          format.js {render "comment"}
+        else
+          format.js {render "shared/save_failed"}
+        end
       else
-        format.js {render "shared/save_failed"}
+        format.js { render "shared/pastdue" }
       end
     end
   end

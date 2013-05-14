@@ -17,10 +17,15 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.find_or_create(current_user.id, params[:school_id], params[:assignment_id], params[:task_id])
     endnote = Endnote.find_or_create_by_document_id(@document.id)
+    assignment = @document.assignment
     @normal = true
 
     respond_to do |format|
-      format.html 
+      if assignment.editable?(current_user)
+        format.html
+      else
+        format.html {redirect_to document_print_path(@task)}
+      end
     end
   end
   
@@ -104,17 +109,21 @@ class DocumentsController < ApplicationController
   # Updates document (by the owner)
   def update
     @document = Document.where("user_id = ? and id = ?",current_user.id,params[:id]).first
-
+    assignment = @document.assignment
     respond_to do |format|
-      if @document.update_attributes(params[:document])
-        @autopreview = @document
-        unless params[:autopreview]
-          format.js { render "shared/save_success" }
+      if assignment.editable?(current_user)
+        if @document.update_attributes(params[:document])
+          @autopreview = @document
+          unless params[:autopreview]
+            format.js { render "shared/save_success" }
+          else
+            format.js { render "shared/autopreview" }
+          end
         else
-          format.js { render "shared/autopreview" }
+          format.js { render "shared/save_failed" }
         end
       else
-        format.js { render "shared/save_failed" }
+        format.js { render "shared/pastdue" }
       end
     end
   end

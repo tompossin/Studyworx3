@@ -1,5 +1,6 @@
 <% content_for :breadcrumbs do %>
-  <%=link_to "Grades", school_grades_path(@school) %>
+  <%=link_to "My Grades", school_grades_path(@school) %>
+  <%=link_to "Grading Office", school_grading_office_path(@school) if current_user.staff? %>
 <% end %>
 
 <div id="content-large">

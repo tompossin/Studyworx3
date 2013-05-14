@@ -63,7 +63,19 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="FormatContent.html">FormatContent</a>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
@@ -76,6 +88,8 @@
     
     <li><a href="#method-i-destroy">#destroy</a>
     
+    <li><a href="#method-i-download">#download</a>
+    
     <li><a href="#method-i-edit">#edit</a>
     
     <li><a href="#method-i-index">#index</a>
@@ -83,6 +97,8 @@
     <li><a href="#method-i-new">#new</a>
     
     <li><a href="#method-i-new_child">#new_child</a>
+    
+    <li><a href="#method-i-print">#print</a>
     
     <li><a href="#method-i-staffnote">#staffnote</a>
     
@@ -114,6 +130,8 @@
     <li><a href="./Admin.html">Admin</a>
   
     <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
+  
+    <li><a href="./Admin/AssignmentsController/:.html">Admin::AssignmentsController:::</a>
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
@@ -168,6 +186,10 @@
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
+    <li><a href="./Admin/VersionsController.html">Admin::VersionsController</a>
+  
+    <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -366,7 +388,7 @@
 
           
           <div class="method-source-code" id="cancel-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -399,7 +421,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -432,7 +454,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   
 <span class="ruby-keyword">end</span></pre>
@@ -444,6 +466,41 @@
 
         
       </div><!-- destroy-method -->
+
+    
+      <div id="method-i-download" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">download</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="download-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">download</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">roots</span>
+  <span class="ruby-ivar">@grading_view</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">filename</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@task</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-identifier">content</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;comments/download&quot;</span>
+  <span class="ruby-identifier">output</span> = <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_type</span>])
+  <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">output</span>[<span class="ruby-value">:filepath</span>], <span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">output</span>[<span class="ruby-value">:filename</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- download-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- download-method -->
 
     
       <div id="method-i-edit" class="method-detail ">
@@ -462,7 +519,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -495,7 +552,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@comments</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">roots</span>  
 <span class="ruby-keyword">end</span></pre>
@@ -525,7 +582,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -558,7 +615,7 @@
 
           
           <div class="method-source-code" id="new_child-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_child</span>
   <span class="ruby-ivar">@parent</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@comment</span> = <span class="ruby-ivar">@parent</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">task_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>)
@@ -574,6 +631,46 @@
 
         
       </div><!-- new_child-method -->
+
+    
+      <div id="method-i-print" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">print</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="print-source">
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">print</span>
+  <span class="ruby-ivar">@comments</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">roots</span>
+  <span class="ruby-ivar">@grading_view</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">pdf</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">filename</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@task</span>.<span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">content</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;comments/print&quot;</span>
+      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;pdf&quot;</span>)
+      <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">output</span>[<span class="ruby-value">:filepath</span>], <span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">output</span>[<span class="ruby-value">:filename</span>])
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- print-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- print-method -->
 
     
       <div id="method-i-staffnote" class="method-detail ">
@@ -592,7 +689,7 @@
 
           
           <div class="method-source-code" id="staffnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">staffnote</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@staffnote</span> = <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">staffnotes</span>.<span class="ruby-identifier">first</span>
@@ -629,7 +726,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -666,7 +763,7 @@
 
           
           <div class="method-source-code" id="update_staffnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/comments_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_staffnote</span>
   <span class="ruby-ivar">@comment</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">staff_note</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:comment</span>][<span class="ruby-value">:staff_note</span>]

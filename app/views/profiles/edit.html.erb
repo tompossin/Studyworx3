@@ -1,12 +1,14 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "My Teams", teams_path %>
+<% end %>
 <div id='content-large' >
-
     <div class="floatbox_trans limited">
       <p class="title">Edit my bio</p>
       <%= form_for @user.note, :url => bio_save_profile_path(@user.id), :html => { :multipart => true, :remote => true } do |f| %>
 
           <div>
             <div>
-              <%= f.text_area :bio, {style: "height: 225px;"} %>
+              <%= f.text_area :bio, {style: "height: 225px;width: 98%;"} %>
             </div>
             <div>
               <%=link_to "Show Format Help", help_path(1),{remote: true} %>
@@ -25,21 +27,21 @@
         <p>
           <%= image_tag(current_user.avatar.url(:thumb)) %>
           <label>Avatar Image </label><br />
-          <%= f.file_field :avatar %>
+          <%= f.file_field :avatar, {style: "width: 50%;"} %>
         </p>
         <label>Phone: </label><br />
-        <%= f.text_field :phone %><br />
+        <%= f.text_field :phone, {style: "width: 98%;"} %><br />
         <label>Address: </label><br />
-        <%= f.text_area :address,{style: "height: 90px;width: 250px;"} %><br />
+        <%= f.text_area :address,{style: "height: 60px;width: 98%;"} %><br />
         <p>
           <%= image_tag(current_user.wallpaper.url(:thumb))%>
           <label>Wallpaper Image </label><br />
-          <%= f.file_field :wallpaper %>
+          <%= f.file_field :wallpaper, {style: "width: 50%;"} %>
         </p>
         <p>
           <%= image_tag(current_user.iotd(:thumb))%>
           <label>Image of the Day! </label><br />
-          <%= f.file_field :iotd %>
+          <%= f.file_field :iotd, {style: "width: 50%;"} %>
         </p>
         <p><%= f.submit %></p>
       <% end %>

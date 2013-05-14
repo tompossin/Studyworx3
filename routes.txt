@@ -218,6 +218,8 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                    school_assignment GET    /schools/:school_id/assignments/:id(.:format)                                              assignments#show
                                      PUT    /schools/:school_id/assignments/:id(.:format)                                              assignments#update
                                      DELETE /schools/:school_id/assignments/:id(.:format)                                              assignments#destroy
+        school_load_team_assignments GET    /schools/:school_id/load/team/assignments(.:format)                                        schools#load_team_assignments
+         school_show_all_assignments GET    /schools/:school_id/show_all/assignments(.:format)                                         schools#show_all_assignments
                        school_grades GET    /schools/:school_id/grades(.:format)                                                       grades#index
                                      POST   /schools/:school_id/grades(.:format)                                                       grades#create
                     new_school_grade GET    /schools/:school_id/grades/new(.:format)                                                   grades#new
@@ -226,13 +228,13 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                                      PUT    /schools/:school_id/grades/:id(.:format)                                                   grades#update
                                      DELETE /schools/:school_id/grades/:id(.:format)                                                   grades#destroy
              school_grade_coversheet GET    /schools/:school_id/grades/:grade_id/coversheet(.:format)                                  grades#coversheet
+                school_grade_comment GET    /schools/:school_id/grades/:grade_id/comment(.:format)                                     grades#comment
                       school_hand_in POST   /schools/:school_id/hand_in/assignment/:assignment_id(.:format)                            grades#hand_in
                       school_collect GET    /schools/:school_id/collect(.:format)                                                      grades#collect
                  school_collect_save POST   /schools/:school_id/collect_save(.:format)                                                 grades#collect_save
                  school_return_grade POST   /schools/:school_id/grades/:grade_id/return(.:format)                                      grades#return
                     school_load_team GET    /schools/:school_id/load_team/students(.:format)                                           grades#load_team
                   school_load_module GET    /schools/:school_id/load_module/assignments(.:format)                                      grades#load_module
-        school_load_team_assignments GET    /schools/:school_id/load/team/assignments(.:format)                                        schools#load_team_assignments
                school_grading_office GET    /schools/:school_id/grading_office(.:format)                                               grades#office
                              schools GET    /schools(.:format)                                                                         schools#index
                                      POST   /schools(.:format)                                                                         schools#create

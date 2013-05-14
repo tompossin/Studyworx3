@@ -5,7 +5,11 @@
     </span>
     <%= @duedate.duedate.to_formatted_s(:long) %>  
     <span class="red" >
-      you have <%= distance_of_time_in_words(Time.now.in_time_zone, @duedate.duedate.in_time_zone) %> left to work.
+      <% if Time.now.in_time_zone < @duedate.duedate.in_time_zone %>
+        you have <%= distance_of_time_in_words(Time.now.in_time_zone,@duedate.duedate.in_time_zone) %> left to work.
+      <% else %>
+        Time has Expired.
+      <% end %>
     </span>
   <% else %>
     <span >No due time is set.</span>

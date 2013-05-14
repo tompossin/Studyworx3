@@ -1,12 +1,18 @@
 <div class="trow" >
-  <span class="cell" style="width: 27%;" >
+  <span class="cell" style="width: 25%;" >
     <%=link_to get_assignment_name(grade.assignment_id), school_grade_path(grade.school_id,grade) %>
   </span> 
-  <span class="cell" style="width: 27%;" >
+  <span class="cell" style="width: 15%;" >
     <%=link_to( letter_grade(grade.grade), school_grade_coversheet_path(grade.school_id,grade), {remote: true}) if grade.grade %>
     <%= letter_grade(grade.grade) unless grade.grade %> 
   </span>
-  <span class="cell" style="width: 27s%;" >
+  <span class="cell" style="width: 15%;" >
+    <%=link_to "comments", school_grade_comment_path(grade.school_id,grade), {remote: true} if current_user.staff? %>
+  </span>
+  <span class="cell" style="width: 10%;">
+    <%=link_to "edit", grade_finish_grading_path(grade), {remote: true} if current_user.staff? %>
+  </span>
+  <span class="cell" style="width: 20%;" >
     <%= get_full_name(grade.staff_id) if grade.staff_id %>
   </span>
 </div>

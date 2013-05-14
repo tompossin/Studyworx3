@@ -1,15 +1,17 @@
 <% content_for :breadcrumbs do %>
   <span class="cell"><%=link_to "Homeroom", schools_path %></span>
+  <span class="cell"><%=link_to "Grading Office", school_grading_office_path(@school) %></span>
 <% end %>
 <div id="content-large">
   <article>
+    <p class="title largest bolder">Grading Office</p>
     <div class="half_pane" >
-      <h1>Grading Office</h1>
+      <p class="title large bolder">Pending Grading</p>
       <%= render partial: "grades/partials/alink", collection: @pending %>
     </div>
     <div class="half_pane">
-      Load recent staff comments here. <br />
-      Maybe with a "view all" link as well.
+      <p class="title large bolder">Current Students</p>
+      <%= render partial: "profiles/student", collection: @students %>
     </div>   
   </article>
 </div>

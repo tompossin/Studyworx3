@@ -27,6 +27,27 @@ class Assignment < ActiveRecord::Base
       return false
     end
   end
+  
+  # This return true/false depending on if there is still time remaining to work
+  # * Usage: @assignment.editable?(current_user)
+  def editable?(user)
+    timenow = Time.now.in_time_zone
+    due = self.duetime(user)
+    if due # If there is a duedate
+      if due.duedate > timenow # duedate still in the future
+        return true
+      else #duedate is past
+        grade = Grade.where("assignment_id = ? and user_id = ?",self.id,user.id).first
+        if grade and grade.returned # If grading is finished then the student can edit again
+          return true
+        else # If still awaiting grading - then no editing
+          return false
+        end 
+      end
+    else # If no duedate is set
+      return true
+    end
+  end
 
   
 end

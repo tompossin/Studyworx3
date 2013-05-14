@@ -1,10 +1,11 @@
 <% content_for :breadcrumbs do %>
   <%=link_to "Admin Tools", admin_tools_path %>
+  <%= help_link(3) %>
 <% end %>
 <div id="content-large">
-  <article>
+  <article>    
+    <p class="title larger bolder">Editing <%= @school.name %></p>
     
-    <h1>Editing <%= @school.name %></h1>
     <%= render "form" %>
   </article>
 </div>

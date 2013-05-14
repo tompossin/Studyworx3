@@ -153,6 +153,8 @@
   
     <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
   
+    <li><a href="./Admin/AssignmentsController/:.html">Admin::AssignmentsController:::</a>
+  
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
     <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
@@ -206,6 +208,10 @@
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
+    <li><a href="./Admin/VersionsController.html">Admin::VersionsController</a>
+  
+    <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -437,7 +443,7 @@
 
           
           <div class="method-source-code" id="cancel_ppoint-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 159</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 165</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_ppoint</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>])
@@ -471,14 +477,12 @@
         <div class="method-description">
           
           <p>This is the main page for editing insides/outsides. It&#39;s the charting
-homepage.  TODO build a model method for checking book size and loading
-appropriate titles a ppoints INFO this could be worked into the build_tree
-method.</p>
+homepage.</p>
           
 
           
           <div class="method-source-code" id="charting-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">charting</span>
   <span class="ruby-identifier">state</span> = <span class="ruby-constant">State</span>.<span class="ruby-identifier">find_or_create_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">uptodate</span>
@@ -516,7 +520,7 @@ method.</p>
 
           
           <div class="method-source-code" id="charttext_staffnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 83</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">charttext_staffnote</span>
   <span class="ruby-ivar">@charttext</span> = <span class="ruby-constant">Charttext</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:charttext_id</span>])
   <span class="ruby-ivar">@staffnote</span> = <span class="ruby-ivar">@charttext</span>.<span class="ruby-identifier">staffnotes</span>.<span class="ruby-identifier">first</span>
@@ -555,7 +559,7 @@ for</p>
 
           
           <div class="method-source-code" id="create_title-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 192</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 198</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_title</span>
   <span class="ruby-identifier">old_title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">old_title</span>.<span class="ruby-identifier">insert_title</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_type</span>].<span class="ruby-identifier">to_i</span>)
@@ -596,7 +600,7 @@ for</p>
 
           
           <div class="method-source-code" id="delete_ppoint-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 172</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_ppoint</span>
   <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>])
   <span class="ruby-ivar">@ppoint_id</span> = <span class="ruby-ivar">@ppoint</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
@@ -632,7 +636,7 @@ for</p>
 
           
           <div class="method-source-code" id="delete_title-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 235</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 241</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_title</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
   <span class="ruby-identifier">position</span> = <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">position</span>
@@ -670,7 +674,7 @@ for</p>
 
           
           <div class="method-source-code" id="destroy_all-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 248</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 254</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_all</span>
   <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ?&quot;</span>,<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">destroy_all</span>
   <span class="ruby-constant">State</span>.<span class="ruby-identifier">update_state</span>(<span class="ruby-identifier">current_user</span>)
@@ -705,9 +709,10 @@ for</p>
 
           
           <div class="method-source-code" id="download-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">download</span>
-  <span class="ruby-ivar">@verticals</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_vertical_charts</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@verticals</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">build_all_charts</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">content</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;charts/download&quot;</span>
   <span class="ruby-identifier">filename</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@task</span>.<span class="ruby-identifier">name</span>
   
@@ -740,7 +745,7 @@ for</p>
 
           
           <div class="method-source-code" id="edit_ppoint-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 122</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit_ppoint</span>
   <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>] )
   <span class="ruby-ivar">@observations</span> = <span class="ruby-constant">Observation</span>.<span class="ruby-identifier">select</span>([<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>]).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ?&quot;</span>, <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>).<span class="ruby-identifier">all</span>
@@ -775,7 +780,7 @@ for</p>
 
           
           <div class="method-source-code" id="new_ppoint-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 112</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_ppoint</span>
   <span class="ruby-identifier">title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
   <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">title_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>],<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">title</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">color</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;black&#39;</span>,<span class="ruby-identifier">position</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span> )
@@ -811,7 +816,7 @@ for</p>
 
           
           <div class="method-source-code" id="new_title-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 183</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 189</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new_title</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
   
@@ -845,7 +850,7 @@ for</p>
 
           
           <div class="method-source-code" id="ppoint_staffnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 132</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ppoint_staffnote</span>
   <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>])
   <span class="ruby-ivar">@staffnote</span> = <span class="ruby-ivar">@ppoint</span>.<span class="ruby-identifier">staffnotes</span>.<span class="ruby-identifier">first</span>
@@ -882,12 +887,18 @@ for</p>
 
           
           <div class="method-source-code" id="print-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">print</span>
   <span class="ruby-ivar">@verticals</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">build_all_charts</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">pdf</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">filename</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@task</span>.<span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">content</span> = <span class="ruby-identifier">render_to_string</span> <span class="ruby-identifier">template</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;charts/print&quot;</span>
+      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">current_user</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;pdf&quot;</span>)
+      <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">output</span>[<span class="ruby-value">:filepath</span>], <span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">output</span>[<span class="ruby-value">:filename</span>])
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- print-source -->
@@ -917,7 +928,7 @@ title.title instead of title.content may need to refactor that someday</p>
 
           
           <div class="method-source-code" id="save-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 220</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 226</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
   <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">title</span> = <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">clean_input</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>])
@@ -957,7 +968,7 @@ title.title instead of title.content may need to refactor that someday</p>
 
           
           <div class="method-source-code" id="save_charttext-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 94</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_charttext</span>
   <span class="ruby-ivar">@charttext</span> = <span class="ruby-constant">Charttext</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:charttext_id</span>])
   
@@ -1001,7 +1012,7 @@ new page element.</p>
 
           
           <div class="method-source-code" id="save_ppoint-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 144</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_ppoint</span>
   <span class="ruby-ivar">@ppoint</span> = <span class="ruby-constant">Ppoint</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint_id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ppoint</span>][<span class="ruby-value">:content</span>].<span class="ruby-identifier">empty?</span>
@@ -1078,7 +1089,7 @@ new page element.</p>
 
           
           <div class="method-source-code" id="title_staffnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 207</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 213</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">title_staffnote</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:title_id</span>])
   <span class="ruby-ivar">@staffnote</span> = <span class="ruby-ivar">@title</span>.<span class="ruby-identifier">staffnotes</span>.<span class="ruby-identifier">first</span>
@@ -1115,9 +1126,10 @@ new page element.</p>
 
           
           <div class="method-source-code" id="tools-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tools</span>
   <span class="ruby-ivar">@segments</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@vertical</span> = <span class="ruby-ivar">@task</span>.<span class="ruby-identifier">titles</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">segnum</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>) <span class="ruby-comment"># this is necessary when this is loaded seperate from the rest of the charting page.</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -1149,7 +1161,7 @@ new page element.</p>
 
           
           <div class="method-source-code" id="vertical-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vertical</span>
   <span class="ruby-ivar">@segments</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@vertical</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:vertical_id</span>])

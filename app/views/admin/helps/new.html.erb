@@ -1,7 +1,10 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Help Home", admin_helps_path %>
+<% end %>
+
 <div id="content-large">
   <article>
     <h3>Create a New Help Record</h3>
-    <%=link_to "Help Home", admin_helps_path %>
     
     <%= render "form" %>
     

@@ -96,6 +96,8 @@
     
     <li><a href="#method-i-get_templat_name">#get_templat_name</a>
     
+    <li><a href="#method-i-help_link">#help_link</a>
+    
     <li><a href="#method-i-hidden_div_unless">#hidden_div_unless</a>
     
     <li><a href="#method-i-include_form_validation_errors">#include_form_validation_errors</a>
@@ -153,6 +155,8 @@
   
     <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
   
+    <li><a href="./Admin/AssignmentsController/:.html">Admin::AssignmentsController:::</a>
+  
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
     <li><a href="./Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
@@ -206,6 +210,10 @@
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
+    <li><a href="./Admin/VersionsController.html">Admin::VersionsController</a>
+  
+    <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -404,7 +412,7 @@
 
           
           <div class="method-source-code" id="content_type_link-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 210</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 215</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">content_type_link</span>(<span class="ruby-identifier">content_type</span>,<span class="ruby-identifier">url</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">msg</span> = <span class="ruby-string">&quot;Switch to Markdown Editor&quot;</span>
@@ -647,7 +655,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="get_task_type_name-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 133</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_task_type_name</span>(<span class="ruby-identifier">id</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
     <span class="ruby-string">&quot;Document&quot;</span>
@@ -718,7 +726,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="get_templat_name-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 123</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_templat_name</span>(<span class="ruby-identifier">templat_id</span>=<span class="ruby-keyword">false</span>)    
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">templat_id</span>
     <span class="ruby-identifier">t</span> = <span class="ruby-constant">Templat</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">templat_id</span>)
@@ -737,6 +745,36 @@ will not work.</p>
       </div><!-- get_templat_name-method -->
 
     
+      <div id="method-i-help_link" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">help_link</span><span
+            class="method-args">(help_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the help link for a page</p>
+          
+
+          
+          <div class="method-source-code" id="help_link-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">help_link</span>(<span class="ruby-identifier">help_id</span>)
+  <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-string">&quot;iconic/lightbulb_20x32.png&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;8x13&quot;</span>), <span class="ruby-identifier">admin_help_path</span>(<span class="ruby-identifier">help_id</span>),{<span class="ruby-identifier">remote</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Open help for this page.&quot;</span>})
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- help_link-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- help_link-method -->
+
+    
       <div id="method-i-hidden_div_unless" class="method-detail ">
         
         <div class="method-heading">
@@ -753,7 +791,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="hidden_div_unless-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 202</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 207</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hidden_div_unless</span>(<span class="ruby-identifier">condition</span>, <span class="ruby-identifier">attributes</span> = {}, &amp;<span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">condition</span>
     <span class="ruby-identifier">attributes</span>[<span class="ruby-string">&quot;style&quot;</span>] = <span class="ruby-string">&quot;display: none;&quot;</span>
@@ -788,7 +826,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="include_form_validation_errors-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 118</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">include_form_validation_errors</span>(<span class="ruby-identifier">record_object</span>)
   <span class="ruby-identifier">render</span> <span class="ruby-value">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;shared/errors&quot;</span>, <span class="ruby-value">:locals</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:record</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">record_object</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -818,7 +856,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="is_admin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 179</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 184</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
@@ -851,7 +889,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="is_contributor-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 187</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 192</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span><span class="ruby-value">0</span>
@@ -884,7 +922,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="is_staff-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 195</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 200</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_staff</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
@@ -916,7 +954,7 @@ will not work.</p>
 
           
           <div class="method-source-code" id="is_superadmin-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 171</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 176</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">UserAdmin</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
@@ -951,7 +989,7 @@ href="ApplicationHelper.html#method-i-nav_bar">#nav_bar</a>(nav_body_content
 
           
           <div class="method-source-code" id="nav_bar-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 111</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nav_bar</span>(<span class="ruby-identifier">nav_body_content</span> = <span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">nbc</span> = <span class="ruby-identifier">nav_body_content</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">default_nav_body</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:partial=</span><span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;layouts/nav_bar&quot;</span>, <span class="ruby-value">:locals=</span><span class="ruby-operator">&gt;</span>{<span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-identifier">full_name</span>, <span class="ruby-identifier">nav_body_content</span><span class="ruby-operator">:</span> <span class="ruby-identifier">nbc</span>}
@@ -1016,7 +1054,7 @@ attributes.</p>
 
           
           <div class="method-source-code" id="set_color-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 151</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_color</span>(<span class="ruby-identifier">t</span>,<span class="ruby-identifier">tcolor</span>=<span class="ruby-string">&quot;green&quot;</span>,<span class="ruby-identifier">fcolor</span>=<span class="ruby-string">&quot;gray&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>
     <span class="ruby-identifier">tcolor</span>
@@ -1050,7 +1088,7 @@ attributes.</p>
 
           
           <div class="method-source-code" id="set_css-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 254</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 259</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_css</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>]
@@ -1087,7 +1125,7 @@ attributes.</p>
 
           
           <div class="method-source-code" id="set_preferences-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 241</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 246</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_preferences</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">preference</span>
       <span class="ruby-identifier">pref</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">theme</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;default-right&quot;</span>,<span class="ruby-identifier">bgcolor</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;white&quot;</span>,<span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">wallpaper</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
@@ -1125,7 +1163,7 @@ attributes.</p>
 
           
           <div class="method-source-code" id="set_wallpaper-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 220</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 225</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_wallpaper</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallpaper</span> 
@@ -1296,7 +1334,7 @@ string responses to T/F input</p>
 
           
           <div class="method-source-code" id="tfmsg-source">
-            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 162</span>
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 167</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tfmsg</span>(<span class="ruby-identifier">t</span>,<span class="ruby-identifier">tmsg</span>=<span class="ruby-string">&quot;True&quot;</span>,<span class="ruby-identifier">fmsg</span>=<span class="ruby-string">&quot;False&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>
     <span class="ruby-identifier">tmsg</span>

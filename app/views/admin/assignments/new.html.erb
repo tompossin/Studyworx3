@@ -1,6 +1,7 @@
 <% content_for :breadcrumbs do %>
   <%=link_to "Assignment Home", admin_assignments_path %>
   <%=link_to "Module Home", showmod_admin_assignments_path(mod_id: @module)%>
+  <%= help_link(3) %>
 <% end %>
 <div id="content-large">
   <article>

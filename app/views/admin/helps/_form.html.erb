@@ -1,4 +1,9 @@
 <%=render "shared/autosave_js", { url: admin_help_path(@help) } %>
+<script>
+  $(document).ready(function () {
+       $("textarea").tabby();  
+  });
+</script>
 <%=form_for [:admin,@help], {remote: true} do |f| %>
   <div class="title smaller">Save Ctrl+s | Undo Ctrl+z </div>
   <div class="toolbar">

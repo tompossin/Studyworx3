@@ -6,6 +6,12 @@
     </p>
 
   <p class="title largest bolder">Assignments</p>
+    <% unless current_user.staff? %>
+      <p>
+        <%=link_to "Show All", school_show_all_assignments_path(@school) %>
+      </p>
+    <% end %>
+    
     <%= render @assignments unless current_user.staff? %>
     <%= render 'team_assignments' if current_user.staff? %>
 </div>

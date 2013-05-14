@@ -16,13 +16,23 @@ class Admin::DuedatesController < ApplicationController
   # This lists the assignments by Module, and Team
   # A form sends the params for this page.
   # The path is:
-  #  [POST] admin_duedates_list_path returns params[:team] and params[:module]
+  #  [GET] admin_duedates_list_path returns params[:team] and params[:module]
   def list
-    @team = Team.find(params[:team])
-    @duedates = Team.find_or_create_team_duedates_by_module(@school,@team,params[:module])
-    @nav_body_content = "admin/assignments/toolbar"
-    @mod_id = params[:module]
-    
+    unless params[:team] == "" or params[:module] == ""
+      @team = Team.find(params[:team])
+      @duedates = Team.find_or_create_team_duedates_by_module(@school,@team,params[:module])
+      @nav_body_content = "admin/assignments/toolbar"
+      @mod_id = params[:module]
+    else
+      blank = true
+    end
+    respond_to do |format|
+      unless blank
+        format.html
+      else
+        format.html {redirect_to admin_duedates_path, alert: "Please select both a team and a module." }
+      end
+    end    
   end
 
   def edit

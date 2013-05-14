@@ -1,3 +1,6 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "My Profile", edit_profile_path(current_user.id) %>
+<% end %>
 <div id="content-large">    
    <article>
     <div class="float_left title">

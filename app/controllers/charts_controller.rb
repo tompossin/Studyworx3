@@ -9,10 +9,14 @@ class ChartsController < ApplicationController
   def start  
     if Title.is_started?(@task.id,current_user.id)
       @titles = Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).all
+      assignment = Assignment.find(@task.assignment_id)
     end
-    
-    respond_to do |format| 
-      format.html 
+    respond_to do |format|
+      if assignment.editable?(current_user)
+        format.html 
+      else
+        format.html {redirect_to task_print_charts_url(@task)}
+      end
     end
   end
   
@@ -99,17 +103,21 @@ class ChartsController < ApplicationController
   
   def save_charttext
     @charttext = Charttext.find(params[:charttext_id])
-    
+    assignment = Assignment.find(@task.assignment_id)
     respond_to do |format|
-      if @charttext.update_attributes(params[:charttext])
-        @autopreview = @charttext
-        unless params[:autopreview]
-          format.js { render "shared/save_success" }
+      if assignment.editable?(current_user)
+        if @charttext.update_attributes(params[:charttext])
+          @autopreview = @charttext
+          unless params[:autopreview]
+            format.js { render "shared/save_success" }
+          else
+            format.js { render "shared/autopreview" }
+          end
         else
-          format.js { render "shared/autopreview" }
+          format.js {render "shared/save_failed"}
         end
       else
-        format.js {render "shared/save_failed"}
+        format.js {render "shared/pastdue"}
       end
     end
   end
@@ -152,12 +160,17 @@ class ChartsController < ApplicationController
     if params[:ppoint][:content].empty?
       params[:ppoint][:content] = "Add content here."
     end
+    assignment = Assignment.find(@task.assignemnt_id)
     
     respond_to do |format|
-      if @ppoint.update_attributes(params[:ppoint])
-        format.js 
+      if assignment.editable?(current_user)
+        if @ppoint.update_attributes(params[:ppoint])
+          format.js 
+        else
+          format.js { render "shared/save_failed" }
+        end
       else
-        format.js { render "shared/save_failed" }
+        format.js { render "shared/pastdue" }
       end
     end
   end
@@ -198,14 +211,18 @@ class ChartsController < ApplicationController
   def create_title
     old_title = Title.find(params[:title_id])
     @title = old_title.insert_title(params[:title_type].to_i)
-    
+    assignment = Assignment.find(@task.assignment_id)
     
     respond_to do |format|
-      if @title
-        State.update_state(current_user.id)
-        format.js
+      if assignment.editable?(current_user)
+        if @title
+          State.update_state(current_user.id)
+          format.js
+        else
+          format.js { render "insert_failed" }
+        end
       else
-        format.js {render "insert_failed"}
+        format.js { render "shared/pastdue" }
       end
     end
   end

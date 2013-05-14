@@ -305,7 +305,7 @@ ActiveRecord::Schema.define(:version => 20130504131206) do
   end
 
   create_table "schools", :force => true do |t|
-    t.integer  "user_id",               :null => false
+    t.integer  "owner_id",              :null => false
     t.integer  "version_id"
     t.integer  "language_id"
     t.string   "name"
@@ -316,7 +316,6 @@ ActiveRecord::Schema.define(:version => 20130504131206) do
     t.text     "mailing_address"
     t.text     "tagline"
     t.text     "description"
-    t.boolean  "enrolement_type"
     t.boolean  "active"
     t.string   "timezone"
     t.datetime "created_at",            :null => false

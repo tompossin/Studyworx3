@@ -3,6 +3,10 @@ $('#tlinks').empty();
 $('#grading_link').empty();
 $('#chart_nav').empty();
 $('#chartids').empty();
+
+$('#popup').show();
+$("#popup_content").html("<%=j render partial: "grades/partials/tasks" %>");
+$('#breadcrumbs').html("<%=j render "grades/partials/gv_breadcrumbs" %>") 
 $('#staffnote').html("<%=j render "grades/partials/comments" %>");
 $('#comments_slide').click(function() {
   $('#comments').slideToggle('slow');

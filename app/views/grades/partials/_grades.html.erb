@@ -1,0 +1,4 @@
+<article>
+  <p class="title large bolder">Grades for: <%= @user.fullname %></p>
+  <%= render partial: "grades/partials/grade", collection: @grades %>
+</article>

@@ -71,9 +71,22 @@ class School < ActiveRecord::Base
     end
   end
   
+  # Returns all assignments for coreteam members (students)
+  def all_assignments(user)
+    team = user.teams.where("school_id = ? and coreteam = ?",user.school,true).first
+    if team
+      assignments = self.assignments.includes([:duedates]).where( "team_id = ?",team).order("duedates.duedate ASC")
+    end
+  end
+  
   # Returns all curent assignments by coreteam (staff basically)
   def current_team_assignments(team_id)
     assignments = self.assignments.includes([:duedates]).where("duedates.duedate > ? and team_id = ?",Time.now.in_time_zone, team_id).order("duedates.duedate ASC")   
+  end
+  
+  # Returns all assignments by coreteam (Staff team selector)
+  def all_team_assignments(team_id)
+    assignments = self.assignments.includes([:duedates]).where("team_id = ?", team_id).order("duedates.duedate ASC")   
   end
   
   # Creates a participant record for the creator of the school

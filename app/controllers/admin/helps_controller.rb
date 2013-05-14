@@ -7,9 +7,14 @@ class Admin::HelpsController < ApplicationController
   end
 
   def show
-    @help = Help.find(params[:id])
+    @help = Help.where(id: params[:id]).first
+    
     respond_to do |format|
-      format.js
+      if @help
+        format.js
+      else
+        format.js {render "help_not_found"}
+      end
     end
   end
 

@@ -126,18 +126,21 @@ Studyworx3::Application.routes.draw do
       end
     end
     
+    match 'load/team/assignments' => 'schools#load_team_assignments', via: [:get], as: :load_team_assignments
+    match 'show_all/assignments' => 'schools#show_all_assignments', via: :get, as: :show_all_assignments
+    
     resources :grades
     
     # custom grade routes
     match 'grades/:grade_id/coversheet' => 'grades#coversheet', via: [:get], as: :grade_coversheet
+    match 'grades/:grade_id/comment' => 'grades#comment', via: :get, as: :grade_comment
     match 'hand_in/assignment/:assignment_id' => 'grades#hand_in', via: [:post], as: :hand_in
     match 'collect' => 'grades#collect',via: [:get], as: :collect
     match 'collect_save' => 'grades#collect_save',via: [:post], as: :collect_save
     match 'grades/:grade_id/return' => 'grades#return', via: :post, as: :return_grade
     match 'load_team/students' => 'grades#load_team', via: [:get], as: :load_team 
     match 'load_module/assignments' => 'grades#load_module', via: [:get], as: :load_module
-    match 'load/team/assignments' => 'schools#load_team_assignments', via: [:get], as: :load_team_assignments
-    match 'grading_office' => 'grades#office', via: [:get], as: :grading_office
+    match 'grading_office' => 'grades#office', via: [:get], as: :grading_office  
   end
   
   match 'user/:user_id/assignment/:assignment_id/load_tasks' => 'grades#load_tasks', via: [:get], as: :user_assignment_load_tasks

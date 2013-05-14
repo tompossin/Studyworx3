@@ -82,6 +82,12 @@ class User < ActiveRecord::Base
     self.teams.where("school_id = ? and coreteam = ?",self.school, true).first
   end
   
+  # Calculates the current grade average for a student.
+  def grade_average
+    grades = self.grades.where("school_id = ?",self.school)
+    grades.average("grade")
+  end
+  
   
   # Checks users authority to administrate schools
   # * A school admin has a participant.role_id < 3

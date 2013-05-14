@@ -2,6 +2,7 @@
   <%= form_tag school_load_team_assignments_path(@school),{remote: true, method: :get} do %>
     <p class="title large">Select a team to view assignments</p>
     <%= select_tag "team", options_from_collection_for_select(@teams,'id','name'), :prompt => "Select a Team" %>
+    Show all?:<%= check_box_tag "show_all" %>
     <%= submit_tag "Select" %>
   <% end %>
 </div>

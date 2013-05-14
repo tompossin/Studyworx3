@@ -1,2 +1,3 @@
-$('#popup').after("<%=j render "admin/helps/show",{help: @help} %>");
+$('#popup').show();
+$('#popup_content').html("<%=j render "admin/helps/show",{help: @help} %>");
 

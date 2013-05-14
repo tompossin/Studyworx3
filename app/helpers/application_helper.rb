@@ -107,6 +107,11 @@ module ApplicationHelper
     return markdown.render(content).html_safe
   end
   
+  # Sets the help link for a page
+  def help_link(help_id)
+    link_to(image_tag("iconic/lightbulb_20x32.png", size: "8x13"), admin_help_path(help_id),{remote: true, title: "Open help for this page."})
+  end
+  
   # Sets the nav_bar(nav_body_content = optional url of partial for nav_body_content element)
   def nav_bar(nav_body_content = false)
     nbc = nav_body_content || Settings.default_nav_body

@@ -22,7 +22,7 @@
           <%=link_to "Observation Admin", admin_school_observations_path(current_user.school) %><br />
           <%=link_to "Reports", admin_reports_path %><br />
           <%=link_to "Personnel Admin", admin_tools_personnel_path %><br />
-          <%=link_to( "System help editor", admin_helps_path) if is_admin %>
+          <%=link_to( "System help editor", admin_helps_path) if is_superadmin %>
         </section>
       <% end %>
       <% if is_admin %>

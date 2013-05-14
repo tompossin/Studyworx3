@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   
   
   # Set the users timezone
-  # FIXME I may not want to call this on every call. This way it is sure to happen though ;)
+  # INFO I may not want to call this on every call. This way it is sure to happen though ;)
   def set_time_zone
     if current_user
       if current_user.timezone

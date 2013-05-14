@@ -56,10 +56,24 @@ class SchoolsController < ApplicationController
   def load_team_assignments
     @school = School.find(current_user.school)
     @team = Team.find(params[:team])
-    @assignments = @school.current_team_assignments(@team.id)
+    unless params[:show_all]
+      @assignments = @school.current_team_assignments(@team.id)
+    else
+      @assignments = @school.all_team_assignments(@team.id)
+    end
     
     respond_to do |format|
       format.js 
+    end
+  end
+  
+  def show_all_assignments
+    @school = School.find(current_user.school)
+    load_school_vars
+    @assignments = @school.all_assignments(current_user)
+
+    respond_to do |format|
+      format.html {render :homeroom}
     end
   end
   

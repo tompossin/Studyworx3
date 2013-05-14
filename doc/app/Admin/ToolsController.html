@@ -107,6 +107,8 @@
   
     <li><a href="../Admin/AssignmentsController.html">Admin::AssignmentsController</a>
   
+    <li><a href="../Admin/AssignmentsController/:.html">Admin::AssignmentsController:::</a>
+  
     <li><a href="../Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
     <li><a href="../Admin/AssignmentsHelper/:.html">Admin::AssignmentsHelper:::</a>
@@ -160,6 +162,10 @@
     <li><a href="../Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
     <li><a href="../Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
+    <li><a href="../Admin/VersionsController.html">Admin::VersionsController</a>
+  
+    <li><a href="../Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
     <li><a href="../Team.html">Team</a>
   
@@ -360,11 +366,11 @@
           <div class="method-source-code" id="book-source">
             <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">book</span>
-  <span class="ruby-ivar">@book</span> = <span class="ruby-constant">Book</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:book_id</span>])
-  <span class="ruby-ivar">@version</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:version_id</span>])
-  <span class="ruby-ivar">@paragraphs</span> = <span class="ruby-ivar">@book</span>.<span class="ruby-identifier">paragraphs</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:version_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@version</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-comment">#@book = Book.find(params[:book_id])</span>
+  <span class="ruby-comment">#@version = Version.find(params[:version_id])</span>
+  <span class="ruby-comment">#@paragraphs = @book.paragraphs.where(:version_id =&gt; @version.id).all</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;admin/paragraphs/index&quot;</span>}
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_version_book_paragraphs_url</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:version_id</span>],<span class="ruby-identifier">params</span>[<span class="ruby-value">:book_id</span>])}
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- book-source -->

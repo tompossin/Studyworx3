@@ -22,7 +22,17 @@ class GradesController < ApplicationController
     end
   end
   
+  # This loads a coversheet into the popup window
   def coversheet
+    @grade = Grade.find(params[:grade_id])
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  # This loads a staff comment into the popup window
+  def comment
     @grade = Grade.find(params[:grade_id])
     
     respond_to do |format|
@@ -45,6 +55,8 @@ class GradesController < ApplicationController
     @grade = Grade.find(params[:grade_id])
     @grades = Grade.includes(:assignment).where("user_id = ?",@grade.user_id).order("updated_at DESC").limit(10)
     @duetime = @grade.duetime
+    @user = User.find(@grade.user_id)
+    @assignment = Assignment.find(@grade.assignment_id)
     
     respond_to do |format|
       format.js
@@ -63,7 +75,7 @@ class GradesController < ApplicationController
   # This is the grading office page. The homepage for staff grading.
   def office
     @pending = Grade.includes(:assignment).where("school_id = ? and grades.staff_id = ? and returned = ? and (grades.viewable = ? or grades.done = ?)",current_user.school,current_user.id,false,true,true).all
-    
+    @students = @school.students
     respond_to do |format|
       format.html 
       format.js 

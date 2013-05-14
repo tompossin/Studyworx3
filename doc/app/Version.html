@@ -64,7 +64,17 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-destroy_if_no_dependents">#destroy_if_no_dependents</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -86,6 +96,8 @@
     <li><a href="./Admin.html">Admin</a>
   
     <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
+  
+    <li><a href="./Admin/AssignmentsController/:.html">Admin::AssignmentsController:::</a>
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
@@ -140,6 +152,10 @@
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
+    <li><a href="./Admin/VersionsController.html">Admin::VersionsController</a>
+  
+    <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -318,6 +334,42 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-destroy_if_no_dependents" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy_if_no_dependents</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy_if_no_dependents-source">
+            <pre><span class="ruby-comment"># File app/models/version.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_if_no_dependents</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">destroy</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">paragraphs</span>.<span class="ruby-identifier">exists?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy_if_no_dependents-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy_if_no_dependents-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

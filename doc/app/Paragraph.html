@@ -64,7 +64,21 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-insert_above">#insert_above</a>
+    
+    <li><a href="#method-i-next_position">#next_position</a>
+    
+    <li><a href="#method-i-reorder_after_delete">#reorder_after_delete</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -86,6 +100,8 @@
     <li><a href="./Admin.html">Admin</a>
   
     <li><a href="./Admin/AssignmentsController.html">Admin::AssignmentsController</a>
+  
+    <li><a href="./Admin/AssignmentsController/:.html">Admin::AssignmentsController:::</a>
   
     <li><a href="./Admin/AssignmentsHelper.html">Admin::AssignmentsHelper</a>
   
@@ -140,6 +156,10 @@
     <li><a href="./Admin/UserAdminsController.html">Admin::UserAdminsController</a>
   
     <li><a href="./Admin/UserAdminsHelper.html">Admin::UserAdminsHelper</a>
+  
+    <li><a href="./Admin/VersionsController.html">Admin::VersionsController</a>
+  
+    <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
     <li><a href="./Team.html">Team</a>
   
@@ -318,6 +338,112 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-insert_above" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert_above</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="insert_above-source">
+            <pre><span class="ruby-comment"># File app/models/paragraph.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">insert_above</span>
+  <span class="ruby-identifier">update</span> = <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-string">&quot;position = position + 1&quot;</span>,[<span class="ruby-string">&quot;book_id = ? and version_id = ? and position &gt;= ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">book_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>])
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">update</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">p</span> = <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">book_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">book_id</span>, <span class="ruby-identifier">version_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_id</span>,<span class="ruby-identifier">position</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>,<span class="ruby-identifier">verse_count</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">p</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- insert_above-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- insert_above-method -->
+
+    
+      <div id="method-i-next_position" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next_position</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="next_position-source">
+            <pre><span class="ruby-comment"># File app/models/paragraph.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">next_position</span>
+  <span class="ruby-identifier">last</span> = <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;book_id = ? and version_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">book_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_id</span>).<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">last</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> = <span class="ruby-identifier">last</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- next_position-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- next_position-method -->
+
+    
+      <div id="method-i-reorder_after_delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reorder_after_delete</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reorder_after_delete-source">
+            <pre><span class="ruby-comment"># File app/models/paragraph.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reorder_after_delete</span>
+  <span class="ruby-constant">Paragraph</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-string">&quot;position = position - 1&quot;</span>,[<span class="ruby-string">&quot;book_id = ? and version_id = ? and position &gt;= ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">book_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reorder_after_delete-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reorder_after_delete-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->
