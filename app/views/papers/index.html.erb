@@ -8,13 +8,21 @@
 <div id="content-large">
   <article>
     <h2>StudyWorx Journal</h2>
-    <p>List of articles, papers, and whatever.</p>
-    <% @papers.each do |p| %>
-      <div>
-        <p class="title"><%= p.author%></p>
-        <%= formatter(p.synopsis) %>
-      </div>    
-    <% end %>
+    <section>
+      <blockquote>
+        The Studyworx Journal is designed to be both a resource for students and platform for those who wish to
+        publish a high quality academically reviewed paper.
+      </blockquote>
+    </section>
+    <section>
+      <p class="title large bolder">Currently available papers</p>
+    
+      <% @papers.each do |p| %>
+        <p>
+          <%=link_to p.title, paper_path(p) %>
+        </p>     
+      <% end %>
+    </section>   
   </article>
 </div>
 

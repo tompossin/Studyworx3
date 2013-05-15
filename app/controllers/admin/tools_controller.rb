@@ -1,7 +1,7 @@
 class Admin::ToolsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_school_admin
-  before_filter :is_superadmin, only: [:book]
+  before_filter :is_admin, only: [:book]
   before_filter :get_school
   
   def index

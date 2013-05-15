@@ -1,0 +1,15 @@
+<div>
+  <p class="title largest"><%= @paper.title %></p>
+  <p class="title small"><%= get_full_name(@paper.user_id) %> - Last updated: <%= time_ago_in_words(@paper.updated_at)%> ago.</p>
+  <hr />
+  <%= formatter(@paper.content) %>
+  <hr />
+  <footer>
+    <div>
+      <h3>
+        Endnotes...
+      </h3>
+      <%= formatter(@paper.endnote.content) if @paper.endnote %>
+    </div>
+  </footer>
+</div>

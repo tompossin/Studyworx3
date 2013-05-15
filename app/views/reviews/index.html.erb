@@ -3,14 +3,9 @@
   <%=link_to "Review Tools"%>
 <% end %>
 
-<div id="content-large" style="height: 98%;">
-  <article style="height:98%;">
-    <div class="reader">
-      <p class="title largest"><%= @paper.title %></p>
-      <p class="title small"><%= get_full_name(@paper.user_id) %> - Last updated: <%= time_ago_in_words(@paper.updated_at)%> ago.</p>
-      <hr />
-      <%= formatter(@paper.content) %>
-    </div>
+<div id="content-large">
+  <article >
+    <%= render "papers/reader" %>
   </article>
 </div>
 

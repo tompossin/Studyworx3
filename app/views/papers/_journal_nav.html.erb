@@ -1,0 +1,16 @@
+<h2>Studyworx Journal</h2>
+
+
+<% if @mypapers %>
+  <p class="title large bolder">My Papers</p>
+  <ul>
+    <% @mypapers.each do |mp| %>
+      <li><%=link_to mp.title, edit_paper_path(mp) %></li>
+    <% end %>
+  </ul>
+<% end %>
+  
+
+<% if current_user and current_user.reviewboard %>
+  <%=render "papers/reviewer_tools" %>
+<% end %>

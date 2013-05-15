@@ -20,6 +20,7 @@
     <p class="title smallest">Reviewed by: <%= current_user.fullname %> <%= time_ago_in_words(r.updated_at)%> ago.
        &nbsp;<%=link_to "edit", edit_paper_review_path(@paper,r), {remote: true, class: "small"} %>
     </p>
+    <p class="title smallest">Approval for publishing? -<%= tfmsg(r.approved,"Granted","Pending")%></p>
     <%= formatter(r.content) %>
   </div>    
 <% end %>

@@ -9,6 +9,7 @@
 # * accepted == 2(accepted, active partcipant)
 
 class ParticipantsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :get_school
 
   # GET school:id/participants

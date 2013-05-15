@@ -52,6 +52,17 @@ Studyworx3::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  
+   ActionMailer::Base.delivery_method = :smtp
+   ActionMailer::Base.smtp_settings = {
+     :enable_starttls_auto => true,
+     :address => "smtp.gmail.com",
+     :port => 587,
+     :domain => "studyworx.net",
+     :authentication => :plain,
+     :user_name => "studyworx@studyworx.net",
+     :password => "bigvee"
+   }
 
   # Enable threaded mode
   # config.threadsafe!

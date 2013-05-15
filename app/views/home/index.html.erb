@@ -4,7 +4,7 @@
 <div id="content-large">
   <article>
       <h1><%= @current_article.topic if @current_article %></h1>
-      <%= render "shared/debug_session" %>
+
       <div><%= smart_format(@current_article.content_type, @current_article.article) if @current_article %></div>
 
   </article>

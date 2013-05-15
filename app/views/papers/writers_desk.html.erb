@@ -5,12 +5,13 @@
 <div id="content-large">
   <article>
     <h2>Writers Desk</h2>
+    <%=link_to "Start a New Project", new_paper_path %>
     <div class="theader">
       <span class="cell" style="width: 20%;">Title</span>
       <span class="cell" style="width: 35%;">Last Edit</span>
       <span class="cell" style="width: 20%;">Tools</span>
     </div>
-    <% @papers.each do |p| %>
+    <% @mypapers.each do |p| %>
       <div class="trow">
         <span class="cell" style="width: 30%;"><%= p.title %></span>
         <span class="cell" style="width: 25%;"><%= time_ago_in_words(p.updated_at) %> ago</span>
@@ -22,6 +23,7 @@
     <% end %>
   </article>
 </div>
+
 
 <%= nav_bar(@nav_body_content) %>
 

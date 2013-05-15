@@ -1,5 +1,6 @@
 class Admin::HelpsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :is_superadmin
   
   def index
     @helps = Help.all

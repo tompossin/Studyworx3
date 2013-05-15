@@ -1,13 +1,22 @@
+<h2>{:> Getting Started</h2>
 <% if @school %>
-  <div class="title float_left">
+  <div class="title largest">
     <%= @school.name %>
   </div>
 <% end %>
+<div class="title large float_left">
+  Featured Stories...
+</div>
+<ul>
+  <% @features.each do |f| %>
+    <li><%=link_to f.topic, home_path(f.id)%></li>
+  <% end %>
+</ul>
 <div class="title float_left">
   More Stories...
 </div>
 <ul>
-  <% for story in @stories %>
-    <li><%= link_to story.topic, home_path(story.id) %></li>
+  <% @stories.each do |s| %>
+    <li><%= link_to s.topic, home_path(s.id) %></li>
   <%end%>
 </ul>

@@ -3,20 +3,22 @@ class HomeController < ApplicationController
   before_filter :load_note
 
   # This is really just a framework now
-  # TODO Fix the navbar so that only featured stories show
   # TODO Add a search field to search by category
   # TODO Maybe add a full text search
   # TODO May need to add the exerpt/lead-in to give short intros that can be displayed on the home page.
   def index
     @current_article = Blog.where("leadstory=?",true).first
-    @stories = Blog.find(:all,:order =>'navbar and featured and updated_at DESC')
+    @features = Blog.where("featured = ?",true).order("updated_at, leadstory DESC")
+    @stories = Blog.where("featured = ?",false).order("updated_at DESC")
   end
   
   def show
     @current_article = Blog.find(params[:id])
-    @stories = Blog.find(:all,:order =>'navbar and featured and updated_at DESC')
+    @features = Blog.where("featured = ?",true).order("updated_at, leadstory DESC")
+    @stories = Blog.where("featured = ?",false).order("updated_at DESC")
     render :index
   end
+  
   private
   
   def load_note

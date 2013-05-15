@@ -1,8 +1,9 @@
 <div>
-  <h3>Reviewer Tools</h3>
-  <h4>Papers for review</h4>
-  <% @reviewable.each do |r| %>
-    <%=link_to "#{r.title} - #{r.author}", paper_reviews_path(r) %><br />
+  <p class="title large bolder">Papers waiting review</p>
+  <% if @reviewable %>
+    <% @reviewable.each do |r| %>
+      <%=link_to "#{r.title} - #{r.author}", paper_reviews_path(r) %><br />
+    <% end %>
   <% end %>
   <p>&nbsp;</p>
 </div>

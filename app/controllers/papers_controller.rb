@@ -1,36 +1,33 @@
 class PapersController < ApplicationController
   before_filter :authenticate_user!, except:[:index, :show]
-  
+  before_filter :load_nav_body_content
+  before_filter :load_my_papers
+  before_filter :load_published_papers
   
   def index
-    @papers = Paper.all_published    
     if current_user and current_user.is_contributor
       @reviewable = Paper.all_drafts
     end    
-    @nav_body_content = "papers/reviewer_tools" if current_user and current_user.reviewboard
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @papers }
     end
   end
   
   def writers_desk
-    @papers = Paper.where("user_id = ?",current_user.id)
-    @nav_body_content = "papers/writers_tools"
+    if current_user and current_user.is_contributor
+      @reviewable = Paper.all_drafts
+    end 
   end
   
   def write
     @paper = Paper.find(params[:id])
-    
   end
   
   def show
     @paper = Paper.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @paper }
     end
   end
 
@@ -38,10 +35,8 @@ class PapersController < ApplicationController
   # GET /papers/new.json
   def new
     @paper = Paper.new(user_id: current_user.id)
-
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @paper }
     end
   end
 
@@ -54,7 +49,7 @@ class PapersController < ApplicationController
   # POST /papers.json
   def create
     @paper = Paper.new(params[:paper])
-
+    
     respond_to do |format|
       if @paper.save
         format.html { redirect_to writers_desk_path, notice: 'Paper was successfully created.' }
@@ -68,7 +63,6 @@ class PapersController < ApplicationController
   # PUT /papers/1.json
   def update
     @paper = Paper.find(params[:id])
-    
     respond_to do |format|
       if @paper.update_attributes(params[:paper])
         @autopreview = @paper
@@ -114,6 +108,20 @@ class PapersController < ApplicationController
         format.js {render "shared/save_failed"}
       end
     end
+  end
+  
+  private
+  
+  def load_nav_body_content
+    @nav_body_content = "papers/journal_nav"
+  end
+  
+  def load_my_papers
+    @mypapers = Paper.where("user_id = ?",current_user.id) if current_user
+  end
+  
+  def load_published_papers
+    @papers = Paper.all_published 
   end
   
 end

@@ -1,6 +1,10 @@
 # === Admin Interface for Profiles
 # path = /admin/profiles/action
+
 class Admin::ProfilesController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :is_admin
+  
   def index
   end
 

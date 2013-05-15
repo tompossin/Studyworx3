@@ -14,7 +14,11 @@ class Paper < ActiveRecord::Base
   end
   
   def tally_votes
-    self.reviews.where("approved = ?", true).count
+    votes = self.reviews.where("approved = ?", true).count
+    if votes > 2
+      self.published = true
+      self.save
+    end
   end
   
 end
