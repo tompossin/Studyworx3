@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     self.teams.where("school_id = ? and coreteam = ?",self.school, true).first
   end
   
+  def schoolteams
+    self.teams.where("school_id = ?",self.school).all
+  end
+  
   # Calculates the current grade average for a student.
   def grade_average
     grades = self.grades.where("school_id = ?",self.school)

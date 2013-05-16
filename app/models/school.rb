@@ -14,7 +14,7 @@ class School < ActiveRecord::Base
   ### Attributes ############################
     attr_accessible :owner_id, :active, :description, :end_date, :language_id, :location
     attr_accessible :mailing_address, :name, :prereqs, :start_date, :tagline, :timezone, :version_id
-    attr_accessible :caption
+    attr_accessible :caption, :email
   ###############################
   
   # Attachments #################

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504131206) do
+ActiveRecord::Schema.define(:version => 20130516212340) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20130504131206) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.text     "mailing_address"
+    t.string   "email"
     t.text     "tagline"
     t.text     "description"
     t.boolean  "active"

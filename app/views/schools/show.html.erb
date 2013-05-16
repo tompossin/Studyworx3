@@ -34,6 +34,10 @@
         <%= @school.end_date.strftime("%m/%d/%Y") %>
       </p>
       <p>
+        <b>Email Address:</b><br />
+        <%= @school.email %>
+      </p>
+      <p>
         <b>Mailing address:</b><br />
         <%= formatter(@school.mailing_address) %>
       </p>

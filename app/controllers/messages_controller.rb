@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :load_school
   
   # ----------
   # :section: Message Methods (parent)
@@ -250,4 +251,11 @@ class MessagesController < ApplicationController
       end
     end
   end
+  
+  private
+  
+  def load_school
+    @school = School.find(current_user.school)
+  end
+  
 end

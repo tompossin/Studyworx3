@@ -17,3 +17,8 @@
 # Ignore all image files
 /public/system/images
 /vendor/cache
+
+# Ignore sensitive config files
+/config/environments/production.rb
+/config/database.yml
+

@@ -2,6 +2,7 @@
 # * This is to keep the views and actions for Team and User Messages separate.
 class TeamMessagesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :load_school
   
   # ----------
   # :section: Team Messaging - Parent Message Methods
@@ -206,9 +207,11 @@ class TeamMessagesController < ApplicationController
       end  
     end
   end
-
-
   
   private
+  
+  def load_school
+    @school = School.find(current_user.school)
+  end
   
 end
