@@ -14,7 +14,8 @@
 /log/*.log
 /tmp
 
-# Ignore all image files
+# Ignore all image files and precompiled assets
+/public/assets
 /public/system/images
 /vendor/cache
 
