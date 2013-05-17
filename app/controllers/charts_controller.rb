@@ -9,10 +9,9 @@ class ChartsController < ApplicationController
   def start  
     if Title.is_started?(@task.id,current_user.id)
       @titles = Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).all
-      assignment = Assignment.find(@task.assignment_id)
     end
     respond_to do |format|
-      if assignment.editable?(current_user)
+      if @assignment.editable?(current_user)
         format.html 
       else
         format.html {redirect_to task_print_charts_url(@task)}
