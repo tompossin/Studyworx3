@@ -26,7 +26,7 @@
         <p><%= f.submit %></p>
         <p>
           <%= image_tag(current_user.avatar.url(:thumb)) %>
-          <label>Avatar Image </label><br />
+          <label>Avatar Image <span class="title smallest red">(1 meg max size)</span> </label><br />
           <%= f.file_field :avatar, {style: "width: 50%;"} %>
         </p>
         <label>Phone: </label><br />
@@ -35,12 +35,12 @@
         <%= f.text_area :address,{style: "height: 60px;width: 98%;"} %><br />
         <p>
           <%= image_tag(current_user.wallpaper.url(:thumb))%>
-          <label>Wallpaper Image </label><br />
+          <label>Wallpaper Image <span class="title smallest red">(1 meg max size)</span> </label><br />
           <%= f.file_field :wallpaper, {style: "width: 50%;"} %>
         </p>
         <p>
           <%= image_tag(current_user.iotd(:thumb))%>
-          <label>Image of the Day! </label><br />
+          <label>Image of the Day! <span class="title smallest red">(1 meg max size)</span> </label><br />
           <%= f.file_field :iotd, {style: "width: 50%;"} %>
         </p>
         <p><%= f.submit %></p>
