@@ -159,7 +159,7 @@ class ChartsController < ApplicationController
     if params[:ppoint][:content].empty?
       params[:ppoint][:content] = "Add content here."
     end
-    assignment = Assignment.find(@task.assignemnt_id)
+    assignment = Assignment.find(@task.assignment_id)
     
     respond_to do |format|
       if assignment.editable?(current_user)
