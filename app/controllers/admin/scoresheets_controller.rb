@@ -36,7 +36,7 @@ class Admin::ScoresheetsController < ApplicationController
     @scoresheet.school_id = @school.id
     @scoresheet.save
     respond_to do |format|
-      format.html {redirect_to admin_school_scoresheets_path(@school)}
+      format.js { render "shared/save_success" }
     end
   end
   

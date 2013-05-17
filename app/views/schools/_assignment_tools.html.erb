@@ -13,6 +13,6 @@
     <% end %>
     <% if @assignments %>
       <%= render @assignments unless current_user.staff? %>
-      <%= render 'team_assignments' if current_user.staff? %>
     <% end %>
+      <%= render 'team_assignments' if current_user.staff? %>    
 </div>
