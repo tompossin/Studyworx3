@@ -33,6 +33,11 @@ class Admin::SchoolsController < ApplicationController
   def new
     @school = School.new    
   end
+  
+  # This will be the call to create a new school from an existing one.
+  def from_template
+    
+  end
 
   def create
     @school = School.new(params[:school])

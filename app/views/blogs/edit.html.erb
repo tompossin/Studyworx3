@@ -2,11 +2,21 @@
   <%=link_to "blogs", blogs_path %>
 <% end %>
 
+<% unless @blog.content_type == 1 %>
+  <script>
+    $(document).ready(function () {
+         $("#wysihtml5-textarea").tabby();  
+    });
+  </script>
+<% end %>
+
+
+
 <!--This is lame but the strip_tags helper is only available in the view-->
 <% @blog.article = strip_tags(@blog.article) if @blog.content_type == 0 %>
 <!--end-->
 
-<%=render "shared/autosave_js", {url: blog_path(@blog)} if @blog.content_type == 0 %>
+<%=render "shared/autosave_js", {url: blog_url(@blog)} if @blog.content_type == 0 %>
 
 <%= form_for @blog do |f| %>
   <div id="content-large">   

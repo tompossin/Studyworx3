@@ -38,24 +38,6 @@ aside {
   position: relative;
 }
 
-
-#registration {
-  float:right;
-  height:200px;
-  width:150px;
-}
-
-#reminder textarea{
-  width: 92%;
-  font-family: Garamond, Georgia;
-  font-size: 10pt;
-}
-
-#scratchpad_heading {
-  float:left;
-  width:65%;
-}
-
 .even {
   background-color: #dfdfdf;
 }
@@ -164,22 +146,3 @@ aside {
   margin: 10px;
 }
 
-.clear_float {
-  width:310px;
-  float:left;
-  padding: 2%;
-}
-
-.seperator {
-  height: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-left: 6px double #aaaaaa;
-  border-right: 6px double #aaaaaa;
-}
-
-.letter {
-  border: none;
-  box-shadow: none;
-  width: 7in;
-}
