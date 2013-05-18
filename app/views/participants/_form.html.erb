@@ -1,7 +1,9 @@
 <%= form_for( [@school,@participant],{remote: true} ) do |f| %>
 
   <%= include_form_validation_errors(@participant) %>
-  
+  <div class="smaller">
+    <p>Check the boxes below to confirm you are eligible.</p>
+  </div>
   <div class="smaller">
     Pre-requisites? 
     <%= f.check_box :prereq %>
