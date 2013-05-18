@@ -5,7 +5,7 @@
     </div>
   <% end %>
   <div class="editable" contentEditable="true" data-new_title_url="<%= task_title_new_title_path(title.task_id,title.id)%>" data-url="<%= task_title_save_path(title.task_id,title.id) %>" title="Click to Edit, dblclick to insert.">
-    <%= title.title %>
+    <%= sanitize strip_tags(title.title) %>
   </div>
 </div>
 
