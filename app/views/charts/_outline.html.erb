@@ -1,11 +1,11 @@
 <div id="title_<%= outline.id %>" class="<%= get_class(outline.title_type) %>">
   <% unless outline.title_type == 2 %>
     <div >
-      <%= outline.title %>
+      <%= sanitize strip_tags(outline.title) %>
     </div>
   <% else %>
     <div>
-      <%=link_to outline.title, task_vertical_path(outline.task_id,outline.id), {remote: true} %>
+      <%=link_to sanitize(outline.title), task_vertical_path(outline.task_id,outline.id), {remote: true} %>
     </div>   
   <% end %>
   
