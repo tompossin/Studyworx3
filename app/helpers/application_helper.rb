@@ -101,10 +101,11 @@ module ApplicationHelper
   # This is a drop in replacement using Redcarpet. 
   # This looks simple but was a real pain to configure.
   def formatter(content)
-    render_options = {hard_wrap: true, filter_html: true, safe_links_only: true}
-    markdown_options = {no_intraemphasis: true, autolink: true, superscript: true}
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(render_options),markdown_options)
-    return markdown.render(content).html_safe
+    #render_options = {hard_wrap: true, filter_html: true, safe_links_only: true}
+    #markdown_options = {no_intraemphasis: true, autolink: true, superscript: true}
+    #markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(render_options),markdown_options)
+    #return markdown.render(content).html_safe
+    return markdown_to_html(content) unless content.nil?
   end
   
   # Sets the help link for a page
