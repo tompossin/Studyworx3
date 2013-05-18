@@ -157,21 +157,21 @@ class Title < ActiveRecord::Base
   # It also reloads the verse refs if people accidently blast them.
   # TODO add &nbsp; to the gsub below and test
   def clean_input(title_content)
-    content = title_content.gsub(/\s|<br>/,'') 
+    content = title_content.gsub(/\s|<br>|&nbsp;/,'') 
     if content == ""
       if self.title_type == 1
           content = self.paragraph.startref
       elsif self.title_type == 2
-          content = "Enter a Segment Title"
+          content = "Segment Title"
       elsif self.title_type == 3
-          content = "Enter a Section Title"
+          content = "Section Title"
       elsif self.title_type = 4
-          content = "Enter a Division Title"
+          content = "Division Title"
       elsif self.title_type = 5
-          content = "Enter a Book Title"
+          content = "Book Title"
       end
     else
-      content = title_content.gsub(/\n|<br>/,'')
+      content = title_content.gsub(/\n|<br>|&nbsp;/,'')
     end
     return content.strip
   end
