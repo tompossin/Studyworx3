@@ -10,8 +10,9 @@ class MessageMailer < ActionMailer::Base
     to_addr = "#{recipient.fullname} <#{recipient.email}>"
     from_addr = "#{sender.fullname} <#{sender.email}>"
     @url = "http://studyworx.net/schools"
-    mail(to: to_addr, 
-      from: from_addr,
+    mail(to: to_addr,
+      from: from_addr, 
+      reply_to: from_addr,
       subject: email_subject )
   end
   
@@ -26,6 +27,7 @@ class MessageMailer < ActionMailer::Base
     @url = "http://studyworx.net/schools"
     mail(to: to_addr,
           from: from_addr,
+          reply_to: from_addr,
           subject: email_subject)
   end
   
