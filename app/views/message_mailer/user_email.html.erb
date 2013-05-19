@@ -2,7 +2,7 @@
   <%= @sender.fullname %> has sent you the following message:
 </p>
 <div>
-  <%= @message.body%>
+  <%= @html_body %>
 </div>
 <div>
    <%= "This message was sent from "+@url if @url%>
