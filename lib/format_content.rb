@@ -37,8 +37,9 @@ module FormatContent
   end
   
   # This converts html to markdown at this point I use this for switching editors
-  def html_to_markdown(content)
-    filenumber = current_user.id
+  # FIXME This is broken if I ever try to use this again.
+  def html_to_markdown(content,user)
+    filenumber = user.id
     filename = filenumber.to_s+".html"
     %x["touch #{filename}"]
     File.atomic_write("tmp/#{filename}") do |file|
@@ -47,6 +48,19 @@ module FormatContent
     html_content = `pandoc -f html -t markdown "tmp/#{filename}"`
     File.delete("tmp/#{filename}")
     return html_content
+  end
+  
+  # This converts markdown to text (used in email mostly)
+  def markdown_to_text(content,user)
+    filenumber = user.id
+    filename = filenumber.to_s+".txt"
+    %x["touch #{filename}"]
+    File.atomic_write("tmp/#{filename}") do |file|
+      file.write(content)
+    end
+    text_content = `pandoc -f markdown -t text "tmp/#{filename}"`
+    File.delete("tmp/#{filename}")
+    return text_content
   end
   
   

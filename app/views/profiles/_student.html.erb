@@ -2,7 +2,7 @@
 
 <div class="trow">
   <span class="cell" style="width:45%;">
-    <%=link_to student.fullname %>
+    <%=link_to student.fullname, teams_show_user_path(student), { remote: true } %>
   </span>
   <span class="cell" style="width:18%;">
     <%= letter_grade(student.grade_average) %>
