@@ -6,7 +6,7 @@
   <% for p in @ptitles %>
     <div id="title_<%=p.id%>" class="p_container" style="min-height:<%=p.verse_count * 24 %>px;">
       <div id="pt_<%=p.id%>" class="pt">
-        <%=link_to p.title, task_title_ppoint_new_path(@task,p.id), {remote: true} %>
+        <%=link_to sanitize(p.title), task_title_ppoint_new_path(@task,p.id), {remote: true} %>
       </div>
       <% for pp in p.ppoints %>
         <%= render "ppoint", {ppoint: pp} %>

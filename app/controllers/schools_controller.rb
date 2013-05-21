@@ -5,7 +5,14 @@ class SchoolsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_student, only: [:homeroom]
   
-  # GET /schools
+  # This is the first page after successful login
+  # It will load either index or homeroom at this point depending on the state of user.school
+  # TODO Need to check if there is a default user school (Created on first login)
+  # TODO this check needs to go in the user model I think. Loads or creates the users default school.
+  # This way there should never be a scenario where there is not a user.school set.
+  # I will most likely have a add a boolean field to schools that designates a default user school.
+  # TODO in this same check I need to check for a default team and create on eif there is not one.
+  # Teams may need a default identifier to keep people from deleting a default team.
   def index
     @school = School.find_or_initialize_by_id(current_user.school)
     load_school_vars

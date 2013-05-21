@@ -5,7 +5,7 @@
     </div>
   <% else %>
     <div>
-      <%=link_to outline.title, task_vertical_path(outline.task_id,outline.id), {remote: true} %>
+      <%= link_to sanitize(outline.title), task_vertical_path(outline.task_id,outline.id), {remote: true} %>
     </div>   
   <% end %>
   
