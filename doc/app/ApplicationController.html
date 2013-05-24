@@ -84,6 +84,8 @@
     
     <li><a href="#method-i-assign_session_variables">#assign_session_variables</a>
     
+    <li><a href="#method-i-check_for_pending_registrations">#check_for_pending_registrations</a>
+    
     <li><a href="#method-i-is_admin">#is_admin</a>
     
     <li><a href="#method-i-is_contributor">#is_contributor</a>
@@ -189,6 +191,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -265,6 +271,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -296,8 +308,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -415,7 +425,7 @@ any way.</p>
     <span class="ruby-comment"># set user preferences</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:theme</span>]
       <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">preference</span>
-        <span class="ruby-identifier">pref</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">wallpaper</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">bgcolor</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;white&quot;</span>, <span class="ruby-identifier">theme</span><span class="ruby-value">:&quot;base-right&quot;</span>)
+        <span class="ruby-identifier">pref</span> = <span class="ruby-constant">Preference</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">wallpaper</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-value">20</span>, <span class="ruby-identifier">bgcolor</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;white&quot;</span>, <span class="ruby-identifier">theme</span><span class="ruby-value">:&quot;default-right&quot;</span>)
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">pref</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">preference</span>
         <span class="ruby-identifier">session</span>[<span class="ruby-value">:wallpaper</span>] = <span class="ruby-identifier">pref</span>.<span class="ruby-identifier">wallpaper</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pref</span>.<span class="ruby-identifier">wallpaper</span>
@@ -626,6 +636,51 @@ way it is sure to happen though ;)</p>
     
      <section id="protected-instance-before_filters-method-details" class="method-section section">
       <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-check_for_pending_registrations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_for_pending_registrations</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This checks for pending registrations and New <a
+href="School.html">School</a> Requests</p>
+          
+
+          
+          <div class="method-source-code" id="check_for_pending_registrations-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_for_pending_registrations</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">leader?</span>
+      <span class="ruby-ivar">@registrations</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">pending</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">user_admin</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+        <span class="ruby-ivar">@pending_orders</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;approved = ?&quot;</span>,<span class="ruby-keyword">false</span>).<span class="ruby-identifier">all</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@pending_orders</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and approved = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">false</span>).<span class="ruby-identifier">all</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@pending_orders</span> = <span class="ruby-constant">Order</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and approved = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">false</span>).<span class="ruby-identifier">all</span>
+    <span class="ruby-keyword">end</span>     
+  <span class="ruby-keyword">end</span>   
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_for_pending_registrations-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_for_pending_registrations-method -->
 
     
       <div id="method-i-is_admin" class="method-detail ">

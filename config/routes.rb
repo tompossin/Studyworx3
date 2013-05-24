@@ -26,9 +26,10 @@ Studyworx3::Application.routes.draw do
     
     resources :assignments  do
       get 'show_help'
+      post 'clone'
       collection do
         get 'showmod'
-        post 'sort'
+        post 'sort' 
       end 
       resources :tasks do
         get 'show_help'
@@ -64,6 +65,9 @@ Studyworx3::Application.routes.draw do
   # :section: Normal Routes
   # Non Administrative routes below: 
   # ----------
+  resources :orders do
+    post 'create_school'
+  end
   
   resources :messages do
     member do

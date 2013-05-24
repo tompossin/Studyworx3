@@ -167,6 +167,10 @@
   
     <li><a href="../Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="../School.html">School</a>
+  
+    <li><a href="../School/:.html">School:::</a>
+  
     <li><a href="../Team.html">Team</a>
   
     <li><a href="../Team/:.html">Team:::</a>
@@ -243,6 +247,12 @@
   
     <li><a href="../Observation.html">Observation</a>
   
+    <li><a href="../Order.html">Order</a>
+  
+    <li><a href="../OrdersController.html">OrdersController</a>
+  
+    <li><a href="../OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="../Paper.html">Paper</a>
   
     <li><a href="../PapersController.html">PapersController</a>
@@ -274,8 +284,6 @@
     <li><a href="../ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="../Role.html">Role</a>
-  
-    <li><a href="../School.html">School</a>
   
     <li><a href="../SchoolsController.html">SchoolsController</a>
   
@@ -364,7 +372,7 @@
 
           
           <div class="method-source-code" id="book-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">book</span>
   <span class="ruby-comment">#@book = Book.find(params[:book_id])</span>
   <span class="ruby-comment">#@version = Version.find(params[:version_id])</span>
@@ -399,7 +407,7 @@
 
           
           <div class="method-source-code" id="cancel_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_edit</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
@@ -434,6 +442,7 @@
             <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit_participant</span>
   <span class="ruby-ivar">@participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@teams</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">coreteams</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
@@ -527,7 +536,7 @@
 
           
           <div class="method-source-code" id="update_participant-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin/tools_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_participant</span>
   <span class="ruby-ivar">@participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:user</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@user</span> = <span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">user</span>

@@ -177,6 +177,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -253,6 +257,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -284,8 +294,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -374,10 +382,10 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 55</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@paper</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:paper</span>])
-
+  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@paper</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">writers_desk_path</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Paper was successfully created.&#39;</span> }
@@ -412,7 +420,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 92</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@paper</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@paper</span>.<span class="ruby-identifier">destroy</span>
@@ -447,7 +455,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@paper</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -477,7 +485,7 @@
 
           
           <div class="method-source-code" id="endnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 101</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">endnote</span>
   <span class="ruby-ivar">@endnote</span> = <span class="ruby-constant">Endnote</span>.<span class="ruby-identifier">find_or_create_by_paper_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:paper_id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -510,17 +518,14 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@papers</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">all_published</span>    
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_contributor</span>
     <span class="ruby-ivar">@reviewable</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">all_drafts</span>
   <span class="ruby-keyword">end</span>    
-  <span class="ruby-ivar">@nav_body_content</span> = <span class="ruby-string">&quot;papers/reviewer_tools&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">reviewboard</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@papers</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
@@ -549,13 +554,11 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@paper</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
-
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@paper</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -584,13 +587,11 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@paper</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@paper</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
@@ -619,10 +620,9 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@paper</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@paper</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:paper</span>])
       <span class="ruby-ivar">@autopreview</span> = <span class="ruby-ivar">@paper</span>
@@ -666,7 +666,7 @@
 
           
           <div class="method-source-code" id="update_endnote-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 108</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_endnote</span>
   <span class="ruby-ivar">@endnote</span> = <span class="ruby-constant">Endnote</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:endnote_id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -706,7 +706,6 @@
             <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">write</span>
   <span class="ruby-ivar">@paper</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  
 <span class="ruby-keyword">end</span></pre>
           </div><!-- write-source -->
           
@@ -734,10 +733,11 @@
 
           
           <div class="method-source-code" id="writers_desk-source">
-            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/papers_controller.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">writers_desk</span>
-  <span class="ruby-ivar">@papers</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-ivar">@nav_body_content</span> = <span class="ruby-string">&quot;papers/writers_tools&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_contributor</span>
+    <span class="ruby-ivar">@reviewable</span> = <span class="ruby-constant">Paper</span>.<span class="ruby-identifier">all_drafts</span>
+  <span class="ruby-keyword">end</span> 
 <span class="ruby-keyword">end</span></pre>
           </div><!-- writers_desk-source -->
           

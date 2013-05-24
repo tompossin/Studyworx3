@@ -1,0 +1,37 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Homeroom", schools_path %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <h2>School Orders</h2>
+    <div class="theader">
+      <span class="cell" style="width: 23%;">Name</span>
+      <span class="cell" style="width: 25%;">User</span>
+      <span class="cell" style="width: 15%;">Approved</span>
+      <span class="cell" style="width: 8%;">Price</span>
+      <span class="cell" style="width: 10%;">Edit</span>
+    </div>
+    <% @orders.each do |o| %>
+      <div class="trow">
+        <span class="cell" style="width: 28%;">
+          <%= o.name %>
+        </span>
+        <span class="cell" style="width: 25%;">
+          <%= o.user.fullname %>
+        </span>
+        <span class="cell" style="width: 12%;color:<%= set_color(o.approved,"green","red")%>;">
+          <%= tfmsg(o.approved,"True","Pending") %>
+        </span>
+        <span class="cell" style="width: 10%;">
+          <%= number_to_currency(o.price) %>
+        </span>
+        <span class="cell" style="width: 8%;">
+          <%=link_to "edit", order_path(o) %>
+        </span>
+      </div>      
+    <% end %>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

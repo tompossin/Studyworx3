@@ -11,6 +11,10 @@
   <div>
     Edit Role: <%= f.select( :role_id, {"Student"=>"4","Staff"=>"3","Admin Assistant"=>"2","Leader"=>"1"})%>
   </div>
+  <div class="smaller">
+    Select a Core Team: <br />
+    <%= select_tag "coreteam", options_from_collection_for_select(@teams, "id","name")%>
+  </div>
   <div class="actions">
     <%= f.submit "Register now" %>
   </div>

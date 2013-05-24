@@ -1,7 +1,7 @@
 <div id="current_school" class="float_left title">
-  <span id="schoolname"><%= @school.name if @school %></span>
+  <span id="schoolname" class="larger bolder"><%= @school.name if @school %></span>
 </div>
-<% if @registrations %>
+<% if @registrations or @orders %>
   <%= render "registrations" %>
 <% end %>
 <div class="float_left">

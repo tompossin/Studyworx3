@@ -7,16 +7,12 @@ class SchoolsController < ApplicationController
   
   # This is the first page after successful login
   # It will load either index or homeroom at this point depending on the state of user.school
-  # TODO Need to check if there is a default user school (Created on first login)
-  # TODO this check needs to go in the user model I think. Loads or creates the users default school.
-  # This way there should never be a scenario where there is not a user.school set.
-  # I will most likely have a add a boolean field to schools that designates a default user school.
-  # TODO in this same check I need to check for a default team and create on eif there is not one.
-  # Teams may need a default identifier to keep people from deleting a default team.
+  # TODO Create a new model/controller for handling new school requests (maybe with hooks for charging fees)
   def index
+    current_user.check_or_create_private_school
     @school = School.find_or_initialize_by_id(current_user.school)
     load_school_vars
-    check_for_pending_registrations?
+    check_for_pending_registrations
     
     respond_to do |format|
       if current_user.school < 1
@@ -46,7 +42,7 @@ class SchoolsController < ApplicationController
   # This is the default page for a participant.
   def homeroom
     @school = School.find(current_user.school)
-    check_for_pending_registrations?
+    check_for_pending_registrations
     load_school_vars
     unless current_user.staff?
       @assignments = @school.current_assignments(current_user)
@@ -106,17 +102,7 @@ class SchoolsController < ApplicationController
     @nav_body_content = "schools/schools"
   end
   
-  # This checks for pending registrations
-  def check_for_pending_registrations?
-    if current_user.leader?
-      @registrations = @school.participants.pending
-      if @registrations.empty?
-        @registrations = false
-      end
-    else
-      @registrations = false
-    end
-  end
+  
   
   
 end

@@ -17,6 +17,7 @@ class Admin::ToolsController < ApplicationController
   
   def edit_participant
     @participant = Participant.find(params[:id])
+    @teams = @school.coreteams
     respond_to do |format|
       format.js
     end

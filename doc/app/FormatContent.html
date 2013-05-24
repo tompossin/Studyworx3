@@ -70,6 +70,8 @@
     
     <li><a href="#method-i-markdown_to_html">#markdown_to_html</a>
     
+    <li><a href="#method-i-markdown_to_text">#markdown_to_text</a>
+    
     <li><a href="#method-i-name_cleaner">#name_cleaner</a>
     
   </ul>
@@ -157,6 +159,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -233,6 +239,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -264,8 +276,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -371,17 +381,17 @@ perfectly railsy but close.</p>
             <pre><span class="ruby-comment"># File lib/format_content.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_file</span>(<span class="ruby-identifier">content</span>,<span class="ruby-identifier">user</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">format</span>)
   <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name_cleaner</span>(<span class="ruby-identifier">filename</span>)
-  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;tmp/docs/#{user.id.to_s}*&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">my_file</span><span class="ruby-operator">|</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-node">&quot;public/docs/#{user.id.to_s}*&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">my_file</span><span class="ruby-operator">|</span>
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">my_file</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">new_file_name</span> = <span class="ruby-node">&quot;#{user.id.to_s}_#{name}.#{format}&quot;</span>
-  <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">open</span>([<span class="ruby-string">&#39;pandoc&#39;</span>,<span class="ruby-string">&#39;.html&#39;</span>], <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;tmp/docs&#39;</span>) ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+  <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">open</span>([<span class="ruby-string">&#39;pandoc&#39;</span>,<span class="ruby-string">&#39;.html&#39;</span>], <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">root</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;public/docs&#39;</span>) ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">content</span>)
     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">flush</span>
-    <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;pandoc -s -S #{f.path} -o tmp/docs/#{new_file_name}&quot;</span>)
+    <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;pandoc -s -S #{f.path} -o public/docs/#{new_file_name}&quot;</span>)
     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">unlink</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">return</span> {<span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">new_file_name</span>, <span class="ruby-identifier">filepath</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;tmp/docs/#{new_file_name}&quot;</span> }   
+  <span class="ruby-keyword">return</span> {<span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">new_file_name</span>, <span class="ruby-identifier">filepath</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;public/docs/#{new_file_name}&quot;</span> }   
 <span class="ruby-keyword">end</span></pre>
           </div><!-- convert_file-source -->
           
@@ -397,7 +407,7 @@ perfectly railsy but close.</p>
         
         <div class="method-heading">
           <span class="method-name">html_to_markdown</span><span
-            class="method-args">(content)</span>
+            class="method-args">(content,user)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -405,14 +415,14 @@ perfectly railsy but close.</p>
         <div class="method-description">
           
           <p>This converts html to markdown at this point I use this for switching
-editors</p>
+editors FIXME This is broken if I ever try to use this again.</p>
           
 
           
           <div class="method-source-code" id="html_to_markdown-source">
-            <pre><span class="ruby-comment"># File lib/format_content.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">html_to_markdown</span>(<span class="ruby-identifier">content</span>)
-  <span class="ruby-identifier">filenumber</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">html_to_markdown</span>(<span class="ruby-identifier">content</span>,<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">filenumber</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
   <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">filenumber</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;.html&quot;</span>
   <span class="ruby-node">%x[&quot;touch #{filename}&quot;]</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">atomic_write</span>(<span class="ruby-node">&quot;tmp/#{filename}&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
@@ -464,6 +474,44 @@ better job than pandoc on Markdown</p>
 
         
       </div><!-- markdown_to_html-method -->
+
+    
+      <div id="method-i-markdown_to_text" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">markdown_to_text</span><span
+            class="method-args">(content,user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This converts markdown to text (used in email mostly)</p>
+          
+
+          
+          <div class="method-source-code" id="markdown_to_text-source">
+            <pre><span class="ruby-comment"># File lib/format_content.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">markdown_to_text</span>(<span class="ruby-identifier">content</span>,<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">filenumber</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">filenumber</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;.txt&quot;</span>
+  <span class="ruby-node">%x[&quot;touch #{filename}&quot;]</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">atomic_write</span>(<span class="ruby-node">&quot;tmp/#{filename}&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">content</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">text_content</span> = <span class="ruby-node">%xpandoc -f markdown -t text &quot;tmp/#{filename}&quot;`</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;tmp/#{filename}&quot;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">text_content</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- markdown_to_text-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- markdown_to_text-method -->
 
     
       <div id="method-i-name_cleaner" class="method-detail ">

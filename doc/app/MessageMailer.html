@@ -63,7 +63,19 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="FormatContent.html">FormatContent</a>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
@@ -159,6 +171,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -235,6 +251,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -266,8 +288,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -358,16 +378,18 @@
 
           
           <div class="method-source-code" id="team_email-source">
-            <pre><span class="ruby-comment"># File app/mailers/message_mailer.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/mailers/message_mailer.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">team_email</span>(<span class="ruby-identifier">sender</span>,<span class="ruby-identifier">team</span>,<span class="ruby-identifier">email_subject</span>,<span class="ruby-identifier">message</span>)
   <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
   <span class="ruby-identifier">recipient</span> = <span class="ruby-identifier">team</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:email</span>)
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@html_body</span> = <span class="ruby-identifier">markdown_to_html</span>(<span class="ruby-identifier">message</span>.<span class="ruby-identifier">body</span>)
   <span class="ruby-identifier">to_addr</span> = <span class="ruby-identifier">recipient</span>
   <span class="ruby-identifier">from_addr</span> = <span class="ruby-node">&quot;#{sender.fullname} &lt;#{sender.email}&gt;&quot;</span>
   <span class="ruby-ivar">@url</span> = <span class="ruby-string">&quot;http://studyworx.net/schools&quot;</span>
   <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">to_addr</span>,
         <span class="ruby-identifier">from</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from_addr</span>,
+        <span class="ruby-identifier">reply_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from_addr</span>,
         <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">email_subject</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- team_email-source -->
@@ -398,16 +420,18 @@
 
           
           <div class="method-source-code" id="user_email-source">
-            <pre><span class="ruby-comment"># File app/mailers/message_mailer.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/mailers/message_mailer.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">user_email</span>(<span class="ruby-identifier">sender</span>,<span class="ruby-identifier">recipient</span>,<span class="ruby-identifier">email_subject</span>,<span class="ruby-identifier">message</span>)
   <span class="ruby-ivar">@sender</span> = <span class="ruby-identifier">sender</span>
   <span class="ruby-ivar">@recipient</span> = <span class="ruby-identifier">recipient</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@html_body</span> = <span class="ruby-identifier">markdown_to_html</span>(<span class="ruby-identifier">message</span>.<span class="ruby-identifier">body</span>)
   <span class="ruby-identifier">to_addr</span> = <span class="ruby-node">&quot;#{recipient.fullname} &lt;#{recipient.email}&gt;&quot;</span>
   <span class="ruby-identifier">from_addr</span> = <span class="ruby-node">&quot;#{sender.fullname} &lt;#{sender.email}&gt;&quot;</span>
   <span class="ruby-ivar">@url</span> = <span class="ruby-string">&quot;http://studyworx.net/schools&quot;</span>
-  <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">to_addr</span>, 
-    <span class="ruby-identifier">from</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from_addr</span>,
+  <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">to_addr</span>,
+    <span class="ruby-identifier">from</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from_addr</span>, 
+    <span class="ruby-identifier">reply_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">from_addr</span>,
     <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-identifier">email_subject</span> )
 <span class="ruby-keyword">end</span></pre>
           </div><!-- user_email-source -->

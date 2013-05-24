@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516212340) do
+ActiveRecord::Schema.define(:version => 20130523143023) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -214,6 +214,27 @@ ActiveRecord::Schema.define(:version => 20130516212340) do
 
   add_index "observations", ["school_id"], :name => "index_observations_on_school_id"
 
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "subject"
+    t.text     "description"
+    t.text     "location"
+    t.integer  "enrollment"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.float    "price",       :default => 0.0
+    t.boolean  "billed",      :default => false
+    t.boolean  "paid",        :default => false
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "school_id",   :default => 0
+    t.integer  "clone"
+  end
+
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
   create_table "papers", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -305,7 +326,7 @@ ActiveRecord::Schema.define(:version => 20130516212340) do
   end
 
   create_table "schools", :force => true do |t|
-    t.integer  "owner_id",              :null => false
+    t.integer  "owner_id",                                 :null => false
     t.integer  "version_id"
     t.integer  "language_id"
     t.string   "name"
@@ -317,10 +338,11 @@ ActiveRecord::Schema.define(:version => 20130516212340) do
     t.string   "email"
     t.text     "tagline"
     t.text     "description"
-    t.boolean  "active"
+    t.boolean  "private",               :default => false
+    t.boolean  "active",                :default => false
     t.string   "timezone"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -404,6 +426,7 @@ ActiveRecord::Schema.define(:version => 20130516212340) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.boolean  "coreteam",    :default => false, :null => false
+    t.boolean  "private",     :default => false
   end
 
   add_index "teams", ["coreteam"], :name => "index_teams_on_coreteam"

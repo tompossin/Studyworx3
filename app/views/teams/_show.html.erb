@@ -9,7 +9,7 @@
     <div class="team">
       <%=link_to "Membership", memberships_team_path(@team),{remote: true, class: "smallest"} %> 
       <%=link_to "Edit this team", edit_team_path(@team),{remote: true, class: "smallest"} %> 
-      <%=link_to "Delete entire Team", @team, {method: "delete", remote: true, class: "smallest"} %>
+      <%=link_to "Delete entire Team", @team, {method: "delete", remote: true, class: "smallest"} unless @team.private %>
     </div>
   <% end %>
   

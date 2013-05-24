@@ -82,15 +82,17 @@ class TeamsController < ApplicationController
   
   # Deletes a team and all members
   def destroy
-    @team = Team.find(params[:id])
-    @team.users.clear
-    @team.destroy
+    team = Team.find(params[:id])
+    unless team.private
+      team.users.clear
+      team.destroy
+    end
     @teams_i_own = Team.all_i_own(current_user)
     @my_teams = current_user.teams.sorted
 
     respond_to do |format|
-      if @team.destroy
-        format.js { render :index }
+      unless team.private
+        format.js 
       else
         format.js { render "shared/delete_failed" }
       end

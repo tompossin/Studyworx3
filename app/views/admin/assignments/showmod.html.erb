@@ -57,6 +57,9 @@
           <span class="cell" style="width:12%;">
             <%=link_to "Tasks", admin_assignment_tasks_path(a.id), {title: "Add or Edit Tasks for this assignment"}  %>
           </span>
+          <span class="cell" style="width:8%;">
+            <%=link_to "clone", admin_assignment_clone_path(a), { method: :post, title: "Create a clone of this assignment and tasks." } %>
+          </span>
         </div>
       <% end %>
       </div>

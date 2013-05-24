@@ -55,6 +55,7 @@ class ParticipantsController < ApplicationController
   def edit
     if current_user.is_school_admin?(params[:school_id])
       @participant = @school.participants.find(params[:id])
+      @teams = @school.coreteams
     end
     
     respond_to do |format|
@@ -95,6 +96,8 @@ class ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.update_attributes(params[:participant])
+        @team = Team.find(params[:coreteam])
+        @team.add_member(@participant.user)
         format.js 
       else
         format.js { render "register_failure" }

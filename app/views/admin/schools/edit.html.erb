@@ -5,6 +5,7 @@
 <div id="content-large">
   <article>    
     <p class="title larger bolder">Editing <%= @school.name %></p>
+    <p><%=link_to "Request the Creation of a public school", new_order_path(user_id: current_user.id) %></p>
     
     <%= render "form" %>
   </article>

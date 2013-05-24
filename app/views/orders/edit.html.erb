@@ -1,0 +1,16 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Homeroom", schools_path %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <h2>Public School Application</h2>
+    <em>
+      Edit your application Below.
+    </em>
+    <hr />
+    <%= render "form" %>
+  </article>
+</div>  
+
+<%= nav_bar(@nav_body_content) %>

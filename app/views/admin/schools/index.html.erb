@@ -1,7 +1,7 @@
 <div id="content-large">
   <article>
     <p class="title larger bolder">School Administration</p>
-    <p><%=link_to "New School", new_admin_school_path %></p>
+    <p><%=link_to "Apply for New Public School", new_order_path(user_id: current_user.id) %></p>
       <div class="theader">
         <span class="cell" style="width:25%;">School Name</span>
         <span class="cell" style="width:8%;">Active?</span>

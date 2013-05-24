@@ -169,6 +169,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -245,6 +249,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -276,8 +286,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -384,7 +392,7 @@ context of a school</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:participant</span>][<span class="ruby-value">:accepted</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1&quot;</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:participant</span>][<span class="ruby-value">:prereq</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1&quot;</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_id</span>])
@@ -431,7 +439,7 @@ context of a school</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 106</span>
+            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@participant</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">participant</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:participant_id</span>])
   <span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">destroy</span>
@@ -470,10 +478,11 @@ context of a school</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_school_admin?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:school_id</span>])
     <span class="ruby-ivar">@participant</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+    <span class="ruby-ivar">@teams</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">coreteams</span>
   <span class="ruby-keyword">end</span>
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -510,7 +519,7 @@ context of a school</p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@participants</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">participant</span>.<span class="ruby-identifier">all</span>
 
@@ -549,7 +558,7 @@ context of a school</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_id</span>])
     <span class="ruby-ivar">@participant</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">new</span>
@@ -589,7 +598,7 @@ context of a school</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@participant</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">participant</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:participant_id</span>])
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">id</span> )
@@ -628,12 +637,14 @@ context of a school</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 92</span>
+            <pre><span class="ruby-comment"># File app/controllers/participants_controller.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@participant</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:participant</span>])
+      <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:coreteam</span>])
+      <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">add_member</span>(<span class="ruby-ivar">@participant</span>.<span class="ruby-identifier">user</span>)
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> { <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;register_failure&quot;</span> }

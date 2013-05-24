@@ -48,6 +48,14 @@ class Assignment < ActiveRecord::Base
       return true
     end
   end
+  
+  # Clone the tasks of a given assignment into self.tasks
+  def clone_tasks(clone)
+    tasks = clone.tasks.all
+    tasks.each do |t|
+      self.tasks.create(name: t.name, templat_id: t.templat_id, percent: t.percent, help: t.help, task_type: t.task_type, position: t.position)
+    end
+  end
 
   
 end

@@ -169,6 +169,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -245,6 +249,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -276,8 +286,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -584,12 +592,12 @@ markdown</p>
 
   <span class="ruby-ivar">@blog</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:blog</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:autopreview</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1&quot;</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:autopreview</span>]
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:show</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/save_success&quot;</span>}
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>}
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;shared/close_popup&quot;</span>}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> {<span class="ruby-identifier">render</span> <span class="ruby-string">&quot;autopreview&quot;</span>}
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

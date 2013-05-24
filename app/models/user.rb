@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :ppoints
   has_many :charttexts
   has_many :comments
+  has_many :orders
   has_one :note
   has_one :preference
   has_and_belongs_to_many :teams
@@ -74,14 +75,17 @@ class User < ActiveRecord::Base
     self.firstname+" "+self.lastname
   end
   
+  # Returns the fullname of the user last name first
   def fullname_lnf
     self.lastname+", "+self.firstname
   end
   
+  # This finds the coreteam of the user based on the users current school.
   def coreteam
     self.teams.where("school_id = ? and coreteam = ?",self.school, true).first
   end
   
+  # Returns a collection of all a users teams based on the users current school.
   def schoolteams
     self.teams.where("school_id = ?",self.school).all
   end
@@ -90,6 +94,10 @@ class User < ActiveRecord::Base
   def grade_average
     grades = self.grades.where("school_id = ?",self.school)
     grades.average("grade")
+  end
+  
+  def schools_i_own
+    School.where("owner_id = ?",self.id).all
   end
   
   
@@ -122,6 +130,12 @@ class User < ActiveRecord::Base
         end
     else
       return false
+    end
+  end
+  
+  def is_superadmin
+    if self.user_admin and self.user_admin.level == 3
+      true
     end
   end
   
@@ -183,6 +197,39 @@ class User < ActiveRecord::Base
     if self.role and self.role < 2 
       true
     end
+  end
+  
+  # Check if the user has a private school and default team.
+  # Create them if needed.
+  def check_or_create_private_school
+    # Check if a private school exists or create one
+    unless self.schools.exists?(["private = ?",true])
+      today = Time.now
+      priv_school = School.new
+      priv_school.private = true
+      priv_school.owner_id = self.id
+      priv_school.name = self.fullname + " - [private]"
+      priv_school.timezone = "UTC"
+      priv_school.start_date = today
+      priv_school.end_date = today.next_year
+      priv_school.save
+      # Create a participant record to make this user the school leader
+      participant = self.participants.new(:school_id => priv_school.id)
+      participant.role_id = 1
+      participant.accepted = 2
+      participant.language_id = 1
+      participant.prereq = true
+      participant.save
+      # Create a default coreteam for the new private school
+      priv_team = self.teams.new(school_id: priv_school.id)
+      priv_team.coreteam = true
+      priv_team.private = true
+      priv_team.owner_id = self.id
+      priv_team.name = "Default Team - [private]"
+      priv_team.description = "This is the default team for your default school. Do not delete."
+      priv_team.save
+    end       
+  
   end
   
   # Returns a string of the users administrative Status

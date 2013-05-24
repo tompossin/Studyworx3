@@ -86,6 +86,8 @@
     
     <li><a href="#method-i-all_team_assignments">#all_team_assignments</a>
     
+    <li><a href="#method-i-clone_school">#clone_school</a>
+    
     <li><a href="#method-i-coreteams">#coreteams</a>
     
     <li><a href="#method-i-create_leader">#create_leader</a>
@@ -183,6 +185,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -259,6 +265,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -290,8 +302,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -491,6 +501,71 @@
       </div><!-- all_team_assignments-method -->
 
     
+      <div id="method-i-clone_school" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone_school</span><span
+            class="method-args">(school)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Clone the assignments, tasks, templates, scoresheets, and observations of a
+given school</p>
+          
+
+          
+          <div class="method-source-code" id="clone_school-source">
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 93</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">clone_school</span>(<span class="ruby-identifier">school</span>)
+    <span class="ruby-comment"># Clone assignments and tasks</span>
+    <span class="ruby-identifier">assignments</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">all</span>
+    <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">sa</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">book_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">book_id</span>, <span class="ruby-identifier">scoresheet_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">scoresheet</span>, <span class="ruby-identifier">weight</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">weight</span>, <span class="ruby-keyword">module</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">module</span>, <span class="ruby-identifier">resources</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">resources</span>, <span class="ruby-identifier">instructions</span><span class="ruby-operator">:</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">instructions</span>)
+      <span class="ruby-identifier">tasks</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">all</span>
+      <span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">sa</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">percent</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">percent</span>, <span class="ruby-identifier">help</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">help</span>, <span class="ruby-identifier">task_type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">task_type</span>, <span class="ruby-identifier">position</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">position</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># Clone scoresheets</span>
+    <span class="ruby-identifier">scoresheets</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">all</span>
+    <span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">scoresheets</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">content</span>, <span class="ruby-identifier">content_type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">content_type</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># Clone Templates (misspelling is intentional)</span>
+    <span class="ruby-identifier">templats</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">templats</span>.<span class="ruby-identifier">all</span>
+    <span class="ruby-identifier">templats</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">templats</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">content</span>, <span class="ruby-identifier">content_type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">content_type</span>, <span class="ruby-identifier">public</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">public</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># Clone Observations</span>
+    <span class="ruby-identifier">observations</span> = <span class="ruby-identifier">school</span>.<span class="ruby-identifier">observations</span>.<span class="ruby-identifier">all</span>
+    <span class="ruby-identifier">observations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">observations</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">code</span><span class="ruby-operator">:</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">code</span>, <span class="ruby-identifier">position</span><span class="ruby-operator">:</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">position</span>, <span class="ruby-identifier">public</span><span class="ruby-operator">:</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">public</span>)
+    <span class="ruby-keyword">end</span>  
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-comment"># Creates a participant record for the creator of the school</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_leader</span>(<span class="ruby-identifier">user</span>)
+    <span class="ruby-identifier">participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">role_id</span> = <span class="ruby-value">1</span>
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">accepted</span> = <span class="ruby-value">2</span>
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">prereq</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clone_school-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clone_school-method -->
+
+    
       <div id="method-i-coreteams" class="method-detail ">
         
         <div class="method-heading">
@@ -537,7 +612,7 @@
 
           
           <div class="method-source-code" id="create_leader-source">
-            <pre><span class="ruby-comment"># File app/models/school.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_leader</span>(<span class="ruby-identifier">user</span>)
   <span class="ruby-identifier">participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">role_id</span> = <span class="ruby-value">1</span>

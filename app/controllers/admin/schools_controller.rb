@@ -8,9 +8,9 @@ class Admin::SchoolsController < ApplicationController
   # * /admin/schools
   def index
     if current_user.user_admin.level == 3
-      @schools = School.order("start_date DESC").all
+      @schools = School.where("private = ?",false).order("start_date DESC").all
     else
-      @schools = current_user.schools.order("start_date DESC").all
+      @schools = current_user.schools.where("owner_id = ?",current_user.id).order("start_date DESC").all
     end
   end
 

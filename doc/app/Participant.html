@@ -82,11 +82,15 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-c-create_school_leader">::create_school_leader</a>
+    
     <li><a href="#method-c-dropped">::dropped</a>
     
     <li><a href="#method-c-enroled">::enroled</a>
     
     <li><a href="#method-c-pending">::pending</a>
+    
+    <li><a href="#method-i-coreteam">#coreteam</a>
     
     <li><a href="#method-i-status">#status</a>
     
@@ -175,6 +179,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -251,6 +259,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -282,8 +296,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -426,6 +438,36 @@ states.</p>
       <h3 class="section-header">Public Class Methods</h3>
 
     
+      <div id="method-c-create_school_leader" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_school_leader</span><span
+            class="method-args">(user,school)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_school_leader-source">
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_school_leader</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">school</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">school</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">role_id</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">accepted</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>,<span class="ruby-identifier">prereq</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">language_id</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_school_leader-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_school_leader-method -->
+
+    
       <div id="method-c-dropped" class="method-detail ">
         
         <div class="method-heading">
@@ -526,6 +568,38 @@ states.</p>
   
      <section id="public-instance-Participant+States-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-coreteam" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">coreteam</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Find the coreteam for the participant instance This is similar to
+@user.coreteam only linked to a participant record not the current user
+school</p>
+          
+
+          
+          <div class="method-source-code" id="coreteam-source">
+            <pre><span class="ruby-comment"># File app/models/participant.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">coreteam</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and coreteam = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">school_id</span>, <span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- coreteam-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- coreteam-method -->
 
     
       <div id="method-i-status" class="method-detail ">

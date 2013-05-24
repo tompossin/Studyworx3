@@ -1,0 +1,111 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Homeroom", schools_path %>
+  <%=link_to "Orders Home", orders_path if current_user.is_superadmin %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <h2>Public School Application</h2>
+    <em>
+      This application is still pending review.
+    </em>
+    <hr />
+    <% if @order %>
+      <div class="half_pane">
+        <p class="title larger">Name:</p>
+        <p>
+          <%= @order.name %>
+        </p>
+        <p class="title larger">User Name/Email:</p>
+        <p>
+          <%= @order.user.fullname%><br />
+          <%= @order.user.email %>
+        </p>
+        <p class="title larger">Subject:</p>
+        <p>
+          <%= @order.subject %>
+        </p>
+        <p class="title larger">Description:</p>
+        <div>
+          <%= formatter(@order.description) %>
+        </div>    
+      </div>
+      <div class="half_pane">
+        <p class="title larger">Location:</p>
+        <div>
+          <%= formatter(@order.location) %>
+        </div>
+        <p class="title larger">Estimated Enrollment:</p>
+        <p>
+          <%= @order.enrollment %>
+        </p>
+        <p class="title larger">Starting Date:</p>
+        <p>
+          <%= @order.start_date.to_date.to_formatted_s(:long_ordinal) %>
+        </p>
+        <p class="title larger">Ending Date:</p>
+        <p>
+          <%= @order.end_date.to_date.to_formatted_s(:long_ordinal) %>
+        </p>
+        <p class="title larger bolder" style="color:<%=set_color(@order.clone,"red","gray")%>">
+          Clone of school:<br />
+          <%= tfmsg(@order.clone,get_school_name(@order.clone),"New School Request")%>
+        </p>
+        
+      </div>
+      <div class="float_left">
+        <hr />
+      </div>     
+    <% end %>    
+    <div class="float_left">
+      <%=link_to "Edit this application", edit_order_path(@order) if @order.user_id == current_user.id %>
+    </div>
+    <% if current_user.is_superadmin %>
+        <div class="half_pane">          
+            <%= form_for @order do |f| %>
+              <p><label>Price: </label>
+                <%= f.number_field :price %>            
+              </p>
+              <p>
+                <label>Billed: </label>
+                <%= f.check_box :billed %>
+              </p>
+              <p>
+                <label>Paid: </label>
+                <%= f.check_box :paid %>
+              </p>
+              <p>
+                <label>Approved: </label>
+                <%= f.check_box :approved %>
+              </p>
+              <p>
+                <%= f.submit :save %>
+              </p>
+            <% end %>         
+        </div>
+        <div class="half_pane">
+          <% if @order.school_id == 0 %>
+            <p>Click to create a new school.</p>
+            <%= form_tag(@order.id.to_s+'/create_school') do %>
+              <%= hidden_field_tag 'name', @order.name %>
+              <%= hidden_field_tag 'location', @order.location %>
+              <%= hidden_field_tag 'start_date', @order.start_date %>
+              <%= hidden_field_tag 'end_date', @order.end_date %>
+              <%= hidden_field_tag 'description', @order.description %>
+              <%= hidden_field_tag 'user_id', @order.user_id %>
+              <%= submit_tag 'Create New School' %>    
+            <% end %>
+            <hr />
+            <p>
+              <%=link_to "Destroy this order", @order, {method: :delete, confirm: "Are you sure?",title: "Destroy ths order."}%>
+            </p>
+          <% else %>
+            <p>School Already Created.</p>
+          <% end %>
+        </div>
+    <% end %>
+  </article>
+</div>  
+
+<%= nav_bar(@nav_body_content) %>
+

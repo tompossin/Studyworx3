@@ -1,0 +1,62 @@
+<%= form_for @order do |f| %>
+  <%= include_form_validation_errors(@order) %>
+  <%= f.hidden_field :user_id %>
+  <div class="half_pane">
+    <p>
+      <span class="bolder">
+        Choose a name for your new school:
+      </span><br />
+      <%= f.text_field :name, {style: "width: 96%;"} %>
+    </p>
+    <p>
+      <span class="bolder">
+        Describe the main subject of your school:
+      </span><br />
+      <%= f.text_field :subject, {style: "width: 96%;"} %>
+    </p>
+    <p>
+      <span class="bolder">
+        Choose a start date for your school:
+      </span><br />
+      <%= f.date_select :start_date %>
+    </p>
+    <p>
+      <span class="bolder">
+        Choose an end date for your school:
+      </span><br />
+      <%= f.date_select :end_date %>
+    </p>
+    <p>
+      <span class="bolder">
+        Select the approximate number of students:
+      </span><br />
+      <%= f.number_field :enrollment %>
+    </p>
+    <p>
+      <span class="bolder">
+        Select a previous school below if you wish to create a clone.
+      </span><br />
+      <%= select_tag "clone", options_from_collection_for_select(@user_schools,"id","name"),prompt: "Create New School" %>
+    </p>
+  </div>
+  <div class="half_pane">
+    <p>
+      <span class="bolder">
+        Describe the school:
+      </span><br />
+      <%= f.text_area :description, rows: 8 %>
+    </p>
+    <p>
+      <span class="bolder">
+        The location of your school:
+      </span><br />
+      <%= f.text_area :location, rows: 4 %>
+    </p>
+    
+    <p>
+      <%= f.submit :save %>
+    </p>
+  </div>
+    
+  
+<% end %>

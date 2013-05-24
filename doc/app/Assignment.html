@@ -70,6 +70,8 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-clone_tasks">#clone_tasks</a>
+    
     <li><a href="#method-i-duetime">#duetime</a>
     
     <li><a href="#method-i-editable-3F">#editable?</a>
@@ -159,6 +161,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -235,6 +241,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -266,8 +278,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -338,6 +348,39 @@
     
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-clone_tasks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone_tasks</span><span
+            class="method-args">(clone)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Clone the tasks of a given assignment into self.tasks</p>
+          
+
+          
+          <div class="method-source-code" id="clone_tasks-source">
+            <pre><span class="ruby-comment"># File app/models/assignment.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clone_tasks</span>(<span class="ruby-identifier">clone</span>)
+  <span class="ruby-identifier">tasks</span> = <span class="ruby-identifier">clone</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">templat_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">templat_id</span>, <span class="ruby-identifier">percent</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">percent</span>, <span class="ruby-identifier">help</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">help</span>, <span class="ruby-identifier">task_type</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">task_type</span>, <span class="ruby-identifier">position</span><span class="ruby-operator">:</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">position</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clone_tasks-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clone_tasks-method -->
 
     
       <div id="method-i-duetime" class="method-detail ">

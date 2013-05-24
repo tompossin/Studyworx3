@@ -16,7 +16,16 @@ class Admin::AssignmentsController < ApplicationController
     @module = params[:mod_id]
     
   end
-
+  
+  def clone
+    clone = Assignment.find(params[:assignment_id])
+    @assignment = Assignment.create(school_id: clone.school_id, name: "add name",book_id: clone.book_id, module: clone.module, scoresheet_id: clone.scoresheet_id, weight: clone.weight, resources: clone.resources, instructions: clone.instructions)
+    @assignment.clone_tasks(clone)
+    respond_to do |format|
+      format.html { redirect_to edit_admin_assignment_url(@assignment) }
+    end
+  end
+  
   def show_help
     @assignment = Assignment.find(params[:assignment_id])
     respond_to do |format|

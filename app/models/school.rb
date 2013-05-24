@@ -14,7 +14,7 @@ class School < ActiveRecord::Base
   ### Attributes ############################
     attr_accessible :owner_id, :active, :description, :end_date, :language_id, :location
     attr_accessible :mailing_address, :name, :prereqs, :start_date, :tagline, :timezone, :version_id
-    attr_accessible :caption, :email
+    attr_accessible :caption, :email, :private
   ###############################
   
   # Attachments #################
@@ -87,6 +87,34 @@ class School < ActiveRecord::Base
   # Returns all assignments by coreteam (Staff team selector)
   def all_team_assignments(team_id)
     assignments = self.assignments.includes([:duedates]).where("team_id = ?", team_id).order("duedates.duedate ASC")   
+  end
+  
+  # Clone the assignments, tasks, templates, scoresheets, and observations of a given school
+  def clone_school(school)
+    # Clone assignments and tasks
+    assignments = school.assignments.all
+    assignments.each do |a|
+      sa = self.assignments.create(name: a.name, book_id: a.book_id, scoresheet_id: a.scoresheet, weight: a.weight, module: a.module, resources: a.resources, instructions: a.instructions)
+      tasks = a.tasks.all
+      tasks.each do |t|
+        sa.tasks.create(name: t.name, percent: t.percent, help: t.help, task_type: t.task_type, position: t.position)
+      end
+    end
+    # Clone scoresheets
+    scoresheets = school.scoresheets.all
+    scoresheets.each do |s|
+      self.scoresheets.create(name: s.name, content: s.content, content_type: s.content_type)
+    end
+    # Clone Templates (misspelling is intentional)
+    templats = school.templats.all
+    templats.each do |t|
+      self.templats.create(name: t.name, content: t.content, content_type: t.content_type, public: t.public)
+    end
+    # Clone Observations
+    observations = school.observations.all
+    observations.each do |o|
+      self.observations.create(name: o.name, code: o.code, position: o.position, public: o.public)
+    end  
   end
   
   # Creates a participant record for the creator of the school

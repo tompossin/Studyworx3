@@ -157,6 +157,25 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # This checks for pending registrations and New School Requests
+  def check_for_pending_registrations
+    unless current_user.school == 0
+      school = School.find(current_user.school)
+      if current_user.leader?
+        @registrations = school.participants.pending
+      end
+      if current_user.user_admin
+        if current_user.user_admin.level == 3
+          @pending_orders = Order.where("approved = ?",false).all
+        else
+          @pending_orders = Order.where("user_id = ? and approved = ?",current_user.id,false).all
+        end
+      else
+        @pending_orders = Order.where("user_id = ? and approved = ?",current_user.id,false).all
+      end     
+    end   
+  end
+  
   
 
   

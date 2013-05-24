@@ -71,6 +71,7 @@
                                      PUT    /admin/versions/:id(.:format)                                                              admin/versions#update
                                      DELETE /admin/versions/:id(.:format)                                                              admin/versions#destroy
           admin_assignment_show_help GET    /admin/assignments/:assignment_id/show_help(.:format)                                      admin/assignments#show_help
+              admin_assignment_clone POST   /admin/assignments/:assignment_id/clone(.:format)                                          admin/assignments#clone
            showmod_admin_assignments GET    /admin/assignments/showmod(.:format)                                                       admin/assignments#showmod
               sort_admin_assignments POST   /admin/assignments/sort(.:format)                                                          admin/assignments#sort
      admin_assignment_task_show_help GET    /admin/assignments/:assignment_id/tasks/:task_id/show_help(.:format)                       admin/tasks#show_help
@@ -111,6 +112,14 @@
         admin_tools_edit_participant GET    /admin/tools/edit_participant/:id(.:format)                                                admin/tools#edit_participant
                admin_tools_personnel GET    /admin/tools/personnel(.:format)                                                           admin/tools#personnel
              admin_tools_cancel_edit GET    /admin/tools/cancel_edit(.:format)                                                         admin/tools#cancel_edit
+                 order_create_school POST   /orders/:order_id/create_school(.:format)                                                  orders#create_school
+                              orders GET    /orders(.:format)                                                                          orders#index
+                                     POST   /orders(.:format)                                                                          orders#create
+                           new_order GET    /orders/new(.:format)                                                                      orders#new
+                          edit_order GET    /orders/:id/edit(.:format)                                                                 orders#edit
+                               order GET    /orders/:id(.:format)                                                                      orders#show
+                                     PUT    /orders/:id(.:format)                                                                      orders#update
+                                     DELETE /orders/:id(.:format)                                                                      orders#destroy
               cancel_message_message GET    /messages/:id/cancel_message(.:format)                                                     messages#cancel_message
          cancel_message_edit_message GET    /messages/:id/cancel_message_edit(.:format)                                                messages#cancel_message_edit
                        reply_message GET    /messages/:id/reply(.:format)                                                              messages#reply

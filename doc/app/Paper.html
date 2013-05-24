@@ -161,6 +161,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -237,6 +241,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -268,8 +278,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -426,7 +434,11 @@
           <div class="method-source-code" id="tally_votes-source">
             <pre><span class="ruby-comment"># File app/models/paper.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tally_votes</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;approved = ?&quot;</span>, <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">votes</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reviews</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;approved = ?&quot;</span>, <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">votes</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">published</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- tally_votes-source -->
           

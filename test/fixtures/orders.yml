@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  name: MyString
+  subject: MyString
+  description: MyText
+  location: MyText
+  enrollment: 1
+  start_date: 2013-05-21 16:54:42
+  end_date: 2013-05-21 16:54:42
+  price: 1.5
+  approved: false
+
+two:
+  user_id: 1
+  name: MyString
+  subject: MyString
+  description: MyText
+  location: MyText
+  enrollment: 1
+  start_date: 2013-05-21 16:54:42
+  end_date: 2013-05-21 16:54:42
+  price: 1.5
+  approved: false

@@ -50,5 +50,15 @@ class Participant < ActiveRecord::Base
   def self.enroled
     self.where(:accepted => 2)
   end
+  
+  # Find the coreteam for the participant instance
+  # This is similar to @user.coreteam only linked to a participant record not the current user school
+  def coreteam
+    self.user.teams.where("school_id = ? and coreteam = ?",self.school_id, true).first
+  end
+  
+  def self.create_school_leader(user,school)
+    self.create(user_id: user.id,school_id: school.id, role_id: 1, accepted: 2,prereq: true, language_id: 1)
+  end
 
 end

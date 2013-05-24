@@ -159,6 +159,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -235,6 +239,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -266,8 +276,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -351,18 +359,18 @@
 
         <div class="method-description">
           
-          <p>This is really just a framework now TODO Fix the navbar so that only
-featured stories show TODO Add a search field to search by category TODO
-Maybe add a full text search TODO May need to add the exerpt/lead-in to
-give short intros that can be displayed on the home page.</p>
+          <p>This is really just a framework now TODO Add a search field to search by
+category TODO Maybe add a full text search TODO May need to add the
+exerpt/lead-in to give short intros that can be displayed on the home page.</p>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@current_article</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;leadstory=?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
-  <span class="ruby-ivar">@stories</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>,<span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;navbar and featured and updated_at DESC&#39;</span>)
+  <span class="ruby-ivar">@features</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;featured = ?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;updated_at, leadstory DESC&quot;</span>)
+  <span class="ruby-ivar">@stories</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;featured = ?&quot;</span>,<span class="ruby-keyword">false</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;updated_at DESC&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -393,7 +401,8 @@ give short intros that can be displayed on the home page.</p>
             <pre><span class="ruby-comment"># File app/controllers/home_controller.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@current_article</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-  <span class="ruby-ivar">@stories</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:all</span>,<span class="ruby-value">:order</span> =<span class="ruby-operator">&gt;</span><span class="ruby-string">&#39;navbar and featured and updated_at DESC&#39;</span>)
+  <span class="ruby-ivar">@features</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;featured = ?&quot;</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;updated_at, leadstory DESC&quot;</span>)
+  <span class="ruby-ivar">@stories</span> = <span class="ruby-constant">Blog</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;featured = ?&quot;</span>,<span class="ruby-keyword">false</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;updated_at DESC&quot;</span>)
   <span class="ruby-identifier">render</span> <span class="ruby-value">:index</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->

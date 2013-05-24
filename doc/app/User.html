@@ -74,11 +74,15 @@
     
     <li><a href="#method-i-admin_status">#admin_status</a>
     
+    <li><a href="#method-i-check_or_create_private_school">#check_or_create_private_school</a>
+    
     <li><a href="#method-i-coreteam">#coreteam</a>
     
     <li><a href="#method-i-fullname">#fullname</a>
     
     <li><a href="#method-i-fullname_lnf">#fullname_lnf</a>
+    
+    <li><a href="#method-i-grade_average">#grade_average</a>
     
     <li><a href="#method-i-is_administrator">#is_administrator</a>
     
@@ -88,7 +92,13 @@
     
     <li><a href="#method-i-is_school_leader-3F">#is_school_leader?</a>
     
+    <li><a href="#method-i-is_superadmin">#is_superadmin</a>
+    
     <li><a href="#method-i-leader-3F">#leader?</a>
+    
+    <li><a href="#method-i-schools_i_own">#schools_i_own</a>
+    
+    <li><a href="#method-i-schoolteams">#schoolteams</a>
     
     <li><a href="#method-i-set_school">#set_school</a>
     
@@ -183,6 +193,10 @@
   
     <li><a href="./Admin/VersionsHelper.html">Admin::VersionsHelper</a>
   
+    <li><a href="./School.html">School</a>
+  
+    <li><a href="./School/:.html">School:::</a>
+  
     <li><a href="./Team.html">Team</a>
   
     <li><a href="./Team/:.html">Team:::</a>
@@ -259,6 +273,12 @@
   
     <li><a href="./Observation.html">Observation</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
+  
+    <li><a href="./OrdersHelper.html">OrdersHelper</a>
+  
     <li><a href="./Paper.html">Paper</a>
   
     <li><a href="./PapersController.html">PapersController</a>
@@ -290,8 +310,6 @@
     <li><a href="./ReviewsHelper.html">ReviewsHelper</a>
   
     <li><a href="./Role.html">Role</a>
-  
-    <li><a href="./School.html">School</a>
   
     <li><a href="./SchoolsController.html">SchoolsController</a>
   
@@ -382,7 +400,7 @@
 
           
           <div class="method-source-code" id="admin_assistant-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 164</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_assistant?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">3</span> 
     <span class="ruby-keyword">true</span>
@@ -425,7 +443,7 @@
 
           
           <div class="method-source-code" id="admin_status-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 184</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 241</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">admin_status</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>
     <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
@@ -451,6 +469,64 @@
       </div><!-- admin_status-method -->
 
     
+      <div id="method-i-check_or_create_private_school" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_or_create_private_school</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Check if the user has a private school and default team. Create them if
+needed.</p>
+          
+
+          
+          <div class="method-source-code" id="check_or_create_private_school-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_or_create_private_school</span>
+  <span class="ruby-comment"># Check if a private school exists or create one</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">schools</span>.<span class="ruby-identifier">exists?</span>([<span class="ruby-string">&quot;private = ?&quot;</span>,<span class="ruby-keyword">true</span>])
+    <span class="ruby-identifier">today</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">priv_school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">private</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">owner_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">fullname</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; - [private]&quot;</span>
+    <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">timezone</span> = <span class="ruby-string">&quot;UTC&quot;</span>
+    <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">start_date</span> = <span class="ruby-identifier">today</span>
+    <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">end_date</span> = <span class="ruby-identifier">today</span>.<span class="ruby-identifier">next_year</span>
+    <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-comment"># Create a participant record to make this user the school leader</span>
+    <span class="ruby-identifier">participant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">role_id</span> = <span class="ruby-value">1</span>
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">accepted</span> = <span class="ruby-value">2</span>
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">language_id</span> = <span class="ruby-value">1</span>
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">prereq</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">participant</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-comment"># Create a default coreteam for the new private school</span>
+    <span class="ruby-identifier">priv_team</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">school_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">priv_school</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">priv_team</span>.<span class="ruby-identifier">coreteam</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">priv_team</span>.<span class="ruby-identifier">private</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">priv_team</span>.<span class="ruby-identifier">owner_id</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">priv_team</span>.<span class="ruby-identifier">name</span> = <span class="ruby-string">&quot;Default Team - [private]&quot;</span>
+    <span class="ruby-identifier">priv_team</span>.<span class="ruby-identifier">description</span> = <span class="ruby-string">&quot;This is the default team for your default school. Do not delete.&quot;</span>
+    <span class="ruby-identifier">priv_team</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>       
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_or_create_private_school-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_or_create_private_school-method -->
+
+    
       <div id="method-i-coreteam" class="method-detail ">
         
         <div class="method-heading">
@@ -462,12 +538,12 @@
 
         <div class="method-description">
           
-          
+          <p>This finds the coreteam of the user based on the users current school.</p>
           
 
           
           <div class="method-source-code" id="coreteam-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">coreteam</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ? and coreteam = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span>, <span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -499,7 +575,7 @@
 
           
           <div class="method-source-code" id="fullname-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">lastname</span>
 <span class="ruby-keyword">end</span></pre>
@@ -524,12 +600,12 @@
 
         <div class="method-description">
           
-          
+          <p>Returns the fullname of the user last name first</p>
           
 
           
           <div class="method-source-code" id="fullname_lnf-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 77</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fullname_lnf</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lastname</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;, &quot;</span><span class="ruby-operator">+</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span>
 <span class="ruby-keyword">end</span></pre>
@@ -541,6 +617,37 @@
 
         
       </div><!-- fullname_lnf-method -->
+
+    
+      <div id="method-i-grade_average" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">grade_average</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Calculates the current grade average for a student.</p>
+          
+
+          
+          <div class="method-source-code" id="grade_average-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">grade_average</span>
+  <span class="ruby-identifier">grades</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span>)
+  <span class="ruby-identifier">grades</span>.<span class="ruby-identifier">average</span>(<span class="ruby-string">&quot;grade&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- grade_average-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- grade_average-method -->
 
     
       <div id="method-i-is_administrator" class="method-detail ">
@@ -559,7 +666,7 @@
 
           
           <div class="method-source-code" id="is_administrator-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 118</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 142</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_administrator</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">true</span>
@@ -591,7 +698,7 @@
 
           
           <div class="method-source-code" id="is_contributor-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 124</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 148</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_contributor</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
     <span class="ruby-keyword">true</span>
@@ -628,7 +735,7 @@
 
           
           <div class="method-source-code" id="is_school_admin-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_admin?</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>)
     <span class="ruby-identifier">participant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find_by_school_id</span>(<span class="ruby-identifier">school_id</span>)
@@ -672,7 +779,7 @@
 
           
           <div class="method-source-code" id="is_school_leader-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 105</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school_leader?</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>)
     <span class="ruby-identifier">participant</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">find_by_school_id</span>(<span class="ruby-identifier">school_id</span>)
@@ -695,6 +802,38 @@
       </div><!-- is_school_leader-3F-method -->
 
     
+      <div id="method-i-is_superadmin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_superadmin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_superadmin-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_superadmin</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_admin</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_superadmin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_superadmin-method -->
+
+    
       <div id="method-i-leader-3F" class="method-detail ">
         
         <div class="method-heading">
@@ -713,7 +852,7 @@
 
           
           <div class="method-source-code" id="leader-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 172</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 196</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">leader?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span> 
     <span class="ruby-keyword">true</span>
@@ -727,6 +866,67 @@
 
         
       </div><!-- leader-3F-method -->
+
+    
+      <div id="method-i-schools_i_own" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">schools_i_own</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="schools_i_own-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">schools_i_own</span>
+  <span class="ruby-constant">School</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;owner_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- schools_i_own-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- schools_i_own-method -->
+
+    
+      <div id="method-i-schoolteams" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">schoolteams</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a collection of all a users teams based on the users current
+school.</p>
+          
+
+          
+          <div class="method-source-code" id="schoolteams-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">schoolteams</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;school_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span>).<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- schoolteams-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- schoolteams-method -->
 
     
       <div id="method-i-set_school" class="method-detail ">
@@ -747,7 +947,7 @@
 
           
           <div class="method-source-code" id="set_school-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">school_id</span>)
   <span class="ruby-identifier">p</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">participants</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:school</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">school_id</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">p</span>
@@ -789,7 +989,7 @@
 
           
           <div class="method-source-code" id="staff-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 156</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 180</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">staff?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span> 
     <span class="ruby-keyword">true</span>
@@ -832,7 +1032,7 @@
 
           
           <div class="method-source-code" id="status-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">status</span>
   <span class="ruby-identifier">participant</span> = <span class="ruby-constant">Participant</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and school_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">school</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">participant</span>
@@ -869,7 +1069,7 @@
 
           
           <div class="method-source-code" id="student-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 148</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 172</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">student?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span> 
     <span class="ruby-keyword">true</span>

@@ -7,7 +7,7 @@ class Team < ActiveRecord::Base
   
   scope :sorted, order: "school_id,coreteam DESC"
   
-  attr_accessible :description, :name, :owner_id, :school_id, :coreteam
+  attr_accessible :description, :name, :owner_id, :school_id, :coreteam, :private
   ##########################################################
   validates_presence_of :name, :owner_id, :school_id
   

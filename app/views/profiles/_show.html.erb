@@ -7,7 +7,16 @@
     </p>
   </div>
   <div class="float_left">
-    <div class="floatbox_trans limited">
+    <div class="floatbox_trans" >
+      <% if @user.note %>
+        <p class="title">Thought for the Day!</p>
+        <%= formatter(@user.note.public) unless @user.note.public.nil?  %>
+      <% end %>
+      <p class="title">Picture of the Day!</p>
+      <%= link_to(image_tag(@user.iotd.url(:medium)),@user.iotd.url, target: "_blank" ) %>
+    </div>
+    
+    <div class="floatbox_trans">
       <p class="title">
         A bit about <%= @user.firstname %>
       </p>
@@ -18,17 +27,7 @@
         </div>
       <% end %>
       <hr />
-    </div>
-
-  
-    <div class="floatbox_trans limited" >
-      <% if @user.note %>
-        <p class="title">Thought for the Day!</p>
-        <%= formatter(@user.note.public) unless @user.note.public.nil?  %>
-      <% end %>
-      <p class="title">Picture of the Day!</p>
-      <%= link_to(image_tag(@user.iotd.url(:medium)),@user.iotd.url, target: "_blank" ) %>
-    </div>
+    </div> 
   </div>
 </div>
 
