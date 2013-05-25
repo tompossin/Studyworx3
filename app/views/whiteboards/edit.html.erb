@@ -1,0 +1,18 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Homeroom", schools_path %>
+<% end %>
+<div id="content-large">
+  <article>
+    <h2>Edit whiteboard</h2>
+    <div class="half_pane">
+      <%= render 'form' %>
+    </div>
+    <div class="half_pane">
+      
+    </div>
+    
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>
+

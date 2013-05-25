@@ -15,12 +15,22 @@
         <section>
           <%= render "schools/admin_tools" %>
         </section>
-      <% end %>
-      <% if current_user.role < 4 %>
+      <% end %>      
         <section>
-          <%= render "schools/staff_tools" %>
-        </section>
-      <% end %>
+          <% if current_user.role < 4 %>
+            <%= render "schools/staff_tools" %>
+          <% end %>
+          <div id="whiteboard">
+            <p class="title large bolder">
+              School Whiteboard
+              <span>
+                <%=link_to "Edit Whiteboard", new_whiteboard_path, {class: "smallest"} if current_user.is_school_admin?(@school) %>
+              </span>
+            </p>
+            <hr />
+            <%= formatter(@whiteboard.content) if @whiteboard %>
+          </div>
+        </section>      
     </div>
     <div class="float_left limited">
       <section>

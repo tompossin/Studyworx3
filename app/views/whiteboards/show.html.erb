@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>School:</b>
+  <%= @whiteboard.school_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @whiteboard.user_id %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @whiteboard.content %>
+</p>
+
+<p>
+  <b>Content type:</b>
+  <%= @whiteboard.content_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_whiteboard_path(@whiteboard) %> |
+<%= link_to 'Back', whiteboards_path %>

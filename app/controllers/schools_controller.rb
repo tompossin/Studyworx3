@@ -13,6 +13,7 @@ class SchoolsController < ApplicationController
     @school = School.find_or_initialize_by_id(current_user.school)
     load_school_vars
     check_for_pending_registrations
+    @whiteboard = @school.whiteboard
     
     respond_to do |format|
       if current_user.school < 1

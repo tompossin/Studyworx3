@@ -401,6 +401,18 @@ label {
   float:left;
 }
 
+#whiteboard {
+  float: left;
+  width: 94%;
+  height: 300px;
+  overflow: auto;
+  padding: 1%;
+  border-radius: 10px;
+  border: solid 1px gray;
+  box-shadow: 3px 3px 3px #888888;
+  background-color: rgba(255,255,255,.5);
+}
+
 .avatar {
   position: relative;
   float:left;

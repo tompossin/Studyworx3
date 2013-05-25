@@ -10,6 +10,7 @@ class School < ActiveRecord::Base
   has_many :grades, :dependent => :destroy
   has_many :titles, :dependent => :destroy
   has_many :observations, :dependent => :destroy
+  has_one :whiteboard, :dependent => :destroy
   
   ### Attributes ############################
     attr_accessible :owner_id, :active, :description, :end_date, :language_id, :location

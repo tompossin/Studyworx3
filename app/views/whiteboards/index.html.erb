@@ -1,0 +1,29 @@
+<h1>Listing whiteboards</h1>
+
+<table>
+  <tr>
+    <th>School</th>
+    <th>User</th>
+    <th>Content</th>
+    <th>Content type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @whiteboards.each do |whiteboard| %>
+  <tr>
+    <td><%= whiteboard.school_id %></td>
+    <td><%= whiteboard.user_id %></td>
+    <td><%= whiteboard.content %></td>
+    <td><%= whiteboard.content_type %></td>
+    <td><%= link_to 'Show', whiteboard %></td>
+    <td><%= link_to 'Edit', edit_whiteboard_path(whiteboard) %></td>
+    <td><%= link_to 'Destroy', whiteboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Whiteboard', new_whiteboard_path %>

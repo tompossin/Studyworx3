@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523143023) do
+ActiveRecord::Schema.define(:version => 20130525212135) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -584,5 +584,16 @@ ActiveRecord::Schema.define(:version => 20130523143023) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "whiteboards", :force => true do |t|
+    t.integer  "school_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "content_type", :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "whiteboards", ["school_id"], :name => "index_whiteboards_on_school_id"
 
 end

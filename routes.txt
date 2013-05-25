@@ -163,6 +163,13 @@
                                      PUT    /teams/:id(.:format)                                                                       teams#update
                                      DELETE /teams/:id(.:format)                                                                       teams#destroy
                      teams_show_user GET    /teams/show_user/:id(.:format)                                                             teams#show_user
+                         whiteboards GET    /whiteboards(.:format)                                                                     whiteboards#index
+                                     POST   /whiteboards(.:format)                                                                     whiteboards#create
+                      new_whiteboard GET    /whiteboards/new(.:format)                                                                 whiteboards#new
+                     edit_whiteboard GET    /whiteboards/:id/edit(.:format)                                                            whiteboards#edit
+                          whiteboard GET    /whiteboards/:id(.:format)                                                                 whiteboards#show
+                                     PUT    /whiteboards/:id(.:format)                                                                 whiteboards#update
+                                     DELETE /whiteboards/:id(.:format)                                                                 whiteboards#destroy
                        paper_reviews GET    /papers/:paper_id/reviews(.:format)                                                        reviews#index
                                      POST   /papers/:paper_id/reviews(.:format)                                                        reviews#create
                     new_paper_review GET    /papers/:paper_id/reviews/new(.:format)                                                    reviews#new

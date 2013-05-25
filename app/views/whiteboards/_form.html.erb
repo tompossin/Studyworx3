@@ -1,0 +1,14 @@
+<%= form_for(@whiteboard) do |f| %>
+  <%= include_form_validation_errors(@whiteboard) %>
+
+  <%= f.hidden_field :school_id %>
+  <%= f.hidden_field :user_id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  
+<% end %>
