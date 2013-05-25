@@ -6,7 +6,14 @@
 <div id="content-large">
   <article>
     <h2>Reports</h2>
-    <p>Report stuff here.</p>
+    <% @students.each do |s| %>
+      <p>
+        <%=link_to s.fullname_lnf, school_user_grades_report_path(@school,s.id), {title: "View all Grades"} %> 
+        - <%= letter_grade(s.grade_average) %>  
+        (<%= s.grade_average %>)
+      </p>
+      
+    <% end %>
   </article>
 </div>
 

@@ -4,7 +4,8 @@ class Admin::ReportsController < ApplicationController
   
   def index
     @nav_body_content = "admin/reports/navbar"
-    
+    @school = School.find(current_user.school)
+    @students = @school.students
   end
   
   private

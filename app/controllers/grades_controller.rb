@@ -1,15 +1,25 @@
 class GradesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_school_staff, only: [:finish, :finish_grading, :grades, :office, :collect, :collect_save]
+  before_filter :is_school_staff, only: [:report, :finish, :finish_grading, :grades, :office, :collect, :collect_save]
   before_filter :get_school
   
   # This is the main Student grade page.
   def index
-    @grades = current_user.grades.all
+    @user = current_user
+    @grades = @user.grades.all
 
     respond_to do |format|
       format.html 
     end
+  end
+  
+  # This opens an individual students grades page
+  def report
+    @user = User.find(params[:user_id])
+    @grades = @user.grades.all
+    respond_to do |format|
+      format.html { render :index }
+    end 
   end
   
   # This is the staffnote viewing page
@@ -197,7 +207,7 @@ class GradesController < ApplicationController
   end
   
   def load_module
-    @assignments = Assignment.where("module = ?",params[:module]).all
+    @assignments = @school.assignments.where("module = ?",params[:module]).all
     
     respond_to do |format|
       format.js 
