@@ -28,10 +28,7 @@ class ChartsController < ApplicationController
   
   # This is the main page for editing insides/outsides. It's the charting homepage.
   def charting
-    state = State.find_or_create_by_user_id(current_user.id)
-    unless state.uptodate
-      Title.build_tree(@task.id,current_user.id)
-    end 
+    check_state_and_update
     @titles = Title.build_horizontal_collection(@task.id,current_user.id)
     
     respond_to do |format| 
@@ -40,6 +37,7 @@ class ChartsController < ApplicationController
   end
   
   def print
+    check_state_and_update
     @verticals = Title.get_segments(@task.id,current_user.id)
     build_all_charts(@task.id,current_user.id)
     respond_to do |format|
@@ -54,6 +52,7 @@ class ChartsController < ApplicationController
   end
   
   def download
+    check_state_and_update
     @verticals = Title.get_segments(@task.id,current_user.id)
     build_all_charts(@task.id,current_user.id)
     content = render_to_string template: "charts/download"
@@ -284,6 +283,12 @@ class ChartsController < ApplicationController
     @assignment = Assignment.find(@task.assignment_id)
   end
   
+  def check_state_and_update
+    state = State.find_or_create_by_user_id(current_user.id)
+    unless state.uptodate
+      Title.build_tree(@task.id,current_user.id)
+    end 
+  end
   
   
 end
