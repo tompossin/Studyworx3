@@ -239,6 +239,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
            school_user_grades_report GET    /schools/:school_id/user/:user_id/grades/report(.:format)                                  grades#report
              school_grade_coversheet GET    /schools/:school_id/grades/:grade_id/coversheet(.:format)                                  grades#coversheet
                 school_grade_comment GET    /schools/:school_id/grades/:grade_id/comment(.:format)                                     grades#comment
+         school_user_grades_comments GET    /schools/:school_id/user/:user_id/comments(.:format)                                       grades#comments
                       school_hand_in POST   /schools/:school_id/hand_in/assignment/:assignment_id(.:format)                            grades#hand_in
                       school_collect GET    /schools/:school_id/collect(.:format)                                                      grades#collect
                  school_collect_save POST   /schools/:school_id/collect_save(.:format)                                                 grades#collect_save

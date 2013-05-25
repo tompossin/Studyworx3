@@ -50,6 +50,15 @@ class GradesController < ApplicationController
     end
   end
   
+  # This loads recent staff comment into the popup window
+  def comments
+    @user = User.find(params[:user_id])
+    @grades = @user.grades.order("updated_at DESC").limit(10)
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # This is the staff grade entry page
   def grades
     @user = User.find(params[:user_id])

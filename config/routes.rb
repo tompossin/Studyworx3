@@ -139,6 +139,7 @@ Studyworx3::Application.routes.draw do
     match 'user/:user_id/grades/report' => 'grades#report', via: :get, as: :user_grades_report
     match 'grades/:grade_id/coversheet' => 'grades#coversheet', via: [:get], as: :grade_coversheet
     match 'grades/:grade_id/comment' => 'grades#comment', via: :get, as: :grade_comment
+    match 'user/:user_id/comments' => 'grades#comments', via: :get, as: :user_grades_comments
     match 'hand_in/assignment/:assignment_id' => 'grades#hand_in', via: [:post], as: :hand_in
     match 'collect' => 'grades#collect',via: [:get], as: :collect
     match 'collect_save' => 'grades#collect_save',via: [:post], as: :collect_save
