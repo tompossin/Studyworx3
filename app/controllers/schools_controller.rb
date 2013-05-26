@@ -12,13 +12,13 @@ class SchoolsController < ApplicationController
     current_user.check_or_create_private_school
     @school = School.find_or_initialize_by_id(current_user.school)
     load_school_vars
-    check_for_pending_registrations
-    @whiteboard = @school.whiteboard
+    check_for_pending_registrations    
     
     respond_to do |format|
       if current_user.school < 1
         format.html # index.html.erb
       else
+        @whiteboard = @school.whiteboard
         unless current_user.staff?
           @assignments = @school.current_assignments(current_user)
         else
@@ -45,6 +45,7 @@ class SchoolsController < ApplicationController
     @school = School.find(current_user.school)
     check_for_pending_registrations
     load_school_vars
+    @whiteboard = @school.whiteboard
     unless current_user.staff?
       @assignments = @school.current_assignments(current_user)
     else
