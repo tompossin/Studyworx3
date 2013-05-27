@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527153413) do
+ActiveRecord::Schema.define(:version => 20130527173542) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -163,6 +163,16 @@ ActiveRecord::Schema.define(:version => 20130527153413) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
+
+  create_table "lastmessages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "lastviewed"
+    t.boolean  "team",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "lastmessages", ["user_id"], :name => "index_lastmessages_on_user_id"
 
   create_table "message_hierarchies", :id => false, :force => true do |t|
     t.integer "ancestor_id",   :null => false

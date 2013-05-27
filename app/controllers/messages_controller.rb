@@ -11,6 +11,8 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.get_unread_messages(current_user.id)
     @message_partial = "message"
+    Message.update_personal_views(current_user.id)
+    
     respond_to do |format|
       format.js
     end

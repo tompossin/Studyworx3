@@ -43,10 +43,44 @@ class Message < ActiveRecord::Base
   # counts all the unread personal messages
   def self.count_all_unread_messages(user_id)
     return Message.count(
-            :conditions => ["((recipient_id = (?) and rcipient_read = false) 
+            :conditions => ["((recipient_id = (?) and recipient_read = false) 
                             or (sender_id = (?) and sender_read = false)) 
                             and parent_id IS NULL",user_id,user_id],
             :distinct => true)
+  end
+  
+  # Returns true or false if the user has unread personal messages
+  def self.unviewed_personal_messages?(user_id)
+    newest = self.maximum(:id, :conditions => ["((recipient_id = (?) and recipient_read = false) 
+                                                or (sender_id = (?) and sender_read = false)) 
+                                                and parent_id IS NULL",user_id,user_id]) 
+    msg =  Lastmessage.get_personal(user_id)
+    if msg
+      if newest > msg.lastviewed
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end   
+  end
+  
+  # Returns true or false if the user has unread team messages
+  def self.unviewed_team_messages?(user_id)
+    user = User.find(user_id)
+    teams = user.team_ids
+    newest = self.maximum(:id, :conditions => ["team_id IN (?) and parent_id IS NULL",teams])
+    msg = Lastmessage.get_team(user_id)
+    if msg
+      if newest > msg.lastviewed
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
   end
   
   # retrieves previously read private messages for a user.  
@@ -57,6 +91,33 @@ class Message < ActiveRecord::Base
                           user_id,user_id).offset(page*pagesize).limit(pagesize)
   end
   
+  # update the lastmessage table with the most recently viewed personal message id
+  def self.update_personal_views(user_id)
+    newest = self.maximum(:id, :conditions => ["((recipient_id = (?) and recipient_read = false) 
+                                                or (sender_id = (?) and sender_read = false)) 
+                                                and parent_id IS NULL",user_id,user_id])
+    lm = Lastmessage.where("user_id = ? and team = ?",user_id,false).first
+    unless lm
+      lm = Lastmessage.create(user_id: user_id, team: false, lastviewed: newest)
+    else
+      lm.lastviewed = newest
+      lm.save
+    end
+  end
+  
+  def self.update_team_views(user_id)
+    user = User.find(user_id)
+    teams = user.team_ids
+    newest = self.maximum(:id, :conditions => ["team_id IN (?) and parent_id IS NULL",teams])
+    lm = Lastmessage.where("user_id = ? and team = ?",user_id,true).first
+    unless lm
+      lm = Lastmessage.create(user_id: user_id, team: true, lastviewed: newest)
+    else
+      lm.lastviewed = newest
+      lm.save
+    end
+  end
+    
   # Toggles a message as being read.
   def self.toggle_read_values(msg_id,user_id)
     m = Message.find(msg_id)

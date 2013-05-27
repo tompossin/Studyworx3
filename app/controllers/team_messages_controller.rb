@@ -16,6 +16,7 @@ class TeamMessagesController < ApplicationController
     @msgcount = Message.count_team_messages(current_user)
     @messages = Message.get_team_messages(current_user,pagesize,@page)
     @teams = current_user.teams.all
+    Message.update_team_views(current_user.id)
     @page += 1
     @current_count = @msgcount - pagesize*@page
     unless @msgcount <= pagesize*@page

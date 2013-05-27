@@ -12,7 +12,9 @@ class SchoolsController < ApplicationController
     current_user.check_or_create_private_school
     @school = School.find_or_initialize_by_id(current_user.school)
     load_school_vars
-    check_for_pending_registrations    
+    check_for_pending_registrations 
+    @newper = Message.unviewed_personal_messages?(current_user.id)
+    @newteam = Message.unviewed_team_messages?(current_user.id)   
     
     respond_to do |format|
       if current_user.school < 1
@@ -46,6 +48,8 @@ class SchoolsController < ApplicationController
     check_for_pending_registrations
     load_school_vars
     @whiteboard = @school.whiteboard
+    @newper = Message.unviewed_personal_messages?(current_user.id) 
+    @newteam = Message.unviewed_team_messages?(current_user.id)  
     unless current_user.staff?
       @assignments = @school.current_assignments(current_user)
     else
