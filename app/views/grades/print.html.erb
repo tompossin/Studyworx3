@@ -1,0 +1,29 @@
+<div>
+  <div class="noprint">
+    <%= link_to "close", :back %>
+  </div>
+  <article>
+    <section>
+      <h2 class="center">
+        <%= @grade.assignment.name %> Grade Report
+      </h2>
+      <p class="title small center">
+        <span class="smaller">Graded by:</span>
+        <%= get_full_name(@grade.staff_id) %> <br />
+        <span class="smaller">on: </span>
+        <%= @grade.updated_at.to_formatted_s(:short)%>
+      </p>
+      <p class="title">
+        <%= get_full_name(@grade.user_id) %>
+      </p>
+      <p class="title">
+        Grade: <%= letter_grade(@grade.grade) %>
+      </p>
+      
+      <hr />
+  
+      <%= formatter(@grade.student_comments) %>
+    </section>
+  </article>
+  
+</div>

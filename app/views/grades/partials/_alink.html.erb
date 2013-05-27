@@ -1,12 +1,15 @@
 <div class="trow">
-  <span class="cell" style="width:35%;">
+  <span class="cell" style="width:30%;">
     <%=link_to alink.assignment.name, user_assignment_load_tasks_path(alink.user_id,alink.assignment.id), {remote: true, style: "color: #{set_color(alink.done,'green','red')};", title: tfmsg(alink.done,"Assignment Complete - ready to grade.","Assignment Viewable but not complete")} %>
   </span>
-  <span class="cell" style="width:30%;">
+  <span class="cell" style="width:25%;">
     <%=link_to alink.user.fullname, school_user_grades_comments_path(alink.school_id,alink.user_id),{remote: true, title:"View recent staff comments."} %>
   </span>
-  <span class="cell" style="width:15%;">
+  <span class="cell" style="width:14%;">
     <%= link_to "Return", school_return_grade_path(alink.school_id,alink.id),{method: :post} %>
+  </span>
+  <span class="cell" style="width: 14%;">
+    <%=link_to "print", grade_print_path(alink) %>
   </span>
 
 </div>

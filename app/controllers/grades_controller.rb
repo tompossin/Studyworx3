@@ -1,7 +1,8 @@
 class GradesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_school_staff, only: [:report, :finish, :finish_grading, :grades, :office, :collect, :collect_save]
+  before_filter :is_school_staff, only: [:print, :report, :finish, :finish_grading, :grades, :office, :collect, :collect_save]
   before_filter :get_school
+  layout "print", only: [:print]
   
   # This is the main Student grade page.
   def index
@@ -83,11 +84,18 @@ class GradesController < ApplicationController
   end
   
   def finish
-    @grade = Grade.find(params[:grade_id])
-    
+    @grade = Grade.find(params[:grade_id])   
     
     respond_to do |format|
       format.js
+    end
+  end
+  
+  # Print the grading coversheet.
+  def print
+    @grade = Grade.find(params[:grade_id])
+    respond_to do |format|
+      format.html
     end
   end
   
