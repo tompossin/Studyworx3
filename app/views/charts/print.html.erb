@@ -17,7 +17,7 @@
           <%= get_chart_image(current_user,@task,v,"vertical")%>
         
 
-          <%= smart_format(v.charttext.content_type,v.charttext.content) %>   
+          <%= smart_format(v.charttext.content_type,v.charttext.content) if v.charttext %>   
         
       </section>
     <% end %>

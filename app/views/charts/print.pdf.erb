@@ -3,7 +3,9 @@
     <h2><%= @task.assignment.name %></h2>
     <p style="text-align: right;"><%= current_user.fullname %></p>
   </header>
-
+  <section>
+      <h3>Download the horizontal and vertical images separately</h3>
+  </section>
 
     <% @verticals.each do |v| %>
       <section class="page_before float_left">
@@ -12,7 +14,7 @@
         </div>
         <hr />
         <div >
-          <%= smart_format(v.charttext.content_type,v.charttext.content) %>
+          <%= smart_format(v.charttext.content_type,v.charttext.content) if v.charttext %>
         </div>
         <hr />
       </section>

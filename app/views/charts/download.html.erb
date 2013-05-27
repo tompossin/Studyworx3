@@ -3,14 +3,14 @@
     <p style="text-align: right;"><%= current_user.fullname %></p>
   </header>
   <section>
-      <h3>Download the horizontal and vertical images seperately</h3>
+      <h3>Download the horizontal and vertical images separately</h3>
   </section>
 
     <% @verticals.each do |v| %>
       <section>       
           <h3><%= v.segnum.to_s+": "+v.title %></h3>
           <hr />
-          <%= smart_format(v.charttext.content_type,v.charttext.content) %>   
+          <%= smart_format(v.charttext.content_type,v.charttext.content) if v.charttext %>   
           <hr />
       </section>      
     <% end %>

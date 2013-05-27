@@ -37,9 +37,9 @@ class ChartsController < ApplicationController
   end
   
   def print
-    check_state_and_update
-    @verticals = Title.get_segments(@task.id,current_user.id)
+    check_state_and_update    
     build_all_charts(@task.id,current_user.id)
+    @verticals = Title.get_segments(@task.id,current_user.id)
     respond_to do |format|
       format.html
       format.pdf do
