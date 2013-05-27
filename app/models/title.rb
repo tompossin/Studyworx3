@@ -147,7 +147,7 @@ class Title < ActiveRecord::Base
         segnum += 1 if c.title_type == 2
       end
     end 
-    State.reset_state(user_id)
+    State.reset_state(user_id,task_id)
   end
   
   # Clean up incoming params to help with inconsistent behavior of browsers (and users).

@@ -214,7 +214,7 @@ class ChartsController < ApplicationController
     respond_to do |format|
       if assignment.editable?(current_user)
         if @title
-          State.update_state(current_user.id)
+          State.update_state(current_user.id,@title.task_id)
           format.js
         else
           format.js { render "insert_failed" }
@@ -244,7 +244,7 @@ class ChartsController < ApplicationController
     
     respond_to do |format|
       if @title.save
-        State.update_state(current_user.id)
+        State.update_state(current_user.id,@title.task_id)
         format.js 
       else
         format.js {render "shared/save_failed"}
@@ -258,7 +258,7 @@ class ChartsController < ApplicationController
     position = @title.position
     @title.destroy
     Title.reorder_after_delete(@task.id,current_user.id,position)
-    State.update_state(current_user.id)
+    State.update_state(current_user.id,@title.task_id)
     
     respond_to do |format|
       format.js
@@ -268,7 +268,7 @@ class ChartsController < ApplicationController
   # This destroys all titles and all dependencies - (slow)
   def destroy_all
     Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).destroy_all
-    State.update_state(current_user)
+    State.update_state(current_user.id,@title.task_id)
     
     respond_to do |format|
       format.js
@@ -284,7 +284,7 @@ class ChartsController < ApplicationController
   end
   
   def check_state_and_update
-    state = State.find_or_create_by_user_id(current_user.id)
+    state = State.update_state(current_user.id,@task.id)
     unless state.uptodate
       Title.build_tree(@task.id,current_user.id)
     end 

@@ -6,11 +6,14 @@
     <%=link_to( letter_grade(grade.grade), school_grade_coversheet_path(grade.school_id,grade), {remote: true}) if grade.grade %>
     <%= letter_grade(grade.grade) unless grade.grade %> 
   </span>
-  <span class="cell" style="width: 15%;" >
+  <span class="cell" style="width: 12%;" >
     <%=link_to "comments", school_grade_comment_path(grade.school_id,grade), {remote: true} if current_user.staff? %>
   </span>
-  <span class="cell" style="width: 10%;">
+  <span class="cell" style="width: 6%;">
     <%=link_to "edit", grade_finish_grading_path(grade), {remote: true} if current_user.staff? %>
+  </span>
+  <span class="cell" style="width: 6%;">
+    <%=link_to "print", grade_print_path(grade) %>
   </span>
   <span class="cell" style="width: 20%;" >
     <%= get_full_name(grade.staff_id) if grade.staff_id %>
