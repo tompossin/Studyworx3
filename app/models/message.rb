@@ -56,8 +56,12 @@ class Message < ActiveRecord::Base
                                                 and parent_id IS NULL",user_id,user_id]) 
     msg =  Lastmessage.get_personal(user_id)
     if msg
-      if newest > msg.lastviewed
-        return true
+      if newest
+        if newest > msg.lastviewed
+          return true
+        else
+          return false
+        end
       else
         return false
       end
@@ -73,8 +77,12 @@ class Message < ActiveRecord::Base
     newest = self.maximum(:id, :conditions => ["team_id IN (?) and parent_id IS NULL",teams])
     msg = Lastmessage.get_team(user_id)
     if msg
-      if newest > msg.lastviewed
-        return true
+      if newest
+        if newest > msg.lastviewed
+          return true
+        else
+          return false
+        end
       else
         return false
       end
@@ -100,7 +108,11 @@ class Message < ActiveRecord::Base
     unless lm
       lm = Lastmessage.create(user_id: user_id, team: false, lastviewed: newest)
     else
-      lm.lastviewed = newest
+      if newest
+        lm.lastviewed = newest
+      else
+        lm.lastviewed = 0
+      end
       lm.save
     end
   end
@@ -113,7 +125,11 @@ class Message < ActiveRecord::Base
     unless lm
       lm = Lastmessage.create(user_id: user_id, team: true, lastviewed: newest)
     else
-      lm.lastviewed = newest
+      if newest
+        lm.lastviewed = newest
+      else
+        lm.lastviewed = 0
+      end
       lm.save
     end
   end
