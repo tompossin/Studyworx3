@@ -32,6 +32,7 @@
     <%= f.text_field :category, {:style=>"width:90%;"} %>
     <p class="title">
       Lead Story? <%= f.select :leadstory, [false,true],{:include_blank => true} %>
+      <em class="small">(Blank = unpublished draft)</em>
     </p>
     <p class="title">
       Featured Story? <%= f.select :featured, [false,true],{:include_blank => true} %>

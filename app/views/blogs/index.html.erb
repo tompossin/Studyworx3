@@ -15,7 +15,7 @@
       
       <% @blogs.each do |blog| %>
         <div class="trow">
-          <span class="cell" style="width:6%;color:<%=set_color(blog.leadstory,"red","gray")%>;"><%= blog.leadstory %></span>
+          <span class="cell" style="width:6%;color:<%=set_color(blog.leadstory,"red","gray")%>;"><%= story_status(blog.leadstory) %></span>
           <span class="cell" style="width:24%;"><%= sanitize blog.category %></span>
           <span class="cell" style="width:40%;"><%= sanitize blog.topic %></span>
           <span class="cell" style="width:5%;"><%= link_to 'Show', blog %></span>
