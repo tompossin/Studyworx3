@@ -101,7 +101,7 @@ class GradesController < ApplicationController
   
   # This is the grading office page. The homepage for staff grading.
   def office
-    @pending = Grade.includes(:assignment).where("school_id = ? and grades.staff_id = ? and returned = ? and (grades.viewable = ? or grades.done = ?)",current_user.school,current_user.id,false,true,true).all
+    @pending = Grade.load_pending_grading_for_staff(current_user)
     @students = @school.students
     respond_to do |format|
       format.html 

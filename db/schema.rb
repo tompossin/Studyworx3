@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527173542) do
+ActiveRecord::Schema.define(:version => 20130603163924) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20130527173542) do
     t.integer  "school_id",                           :null => false
     t.integer  "assignment_id",                       :null => false
     t.integer  "user_id",                             :null => false
+    t.integer  "duedate_id"
     t.integer  "staff_id"
     t.boolean  "viewable",         :default => false
     t.boolean  "done",             :default => false
