@@ -5,18 +5,18 @@
   </div>
 <% end %>
 <div class="title large float_left">
-  Featured Stories...
+  <dl>
+    <dt>Featured Stories...</dt>
+    <% @features.each do |f| %>
+      <dd><%=link_to f.topic, home_path(f.id)%></dd>
+    <% end %>
+  </dl>
+
+
+  <dl>
+    <dt>More Stories...</dt>
+    <% @stories.each do |s| %>
+      <dd><%= link_to s.topic, home_path(s.id) %></dd>
+    <%end%>
+  </dl>
 </div>
-<ul>
-  <% @features.each do |f| %>
-    <li><%=link_to f.topic, home_path(f.id)%></li>
-  <% end %>
-</ul>
-<div class="title float_left">
-  More Stories...
-</div>
-<ul>
-  <% @stories.each do |s| %>
-    <li><%= link_to s.topic, home_path(s.id) %></li>
-  <%end%>
-</ul>
