@@ -75,7 +75,7 @@ class SharedController < ApplicationController
   # These are help methods for things like the Markdown editors.
   # ----------
   
-  # Markdown Help
+  # Loads Help viewer in the popup window.
   def help
     @help = Help.find(params[:id])
 

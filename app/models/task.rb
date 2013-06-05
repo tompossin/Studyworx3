@@ -27,4 +27,12 @@ class Task < ActiveRecord::Base
     return a.name
   end
   
+  # return document content for a task/user pair
+  def get_user_document_content(user)
+    doc = Document.where("task_id = ? and user_id = ?",self.id,user.id).first
+    if doc
+      return doc.content
+    end
+  end
+  
 end

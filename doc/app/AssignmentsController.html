@@ -63,7 +63,23 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Imaging.html">Imaging</a>
+  
+  
+  
+    <li><a class="include" href="FormatContent.html">FormatContent</a>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
@@ -71,6 +87,8 @@
   <ul class="link-list">
     
     <li><a href="#method-i-help">#help</a>
+    
+    <li><a href="#method-i-printall">#printall</a>
     
     <li><a href="#method-i-show">#show</a>
     
@@ -229,6 +247,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -319,6 +339,12 @@
   
     <li><a href="./Version.html">Version</a>
   
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -366,7 +392,7 @@
 
           
           <div class="method-source-code" id="help-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
               <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
               
@@ -382,6 +408,44 @@
 
         
       </div><!-- help-method -->
+
+    
+      <div id="method-i-printall" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">printall</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This prints all tasks</p>
+          
+
+          
+          <div class="method-source-code" id="printall-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">printall</span>    
+  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
+  <span class="ruby-ivar">@tasks</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;assignment_id = ? and task_type = ?&quot;</span>,<span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">id</span>,<span class="ruby-value">1</span>).<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@chart</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;assignment_id = ? and task_type = ?&quot;</span>,<span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">id</span>,<span class="ruby-value">3</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@chart</span>
+    <span class="ruby-identifier">check_state_and_update</span>    
+    <span class="ruby-identifier">build_all_charts</span>(<span class="ruby-ivar">@chart</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-ivar">@verticals</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-ivar">@chart</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- printall-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- printall-method -->
 
     
       <div id="method-i-show" class="method-detail ">
@@ -400,7 +464,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>  
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@grade</span> = <span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">grades</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ?&quot;</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
@@ -435,7 +499,7 @@
 
           
           <div class="method-source-code" id="time_remaining-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignments_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">time_remaining</span>
   <span class="ruby-identifier">coreteam</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">coreteam</span>
   

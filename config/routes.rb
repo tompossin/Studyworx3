@@ -127,7 +127,7 @@ Studyworx3::Application.routes.draw do
     end
     resources :participants
     resources :assignments do
-			get 'help','time_remaining'
+			get 'help','time_remaining','printall'
       resources :tasks do
         resources :documents
       end

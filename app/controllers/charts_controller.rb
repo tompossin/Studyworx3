@@ -99,6 +99,7 @@ class ChartsController < ApplicationController
     end
   end
   
+  # This saves the charttext and returns the appropriate response depending on the state of things
   def save_charttext
     @charttext = Charttext.find(params[:charttext_id])
     assignment = Assignment.find(@task.assignment_id)
@@ -131,6 +132,7 @@ class ChartsController < ApplicationController
     end
   end
   
+  # Loads the editor for an existing Ppoint
   def edit_ppoint
     @ppoint = Ppoint.find(params[:ppoint_id] )
     @observations = Observation.select([:id, :name]).where("school_id = ?", current_user.school).all
@@ -224,6 +226,7 @@ class ChartsController < ApplicationController
       end
     end
   end
+  
   
   def title_staffnote
     @title = Title.find(params[:title_id])

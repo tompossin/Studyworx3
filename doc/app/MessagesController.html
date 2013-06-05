@@ -271,6 +271,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -361,6 +363,12 @@
   
     <li><a href="./Version.html">Version</a>
   
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -439,7 +447,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="cancel_message-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_message</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
@@ -471,7 +479,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="cancel_message_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 60</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_message_edit</span>
   
 <span class="ruby-keyword">end</span></pre>
@@ -501,7 +509,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 91</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">recipient</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recipient_id</span>])
   <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">current_user</span>
@@ -550,7 +558,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   
@@ -588,7 +596,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="get_read-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_read</span>
   <span class="ruby-identifier">pagesize</span> = <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">pagesize</span> <span class="ruby-comment"># set number of messages to display at once. Could be user defined someday.</span>
   <span class="ruby-ivar">@page</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>].<span class="ruby-identifier">to_i</span><span class="ruby-operator">||</span><span class="ruby-value">0</span>  
@@ -638,6 +646,8 @@ mistakenly by a message edit.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@messages</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">get_unread_messages</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@message_partial</span> = <span class="ruby-string">&quot;message&quot;</span>
+  <span class="ruby-constant">Message</span>.<span class="ruby-identifier">update_personal_views</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
   <span class="ruby-keyword">end</span>
@@ -668,7 +678,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 65</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
 
@@ -702,7 +712,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="read-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 82</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">read</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">toggle_read_values</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>],<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   
@@ -736,7 +746,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -769,7 +779,7 @@ mistakenly by a message edit.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 115</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">subject</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:subject</span>]
@@ -857,7 +867,7 @@ Messages.</p>
 
           
           <div class="method-source-code" id="cancel_reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 160</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_reply</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -890,7 +900,7 @@ Messages.</p>
 
           
           <div class="method-source-code" id="cancel_reply_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 180</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 182</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_reply_edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -923,7 +933,7 @@ Messages.</p>
 
           
           <div class="method-source-code" id="reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 146</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 148</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply</span>
   <span class="ruby-identifier">r</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
@@ -964,7 +974,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_create-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 189</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 191</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_create</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>] <span class="ruby-comment"># parent message id</span>
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-ivar">@id</span>)
@@ -1013,7 +1023,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 169</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -1050,7 +1060,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_update-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 214</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 216</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_update</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-ivar">@message</span>.<span class="ruby-identifier">id</span>)
@@ -1131,7 +1141,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 239</span>
+            <pre><span class="ruby-comment"># File app/controllers/messages_controller.rb, line 241</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">parent</span> = <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">parent_id</span>

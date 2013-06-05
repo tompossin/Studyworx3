@@ -213,6 +213,7 @@
                                      DELETE /schools/:school_id/participants/:id(.:format)                                             participants#destroy
               school_assignment_help GET    /schools/:school_id/assignments/:assignment_id/help(.:format)                              assignments#help
     school_assignment_time_remaining GET    /schools/:school_id/assignments/:assignment_id/time_remaining(.:format)                    assignments#time_remaining
+          school_assignment_printall GET    /schools/:school_id/assignments/:assignment_id/printall(.:format)                          assignments#printall
     school_assignment_task_documents GET    /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents(.:format)          documents#index
                                      POST   /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents(.:format)          documents#create
  new_school_assignment_task_document GET    /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents/new(.:format)      documents#new

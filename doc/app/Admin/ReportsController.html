@@ -225,6 +225,8 @@
   
     <li><a href="../Imaging.html">Imaging</a>
   
+    <li><a href="../Lastmessage.html">Lastmessage</a>
+  
     <li><a href="../Message.html">Message</a>
   
     <li><a href="../MessageMailer.html">MessageMailer</a>
@@ -315,6 +317,12 @@
   
     <li><a href="../Version.html">Version</a>
   
+    <li><a href="../Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="../WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="../WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -365,7 +373,8 @@
             <pre><span class="ruby-comment"># File app/controllers/admin/reports_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@nav_body_content</span> = <span class="ruby-string">&quot;admin/reports/navbar&quot;</span>
-  
+  <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
+  <span class="ruby-ivar">@students</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">students</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           

@@ -1,0 +1,16 @@
+<section>
+  
+    <%= get_chart_image(current_user,task,"horizontal") %>
+
+</section>
+
+<% @verticals.each do |v| %>
+  <section>
+
+      <%= get_chart_image(current_user,task,v,"vertical")%>
+    
+
+      <%= smart_format(v.charttext.content_type,v.charttext.content) if v.charttext %>   
+    
+  </section>
+<% end %>

@@ -74,6 +74,8 @@
     
     <li><a href="#method-i-clean_name">#clean_name</a>
     
+    <li><a href="#method-i-get_user_document_content">#get_user_document_content</a>
+    
   </ul>
 </nav>
 
@@ -227,6 +229,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -316,6 +320,12 @@
     <li><a href="./UserAdmin.html">UserAdmin</a>
   
     <li><a href="./Version.html">Version</a>
+  
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
   
   </ul>
 </nav>
@@ -407,6 +417,39 @@
 
         
       </div><!-- clean_name-method -->
+
+    
+      <div id="method-i-get_user_document_content" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_user_document_content</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return document content for a task/user pair</p>
+          
+
+          
+          <div class="method-source-code" id="get_user_document_content-source">
+            <pre><span class="ruby-comment"># File app/models/task.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_user_document_content</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">doc</span> = <span class="ruby-constant">Document</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">doc</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">content</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_user_document_content-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_user_document_content-method -->
 
     
     </section><!-- public-instance-method-details -->

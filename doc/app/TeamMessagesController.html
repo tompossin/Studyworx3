@@ -265,6 +265,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -355,6 +357,12 @@
   
     <li><a href="./Version.html">Version</a>
   
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -438,7 +446,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 196</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@child</span> = <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">parent_id</span><span class="ruby-operator">||</span><span class="ruby-keyword">false</span>
@@ -515,7 +523,7 @@
 
           
           <div class="method-source-code" id="cancel_reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 175</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 176</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_reply</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -548,7 +556,7 @@
 
           
           <div class="method-source-code" id="cancel_reply_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 183</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 184</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_reply_edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -581,7 +589,7 @@
 
           
           <div class="method-source-code" id="reply-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 112</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply</span>
   <span class="ruby-identifier">r</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
@@ -622,7 +630,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_create-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 127</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_create</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -668,7 +676,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 148</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 149</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
@@ -703,7 +711,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="reply_update-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 158</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 159</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reply_update</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">current_user</span>
@@ -781,7 +789,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="cancel_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -814,7 +822,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="cancel_message-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 92</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cancel_message</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
@@ -846,7 +854,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">recipient_id</span> = <span class="ruby-keyword">nil</span>
@@ -893,7 +901,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@method</span> = <span class="ruby-string">&quot;put&quot;</span>
@@ -935,6 +943,7 @@ no grandchildren.</p>
   <span class="ruby-ivar">@msgcount</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">count_team_messages</span>(<span class="ruby-identifier">current_user</span>)
   <span class="ruby-ivar">@messages</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">get_team_messages</span>(<span class="ruby-identifier">current_user</span>,<span class="ruby-identifier">pagesize</span>,<span class="ruby-ivar">@page</span>)
   <span class="ruby-ivar">@teams</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">teams</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-constant">Message</span>.<span class="ruby-identifier">update_team_views</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-ivar">@page</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
   <span class="ruby-ivar">@current_count</span> = <span class="ruby-ivar">@msgcount</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">pagesize</span>*<span class="ruby-ivar">@page</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@msgcount</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">pagesize</span>*<span class="ruby-ivar">@page</span>
@@ -974,7 +983,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">team_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>][<span class="ruby-value">:team_id</span>])
   <span class="ruby-ivar">@method</span> = <span class="ruby-string">&quot;post&quot;</span>
@@ -1008,7 +1017,7 @@ no grandchildren.</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/controllers/team_messages_controller.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@message</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">sender</span> = <span class="ruby-identifier">current_user</span>

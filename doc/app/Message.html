@@ -86,6 +86,14 @@
     
     <li><a href="#method-c-toggle_read_values">::toggle_read_values</a>
     
+    <li><a href="#method-c-unviewed_personal_messages-3F">::unviewed_personal_messages?</a>
+    
+    <li><a href="#method-c-unviewed_team_messages-3F">::unviewed_team_messages?</a>
+    
+    <li><a href="#method-c-update_personal_views">::update_personal_views</a>
+    
+    <li><a href="#method-c-update_team_views">::update_team_views</a>
+    
   </ul>
 </nav>
 
@@ -239,6 +247,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -329,6 +339,12 @@
   
     <li><a href="./Version.html">Version</a>
   
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -413,7 +429,7 @@
             <pre><span class="ruby-comment"># File app/models/message.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count_all_unread_messages</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">count</span>(
-          <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;((recipient_id = (?) and rcipient_read = false) 
+          <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;((recipient_id = (?) and recipient_read = false) 
                           or (sender_id = (?) and sender_read = false)) 
                           and parent_id IS NULL&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">user_id</span>],
           <span class="ruby-value">:distinct</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
@@ -476,7 +492,7 @@ href="Message.html">Message</a> count for a user.</p>
 
           
           <div class="method-source-code" id="get_read_messages-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_read_messages</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">pagesize</span>=<span class="ruby-value">0</span>,<span class="ruby-identifier">page</span>=<span class="ruby-value">0</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Message</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;((sender_id = ? and sender_read = true) 
                         or (recipient_id = ? and recipient_read = true)) 
@@ -577,7 +593,7 @@ in the unread list when a new reply is made.</p>
 
           
           <div class="method-source-code" id="mark_parent_as_unread-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mark_parent_as_unread</span>(<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">parent</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">sender_read</span> = <span class="ruby-keyword">false</span>
@@ -610,7 +626,7 @@ in the unread list when a new reply is made.</p>
 
           
           <div class="method-source-code" id="toggle_read_values-source">
-            <pre><span class="ruby-comment"># File app/models/message.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">toggle_read_values</span>(<span class="ruby-identifier">msg_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">m</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">msg_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">recipient_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user_id</span>
@@ -638,6 +654,185 @@ in the unread list when a new reply is made.</p>
 
         
       </div><!-- toggle_read_values-method -->
+
+    
+      <div id="method-c-unviewed_personal_messages-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unviewed_personal_messages?</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true or false if the user has unread personal messages</p>
+          
+
+          
+          <div class="method-source-code" id="unviewed_personal_messages-3F-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">unviewed_personal_messages?</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">newest</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-value">:id</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;((recipient_id = (?) and recipient_read = false) 
+                                              or (sender_id = (?) and sender_read = false)) 
+                                              and parent_id IS NULL&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">user_id</span>]) 
+  <span class="ruby-identifier">msg</span> =  <span class="ruby-constant">Lastmessage</span>.<span class="ruby-identifier">get_personal</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">msg</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">newest</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">newest</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">lastviewed</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>   
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- unviewed_personal_messages-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- unviewed_personal_messages-3F-method -->
+
+    
+      <div id="method-c-unviewed_team_messages-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">unviewed_team_messages?</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true or false if the user has unread team messages</p>
+          
+
+          
+          <div class="method-source-code" id="unviewed_team_messages-3F-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">unviewed_team_messages?</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">teams</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">team_ids</span>
+  <span class="ruby-identifier">newest</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-value">:id</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;team_id IN (?) and parent_id IS NULL&quot;</span>,<span class="ruby-identifier">teams</span>])
+  <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Lastmessage</span>.<span class="ruby-identifier">get_team</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">msg</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">newest</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">newest</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">lastviewed</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- unviewed_team_messages-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- unviewed_team_messages-3F-method -->
+
+    
+      <div id="method-c-update_personal_views" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_personal_views</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>update the lastmessage table with the most recently viewed personal message
+id</p>
+          
+
+          
+          <div class="method-source-code" id="update_personal_views-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_personal_views</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">newest</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-value">:id</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;((recipient_id = (?) and recipient_read = false) 
+                                              or (sender_id = (?) and sender_read = false)) 
+                                              and parent_id IS NULL&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">user_id</span>])
+  <span class="ruby-identifier">lm</span> = <span class="ruby-constant">Lastmessage</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and team = ?&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">false</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">lm</span>
+    <span class="ruby-identifier">lm</span> = <span class="ruby-constant">Lastmessage</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">team</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">lastviewed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">newest</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">newest</span>
+      <span class="ruby-identifier">lm</span>.<span class="ruby-identifier">lastviewed</span> = <span class="ruby-identifier">newest</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">lm</span>.<span class="ruby-identifier">lastviewed</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">lm</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_personal_views-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_personal_views-method -->
+
+    
+      <div id="method-c-update_team_views" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_team_views</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_team_views-source">
+            <pre><span class="ruby-comment"># File app/models/message.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_team_views</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">teams</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">team_ids</span>
+  <span class="ruby-identifier">newest</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-value">:id</span>, <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;team_id IN (?) and parent_id IS NULL&quot;</span>,<span class="ruby-identifier">teams</span>])
+  <span class="ruby-identifier">lm</span> = <span class="ruby-constant">Lastmessage</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and team = ?&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">true</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">lm</span>
+    <span class="ruby-identifier">lm</span> = <span class="ruby-constant">Lastmessage</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">team</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">lastviewed</span><span class="ruby-operator">:</span> <span class="ruby-identifier">newest</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">newest</span>
+      <span class="ruby-identifier">lm</span>.<span class="ruby-identifier">lastviewed</span> = <span class="ruby-identifier">newest</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">lm</span>.<span class="ruby-identifier">lastviewed</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">lm</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_team_views-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_team_views-method -->
 
     
     </section><!-- public-class-method-details -->

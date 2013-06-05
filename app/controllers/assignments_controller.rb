@@ -1,6 +1,9 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_school
+  layout "print", only: [:printall]
+  include Imaging
+  include FormatContent
   
   # Loads Assignment help
   def help
@@ -21,6 +24,19 @@ class AssignmentsController < ApplicationController
     end
   end
   
+  # This prints all tasks
+  def printall    
+    @assignment = Assignment.find(params[:assignment_id])
+    @tasks = Task.where("assignment_id = ? and task_type = ?",@assignment.id,1).all
+    @chart = Task.where("assignment_id = ? and task_type = ?",@assignment.id,3).first
+    if @chart
+      check_state_and_update    
+      build_all_charts(@chart.id,current_user.id)
+      @verticals = Title.get_segments(@chart.id,current_user.id)
+    end
+    
+  end
+  
   # This calculates the time remaining to complete an assignment
   def time_remaining
     coreteam = current_user.coreteam
@@ -39,6 +55,14 @@ class AssignmentsController < ApplicationController
   
   def load_school
     @school = School.find(params[:school_id])
+  end
+  
+  # Checks on the state of the @chart(Task) that you are trying to render.
+  def check_state_and_update
+    state = State.update_state(current_user.id,@chart.id)
+    unless state.uptodate
+      Title.build_tree(@chart.id,current_user.id)
+    end 
   end
   
 end

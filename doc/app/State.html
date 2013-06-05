@@ -227,6 +227,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -317,6 +319,12 @@
   
     <li><a href="./Version.html">Version</a>
   
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -352,21 +360,21 @@
         
         <div class="method-heading">
           <span class="method-name">reset_state</span><span
-            class="method-args">(user_id)</span>
+            class="method-args">(user_id,task_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <p>This updates the state to “uptodate” after charts are rebuilt.</p>
           
 
           
           <div class="method-source-code" id="reset_state-source">
-            <pre><span class="ruby-comment"># File app/models/state.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset_state</span>(<span class="ruby-identifier">user_id</span>)
-  <span class="ruby-identifier">state</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">user_id</span>)
+            <pre><span class="ruby-comment"># File app/models/state.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset_state</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-identifier">state</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and task_id = ?&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">task_id</span>).<span class="ruby-identifier">first</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">uptodate</span>
     <span class="ruby-identifier">state</span>.<span class="ruby-identifier">uptodate</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">state</span>.<span class="ruby-identifier">save</span>
@@ -386,25 +394,31 @@
         
         <div class="method-heading">
           <span class="method-name">update_state</span><span
-            class="method-args">(user_id)</span>
+            class="method-args">(user_id,task_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <p>This checks for the state and creates or updates as needed The if
+state.update check is needed to prevent unneeded updates</p>
           
 
           
           <div class="method-source-code" id="update_state-source">
-            <pre><span class="ruby-comment"># File app/models/state.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_state</span>(<span class="ruby-identifier">user_id</span>)
-  <span class="ruby-identifier">state</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_or_create_by_user_id</span>(<span class="ruby-identifier">user_id</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">uptodate</span>
-    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">uptodate</span> = <span class="ruby-keyword">false</span>
-    <span class="ruby-identifier">state</span>.<span class="ruby-identifier">save</span>
+            <pre><span class="ruby-comment"># File app/models/state.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_state</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-identifier">state</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? and task_id = ?&quot;</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">task_id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">state</span>
+    <span class="ruby-identifier">state</span> = <span class="ruby-constant">State</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">task_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">task_id</span>, <span class="ruby-identifier">uptodate</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">state</span>.<span class="ruby-identifier">uptodate</span>
+      <span class="ruby-identifier">state</span>.<span class="ruby-identifier">uptodate</span> = <span class="ruby-keyword">false</span>
+      <span class="ruby-identifier">state</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">state</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update_state-source -->
           

@@ -235,6 +235,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -325,6 +327,12 @@
   
     <li><a href="./Version.html">Version</a>
   
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -380,11 +388,14 @@ href="Admin/SchoolsController.html">Admin::SchoolsController</a></p>
 
           
           <div class="method-source-code" id="homeroom-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">homeroom</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
   <span class="ruby-identifier">check_for_pending_registrations</span>
   <span class="ruby-identifier">load_school_vars</span>
+  <span class="ruby-ivar">@whiteboard</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">whiteboard</span>
+  <span class="ruby-ivar">@newper</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">unviewed_personal_messages?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>) 
+  <span class="ruby-ivar">@newteam</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">unviewed_team_messages?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)  
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">staff?</span>
     <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">current_assignments</span>(<span class="ruby-identifier">current_user</span>)
   <span class="ruby-keyword">else</span>
@@ -429,12 +440,15 @@ charging fees)</p>
   <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">check_or_create_private_school</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find_or_initialize_by_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
   <span class="ruby-identifier">load_school_vars</span>
-  <span class="ruby-identifier">check_for_pending_registrations</span>
+  <span class="ruby-identifier">check_for_pending_registrations</span> 
+  <span class="ruby-ivar">@newper</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">unviewed_personal_messages?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@newteam</span> = <span class="ruby-constant">Message</span>.<span class="ruby-identifier">unviewed_team_messages?</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)   
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
     <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@whiteboard</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">whiteboard</span>
       <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">staff?</span>
         <span class="ruby-ivar">@assignments</span> = <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">current_assignments</span>(<span class="ruby-identifier">current_user</span>)
       <span class="ruby-keyword">else</span>
@@ -470,7 +484,7 @@ charging fees)</p>
 
           
           <div class="method-source-code" id="load_team_assignments-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_team_assignments</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
   <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:team</span>])
@@ -510,7 +524,7 @@ charging fees)</p>
 
           
           <div class="method-source-code" id="set_current-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_current</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">set_school</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
       <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
@@ -549,7 +563,7 @@ charging fees)</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">load_school_vars</span>
@@ -585,7 +599,7 @@ charging fees)</p>
 
           
           <div class="method-source-code" id="show_all_assignments-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show_all_assignments</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">school</span>)
   <span class="ruby-identifier">load_school_vars</span>

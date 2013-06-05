@@ -64,7 +64,17 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-find_by_user_and_assignment">::find_by_user_and_assignment</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -215,6 +225,8 @@
   
     <li><a href="./Imaging.html">Imaging</a>
   
+    <li><a href="./Lastmessage.html">Lastmessage</a>
+  
     <li><a href="./Message.html">Message</a>
   
     <li><a href="./MessageMailer.html">MessageMailer</a>
@@ -305,6 +317,12 @@
   
     <li><a href="./Version.html">Version</a>
   
+    <li><a href="./Whiteboard.html">Whiteboard</a>
+  
+    <li><a href="./WhiteboardsController.html">WhiteboardsController</a>
+  
+    <li><a href="./WhiteboardsHelper.html">WhiteboardsHelper</a>
+  
   </ul>
 </nav>
 
@@ -332,6 +350,48 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-find_by_user_and_assignment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_by_user_and_assignment</span><span
+            class="method-args">(user_id,assignment_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Load duedate object from user.coreteam</p>
+          
+
+          
+          <div class="method-source-code" id="find_by_user_and_assignment-source">
+            <pre><span class="ruby-comment"># File app/models/duedate.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_by_user_and_assignment</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">user_id</span>)
+  <span class="ruby-identifier">team</span> = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">coreteam</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">team</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;team_id = ? and assignment_id = ?&quot;</span>,<span class="ruby-identifier">team</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>    
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_by_user_and_assignment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_by_user_and_assignment-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

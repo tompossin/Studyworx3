@@ -1,0 +1,16 @@
+<div>
+  <div class="noprint">
+    <%= link_to "close", :back %>
+  </div>
+  <header>    
+    <h2><%= @assignment.name %></h2>
+    <p style="text-align: right;"><%= current_user.fullname %></p>
+  </header>
+  <% if @chart %>
+    <%= render partial: "charts", locals: {task: @chart} %>
+  <% end %>
+  
+  <% @tasks.each do |t| %>
+    <%= render partial: "document", locals: {task: t}%>
+  <% end %>
+</div>
