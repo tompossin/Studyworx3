@@ -27,7 +27,9 @@
 
 <div id="outside_container">
   <article id="Charttext_<%= @vertical.charttext.id.to_s if @vertical.charttext %>">
-    <%= image_tag("staffnote.png",{size: "16x16",id: "staffnote_#{@vertical.charttext.staffnotes.first.id}",title: "Click title to check staff note.", style: "float: right;"}) if @vertical.charttext %>
+    <% if @vertical.charttext and @vertical.charttext.staffnotes.first %>
+      <%= image_tag("staffnote.png",{size: "16x16",id: "staffnote_#{@vertical.charttext.staffnotes.first.id}",title: "Click title to check staff note.", style: "float: right;"}) %>
+    <% end %>
     <h3><%=link_to "#{@vertical.get_book_title } - Vertical #{@vertical.segnum.to_s }", task_charttext_staffnote_path(@task,@vertical.charttext.id),{remote: true} if @vertical.charttext %></h3>
     <%= smart_format(@vertical.charttext.content_type, @vertical.charttext.content) if @vertical.charttext %>
   </article>
