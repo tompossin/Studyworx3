@@ -1,5 +1,6 @@
 <% content_for :breadcrumbs do %>
   <span class="cell"><%=link_to "Homeroom", schools_path %></span>
+  <span class="cell"><%=link_to "Collect Assignments", school_collect_path(@school) %></span>
   <span class="cell"><%=link_to "Grading Office", school_grading_office_path(@school) %></span>
 <% end %>
 <div id="content-large">

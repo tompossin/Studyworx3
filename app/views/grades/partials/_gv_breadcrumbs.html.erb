@@ -5,7 +5,8 @@
 <% end %>
 
 <% if current_user.staff? %>
+  <span><%= link_to "Homeroom", schools_path %></span>
+  <span><%= link_to "Collect Assignments", school_collect_path(@school) %></span>
   <span><%= link_to "Grading Office", school_grading_office_path(@school.id) %></span>
-  <span class="cell"><%= link_to "Grading Tools", user_assignment_load_tasks_path(@user.id,@assignment.id), {remote: true} %></span>
 <% end %>
 
