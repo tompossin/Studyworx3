@@ -146,6 +146,7 @@ class GradesController < ApplicationController
     @vertical = Title.find(params[:vertical_id])
     @prev_seg = @vertical.find_previous
     @next_seg = @vertical.find_next
+    @gradingview = true
     
     respond_to do |format|
         format.js
