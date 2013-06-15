@@ -1,6 +1,7 @@
 <%= form_for @order do |f| %>
   <%= include_form_validation_errors(@order) %>
   <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :school_id %>
   <div class="half_pane">
     <p>
       <span class="bolder">
