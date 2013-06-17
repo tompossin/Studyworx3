@@ -38,7 +38,7 @@ class Team < ActiveRecord::Base
   end
   
   def self.all_i_own(user)
-    Team.where("owner_id = ?",user.id)
+    Team.where("owner_id = ? and school_id = ?",user.id,user.school)
   end
   
 

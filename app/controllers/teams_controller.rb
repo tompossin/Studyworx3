@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # Display all the users current teams
   def index
     @teams_i_own = Team.all_i_own(current_user).sorted
-    @my_teams = current_user.teams.sorted
+    @my_teams = current_user.teams.where("school_id = ?",current_user.school).sorted
     respond_to do |format|
       format.html
     end
