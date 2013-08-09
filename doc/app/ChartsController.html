@@ -693,8 +693,8 @@ for</p>
           <div class="method-source-code" id="destroy_all-source">
             <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 272</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_all</span>
-  <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ?&quot;</span>,<span class="ruby-ivar">@task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">destroy_all</span>
-  <span class="ruby-constant">State</span>.<span class="ruby-identifier">update_state</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-ivar">@title</span>.<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ?&quot;</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:task_id</span>],<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">destroy_all</span>
+  <span class="ruby-constant">State</span>.<span class="ruby-identifier">update_state</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">params</span>[<span class="ruby-value">:task_id</span>])
   
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>

@@ -1,4 +1,4 @@
-Wed, 05 Jun 2013 10:16:36 -0600
+Fri, 09 Aug 2013 15:47:12 -0600
 doc/README_FOR_APP	Tue, 29 Jan 2013 20:18:12 -0700
 app/controllers/admin/assignments_controller.rb	Thu, 23 May 2013 19:43:21 -0600
 app/controllers/admin/books_controller.rb	Sat, 11 May 2013 10:00:56 -0600
@@ -18,12 +18,12 @@ app/controllers/admin/versions_controller.rb	Sat, 11 May 2013 09:52:39 -0600
 app/controllers/application_controller.rb	Thu, 23 May 2013 20:05:35 -0600
 app/controllers/assignments_controller.rb	Wed, 05 Jun 2013 10:14:00 -0600
 app/controllers/blogs_controller.rb	Sat, 18 May 2013 08:17:33 -0600
-app/controllers/charts_controller.rb	Wed, 05 Jun 2013 08:54:07 -0600
+app/controllers/charts_controller.rb	Fri, 09 Aug 2013 15:08:43 -0600
 app/controllers/comments_controller.rb	Mon, 13 May 2013 18:05:38 -0600
 app/controllers/documents_controller.rb	Sun, 12 May 2013 19:58:28 -0600
-app/controllers/grades_controller.rb	Mon, 03 Jun 2013 09:37:55 -0600
+app/controllers/grades_controller.rb	Sat, 08 Jun 2013 09:41:37 -0600
 app/controllers/home_controller.rb	Wed, 15 May 2013 10:00:24 -0600
-app/controllers/images_controller.rb	Sat, 13 Apr 2013 15:19:55 -0600
+app/controllers/images_controller.rb	Tue, 23 Jul 2013 16:44:00 -0600
 app/controllers/messages_controller.rb	Mon, 27 May 2013 12:54:30 -0600
 app/controllers/orders_controller.rb	Thu, 23 May 2013 20:40:14 -0600
 app/controllers/papers_controller.rb	Wed, 15 May 2013 13:04:32 -0600
@@ -34,7 +34,7 @@ app/controllers/schools_controller.rb	Mon, 27 May 2013 13:10:54 -0600
 app/controllers/shared_controller.rb	Wed, 05 Jun 2013 08:58:07 -0600
 app/controllers/staffnotes_controller.rb	Mon, 06 May 2013 16:56:48 -0600
 app/controllers/team_messages_controller.rb	Mon, 27 May 2013 13:13:32 -0600
-app/controllers/teams_controller.rb	Tue, 21 May 2013 15:04:17 -0600
+app/controllers/teams_controller.rb	Mon, 17 Jun 2013 11:12:11 -0600
 app/controllers/whiteboards_controller.rb	Sat, 25 May 2013 16:23:06 -0600
 app/helpers/admin/assignments_helper.rb	Thu, 31 Jan 2013 15:00:12 -0700
 app/helpers/admin/books_helper.rb	Tue, 29 Jan 2013 20:18:10 -0700
@@ -52,7 +52,7 @@ app/helpers/admin/user_admins_helper.rb	Tue, 29 Jan 2013 20:18:10 -0700
 app/helpers/admin/versions_helper.rb	Fri, 10 May 2013 09:23:39 -0600
 app/helpers/application_helper.rb	Sat, 18 May 2013 09:53:09 -0600
 app/helpers/assignments_helper.rb	Sat, 04 May 2013 10:18:38 -0600
-app/helpers/blogs_helper.rb	Tue, 29 Jan 2013 20:18:10 -0700
+app/helpers/blogs_helper.rb	Wed, 05 Jun 2013 13:34:45 -0600
 app/helpers/charts_helper.rb	Mon, 27 May 2013 17:29:17 -0600
 app/helpers/comments_helper.rb	Fri, 03 May 2013 18:00:41 -0600
 app/helpers/documents_helper.rb	Thu, 09 May 2013 14:39:57 -0600
@@ -101,13 +101,13 @@ app/models/settings.rb	Tue, 29 Jan 2013 20:18:10 -0700
 app/models/staffnote.rb	Tue, 16 Apr 2013 11:33:29 -0600
 app/models/state.rb	Mon, 27 May 2013 10:55:36 -0600
 app/models/task.rb	Wed, 05 Jun 2013 09:51:21 -0600
-app/models/team.rb	Tue, 21 May 2013 09:38:50 -0600
+app/models/team.rb	Mon, 17 Jun 2013 11:09:08 -0600
 app/models/templat.rb	Tue, 12 Mar 2013 09:41:47 -0600
 app/models/theme.rb	Mon, 18 Mar 2013 12:23:18 -0600
-app/models/title.rb	Mon, 27 May 2013 10:00:06 -0600
+app/models/title.rb	Fri, 09 Aug 2013 15:45:00 -0600
 app/models/user.rb	Thu, 23 May 2013 20:54:14 -0600
 app/models/user_admin.rb	Thu, 31 Jan 2013 13:28:30 -0700
 app/models/version.rb	Sat, 11 May 2013 08:18:17 -0600
 app/models/whiteboard.rb	Sat, 25 May 2013 16:05:12 -0600
 lib/format_content.rb	Sat, 18 May 2013 18:45:46 -0600
-lib/imaging.rb	Sat, 11 May 2013 14:20:48 -0600
+lib/imaging.rb	Fri, 09 Aug 2013 15:46:05 -0600

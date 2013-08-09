@@ -88,13 +88,13 @@
     
     <li><a href="#method-c-reorder_after_delete">::reorder_after_delete</a>
     
+    <li><a href="#method-i-children">#children</a>
+    
     <li><a href="#method-i-clean_input">#clean_input</a>
     
     <li><a href="#method-i-find_next">#find_next</a>
     
     <li><a href="#method-i-find_previous">#find_previous</a>
-    
-    <li><a href="#method-i-find_ttl_children">#find_ttl_children</a>
     
     <li><a href="#method-i-get_book_title">#get_book_title</a>
     
@@ -440,7 +440,7 @@
 
           
           <div class="method-source-code" id="build_horizontal_collection-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 108</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">build_horizontal_collection</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">segment_count</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">count_segments</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">segment_count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">7</span>
@@ -470,33 +470,38 @@
 
         <div class="method-description">
           
-          <p>This builds the title heirarchy and counts the verses for each parent
-title. Iterates through the title types staring with type 2 (segments)
-since this is the lowest level of parent title.</p>
-<ul><li>
-<p>This also adds segment numbers to segment titles</p>
-</li></ul>
+          <p>This calculates the number of verses in each upper level title. This must
+be run after any change to the title editing page. It prepares the data set
+for building the charting images.</p>
           
 
           
           <div class="method-source-code" id="build_tree-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 135</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">build_tree</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">t_types</span> = [<span class="ruby-value">2</span>,<span class="ruby-value">3</span>,<span class="ruby-value">4</span>,<span class="ruby-value">5</span>]
-  <span class="ruby-identifier">t_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tt</span><span class="ruby-operator">|</span> 
+  <span class="ruby-identifier">t_types</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tt</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">current_titles</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">tt</span>).<span class="ruby-identifier">all</span>
     <span class="ruby-identifier">segnum</span> = <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">tt</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
-    <span class="ruby-identifier">current_titles</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">next_ttl</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">find_next</span>
-      <span class="ruby-identifier">children_found</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">find_ttl_children</span>(<span class="ruby-identifier">next_ttl</span>)
-      <span class="ruby-identifier">c</span>.<span class="ruby-identifier">children</span> = <span class="ruby-identifier">children_found</span>
-      <span class="ruby-identifier">c</span>.<span class="ruby-identifier">verse_count</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-string">&quot;verse_count&quot;</span>)
-      <span class="ruby-identifier">c</span>.<span class="ruby-identifier">segnum</span> = <span class="ruby-identifier">segnum</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span> 
-      <span class="ruby-identifier">c</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">segnum</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+    <span class="ruby-identifier">current_titles</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ct</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">next_ttl</span> = <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">find_next</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">next_ttl</span>
+        <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">verse_count</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &gt; ? and position &lt; ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">1</span>,<span class="ruby-identifier">ct</span>.<span class="ruby-identifier">position</span>,<span class="ruby-identifier">next_ttl</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">sum</span>(<span class="ruby-string">&quot;verse_count&quot;</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+          <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &gt; ? and position &lt; ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">1</span>,<span class="ruby-identifier">ct</span>.<span class="ruby-identifier">position</span>,<span class="ruby-identifier">next_ttl</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">parent_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">verse_count</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &gt; ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">1</span>,<span class="ruby-identifier">ct</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">sum</span>(<span class="ruby-string">&quot;verse_count&quot;</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+          <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &gt; ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">1</span>,<span class="ruby-identifier">ct</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">parent_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">segnum</span> = <span class="ruby-identifier">segnum</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">segnum</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ct</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
     <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span> 
-  <span class="ruby-constant">State</span>.<span class="ruby-identifier">reset_state</span>(<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">task_id</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">State</span>.<span class="ruby-identifier">reset_state</span>(<span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">task_id</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- build_tree-source -->
           
@@ -524,7 +529,7 @@ since this is the lowest level of parent title.</p>
 
           
           <div class="method-source-code" id="charts_ready-3F-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">charts_ready?</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">result</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">exists?</span>([<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">1</span>])
@@ -564,7 +569,7 @@ since this is the lowest level of parent title.</p>
 
           
           <div class="method-source-code" id="count_segments-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count_segments</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">2</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
@@ -594,7 +599,7 @@ since this is the lowest level of parent title.</p>
 
           
           <div class="method-source-code" id="get_segments-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_segments</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">2</span>).<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -624,7 +629,7 @@ since this is the lowest level of parent title.</p>
 
           
           <div class="method-source-code" id="get_vertical_charts-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_vertical_charts</span>(<span class="ruby-identifier">task_id</span>, <span class="ruby-identifier">user_id</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:ppoints</span>,<span class="ruby-value">:charttext</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">2</span>).<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
@@ -684,7 +689,7 @@ since this is the lowest level of parent title.</p>
 
           
           <div class="method-source-code" id="reorder_after_delete-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 79</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reorder_after_delete</span>(<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-string">&quot;position = position - 1&quot;</span>,[<span class="ruby-string">&quot;task_id = ? and user_id = ? and position &gt; ?&quot;</span>,<span class="ruby-identifier">task_id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">position</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -702,6 +707,37 @@ since this is the lowest level of parent title.</p>
   
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-children" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">children</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This replaces the method from closure_tree. It returns the children of a
+segment title (title_type == 2)</p>
+          
+
+          
+          <div class="method-source-code" id="children-source">
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">children</span>
+  <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;parent_id = ?&quot;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- children-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- children-method -->
 
     
       <div id="method-i-clean_input" class="method-detail ">
@@ -726,7 +762,7 @@ and test</p>
 
           
           <div class="method-source-code" id="clean_input-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 159</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_input</span>(<span class="ruby-identifier">title_content</span>)
   <span class="ruby-identifier">content</span> = <span class="ruby-identifier">title_content</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s|&lt;br&gt;|&amp;nbsp;/</span>,<span class="ruby-string">&#39;&#39;</span>) 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">content</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
@@ -772,7 +808,7 @@ and test</p>
 
           
           <div class="method-source-code" id="find_next-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 103</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_next</span>
   <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &gt; ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">title_type</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -802,7 +838,7 @@ and test</p>
 
           
           <div class="method-source-code" id="find_previous-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 98</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_previous</span>
   <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &lt; ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">title_type</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">reorder</span>(<span class="ruby-string">&quot;position DESC&quot;</span>).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -814,46 +850,6 @@ and test</p>
 
         
       </div><!-- find_previous-method -->
-
-    
-      <div id="method-i-find_ttl_children" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_ttl_children</span><span
-            class="method-args">(next_ttl=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>This finds the children of the current title</p>
-          
-
-          
-          <div class="method-source-code" id="find_ttl_children-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 118</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_ttl_children</span>(<span class="ruby-identifier">next_ttl</span>=<span class="ruby-keyword">nil</span>)    
-  <span class="ruby-identifier">ttype</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title_type</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span> <span class="ruby-comment"># Set ttype to Start looking for children one level down</span>
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">ttype</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-comment"># If children exist get them, otherwise look one more level down</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">exists?</span>([<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>])
-      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">next_ttl</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-comment"># Check if this is the last title of this type</span>
-        <span class="ruby-keyword">return</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &lt; ? and position &gt; ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>,<span class="ruby-identifier">next_ttl</span>.<span class="ruby-identifier">position</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">all</span>
-      <span class="ruby-keyword">else</span> <span class="ruby-comment"># this is the last title of this type</span>
-        <span class="ruby-keyword">return</span> <span class="ruby-constant">Title</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;task_id = ? and user_id = ? and title_type = ? and position &gt; ?&quot;</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">task_id</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>,<span class="ruby-identifier">ttype</span>,<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span>).<span class="ruby-identifier">all</span>
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">ttype</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- find_ttl_children-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- find_ttl_children-method -->
 
     
       <div id="method-i-get_book_title" class="method-detail ">
@@ -933,7 +929,7 @@ and test</p>
 
           
           <div class="method-source-code" id="insert_title-source">
-            <pre><span class="ruby-comment"># File app/models/title.rb, line 62</span>
+            <pre><span class="ruby-comment"># File app/models/title.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">insert_title</span>(<span class="ruby-identifier">title_type</span>=<span class="ruby-value">2</span>)
   <span class="ruby-comment"># Check if there is already a book title</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">title_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">5</span>

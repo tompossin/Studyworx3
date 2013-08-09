@@ -631,7 +631,7 @@
   <span class="ruby-identifier">max_verses</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">maximum</span>(<span class="ruby-value">:verse_count</span>,<span class="ruby-value">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-string">&#39;task_id=? AND user_id=? AND title_type=?&#39;</span>,<span class="ruby-identifier">task</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">user_id</span>,<span class="ruby-value">2</span>])
   <span class="ruby-identifier">vertical_units</span> = <span class="ruby-value">1200</span><span class="ruby-operator">/</span><span class="ruby-identifier">max_verses</span>
   <span class="ruby-identifier">segment</span> = <span class="ruby-constant">Title</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">title_id</span>)
-  <span class="ruby-identifier">ptitles</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">ptitles</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">children</span>
   <span class="ruby-comment"># set default variables</span>
   <span class="ruby-identifier">total_height</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">verse_count</span>.<span class="ruby-identifier">to_f</span>*<span class="ruby-identifier">vertical_units</span>.<span class="ruby-identifier">to_f</span>
   <span class="ruby-identifier">header_height</span> = <span class="ruby-value">55</span>

@@ -1,5 +1,5 @@
 class Title < ActiveRecord::Base
-  acts_as_tree :order => 'position ASC', dependent: :nullify
+  #acts_as_tree :order => 'position',:name_column => 'title_type', dependent: :nullify
   belongs_to :assignment
   belongs_to :paragraph
   belongs_to :school
@@ -42,6 +42,12 @@ class Title < ActiveRecord::Base
   def get_book_title
     @title = Title.where("task_id = ? and user_id = ? and title_type = ?", self.task_id,self.user_id,5).first
     return @title.title
+  end
+  
+  # This replaces the method from closure_tree.
+  # It returns the children of a segment title (title_type == 2)
+  def children
+    Title.where("parent_id = ?", self.id).all
   end
   
   def self.charts_ready?(task_id,user_id)
@@ -114,40 +120,33 @@ class Title < ActiveRecord::Base
     end
   end
   
-  # This finds the children of the current title
-  def find_ttl_children(next_ttl=nil)    
-    ttype = self.title_type - 1 # Set ttype to Start looking for children one level down
-    while ttype > 0 # If children exist get them, otherwise look one more level down
-      if Title.exists?(["task_id = ? and user_id = ? and title_type = ?",self.task_id,self.user_id,ttype])
-        unless next_ttl == nil # Check if this is the last title of this type
-          return Title.where("task_id = ? and user_id = ? and title_type = ? and position < ? and position > ?",self.task_id,self.user_id,ttype,next_ttl.position,self.position).all
-        else # this is the last title of this type
-          return Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",self.task_id,self.user_id,ttype,self.position).all
-        end
-      end
-      ttype -= 1
-    end
-  end
-  
-  # This builds the title heirarchy and counts the verses for each parent title.
-  # Iterates through the title types staring with type 2 (segments) since this is the lowest level of parent title.
-  # * This also adds segment numbers to segment titles
+  # This calculates the number of verses in each upper level title.
+  # This must be run after any change to the title editing page.
+  # It prepares the data set for building the charting images.
   def self.build_tree(task_id,user_id)
     t_types = [2,3,4,5]
-    t_types.each do |tt| 
+    t_types.each do |tt|
       current_titles = self.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,tt).all
       segnum = 1 if tt == 2
-      current_titles.each do |c|
-        next_ttl = c.find_next
-        children_found = c.find_ttl_children(next_ttl)
-        c.children = children_found
-        c.verse_count = c.children.sum("verse_count")
-        c.segnum = segnum if c.title_type == 2 
-        c.save
-        segnum += 1 if c.title_type == 2
+      current_titles.each do |ct|
+        next_ttl = ct.find_next
+        if next_ttl
+          ct.verse_count = Title.where("task_id = ? and user_id = ? and title_type = ? and position > ? and position < ?",task_id,user_id,1,ct.position,next_ttl.position).sum("verse_count")
+          if ct.title_type == 2
+            Title.where("task_id = ? and user_id = ? and title_type = ? and position > ? and position < ?",task_id,user_id,1,ct.position,next_ttl.position).update_all(parent_id: ct.id)
+          end
+        else
+          ct.verse_count = Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",task_id,user_id,1,ct.position).sum("verse_count")
+          if ct.title_type == 2
+            Title.where("task_id = ? and user_id = ? and title_type = ? and position > ?",task_id,user_id,1,ct.position).update_all(parent_id: ct.id)
+          end
+        end
+        ct.segnum = segnum if ct.title_type == 2
+        ct.save
+        segnum += 1 if ct.title_type == 2
       end
-    end 
-    State.reset_state(user_id,task_id)
+    end
+    State.reset_state(user_id, task_id)
   end
   
   # Clean up incoming params to help with inconsistent behavior of browsers (and users).

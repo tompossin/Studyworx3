@@ -383,7 +383,7 @@
           <div class="method-source-code" id="all_i_own-source">
             <pre><span class="ruby-comment"># File app/models/team.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_i_own</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;owner_id = ?&quot;</span>,<span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-constant">Team</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;owner_id = ? and school_id = ?&quot;</span>,<span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">user</span>.<span class="ruby-identifier">school</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- all_i_own-source -->
           

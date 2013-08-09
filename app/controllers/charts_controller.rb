@@ -287,7 +287,7 @@ class ChartsController < ApplicationController
   end
   
   def check_state_and_update
-    state = State.update_state(current_user.id,@task.id)
+    state = State.where("user_id = ? and task_id = ?",current_user.id,@task.id).first
     unless state.uptodate
       Title.build_tree(@task.id,current_user.id)
     end 

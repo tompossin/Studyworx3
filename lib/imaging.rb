@@ -165,7 +165,7 @@ protected
     max_verses = Title.maximum(:verse_count,:conditions=>['task_id=? AND user_id=? AND title_type=?',task.id,user_id,2])
     vertical_units = 1200/max_verses
     segment = Title.find(title_id)
-    ptitles = segment.children.all
+    ptitles = segment.children
     # set default variables
     total_height = segment.verse_count.to_f*vertical_units.to_f
     header_height = 55
