@@ -1,7 +1,7 @@
 
 <%= content_for :breadcrumbs do %>
   <%=link_to @assignment.name, school_assignment_path(current_user.school,@assignment) %>
-  <%=link_to image_tag("iconic/list_nested_16x14.png",size: "16x14"), task_charts_start_path(@task), {title: "Titles Home"} %>
+  <%=link_to image_tag("iconic/list_nested_16x14.png",size: "16x14"), task_charts_start_path(@task), {title: "Titles Home", class: "builder"} %>
   <%=link_to image_tag("iconic/layers_16x14.png",size: "16x14"),task_charting_path(@task),{onClick: "ShowSpinner()",title: "Charting Home"} %>
   <%=link_to image_tag("iconic/eye_16x12.png",size: "16x12"), task_images_path(@task), {remote: true, title: "Chart Images"} %>
   <%=link_to image_tag("iconic/folder_stroke_16x16.png",size: "16x16"),task_related_documents_path(@task) , {title: "Click to view related documents", remote: true}%>

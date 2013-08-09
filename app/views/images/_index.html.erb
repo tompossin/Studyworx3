@@ -1,6 +1,8 @@
 <div id="lightbox_data"> 
   <%=link_to "close",close_lightbox_path,{remote: true,style: "float:right;"}%>
   <h3><%= @task.assignment.name %> Images</h3>
+  <em>Do not double click on links.</em>
+  <em>These images may take a long time to generate.</em>
   <hr />
   <p class="theader">
     <span class="cell"><%=link_to "Horizontal",task_download_horizontal_path(@task),{onClick: "ShowSpinner()",title: "Click to download"}%></span>

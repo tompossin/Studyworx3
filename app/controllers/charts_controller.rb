@@ -270,8 +270,8 @@ class ChartsController < ApplicationController
   
   # This destroys all titles and all dependencies - (slow)
   def destroy_all
-    Title.where("task_id = ? and user_id = ?",@task.id,current_user.id).destroy_all
-    State.update_state(current_user.id,@title.task_id)
+    Title.where("task_id = ? and user_id = ?",params[:task_id],current_user.id).destroy_all
+    State.update_state(current_user.id,params[:task_id])
     
     respond_to do |format|
       format.js

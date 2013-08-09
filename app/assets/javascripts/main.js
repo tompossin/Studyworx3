@@ -27,5 +27,6 @@
 	function ShowSpinner()
 	{
 	  $('#spinner').show();
+	  $('.builder').bind('click',false);
 	}
   
