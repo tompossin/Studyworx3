@@ -160,7 +160,9 @@ protected
       rvg.draw.scale(0.65).write(img_path+id+'_'+aname+'_horizontal.jpg')
       rvg.draw.destroy!
   end
-
+  
+  # FIXME I need to create an error correction system
+  # either here or in the controller or both to deal with a nil observation.
   def build_standard_vertical(task,user_id,title_id)
     max_verses = Title.maximum(:verse_count,:conditions=>['task_id=? AND user_id=? AND title_type=?',task.id,user_id,2])
     vertical_units = 1200/max_verses
@@ -199,7 +201,7 @@ protected
         # Create ppoints for each paragraph title
         t_2 = y_2+22
         for pp in pt.ppoints
-          o = Observation.find(pp.observation_id)          
+          o = Observation.find(pp.observation_id) if pp.observation_id          
           canvas.g do |p|
             content = pp.content
             content = o.code+" "+pp.content if o
