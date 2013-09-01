@@ -57,7 +57,7 @@ class Message < ActiveRecord::Base
     msg =  Lastmessage.get_personal(user_id)
     if msg
       if newest
-        if newest > msg.lastviewed
+        if msg.lastviewed and newest > msg.lastviewed
           return true
         else
           return false
