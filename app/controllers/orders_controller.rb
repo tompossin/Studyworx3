@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   
   def index
     @orders = Order.order("updated_at DESC").all
+    @school = School.find(current_user.school)
     check_for_pending_registrations
     @nav_body_content = "schools/registrations"
     
