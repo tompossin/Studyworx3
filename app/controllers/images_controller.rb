@@ -22,8 +22,8 @@ class ImagesController < ApplicationController
           build_standard_horizontal(@task.id,current_user.id)
           download = horizontal_file
           send_file(download[:filepath], filename: download[:filename])
-        else
-          render :back, {alert: "Your charts are not ready to build. Check your titles."}
+        else         
+          redirect_to school_assignment_path(current_user.school,@task.assignment_id), notice: "No Horizontal"
         end
       end 
     end 
@@ -39,7 +39,7 @@ class ImagesController < ApplicationController
           download = vertical_file(vertical.segnum)
           send_file(download[:filepath], filename: download[:filename])
         else
-          render :back, {alert: "Your charts are not ready to build. Check your titles."}
+          redirect_to school_assignment_path(current_user.school,@task.assignment_id), notice: "No Vertical Chart"
         end
       end
     end
@@ -62,7 +62,7 @@ class ImagesController < ApplicationController
           download = zip_file
           send_file(download[:filepath], filename: download[:filename])
         else
-          render :back, {alert: "Your charts are not ready to build. Check your titles."}
+          redirect_to school_assignment_path(current_user.school,@task.assignment_id), notice: "No Charts"
         end
       end
     end

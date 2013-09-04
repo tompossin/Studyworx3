@@ -32,6 +32,8 @@ class Task < ActiveRecord::Base
     doc = Document.where("task_id = ? and user_id = ?",self.id,user.id).first
     if doc
       return doc.content
+    else
+      return "No Content"
     end
   end
   

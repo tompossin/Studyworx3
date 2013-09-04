@@ -2,15 +2,18 @@
   <div class="noprint">
     <%= link_to "close", :back %>
   </div>
-  <h2>
-    <%= @document.assignment.name %>
-  </h2>
-  <%= smart_format(@document.content_type, @document.content) %>
-  <h4>
-    Footnotes: 
-  </h4>
-
-  <%= smart_format(@document.endnote.content_type, @document.endnote.content) if @document.endnote.content %>
+  <% if @document %>
+    <h2>
+      <%= @document.assignment.name %>
+    </h2>
+    <%= smart_format(@document.content_type, @document.content) %>
+    <h4>
+      Footnotes: 
+    </h4>
   
+    <%= smart_format(@document.endnote.content_type, @document.endnote.content) if @document.endnote.content %>
+  <% else %>
+    <h3>No Content</h3>
+  <% end %>
 
 </div>
