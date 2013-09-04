@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_task, only: [:new, :related_documents ]
+  before_filter :get_task, only: [:new, :related_documents]
   include FormatContent
   require 'tempfile'
   layout "print", only: [:print, :download]
@@ -61,12 +61,20 @@ class DocumentsController < ApplicationController
   
   # This creates and downloads the requested file type
   def download
+    # TODO fix routes so they make more sense
+    # This is nutty the :document_id is actually the :task_id
+    # I must have been trying to save time - didn't work ;(
+    @task = Task.find(params[:document_id])
     @document = Document.where("user_id = ? and task_id = ?", current_user.id, params[:document_id]).first
-    content = render_to_string template: "documents/download"
-    filename = @document.assignment.name+"_"+@document.task.name
-    
-    download = convert_file(content, current_user, filename, params[:file_type])
-    send_file(download[:filepath], filename: download[:filename])
+    if @document
+      content = render_to_string template: "documents/download"
+      filename = @document.assignment.name+"_"+@document.task.name
+      
+      download = convert_file(content, current_user, filename, params[:file_type])
+      send_file(download[:filepath], filename: download[:filename]) 
+    else
+      redirect_to school_assignment_path(current_user.school,@task.assignment_id), notice: "No Content available for this task."
+    end
   end
   
   # task_related_documents_path(@task)
