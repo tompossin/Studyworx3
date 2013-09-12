@@ -23,19 +23,26 @@
   
   <% if current_user.staff? %>
     <div id="grading_link">
-      <%=link_to "Finish Grading", grade_finish_grading_path(@grade), {remote: true}%>
+      <%=link_to "Finish Grading", grade_finish_grading_path(@grade), {remote: true} if @grade %>
     </div>
     
     <!-- Scratchpad is part of the grade rocord -->  
-    <div id="scratchpad">
-      <%= form_for [@school,@grade], {remote: true} do |f| %>
-        <%= hidden_field_tag "save_only","true" %>
-        <%= f.submit :save %> <label class="cell">Grading Notes: </label>
-        <span id="scratchpad_slide" class="cell clickable"> show/hide</span><br />
-        <div id="scratchpad_editor">
-          <%= f.text_area :scratchpad, {class: "gradingnote"} %>
-        </div>
-      <% end %>
-    </div>
+    <% if @grade %>
+      <div id="scratchpad">
+        <%= form_for [@school,@grade], {remote: true} do |f| %>
+          <%= hidden_field_tag "save_only","true" %>
+          <%= f.submit :save %> <label class="cell">Grading Notes: </label>
+          <span id="scratchpad_slide" class="cell clickable"> show/hide</span><br />
+          <div id="scratchpad_editor">
+            <%= f.text_area :scratchpad, {class: "gradingnote"} %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div id="scratchpad" >
+        <p>There is no grade record for this assignment.</p>
+        <p>The student must turn in or make this assignment accessible in order for you to grade this assignment.</p>
+      </div>
+    <% end %>
   <% end %>
 </div>  
