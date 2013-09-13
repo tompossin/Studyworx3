@@ -1,5 +1,7 @@
 <h1>Editing <%= @participant.user.fullname %></h1>
 
+<%=link_to "Cancel Registration", school_participant_path(@school,@participant), {method: :delete, confirm: "This will force the user to re-register for this school. It can not be undone."}%>
+
 <%= form_for(@participant, {url: admin_tools_update_participant_path(@participant), remote: true} ) do |f|  %>
   <p class="smaller">
     Pre-requisites? 

@@ -22,6 +22,23 @@ class Participant < ActiveRecord::Base
   # These methods are typically used in the scope of a school object
   #----------
   
+  def remove_school_teams(user_id,school_id)
+    if user_id and school_id
+      leader = User.find(user_id)
+      registrant = User.find(self.user_id)
+      school = School.find(school_id)
+      if leader and leader.is_school_admin?(school_id)
+        school.teams.where("owner_id = ?",registrant.id).destroy_all
+        teams = school.teams
+        teams.each do |t|
+          t.remove_member(registrant)
+        end
+      end
+    else
+      return false
+    end
+  end
+  
   def status
      if self.accepted == 0
        "P"

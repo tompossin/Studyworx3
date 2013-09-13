@@ -108,11 +108,12 @@ class ParticipantsController < ApplicationController
   # DELETE school/:id/participants/:id
   # ==== School Admins Only - participant.role < 3
   def destroy
-    @participant = @school.participant.find(params[:participant_id])
+    @participant = @school.participants.find(params[:id])
+    @participant.remove_school_teams(current_user.id, @school)
     @participant.destroy
 
     respond_to do |format|
-      format.html { redirect_to participants_url }
+      format.html { redirect_to admin_tools_personnel_url }
     end
   end
   

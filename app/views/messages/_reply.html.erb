@@ -1,7 +1,6 @@
 <div id="reply_<%= reply.id.to_s %>" class="reply_container">
   <p class="title smallest"><%= distance_of_time_in_words_to_now(reply.updated_at, include_seconds: false) %> ago. 
     &nbsp;<%=link_to "delete", message_path(reply.id),{method: :delete,confirm: "Are you sure you want to delete this message?", remote: true} %>
-    &nbsp;&nbsp;<%=link_to "edit", reply_edit_message_path(reply.id),{remote: true}%> 
   </p>
   <p class="title smaller"><%= get_full_name(reply.sender_id) if reply.sender_id %> has replied</p>
   <p><%= formatter(reply.body) %></p>       

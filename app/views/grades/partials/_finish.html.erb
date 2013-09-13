@@ -14,8 +14,8 @@
       <% end -%>
       
       <span style="color:<%= set_color(@grade.done,"green","red")%>"><label> Turned in? </label><%= @grade.done %></span>
-      <span><label> Return? </label><%= f.check_box :returned %></span>
-      <span><%=link_to "print", grade_print_path(@grade) %></span>
+      
+      <span>&nbsp; &nbsp;<%=link_to "print", grade_print_path(@grade),{title: "Print a coversheet"} %></span>
     </div>
     <div class="half_pane">
       <label>Staff Comments</label><br />
