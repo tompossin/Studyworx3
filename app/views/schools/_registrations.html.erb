@@ -7,7 +7,7 @@
           <%=link_to get_full_name(p.user_id), edit_school_participant_path(@school.id,p.id),{remote: true, class: :smallest} %>
         </p>
     <% end %>
-  <% if current_user.user_admin.level == 3 %>
+  <% if is_superadmin %>
     <p class="title">
       New Orders
     </p>
