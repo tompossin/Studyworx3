@@ -11,6 +11,7 @@ class Team < ActiveRecord::Base
   ##########################################################
   validates_presence_of :name, :owner_id, :school_id
   
+  
   # Adds a member(user) to a team.
   #  Usage: @team.add_member(@user_object)
   # * A user can not belong to more than one coreteam in each school.

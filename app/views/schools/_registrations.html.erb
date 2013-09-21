@@ -7,12 +7,14 @@
           <%=link_to get_full_name(p.user_id), edit_school_participant_path(@school.id,p.id),{remote: true, class: :smallest} %>
         </p>
     <% end %>
-  <p class="title">
-    New Orders
-  </p>
-  <p class="title larger">
-    <% @pending_orders.each do |o| %>
-        <%=link_to get_full_name(o.user_id), order_path(o) %>
-    <% end %>
-  </p>
+  <% if current_user.user_admin.level == 3 %>
+    <p class="title">
+      New Orders
+    </p>
+    <p class="title larger">
+      <% @pending_orders.each do |o| %>
+          <%=link_to get_full_name(o.user_id), order_path(o) %>
+      <% end %>
+    </p>
+  <% end %>
 </div>

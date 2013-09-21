@@ -161,7 +161,7 @@ class ApplicationController < ActionController::Base
   def check_for_pending_registrations
     unless current_user.school == 0
       school = School.find(current_user.school)
-      if current_user.leader?
+      if current_user.admin_assistant?
         @registrations = school.participants.pending
       end
       if current_user.user_admin

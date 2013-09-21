@@ -85,6 +85,15 @@ class User < ActiveRecord::Base
     self.teams.where("school_id = ? and coreteam = ?",self.school, true).first
   end
   
+  def change_to_coreteam(new_coreteam_id)
+    oldteam = self.coreteam
+    if oldteam
+      oldteam.remove_member(self)
+    end    
+    newteam = Team.find(new_coreteam_id)
+    newteam.add_member(self)
+  end
+  
   # Returns a collection of all a users teams based on the users current school.
   def schoolteams
     self.teams.where("school_id = ?",self.school).all

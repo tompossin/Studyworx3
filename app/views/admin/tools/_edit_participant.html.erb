@@ -15,9 +15,13 @@
   </p>
   <div class="smaller">
     Select a Core Team: <br />
-    <%= select_tag "coreteam", options_from_collection_for_select(@teams, "id","name",@participant.coreteam.id)%>
+    <% if @participant.coreteam %>
+      <%= select_tag "coreteam", options_from_collection_for_select(@teams, "id","name",@participant.coreteam.id)%>
+    <% else %>
+      <%= select_tag "coreteam", options_from_collection_for_select(@teams, "id","name") %>
+    <% end %>
   </div>
-  <p class="actions">
+  <p class="actions"> 
     <%= f.submit "Update #{@participant.user.fullname}" %>
   </p>
 <% end %>

@@ -36,6 +36,7 @@ class Admin::ToolsController < ApplicationController
     respond_to do |format|
       if @participant.role_id >= current_user.role
         if @participant.update_attributes(params[:participant])
+          @user.change_to_coreteam(params[:coreteam])
           @user.set_school(@participant.school_id)
           format.js 
         else
