@@ -196,10 +196,10 @@ protected
         height = pt.verse_count*vertical_units
         canvas.g do |t|
           t.rect(300,height,0,y_2).styles(:fill=>'white',:stroke=>'black',:stroke_width=>'1')
-          t.text(4, y_2+12,pt.title).styles(:font_size=>11,:font_style=>'italic',:font_weight=>700)
+          t.text(4, y_2+16,pt.title).styles(:font_size=>16,:font_style=>'italic',:font_weight=>700)
         end
         # Create ppoints for each paragraph title
-        t_2 = y_2+22
+        t_2 = y_2+32
         for pp in pt.ppoints
           o = Observation.find(pp.observation_id) if pp.observation_id          
           canvas.g do |p|
@@ -207,8 +207,8 @@ protected
             content = o.code+" "+pp.content if o
             content = content.split(/\n/)
             content.each{|e|
-              p.text(i_center,t_2,e).styles(:font_size=>10,:font_style=>'normal',:font_weight=>400,:text_anchor=>'middle',:fill=>pp.color)
-              t_2 += 11
+              p.text(i_center,t_2,e).styles(:font_size=>14,:font_style=>'normal',:font_weight=>400,:text_anchor=>'middle',:fill=>pp.color)
+              t_2 += 18
             }                       
           end
         end
