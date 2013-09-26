@@ -32,17 +32,6 @@
     });
   });
   
-  // Load the title insertion selector on ctrl+s or cmd+s
-  $('#title-container').on('keydown','.editable',function(e) {
-    e.preventDefault();
-    if ( (e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey) )
-        {         
-          $.ajax({
-          type: "GET",
-          url: $(this).data('new_title_url')
-          });
-        }     
-  });
   
   // watch for clicks to delete a title.
   $('#title-container').on('click','.title_delete', function(e) {
