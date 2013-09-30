@@ -1,4 +1,5 @@
 <div id="title_<%= title.id %>" class="<%= get_class(title.title_type) %>">
+  <%= link_to image_tag("iconic/plus_16x16.png",{size: "11x11", style: "float:left;padding: 2px;"}), task_title_new_title_path(@task,title),{remote:true}%>
   <% unless title.title_type == 1%>
     <div class="title_delete" data-id="<%= title.id %>" data-url="<%= task_title_delete_path(title.task_id,title.id) %>" title="Click to Delete" >
       X
