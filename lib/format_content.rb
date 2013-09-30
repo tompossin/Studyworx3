@@ -14,7 +14,7 @@ module FormatContent
   #   * This allows me to flush the raw data through a template first. Not perfectly railsy but close.
   def convert_file(content,user,filename,format)
     name = name_cleaner(filename)
-    Dir.glob("public/docs/#{user.id.to_s}*") do |my_file|
+    Dir.glob("public/docs/#{user.id.to_s}_*") do |my_file|
       File.delete(my_file)
     end
     new_file_name = "#{user.id.to_s}_#{name}.#{format}"

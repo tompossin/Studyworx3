@@ -9,8 +9,9 @@ protected
     return raw_string.gsub(/[^A-Za-z0-9_\-\.]/, '_')
   end
   
+  # I added _ to line 14 to prevent user 1 from deleting user 100 files 
   def clear_images(user_id)
-    Dir.glob("public/images/#{user_id.to_s}*") do |my_file|
+    Dir.glob("public/images/#{user_id.to_s}_*") do |my_file|
       File.delete(my_file)
     end
   end
