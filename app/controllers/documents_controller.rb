@@ -120,7 +120,8 @@ class DocumentsController < ApplicationController
     assignment = @document.assignment
     respond_to do |format|
       if assignment.editable?(current_user)
-        if @document.update_attributes(params[:document])
+        @document.content = params[:document][:content]
+        if @document.save
           @autopreview = @document
           unless params[:autopreview]
             format.js { render "shared/save_success" }
