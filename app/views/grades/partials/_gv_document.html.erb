@@ -8,6 +8,15 @@
   
   <% if @document %>
     <%= smart_format(@document.content_type, @document.content) %>
+    <h4>
+      Footnotes: 
+    </h4>
+    <% if @document.endnote %> 
+      <%= smart_format(@document.endnote.content_type, @document.endnote.content) if @document.endnote.content %>
+    <% else %>
+      <p>There are no footnotes. </p>
+    <% end %>
+  
   <% else %>
     <p>There is no content available for this task.</p>
   <% end %>
