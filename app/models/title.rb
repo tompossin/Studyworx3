@@ -24,6 +24,10 @@ class Title < ActiveRecord::Base
     unless self.exists?(["task_id = ? and user_id = ?",task.id,user.id])
       school = School.find(assignment.school_id)
       pos = 0
+      Title.create(user_id: user.id, school_id: school.id, assignment_id: assignment.id,task_id: task.id,title_type: 5, title: "Book title required", position: pos)
+      pos = 1
+      Title.create(user_id: user.id, school_id: school.id, assignment_id: assignment.id,task_id: task.id,title_type: 2, title: "One seg minimum", position: pos)
+      pos = 2
       prefs = Paragraph.where("book_id = ? and version_id = ?",assignment.book_id, school.version_id).all
       prefs.each do |p|
         Title.create(user_id: user.id, school_id: school.id, assignment_id: assignment.id, task_id: task.id, paragraph_id: p.id, title_type: 1, title: p.startref, position: pos, verse_count: p.verse_count)
