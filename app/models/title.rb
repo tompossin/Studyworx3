@@ -45,6 +45,9 @@ class Title < ActiveRecord::Base
   
   def get_book_title
     @title = Title.where("task_id = ? and user_id = ? and title_type = ?", self.task_id,self.user_id,5).first
+    unless @title
+      @title = Title.new(title: "No title")
+    end
     return @title.title
   end
   
