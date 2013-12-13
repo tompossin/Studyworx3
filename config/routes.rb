@@ -42,6 +42,8 @@ Studyworx3::Application.routes.draw do
     
     # Reports
     get "reports" => 'reports#index', as: :reports
+    get "reports/pending_grading" => 'reports#pending_grading', as: :pending_grading
+    get "reports/module_grades/:mod" => 'reports#by_module', as: :module_grades
     
     resources :helps
     

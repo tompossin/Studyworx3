@@ -1,5 +1,14 @@
 <h3>Report Admin</h3>
 <ul>
   <li><%=link_to "Cumulative Grade Averages", admin_reports_path(@school) %></li>
+  <li> Grades by Module</li>
+    <ul>
+        <% if @modules %>
+        <% @modules.each do |m| %>
+          <li><%=link_to "Module #{m.module.to_s} Grades", admin_module_grades_path(m.module.to_s)%></li>
+        <% end %>
+      <% end %>
+    </ul>
 </ul>
+  
 

@@ -91,6 +91,8 @@
                                      PUT    /admin/assignments/:id(.:format)                                                           admin/assignments#update
                                      DELETE /admin/assignments/:id(.:format)                                                           admin/assignments#destroy
                        admin_reports GET    /admin/reports(.:format)                                                                   admin/reports#index
+               admin_pending_grading GET    /admin/reports/pending_grading(.:format)                                                   admin/reports#pending_grading
+                 admin_module_grades GET    /admin/reports/module_grades/:mod(.:format)                                                admin/reports#by_module
                          admin_helps GET    /admin/helps(.:format)                                                                     admin/helps#index
                                      POST   /admin/helps(.:format)                                                                     admin/helps#create
                       new_admin_help GET    /admin/helps/new(.:format)                                                                 admin/helps#new

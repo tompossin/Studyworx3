@@ -1,0 +1,38 @@
+<% content_for :breadcrumbs do %>
+  <%=link_to "Homeroom", schools_path %>
+  <%=link_to "Admin Tools", admin_tools_path %>
+<% end %>
+
+<div id="content-large">
+  <article>
+    <h2>Reports</h2>
+    <p class="title larger bolder">Module <%= @mod %> Grade Average</p>
+    <hr />
+    <div class="theader">
+      <span class="cell" style="width: 15%;">
+        Name
+      </span>
+      <span class="cell" style="width: 10%;">
+        Grade
+      </span>
+      <span class="cell" style="width: 8%;">
+        Percent
+      </span>
+    </div>
+    <% @students.each do |s| %>
+      <p class="trow">
+        <span class="cell" style="width:20%;">
+          <%=link_to s.fullname_lnf, school_user_grades_report_path(@school,s.id), {title: "View all Grades"} %>
+        </span> 
+        <span class="cell bolder" style="width: 5%;">
+          <%= letter_grade(s.module_average(@mod)) %>
+        </span>  
+        <span class="cell smaller italic" style="width: 8%;">
+          (<%= s.module_average(@mod) %>)
+        </span>
+      </p>      
+    <% end %>
+  </article>
+</div>
+
+<%= nav_bar(@nav_body_content) %>

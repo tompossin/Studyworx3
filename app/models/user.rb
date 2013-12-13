@@ -101,8 +101,23 @@ class User < ActiveRecord::Base
   
   # Calculates the current grade average for a student.
   def grade_average
-    grades = self.grades.where("school_id = ?",self.school)
-    grades.average("grade")
+    results = Assignment.find_by_sql(["
+      SELECT (sum(grades.grade * assignments.weight)/sum(assignments.weight)) AS total
+      FROM assignments
+      LEFT JOIN grades ON (assignments.id = grades.assignment_id)
+      WHERE assignments.school_id=? and grades.user_id=? and grades.grade >= 0
+      GROUP BY grades.user_id",self.school,self.id])
+    return results[0]['total'].to_i unless results.count == 0
+  end
+  
+  def module_average(mod_num)
+    results = Assignment.find_by_sql(["
+      SELECT (sum(grades.grade * assignments.weight)/sum(assignments.weight)) AS total
+      FROM assignments
+      LEFT JOIN grades ON (assignments.id = grades.assignment_id)
+      WHERE assignments.school_id=? and assignments.module=? and grades.user_id=? and grades.grade >= 0
+      GROUP BY grades.user_id",self.school,mod_num,self.id])
+    return results[0]['total'].to_i unless results.count == 0
   end
   
   def schools_i_own
