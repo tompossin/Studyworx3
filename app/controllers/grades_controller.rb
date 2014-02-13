@@ -139,6 +139,19 @@ class GradesController < ApplicationController
     end
   end
   
+  def pt_view
+    @task = Task.includes(:assignment).find(params[:task_id])
+    @assignment = @task.assignment
+    @tasks = @assignment.tasks.all
+    @user = User.find(params[:user_id])
+    @titles = Title.build_paragraph_title_collection(@task.id,@user.id)
+    @grade = Grade.where("user_id = ? and assignment_id = ?",params[:user_id],@task.assignment_id).first 
+    @gradingview = true  
+    respond_to do |format|
+      format.js {render "grades/pt_view"} 
+    end    
+  end
+  
   def grade_vertical
     @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])

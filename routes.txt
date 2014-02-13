@@ -266,6 +266,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                                      DELETE /schools/:id(.:format)                                                                     schools#destroy
           user_assignment_load_tasks GET    /user/:user_id/assignment/:assignment_id/load_tasks(.:format)                              grades#load_tasks
               user_task_grading_view GET    /user/:user_id/task/:task_id/grading_view(.:format)                                        grades#grading_view
+                   user_task_pt_view GET    /user/:user_id/task/:task_id/pt_view(.:format)                                             grades#pt_view
             user_task_grade_vertical GET    /user/:user_id/task/:task_id/vertical/:vertical_id(.:format)                               grades#grade_vertical
                          user_grades GET    /user/:user_id/grades(.:format)                                                            grades#grades
                 grade_finish_grading GET    /grade/:grade_id/finish_grading(.:format)                                                  grades#finish_grading

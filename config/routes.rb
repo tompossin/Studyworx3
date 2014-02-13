@@ -156,6 +156,7 @@ Studyworx3::Application.routes.draw do
   
   match 'user/:user_id/assignment/:assignment_id/load_tasks' => 'grades#load_tasks', via: [:get], as: :user_assignment_load_tasks
   match 'user/:user_id/task/:task_id/grading_view' => 'grades#grading_view', via: [:get], as: :user_task_grading_view
+  match 'user/:user_id/task/:task_id/pt_view' => 'grades#pt_view', via: [:get], as: :user_task_pt_view
   match 'user/:user_id/task/:task_id/vertical/:vertical_id' => 'grades#grade_vertical', via: [:get], as: :user_task_grade_vertical
   match 'user/:user_id/grades' => 'grades#grades', via: [:get], as: :user_grades
   match 'grade/:grade_id/finish_grading' => 'grades#finish_grading', via: [:get], as: :grade_finish_grading

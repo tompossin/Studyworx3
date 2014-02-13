@@ -127,6 +127,11 @@ class Title < ActiveRecord::Base
     end
   end
   
+  # Build Paragraph Title Collection
+  def self.build_paragraph_title_collection(task_id,user_id)
+    Title.where("task_id = ? and user_id = ? and title_type = ?",task_id,user_id,1).all
+  end
+  
   # This calculates the number of verses in each upper level title.
   # This must be run after any change to the title editing page.
   # It prepares the data set for building the charting images.

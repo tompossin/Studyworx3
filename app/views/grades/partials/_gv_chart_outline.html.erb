@@ -1,5 +1,8 @@
 <article>
   <h3><%= @user.fullname %> - <%= @assignment.name %></h3>
+  <h3>
+    <%=link_to("Paragraph Titles", user_task_pt_view_path(@user.id,@task.id),{remote: :true})  %>
+  </h3>
   <% @titles.each do |outline| %>
     <div id="title_<%= outline.id %>" class="<%= get_class(outline.title_type) %>">
         <div >
