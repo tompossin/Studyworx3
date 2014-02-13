@@ -1,0 +1,11 @@
+<article>
+  <h3><%= @user.fullname %> - <%= @assignment.name %></h3>
+  <h2>Paragraph Titles for <%= @assignment.name %></h2>
+  <% @titles.each do |outline| %>
+    <div id="title_<%= outline.id %>" class="<%= get_class(outline.title_type) %>">
+        <div >
+          <%= outline.title %>
+        </div>
+    </div>
+  <% end %>
+</article>
