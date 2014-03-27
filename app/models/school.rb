@@ -51,7 +51,7 @@ class School < ActiveRecord::Base
   
   # Returns all accepted students
   def students
-    students = self.users.where("participants.role_id = 4 and accepted = 2").all
+    students = self.users.where("participants.role_id = 4 and accepted = 2").order('lastname').all
     return students
   end
   

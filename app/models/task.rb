@@ -29,9 +29,18 @@ class Task < ActiveRecord::Base
   
   # return document content for a task/user pair
   def get_user_document_content(user)
-    doc = Document.where("task_id = ? and user_id = ?",self.id,user.id).first
+    doc = Document.where("documents.task_id = ? and documents.user_id = ?",self.id,user.id).first    
     if doc
       return doc.content
+    else
+      return "No Content"
+    end
+  end
+  
+  def get_user_document_endnotes(user)
+    doc = Document.includes(:endnote).where("documents.task_id = ? and documents.user_id = ?",self.id,user.id).first    
+    if doc
+      return doc.endnote.content
     else
       return "No Content"
     end

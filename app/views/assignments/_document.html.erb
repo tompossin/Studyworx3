@@ -2,5 +2,9 @@
   <h2><%= task.name %></h2>
   <div>
     <%= formatter(task.get_user_document_content(current_user)) %> 
-  </div>   
+  </div> 
+  <div>
+    <h2>Endnotes</h2>
+    <%= formatter(task.get_user_document_endnotes(current_user)) %>
+  </div>  
 </section>  
