@@ -11,9 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.ui.core
-//= require jquery.ui.widget
-//= require jquery.ui.datepicker
+//= require jquery-ui
 //= require jquery_ujs
 //= require wysihtml5
 //= require wysi_advanced
