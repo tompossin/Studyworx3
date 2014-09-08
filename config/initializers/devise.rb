@@ -84,7 +84,8 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   config.pepper = "64b62619ac1b4c8344928f34ebc12c6fd854afa47dc9c6797c76abdcc4160f630592dfee08ae8bc5cb32fcfebf246fba065ae53debebd1f7274b1460eae81f97"
   # I added this after the last update of devise
-  config.secret_key = '1c19c0facf98f4c194a8ac70bb06e072c350107d5b95dbc7da3cf6caea8a882a03b1d8e7472bf9f4521fb1c85331a23711876d9aa238878ab308fdc6f1f03aaf'
+  # config.secret_key = '1c19c0facf98f4c194a8ac70bb06e072c350107d5b95dbc7da3cf6caea8a882a03b1d8e7472bf9f4521fb1c85331a23711876d9aa238878ab308fdc6f1f03aaf'
+  config.secret_key = '24ad203b19421a5f6c31d5a64083a35a46275cf180a4ab56cdf9fb703492658557647f8da37d6d78608c83573286f151defe2b3ebbe9de922e14167ebdfc83c7'
 
 
   # ==> Configuration for :confirmable
