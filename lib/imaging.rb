@@ -243,7 +243,7 @@ protected
   def zip_all_charts(task_id,user_id)
     task = Task.find(task_id)
     build_all_charts(task_id,user_id)
-    system("zip public/images/#{user_id.to_s}_#{task.assignment.name} public/images/#{user_id.to_s}*")
+    system("zip public/images/#{user_id.to_s}_#{task.assignment.name} public/images/#{user_id.to_s}_*")
   end
   
 end
