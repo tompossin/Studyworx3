@@ -205,6 +205,7 @@ protected
           o = Observation.find(pp.observation_id) if pp.observation_id          
           canvas.g do |p|
             content = pp.content
+            # TODO this line needs to be looked at nil values break it
             content = o.code+" "+pp.content if o
             content = content.split(/\n/)
             content.each{|e|

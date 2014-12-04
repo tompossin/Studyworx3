@@ -1,8 +1,9 @@
 class GradesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :is_school_staff, only: [:print, :report, :finish, :finish_grading, :grades, :office, :collect, :collect_save]
+  before_filter :is_school_staff, only: [:report, :finish, :finish_grading, :grades, :office, :collect, :collect_save]
   before_filter :get_school
   layout "print", only: [:print]
+
   
   # This is the main Student grade page.
   def index

@@ -100,6 +100,7 @@ class User < ActiveRecord::Base
   end
   
   # Calculates the current grade average for a student.
+  # TODO This is still giving the wrong answer.
   def grade_average
     results = Assignment.find_by_sql(["
       SELECT (sum(grades.grade * assignments.weight)/sum(assignments.weight)) AS total
