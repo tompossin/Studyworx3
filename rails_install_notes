@@ -1,0 +1,8 @@
+# Notes regarding the updating and installing of various rubies and gems.
+
+{:> 7.7.15
+  Upgraded to 64 bit on the OS of my lappy.
+  Had a lot of trouble with debug compiling on Ruby 2.2
+  Stayed at Ruby 2.0
+  Had to reinstall everything from Rubies to Gems because of the upgrade.
+  

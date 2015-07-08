@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603163924) do
+ActiveRecord::Schema.define(:version => 20150707231618) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130603163924) do
     t.datetime "updated_at",                  :null => false
   end
 
+  add_index "charttexts", ["title_id"], :name => "index_charttexts_on_title_id"
   add_index "charttexts", ["user_id", "title_id"], :name => "index_charttexts_on_user_id_and_title_id"
 
   create_table "colors", :force => true do |t|
@@ -139,7 +140,6 @@ ActiveRecord::Schema.define(:version => 20130603163924) do
     t.integer  "school_id",                           :null => false
     t.integer  "assignment_id",                       :null => false
     t.integer  "user_id",                             :null => false
-    t.integer  "duedate_id"
     t.integer  "staff_id"
     t.boolean  "viewable",         :default => false
     t.boolean  "done",             :default => false
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20130603163924) do
     t.text     "scratchpad"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
+    t.integer  "duedate_id"
   end
 
   add_index "grades", ["done"], :name => "index_grades_on_done"
@@ -235,12 +236,12 @@ ActiveRecord::Schema.define(:version => 20130603163924) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.float    "price",       :default => 0.0
-    t.boolean  "billed",      :default => false
-    t.boolean  "paid",        :default => false
-    t.boolean  "approved",    :default => false
+    t.boolean  "approved"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "school_id",   :default => 0
+    t.boolean  "billed",      :default => false
+    t.boolean  "paid",        :default => false
     t.integer  "clone"
   end
 
@@ -303,6 +304,7 @@ ActiveRecord::Schema.define(:version => 20130603163924) do
   end
 
   add_index "ppoints", ["position"], :name => "index_ppoints_on_position"
+  add_index "ppoints", ["title_id"], :name => "index_ppoints_on_title_id"
   add_index "ppoints", ["user_id", "title_id"], :name => "index_ppoints_on_user_id_and_title_id"
 
   create_table "preferences", :force => true do |t|
@@ -346,11 +348,9 @@ ActiveRecord::Schema.define(:version => 20130603163924) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.text     "mailing_address"
-    t.string   "email"
     t.text     "tagline"
     t.text     "description"
-    t.boolean  "private",               :default => false
-    t.boolean  "active",                :default => false
+    t.boolean  "active"
     t.string   "timezone"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
@@ -368,6 +368,8 @@ ActiveRecord::Schema.define(:version => 20130603163924) do
     t.datetime "featured_updated_at"
     t.string   "caption"
     t.string   "color"
+    t.string   "email"
+    t.boolean  "private",               :default => false
   end
 
   create_table "scoresheets", :force => true do |t|
