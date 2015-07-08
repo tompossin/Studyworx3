@@ -1,11 +1,13 @@
 <div id="current_school" class="float_left title">
   <span id="schoolname" class="larger bolder"><%= @school.name if @school %></span>
 </div>
-<% if @registrations or @orders %>
+<% if @registrations or @pending_orders %>
   <%= render "registrations" %>
 <% end %>
 <div class="float_left">
-  <p class="title small">My Schools</p>
+  <p class="title small">
+    My Schools
+  </p>
   <% if @enrollments %>
     <%= render "enrollments" %>
   <% end %>

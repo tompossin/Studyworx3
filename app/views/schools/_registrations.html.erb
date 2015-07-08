@@ -1,12 +1,14 @@
 <div id="pending" class="float_left">
-  <p class="title">
-    Pending Registrations
-  </p>
-    <% @registrations.each do |p| %>
-        <p id="reg_<%= p.id %>">
-          <%=link_to get_full_name(p.user_id), edit_school_participant_path(@school.id,p.id),{remote: true, class: :smallest} %>
-        </p>
-    <% end %>
+  <% if current_user.role < 3 %>
+    <p class="title">
+      Pending Registrations
+    </p>
+      <% @registrations.each do |p| %>
+          <p id="reg_<%= p.id %>">
+            <%=link_to get_full_name(p.user_id), edit_school_participant_path(@school.id,p.id),{remote: true, class: :smallest} %>
+          </p>
+      <% end %>
+  <% end %>
   <% if is_superadmin %>
     <p class="title">
       New Orders
@@ -15,6 +17,17 @@
       <ul>
         <% @pending_orders.each do |o| %>
             <li><%=link_to get_full_name(o.user_id), order_path(o) %></li>
+        <% end %>
+      </ul>
+    </p>
+  <% else %>
+    <p class="title">
+      My Pending Orders
+    </p>
+    <p>
+      <ul>
+        <% @pending_orders.each do |o| %>
+            <li><%= o.name %> <br />&nbsp;&nbsp; Last Updated: <%= o.updated_at%></li>
         <% end %>
       </ul>
     </p>

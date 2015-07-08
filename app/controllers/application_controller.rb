@@ -166,6 +166,8 @@ class ApplicationController < ActionController::Base
       end
       if current_user.is_superadmin
         @pending_orders = Order.where("approved = ?",false).all
+      else
+        @pending_orders = Order.where("approved = ? and user_id = ?",false,current_user.id).all
       end   
     end   
   end

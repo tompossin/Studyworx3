@@ -179,6 +179,54 @@
 
 </richcontent>
 </node>
+<node TEXT="Orders related" ID="ID_762530602" CREATED="1436393460743" MODIFIED="1436393736920">
+<node TEXT="Done" ID="ID_1101262223" CREATED="1436393736910" MODIFIED="1436393753264"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        Fixed the approved column in DB
+      </li>
+      <li>
+        Fixed the check_registrations method
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436393902648"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        Need to do something with bogus applications.
+      </li>
+      <li>
+        Need a way to show that an order is pending for the one that placed the order.
+      </li>
+      <li>
+        Need to fire an email to me when someone makes an order.
+      </li>
+    </ul>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
 </node>
 <node TEXT="Workflow upgrades" POSITION="left" ID="ID_116711063" CREATED="1436209107292" MODIFIED="1436209477717" VSHIFT="-30">
 <edge COLOR="#00ff00"/>
