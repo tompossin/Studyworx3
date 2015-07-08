@@ -11,10 +11,12 @@
     <p class="title">
       New Orders
     </p>
-    <p class="title larger">
-      <% @pending_orders.each do |o| %>
-          <%=link_to get_full_name(o.user_id), order_path(o) %>
-      <% end %>
+    <p>
+      <ul>
+        <% @pending_orders.each do |o| %>
+            <li><%=link_to get_full_name(o.user_id), order_path(o) %></li>
+        <% end %>
+      </ul>
     </p>
   <% end %>
 </div>

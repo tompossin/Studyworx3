@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150707231618) do
+ActiveRecord::Schema.define(:version => 20150708214712) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "school_id"
@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(:version => 20150707231618) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.float    "price",       :default => 0.0
-    t.boolean  "approved"
+    t.boolean  "approved",    :default => false, :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "school_id",   :default => 0

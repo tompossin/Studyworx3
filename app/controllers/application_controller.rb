@@ -164,15 +164,9 @@ class ApplicationController < ActionController::Base
       if current_user.admin_assistant?
         @registrations = school.participants.pending
       end
-      if current_user.user_admin
-        if current_user.user_admin.level == 3
-          @pending_orders = Order.where("approved = ?",false).all
-        else
-          @pending_orders = Order.where("user_id = ? and approved = ?",current_user.id,false).all
-        end
-      else
-        @pending_orders = Order.where("user_id = ? and approved = ?",current_user.id,false).all
-      end     
+      if current_user.is_superadmin
+        @pending_orders = Order.where("approved = ?",false).all
+      end   
     end   
   end
   
