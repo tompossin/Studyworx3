@@ -22,7 +22,7 @@
   <div id="content-large">   
     <article>
       <%= render( "toolbar_markdown") if @blog.content_type == 0 %>
-      <%= render "shared/wysihtml5_toolbar" if @blog.content_type == 1 %>
+      <!--<%= render "shared/wysihtml5_toolbar" if @blog.content_type == 1 %> -->
       <p class="title">Article Content:</p>
       <%= f.text_area :article, {rows: current_user.preference.rows , :id => 'wysihtml5-textarea',:style=>"width:98%;"} %>
     </article>
@@ -41,8 +41,9 @@
     <%= f.text_field :topic, {:style=>"width:90%;"} %>
     <p class="title">Article Excerpt:</p>
     <%= f.text_area :excerpt, {:style=>"width:90%;height:100px;"} %>
-    <br /> <%= f.submit :update %> <%=raw content_type_link(@blog.content_type, "toggle_content_type")%>
+    <br /> <%= f.submit :update %> 
+    <!--<%=raw content_type_link(@blog.content_type, "toggle_content_type")%> -->
   </aside>
 <% end %>
 
-<%=render "shared/wysihtml5_js" if @blog.content_type == 1 %>
+<!--<%=render "shared/wysihtml5_js" if @blog.content_type == 1 %> -->

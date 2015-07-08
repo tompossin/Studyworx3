@@ -50,13 +50,34 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="4"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="6"/>
 <hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
 <node TEXT="Known Bugs" POSITION="right" ID="ID_629576244" CREATED="1436209064940" MODIFIED="1436209469752" VSHIFT="-20">
 <edge COLOR="#ff0000"/>
 <node TEXT="Fix PDF Views for Charts, Docs, and assignments" ID="ID_981116393" CREATED="1436209141188" MODIFIED="1436209190447"/>
 <node TEXT="Debug the math in grade averages &amp; reports" ID="ID_125750655" CREATED="1436209193075" MODIFIED="1436209256500"/>
-<node TEXT="Fix the inefficient queries in the charting process" ID="ID_1247945185" CREATED="1436209257909" MODIFIED="1436209290836"/>
+<node TEXT="Fix the inefficient queries in the charting process" ID="ID_1247945185" CREATED="1436209257909" MODIFIED="1436361286289">
+<icon BUILTIN="button_ok"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Added a new index on titles_id to the charttexts and ppoints tables. This seems to have sped up the loading of charts by 100 fold literally.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      I think dual column indexes may not be worth very much in Rails.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 <node TEXT="Feature upgrades" POSITION="right" ID="ID_1262380660" CREATED="1436209086507" MODIFIED="1436209466240" VSHIFT="40">
 <edge COLOR="#0000ff"/>
@@ -85,6 +106,79 @@
 </node>
 <node TEXT="Convert the image generator to HTML canvas" ID="ID_634556502" CREATED="1436209339059" MODIFIED="1436209363632"/>
 <node TEXT="Improve profile views." ID="ID_1464691866" CREATED="1436209405399" MODIFIED="1436209414635"/>
+<node TEXT="Improve email lookups, and mass mailing announcements etc." ID="ID_1836840529" CREATED="1436362465040" MODIFIED="1436362493264"/>
+</node>
+<node TEXT="Review and update" POSITION="right" ID="ID_1054138370" CREATED="1436368559250" MODIFIED="1436368571028">
+<edge COLOR="#00ffff"/>
+<node TEXT="School Admin" ID="ID_1513478378" CREATED="1436368572327" MODIFIED="1436368578049">
+<node TEXT="Workflow Audit" ID="ID_1264907118" CREATED="1436368601314" MODIFIED="1436368608026">
+<node TEXT="I want to create a public school" ID="ID_990434506" CREATED="1436368612407" MODIFIED="1436368744723"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ol>
+      <li>
+        request the creation of a school from the school admin page. (not very intuitive)
+
+        <ol>
+          <li>
+            Ideas
+
+            <ol>
+              <li>
+                Put link in Navbar
+              </li>
+              <li>
+                Put link in account drop down list
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="Assignment Admin" ID="ID_1567385989" CREATED="1436368578977" MODIFIED="1436368584396"/>
+</node>
+<node TEXT="Log" POSITION="right" ID="ID_1187587147" CREATED="1436388400712" MODIFIED="1436388404848">
+<edge COLOR="#ffff00"/>
+<node TEXT="Helps related" ID="ID_635669454" CREATED="1436388413418" MODIFIED="1436388494113"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      7.8.15 - Wrote a better intro to setting up a school in the blog and linked to it on the main admin page.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="General clean-up" ID="ID_459604434" CREATED="1436388497744" MODIFIED="1436388570731"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      7.8.15 - Cleaned up some extraneous junk in the editor of the various admin pages.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 <node TEXT="Workflow upgrades" POSITION="left" ID="ID_116711063" CREATED="1436209107292" MODIFIED="1436209477717" VSHIFT="-30">
 <edge COLOR="#00ff00"/>
@@ -101,7 +195,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="Automatically open help when a new assignment is started" ID="ID_715347290" CREATED="1436272959762" MODIFIED="1436272974122"/>

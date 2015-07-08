@@ -5,7 +5,7 @@
   <div class="toolbar">
     <span class="cell"><%=link_to image_tag("gray/save.png", size: "20x20"), "#logolink" %></span>
     <span class="cell">&nbsp;</span>
-    <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), admin_school_templat_path(@school,@templat),{remote: true,title: "Preview Scoresheet"} if @templat.id %></span>
+    <span class="cell"><%=link_to image_tag("iconic/document_stroke_32x32.png",size: "20x20"), admin_school_templat_path(@school,@templat),{remote: true,title: "Preview"} if @templat.id %></span>
     <span class="cell"><%=link_to image_tag("iconic/lightbulb_20x32.png",size: "14x20"),help_path(1),{class: "noauto",remote: true, title: "View Markdown Cheatsheet"} %></span>
     <span class="cell"><%=link_to image_tag("iconic/denied_32x32.png",size: "20x20"), close_popup_path, {class: "noauto",remote: true, title: "Close popup viewer"} %></span>
 
