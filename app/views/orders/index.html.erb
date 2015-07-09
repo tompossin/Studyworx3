@@ -6,11 +6,12 @@
   <article>
     <h2>School Orders</h2>
     <div class="theader">
-      <span class="cell" style="width: 23%;">Name</span>
-      <span class="cell" style="width: 25%;">User</span>
-      <span class="cell" style="width: 15%;">Approved</span>
-      <span class="cell" style="width: 8%;">Price</span>
+      <span class="cell" style="width: 25%;">Name</span>
+      <span class="cell" style="width: 25%;">Owner</span>
+      <span class="cell" style="width: 12%;">Approved</span>
+      <span class="cell" style="width: 10%;">Price</span>
       <span class="cell" style="width: 10%;">Edit</span>
+      <span class="cell" style="width: 8%;">Delete</span>
     </div>
     <% @orders.each do |o| %>
       <div class="trow">
@@ -29,6 +30,9 @@
         <span class="cell" style="width: 8%;">
           <%=link_to "edit", order_path(o) %>
         </span>
+        <span class="cell" style="width: 8%;">
+          <%=link_to 'Destroy', order_path(o), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </span> 
       </div>      
     <% end %>
   </article>

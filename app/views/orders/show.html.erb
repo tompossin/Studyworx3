@@ -84,23 +84,27 @@
             <% end %>         
         </div>
         <div class="half_pane">
-          <% if @order.school_id == 0 %>
-            <p>Click to create a new school.</p>
-            <%= form_tag(@order.id.to_s+'/create_school') do %>
-              <%= hidden_field_tag 'name', @order.name %>
-              <%= hidden_field_tag 'location', @order.location %>
-              <%= hidden_field_tag 'start_date', @order.start_date %>
-              <%= hidden_field_tag 'end_date', @order.end_date %>
-              <%= hidden_field_tag 'description', @order.description %>
-              <%= hidden_field_tag 'user_id', @order.user_id %>
-              <%= submit_tag 'Create New School' %>    
+          <% if @order.approved == true %>
+            <% if @order.school_id == 0 %>
+              <p>Click to create a new school.</p>
+              <%= form_tag(@order.id.to_s+'/create_school') do %>
+                <%= hidden_field_tag 'name', @order.name %>
+                <%= hidden_field_tag 'location', @order.location %>
+                <%= hidden_field_tag 'start_date', @order.start_date %>
+                <%= hidden_field_tag 'end_date', @order.end_date %>
+                <%= hidden_field_tag 'description', @order.description %>
+                <%= hidden_field_tag 'user_id', @order.user_id %>
+                <%= submit_tag 'Create New School' %>    
+              <% end %>
+              <hr />
+              <p>
+                <%=link_to "Destroy this order", @order, {method: :delete, confirm: "Are you sure?",title: "Destroy ths order."}%>
+              </p>
+            <% else %>
+              <p>School Already Created.</p>
             <% end %>
-            <hr />
-            <p>
-              <%=link_to "Destroy this order", @order, {method: :delete, confirm: "Are you sure?",title: "Destroy ths order."}%>
-            </p>
           <% else %>
-            <p>School Already Created.</p>
+            <h3>School must be approved before it can be created.</h3>
           <% end %>
         </div>
     <% end %>

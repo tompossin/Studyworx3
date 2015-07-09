@@ -99,7 +99,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to schools_url }
+      format.html { redirect_to orders_url }
     end
   end
     

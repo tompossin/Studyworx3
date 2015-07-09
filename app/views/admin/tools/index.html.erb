@@ -14,6 +14,8 @@
       <% if current_user.admin_assistant? %>
         <section class="float_left limited">
           <h2>School Admin Tools</h2>
+          <%=link_to "Order a new public school", new_order_path(user_id: current_user.id) %><br />
+          <h3>Current School Administration Tools</h3>
           <%=link_to "School Admin", edit_admin_school_path(@school) %><br />
           <%=link_to "Assignment Admin", admin_assignments_path %><br />
           <%=link_to "Due Time Admin", admin_duedates_path %><br />
@@ -22,6 +24,7 @@
           <%=link_to "Observation Admin", admin_school_observations_path(current_user.school) %><br />
           <%=link_to "Reports", admin_reports_path %><br />
           <%=link_to "Personnel Admin", admin_tools_personnel_path %><br />
+          <h3><%= "Global Admin Tools" if is_superadmin %></h3>
           <%=link_to( "System help editor", admin_helps_path) if is_superadmin %>
         </section>
       <% end %>

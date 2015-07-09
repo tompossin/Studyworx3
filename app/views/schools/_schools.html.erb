@@ -1,5 +1,6 @@
 <div id="current_school" class="float_left title">
-  <span id="schoolname" class="larger bolder"><%= @school.name if @school %></span>
+  <span id="schoolname" class="larger bolder"><%= @school.name if @school %></span><br />
+  <span id="create_new_school" class="row-fluid"><%=link_to "Order a new public school", new_order_path(user_id: current_user.id) %></span>
 </div>
 <% if @registrations or @pending_orders %>
   <%= render "registrations" %>
