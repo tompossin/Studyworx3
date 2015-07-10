@@ -111,7 +111,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="Done" ID="ID_1527924779" CREATED="1436451118065" MODIFIED="1436451140308">
 <icon BUILTIN="0%"/>
@@ -136,7 +135,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -164,7 +162,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -212,8 +209,8 @@
 <node TEXT="Log" POSITION="right" ID="ID_1187587147" CREATED="1436388400712" MODIFIED="1436449412834" HGAP="10" VSHIFT="20">
 <edge COLOR="#ffff00"/>
 <node TEXT="Helps related" ID="ID_635669454" CREATED="1436388413418" MODIFIED="1436449950524">
-<node TEXT="Done" ID="ID_586754946" CREATED="1436449931608" MODIFIED="1436451050030">
-<icon BUILTIN="25%"/>
+<node TEXT="Done" ID="ID_586754946" CREATED="1436449931608" MODIFIED="1436478634733">
+<icon BUILTIN="50%"/>
 <richcontent TYPE="NOTE">
 
 <html>
@@ -228,7 +225,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1158308915" CREATED="1436449934343" MODIFIED="1436450009802"><richcontent TYPE="NOTE">
@@ -245,7 +241,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -264,14 +259,13 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1108212109" CREATED="1436450026481" MODIFIED="1436450028426"/>
 </node>
 <node TEXT="Orders related" ID="ID_762530602" CREATED="1436393460743" MODIFIED="1436393736920">
-<node TEXT="Done" ID="ID_1101262223" CREATED="1436393736910" MODIFIED="1436471187079">
-<icon BUILTIN="50%"/>
+<node TEXT="Done" ID="ID_1101262223" CREATED="1436393736910" MODIFIED="1436478509346">
+<icon BUILTIN="75%"/>
 <richcontent TYPE="NOTE">
 
 <html>
@@ -304,10 +298,9 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
-<node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436468680216"><richcontent TYPE="NOTE">
+<node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436471471767"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -319,10 +312,27 @@
         Need to fire an <b>email</b>&#160;to me when someone makes an order.
       </li>
       <li>
-        Make the link and instructions more clear for creating a new public school.
-      </li>
-      <li>
         Make owners name into a link to message in the orders index page.
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="Registrations" ID="ID_122918252" CREATED="1436396981397" MODIFIED="1436396984990">
+<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436535850666">
+<icon BUILTIN="0%"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        Added Delete links to two registration forms.
       </li>
     </ul>
   </body>
@@ -330,12 +340,7 @@
 
 </richcontent>
 </node>
-</node>
-<node TEXT="Registrations" ID="ID_122918252" CREATED="1436396981397" MODIFIED="1436396984990">
-<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436451060902">
-<icon BUILTIN="0%"/>
-</node>
-<node TEXT="ToDo" ID="ID_892196501" CREATED="1436396988429" MODIFIED="1436468279295"><richcontent TYPE="NOTE">
+<node TEXT="ToDo" ID="ID_892196501" CREATED="1436396988429" MODIFIED="1436535890607"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -345,6 +350,9 @@
     <ul>
       <li>
         An email needs to be generated when a new registration arrives. It should go to all school leaders of the school as well as to all School Admins.
+      </li>
+      <li>
+        Need to check what would happen if someone accidentally deleted an active student.
       </li>
     </ul>
   </body>

@@ -102,5 +102,17 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url }
     end
   end
+  
+  # Notifier code below this line (Sends emails to various people)
+  
+  # This method loads the message sending form
+  def newemail
+    
+  end
+  
+  # This method takes the form info and sends the mail
+  def sendemail
+    
+  end
     
 end

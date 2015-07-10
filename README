@@ -10,6 +10,5 @@ in Rails 3.2 and HTML 5.
 * User Profiles with personal images
 * Better control over themes and backgrounds
 * Better Messaging system.
-* User Teams to allow group messaging and team assignments
-* An HTML 5 text editor (Mercury at this point)
+* User Teams to allow group messaging and team assignments and alternative due times.
 
