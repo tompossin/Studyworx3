@@ -81,6 +81,8 @@ class ParticipantsController < ApplicationController
     
     respond_to do |format|
       if @participant
+        Notifier.participant_user(@participant,@school).deliver
+        Notifier.participant_admins(@participant,@school).deliver
         format.js { render "register_success" }
       else
         format.js { render "register_failure" }

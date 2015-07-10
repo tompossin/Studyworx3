@@ -6,6 +6,8 @@ class Notifier < ActionMailer::Base
   #
   #   en.notifier.admin.subject
   #
+  #####################################################################
+  ##################### ORDERS NOTIFIERS ##############################
   
   # This method sends an email to the superuser when a school is ordered
   def admin(order)
@@ -25,7 +27,7 @@ class Notifier < ActionMailer::Base
   #
   #   en.notifier.user.subject
   #
-  
+
   # This method sends an email to the customer when they place an order
   def user(order)
     @order = order
@@ -38,7 +40,42 @@ class Notifier < ActionMailer::Base
           reply_to: superadmin,
           subject: "Thank you for your recent order of a new Studyworx school"
   end
+  ########################### END ORDERS #####################################
+  ############################################################################
+  
+  ############################################################################
+  ########################### PARTICIPANTS (REGISTRATIONS) ###################
+  
+  def participant_user(participant,school)
+    @participant = participant
+    @school = school
+    admin_user_ids = Participant.where("school_id = ? and role_id < ?",@school.id,3).all.map(&:user_id)
+    schooladmins = User.where(id: admin_user_ids).all.map(&:email)
+    @applicant = User.find(@participant.user_id)
+    applicant_email = "#{@applicant.fullname} <#{@applicant.email}>"
 
+    mail to: applicant_email,
+          reply_to: schooladmins,
+          subject: "Thank you for your recent registration to " + @school.name
+  end
+  
+  def participant_admins(participant,school)
+    @participant = participant
+    @school = school
+    admin_user_ids = Participant.where("school_id = ? and role_id < ?",@school.id,3).all.map(&:user_id)
+    schooladmins = User.where(id: admin_user_ids).all.map(&:email)
+    @applicant = User.find(@participant.user_id)
+    applicant_email = "#{@applicant.fullname} <#{@applicant.email}>"
+
+    mail to: schooladmins,
+          from: applicant_email,
+          reply_to: applicant_email,
+          subject: @applicant.fullname + " has registered to " + @school.name + " and is waiting for acceptance."
+  end
+  
+  ####################### END PARTICIPANTS (REGISTRATIONS) ################### 
+  ############################################################################
+  
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
