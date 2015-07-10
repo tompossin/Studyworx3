@@ -1,3 +1,39 @@
-Notifier#user
+Greetings <%= @customer.fullname%>,
 
-<%= @greeting %>, find me in app/views/app/views/notifier/user.text.erb
+Thank you for ordering a new school from Studyworx.net!
+
+You should be hearing from me soon regarding your order.
+
+If you have any questions please feel free to email me at: tompossin@studyworx.net.
+
+Have a great day!
+
+Tom
+
+
+#####################################################################
+
+Order Details:
+
+Name of new school: 
+<%= @order.name %>
+
+Subject: 
+<%= @order.subject %>
+
+Location: 
+<%=@order.location %>
+
+Description:
+<%=@order.description %>
+
+Projected number of students: <%= @order.enrollment %>
+
+Projected Dates:
+
+Start: <%= @order.start_date %>
+End: <%= @order.end_date %>
+
+#####################################################################
+
+Sent from: http://studyworx.net

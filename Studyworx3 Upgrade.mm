@@ -264,7 +264,7 @@
 <node TEXT="ToDo" ID="ID_1108212109" CREATED="1436450026481" MODIFIED="1436450028426"/>
 </node>
 <node TEXT="Orders related" ID="ID_762530602" CREATED="1436393460743" MODIFIED="1436393736920">
-<node TEXT="Done" ID="ID_1101262223" CREATED="1436393736910" MODIFIED="1436478509346">
+<node TEXT="Done" ID="ID_1101262223" CREATED="1436393736910" MODIFIED="1436550420425">
 <icon BUILTIN="75%"/>
 <richcontent TYPE="NOTE">
 
@@ -295,12 +295,16 @@
       <li>
         Fixed New school links to be more obvious and easier to use.
       </li>
+      <li>
+        Added notification emails to both the customer and the superadmin when an order is made.
+      </li>
     </ul>
   </body>
 </html>
+
 </richcontent>
 </node>
-<node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436471471767"><richcontent TYPE="NOTE">
+<node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436550277000"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -309,20 +313,19 @@
   <body>
     <ul>
       <li>
-        Need to fire an <b>email</b>&#160;to me when someone makes an order.
-      </li>
-      <li>
         Make owners name into a link to message in the orders index page.
       </li>
     </ul>
   </body>
 </html>
+
 </richcontent>
 </node>
 </node>
 <node TEXT="Registrations" ID="ID_122918252" CREATED="1436396981397" MODIFIED="1436396984990">
-<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436535850666">
-<icon BUILTIN="0%"/>
+<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436541693614">
+<icon BUILTIN="button_ok"/>
+<icon BUILTIN="100%"/>
 <richcontent TYPE="NOTE">
 
 <html>
@@ -334,27 +337,22 @@
       <li>
         Added Delete links to two registration forms.
       </li>
+      <li>
+        Tested and pushed it up to the server.
+      </li>
     </ul>
   </body>
 </html>
 
 </richcontent>
 </node>
-<node TEXT="ToDo" ID="ID_892196501" CREATED="1436396988429" MODIFIED="1436535890607"><richcontent TYPE="NOTE">
+<node TEXT="ToDo" ID="ID_892196501" CREATED="1436396988429" MODIFIED="1436541657586"><richcontent TYPE="NOTE">
 
 <html>
   <head>
     
   </head>
   <body>
-    <ul>
-      <li>
-        An email needs to be generated when a new registration arrives. It should go to all school leaders of the school as well as to all School Admins.
-      </li>
-      <li>
-        Need to check what would happen if someone accidentally deleted an active student.
-      </li>
-    </ul>
   </body>
 </html>
 

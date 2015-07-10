@@ -1,3 +1,37 @@
-Notifier#admin
+Hey!
 
-<%= @greeting %>, find me in app/views/app/views/notifier/admin.text.erb
+You have just received a new public school request from <%= @customer.fullname%>
+
+Get on the stick!
+
+#####################################################################
+
+Details:
+
+Email address of customer: <%= @customer.email %>
+
+Name of new school: 
+<%= @order.name %>
+
+Subject: 
+<%= @order.subject %>
+
+Location: 
+<%=@order.location %>
+
+Description:
+<%=@order.description %>
+
+Projected number of students: <%= @order.enrollment %>
+
+Projected Dates:
+
+Start: <%= @order.start_date %>
+End: <%= @order.end_date %>
+
+#####################################################################
+
+Sent from: http://studyworx.net
+
+
+

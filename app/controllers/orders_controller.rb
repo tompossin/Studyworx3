@@ -44,6 +44,8 @@ class OrdersController < ApplicationController
     @user_schools = current_user.schools_i_own
     respond_to do |format|
       if @order.save
+        Notifier.admin(@order).deliver
+        Notifier.user(@order).deliver
         format.html {redirect_to schools_url }
       else
         format.html { render :edit }
