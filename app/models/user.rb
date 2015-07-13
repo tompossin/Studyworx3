@@ -237,6 +237,7 @@ class User < ActiveRecord::Base
       priv_school.timezone = "UTC"
       priv_school.start_date = today
       priv_school.end_date = today.next_year
+      priv_school.version_id = 2
       priv_school.save
       # Create a participant record to make this user the school leader
       participant = self.participants.new(:school_id => priv_school.id)
@@ -253,8 +254,41 @@ class User < ActiveRecord::Base
       priv_team.name = "Default Team - [private]"
       priv_team.description = "This is the default team for your default school. Do not delete."
       priv_team.save
-    end       
-  
+      # Make new user a member of the core team
+      priv_team.add_member(self)     
+      # Load book list and create assignments/tasks/duedates for each one.
+      bks = Book.find(:all)
+      bks.each do |b|
+        a = priv_school.assignments.new
+        a.school_id = priv_school.id
+        a.book_id = b.id
+        a.name = b.name
+        a.weight = 1
+        a.module = 1
+        a.resources = "This is where you would list links of online resources etc."
+        a.instructions = "This is where you would write instructions for this assignment"
+        a.save
+      end
+      sa = priv_school.assignments.all
+      sa.each do |a|
+        # add task to each assignment
+        t = a.tasks.new
+        t.assignment_id = a.id
+        t.name = "Chart this book"
+        t.percent = 100
+        t.task_type = 3
+        t.position = 0
+        t.help = "This is where you would write instructions for this task."
+        t.save
+        # add duedate to each assignment 
+        d = a.duedates.new
+        d.team_id = priv_team.id
+        d.school_id = a.school_id
+        d.assignment_id = a.id
+        d.duedate = (Time.now.advance(:years => +5))
+        d.save
+      end
+    end        
   end
   
   # Returns a string of the users administrative Status

@@ -162,8 +162,7 @@ protected
       rvg.draw.destroy!
   end
   
-  # FIXME I need to create an error correction system
-  # either here or in the controller or both to deal with a nil observation.
+  
   def build_standard_vertical(task,user_id,title_id)
     max_verses = Title.maximum(:verse_count,:conditions=>['task_id=? AND user_id=? AND title_type=?',task.id,user_id,2])
     vertical_units = 1200/max_verses
