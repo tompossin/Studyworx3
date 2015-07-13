@@ -54,9 +54,48 @@
 <hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
 <node TEXT="Known Bugs" POSITION="right" ID="ID_629576244" CREATED="1436209064940" MODIFIED="1436209469752" VSHIFT="-20">
 <edge COLOR="#ff0000"/>
-<node TEXT="Fix PDF Views for Charts, Docs, and assignments" ID="ID_981116393" CREATED="1436209141188" MODIFIED="1436209190447"/>
-<node TEXT="Debug the math in grade averages &amp; reports" ID="ID_125750655" CREATED="1436209193075" MODIFIED="1436209256500"/>
-<node TEXT="Fix the errors with a missing image" ID="ID_1159191923" CREATED="1436449816107" MODIFIED="1436449828423"/>
+<node TEXT="Work on the &quot;split&quot; error when rendering charts." ID="ID_494858870" CREATED="1436707184645" MODIFIED="1436805180107"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      I think this is caused by null values in ppoints.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      I need to try .blank? as a test it might be the answer.
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="Fix PDF Views for Charts, Docs, and assignments" ID="ID_981116393" CREATED="1436209141188" MODIFIED="1436209190447">
+<node TEXT="Done" ID="ID_381859316" CREATED="1436620153144" MODIFIED="1436620155380"/>
+<node TEXT="ToDo" ID="ID_1258899528" CREATED="1436620155971" MODIFIED="1436620214211"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        May want to just eliminate the whoel PDF/Doc/PanDoc thing and just let everyond do this through their print functions.
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
 <node TEXT="Fix the inefficient queries in the charting process" ID="ID_1247945185" CREATED="1436209257909" MODIFIED="1436451098557">
 <icon BUILTIN="button_ok"/>
 <icon BUILTIN="ksmiletris"/>
@@ -80,6 +119,50 @@
   </body>
 </html>
 </richcontent>
+</node>
+</node>
+<node TEXT="Debug the math in grade averages &amp; reports" ID="ID_125750655" CREATED="1436209193075" MODIFIED="1436209256500">
+<node TEXT="Done" ID="ID_777315662" CREATED="1436620225569" MODIFIED="1436620227272"/>
+<node TEXT="ToDo" ID="ID_1854175238" CREATED="1436620227988" MODIFIED="1436620260425"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        I need to see if the current math is right.
+      </li>
+      <li>
+        I need more reports.
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="Give useful messages for past due assignments." ID="ID_626974536" CREATED="1436804572510" MODIFIED="1436804652411"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      I think it is confusing when people get the grading view and not the editing view under certain circumstances.
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="Fix the errors with a missing image" ID="ID_1159191923" CREATED="1436449816107" MODIFIED="1436620330535">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="80" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1464691866" STARTINCLINATION="210;0;" ENDINCLINATION="210;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 </node>
 </node>
 <node TEXT="Feature upgrades" POSITION="right" ID="ID_1262380660" CREATED="1436209086507" MODIFIED="1436209466240" VSHIFT="40">
@@ -112,10 +195,10 @@
   </body>
 </html>
 </richcontent>
-<node TEXT="Done" ID="ID_1527924779" CREATED="1436451118065" MODIFIED="1436451140308">
-<icon BUILTIN="0%"/>
-</node>
-<node TEXT="ToDo" ID="ID_1609205363" CREATED="1436451120773" MODIFIED="1436451227666"><richcontent TYPE="NOTE">
+<node TEXT="Done" ID="ID_1527924779" CREATED="1436451118065" MODIFIED="1436566045203">
+<icon BUILTIN="button_ok"/>
+<icon BUILTIN="100%"/>
+<richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -137,12 +220,49 @@
 </html>
 </richcontent>
 </node>
+<node TEXT="ToDo" ID="ID_1609205363" CREATED="1436451120773" MODIFIED="1436566032293"/>
 </node>
 <node TEXT="Convert the image generator to HTML canvas" ID="ID_634556502" CREATED="1436209339059" MODIFIED="1436209363632"/>
-<node TEXT="Improve profile views." ID="ID_1464691866" CREATED="1436209405399" MODIFIED="1436209414635"/>
+<node TEXT="Improve profile views." ID="ID_1464691866" CREATED="1436209405399" MODIFIED="1436209414635">
+<node TEXT="Done" ID="ID_1208142290" CREATED="1436619815526" MODIFIED="1436619818776"/>
+<node TEXT="ToDo" ID="ID_234790925" CREATED="1436619819675" MODIFIED="1436619905018"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        Audit use case. Right now people don't find any of this useful or fun.
+      </li>
+      <li>
+        Get rids of the horrible errors that occur when someone has a picture that does not exist.
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 <node TEXT="Improve email lookups, and mass mailing announcements etc." ID="ID_1836840529" CREATED="1436362465040" MODIFIED="1436362493264">
-<node TEXT="Done" ID="ID_461626380" CREATED="1436450621268" MODIFIED="1436451247320">
-<icon BUILTIN="0%"/>
+<node TEXT="Done" ID="ID_461626380" CREATED="1436450621268" MODIFIED="1436566101628">
+<icon BUILTIN="25%"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        I put email addresses in the school admin table to make it easier to contact school leaders.
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_316896251" CREATED="1436450624675" MODIFIED="1436450801856"><richcontent TYPE="NOTE">
 
@@ -165,7 +285,24 @@
 </richcontent>
 </node>
 </node>
-<node TEXT="Create a messaging system for emailing me" ID="ID_1894544313" CREATED="1436398192225" MODIFIED="1436398203606"/>
+<node TEXT="Build a complete school with assignments for private schools" ID="ID_578353542" CREATED="1436804542298" MODIFIED="1436804705848"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      I want people to have a complete school to play with as soon as they log in.
+    </p>
+    <p>
+      This will also go a long way toward helping them set up a proper school on their first time out.
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
 </node>
 <node TEXT="Review and update" POSITION="right" ID="ID_1054138370" CREATED="1436368559250" MODIFIED="1436449407461" VSHIFT="20">
 <edge COLOR="#00ffff"/>
@@ -301,7 +438,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436550277000"><richcontent TYPE="NOTE">
@@ -318,12 +454,11 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
 <node TEXT="Registrations" ID="ID_122918252" CREATED="1436396981397" MODIFIED="1436396984990">
-<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436541693614">
+<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436564128323">
 <icon BUILTIN="button_ok"/>
 <icon BUILTIN="100%"/>
 <richcontent TYPE="NOTE">
@@ -340,10 +475,12 @@
       <li>
         Tested and pushed it up to the server.
       </li>
+      <li>
+        Added an email notification to the registration process. Now the applicant and all the school admins will get an email when someone registers for the school.
+      </li>
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_892196501" CREATED="1436396988429" MODIFIED="1436541657586"><richcontent TYPE="NOTE">
@@ -355,7 +492,6 @@
   <body>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -382,6 +518,9 @@
 </node>
 <node TEXT="Ideas for Studyworx 4" POSITION="left" ID="ID_1495767352" CREATED="1436209114400" MODIFIED="1436209482172" VSHIFT="20">
 <edge COLOR="#ff00ff"/>
+<node TEXT="Look again at the current state of WYSIWYG" ID="ID_1381314725" CREATED="1436620382612" MODIFIED="1436620406504"/>
+<node TEXT="Needs to be Mobile from the start" ID="ID_309835838" CREATED="1436620413203" MODIFIED="1436620424810"/>
+<node TEXT="Needs to be multi-lingual from the start" ID="ID_705092133" CREATED="1436620426485" MODIFIED="1436620440979"/>
 </node>
 </node>
 </map>

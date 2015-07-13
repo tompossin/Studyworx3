@@ -24,6 +24,15 @@ module ApplicationHelper
     end
   end
   
+  def get_email(user_id)
+    if user_id
+      u = User.find(user_id)
+      return u.email
+    else
+      return "Unknown"
+    end
+  end
+  
   # Gets the name for a school_id
   # INFO for use when calling associated models will not work.
   def get_school_name(school_id)

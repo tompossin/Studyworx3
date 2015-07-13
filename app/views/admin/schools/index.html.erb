@@ -3,20 +3,20 @@
     <p class="title larger bolder">School Administration</p>
     <p><%=link_to "Apply for New Public School", new_order_path(user_id: current_user.id) %></p>
       <div class="theader">
-        <span class="cell" style="width:25%;">School Name</span>
-        <span class="cell" style="width:8%;">Active?</span>
-        <span class="cell" style="width:12%;">Start Date</span>
-        <span class="cell" style="width:12%;">End Date</span>
-        <span class="cell" style="width:15%;">Owned By</span>
+        <span class="cell" style="width:30%;">School Name</span>
+        <span class="cell" style="width:5%;">Active?</span>
+        <span class="cell" style="width:8%;">Start Date</span>
+        <span class="cell" style="width:8%;">End Date</span>
+        <span class="cell" style="width:20%;">Owned By</span>
         <span class="cell" style="width:15%">Admin</span>
       </div>
         <% for s in @schools %>
           <div class="trow <%= cycle("odd","even") %>" >
-            <span class="cell" style="width:25%;"><%= s.name %></span>
-            <span class="cell" style="width:8%; background-color:<%= set_color(s.active,:green,:gray)%>;"><%= s.active %></span>
-            <span class="cell" style="width:12%;"><%= s.start_date.strftime("%m/%d/%Y") %></span>
-            <span class="cell" style="width:12%;"><%= s.end_date.strftime("%m/%d/%Y") %></span>
-            <span class="cell" style="width:15%;"><%= get_full_name(s.owner_id) if s.owner_id %></span>
+            <span class="cell" style="width:30%;"><%= s.name %></span>
+            <span class="cell" style="width:5%; background-color:<%= set_color(s.active,:green,:gray)%>;"><%= s.active %></span>
+            <span class="cell" style="width:8%;"><%= s.start_date.strftime("%m/%d/%Y") %></span>
+            <span class="cell" style="width:8%;"><%= s.end_date.strftime("%m/%d/%Y") %></span>
+            <span class="cell" style="width:25%;"><%= get_email(s.owner_id) if s.owner_id %></span>
             <span class="cell" style="width:15%;">
               <%=link_to "edit", edit_admin_school_path(s.id), {class: "smallest"} %>  
               <%= link_to "View", school_path(s.id),{class: "smallest",:title=>"Visit This Schools Home Page"} %>

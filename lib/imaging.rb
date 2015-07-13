@@ -202,16 +202,17 @@ protected
         # Create ppoints for each paragraph title
         t_2 = y_2+32
         for pp in pt.ppoints
-          o = Observation.find(pp.observation_id) if pp.observation_id          
-          canvas.g do |p|
-            content = pp.content
-            # TODO this line needs to be looked at nil values break it
-            content = o.code+" "+pp.content if o
-            content = content.split(/\n/)
-            content.each{|e|
-              p.text(i_center,t_2,e).styles(:font_size=>14,:font_style=>'normal',:font_weight=>400,:text_anchor=>'middle',:fill=>pp.color)
-              t_2 += 18
-            }                       
+          o = Observation.find(pp.observation_id) if pp.observation_id  
+          unless o.blank? || pp.content.blank?        
+            canvas.g do |p|
+              content = pp.content
+              content = o.code+" "+pp.content
+              content = content.split(/\n/)
+              content.each{|e|
+                p.text(i_center,t_2,e).styles(:font_size=>14,:font_style=>'normal',:font_weight=>400,:text_anchor=>'middle',:fill=>pp.color)
+                t_2 += 18
+              }                       
+            end
           end
         end
         y_2 += height
