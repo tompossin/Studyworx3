@@ -233,7 +233,7 @@ class User < ActiveRecord::Base
       priv_school = School.new
       priv_school.private = true
       priv_school.owner_id = self.id
-      priv_school.name = self.fullname + " - [private]"
+      priv_school.name = self.email + " - [private]"
       priv_school.timezone = "UTC"
       priv_school.start_date = today
       priv_school.end_date = today.next_year
