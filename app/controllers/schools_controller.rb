@@ -7,7 +7,6 @@ class SchoolsController < ApplicationController
   
   # This is the first page after successful login
   # It will load either index or homeroom at this point depending on the state of user.school
-  # TODO Create a new model/controller for handling new school requests (maybe with hooks for charging fees)
   def index
     current_user.check_or_create_private_school
     @school = School.find_or_initialize_by_id(current_user.school)
@@ -44,6 +43,7 @@ class SchoolsController < ApplicationController
   
   # This is the default page for a participant.
   def homeroom
+    current_user.check_or_create_private_school
     @school = School.find(current_user.school)
     check_for_pending_registrations
     load_school_vars
