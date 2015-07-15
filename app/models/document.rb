@@ -1,8 +1,8 @@
 class Document < ActiveRecord::Base
   has_one :endnote, :dependent => :destroy
-  belongs_to :assignment
-  belongs_to :task
-  belongs_to :user
+  belongs_to :assignment, inverse_of: :documents
+  belongs_to :task, inverse_of: :documents
+  belongs_to :user, inverse_of: :documents
   belongs_to :school
   has_many :staffnotes, as: :noteable, dependent: :destroy
   

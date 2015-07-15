@@ -80,7 +80,7 @@ class DocumentsController < ApplicationController
   # task_related_documents_path(@task)
   # /task/:task_id/documents/related
   def related_documents
-    @documents = Document.includes(:assignment,:task).where("user_id = ? and assignment_id = ?",current_user.id,@task.assignment_id).all
+    @documents = Document.joins(:assignment,:task).where("documents.user_id = ? and documents.assignment_id = ?",current_user.id,@task.assignment_id).all
     respond_to do |format|
       format.js
     end
@@ -89,7 +89,12 @@ class DocumentsController < ApplicationController
   # all_user_documents_path
   # documents/all/user
   def all_user
-    @documents = Document.includes(:assignment,:task).where("user_id = ?",current_user.id).reorder("assignments.name ASC").all
+    @documents = Document
+      .joins(:task, :assignment)
+      .select("documents.id,documents.user_id,documents.school_id,documents.assignment_id,documents.task_id,assignments.name,tasks.name")
+      .where("documents.user_id = ?",current_user.id)
+      .reorder("assignments.name ASC")
+      .all
     respond_to do |format|
       format.js {render :related_documents}
     end
