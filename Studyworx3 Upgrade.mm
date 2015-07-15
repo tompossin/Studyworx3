@@ -87,7 +87,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 <node TEXT="ToDo" ID="ID_286321716" CREATED="1436879444993" MODIFIED="1436879506452"><richcontent TYPE="NOTE">
 
@@ -104,15 +103,11 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
-<node TEXT="Fix PDF Views for Charts, Docs, and assignments" ID="ID_981116393" CREATED="1436209141188" MODIFIED="1436880998078">
-<icon BUILTIN="yes"/>
-<icon BUILTIN="full-1"/>
-<node TEXT="Done" ID="ID_381859316" CREATED="1436620153144" MODIFIED="1436620155380"/>
-<node TEXT="ToDo" ID="ID_1258899528" CREATED="1436620155971" MODIFIED="1436880965904"><richcontent TYPE="NOTE">
+<node TEXT="Fix PDF Views for Charts, Docs, and assignments" ID="ID_981116393" CREATED="1436209141188" MODIFIED="1436991529670">
+<node TEXT="Done" ID="ID_381859316" CREATED="1436620153144" MODIFIED="1436991509802"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -121,7 +116,7 @@
   <body>
     <ul>
       <li>
-        May want to just eliminate the whole PDF/Doc/PanDoc thing and just let everyond do this through their print functions.
+        Got rid of every option except for print on the assignment page. Too many issues with pandoc and the whole document creation process.
       </li>
     </ul>
   </body>
@@ -129,6 +124,7 @@
 
 </richcontent>
 </node>
+<node TEXT="ToDo" ID="ID_1258899528" CREATED="1436620155971" MODIFIED="1436991460655"/>
 <node TEXT="Fix the inefficient queries in the charting process" ID="ID_1247945185" CREATED="1436209257909" MODIFIED="1436451098557">
 <icon BUILTIN="button_ok"/>
 <icon BUILTIN="ksmiletris"/>
@@ -193,13 +189,10 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="Fix the errors with a missing image" ID="ID_1159191923" CREATED="1436449816107" MODIFIED="1436620330535">
+<node TEXT="Fix the errors with a missing image" ID="ID_1159191923" CREATED="1436449816107" MODIFIED="1436991424885">
+<icon BUILTIN="help"/>
 <arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="80" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1464691866" STARTINCLINATION="210;0;" ENDINCLINATION="210;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
-</node>
-</node>
-<node TEXT="Feature upgrades" POSITION="right" ID="ID_1262380660" CREATED="1436209086507" MODIFIED="1436209466240" VSHIFT="40">
-<edge COLOR="#0000ff"/>
-<node TEXT="Look at drop vs delete for personnel may need to add delete (or move)" ID="ID_367257797" CREATED="1436209305134" MODIFIED="1436449374077"><richcontent TYPE="NOTE">
+<richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -207,27 +200,18 @@
   </head>
   <body>
     <p>
-      We may want to look at the ability to reassign people that have applied to the wrong school.
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      The delete feature may cover this as long as we can delete only the registration and nothing else about the user.
-    </p>
-    <p>
-      
-    </p>
-    <p>
-      <b>This would be a two step process. Check for work by the user in that school. Delete the participant record.</b>
-    </p>
-    <p>
-      
+      So far I have not been able to find this error.
     </p>
   </body>
 </html>
+
 </richcontent>
-<node TEXT="Done" ID="ID_1527924779" CREATED="1436451118065" MODIFIED="1436566045203">
+</node>
+</node>
+<node TEXT="Feature upgrades" POSITION="right" ID="ID_1262380660" CREATED="1436209086507" MODIFIED="1436209466240" VSHIFT="40">
+<edge COLOR="#0000ff"/>
+<node TEXT="Look at drop vs delete for personnel may need to add delete (or move)" ID="ID_367257797" CREATED="1436209305134" MODIFIED="1436994175503">
+<node TEXT="Done" ID="ID_1527924779" CREATED="1436451118065" MODIFIED="1436994243318">
 <icon BUILTIN="button_ok"/>
 <icon BUILTIN="100%"/>
 <richcontent TYPE="NOTE">
@@ -242,14 +226,15 @@
         Look at relationships between User and Participant
       </li>
       <li>
-        Write code for checking if a participant has any work in the school.
+        Write code for deleting the participant.
       </li>
       <li>
-        Write code for deleting the participant.
+        Participant can be deleted without losing any work. If it is deleted and has work in the school all that needs to happen is that they need to re-register.
       </li>
     </ul>
   </body>
 </html>
+
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1609205363" CREATED="1436451120773" MODIFIED="1436566032293"/>
@@ -355,9 +340,27 @@
     </p>
   </body>
 </html>
+</richcontent>
+<node TEXT="Done" ID="ID_1426441644" CREATED="1436994282268" MODIFIED="1436994378216">
+<icon BUILTIN="50%"/>
+<richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        Set up a complete school (mostly when a new user is created.
+      </li>
+    </ul>
+  </body>
+</html>
 
 </richcontent>
-<node TEXT="ToDo" ID="ID_1482203467" CREATED="1436879334633" MODIFIED="1436879409703"><richcontent TYPE="NOTE">
+</node>
+<node TEXT="ToDo" ID="ID_1482203467" CREATED="1436879334633" MODIFIED="1436994390523"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -375,7 +378,6 @@
     </p>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -493,7 +495,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_364740642" CREATED="1436881319608" MODIFIED="1436881400338"><richcontent TYPE="NOTE">
@@ -510,7 +511,6 @@
     </ol>
   </body>
 </html>
-
 </richcontent>
 </node>
 </node>
@@ -572,10 +572,7 @@
 </node>
 </node>
 <node TEXT="Registrations" ID="ID_122918252" CREATED="1436396981397" MODIFIED="1436396984990">
-<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436564128323">
-<icon BUILTIN="button_ok"/>
-<icon BUILTIN="100%"/>
-<richcontent TYPE="NOTE">
+<node TEXT="Done" ID="ID_560103812" CREATED="1436396985540" MODIFIED="1436991359776"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -608,6 +605,26 @@
 </html>
 </richcontent>
 </node>
+</node>
+<node TEXT="Documents" ID="ID_1855074069" CREATED="1436991279361" MODIFIED="1436991283894">
+<node TEXT="Done" ID="ID_197912035" CREATED="1436991284918" MODIFIED="1436991341640"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        Fixed the related documents and the all documents viewer in the assignments section.
+      </li>
+    </ul>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="ToDo" ID="ID_1366703877" CREATED="1436991290245" MODIFIED="1436991293510"/>
 </node>
 </node>
 <node TEXT="Workflow upgrades" POSITION="left" ID="ID_116711063" CREATED="1436209107292" MODIFIED="1436209477717" VSHIFT="-30">

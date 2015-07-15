@@ -288,6 +288,14 @@ class User < ActiveRecord::Base
         d.duedate = (Time.now.advance(:years => +5))
         d.save
       end
+      # populate observation table
+      obs = Observation.where("school_id = ?",7).all
+      obs.each do |o|
+        pso = priv_school.observations.new
+        pso.code = o.code
+        pso.name = o.name
+        pso.save
+      end
     end        
   end
   
