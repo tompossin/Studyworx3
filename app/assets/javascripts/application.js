@@ -17,3 +17,4 @@
 //= require wysi_advanced
 //= require jquery.textarea.min 
 //= require main
+//= require canvas
