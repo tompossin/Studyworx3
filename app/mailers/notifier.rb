@@ -46,6 +46,7 @@ class Notifier < ActionMailer::Base
   ############################################################################
   ########################### PARTICIPANTS (REGISTRATIONS) ###################
   
+  # This sends an email to the user when a new registration is created
   def participant_user(participant,school)
     @participant = participant
     @school = school
@@ -59,6 +60,7 @@ class Notifier < ActionMailer::Base
           subject: "Thank you for your recent registration to " + @school.name
   end
   
+  # This sends an email to the school Admins and school leaders when a new registration is created
   def participant_admins(participant,school)
     @participant = participant
     @school = school
@@ -71,6 +73,34 @@ class Notifier < ActionMailer::Base
           from: applicant_email,
           reply_to: applicant_email,
           subject: @applicant.fullname + " has registered to " + @school.name + " and is waiting for acceptance."
+  end
+  
+  # This sends an email to the user when a registration has been accepted
+  def participant_acceptance(participant,school)
+    @participant = participant
+    @school = school
+    admin_user_ids = Participant.where("school_id = ? and role_id < ?",@school.id,3).all.map(&:user_id)
+    schooladmins = User.where(id: admin_user_ids).all.map(&:email)
+    @applicant = User.find(@participant.user_id)
+    applicant_email = "#{@applicant.fullname} <#{@applicant.email}>"
+    
+    mail to: applicant_email,
+            reply_to: schooladmins,
+            subject: "Congratulations! You have been accepted to" + @school.name + " !"
+  end
+  
+  # This sends an email to the user when a registration has been deleted
+  def participant_deleted(participant,school)
+    @participant = participant
+    @school = school
+    admin_user_ids = Participant.where("school_id = ? and role_id < ?",@school.id,3).all.map(&:user_id)
+    schooladmins = User.where(id: admin_user_ids).all.map(&:email)
+    @applicant = User.find(@participant.user_id)
+    applicant_email = "#{@applicant.fullname} <#{@applicant.email}>"
+    
+    mail to: applicant_email,
+            reply_to: schooladmins,
+            subject: "Re: Your registration to " + @school.name 
   end
   
   ####################### END PARTICIPANTS (REGISTRATIONS) ################### 

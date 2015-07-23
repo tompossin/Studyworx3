@@ -38,6 +38,9 @@ class Admin::ToolsController < ApplicationController
         if @participant.update_attributes(params[:participant])
           @user.change_to_coreteam(params[:coreteam])
           @user.set_school(@participant.school_id)
+          if @participant.accepted == 2
+            Notifier.participant_acceptance(@participant,@school).deliver
+          end
           format.js 
         else
           format.js { render "shared/save_failed" }

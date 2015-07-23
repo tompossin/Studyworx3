@@ -100,7 +100,10 @@ class ParticipantsController < ApplicationController
       if @participant.update_attributes(params[:participant])
         @team = Team.find(params[:coreteam])
         @team.add_member(@participant.user)
-        format.js 
+        format.js
+        if @participant.accepted == 2
+          Notifier.participant_acceptance(@participant,@school).deliver
+        end 
       else
         format.js { render "register_failure" }
       end
@@ -115,6 +118,7 @@ class ParticipantsController < ApplicationController
     @participant.destroy
 
     respond_to do |format|
+      Notifier.participant_deleted(@participant,@school).deliver
       format.html { redirect_to admin_tools_personnel_url }
     end
   end
