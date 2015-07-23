@@ -51,9 +51,6 @@
           <span class="cell" style="width:5%;">
             <%=link_to "Edit", edit_admin_assignment_path(a.id), {title: "Edit this assignment"} %>
           </span>
-          <span class="cell" style="width:8%;">
-            <%=link_to "Delete", [:admin,a], {method: :delete, title: "Delete this assignment and all tasks.", data: {confirm: "Are you sure?"}} %>
-          </span>
           <span class="cell" style="width:12%;">
             <%=link_to "Tasks", admin_assignment_tasks_path(a.id), {title: "Add or Edit Tasks for this assignment"}  %>
           </span>

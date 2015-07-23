@@ -121,7 +121,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1258899528" CREATED="1436620155971" MODIFIED="1436991460655"/>
@@ -191,7 +190,6 @@
 </node>
 <node TEXT="Fix the errors with a missing image" ID="ID_1159191923" CREATED="1436449816107" MODIFIED="1436991424885">
 <icon BUILTIN="help"/>
-<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="80" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1464691866" STARTINCLINATION="210;0;" ENDINCLINATION="210;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 <richcontent TYPE="NOTE">
 
 <html>
@@ -204,8 +202,8 @@
     </p>
   </body>
 </html>
-
 </richcontent>
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="80" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1464691866" STARTINCLINATION="210;0;" ENDINCLINATION="210;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 </node>
 </node>
 <node TEXT="Feature upgrades" POSITION="right" ID="ID_1262380660" CREATED="1436209086507" MODIFIED="1436209466240" VSHIFT="40">
@@ -234,7 +232,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1609205363" CREATED="1436451120773" MODIFIED="1436566032293"/>
@@ -357,7 +354,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1482203467" CREATED="1436879334633" MODIFIED="1436994390523"><richcontent TYPE="NOTE">
@@ -594,15 +590,23 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="ToDo" ID="ID_892196501" CREATED="1436396988429" MODIFIED="1436541657586"><richcontent TYPE="NOTE">
+<node TEXT="ToDo" ID="ID_892196501" CREATED="1436396988429" MODIFIED="1437409748886">
+<icon BUILTIN="yes"/>
+<richcontent TYPE="NOTE">
 
 <html>
   <head>
     
   </head>
   <body>
+    <ul>
+      <li>
+        I need to send an email when a person is accpeted as well.
+      </li>
+    </ul>
   </body>
 </html>
+
 </richcontent>
 </node>
 </node>
@@ -621,7 +625,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1366703877" CREATED="1436991290245" MODIFIED="1436991293510"/>
@@ -653,6 +656,9 @@
 <node TEXT="Look again at the current state of WYSIWYG" ID="ID_1381314725" CREATED="1436620382612" MODIFIED="1436620406504"/>
 <node TEXT="Needs to be Mobile from the start" ID="ID_309835838" CREATED="1436620413203" MODIFIED="1436620424810"/>
 <node TEXT="Needs to be multi-lingual from the start" ID="ID_705092133" CREATED="1436620426485" MODIFIED="1436620440979"/>
+<node TEXT="Include the full biblical text" ID="ID_530714646" CREATED="1437413614973" MODIFIED="1437413628126">
+<node TEXT="Ideally with the ability to mark it up" ID="ID_663628186" CREATED="1437413629389" MODIFIED="1437413643259"/>
+</node>
 </node>
 </node>
 </map>

@@ -41,7 +41,7 @@
             <span class="cell" style="width:50px;">Percent</span>
             <span class="cell" style="width:100px;">Type</span>
             <span class="cell" style="width:100px;">Template</span>
-            <span class="cell" style="width:100px;">Admin</span>
+            <span class="cell" style="width:100px;text-align: center">Admin</span>
           </div>
           <div id="sortable">
           <% for t in @tasks %>
@@ -52,9 +52,8 @@
               <span class="cell" style="width:50px;"><%= number_to_percentage(t.percent, precision:0) %></span>
               <span class="cell" style="width:100px;"><%= get_task_type_name(t.task_type) %></span>
               <span class="cell" style="width:100px;"><%= get_templat_name(t.templat_id) %></span>
-              <span class="cell" style="width:100px;">
+              <span class="cell" style="width:100px;text-align: center">
                 <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t) %> 
-                <%=link_to "destroy",admin_assignment_task_path(@assignment,t), method: :delete, data: { confirm: 'Are you sure?' } %>
               </span>
             </div>
           <% end %>
