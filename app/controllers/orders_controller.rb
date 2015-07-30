@@ -55,10 +55,13 @@ class OrdersController < ApplicationController
   
   def update
     @order = Order.find(params[:id])
-    @order.clone = params[:clone]
     @user_schools = current_user.schools_i_own
+    @order.price = params[:order][:price]
+    @order.billed = params[:order][:billed]
+    @order.paid = params[:order][:paid]
+    @order.approved = params[:order][:approved]
     respond_to do |format|
-      if @order.update_attributes(params[:order])
+      if @order.save
         format.html { render :show }
       else
         format.html { render :edit }
