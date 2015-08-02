@@ -473,7 +473,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_1108212109" CREATED="1436450026481" MODIFIED="1436450028426"/>
@@ -498,13 +497,12 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_364740642" CREATED="1436881319608" MODIFIED="1437683488393"/>
 </node>
 <node TEXT="Orders related" ID="ID_762530602" CREATED="1436393460743" MODIFIED="1436393736920">
-<node TEXT="Done" ID="ID_1101262223" CREATED="1436393736910" MODIFIED="1436550420425">
+<node TEXT="Done" ID="ID_1101262223" CREATED="1436393736910" MODIFIED="1438356196056">
 <icon BUILTIN="75%"/>
 <richcontent TYPE="NOTE">
 
@@ -538,9 +536,13 @@
       <li>
         Added notification emails to both the customer and the superadmin when an order is made.
       </li>
+      <li>
+        Fixed a bug that was causing the desired clone school to be nulled out when the school was approved. (very awkward)
+      </li>
     </ul>
   </body>
 </html>
+
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436550277000"><richcontent TYPE="NOTE">

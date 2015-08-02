@@ -39,6 +39,12 @@
         <p>
           <%= @order.enrollment %>
         </p>
+        <p class="title larger">
+          Amount of Contribution:
+        </p>
+        <p>
+          <%= @order.price %>
+        </p>
         <p class="title larger">Starting Date:</p>
         <p>
           <%= @order.start_date.to_date.to_formatted_s(:long_ordinal) %>
