@@ -53,7 +53,11 @@
               <span class="cell" style="width:100px;"><%= get_task_type_name(t.task_type) %></span>
               <span class="cell" style="width:100px;"><%= get_templat_name(t.templat_id) %></span>
               <span class="cell" style="width:100px;text-align: center">
-                <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t) %> 
+                <%=link_to "edit", edit_admin_assignment_task_path(@assignment,t) %>
+                &nbsp;&nbsp;&nbsp;
+                <% unless @school.participants.check_for_students %>
+                  <%=link_to "Delete", admin_assignment_task_path(@assignment,t), {method: :delete, data:{confirm: 'ARE YOU SURE??'}, title: "This will destroy this task"}%>
+                <% end %> 
               </span>
             </div>
           <% end %>

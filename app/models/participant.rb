@@ -50,6 +50,19 @@ class Participant < ActiveRecord::Base
        "U"
      end
   end
+  
+  #typical Usage:
+  # @students = @school.participants.count_students
+  # returns T/F if there are any current accepted students
+  def self.check_for_students
+    number_of_students = self.where("role_id = ? and accepted = ?",4,2).count
+    if number_of_students > 0
+      return true
+    else
+      return false
+    end
+  end
+  
   # Typical Usage:
   #  @pending_participants = @school.participants.pending
   def self.pending

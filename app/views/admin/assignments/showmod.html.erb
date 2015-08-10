@@ -51,8 +51,14 @@
           <span class="cell" style="width:5%;">
             <%=link_to "Edit", edit_admin_assignment_path(a.id), {title: "Edit this assignment"} %>
           </span>
-          <span class="cell" style="width:12%;">
+          <span class="cell" style="width:6%;">
             <%=link_to "Tasks", admin_assignment_tasks_path(a.id), {title: "Add or Edit Tasks for this assignment"}  %>
+          </span>
+          
+          <span class="cell" style="width:6%;">
+            <% unless @school.participants.check_for_students %>
+              <%=link_to "Delete", admin_assignment_path(a.id), {method: :delete, title: "Delete this assignment and all tasks", data: { confirm: 'This will destroy the TASKS also...Are you sure?' } }  %>
+            <% end %>
           </span>
           <span class="cell" style="width:8%;">
             <%=link_to "clone", admin_assignment_clone_path(a), { method: :post, title: "Create a clone of this assignment and tasks." } %>

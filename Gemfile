@@ -61,4 +61,5 @@ gem 'unicorn'
 # To use debugger
 gem 'debugger2'
 # or use byebug
+gem 'test-unit', '~> 3.0'
 
