@@ -22,4 +22,4 @@
 # Ignore sensitive config files
 /config/environments/production.rb
 /config/database.yml
-
+Gemfile
