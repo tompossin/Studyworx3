@@ -10,7 +10,8 @@
   <% if @linklabel %>
     <div class="more">
       <span> <%=@current_count if @current_count > 0 %> </span>
-      <%=link_to @linklabel, get_read_messages_path({ page: @page||0 }),{remote: true} %>
+      <%=link_to @linklabel, messages_path({ page: @page||0 }),{remote: true} %>
     </div>
   <% end %>
+
 <% end %>

@@ -188,7 +188,7 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="Fix the errors with a missing image" ID="ID_1159191923" CREATED="1436449816107" MODIFIED="1436991424885">
+<node TEXT="Fix the errors with a missing image" ID="ID_1159191923" CREATED="1436449816107" MODIFIED="1438900630600">
 <icon BUILTIN="help"/>
 <richcontent TYPE="NOTE">
 
@@ -198,10 +198,17 @@
   </head>
   <body>
     <p>
-      So far I have not been able to find this error.
+      This is mostly caused by Mac nerds. I guess Mac automatically request that apple-touch.png image every time they hit the site.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Dumb.
     </p>
   </body>
 </html>
+
 </richcontent>
 <arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="80" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_1464691866" STARTINCLINATION="210;0;" ENDINCLINATION="210;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
 </node>
@@ -239,7 +246,7 @@
 <node TEXT="Convert the image generator to HTML canvas" ID="ID_634556502" CREATED="1436209339059" MODIFIED="1436209363632"/>
 <node TEXT="Improve profile views." ID="ID_1464691866" CREATED="1436209405399" MODIFIED="1436209414635">
 <node TEXT="Done" ID="ID_1208142290" CREATED="1436619815526" MODIFIED="1436619818776"/>
-<node TEXT="ToDo" ID="ID_234790925" CREATED="1436619819675" MODIFIED="1436619905018"><richcontent TYPE="NOTE">
+<node TEXT="ToDo" ID="ID_234790925" CREATED="1436619819675" MODIFIED="1438900525336"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -251,11 +258,12 @@
         Audit use case. Right now people don't find any of this useful or fun.
       </li>
       <li>
-        Get rids of the horrible errors that occur when someone has a picture that does not exist.
+        Get rid of the errors caused by apple rigs looking for an icon that is not there.
       </li>
     </ul>
   </body>
 </html>
+
 </richcontent>
 </node>
 </node>
@@ -381,39 +389,7 @@
 <node TEXT="Review and update" POSITION="right" ID="ID_1054138370" CREATED="1436368559250" MODIFIED="1436449407461" VSHIFT="20">
 <edge COLOR="#00ffff"/>
 <node TEXT="School Admin" ID="ID_1513478378" CREATED="1436368572327" MODIFIED="1436368578049">
-<node TEXT="Workflow Audit" ID="ID_1264907118" CREATED="1436368601314" MODIFIED="1436368608026">
-<node TEXT="I want to create a public school" ID="ID_990434506" CREATED="1436368612407" MODIFIED="1436368744723"><richcontent TYPE="NOTE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <ol>
-      <li>
-        request the creation of a school from the school admin page. (not very intuitive)
-
-        <ol>
-          <li>
-            Ideas
-
-            <ol>
-              <li>
-                Put link in Navbar
-              </li>
-              <li>
-                Put link in account drop down list
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </body>
-</html>
-</richcontent>
-</node>
-</node>
+<node TEXT="Workflow Audit" ID="ID_1264907118" CREATED="1436368601314" MODIFIED="1436368608026"/>
 </node>
 <node TEXT="Assignment Admin" ID="ID_1567385989" CREATED="1436368578977" MODIFIED="1436368584396"/>
 </node>
@@ -542,7 +518,6 @@
     </ul>
   </body>
 </html>
-
 </richcontent>
 </node>
 <node TEXT="ToDo" ID="ID_347116273" CREATED="1436393740206" MODIFIED="1436550277000"><richcontent TYPE="NOTE">

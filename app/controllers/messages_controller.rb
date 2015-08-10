@@ -9,8 +9,19 @@ class MessagesController < ApplicationController
   
   # Loading user unread personal conversations via AJAX
   def index
-    @messages = Message.get_unread_messages(current_user.id)
+    pagesize = Settings.pagesize # set number of messages to display at once. Could be user defined someday.
+    @page = params[:page].to_i||0  
+    @messages = Message.get_unread_messages(current_user.id,pagesize,@page)
     @message_partial = "message"
+    count = Message.count_all_unread_messages(current_user.id)
+    @page += 1
+    @current_count = count - pagesize*@page
+    unless count <= pagesize*@page
+      @linklabel = "more messages..."
+    else
+      @page = 0
+      @linklabel = "End of messages"
+    end
     Message.update_personal_views(current_user.id)
     
     respond_to do |format|

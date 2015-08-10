@@ -24,11 +24,11 @@ class Message < ActiveRecord::Base
     return Message.count(:conditions =>[ "team_id IN (?) and parent_id IS NULL",teams])
   end
   
-  def self.get_unread_messages(user_id)
+  def self.get_unread_messages(user_id,pagesize=0,page=0)
     return Message.where("((recipient_id = ? and recipient_read = ?) 
                                   or (sender_id = ? and sender_read = ?)) 
                                   and parent_id IS NULL",
-                                  user_id,false,user_id,false).all
+                                  user_id,false,user_id,false).offset(page*pagesize).limit(pagesize)
   end
   
   # Counts all the personal read messages.
