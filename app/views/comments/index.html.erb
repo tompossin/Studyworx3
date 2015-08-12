@@ -5,10 +5,10 @@
 <div id="content-large">
   <article>
     <section class="topic">
-      <h3><%= @task.assignment.name %> Discussion Topic</h3>
+      <h3><%= @task.name %> </h3>
       <%= formatter(@task.help) %>
       <div>
-        <%=link_to "New Root Comment", new_task_comment_path(@task),{remote: true}%>
+        <%=link_to "New Topic for Dicussion", new_task_comment_path(@task),{remote: true}%>
       </div>
       <div id="new_root"></div>
     </section>

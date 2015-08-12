@@ -28,9 +28,7 @@ class CommentsController < ApplicationController
   def new_child
     @parent = Comment.find(params[:id])
     @comment = @parent.children.new(user_id: current_user.id, task_id: @task.id)
-    respond_to do |format|
-      format.js
-    end
+
   end
   
   def edit
