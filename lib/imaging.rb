@@ -201,8 +201,11 @@ protected
         # Create ppoints for each paragraph title
         t_2 = y_2+32
         for pp in pt.ppoints
-          o = Observation.find(pp.observation_id) if pp.observation_id  
-          unless o.blank? || pp.content.blank?        
+          o = Observation.where("id = ?",pp.observation_id).first
+          unless o
+            o = Observation.new(code: "[Blank]")
+          end 
+          unless pp.content.blank?        
             canvas.g do |p|
               content = pp.content
               content = o.code+" "+pp.content
