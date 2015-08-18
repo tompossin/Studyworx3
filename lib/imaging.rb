@@ -203,7 +203,7 @@ protected
         for pp in pt.ppoints
           o = Observation.where("id = ?",pp.observation_id).first
           unless o
-            o = Observation.new(code: "[Blank]")
+            o = Observation.new(code: " ")
           end 
           unless pp.content.blank?        
             canvas.g do |p|
