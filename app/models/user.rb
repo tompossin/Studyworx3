@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
   end
   
   def schools_i_belong_to
-    enrolements = self.participants.pluck(:school_id)
+    enrolements = self.participants.where("accepted = ?",2).pluck(:school_id)
     schools = School.find(enrolements)
     return schools
   end
