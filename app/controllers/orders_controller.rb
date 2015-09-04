@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new(user_id: params[:user_id])
     user = User.find(params[:user_id])
-    @user_schools = user.schools_i_own
+    @user_schools = user.schools_i_belong_to
     respond_to do |format|
       format.html
     end

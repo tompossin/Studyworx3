@@ -125,6 +125,12 @@ class User < ActiveRecord::Base
     School.where("owner_id = ?",self.id).all
   end
   
+  def schools_i_belong_to
+    enrolements = self.participants.pluck(:school_id)
+    schools = School.find(enrolements)
+    return schools
+  end
+  
   
   # Checks users authority to administrate schools
   # * A school admin has a participant.role_id < 3
