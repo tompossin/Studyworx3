@@ -85,6 +85,24 @@ section {
   float:right;
 }
 
+figure {
+  margin-left:auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figcaption {
+  font-family: Garamond, Georgia;
+  font-style: italic;
+  text-align: center;
+}
+
 code {
   display: block;
   background-color: #e0e0e0;

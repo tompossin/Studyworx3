@@ -16,7 +16,7 @@ gem 'rails', '~>3.2.14'
 gem 'paperclip'
 gem 'thin'
 gem 'seed_dump'
-gem 'mysql2'
+gem 'mysql2','~> 0.3.10' # Don't change this it breaks the server. 3.30.16 {:> Me
 gem 'closure_tree' # replaces acts_as_tree
 gem 'settingslogic' # This does global settings but I may not need it later.
 gem 'acts_as_list'
@@ -31,11 +31,11 @@ gem 'devise'
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-  
-  
+
+
   # handles local copy of rails docs - start server with {:> yard server --gems
   gem 'yard'
-    
+
   # gem 'acts_as_tree'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

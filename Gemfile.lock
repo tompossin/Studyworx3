@@ -178,7 +178,7 @@ DEPENDENCIES
   devise
   jquery-rails
   jquery-ui-rails
-  mysql2
+  mysql2 (~> 0.3.10)
   paperclip
   rails (~> 3.2.14)
   rb-readline (~> 0.4.2)
