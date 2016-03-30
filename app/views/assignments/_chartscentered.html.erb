@@ -6,11 +6,8 @@
 
 <% @verticals.each do |v| %>
   <section>
-    
+    <figure>
       <%= get_chart_image(current_user,task,v,"vertical")%>
-
-
-      <%= smart_format(v.charttext.content_type,v.charttext.content) if v.charttext %>
-
+    </figure>
   </section>
 <% end %>

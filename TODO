@@ -24,3 +24,7 @@ app/models/title.rb:
 app/models/user.rb:
   * [ 33] [FIXME] I need a Jquery checker on the image uploading page that will prevent
 
+app/controllers/assignments_controller.rb
+  * Need to add a new method for printallcentered
+app/app/views/assignments/(new file)printallcentered.html.erb
+  * need a new view for the centered view of verticals.

@@ -31,7 +31,7 @@ class Assignment < ActiveRecord::Base
   # This return true/false depending on if there is still time remaining to work
   # * Usage: @assignment.editable?(current_user)
   def editable?(user)
-    timenow = Time.now.in_time_zone
+    timenow = Time.now.in_time_zone('UTC')
     due = self.duetime(user)
     if due # If there is a duedate
       if due.duedate

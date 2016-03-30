@@ -64,4 +64,3 @@ gem 'debugger2'
 
 # use this for running rails console
 # gem 'test-unit', '~> 3.0'
-

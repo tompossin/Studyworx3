@@ -1,0 +1,13 @@
+<div>
+  <div class="noprint">
+    <%= link_to "close", :back %>
+  </div>
+  <header>
+    <h2><%= @assignment.name %></h2>
+    <p style="text-align: right;"><%= current_user.fullname %></p>
+  </header>
+  <% if @chart %>
+    <%= render partial: "chartscentered", locals: {task: @chart} %>
+  <% end %>
+
+</div>

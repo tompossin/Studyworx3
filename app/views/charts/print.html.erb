@@ -2,7 +2,7 @@
   <div class="noprint">
     <%= link_to "close", :back %>
   </div>
-  <header>    
+  <header>
     <h2><%= @task.assignment.name %></h2>
     <p style="text-align: right;"><%= current_user.fullname %></p>
   </header>
@@ -13,12 +13,9 @@
 
     <% @verticals.each do |v| %>
       <section>
-
           <%= get_chart_image(current_user,@task,v,"vertical")%>
-        
 
-          <%= smart_format(v.charttext.content_type,v.charttext.content) if v.charttext %>   
-        
+          <%= smart_format(v.charttext.content_type,v.charttext.content) if v.charttext %>
       </section>
     <% end %>
 

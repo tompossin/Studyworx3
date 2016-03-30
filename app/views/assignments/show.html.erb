@@ -6,14 +6,14 @@
   <article>
     <h2><%= @assignment.name %><%= " - "+letter_grade(@grade.grade) if @grade %></h2>
     <div class="toolbar" >
-      <span class="cell"><%=link_to "Instructions/Resources", school_assignment_help_path(@school,@assignment),{remote: true, title: "Click to view Assignment Instructions and Resources."}  %></span>    
+      <span class="cell"><%=link_to "Instructions/Resources", school_assignment_help_path(@school,@assignment),{remote: true, title: "Click to view Assignment Instructions and Resources."}  %></span>
       <span class="cell" ><%=link_to "turn-in",school_hand_in_path(@school,assignment_id: @assignment),{remote: true, method: "post", title: "Click to make this assignment available to your checker."} %></span>
       <span class="cell" ><%=link_to(image_tag("iconic/clock_16x16.png",size: "16x16"), school_assignment_time_remaining_path(@school,@assignment),{remote: true, title: "Click to view time remaining."}) %></span>
-      <span id="stopwatch" class="cell" > 
+      <span id="stopwatch" class="cell" >
         <%=image_tag("gray/arrow1_w.png",size: "10x10")%> Click to check time remaining
       </span>
     </div>
-    
+
     <div class="float_left">
       <p class="title large">
         Assignment Tasks <span id="checker" class="smallest red" ><%= " -- Checker: #{@checker.fullname}" if @checker %></span>
@@ -23,6 +23,12 @@
         <span class="cell" style="width:65%;">Print/View</span>
       </div>
       <%= render @assignment.tasks %>
+      <div class="trow">
+        <span class="cell" style="width:30%;">PRINT BLANK CHARTS</span>
+        <span class="cell" style="width:18%;">...........</span>
+        <span class="cell" style="width:4%;"><%= link_to image_tag("iconic/info_8x16.png",size:"8x16"),help_path(11),{remote: true,title:"Use this to print blank Chart frames."} %></span>
+        <span class="cell" style="width:7%;"><%= link_to "print", school_assignment_printallcentered_path(@school,@assignment) %></span>
+      </div>
       <div class="trow">
         <span class="cell" style="width:30%;">View or Save all Tasks</span>
         <span class="cell" style="width:18%;">...........</span>

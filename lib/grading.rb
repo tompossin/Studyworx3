@@ -3,8 +3,8 @@ module Grading
   # This Module provides shared methods for grading, particularly for totals and averaging.
   # These methods will be used mostly for reports
   
-  # TODO this method and quarterly_grade_average below it need to be modified to work in Studyworx 3
-  # These are imports from Studyworx 2
+  # OPTIMIZE Moved these methods to user.rb
+  # This lib file was moved over from Studyworx 2 but is not currently used.
   def grade_average(school_id,user_id)
     results = Assignment.find_by_sql(["
       SELECT (sum(grades.grade * assignments.weight)/sum(assignments.weight)) AS total

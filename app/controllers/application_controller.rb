@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
   # Useful for confirming ownership of records that are not looked up by <tt>current_user.id</tt>
   # 
   # ==== Usage:
-  #  dostuff if current_user.is_owner(record_user_id)
+  #  dostuff if is_owner(record_user_id)
   def is_owner(record_user_id)
     if current_user.id == record_user_id
       true

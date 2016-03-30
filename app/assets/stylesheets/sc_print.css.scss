@@ -81,23 +81,8 @@ section {
   page-break-after: always;
   overflow: hidden;
 }
-
-figure {
-  margin-left:auto;
-  margin-right: auto;
-  width: 300px;
-}
-
-figure img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-figcaption {
-  font-family: Garamond, Georgia;
-  font-style: italic;
-  text-align: center;
+ section img {
+  float:right;
 }
 
 code {
@@ -114,4 +99,3 @@ label {
 .float_left {
   float: left;
 }
-
