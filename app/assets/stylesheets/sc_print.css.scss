@@ -117,3 +117,18 @@ label {
 .float_left {
   float: left;
 }
+
+.two_column {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+  -webkit-column-gap: 12mm; /* Chrome, Safari, Opera */
+  -moz-column-gap: 12mm; /* Firefox */
+  column-gap: 12mm;
+}
+
+.pt_title {
+  font-size: 150%;
+  border-style: solid;
+  border-width: thin;
+}

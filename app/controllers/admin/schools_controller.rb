@@ -17,7 +17,8 @@ class Admin::SchoolsController < ApplicationController
   def show
     @school = School.find(params[:id])
   end
-
+  
+  # TODO loosen up the editing permissions to school leader not owner
   def edit
     @school = School.find(params[:id])   
     @nav_body_content = "admin/assignments/toolbar"

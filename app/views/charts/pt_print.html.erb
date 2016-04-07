@@ -1,0 +1,16 @@
+<div class="page">
+  <div class="noprint">
+    <%= link_to "close", :back %>
+  </div>
+  <header>
+    <h2>Paragraph titles for: <%= @assignment.name %></h2>
+    <p style="text-align: right;"><%= current_user.fullname %></p>
+  </header>
+  <div class="two_column">
+    <% @titles.each do |outline| %>
+      <div id="title_<%= outline.id %>" class="pt_title">
+            <%= outline.title %>
+      </div> 
+    <% end %>
+  </div>
+</div>

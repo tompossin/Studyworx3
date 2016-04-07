@@ -12,9 +12,14 @@
 
 <div id="content-large">
   <article>
-    <p class="title center">Click on a Segment Title to Chart...</p>
+    <p class="title_center">
+      <%=link_to "Print Paragraph Titles", user_task_pt_print_path(current_user,@task.id) %>
+    </p>
+    <p class="title center">
+      Click on a Segment Title to Chart...
+    </p>
     <%= render partial: "outline", collection: @titles %>
   </article>
 </div>  
 
-<%= nav_bar(@nav_body_content) %>
+<%= nav_bar(@nav_body_content)%>

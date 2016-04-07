@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <%= stylesheet_link_tag "print", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <style>
+      @media screen {
+        .noprint {display: block; }
+      }
+      @page {
+        size: A4 portrait;
+        margin: 20mm;
+      }
+      @media print {
+        .noprint {display: none;}
+        html, body {
+          width: 210mm;
+          height: 297mm;
+        }
+      } 
+      
+    </style>
+    
+  </head>
+  <body>
+  	<div id='content'>
+
+  	    <%= yield %>
+
+  	</div>
+  </body>
+</html>

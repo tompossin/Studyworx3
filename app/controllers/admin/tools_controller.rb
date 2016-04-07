@@ -51,7 +51,7 @@ class Admin::ToolsController < ApplicationController
     end
   end
   
-  # FIXME This is broken needs to load a selector for editing books.
+  # FIXME This is broken needs to load a selector for editing books. (very low priority)
   def book
     #@book = Book.find(params[:book_id])
     #@version = Version.find(params[:version_id])

@@ -216,6 +216,7 @@
               school_assignment_help GET    /schools/:school_id/assignments/:assignment_id/help(.:format)                              assignments#help
     school_assignment_time_remaining GET    /schools/:school_id/assignments/:assignment_id/time_remaining(.:format)                    assignments#time_remaining
           school_assignment_printall GET    /schools/:school_id/assignments/:assignment_id/printall(.:format)                          assignments#printall
+  school_assignment_printallcentered GET    /schools/:school_id/assignments/:assignment_id/printallcentered(.:format)                  assignments#printallcentered
     school_assignment_task_documents GET    /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents(.:format)          documents#index
                                      POST   /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents(.:format)          documents#create
  new_school_assignment_task_document GET    /schools/:school_id/assignments/:assignment_id/tasks/:task_id/documents/new(.:format)      documents#new
@@ -271,6 +272,7 @@ edit_school_assignment_task_document GET    /schools/:school_id/assignments/:ass
                          user_grades GET    /user/:user_id/grades(.:format)                                                            grades#grades
                 grade_finish_grading GET    /grade/:grade_id/finish_grading(.:format)                                                  grades#finish_grading
                          grade_print GET    /grade/:grade_id/print(.:format)                                                           grades#print
+                  user_task_pt_print GET    /user/:user_id/task/:task_id/pt_print(.:format)                                            charts#pt_print
               new_child_task_comment GET    /task/:task_id/comment/:id/new_child(.:format)                                             comments#new_child
             cancel_edit_task_comment GET    /task/:task_id/comment/:id/cancel_edit(.:format)                                           comments#cancel
               task_comment_staffnote GET    /task/:task_id/comment/:id/staffnote(.:format)                                             comments#staffnote

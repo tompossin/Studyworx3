@@ -161,7 +161,10 @@ Studyworx3::Application.routes.draw do
   match 'user/:user_id/grades' => 'grades#grades', via: [:get], as: :user_grades
   match 'grade/:grade_id/finish_grading' => 'grades#finish_grading', via: [:get], as: :grade_finish_grading
   match 'grade/:grade_id/print' => 'grades#print', via: :get, as: :grade_print
-
+  
+  # Custom printing routes
+  match 'user/:user_id/task/:task_id/pt_print' => 'charts#pt_print', via: [:get], as: :user_task_pt_print
+  
   # Discussion Task Routes
   match "task/:task_id/comment/:id/new_child" => 'comments#new_child', via: :get, as: :new_child_task_comment
   match "task/:task_id/comment/:id/cancel_edit" => 'comments#cancel', via: :get, as: :cancel_edit_task_comment

@@ -1,30 +1,46 @@
+app/controllers/admin/schools_controller.rb:
+  * [ 21] [TODO] loosen up the editing permissions to school leader not owner
+
 app/controllers/admin/scoresheets_controller.rb:
   * [ 61] [TODO] Add a link to this from the toolbar in the editor.
 
-app/controllers/application_controller.rb:
-  * [ 44] [FIXME] I may not want to call this on every call. This way it is sure to happen though ;)
+app/controllers/admin/tools_controller.rb:
+  * [ 54] [FIXME] This is broken needs to load a selector for editing books.
 
 app/controllers/blogs_controller.rb:
   * [  5] [TODO] I will need to put some limits or paging on this yet.
   * [ 26] [TODO] create partials for wysihtml5 and markdown
 
+app/controllers/charts_controller.rb:
+  * [243] [TODO] Must have been on crack when I named title.title instead of title.content may need to refactor that someday
+
+app/controllers/documents_controller.rb:
+  * [ 64] [TODO] fix routes so they make more sense
+
 app/controllers/home_controller.rb:
-  * [  6] [TODO] Fix the navbar so that only featured stories show
-  * [  7] [TODO] Add a search field to search by category
-  * [  8] [TODO] Maybe add a full text search
-  * [  9] [TODO] May need to add the exerpt/lead-in to give short intros that can be displayed on the home page.
+  * [  6] [TODO] Add a search field to search by category
+  * [  7] [TODO] Maybe add a full text search
+  * [  8] [TODO] May need to add the exerpt/lead-in to give short intros that can be displayed on the home page.
 
 app/controllers/messages_controller.rb:
-  * [ 73] [FIXME] This is called mistakenly by a message edit.
+  * [ 87] [FIXME] This is called mistakenly by a message edit.
+
+app/controllers/teams_controller.rb:
+  * [ 25] [TODO] Need to filter the lists better. Core teams need to be from the current school.
+
+app/models/grade.rb:
+  * [ 74] [TODO] This code reponds very poorly to a non-existant due time. Line 81 is the issue I think.
 
 app/models/title.rb:
-  * [ 14] [TODO] I need to build a method that populates a new chart setup
-  * [ 16] [TODO] I need to build a destroyer so people can start over
+  * [169] [TODO] add &nbsp; to the gsub below and test
 
 app/models/user.rb:
-  * [ 33] [FIXME] I need a Jquery checker on the image uploading page that will prevent
+  * [ 38] [FIXME] I need a Jquery checker on the image uploading page that will prevent
+  * [103] [TODO] This is still giving the wrong answer.
 
-app/controllers/assignments_controller.rb
-  * Need to add a new method for printallcentered
-app/app/views/assignments/(new file)printallcentered.html.erb
-  * need a new view for the centered view of verticals.
+lib/format_content.rb:
+  * [ 40] [FIXME] This is broken if I ever try to use this again.
+
+lib/grading.rb:
+  * [  6] [OPTIMIZE] Moved these methods to user.rb
+

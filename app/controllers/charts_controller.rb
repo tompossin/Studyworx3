@@ -1,7 +1,8 @@
 class ChartsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_task
-  layout "print", only: [:print, :download]
+  layout "print", only: [:print, :download, :pt_print]
+  layout "2col_print", only: [:pt_print]
   include Imaging
   include FormatContent
  
@@ -60,6 +61,16 @@ class ChartsController < ApplicationController
     
     output = convert_file(content, current_user, filename, params[:file_type])
     send_file(output[:filepath], filename: output[:filename])
+  end
+  
+  # This will print all PT's whether finished or not.
+  # This can not be run until the charts have been processed.
+  # After the start button has run and after the builder button has been pressed.
+  # This link should probably be on the charts#charting page.
+  def pt_print
+    @task = Task.includes(:assignment).find(params[:task_id])
+    @assignment = @task.assignment
+    @titles = Title.build_paragraph_title_collection(@task.id,current_user.id)
   end
   
   # Charting toolkit
