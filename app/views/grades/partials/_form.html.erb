@@ -1,10 +1,10 @@
 <%= form_for( [@school,@grade], {remote: true}) do |f| %>
-  
+
   <%= include_form_validation_errors(@grade) %>
-  
+
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :assignment_id %>
-  
+
   <div class="field">
     <%= f.select :staff_id, @school.staff.collect {|s| [s.fullname, s.id]},{include_blank: true} %>
   </div>
@@ -17,6 +17,6 @@
     <%= f.check_box :done %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit Assignment"%>
   </div>
 <% end %>
