@@ -2,17 +2,19 @@ class Admin::DuedatesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_school_admin
   before_filter :get_school
-  
+
   # admin/assignment/duedates
   #
   # Lists all assignment/duetimes in the current module.
   def index
     @teams = @school.teams.where(coreteam: true)
-    @modules = @school.assignments.group(:module)
+    # the code below no longer works with mysql 5.7
+    #@modules = @school.assignments.group(:module)
+    @modules = @school.assignments.where("module > ?",0).select(:module).group(:module)
     @nav_body_content = "admin/assignments/toolbar"
-    
+
   end
-  
+
   # This lists the assignments by Module, and Team
   # A form sends the params for this page.
   # The path is:
@@ -32,12 +34,12 @@ class Admin::DuedatesController < ApplicationController
       else
         format.html {redirect_to admin_duedates_path, alert: "Please select both a team and a module." }
       end
-    end    
+    end
   end
 
   def edit
     @duedate = Duedate.find(params[:id])
-    
+
     respond_to do |format|
       format.js
     end
@@ -53,11 +55,11 @@ class Admin::DuedatesController < ApplicationController
       end
     end
   end
-  
+
   private
-  
+
   def get_school
     @school = School.find(current_user.school)
   end
-  
+
 end

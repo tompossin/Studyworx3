@@ -16,7 +16,7 @@ gem 'rails', '~>3.2.14'
 gem 'paperclip'
 gem 'thin'
 gem 'seed_dump'
-gem 'mysql2','~> 0.3.10' # Don't change this it breaks the server. 3.30.16 {:> Me
+gem 'mysql2','~> 0.3.20' # Don't change this it breaks the server. 3.30.16 {:> Me
 gem 'closure_tree' # replaces acts_as_tree
 gem 'settingslogic' # This does global settings but I may not need it later.
 gem 'acts_as_list'
