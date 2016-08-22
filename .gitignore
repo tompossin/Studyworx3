@@ -23,3 +23,6 @@
 /config/environments/production.rb
 /config/database.yml
 Gemfile
+
+# Ignore Jetbrains IntelliJ Platform files
+/.idea
