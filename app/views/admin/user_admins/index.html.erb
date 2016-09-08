@@ -16,6 +16,7 @@
               <div class="cell" style="width:75px;">Admin<br />Level</div>
               <div class="cell" style="width:125px;">Manage<br />Admins</div>
               <div class="cell" style="width:125px;">Review Board<br />Status</div>
+              <div class="cell" style="width:125px;">User<br />Details</div>
             </div>
           <% @users.each do |u| %>
             <div class="trow <%= cycle('even','odd')%>" style="width:100%">
@@ -27,11 +28,12 @@
               <% else %>
               	<div class="cell" style="width:125px;"><%= link_to "Make an Admin", edit_admin_user_admin_path(u.id)%></div>
               <% end %>
-              <% if u.reviewboard == true %>
+              <% if u.reviewboard %>
                 <div class="cell" style="width:125px;"><span style="font-weight:bold;color:red;">True </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></div>
               <% else %>
                 <div class="cell" style="width:125px;"><span style="font-style:italic;">False </span><%= link_to "Edit status", reviewboard_profile_path(u.id)%></div>
               <% end %>
+              <div class="cell" style="width:125px;"><%= link_to 'Show', details_user_admin_path(u.id) %></div>
             </div>
           <% end %>
       <% end %>

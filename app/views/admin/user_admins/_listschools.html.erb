@@ -1,0 +1,9 @@
+<%= form_for([:admin, @user_admin]) do |f| %>
+
+    <%= include_form_validation_errors(@user_admin) %>
+
+    <div class="field">
+      <%= f.select :school, [@user.schools_i_belong_to]  %>
+      <%= f.submit %>
+    </div>
+<% end %>

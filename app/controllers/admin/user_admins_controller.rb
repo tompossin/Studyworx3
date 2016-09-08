@@ -12,6 +12,7 @@ class Admin::UserAdminsController < ApplicationController
       format.html # index.html.erb
     end
   end
+
   
 
   # GET /admin/user_admins/1
@@ -40,6 +41,13 @@ class Admin::UserAdminsController < ApplicationController
     unless @user_admin
       @user_admin = UserAdmin.create(user_id: params[:id],level: 0)
     end
+  end
+
+  # GET /admin/user_admins/1/details
+  def details
+    @user_admin = UserAdmin.find(params[:id])
+    @user = User.find(params[:id])
+
   end
 
   # POST /admin/user_admins

@@ -5,9 +5,10 @@ class UserAdmin < ActiveRecord::Base
   ########
   def self.search(search)
     if search
-      User.find(:all, :conditions => ['lastname LIKE ?', "%#{search}%"])
+      # find(:first) and find(:all) are deprecated in favor of first() and all()
+      User.all(:conditions => ['lastname LIKE ?', "%#{search}%"])
     else
-      User.find(:all, limit: 10)
+      User.all(limit: 10)
     end
   end
 end

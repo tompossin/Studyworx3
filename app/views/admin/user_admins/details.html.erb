@@ -1,0 +1,23 @@
+<div id="content-large">
+  <article>
+    <div class="floatbox_trans">
+      <h1>User Details for </h1>
+        <div>
+          <%= @user.firstname + " " + @user.lastname %>
+        </div>
+      <% if @user %>
+          <div class="theader" style="width: 100%">
+            <div class="cell" style="width: 75px;">Name</div>
+            <div class="cell" style="width: 75px;">E-mail</div>
+            <div class="cell" style="width: 75px;">Timezone</div>
+
+            <% render 'listschools' %>
+
+            <div class="cell" style="width: 75px;">Current<br />School</div>
+            <div class="cell" style="width: 75px;">Current<br />Role</div>
+            <div class="cell" style="width: 75px;"></div>
+          </div>
+      <% end %>
+    </div>
+  </article>
+</div>

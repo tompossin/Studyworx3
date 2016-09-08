@@ -51,8 +51,10 @@ Studyworx3::Application.routes.draw do
       collection do
         get 'list'
       end
-
     end
+
+    # User Details
+    match "user_admins/details" => "user_admins#details", via: :get, as: :details_user_admin
 
     # Tools
     get "tools/index" => "tools#index", as: :tools
