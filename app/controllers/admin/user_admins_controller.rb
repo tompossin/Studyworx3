@@ -43,11 +43,7 @@ class Admin::UserAdminsController < ApplicationController
     end
   end
 
-  # GET /admin/user_admins/1/details
   def details
-    @user_admin = UserAdmin.find(params[:id])
-    @user = User.find(params[:id])
-
   end
 
   # POST /admin/user_admins

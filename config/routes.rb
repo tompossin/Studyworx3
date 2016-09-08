@@ -16,7 +16,9 @@ Studyworx3::Application.routes.draw do
     end
     resources :books
     resources :profiles
-    resources :user_admins
+    resources :user_admins do
+      get 'details'
+      end
     resources :versions do
       resources :books do
         resources :paragraphs do
@@ -54,7 +56,7 @@ Studyworx3::Application.routes.draw do
     end
 
     # User Details
-    match "user_admins/details" => "user_admins#details", via: :get, as: :details_user_admin
+    #get "user_admins/details" => "user_admins#details", as: :details_user_admin
 
     # Tools
     get "tools/index" => "tools#index", as: :tools
