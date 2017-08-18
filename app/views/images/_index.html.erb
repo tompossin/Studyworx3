@@ -6,7 +6,6 @@
   <hr />
   <p class="theader">
     <span class="cell"><%=link_to "Horizontal",task_download_horizontal_path(@task),{onClick: "ShowSpinner()",title: "Click to download"}%></span>
-    <span class="cell"><%=link_to "All Charts",task_download_all_charts_path(@task),{onClick: "ShowSpinner()",title: "Click to download all charts."}%></span>
   </p>
   <blockquote>
     <% @segments.each do |s| %>
